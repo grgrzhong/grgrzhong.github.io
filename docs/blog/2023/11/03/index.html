@@ -173,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">Thursday, November 16, 2023</p>
+        <p class="date-modified">Friday, February 28, 2025</p>
       </div>
     </div>
       
@@ -183,7 +183,18 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link active" data-scroll-target="#naming-conventions">Naming Conventions</a></li>
+  <li><a href="#code-formatting" id="toc-code-formatting" class="nav-link" data-scroll-target="#code-formatting">Code Formatting</a></li>
+  <li><a href="#efficient-coding" id="toc-efficient-coding" class="nav-link" data-scroll-target="#efficient-coding">Efficient Coding</a></li>
+  <li><a href="#code-organization" id="toc-code-organization" class="nav-link" data-scroll-target="#code-organization">Code Organization</a></li>
+  <li><a href="#memory-management" id="toc-memory-management" class="nav-link" data-scroll-target="#memory-management">Memory Management</a></li>
+  <li><a href="#project-management" id="toc-project-management" class="nav-link" data-scroll-target="#project-management">Project Management</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -196,25 +207,53 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<p>Writing clean, efficient, and maintainable code is crucial for any programming language, and R is no exception. In this blog post, we will discuss best practices for R programming. These guidelines will help you write better R code, making it easier to read, debug, and share with others. Whether you are a beginner or an experienced R programmer, following these best practices will improve your coding skills and enhance your productivity.</p>
+<section id="naming-conventions" class="level3">
+<h3 class="anchored" data-anchor-id="naming-conventions">Naming Conventions</h3>
 <ul>
-<li>Variables = my_variable</li>
-<li>Functions = RunThisStuffs()</li>
-<li>Constants = CONSTANTS</li>
-<li>Use 4 spaces (and not tab) for indentations</li>
-<li>Always writing documentation above function definition</li>
-<li>A function should not be longer than one screen</li>
-<li>Avoid using for loop, learn lapply and vector operations</li>
-<li>Never ever use hard-coded variables in functions</li>
-<li><code>### ======</code> to divide function blocks</li>
-<li><code>### ------</code> to divide parts in a function</li>
-<li>Name and style code consistently</li>
-<li><code>rm(list =ls())</code> and <code>gc()</code> to tidy up its memory</li>
-<li>Don’t save a session history</li>
-<li>Keep track of <code>sessionInfo()</code> in project folder</li>
-<li>Use version control</li>
+<li><strong>Variables</strong>: Use descriptive names with underscores to separate words (e.g., <code>my_variable</code>).</li>
+<li><strong>Functions</strong>: Use camelCase for function names (e.g., <code>runThisStuff()</code>).</li>
+<li><strong>Constants</strong>: Use all uppercase letters with underscores to separate words (e.g., <code>CONSTANTS</code>).</li>
+</ul>
+</section>
+<section id="code-formatting" class="level3">
+<h3 class="anchored" data-anchor-id="code-formatting">Code Formatting</h3>
+<ul>
+<li><strong>Indentation</strong>: Use 4 spaces for indentation (do not use tabs).</li>
+<li><strong>Documentation</strong>: Always write documentation above function definitions.</li>
+<li><strong>Function Length</strong>: A function should not be longer than one screen.</li>
+</ul>
+</section>
+<section id="efficient-coding" class="level3">
+<h3 class="anchored" data-anchor-id="efficient-coding">Efficient Coding</h3>
+<ul>
+<li><strong>Avoid Loops</strong>: Avoid using <code>for</code> loops; instead, learn to use <code>lapply</code> and vectorized operations.</li>
+<li><strong>No Hard-Coded Variables</strong>: Never use hard-coded variables in functions.</li>
+</ul>
+</section>
+<section id="code-organization" class="level3">
+<h3 class="anchored" data-anchor-id="code-organization">Code Organization</h3>
+<ul>
+<li><strong>Block Dividers</strong>: Use <code>### ======</code> to divide function blocks and <code>### ------</code> to divide parts within a function.</li>
+<li><strong>Consistent Naming and Style</strong>: Name and style your code consistently.</li>
+</ul>
+</section>
+<section id="memory-management" class="level3">
+<h3 class="anchored" data-anchor-id="memory-management">Memory Management</h3>
+<ul>
+<li><strong>Clean Up</strong>: Use <code>rm(list = ls())</code> and <code>gc()</code> to tidy up memory.</li>
+<li><strong>Session History</strong>: Do not save session history.</li>
+</ul>
+</section>
+<section id="project-management" class="level3">
+<h3 class="anchored" data-anchor-id="project-management">Project Management</h3>
+<ul>
+<li><strong>Session Info</strong>: Keep track of <code>sessionInfo()</code> in the project folder.</li>
+<li><strong>Version Control</strong>: Use version control systems like Git to manage your code.</li>
 </ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
