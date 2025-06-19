@@ -1,0 +1,84 @@
+project:
+  type: website
+  execute-dir: project
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "*.md"
+    - "!projects/"
+
+  resources:
+    - "files/**"
+    # Things that need to be at the site root
+    - ".htaccess"
+    - "LiveSearchSiteAuth.xml"
+    # - "keybase.txt"
+    - "y_key_31e0c4105fc75710.html"
+    - "pgp_ath.asc.txt"
+
+website:
+  title: "Guorui Zhong"
+  image: "/files/profiles/avatar.png"
+  # favicon: "/files/profiles/avatar.png"
+  description: ""
+  search: 
+    location: navbar
+    type: overlay
+  site-url: "https://grgrzhong.github.io/"
+  repo-url: "https://github.com/grgrzhong/quarto"
+  navbar:
+    pinned: true
+    left:
+      - text: "About"
+        file: "index.qmd"
+      - text: "Blog"
+        file: "blog/index.qmd"
+      - text: "Programming"
+        menu:
+          - file: "programming/python/index.qmd"
+          - file: "programming/r/index.qmd"
+          - file: "programming/conda/index.qmd"
+      - text: "Wiki"
+        file: "wiki/index.qmd"
+      - text: "Keyboard"
+        file: "keyboard/index.qmd"
+
+    right: 
+      - icon: journal-check
+        aria-label: journal-check
+        href: https://scholar.google.com/citations?user=g0MfTPMAAAAJ&hl=en
+      - icon: linkedin
+        aria-label: linkedin
+        href: https://www.linkedin.com/in/guorui-zhong-754761185/
+      - icon: github
+        aria-label: github
+        href: https://github.com/guoruizhong
+  
+  page-footer:
+    center: |
+      <span class="faux-block">{{< fa brands creative-commons >}} 2021-2024 Guorui Zhong ~ Made with [{{< fa brands r-project >}}](https://www.r-project.org/) and [Quarto](https://quarto.org/)</span>
+
+format:
+  html:
+    theme:
+      - html/ath.scss
+    toc: false
+    code-link: true
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true
+    # highlight-style: github-dark
+    highlight-style: dracula
+    # highlight-style: monokai
+
+# bibliography: files/bib/references.bib
+# csl: files/bib/chicago-author-date.csl
+
+# Metadata stuff
+# pagetitle: "{{< meta title >}} | {{< meta website.title >}}"
+# description-meta: "{{< meta description >}}"
+# author-meta: "Guorui Zhong"
+
+execute:
+  freeze: auto

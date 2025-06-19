@@ -1,0 +1,15 @@
+{
+  "hash": "39d02ddf84c73c679b9724161d17de23",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Simple SVM classification example in R\"\ndate: 2024-07-01\ndate-modified: last-modified\ncategories:\n  - svm\n# image: mapping.png\n# description: \n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(parallel)\nlibrary(lme4)\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nLoading required package: Matrix\n```\n\n\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n### Check the number of cores\ndetectCores()\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 8\n```\n\n\n:::\n:::\n\n\n\n### mclapply\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n### mclapply works on unix system, it will call lapply in windows\nf <- function(i) {\n  lmer(Petal.Width ~ . - Species + (1 | Species), data = iris)\n}\n\nsystem.time(save1 <- lapply(1:100, f))\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n   user  system elapsed \n  0.648   0.006   0.660 \n```\n\n\n:::\n\n```{.r .cell-code}\nsystem.time(save2 <- mclapply(1:100, f))\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n   user  system elapsed \n  0.033   0.034   0.464 \n```\n\n\n:::\n:::\n\n\n\n\n### parlapply\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n### Works on windows, but slower than mclapply\nnumCores <- detectCores()\n\n### Starting a cluster\ncl <- makeCluster(numCores)\nparSapply(cl, Orange, mean, na.rm = TRUE)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n         Tree           age circumference \n           NA      922.1429      115.8571 \n```\n\n\n:::\n\n```{.r .cell-code}\n### Close the cluster, best practise\nstopCluster(cl)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n### lapply\nsystem.time({save1 <- lapply(1:100, f)})\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n   user  system elapsed \n  0.640   0.007   0.648 \n```\n\n\n:::\n\n```{.r .cell-code}\n### mclapply\nsystem.time({save2 <- mclapply(1:100, f)})\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n   user  system elapsed \n  0.392   0.085   0.478 \n```\n\n\n:::\n\n```{.r .cell-code}\n###\nsystem.time(\n    {\n        cl <- makeCluster(detectCores())\n        clusterEvalQ(cl, library(lme4))\n        save3 <- parLapply(cl, 1:100, f)\n        stopCluster(cl)\n    }\n)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n   user  system elapsed \n  0.117   0.016   1.359 \n```\n\n\n:::\n:::\n\n\n\n\n\n## Reference\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

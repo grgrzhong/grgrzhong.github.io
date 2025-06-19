@@ -1,0 +1,641 @@
+---
+title: "Seurat V5 | 10X course example"
+date: 2024-03-18
+date-modified: last-modified
+categories:
+    - seurat
+    - scrna
+# image:
+# description: 
+execute: 
+    freeze: true
+    eval: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+#   fig.width = 6,
+#   fig.height = 6 * 0.618,
+#   fig.retina = 3,
+    dev = "ragg_png",
+    fig.align = "center",
+    out.width = "90%",
+#   cache.extra = 1234,  # Change number to invalidate cache
+    collapse = TRUE
+)
+
+options(
+    digits = 4,
+    width = 300,
+    dplyr.summarise.inform = FALSE
+)
+
+set.seed(1234)
+```
+
+## Load packages and data
+```{r}
+library(here)
+library(tidyverse)
+library(Seurat)
+library(SCINA)
+theme_set(theme_bw(base_size = 14))
+```
+
+
+```{r}
+dir <- here("projects/babraham_training_bioinformatics/10X_scRNAseq_Course")
+data <- Read10X_h5(here(dir, "data/filtered_feature_bc_matrix.h5"))
+data <- CreateSeuratObject(
+    counts = data,
+    project = "course",
+    min.cells = 3,
+    min.features = 200
+)
+data
+
+head(rownames(data))
+```
+
+
+## Explore QC metrics
+
+```{r}
+### Amount of MT genes
+grep("^MT-", rownames(data), value = TRUE)
+data$percent_MT <- PercentageFeatureSet(data, pattern = "^MT-")
+head(data$percent_MT)
+
+### Amount of Ribosomal genes
+grep("^RP[LS]", rownames(data), value = TRUE)
+data$percent_Ribosomal <- PercentageFeatureSet(data, pattern = "^RP[LS]")
+head(data$percent_Ribosomal)
+
+### Percentage of Largest Gene
+data_nomalat <- data[rownames(data) != "MALAT1", ]
+
+data_nomalat$largest_count <- apply(
+    data_nomalat@assays$RNA@layers$counts,
+    2,
+    max
+)
+
+data_nomalat$largest_index <- apply(
+    data_nomalat@assays$RNA@layers$counts,
+    2,
+    which.max
+)
+
+data_nomalat$largest_gene <- rownames(data_nomalat)[data_nomalat$largest_index]
+
+data_nomalat$percent.Largest.Gene <- 100 * data_nomalat$largest_count /
+    data_nomalat$nCount_RNA
+
+data_nomalat[[]][1:10, ]
+
+data$largest_gene <- data_nomalat$largest_gene
+data$percent.Largest.Gene <- data_nomalat$percent.Largest.Gene
+
+data[[]][1:10, ]
+rm(data_nomalat)
+```
+
+```{r}
+### For some metrics it’s better to view on a log scale.
+VlnPlot(
+    data,
+    layer = "counts",
+    features = c(
+        "nCount_RNA", "percent_MT", "percent_Ribosomal", "percent.Largest.Gene"
+    ),
+    ncol = 2,
+    log = TRUE
+)
+
+FeatureScatter(
+    data,
+    feature1 = "nCount_RNA", 
+    feature2 = "percent.Largest.Gene"
+)
+```
+
+```{r}
+## ggplot
+qc_metrics <- dplyr::as_tibble(
+    data[[]],
+    rownames = "Cell.Barcode"
+)
+
+head(qc_metrics)
+
+qc_metrics |>
+    arrange(percent_MT) |>
+    ggplot(aes(nCount_RNA, nFeature_RNA, colour = percent_MT)) +
+    geom_point() +
+    scale_color_gradientn(colors = c("black", "blue", "green2", "red", "yellow")) +
+    ggtitle("Example of plotting QC metrics") +
+    geom_hline(yintercept = 750) +
+    geom_hline(yintercept = 2000)
+
+## Log scale
+qc_metrics |>
+    arrange(percent_MT) |>
+    ggplot(aes(nCount_RNA, nFeature_RNA, colour = percent_MT)) +
+    geom_point(size = 0.7) +
+    scale_color_gradientn(colors = c("black", "blue", "green2", "red", "yellow")) +
+    ggtitle("Example of plotting QC metrics") +
+    geom_hline(yintercept = 750) +
+    geom_hline(yintercept = 2000) +
+    scale_x_log10() +
+    scale_y_log10()
+```
+
+```{r}
+### Complexity 
+qc_metrics <- qc_metrics |>
+  mutate(complexity=log10(nFeature_RNA) / log10(nCount_RNA))
+
+complexity.lm <- lm(log10(qc_metrics$nFeature_RNA)~log10(qc_metrics$nCount_RNA)) 
+
+complexity.lm
+
+qc_metrics <- qc_metrics |>
+  mutate(
+    complexity_diff = log10(nFeature_RNA) - ((log10(qc_metrics$nCount_RNA)*complexity.lm$coefficients[2])+complexity.lm$coefficients[1])
+  )
+
+qc_metrics |>
+  ggplot(aes(x=complexity_diff)) +
+  geom_density(fill="yellow") 
+
+complexity_scale <- min(c(max(qc_metrics$complexity_diff),0-min(qc_metrics$complexity_diff)))
+
+qc_metrics |>
+  mutate(complexity_diff=replace(complexity_diff,complexity_diff< -0.1,-0.1)) |>
+  ggplot(aes(x=log10(nCount_RNA), y=log10(nFeature_RNA), colour=complexity_diff)) +
+  geom_point(size=0.5) +
+  geom_abline(slope=complexity.lm$coefficients[2], intercept = complexity.lm$coefficients[1]) +
+  scale_colour_gradient2(low="blue2",mid="grey",high="red2")
+
+qc_metrics |>
+  ggplot(aes(x=complexity_diff, y=percent.Largest.Gene)) +
+  geom_point()
+```
+
+```{r}
+### Largest gene
+largest_gene_list <- qc_metrics |>
+    group_by(largest_gene) |>
+    count() |>
+    arrange(desc(n))
+
+largest_genes_to_plot <- largest_gene_list |>
+    filter(n > 140) |>
+    pull(largest_gene)
+
+qc_metrics |>
+    filter(largest_gene %in% largest_genes_to_plot) |>
+    mutate(
+      largest_gene = factor(largest_gene, levels = largest_genes_to_plot)
+    ) |>
+    arrange(largest_gene) |>
+    ggplot(
+      aes(x = log10(nCount_RNA), y = log10(nFeature_RNA), colour = largest_gene)
+    ) +
+    geom_point(size = 1) +
+    scale_colour_manual(
+      values = c("grey", RColorBrewer::brewer.pal(9, "Set1"))
+    )
+
+qc_metrics |>
+    filter(largest_gene %in% largest_genes_to_plot) |>
+    mutate(
+      largest_gene = factor(largest_gene, levels = largest_genes_to_plot)
+    ) |>
+    arrange(largest_gene) |>
+    ggplot(
+      aes(x = complexity_diff, y = percent.Largest.Gene, colour = largest_gene)
+    ) +
+    geom_point() +
+    scale_colour_manual(values = c("grey", RColorBrewer::brewer.pal(9, "Set1")))
+
+qc_metrics |>
+    arrange(percent_MT) |>
+    ggplot(
+      aes(x = complexity_diff, y = percent.Largest.Gene, colour = percent_MT)
+    ) +
+    geom_point() +
+    scale_colour_gradient(low = "grey", high = "red2")
+
+qc_metrics |>
+    arrange(percent_Ribosomal) |>
+    ggplot(
+      aes(x = complexity_diff, y = percent.Largest.Gene, colour = percent_Ribosomal)
+    ) +
+    geom_point() +
+    scale_colour_gradient(low = "grey", high = "red2")
+```
+
+## Setting QC Cutoff and Filtering
+
+```{r}
+qc_metrics |>
+    ggplot(aes(percent_MT)) +
+    geom_histogram(binwidth = 0.5, fill = "yellow", colour = "black") +
+    ggtitle("Distribution of Percentage Mitochondrion") +
+    geom_vline(xintercept = 10)
+
+qc_metrics |>
+    ggplot(aes(percent.Largest.Gene)) +
+    geom_histogram(binwidth = 0.7, fill = "yellow", colour = "black") +
+    ggtitle("Distribution of Percentage Largest Gene") +
+    geom_vline(xintercept = 10) ### Filtering
+
+data <- subset(
+    data,
+    nFeature_RNA > 750 &
+        nFeature_RNA < 2000 &
+        percent_MT < 10 &
+        percent.Largest.Gene < 10
+)
+
+data
+```
+
+## Normalisation, Selection and Scaling
+
+```{r}
+### Normalization
+data <- NormalizeData(data, normalization.method = "LogNormalize")
+
+gene_expression <- apply(data@assays$RNA@layers$data, 1, mean)
+gene_expression <- names(gene_expression) <- rownames(data)
+gene_expression <- sort(gene_expression, decreasing = TRUE)
+head(gene_expression, n = 10)
+
+ggplot(mapping = aes(data["GAPDH", ]@assays$RNA@layers$data)) +
+    geom_histogram(binwidth = 0.05, fill = "yellow", colour = "black") +
+    ggtitle("GAPDH expression")
+
+
+as_tibble(
+    data@assays$RNA@layers$data[, 1:100]
+) |>
+    pivot_longer(
+        cols = everything(),
+        names_to = "cell",
+        values_to = "expression"
+    ) |>
+    ggplot(aes(x = cell, y = expression)) +
+    stat_summary(geom = "crossbar", fun.data = mean_sdl)
+```
+
+```{r}
+### Cell Cycle Scoring
+cc.genes.updated.2019
+
+data <- CellCycleScoring(
+    data,
+    s.features = cc.genes.updated.2019$s.genes,
+    g2m.features = cc.genes.updated.2019$g2m.genes,
+    set.ident = TRUE
+)
+
+as_tibble(data[[]])
+
+as_tibble(data[[]]) |>
+    ggplot(aes(Phase)) + geom_bar()
+
+as_tibble(data[[]]) |>
+    ggplot(aes(x = S.Score, y = G2M.Score, color = Phase)) +
+    geom_point() +
+    coord_cartesian(xlim = c(-0.15, 0.15), ylim = c(-0.15, 0.15))
+```
+
+
+```{r}
+### Gene selection
+data <- FindVariableFeatures(
+    data,
+    selection.method = "vst",
+    nfeatures = 500
+)
+
+variance_data <- as_tibble(
+    HVFInfo(data), rownames = "Gene"
+)
+
+variance_data <- variance_data |>
+    mutate(
+        hypervariable = Gene %in% VariableFeatures(data)
+    )
+
+head(variance_data, n = 10)
+
+variance_data |>
+    ggplot(aes(log(mean), log(variance), color = hypervariable)) +
+    geom_point() +
+    scale_color_manual(values = c("black", "red"))
+```
+
+
+```{r}
+### Scaling
+data <- ScaleData(data, features = rownames(data))
+```
+
+## Dimensionality reduction
+
+### PCA
+```{r}
+### Calculate all PCs
+### list of genes which are most highly and lowly weighted in the different PCs
+data <- RunPCA(data, features = VariableFeatures(data))
+
+### See if the cell cycle is having a big effect on the clusters we’re picking out
+DimPlot(data, reduction = "pca")
+
+DimPlot(
+    data, reduction = "pca",
+    group.by = "largest_gene",
+    label = TRUE,
+    label.size = 3
+) + NoLegend()
+
+### This nicely shows us the power, but also the limitations of PCA in that we 
+### can see that not all of the useful information is captured in the first two 
+### principal components.
+DimPlot(data, reduction = "pca", dims = c(3, 4))
+
+### How far down the set of PCs do we need to go to capture all of the 
+### biologically relevant information.
+ElbowPlot(data)
+
+### Plots of PCA weightings for the most highly and lowly weighted genes, 
+### shown against the set of cells which are most highly influenced by the PC. 
+### The idea is that as long as we’re seeing clear structure in one of these 
+### plots then we’re still adding potentially useful information to the analysis.
+DimHeatmap(data, dims = 1:15, cells = 500)
+```
+
+### tSNE
+
+```{r}
+### Setting this to a low value will help resolve small clusters, 
+### but at the expense of large clusters becoming more diffuse
+saved_seed <- 8482
+set.seed(saved_seed)
+
+data <- RunTSNE(data, dims = 1:15, seed.use = saved_seed, perplexity = 10)
+DimPlot(data, reduction = "tsne", pt.size = 1) +
+    ggtitle("tSNE with Perplexity 10")
+
+data <- RunTSNE(data, dims = 1:15, seed.use = saved_seed, perplexity = 200)
+DimPlot(data, reduction = "tsne", pt.size = 1) +
+    ggtitle("tSNE with Perplexity 200")
+
+data <- RunTSNE(data, dims = 1:15, seed.use = saved_seed)
+DimPlot(data, reduction = "tsne", pt.size = 1) +
+    ggtitle("tSNE with default Perplexity (30)")
+```
+
+
+## Defining Cell Clusters
+
+```{r}
+### Finds the ‘k’ nearest neighbours to each cell and makes this into a graph
+data <- FindNeighbors(data, dims = 1:15)
+
+### Get another sparse matrix of distances.
+data@graphs$RNA_snn[1:10, 1:10]
+```
+
+
+```{r}
+### Segment the graph, 
+### Larger resolution give larger clusters, smaller values gives smaller clusters.
+data <- FindClusters(data, resolution = 0.5)
+
+head(data$seurat_clusters, n = 5)
+```
+
+```{r}
+### Some of the clusters don't resolve very well in PC1 vs PC2
+DimPlot(data, reduction = "pca", label = TRUE) +
+    ggtitle("PC1 vs PC2 with Clusters")
+
+### Some of the clusters which are overlaid in PC1 start to separate in other PCs
+### These differences represent a small proportion of the overall variance
+### but can be important in resolving changes.
+DimPlot(data, reduction = "pca", dims = c(4, 9), label = TRUE) +
+    ggtitle("PC4 vs PC9 with Clusters")
+
+### tSNE plot showing all of the information across the PCs used is preserved
+### and we see the overall similarity of the cells
+DimPlot(data, reduction = "tsne", pt.size = 1, label = TRUE, label.size = 7)
+```
+
+```{r}
+### Check the clusters to see if they are influenced by any of the QC metrics
+### We can see that some of the clusters are skewed in one or more of the
+### metrics we’ve calculated so we will want to take note of this.
+### Some of these skews could be biological in nature,
+### but they could be noise coming from the data.
+VlnPlot(data, features = "nCount_RNA")
+
+### Cluster 8, 9, 11, and 12 could be GEMs where two or more cells were captured
+### Since they all usually high coverage and diversity
+### Theya are also small and tightly clustered away from the main groups of points
+VlnPlot(data, features = "nFeature_RNA")
+
+VlnPlot(data, features = "percent_MT")
+
+VlnPlot(data, features = "MALAT1")
+
+VlnPlot(data,features="percent.Largest.Gene")
+
+### Which largest gene
+data[[]] |>
+    group_by(seurat_clusters, largest_gene) |>
+    count() |>
+    arrange(desc(n)) |>
+    group_by(seurat_clusters) |>
+    slice(1:2) |>
+    ungroup() |>
+    arrange(seurat_clusters, desc(n))
+
+### Cell cycle
+data@meta.data |>
+    group_by(seurat_clusters, Phase) |>
+    count() |>
+    group_by(seurat_clusters) |>
+    mutate(percent = 100 * n / sum(n)) |>
+    ungroup() |>
+    ggplot(aes(x = seurat_clusters, y = percent, fill = Phase)) +
+    geom_col() +
+    ggtitle("Percentage of cell cycle phases per cluster")
+```
+
+
+```{r}
+### That’s already quite nice for explaining some of the functionality of the 
+### clusters, but there’s more in there than just the behaviour of the most 
+### expressed gene
+data@reductions$tsne@cell.embeddings |>
+    as_tibble() |>
+    add_column(
+      seurat_clusters = data$seurat_clusters, largest_gene = data$largest_gene
+    ) |>
+    filter(largest_gene %in% largest_genes_to_plot) |>
+    ggplot(aes(x = tSNE_1, y = tSNE_2, colour = seurat_clusters)) +
+    geom_point() +
+    facet_wrap(vars(largest_gene))
+```
+
+## Find Markers
+
+```{r}
+### Evaluate the cluster by identifying genes whose expression definies each
+### cluster which has been identified
+
+### Find genes appears to be upregulated in a specific cluster compared to all
+### cells not in that cluster
+FindMarkers(data, ident.1 = 0, min.pct = 0.25)[1:5, ]
+
+### Show the expression levels of these genes in the cells in each cluster
+### VCAN gene is more highly expressed in cluster 0 than any of the other 
+### clusters, but we can also see that it is also reasonably highly expressed 
+### in clusters 9 and 12. These were both clusters we suspected of being 
+### multiple cells though
+VlnPlot(data, features = "VCAN")
+```
+
+```{r}
+### FindMarkers function on all of the clusters
+cluster_markers <- lapply(
+    levels(data[["seurat_clusters"]][[1]]),
+    function(x) FindMarkers(data, ident.1 = x, min.pct = 0.25)
+)
+
+### Adds the cluster number to the results of FindMarkers
+sapply(
+    0:(length(cluster_markers) - 1),
+    function(x) {
+        cluster_markers[[x + 1]]$gene <<- rownames(cluster_markers[[x + 1]])
+        cluster_markers[[x + 1]]$cluster <<- x
+    }
+)
+
+### Generate tibble and sort by FDR to put the most significant ones first
+cluster_markers <- as_tibble(do.call(rbind, cluster_markers)) |>
+    arrange(p_val_adj)
+
+cluster_markers
+
+### Extract the most upregulated gene from each cluster
+best_wilcox_gene_per_cluster <- cluster_markers |>
+    group_by(cluster) |>
+    slice(1) |>
+    pull(gene)
+
+### We can see that for some clusters (eg Cluster 8 - CDKN1C) We really do have
+### a gene which can uniquely predict, but for many others (eg cluster 7 IL7R)
+### we have a hit which also picks up other clusters (clusters 1, 3 and 4 in this case).
+VlnPlot(data, features = best_wilcox_gene_per_cluster)
+
+### Clean this up for any individual cluster by using the roc analysis.
+FindMarkers(
+    data, ident.1 = 7, ident.2 = 4, test.use = "roc", only.pos = TRUE
+)[1:5, ]
+
+### Slightly better job at separating cluster 5 from cluster 4, but it also
+### comes up all over the place in other clusters
+VlnPlot(data, features = "LTB")
+
+### This could actually be a better option to use as a marker for this cluster.
+VlnPlot(data, features = "TPT1")
+```
+
+## Automated Cell Type Annotation
+```{r}
+scina_data <- as.data.frame(GetAssayData(data, layer = "data"))
+
+signatures <- get(
+    load(system.file("extdata", "example_signatures.RData", package = "SCINA"))
+)
+
+signatures
+
+scina_results <- SCINA(
+    scina_data,
+    signatures,
+    max_iter = 100,
+    convergence_n = 10,
+    convergence_rate = 0.999,
+    sensitivity_cutoff = 0.9,
+    rm_overlap = TRUE,
+    allow_unknown = TRUE
+)
+
+data$scina_labels <- scina_results$cell_labels
+
+### plot out the tsne spread coloured by the automatic annotation
+DimPlot(
+    data, reduction = "tsne", pt.size = 1, label = TRUE,
+    group.by = "scina_labels", label.size = 5
+)
+
+### Relate this to the clusters which we automatically detected.
+tibble(
+    cluster = data$seurat_clusters,
+    cell_type = data$scina_labels
+) |>
+    group_by(cluster, cell_type) |>
+    count() |>
+    group_by(cluster) |>
+    mutate(
+        percent = (100 * n) / sum(n)
+    ) |>
+    ungroup() |>
+    mutate(
+        cluster = paste("Cluster", cluster)
+    ) |>
+    ggplot(aes(x = "", y = percent, fill = cell_type)) +
+    geom_col(width = 1) +
+    coord_polar("y", start = 0) +
+    facet_wrap(vars(cluster)) +
+    theme(axis.text.x = element_blank()) +
+    xlab(NULL) +
+    ylab(NULL)
+```
+
+```{r}
+### Colouring by genes
+### Some of these genes very specifically isolate to their own cluster, but for
+### others we see expression which is more widely spread over a number of clusters
+FeaturePlot(data, features = best_wilcox_gene_per_cluster, ncol = 3)
+```
+
+```{r}
+data@reductions$tsne@cell.embeddings[1:10, ]
+
+# data@reductions$tsne@cell.embeddings[, ] |>
+#     as_tibble(rownames = "barcode") |>
+#     mutate(barcode = paste0(barcode, "-1")) |>
+#     write_csv("for_loupe_import.csv")
+```
+
+## Reference
+
+1. [Seurat Example](https://www.bioinformatics.babraham.ac.uk/training/10XRNASeq/seurat_workflow.html#Gene_Selection)
+
+2. [Single-cell RNA-seq data analysis workshop](https://hbctraining.github.io/scRNA-seq_online/schedule/links-to-lessons.html)
+
+
+
+## Session info
+```{r}
+#| code-fold: true
+sessionInfo()
+```

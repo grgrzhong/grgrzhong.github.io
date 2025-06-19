@@ -1,0 +1,2146 @@
+---
+title: "Multiplex image-based phenotypic data analysis"
+date: 2024-04-18
+date-modified: last-modified
+categories:
+  - mIF
+
+image: image-profile.jpg
+# description: All the learning materials are from credited or adapted from Harvard Chan Bioinformatics Core. 
+execute: 
+  freeze: auto
+  eval: true
+---
+
+
+## Initial general setup
+```{r}
+#| warning: false
+
+### Required libraries
+# if (!require("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# BiocManager::install(
+#     c(
+#         "rmarkdown", "bookdown", "pheatmap", "viridis", "zoo",
+#         "devtools", "testthat", "tiff", "distill", "ggrepel",
+#         "patchwork", "mclust", "RColorBrewer", "uwot", "Rtsne",
+#         "harmony", "Seurat", "SeuratObject", "cowplot", "kohonen",
+#         "caret", "randomForest", "ggridges", "cowplot",
+#         "gridGraphics", "scales", "tiff", "harmony", "Matrix",
+#         "CATALYST", "scuttle", "scater", "dittoSeq",
+#         "tidyverse", "BiocStyle", "batchelor", "bluster", "scran",
+#         "lisaClust", "spicyR", "iSEE", "imcRtools", "cytomapper",
+#         "imcdatasets", "cytoviewer"
+#     ),
+#     force = TRUE
+# )
+
+library(here)
+library(fs)
+library(qs)
+library(tidyverse)
+library(ggrepel)
+library(ggridges)
+library(patchwork)
+library(cowplot)
+library(RColorBrewer)
+library(viridis)
+library(imcRtools)
+library(cytomapper)
+library(dittoSeq)
+library(CATALYST)
+library(pheatmap)
+library(BiocParallel)
+library(tiff)
+library(EBImage)
+library(mclust)
+library(batchelor)
+library(scater)
+library(viridis)
+library(harmony)
+library(BiocSingular)
+library(Seurat)
+library(SeuratObject)
+library(Rphenograph)
+library(igraph)
+library(bluster)
+library(scran)
+library(caret)
+library(lisaClust)
+library(scuttle)
+library(ComplexHeatmap)
+library(circlize)
+
+### Project directory
+dir <- here("projects/2024_IMC_Profile")
+set.seed(20240419)
+```
+
+## Data preparation
+
+IMC example data is from [here](https://zenodo.org/records/7624451)
+
+### Download example data
+```{r}
+#| eval: false
+
+### Create directory for data 
+fs::dir_create(dir, "data/steinbock")
+
+### Download sample/patient metadata information
+download.file(
+    "https://zenodo.org/record/7575859/files/sample_metadata.csv",
+    destfile = here(dir, "data/sample_metadata.csv")
+)
+
+### Download intensities
+url <- "https://zenodo.org/record/7624451/files/intensities.zip"
+destfile <- here(dir, "data/steinbock/intensities.zip")
+download.file(url, destfile)
+unzip(destfile, exdir = here(dir, "data/steinbock"), overwrite = TRUE)
+unlink(destfile)
+
+### Download regionprops
+url <- "https://zenodo.org/record/7624451/files/regionprops.zip"
+destfile <- here(dir, "data/steinbock/regionprops.zip")
+download.file(url, destfile)
+unzip(destfile, exdir = here(dir, "data/steinbock"), overwrite = TRUE)
+unlink(destfile)
+
+### Download neighbors
+url <- "https://zenodo.org/record/7624451/files/neighbors.zip"
+destfile <- here(dir, "data/steinbock/neighbors.zip")
+download.file(url, destfile)
+unzip(destfile, exdir = here(dir, "data/steinbock"), overwrite = TRUE)
+unlink(destfile)
+
+### Download images
+url <- "https://zenodo.org/record/7624451/files/img.zip"
+destfile <- here(dir, "data/steinbock/img.zip")
+download.file(url, destfile)
+unzip(destfile, exdir = here(dir, "data/steinbock"), overwrite = TRUE)
+unlink(destfile)
+
+### Download masks
+url <- "https://zenodo.org/record/7624451/files/masks_deepcell.zip"
+destfile <- here(dir, "data/steinbock/masks_deepcell.zip")
+download.file(url, destfile)
+unzip(destfile, exdir = here(dir, "data/steinbock"), overwrite = TRUE)
+unlink(destfile)
+
+### Download individual files
+download.file(
+    "https://zenodo.org/record/7624451/files/panel.csv",
+    here(dir, "data/steinbock/panel.csv")
+)
+download.file(
+    "https://zenodo.org/record/7624451/files/images.csv",
+    here(dir, "data/steinbock/images.csv")
+)
+download.file(
+    "https://zenodo.org/record/7624451/files/steinbock.sh",
+    here(dir, "data/steinbock/steinbock.sh")
+)
+
+### Files for spillover matrix estimation
+download.file(
+    "https://zenodo.org/record/7575859/files/compensation.zip",
+    here(dir, "data/compensation.zip")
+)
+unzip(
+    here(dir, "data/compensation.zip"),
+    exdir = here(dir, "data"), overwrite = TRUE
+)
+unlink(here(dir, "data/compensation.zip"))
+
+### Gated cells
+download.file(
+    "https://zenodo.org/record/8095133/files/gated_cells.zip",
+    here(dir, "data/gated_cells.zip")
+)
+unzip(
+    here(dir, "data/gated_cells.zip"),
+    exdir = here(dir, "data"), overwrite = TRUE
+)
+unlink(here(dir, "data/gated_cells.zip"))
+```
+
+### Preprocess data
+
+```{r}
+#| eval: true
+
+### Read steinbock generated data into a SpatialExperiment object
+spe <- imcRtools::read_steinbock(here(dir, "data/steinbock/"))
+spe
+
+### Summarized pixel intensities
+counts(spe)[1:5, 1:5]
+
+### Metadata
+head(colData(spe))
+
+### SpatialExperiment container stores locations of all cells in the
+### spatialCoords slot
+head(spatialCoords(spe))
+colPair(spe, "neighborhood")
+head(rowData(spe))
+
+### Add additional metadata: generate unique identifiers per cell
+colnames(spe) <- paste0(spe$sample_id, "_", spe$ObjectNumber)
+
+### Read patient metadata
+meta <- read_csv(here(dir, "data/sample_metadata.csv"), show_col_types = FALSE)
+
+### Extract patient id and ROI id from sample name
+spe$patient_id <- str_extract(spe$sample_id, "Patient[1-4]")
+spe$ROI <- str_extract(spe$sample_id, "00[1-8]")
+
+### Store cancer type in SPE object
+spe$indication <- meta$Indication[match(spe$patient_id, meta$`Sample ID`)]
+unique(spe$patient_id)
+unique(spe$ROI)
+unique(spe$indication)
+
+### Transform counts
+p1 <- dittoRidgePlot(
+    spe, var = "CD3", group.by = "patient_id", assay = "counts"
+) +
+    ggtitle("CD3 - before transformation")
+
+### Perform counts transformation using an inverse hyperbolic sine function
+assay(spe, "exprs") <- asinh(counts(spe) / 1)
+
+p2 <- dittoRidgePlot(
+    spe, var = "CD3", group.by = "patient_id", assay = "exprs"
+) +
+    ggtitle("CD3 - after transformation")
+
+wrap_plots(p1, p2, ncol = 2) +
+    plot_layout(guides = "collect") & theme(legend.position = "bottom")
+```
+
+```{r}
+### Add Feature meta for easy specifies the markers of interest.
+rowData(spe)$use_channel <- !grepl("DNA|Histone", rownames(spe))
+
+### Define color schemes for different metadata entries of the data
+color_vectors <- list()
+
+ROI <- setNames(
+    brewer.pal(length(unique(spe$ROI)), name = "BrBG"),
+    unique(spe$ROI)
+)
+
+patient_id <- setNames(
+    brewer.pal(length(unique(spe$patient_id)), name = "Set1"),
+    unique(spe$patient_id)
+)
+
+sample_id <- setNames(
+    c(
+        brewer.pal(6, "YlOrRd")[3:5],
+        brewer.pal(6, "PuBu")[3:6],
+        brewer.pal(6, "YlGn")[3:5],
+        brewer.pal(6, "BuPu")[3:6]
+    ),
+    unique(spe$sample_id)
+)
+
+indication <- setNames(
+    brewer.pal(length(unique(spe$indication)), name = "Set2"),
+    unique(spe$indication)
+)
+
+color_vectors$ROI <- ROI
+color_vectors$patient_id <- patient_id
+color_vectors$sample_id <- sample_id
+color_vectors$indication <- indication
+
+metadata(spe)$color_vectors <- color_vectors
+```
+
+### Read in images
+```{r}
+images <- loadImages(here(dir, "data/steinbock/img/"))
+masks <- loadImages(here(dir, "data/steinbock/masks_deepcell/"), as.is = TRUE)
+
+### Make sure that the channel order is identical between the single-cell data and the images
+channelNames(images) <- rownames(spe)
+images
+
+### Order of the images
+all.equal(names(images), names(masks))
+
+### Extract patient id from image name
+patient_id <- str_extract(names(images), "Patient[1-4]")
+
+### Retrieve cancer type per patient from metadata file
+indication <- meta$Indication[match(patient_id, meta$`Sample ID`)]
+
+### Store patient and image level information in elementMetadata
+mcols(images) <- mcols(masks) <- DataFrame(
+    sample_id = names(images),
+    patient_id = patient_id,
+    indication = indication
+)
+```
+
+### Save data
+
+```{r}
+#| eval: false
+qsave(spe, here(dir, "data/spe.qs"))
+qsave(images, here(dir, "data/images.qs"))
+qsave(masks, here(dir, "data/masks.qs"))
+```
+
+## Spillover correction
+
+### Generate the spillover matrix
+```{r}
+### Create SingleCellExperiment from TXT files
+sce <- readSCEfromTXT(here(dir, "data/compensation/"))
+assay(sce, "exprs") <- asinh(counts(sce)/5)
+```
+
+
+```{r}
+### Quality control
+### Log10 median pixel counts per spot and channel
+plotSpotHeatmap(sce)
+
+### Thresholded on 200 pixel counts
+plotSpotHeatmap(sce, log = FALSE, threshold = 200)
+```
+
+
+```{r}
+### Optional pixel binning
+### Define grouping
+bin_size = 10
+sce2 <- binAcrossPixels(sce, bin_size = bin_size)
+
+### Log10 median pixel counts per spot and channel
+plotSpotHeatmap(sce2)
+
+### Thresholded on 200 pixel counts
+plotSpotHeatmap(sce2, log = FALSE, threshold = 200)
+
+### Filtering incorrectly assigned pixels
+bc_key <- as.numeric(unique(sce$sample_mass))
+bc_key <- bc_key[order(bc_key)]
+sce <- assignPrelim(sce, bc_key = bc_key)
+sce <- estCutoffs(sce)
+sce <- applyCutoffs(sce)
+
+### Visualize the correctly and incorrectly assigned pixels
+cur_table <- table(sce$bc_id, sce$sample_mass)
+pheatmap(
+    log10(cur_table + 1),
+    cluster_rows = FALSE,
+    cluster_cols = FALSE
+)
+
+### Compute the fraction of unassigned pixels per spot
+cur_table["0", ] / colSums(cur_table)
+sce <- filterPixels(sce, minevents = 40, correct_pixels = TRUE)
+
+### Compute spillover matrix
+sce <- computeSpillmat(sce)
+isotope_list <- CATALYST::isotope_list
+isotope_list$Ar <- 80
+plotSpillmat(sce, isotope_list = isotope_list)
+
+### Save spillover matrix in variable
+sm <- metadata(sce)$spillover_matrix
+write.csv(sm, here(dir, "data/sm.csv"))
+```
+
+### Single-cell data compensation
+
+```{r}
+spe <- qread(here(dir, "data/spe.qs"))
+
+rowData(spe)$channel_name <- paste0(rowData(spe)$channel, "Di")
+spe <- compCytof(
+    spe, sm,
+    transform = TRUE, cofactor = 1,
+    isotope_list = isotope_list,
+    overwrite = FALSE
+)
+
+### Check the effect of channel spillover compensation
+before <- dittoScatterPlot(
+    spe, x.var = "Ecad", y.var = "CD303",
+    assay.x = "exprs", assay.y = "exprs"
+) +
+    ggtitle("Before compensation")
+
+after <- dittoScatterPlot(
+    spe, x.var = "Ecad", y.var = "CD303",
+    assay.x = "compexprs", assay.y = "compexprs"
+) +
+    ggtitle("After compensation")
+
+wrap_plots(before, after)
+
+assay(spe, "counts") <- assay(spe, "compcounts") 
+assay(spe, "exprs") <- assay(spe, "compexprs") 
+assay(spe, "compcounts") <- assay(spe, "compexprs") <- NULL
+```
+
+### Image compensation
+
+```{r}
+#| eval: false
+
+images <- qread(here(dir, "data/images.qs"))
+
+channelNames(images) <- rowData(spe)$channel_name
+
+adapted_sm <- adaptSpillmat(
+    sm, channelNames(images),
+    isotope_list = isotope_list
+)
+
+images_comp <- compImage(
+    images, adapted_sm,
+    BPPARAM = MulticoreParam()
+)
+
+### Visualize the image before and after compensation
+# Before compensation
+plotPixels(
+    images[5], colour_by = "Yb173Di",
+    image_title = list(text = "Yb173 (Ecad) - before", position = "topleft"),
+    legend = NULL, bcg = list(Yb173Di = c(0, 4, 1))
+)
+plotPixels(
+    images[5], colour_by = "Yb174Di",
+    image_title = list(text = "Yb174 (CD303) - before", position = "topleft"),
+    legend = NULL, bcg = list(Yb174Di = c(0, 4, 1))
+)
+
+# After compensation
+plotPixels(
+    images_comp[5], colour_by = "Yb173Di",
+    image_title = list(text = "Yb173 (Ecad) - after", position = "topleft"),
+    legend = NULL, bcg = list(Yb173Di = c(0, 4, 1))
+)
+plotPixels(
+    images_comp[5], colour_by = "Yb174Di",
+    image_title = list(text = "Yb174 (CD303) - after", position = "topleft"),
+    legend = NULL, bcg = list(Yb174Di = c(0, 4, 1))
+)
+
+### Re-set the channelNames to their biological targtes
+channelNames(images_comp) <- rownames(spe)
+```
+### Write out compensated images
+
+```{r}
+#| eval: false
+
+fs::dir_create(here(dir, "data/comp_img"))
+lapply(
+    names(images_comp), function(x) {
+        writeImage(as.array(images_comp[[x]]) / (2^16 - 1),
+            paste0(dir, "/data/comp_img/", x, ".tiff"),
+            bits.per.sample = 16)
+    }
+)
+```
+
+```{r}
+#| eval: false
+
+### Save the compensated SpatialExperiment and CytoImageList objects
+qsave(spe, here(dir, "data/spe.qs"))
+qsave(images_comp, here(dir,"data/images.qs"))
+```
+
+## Image and cell quality control
+
+### Segmentation quality control
+
+```{r}
+#| eval: false
+
+### Load data: 63.01 MB
+images <- qread(here(dir, "data/images.qs"))
+masks <- qread(here(dir, "data/masks.qs"))
+spe <- qread(here(dir, "data/spe.qs"))
+lobstr::obj_size(spe, image, masks)
+```
+
+
+```{r}
+### Select 3 random images
+set.seed(20220118)
+img_ids <- sample(seq_along(images), 3)
+
+### Image- and channel-wise min-max normalization and scaled to a range of 0-1
+cur_images <- images[img_ids]
+cur_images <- cytomapper::normalize(cur_images, separateImages = TRUE)
+
+### Clipping the maximum intensity to 0.2
+cur_images <- cytomapper::normalize(cur_images, inputRange = c(0, 0.2))
+
+### Segmentation approach here appears to correctly segment cells
+cytomapper::plotPixels(
+    cur_images,
+    mask = masks[img_ids],
+    img_id = "sample_id",
+    missing_colour = "white",
+    colour_by = c("CD163", "CD20", "CD3", "Ecad", "DNA1"),
+    colour = list(
+        CD163 = c("black", "yellow"),
+        CD20 = c("black", "red"),
+        CD3 = c("black", "green"),
+        Ecad = c("black", "cyan"),
+        DNA1 = c("black", "blue")
+    ),
+    image_title = NULL,
+    legend = list(
+        colour_by.title.cex = 0.7,
+        colour_by.labels.cex = 0.7
+    )
+)
+
+### Heatmap to observe cell segmentation quality and
+### potentially also antibody specificity issues
+
+### Sub-sample the dataset to 2000 cells
+cur_cells <- sample(seq_len(ncol(spe)), 2000)
+
+### Epithelial cells (Ecad+) and immune cells (CD45RO+) can be differentiate
+### Some of the markers are detected in specific cells (e.g., Ki67, CD20, Ecad) ### while others are more broadly expressed across cells (e.g., HLADR, B2M, CD4).
+dittoHeatmap(
+    spe[, cur_cells],
+    genes = rownames(spe)[rowData(spe)$use_channel],
+    assay = "exprs",
+    cluster_cols = TRUE,
+    scale = "none",
+    heatmap.colors = viridis(100),
+    annot.by = "indication",
+    annotation_colors = list(
+        indication = metadata(spe)$color_vectors$indication
+    )
+)
+```
+
+### Image_level quality control
+
+```{r}
+### Average SNR versus the average signal intensity across all images
+cur_snr <- lapply(names(images), function(x){
+    img <- images[[x]]
+    mat <- apply(img, 3, function(ch){
+        # Otsu threshold
+        thres <- otsu(ch, range = c(min(ch), max(ch)), levels = 65536)
+        # Signal-to-noise ratio
+        snr <- mean(ch[ch > thres]) / mean(ch[ch <= thres])
+        # Signal intensity
+        ps <- mean(ch[ch > thres])
+        
+        return(c(snr = snr, ps = ps))
+    })
+    t(mat) |>  as.data.frame() |>  
+        mutate(image = x,
+               marker = colnames(mat)) |>  
+        pivot_longer(cols = c(snr, ps))
+})
+
+cur_snr <- do.call(rbind, cur_snr)
+
+cur_snr |>  
+    group_by(marker, name) |> 
+    summarize(log_mean = log2(mean(value))) |> 
+    pivot_wider(names_from = name, values_from = log_mean) |> 
+    ggplot() +
+    geom_point(aes(ps, snr)) +
+    geom_label_repel(aes(ps, snr, label = marker)) +
+    theme_minimal(base_size = 15) + ylab("Signal-to-noise ratio [log2]") +
+    xlab("Signal intensity [log2]")
+
+### Remove markers that have a positive signal of below 2 per image
+cur_snr <- cur_snr |>  
+    pivot_wider(names_from = name, values_from = value) |> 
+    filter(ps > 2) |> 
+    pivot_longer(cols = c(snr, ps))
+
+cur_snr |>  
+    group_by(marker, name) |> 
+    summarize(log_mean = log2(mean(value))) |> 
+    pivot_wider(names_from = name, values_from = log_mean) |> 
+    ggplot() +
+    geom_point(aes(ps, snr)) +
+    geom_label_repel(aes(ps, snr, label = marker)) +
+    theme_minimal(base_size = 15) + ylab("Signal-to-noise ratio [log2]") +
+    xlab("Signal intensity [log2]")
+
+### Compute the percentage of covered image area
+cell_density <- colData(spe) |> 
+    as.data.frame() |> 
+    group_by(sample_id) |> 
+    # Compute the number of pixels covered by cells and 
+    # the total number of pixels
+    summarize(cell_area = sum(area),
+              no_pixels = mean(width_px) * mean(height_px)) |> 
+    # Divide the total number of pixels 
+    # by the number of pixels covered by cells
+    mutate(covered_area = cell_area / no_pixels)
+
+### Visualize the image area covered by cells per image
+ggplot(cell_density) +
+        geom_point(aes(reorder(sample_id,covered_area), covered_area)) + 
+        theme_minimal(base_size = 15) +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 15)) +
+        ylim(c(0, 1)) +
+        ylab("% covered area") + xlab("")
+
+### Normalize and clip images
+cur_images <- images[c("Patient4_005", "Patient4_007")]
+cur_images <- cytomapper::normalize(cur_images, separateImages = TRUE)
+cur_images <- cytomapper::normalize(cur_images, inputRange = c(0, 0.2))
+
+plotPixels(cur_images,
+           mask = masks[c("Patient4_005", "Patient4_007")],
+           img_id = "sample_id",
+           missing_colour = "white",
+           colour_by = c("CD163", "CD20", "CD3", "Ecad", "DNA1"),
+           colour = list(CD163 = c("black", "yellow"),
+                         CD20 = c("black", "red"),
+                         CD3 = c("black", "green"),
+                         Ecad = c("black", "cyan"),
+                         DNA1 = c("black", "blue")),
+           legend = list(colour_by.title.cex = 0.7,
+                         colour_by.labels.cex = 0.7))
+
+###  Visualize the mean marker expression per image to identify images with outlying marker expression
+image_mean <- scuttle::aggregateAcrossCells(
+    spe, 
+    ids = spe$sample_id, 
+    statistics="mean",
+    use.assay.type = "counts"
+)
+
+assay(image_mean, "exprs") <- asinh(counts(image_mean))
+
+dittoHeatmap(
+    image_mean, 
+    genes = rownames(spe)[rowData(spe)$use_channel],
+    assay = "exprs", cluster_cols = TRUE, scale = "none",
+    heatmap.colors = viridis(100), 
+    annot.by = c("indication", "patient_id", "ROI"),
+    annotation_colors = list(
+        indication = metadata(spe)$color_vectors$indication,
+                                      patient_id = metadata(spe)$color_vectors$patient_id,
+                                      ROI = metadata(spe)$color_vectors$ROI
+        ),
+    show_colnames = TRUE
+)                        
+```
+
+### Cell_level quality control
+
+```{r}
+set.seed(220224)
+mat <- sapply(seq_len(nrow(spe)), function(x){
+    cur_exprs <- assay(spe, "exprs")[x,]
+    cur_counts <- assay(spe, "counts")[x,]
+    
+    cur_model <- Mclust(cur_exprs, G = 2)
+    mean1 <- mean(cur_counts[cur_model$classification == 1])
+    mean2 <- mean(cur_counts[cur_model$classification == 2])
+    
+    signal <- ifelse(mean1 > mean2, mean1, mean2)
+    noise <- ifelse(mean1 > mean2, mean2, mean1)
+    
+    return(c(snr = signal/noise, ps = signal))
+})
+    
+cur_snr <- t(mat) |>  as.data.frame() |>  
+        mutate(marker = rownames(spe))
+
+cur_snr |>  ggplot() +
+    geom_point(aes(log2(ps), log2(snr))) +
+    geom_label_repel(aes(log2(ps), log2(snr), label = marker)) +
+    theme_minimal(base_size = 15) + ylab("Signal-to-noise ratio [log2]") +
+    xlab("Signal intensity [log2]")
+
+### Observe the distributions of cell size across the individual images
+dittoPlot(spe, var = "area", 
+          group.by = "sample_id", 
+          plots = "boxplot") +
+        ylab("Cell area") + xlab("")
+summary(spe$area)
+sum(spe$area < 5)
+
+spe <- spe[,spe$area >= 5]
+
+### Absolute measure of cell density
+cell_density <- colData(spe) |> 
+    as.data.frame() |> 
+    group_by(sample_id) |> 
+    summarize(cell_count = n(),
+           no_pixels = mean(width_px) * mean(height_px)) |> 
+    mutate(cells_per_mm2 = cell_count/(no_pixels/1000000))
+
+ggplot(cell_density) +
+    geom_point(aes(reorder(sample_id,cells_per_mm2), cells_per_mm2)) + 
+    theme_minimal(base_size = 15) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 8)) +
+    ylab("Cells per mm2") + xlab("")
+
+ ### Observing staining differences between samples or batches of samples
+multi_dittoPlot(
+    spe, 
+    vars = rownames(spe)[rowData(spe)$use_channel],
+    group.by = "patient_id", plots = "ridgeplot", 
+    assay = "exprs", 
+    color.panel = metadata(spe)$color_vectors$patient_id
+)
+
+set.seed(220225)
+spe <- scater::runUMAP(
+    spe, subset_row = rowData(spe)$use_channel, exprs_values = "exprs"
+)
+
+spe <- scater::runTSNE(
+    spe, subset_row = rowData(spe)$use_channel, exprs_values = "exprs"
+)
+
+reducedDims(spe)
+head(reducedDim(spe, "UMAP"))
+```
+
+```{r}
+### visualize patient id 
+p1 <- dittoDimPlot(
+    spe, var = "patient_id", reduction.use = "UMAP", size = 0.2
+    ) + 
+    scale_color_manual(values = metadata(spe)$color_vectors$patient_id) +
+    ggtitle("Patient ID on UMAP")
+
+p2 <- dittoDimPlot(
+    spe, var = "patient_id", reduction.use = "TSNE", size = 0.2
+    ) + 
+    scale_color_manual(values = metadata(spe)$color_vectors$patient_id) +
+    ggtitle("Patient ID on TSNE")
+
+### visualize region of interest id
+p3 <- dittoDimPlot(
+    spe, var = "ROI", reduction.use = "UMAP", size = 0.2
+    ) + 
+    scale_color_manual(values = metadata(spe)$color_vectors$ROI) +
+    ggtitle("ROI ID on UMAP")
+
+p4 <- dittoDimPlot(
+    spe, var = "ROI", reduction.use = "TSNE", size = 0.2
+    ) + 
+    scale_color_manual(values = metadata(spe)$color_vectors$ROI) +
+    ggtitle("ROI ID on TSNE")
+
+### visualize indication
+p5 <- dittoDimPlot(
+    spe, var = "indication", reduction.use = "UMAP", size = 0.2
+    ) + 
+    scale_color_manual(values = metadata(spe)$color_vectors$indication) +
+    ggtitle("Indication on UMAP")
+
+p6 <- dittoDimPlot(
+    spe, var = "indication", reduction.use = "TSNE", size = 0.2
+    ) + 
+    scale_color_manual(values = metadata(spe)$color_vectors$indication) +
+    ggtitle("Indication on TSNE")
+
+(p1 + p2) / (p3 + p4) / (p5 + p6)
+```
+
+```{r}
+### visualize marker expression
+p1 <- dittoDimPlot(
+        spe, var = "Ecad", reduction.use = "UMAP", 
+        assay = "exprs", size = 0.2
+    ) +
+    scale_color_viridis(name = "Ecad") +
+    ggtitle("E-Cadherin expression on UMAP")
+
+p2 <- dittoDimPlot(
+    spe, var = "CD45RO", reduction.use = "UMAP", 
+    assay = "exprs", size = 0.2
+    ) +
+    scale_color_viridis(name = "CD45RO") +
+    ggtitle("CD45RO expression on UMAP")
+
+p3 <- dittoDimPlot(
+    spe, var = "Ecad", reduction.use = "TSNE", 
+    assay = "exprs", size = 0.2
+    ) +
+    scale_color_viridis(name = "Ecad") +
+    ggtitle("Ecad expression on TSNE")
+
+p4 <- dittoDimPlot(
+    spe, var = "CD45RO", reduction.use = "TSNE", 
+    assay = "exprs", size = 0.2
+    ) +
+    scale_color_viridis(name = "CD45RO") +
+    ggtitle("CD45RO expression on TSNE")
+
+(p1 + p2) / (p3 + p4)
+```
+
+::: {.callout-note}
+We observe a strong separation of tumor cells (Ecad+ cells) between the patients. Here, each patient was diagnosed with a different tumor type. The separation of tumor cells could be of biological origin since tumor cells tend to display differences in expression between patients and cancer types and/or of technical origin: the panel only contains a single tumor marker (E-Cadherin) and therefore slight technical differences in staining causes visible separation between cells of different patients. Nevertheless, the immune compartment (CD45RO+ cells) mix between patients and we can rule out systematic staining differences between patients.
+:::
+
+
+```{r}
+### Save objects for further downstream analysis
+qsave(spe, here(dir, "data/spe.qs"))
+```
+
+## Batch effect  correction
+
+### fastMNN correction
+
+```{r}
+spe <- qread(here(dir, "data/spe.qs"))
+```
+
+
+```{r}
+### Perform sample correction
+set.seed(220228)
+out <- batchelor::fastMNN(
+    spe, 
+    batch = spe$patient_id,
+    auto.merge = TRUE,
+    subset.row = rowData(spe)$use_channel,
+    assay.type = "exprs"
+)
+
+### Check that order of cells is the same
+stopifnot(all.equal(colnames(spe), colnames(out)))
+
+### Transfer the correction results to the main spe object
+reducedDim(spe, "fastMNN") <- reducedDim(out, "corrected")
+
+### Quality control of correction results
+merge_info <- metadata(out)$merge.info 
+
+### 1. We observe that Patient4 and Patient2 are most similar with a low batch effect. 
+### 2. Merging cells of Patient3 into the combined batch of Patient1, Patient2 
+### and Patient4 resulted in the highest percentage of lost variance and the 
+### detection of the largest batch effect. 
+merge_info[, c("left", "right", "batch.size")]
+merge_info$lost.var
+```
+
+
+```{r}
+### Recompute the UMAP embedding using the corrected low-dimensional 
+### coordinates for each cell.
+set.seed(220228)
+spe <- scater::runUMAP(spe, dimred= "fastMNN", name = "UMAP_mnnCorrected")
+
+### Visualize patient id 
+p1 <- dittoDimPlot(
+    spe, var = "patient_id", reduction.use = "UMAP", size = 0.2
+    ) + 
+    scale_color_manual(values = metadata(spe)$color_vectors$patient_id) +
+    ggtitle("Patient ID on UMAP before correction")
+
+p2 <- dittoDimPlot(
+    spe, var = "patient_id", reduction.use = "UMAP_mnnCorrected", size = 0.2
+    ) + 
+    scale_color_manual(values = metadata(spe)$color_vectors$patient_id) +
+    ggtitle("Patient ID on UMAP after correction")
+
+### We observe an imperfect merging of Patient3 into all other samples. 
+### This was already seen when displaying the merging information above. 
+cowplot::plot_grid(p1, p2)
+```
+
+```{r}
+### Visualize the expression of selected markers across all cells before and 
+### after batch correction
+markers <- c(
+    "Ecad", "CD45RO", "CD20", "CD3", "FOXP3", "CD206", "MPO", "SMA", "Ki67"
+)
+
+### Before correction
+plot_list <- multi_dittoDimPlot(
+    spe, var = markers, reduction.use = "UMAP", 
+    assay = "exprs", size = 0.2, list.out = TRUE
+    )
+
+plot_list <- lapply(plot_list, function(x) x + scale_color_viridis())
+cowplot::plot_grid(plotlist = plot_list)
+
+### After correction
+plot_list <- multi_dittoDimPlot(
+    spe, var = markers, reduction.use = "UMAP_mnnCorrected", 
+    assay = "exprs", size = 0.2, list.out = TRUE
+    ) 
+plot_list <- lapply(plot_list, function(x) x + scale_color_viridis())
+
+### We observe that immune cells across patients are merged after batch 
+### correction using fastMNN. However, the tumor cells of different patients 
+### still cluster separately.
+cowplot::plot_grid(plotlist = plot_list) 
+```
+
+### harmony correction
+
+```{r}
+### harmony returns the corrected low-dimensional coordinates for each cell
+spe <- runPCA(
+    spe, 
+    subset_row = rowData(spe)$use_channel, 
+    exprs_values = "exprs", 
+    ncomponents = 30,
+    BSPARAM = ExactParam()
+)
+
+set.seed(230616)
+out <- RunHarmony(spe, group.by.vars = "patient_id")
+
+### Check that order of cells is the same
+stopifnot(all.equal(colnames(spe), colnames(out)))
+
+reducedDim(spe, "harmony") <- reducedDim(out, "HARMONY")
+```
+
+```{r}
+set.seed(220228)
+spe <- runUMAP(spe, dimred = "harmony", name = "UMAP_harmony")
+
+### visualize patient id
+p1 <- dittoDimPlot(
+    spe, var = "patient_id", reduction.use = "UMAP", size = 0.2
+) +
+    scale_color_manual(values = metadata(spe)$color_vectors$patient_id) +
+    ggtitle("Patient ID on UMAP before correction")
+
+p2 <- dittoDimPlot(
+    spe, var = "patient_id", reduction.use = "UMAP_harmony", size = 0.2
+) +
+    scale_color_manual(values = metadata(spe)$color_vectors$patient_id) +
+    ggtitle("Patient ID on UMAP after correction")
+
+plot_grid(p1, p2)
+
+### Visualize selected marker expression
+### Before correction
+plot_list <- multi_dittoDimPlot(
+    spe, var = markers, reduction.use = "UMAP",
+    assay = "exprs", size = 0.2, list.out = TRUE
+)
+
+plot_list <- lapply(plot_list, function(x) x + scale_color_viridis())
+plot_grid(plotlist = plot_list)
+
+### After correction
+plot_list <- multi_dittoDimPlot(
+    spe, var = markers, reduction.use = "UMAP_harmony",
+    assay = "exprs", size = 0.2, list.out = TRUE
+)
+plot_list <- lapply(plot_list, function(x) x + scale_color_viridis())
+
+### We observe a more aggressive merging of cells from different patients 
+### compared to the results after fastMNN correction. Importantly, immune cell 
+### and epithelial markers are expressed in distinct regions of the UMAP.
+plot_grid(plotlist = plot_list) 
+```
+### Seurat correction
+
+```{r}
+seurat_obj <- as.Seurat(spe, counts = "counts", data = "exprs")
+seurat_obj <- AddMetaData(seurat_obj, as.data.frame(colData(spe)))
+seurat_list <- SplitObject(seurat_obj, split.by = "patient_id")
+
+### Define the features used for integration and perform PCA on cells of each
+### patient individually
+features <- rownames(spe)[rowData(spe)$use_channel]
+
+seurat_list <- lapply(
+    X = seurat_list,
+    FUN = function(x) {
+        x <- ScaleData(x, features = features, verbose = FALSE)
+        x <- RunPCA(x, features = features, verbose = FALSE, approx = FALSE)
+        return(x)
+    }
+)
+
+anchors <- FindIntegrationAnchors(
+    object.list = seurat_list,
+    anchor.features = features,
+    reduction = "rpca",
+    k.anchor = 20
+)
+
+combined <- IntegrateData(anchorset = anchors)
+
+DefaultAssay(combined) <- "integrated"
+
+combined <- ScaleData(combined, verbose = FALSE)
+combined <- RunPCA(combined, npcs = 30, verbose = FALSE, approx = FALSE)
+
+### Check that order of cells is the same
+stopifnot(all.equal(colnames(spe), colnames(combined)))
+
+reducedDim(spe, "seurat") <- Embeddings(combined, reduction = "pca")
+```
+
+```{r}
+set.seed(220228)
+spe <- runUMAP(spe, dimred = "seurat", name = "UMAP_seurat") 
+
+### Visualize patient id 
+p1 <- dittoDimPlot(
+        spe, var = "patient_id", 
+        reduction.use = "UMAP", size = 0.2
+    ) + 
+    scale_color_manual(values = metadata(spe)$color_vectors$patient_id) +
+    ggtitle("Patient ID on UMAP before correction")
+
+p2 <- dittoDimPlot(
+        spe, var = "patient_id", 
+        reduction.use = "UMAP_seurat", size = 0.2
+    ) + 
+    scale_color_manual(values = metadata(spe)$color_vectors$patient_id) +
+    ggtitle("Patient ID on UMAP after correction")
+
+plot_grid(p1, p2)
+
+### Before correction
+plot_list <- multi_dittoDimPlot(
+    spe, var = markers, reduction.use = "UMAP", 
+    assay = "exprs", size = 0.2, list.out = TRUE
+    ) 
+plot_list <- lapply(plot_list, function(x) x + scale_color_viridis())
+plot_grid(plotlist = plot_list)
+
+### After correction
+plot_list <- multi_dittoDimPlot(
+    spe, var = markers, reduction.use = "UMAP_seurat", 
+    assay = "exprs", size = 0.2, list.out = TRUE
+    ) 
+
+plot_list <- lapply(plot_list, function(x) x + scale_color_viridis())
+
+### Similar to the methods presented above, Seurat integrates immune cells 
+### correctly. When visualizing the patient IDs, slight patient-to-patient 
+### differences within tumor cells can be detected.
+plot_grid(plotlist = plot_list) 
+```
+
+```{r}
+### Save modified object
+qsave(spe, here(dir, "data/spe.qs"))
+```
+## Cell phenotyping
+
+A common step during single-cell data analysis is the annotation of cells based on their phenotype. Defining cell phenotypes is often subjective and relies on previous biological knowledge. 
+
+In highly-multiplexed imaging, target proteins or molecules are manually selected based on the biological question at hand. It narrows down the feature space and facilitates the manual annotation of clusters to derive cell phenotypes. 
+
+```{r}
+spe <- qread(here(dir, "data/spe.qs"))
+
+###  Sample 2000 cells to visualize cluster membership.
+set.seed(220619)
+cur_cells <- sample(seq_len(ncol(spe)), 2000)
+```
+
+### Rphenograph
+```{r}
+mat <- t(assay(spe, "exprs")[rowData(spe)$use_channel, ])
+
+set.seed(230619)
+out <- Rphenograph(mat, k = 45)
+
+clusters <- factor(membership(out[[2]]))
+
+spe$pg_clusters <- clusters
+
+dittoDimPlot(
+    spe, var = "pg_clusters",
+    reduction.use = "UMAP", size = 0.2,
+    do.label = TRUE
+) +
+    ggtitle("Phenograph clusters on UMAP")
+
+### We can observe that some of the clusters only contain cells of a single 
+### patient. This can often be observed in the tumor compartment.
+dittoHeatmap(
+    spe[, cur_cells],
+    genes = rownames(spe)[rowData(spe)$use_channel],
+    assay = "exprs", scale = "none",
+    heatmap.colors = viridis(100),
+    annot.by = c("pg_clusters", "patient_id"),
+    annot.colors = c(
+        dittoColors(1)[1:length(unique(spe$pg_clusters))],
+        metadata(spe)$color_vectors$patient_id
+    )
+)
+```
+
+```{r}
+### Use the integrated cells in low dimensional embedding for clustering
+mat <- reducedDim(spe, "fastMNN")
+
+set.seed(230619)
+out <- Rphenograph(mat, k = 45)
+
+clusters <- factor(membership(out[[2]]))
+
+spe$pg_clusters_corrected <- clusters
+
+dittoDimPlot(
+    spe, var = "pg_clusters_corrected",
+    reduction.use = "UMAP_mnnCorrected", size = 0.2,
+    do.label = TRUE
+) +
+    ggtitle("Phenograph clusters on UMAP, integrated cells")
+
+### Clustering using the integrated embedding leads to clusters that contain 
+### cells of different patients. 
+dittoHeatmap(
+    spe[, cur_cells],
+    genes = rownames(spe)[rowData(spe)$use_channel],
+    assay = "exprs", scale = "none",
+    heatmap.colors = viridis(100),
+    annot.by = c("pg_clusters_corrected", "patient_id"),
+    annot.colors = c(dittoColors(1)[1:length(unique(spe$pg_clusters_corrected))],
+        metadata(spe)$color_vectors$patient_id)
+)
+```
+
+### Shared nearest neighbour graph
+
+```{r}
+mat <- t(assay(spe, "exprs")[rowData(spe)$use_channel, ])
+
+combinations <- clusterSweep(
+    mat,
+    BLUSPARAM = SNNGraphParam(),
+    k = c(10L, 20L),
+    type = c("rank", "jaccard"),
+    cluster.fun = "louvain",
+    BPPARAM = MulticoreParam(RNGseed = 220427)
+)
+
+sil <- vapply(
+    as.list(combinations$clusters),
+    function(x) mean(approxSilhouette(mat, x)$width),
+    0
+)
+
+ggplot(
+    data.frame(method = names(sil),
+    sil = sil)
+    ) +
+    geom_point(aes(method, sil)) +
+    theme_classic(base_size = 15) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    xlab("Cluster parameter combination") +
+    ylab("Average silhouette width")
+
+pur <- vapply(
+    as.list(combinations$clusters), 
+    function(x) mean(neighborPurity(mat, x)$purity), 
+    0
+)
+
+ggplot(
+    data.frame(method = names(pur), pur = pur)
+    ) +
+    geom_point(aes(method, pur)) +
+    theme_classic(base_size = 15) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    xlab("Cluster parameter combination") +
+    ylab("Average neighborhood purity")
+```
+
+
+```{r}
+set.seed(220620)
+clusters <- clusterCells(
+    spe[rowData(spe)$use_channel,], 
+    assay.type = "exprs", 
+    BLUSPARAM = SNNGraphParam(k=20, 
+    cluster.fun = "louvain",
+    type = "rank")
+)
+
+spe$nn_clusters <- clusters
+
+dittoDimPlot(
+    spe, var = "nn_clusters", 
+    reduction.use = "UMAP", size = 0.2,
+    do.label = TRUE
+    ) +
+    ggtitle("SNN clusters on UMAP")
+
+dittoHeatmap(
+    spe[,cur_cells], 
+             genes = rownames(spe)[rowData(spe)$use_channel],
+             assay = "exprs", scale = "none",
+             heatmap.colors = viridis(100), 
+             annot.by = c("nn_clusters", "patient_id"),
+             annot.colors = c(dittoColors(1)[1:length(unique(spe$nn_clusters))],
+                              metadata(spe)$color_vectors$patient_id)
+)
+```
+
+```{r}
+set.seed(220621)
+clusters <- clusterCells(
+    spe, 
+    use.dimred = "fastMNN", 
+    BLUSPARAM = SNNGraphParam(k = 20, 
+    cluster.fun = "louvain",
+    type = "rank")
+)
+
+spe$nn_clusters_corrected <- clusters
+
+dittoDimPlot(
+    spe, var = "nn_clusters_corrected", 
+    reduction.use = "UMAP_mnnCorrected", size = 0.2,
+    do.label = TRUE
+) +
+    ggtitle("SNN clusters on UMAP, integrated cells")
+
+dittoHeatmap(
+    spe[,cur_cells], 
+    genes = rownames(spe)[rowData(spe)$use_channel],
+    assay = "exprs", scale = "none",
+    heatmap.colors = viridis(100), 
+    annot.by = c("nn_clusters_corrected","patient_id"),
+    annot.colors = c(dittoColors(1)[1:length(unique(spe$nn_clusters_corrected))],
+                    metadata(spe)$color_vectors$patient_id)
+)
+```
+
+### Self organizing maps
+
+```{r}
+# Run FlowSOM and ConsensusClusterPlus clustering
+set.seed(220410)
+spe <- CATALYST::cluster(spe, 
+               features = rownames(spe)[rowData(spe)$use_channel],
+               maxK = 30)
+
+# Assess cluster stability
+delta_area(spe)
+
+spe$som_clusters <- cluster_ids(spe, "meta13")
+
+dittoDimPlot(
+    spe, var = "som_clusters", 
+    reduction.use = "UMAP", size = 0.2,
+    do.label = TRUE
+    ) +
+    ggtitle("SOM clusters on UMAP")
+
+dittoHeatmap(
+    spe[,cur_cells], 
+    genes = rownames(spe)[rowData(spe)$use_channel],
+    assay = "exprs", scale = "none",
+    heatmap.colors = viridis(100), 
+    annot.by = c("som_clusters", "patient_id"),
+    annot.colors = c(dittoColors(1)[1:length(unique(spe$som_clusters))],
+    metadata(spe)$color_vectors$patient_id)
+)
+```
+
+```{r}
+library(kohonen)
+library(ConsensusClusterPlus)
+
+### Select integrated cells
+mat <- reducedDim(spe, "fastMNN")
+
+### Perform SOM clustering
+set.seed(220410)
+som.out <- clusterRows(mat, SomParam(100), full = TRUE)
+
+### Cluster the 100 SOM codes into larger clusters
+ccp <- ConsensusClusterPlus(
+    t(som.out$objects$som$codes[[1]]),
+    maxK = 30,
+    reps = 100, 
+    distance = "euclidean", 
+    seed = 220410, 
+    plot = NULL
+)
+
+### Visualize delta area plot
+CATALYST:::.plot_delta_area(ccp)
+
+### Link ConsensusClusterPlus clusters with SOM codes and save in object
+som.cluster <- ccp[[16]][["consensusClass"]][som.out$clusters]
+spe$som_clusters_corrected <- as.factor(som.cluster)
+
+dittoDimPlot(
+    spe, var = "som_clusters_corrected", 
+    reduction.use = "UMAP_mnnCorrected", size = 0.2,
+    do.label = TRUE
+    ) +
+    ggtitle("SOM clusters on UMAP, integrated cells")
+
+dittoHeatmap(
+    spe[,cur_cells], 
+    genes = rownames(spe)[rowData(spe)$use_channel],
+    assay = "exprs", scale = "none",
+    heatmap.colors = viridis(100), 
+    annot.by = c("som_clusters_corrected","patient_id"),
+    annot.colors = c(dittoColors(1)[1:length(unique(spe$som_clusters_corrected))],
+                              metadata(spe)$color_vectors$patient_id)
+)
+```
+
+### Compare between clustering approaches
+
+```{r}
+library(patchwork)
+library(pheatmap)
+library(gridExtra)
+
+tab1 <- table(
+    paste("Rphenograph", spe$pg_clusters), 
+    paste("SNN", spe$nn_clusters)
+)
+
+tab2 <- table(
+    paste("Rphenograph", spe$pg_clusters), 
+    paste("SOM", spe$som_clusters)
+)
+
+tab3 <- table(
+    paste("SNN", spe$nn_clusters), 
+    paste("SOM", spe$som_clusters)
+)
+
+pheatmap(log10(tab1 + 10), color = viridis(100))
+pheatmap(log10(tab2 + 10), color = viridis(100))
+pheatmap(log10(tab3 + 10), color = viridis(100))
+```
+
+### Further clustering notes
+```{r}
+library(dplyr)
+cluster_celltype <- recode(spe$nn_clusters_corrected,
+                            "1" = "Tumor_proliferating",
+                            "2" = "Myeloid",
+                            "3" = "Tumor",
+                            "4" = "Tumor",
+                            "5" = "Stroma",
+                            "6" = "Proliferating",
+                            "7" = "Myeloid",
+                            "8" = "Plasma_cell",
+                            "9" = "CD8",
+                            "10" = "CD4",
+                            "11" = "Neutrophil",
+                            "12" = "Bcell",
+                            "13" = "Stroma")
+
+spe$cluster_celltype <- cluster_celltype
+```
+
+```{r}
+qsave(spe, here(dir, "data/spe.qs"))
+```
+
+### Classfication approach
+
+```{r}
+### Manual labeling of cells
+# if (interactive()) {
+
+#     images <- qread(here(dir, "data/images.qs"))
+#     masks <- qread(here(dir, "data/masks.qs"))
+
+#     cytomapperShiny(object = spe, mask = masks, image = images,
+#                     cell_id = "ObjectNumber", img_id = "sample_id")
+# }
+spe <- qread(here(dir, "data/spe.qs"))
+### Define color vectors
+celltype <- setNames(
+    c("#3F1B03", "#F4AD31", "#894F36", "#1C750C", "#EF8ECC",
+        "#6471E2", "#4DB23B", "grey", "#F4800C", "#BF0A3D", "#066970"
+    ),
+    c("Tumor", "Stroma", "Myeloid", "CD8", "Plasma_cell",
+        "Treg", "CD4", "undefined", "BnTcell", "Bcell", "Neutrophil")
+)
+
+metadata(spe)$color_vectors$celltype <- celltype
+```
+
+```{r}
+### Read in and consolidate labeled data
+label_files <- list.files(
+    here(dir, "data/gated_cells"), 
+    full.names = TRUE, pattern = ".rds$"
+)
+
+### Read in SPE objects
+spes <- lapply(label_files, readRDS)
+
+### Merge SPE objects
+concat_spe <- do.call("cbind", spes)
+```
+
+```{r}
+filter_labels <- function(object, 
+                          label = "cytomapper_CellLabel") {
+    cur_tab <- unclass(table(colnames(object), object[[label]]))
+    
+    cur_labels <- colnames(cur_tab)[apply(cur_tab, 1, which.max)]
+    names(cur_labels) <- rownames(cur_tab)
+    
+    cur_labels <- cur_labels[rowSums(cur_tab) == 1]
+    
+    return(cur_labels)
+}
+
+labels <- filter_labels(concat_spe)
+
+cur_spe <- concat_spe[,concat_spe$cytomapper_CellLabel != "Tumor"]
+
+non_tumor_labels <- filter_labels(cur_spe)
+
+additional_cells <- setdiff(names(non_tumor_labels), names(labels))
+
+final_labels <- c(labels, non_tumor_labels[additional_cells])
+
+### Transfer labels to SPE object
+spe_labels <- rep("unlabeled", ncol(spe))
+names(spe_labels) <- colnames(spe)
+spe_labels[names(final_labels)] <- final_labels
+spe$cell_labels <- spe_labels
+
+### Number of cells labeled per patient
+table(spe$cell_labels, spe$patient_id)
+```
+
+```{r}
+### Split between labeled and unlabeled cells
+lab_spe <- spe[,spe$cell_labels != "unlabeled"]
+unlab_spe <- spe[,spe$cell_labels == "unlabeled"]
+
+### Randomly split into train and test data
+set.seed(221029)
+trainIndex <- createDataPartition(factor(lab_spe$cell_labels), p = 0.75)
+
+train_spe <- lab_spe[,trainIndex$Resample1]
+test_spe <- lab_spe[,-trainIndex$Resample1]
+
+### Define fit parameters for 5-fold cross validation
+fitControl <- trainControl(method = "cv",number = 5)
+
+### Select the arsinh-transformed counts for training
+cur_mat <- t(assay(train_spe, "exprs")[rowData(train_spe)$use_channel,])
+
+### Train a random forest classifier
+rffit <- train(
+    x = cur_mat, 
+    y = factor(train_spe$cell_labels),
+    method = "rf", ntree = 1000,
+    tuneLength = 5,
+    trControl = fitControl
+)
+
+rffit
+```
+
+```{r}
+### Classifier performance
+ggplot(rffit) + 
+  geom_errorbar(data = rffit$results,
+                aes(ymin = Accuracy - AccuracySD,
+                    ymax = Accuracy + AccuracySD),
+                width = 0.4) +
+    theme_classic(base_size = 15)
+
+### Visualize the variable importance of the classifier.
+plot(varImp(rffit))
+```
+
+```{r}
+### Select the arsinh-transformed counts of the test data
+cur_mat <- t(assay(test_spe, "exprs")[rowData(test_spe)$use_channel,])
+
+### Predict the cell phenotype labels of the test data
+set.seed(231019)
+cur_pred <- predict(rffit, newdata = cur_mat)
+```
+
+```{r}
+cm <- confusionMatrix(
+    data = cur_pred, 
+    reference = factor(test_spe$cell_labels), 
+    mode = "everything"
+)
+
+cm
+```
+
+```{r}
+data.frame(cm$byClass) |>
+  mutate(class = sub("Class: ", "", rownames(cm$byClass))) |>
+  ggplot() + 
+  geom_point(aes(1 - Specificity, Sensitivity, 
+                 size = Detection.Rate,
+                 fill = class),
+             shape = 21) + 
+  scale_fill_manual(values = metadata(spe)$color_vectors$celltype) +
+  theme_classic(base_size = 15) + 
+  ylab("Sensitivity (TPR)") +
+  xlab("1 - Specificity (FPR)")
+```
+
+```{r}
+set.seed(231019)
+cur_pred <- predict(rffit, 
+                    newdata = cur_mat, 
+                    type = "prob")
+cur_pred$truth <- factor(test_spe$cell_labels)
+
+cur_pred |>
+  pivot_longer(cols = Bcell:Tumor) |>
+  ggplot() +
+  geom_boxplot(aes(x = name, y = value, fill = name), outlier.size = 0.5) +
+  facet_wrap(. ~ truth, ncol = 1) + 
+  scale_fill_manual(values = metadata(spe)$color_vectors$celltype)  +
+  theme(
+    panel.background = element_blank(), 
+    axis.text.x = element_text(angle = 45, hjust = 1)
+    )
+```
+
+```{r}
+### Classification of new data
+### Select the arsinh-transformed counts of the unlabeled data for prediction
+cur_mat <- t(assay(unlab_spe, "exprs")[rowData(unlab_spe)$use_channel,])
+
+### Predict the cell phenotype labels of the unlabeled data
+set.seed(231014)
+cell_class <- as.character(predict(
+    rffit, 
+    newdata = cur_mat, 
+    type = "raw")
+)
+names(cell_class) <- rownames(cur_mat)
+
+table(cell_class)
+
+### Extract prediction probabilities for each cell
+set.seed(231014)
+cell_prob <- predict(rffit, newdata = cur_mat, type = "prob")
+
+### Distribution of maximum probabilities
+tibble(max_prob = rowMax(as.matrix(cell_prob)),
+       type = cell_class) |>
+    ggplot() +
+        geom_density_ridges(aes(x = max_prob, y = cell_class, fill = cell_class)) +
+        scale_fill_manual(values = metadata(spe)$color_vectors$celltype) +
+        theme_classic(base_size = 15) +
+        xlab("Maximum probability") +
+        ylab("Cell type") + 
+        xlim(c(0,1.2))
+
+### Label undefined cells
+cell_class[rowMax(as.matrix(cell_prob)) < 0.4] <- "undefined"
+
+### Store labels in SpatialExperiment onject
+cell_labels <- spe$cell_labels
+cell_labels[colnames(unlab_spe)] <- cell_class
+spe$celltype <- cell_labels 
+
+table(spe$celltype, spe$patient_id)
+```
+
+```{r}
+tab1 <- table(spe$celltype, 
+              paste("Rphenograph", spe$pg_clusters))
+tab2 <- table(spe$celltype, 
+              paste("SNN", spe$nn_clusters))
+tab3 <- table(spe$celltype, 
+              paste("SOM", spe$som_clusters))
+
+pheatmap(log10(tab1 + 10), color = viridis(100))
+pheatmap(log10(tab2 + 10), color = viridis(100))
+pheatmap(log10(tab3 + 10), color = viridis(100))
+```
+
+```{r}
+tab1 <- table(spe$celltype, 
+              paste("Rphenograph", spe$pg_clusters_corrected))
+tab2 <- table(spe$celltype, 
+              paste("SNN", spe$nn_clusters_corrected))
+tab3 <- table(spe$celltype, 
+              paste("SOM", spe$som_clusters_corrected))
+
+pheatmap(log10(tab1 + 10), color = viridis(100))
+pheatmap(log10(tab2 + 10), color = viridis(100))
+pheatmap(log10(tab3 + 10), color = viridis(100))
+```
+
+```{r}
+qsave(spe, here(dir, "data/spe.qs"))
+```
+
+## Single cell visualization
+
+### Inital setup
+```{r}
+spe <- qread(here(dir, "data/spe.qs"))
+reducedDims(spe)
+colnames(colData(spe))
+
+### Define cell phenotype markers
+type_markers <- c(
+    "Ecad", "CD45RO", "CD20", "CD3", "FOXP3", "CD206", "MPO",
+    "SMA", "CD8a", "CD4", "HLADR", "CD15", "CD38", "PDGFRb"
+)
+
+### Define cell state markers
+state_markers <- c(
+    "CarbonicAnhydrase", "Ki67", "PD1", "GrzB", "PDL1",
+    "ICOS", "TCF7", "VISTA"
+)
+
+### Add to spe
+rowData(spe)$marker_class <- ifelse(
+    rownames(spe) %in% type_markers, "type",
+    ifelse(rownames(spe) %in% state_markers, "state",
+        "other")
+)
+```
+### Cell-type level
+
+```{r}
+### Dimensionality reduction visualization
+### Interpreting these UMAP, tSNE plots is not trivial, but local neighborhoods 
+### in the plot can suggest similarity in expression for given cells.
+### tSNE/UMAP aim to preserve the distances between each cell and its neighbors in the high-dimensional space.
+
+### UMAP colored by cell type and expression - dittoDimPlot
+p1 <- dittoDimPlot(
+    spe, 
+    var = "celltype", 
+    reduction.use = "UMAP_mnnCorrected", 
+    size = 0.2,
+    do.label = TRUE
+) +
+  scale_color_manual(values = metadata(spe)$color_vectors$celltype) +
+  theme(legend.title = element_blank()) +
+  ggtitle("Cell types on UMAP, integrated cells")
+
+p2 <- dittoDimPlot(
+    spe, 
+    var = "Ecad", 
+    assay = "exprs",
+    reduction.use = "UMAP_mnnCorrected", 
+    size = 0.2, 
+    colors = viridis(100), 
+    do.label = TRUE
+) +
+    scale_color_viridis()
+    # coord_fixed()
+  
+p1 + p2
+```
+
+```{r}
+# UMAP colored by expression for all markers - plotReducedDim
+plot_list <- lapply(
+    rownames(spe)[rowData(spe)$marker_class == "type"],
+    function(x) {
+        p <- scater::plotReducedDim(
+            spe,
+            dimred = "UMAP_mnnCorrected",
+            colour_by = x,
+            by_exprs_values = "exprs",
+            point_size = 0.2
+        )
+        return(p)
+    }
+)
+
+plot_grid(plotlist = plot_list)
+```
+
+```{r}
+### Heatmap visualization, it is often useful to visualize single-cell 
+### expression per cell type in form of a heatmap
+set.seed(220818)
+cur_cells <- sample(seq_len(ncol(spe)), 4000)
+
+### Heatmap visualization
+dittoHeatmap(
+    spe[,cur_cells], 
+    genes = rownames(spe)[rowData(spe)$marker_class == "type"],
+    assay = "exprs", 
+    cluster_cols = FALSE, 
+    scale = "none",
+    heatmap.colors = viridis(100), 
+    annot.by = c("celltype", "indication", "patient_id"),
+    annotation_colors = list(
+        indication = metadata(spe)$color_vectors$indication,
+        patient_id = metadata(spe)$color_vectors$patient_id,
+        celltype = metadata(spe)$color_vectors$celltype
+    )
+)
+```
+
+```{r}
+
+### Visualize the mean marker expression per cell type for all cells
+### aggregate by cell type
+celltype_mean <- scuttle::aggregateAcrossCells(
+    as(spe, "SingleCellExperiment"),  
+    ids = spe$celltype, 
+    statistics = "mean",
+    use.assay.type = "exprs", 
+    subset.row = rownames(spe)[rowData(spe)$marker_class == "type"]
+)
+
+### No scaling
+dittoHeatmap(
+    celltype_mean,
+    assay = "exprs", 
+    cluster_cols = TRUE, 
+    scale = "none",
+    heatmap.colors = viridis(100),
+    annot.by = c("celltype", "ncells"),
+    annotation_colors = list(
+        celltype = metadata(spe)$color_vectors$celltype,
+        ncells = plasma(100)
+    )
+)
+
+### Scaled to max
+dittoHeatmap(
+    celltype_mean,
+    assay = "exprs", 
+    cluster_cols = TRUE, 
+    scaled.to.max = TRUE,
+    heatmap.colors.max.scaled = inferno(100),
+    annot.by = c("celltype", "ncells"),
+    annotation_colors = list(
+        celltype = metadata(spe)$color_vectors$celltype,
+        ncells = plasma(100)
+    )
+)
+
+### # Z score scaled
+dittoHeatmap(
+    celltype_mean,
+    assay = "exprs", 
+    cluster_cols = TRUE, 
+    annot.by = c("celltype", "ncells"),
+    annotation_colors = list(
+        celltype = metadata(spe)$color_vectors$celltype,
+        ncells = plasma(100)
+    )
+)
+```
+
+```{r}
+### Violin plot visualization - plotExpression
+plotExpression(
+    spe[,cur_cells], 
+    features = rownames(spe)[rowData(spe)$marker_class == "type"],
+    x = "celltype", 
+    exprs_values = "exprs", 
+    colour_by = "celltype"
+) +
+    theme(axis.text.x =  element_text(angle = 90))+
+    scale_color_manual(values = metadata(spe)$color_vectors$celltype)
+
+```
+
+```{r}
+### Scatter plot visualization
+dittoScatterPlot(
+    spe,
+    x.var = "CD3",
+    y.var = "CD20",
+    assay.x = "exprs",
+    assay.y = "exprs",
+    color.var = "celltype"
+) +
+    scale_color_manual(values = metadata(spe)$color_vectors$celltype) +
+    ggtitle("Scatterplot for CD3/CD20 labelled by celltype")
+```
+
+```{r}
+### by sample_id - percentage
+dittoBarPlot(spe, var = "celltype", group.by = "sample_id") +
+    scale_fill_manual(values = metadata(spe)$color_vectors$celltype)
+
+### by patient_id - percentage
+dittoBarPlot(spe, var = "celltype", group.by = "patient_id") +
+    scale_fill_manual(values = metadata(spe)$color_vectors$celltype)
+
+### by patient_id - count
+dittoBarPlot(spe, scale = "count",var = "celltype", group.by = "patient_id") +
+    scale_fill_manual(values = metadata(spe)$color_vectors$celltype)
+
+### We can see that cell type frequencies change between samples/patients and that the highest proportion/counts of plasma cells and stromal cells can be observed for Patient 2 and Patient 4, respectively.
+```
+
+```{r}
+### CATALYST-based visualization
+### Save SPE in CATALYST-compatible object with renamed colData entries and
+### new metadata information
+spe_cat <- spe
+spe_cat$sample_id <- factor(spe$sample_id)
+spe_cat$condition <- factor(spe$indication)
+spe_cat$cluster_id <- factor(spe$celltype)
+
+### Add celltype information to metadata
+metadata(spe_cat)$cluster_codes <- data.frame(
+    celltype = factor(spe_cat$celltype)
+)
+
+### Pseudobulk-level MDS plot
+### MDS pseudobulk by cell type to highlight expression similarities between 
+### cell types and subsequently for each celltype-sample-combination.
+CATALYST::pbMDS(
+    spe_cat,
+    by = "cluster_id",
+    features = rownames(spe_cat)[rowData(spe_cat)$marker_class == "type"],
+    label_by = "cluster_id",
+    k = "celltype"
+) +
+    scale_color_manual(values = metadata(spe_cat)$color_vectors$celltype)
+
+### MDS pseudobulk by cell type and sample_id
+### We can see that the pseudobulk-expression profile of neutrophils seems 
+### markedly distinct from the other cell types, while comparable cell types 
+### such as the T cell subtypes group together. Furthermore, pseudobulk 
+## cell-type profiles from SCCHN appear different from the other indications.
+CATALYST::pbMDS(
+    spe_cat, 
+    by = "both", 
+    features = rownames(spe_cat)[rowData(spe_cat)$marker_class == "type"], 
+    k = "celltype", 
+    shape_by = "condition", 
+    size_by = TRUE
+) +
+  scale_color_manual(values = metadata(spe_cat)$color_vectors$celltype)
+
+### Reduced dimension plot on CLR of proportions
+### The output plots aim to illustrate the degree of similarity between 
+### cell types based on sample proportions.
+### CLR on cluster proportions across samples
+### We can again observe that neutrophils have a divergent profile also in terms of their sample proportions.
+CATALYST::clrDR(
+    spe_cat, 
+    dr = "PCA", 
+    by = "cluster_id", 
+    k = "celltype", 
+    label_by = "cluster_id", 
+    arrow_col = "sample_id", 
+    point_pal = metadata(spe_cat)$color_vectors$celltype
+)
+
+### Pseudobulk expression boxplot
+### Notably, CD15 levels are elevated in SCCHN in comparison to all other 
+### indications for most cell types.
+CATALYST::plotPbExprs(
+    spe_cat, 
+    k = "celltype", 
+    facet_by = "cluster_id", 
+    ncol = 2, 
+    features = rownames(spe_cat)[rowData(spe_cat)$marker_class == "type"]
+) +
+    scale_color_manual(values = metadata(spe_cat)$color_vectors$indication)
+```
+
+### Sample level
+
+```{r}
+### Dimensionality reduction visualization
+## UMAP colored by cell type and expression - dittoDimPlot
+p1 <- dittoDimPlot(
+    spe,
+    var = "sample_id",
+    reduction.use = "UMAP",
+    size = 0.2,
+    colors = viridis(100),
+    do.label = FALSE
+) +
+    scale_color_manual(values = metadata(spe)$color_vectors$sample_id) +
+    theme(legend.title = element_blank()) +
+    ggtitle("Sample ID")
+
+p2 <- dittoDimPlot(
+    spe,
+    var = "sample_id",
+    reduction.use = "UMAP_mnnCorrected",
+    size = 0.2,
+    colors = viridis(100),
+    do.label = FALSE
+) +
+    scale_color_manual(values = metadata(spe)$color_vectors$sample_id) +
+    theme(legend.title = element_blank()) +
+    ggtitle("Sample ID")
+
+p3 <- dittoDimPlot(
+    spe,
+    var = "patient_id",
+    reduction.use = "UMAP",
+    size = 0.2,
+    do.label = FALSE
+) +
+    scale_color_manual(values = metadata(spe)$color_vectors$patient_id) +
+    theme(legend.title = element_blank()) +
+    ggtitle("Patient ID")
+
+p4 <- dittoDimPlot(
+    spe,
+    var = "patient_id",
+    reduction.use = "UMAP_mnnCorrected",
+    size = 0.2,
+    do.label = FALSE
+) +
+    scale_color_manual(values = metadata(spe)$color_vectors$patient_id) +
+    theme(legend.title = element_blank()) +
+    ggtitle("Patient ID")
+
+### fastMNN approach (right side of the plot) leads to mixing of cells across 
+### samples/patients and thus batch effect correction.
+(p1 + p2) / (p3 + p4)
+```
+
+```{r}
+### Heatmap visualization to highlight biological differences across samples/patients.
+dittoHeatmap(
+    spe[,cur_cells], 
+    genes = rownames(spe)[rowData(spe)$marker_class == "type"],
+    assay = "exprs", 
+    order.by = c("patient_id","sample_id"),
+    cluster_cols = FALSE, 
+    scale = "none",
+    heatmap.colors = viridis(100), 
+    annot.by = c("celltype", "indication", "patient_id", "sample_id"),
+    annotation_colors = list(
+        celltype = metadata(spe)$color_vectors$celltype,
+        indication = metadata(spe)$color_vectors$indication,
+        patient_id = metadata(spe)$color_vectors$patient_id,
+        sample_id = metadata(spe)$color_vectors$sample_id)
+)
+
+### mean expression by patient_id
+patient_mean <- aggregateAcrossCells(
+    as(spe, "SingleCellExperiment"),  
+    ids = spe$patient_id, 
+    statistics = "mean",
+    use.assay.type = "exprs", 
+    subset.row = rownames(spe)[rowData(spe)$marker_class == "type"]
+)
+
+### No scaling
+dittoHeatmap(
+    patient_mean,
+    assay = "exprs", 
+    cluster_cols = TRUE, 
+    scale = "none",
+    heatmap.colors = viridis(100),
+    annot.by = c("patient_id","indication","ncells"),
+    annotation_colors = list(
+        patient_id = metadata(spe)$color_vectors$patient_id,
+        indication = metadata(spe)$color_vectors$indication,
+        ncells = plasma(100)
+    )
+)
+
+### Max expression scaling
+dittoHeatmap(
+    patient_mean,
+    assay = "exprs", 
+    cluster_cols = TRUE, 
+    scaled.to.max =  TRUE,
+    heatmap.colors.max.scaled = inferno(100),
+    annot.by = c("patient_id","indication","ncells"),
+    annotation_colors = list(
+        patient_id = metadata(spe)$color_vectors$patient_id,
+        indication = metadata(spe)$color_vectors$indication,
+        ncells = plasma(100)
+    )
+)
+```
+
+```{r}
+### Barplot visualization
+dittoBarPlot(
+    spe, 
+    var = "patient_id", 
+    group.by = "celltype"
+) +
+    scale_fill_manual(values = metadata(spe)$color_vectors$patient_id)
+
+### 
+dittoBarPlot(
+    spe, 
+    var = "sample_id", 
+    group.by = "celltype"
+) +
+    scale_fill_manual(values = metadata(spe)$color_vectors$sample_id)
+```
+
+### ComplexHeatmap
+
+```{r}
+set.seed(22)
+
+### 1. Heatmap bodies ###
+### Heatmap body color
+col_exprs <- colorRamp2(
+    c(0, 1, 2, 3, 4),
+    c("#440154FF", "#3B518BFF", "#20938CFF", "#6ACD5AFF", "#FDE725FF")
+)
+
+### Create Heatmap objects
+### By cell type markers
+celltype_mean <- aggregateAcrossCells(
+    as(spe, "SingleCellExperiment"),
+    ids = spe$celltype,
+    statistics = "mean",
+    use.assay.type = "exprs",
+    subset.row = rownames(spe)[rowData(spe)$marker_class == "type"]
+)
+
+h_type <- Heatmap(
+    t(assay(celltype_mean, "exprs")),
+    column_title = "type_markers",
+    col = col_exprs,
+    name = "mean exprs",
+    show_row_names = TRUE,
+    show_column_names = TRUE
+)
+
+# By cell state markers
+cellstate_mean <- aggregateAcrossCells(
+    as(spe, "SingleCellExperiment"),
+    ids = spe$celltype,
+    statistics = "mean",
+    use.assay.type = "exprs",
+    subset.row = rownames(spe)[rowData(spe)$marker_class == "state"]
+)
+
+h_state <- Heatmap(
+    t(assay(cellstate_mean, "exprs")),
+    column_title = "state_markers",
+    col = col_exprs,
+    name = "mean exprs",
+    show_row_names = TRUE,
+    show_column_names = TRUE
+)
+
+
+### 2. Heatmap annotation ###
+### 2.1  Metadata features
+anno <- colData(celltype_mean) |> 
+    as.data.frame() |> 
+    select(celltype, ncells)
+
+### Proportion of indication per celltype
+indication <- unclass(prop.table(table(spe$celltype, spe$indication), margin = 1))
+
+### Number of contributing patients per celltype
+cluster_PID <- colData(spe) |>
+    as.data.frame() |>
+    select(celltype, patient_id) |>
+    group_by(celltype) |> table() |>
+    as.data.frame()
+
+n_PID <- cluster_PID |>
+    filter(Freq > 0) |>
+    group_by(celltype) |>
+    dplyr::count(name = "n_PID") |>
+    column_to_rownames("celltype")
+
+### Create HeatmapAnnotation objects
+ha_anno <- HeatmapAnnotation(
+    celltype = anno$celltype,
+    border = TRUE,
+    gap = unit(1, "mm"),
+    col = list(celltype = metadata(spe)$color_vectors$celltype),
+    which = "row"
+)
+
+ha_meta <- HeatmapAnnotation(
+    n_cells = anno_barplot(anno$ncells, width = unit(10, "mm")),
+    n_PID = anno_barplot(n_PID, width = unit(10, "mm")),
+    indication = anno_barplot(indication, width = unit(10, "mm"),
+    gp = gpar(fill = metadata(spe)$color_vectors$indication)),
+    border = TRUE,
+    annotation_name_rot = 90,
+    gap = unit(1, "mm"),
+    which = "row"
+)
+
+### 2.2 Spatial features
+### Add number of neighbors to spe object (saved in colPair)
+spe$n_neighbors <- countLnodeHits(colPair(spe, "neighborhood"))
+
+### Select spatial features and average over celltypes
+spatial <- colData(spe) |>
+    as.data.frame() |>
+    select(area, celltype, n_neighbors)
+
+spatial <- spatial |>
+    select(-celltype) |>
+    aggregate(by = list(celltype = spatial$celltype), FUN = mean) |>
+    column_to_rownames("celltype")
+
+### Create HeatmapAnnotation object
+ha_spatial <- HeatmapAnnotation(
+    area = spatial$area,
+    n_neighbors = spatial$n_neighbors,
+    border = TRUE,
+    gap = unit(1, "mm"),
+    which = "row"
+)
+
+### 3. Plot rich heatmap ###
+
+### Create HeatmapList object
+h_list <- h_type +
+    h_state +
+    ha_anno +
+    ha_spatial +
+    ha_meta
+
+### Add customized legend for anno_barplot()
+lgd <- Legend(
+    title = "indication",
+    at = colnames(indication),
+    legend_gp = gpar(fill = metadata(spe)$color_vectors$indication)
+)
+
+### Plot
+draw(h_list, annotation_legend_list = list(lgd))
+```
+
+## Reference
+
+- [Analysis workflow for IMC data](https://bodenmillergroup.github.io/IMCDataAnalysis/)
+- [Working with CellProfiler data in R](https://complexinterface.com/research/projects/image-analysis/)
+
+## Sessioninfo
+
+```{r}
+sessionInfo()
+```

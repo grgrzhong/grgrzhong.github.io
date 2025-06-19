@@ -1,0 +1,52 @@
+---
+title: Conda
+date: 2020-09-09
+title-block-banner: "#212529"
+date-modified: last-modified
+published-title: Last updated
+toc: true
+toc-location: left
+toc-title: "Contents"
+execute:
+    eval: false
+---
+
+# Conda
+
+```bash
+#| eval: false
+
+# Init
+conda init --all
+
+# Use mamba for faster solving
+conda update -n base conda
+conda install -n base conda-libmamba-solver
+
+# Config
+conda config --set solver libmamba
+conda config --set always_yes true
+conda config --set auto_activate_base false
+
+# Setup channels
+conda config --add channels bioconda
+conda config --add channels conda-forge
+#conda config --set channel_priority strict
+
+# Install software from a specific channle
+conda install -c conda-forge numpy
+
+# Create R environment
+conda create -n renv r-4.3 r-languageserver r-tidyverse r-irkernel r-httpgd
+
+conda install conda-forge::r-qs       
+# Remove a specific environment
+conda remove --name my_env --all
+
+# Remove a software in a environment
+conda remove --name my_env package_name
+
+# Export and save the conda env file with all software information
+conda env export -n renv > renv.yml
+conda env create -f renv.yml
+```

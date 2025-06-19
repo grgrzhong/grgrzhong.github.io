@@ -1,0 +1,68 @@
+---
+title: "Parallel Processing in R"
+date: 2024-06-05
+date-modified: last-modified
+categories:
+  - parallel
+image: mapping.png
+---
+
+Parallel processing is a powerful technique to speed up computations by utilizing multiple CPU cores simultaneously. In R, several functions and packages enable parallel processing, making it easier to handle large datasets and complex calculations efficiently. This blog post will introduce you to some of these key functions, such as `mclapply`, `parLapply`, and `parSapply`, and demonstrate how to use them in your R scripts.
+
+```{r}
+library(parallel)
+library(lme4)
+```
+
+```{r}
+### Check the number of cores
+detectCores()
+```
+### mclapply
+
+```{r}
+### mclapply works on unix system, it will call lapply in windows
+f <- function(i) {
+  lmer(Petal.Width ~ . - Species + (1 | Species), data = iris)
+}
+
+system.time(save1 <- lapply(1:100, f))
+
+system.time(save2 <- mclapply(1:100, f))
+```
+
+### parlapply
+
+```{r}
+### Works on windows, but slower than mclapply
+numCores <- detectCores()
+
+### Starting a cluster
+cl <- makeCluster(numCores)
+parSapply(cl, Orange, mean, na.rm = TRUE)
+
+### Close the cluster, best practise
+stopCluster(cl)
+```
+
+```{r}
+### lapply
+system.time({save1 <- lapply(1:100, f)})
+
+### mclapply
+system.time({save2 <- mclapply(1:100, f)})
+
+###
+system.time(
+    {
+        cl <- makeCluster(detectCores())
+        clusterEvalQ(cl, library(lme4))
+        save3 <- parLapply(cl, 1:100, f)
+        stopCluster(cl)
+    }
+)
+
+```
+
+
+## Reference

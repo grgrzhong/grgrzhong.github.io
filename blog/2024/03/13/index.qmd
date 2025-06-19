@@ -1,0 +1,305 @@
+---
+title: "SingleCellExperiment | Practise Single-cell RNA-seq data analysis"
+date: 2024-03-13
+date-modified: last-modified
+categories:
+    - scrna
+image: workflow.png
+# description: All the learning materials are from credited or adapted from Harvard Chan Bioinformatics Core. 
+execute: 
+    freeze: true
+    eval: false
+---
+
+::: {.callout-note}
+All the contents are credited or adapted from [Orchestrating Single-Cell Analysis with Bioconductor](https://bioconductor.org/books/release/OSCA/) for leaning purpose.
+:::
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+#   fig.width = 6,
+#   fig.height = 6 * 0.618,
+#   fig.retina = 3,
+    dev = "ragg_png",
+    fig.align = "center",
+    out.width = "90%",
+    #   cache.extra = 1234,  # Change number to invalidate cache
+    collapse = TRUE
+)
+
+options(
+    digits = 4,
+    width = 300,
+    dplyr.summarise.inform = FALSE
+)
+
+set.seed(1234)
+```
+
+## Overall Workflow
+
+[](workflow.png)
+
+## Install and Load packages
+```{r}
+# BiocManager::install("OSCA.intro")
+# BiocManager::install("SingleCellExperiment", force = TRUE)
+# BiocManager::install(c("scuttle", "scran", "scater", "uwot", "rtracklayer"))
+
+library(scRNAseq)
+library(scuttle)
+library(scater)
+library(robustbase)
+library(org.Mm.eg.db)
+
+```
+
+## Read counts into R
+
+### From tabular formats
+### From Cellranger output
+### From HDF5-based formats
+
+## SingleCellExperiment class
+
+## Quality Control
+
+### QC metrics
+
+Common QC metrics to identify low-quality cells based on their expression profiles.
+
+- library size
+- number of expressed features
+
+```{r}
+#--- loading ---#
+sce.416b <- LunSpikeInData(which="416b")
+sce.416b$block <- factor(sce.416b$block)
+
+# 46604 features x  192 cells
+sce.416b
+```
+
+```{r}
+# Identifying the mitochondrial transcripts in our SingleCellExperiment.
+location <- rowRanges(sce.416b)
+is.mito <- any(seqnames(location) == "MT")
+
+df <- scater::perCellQCMetrics(sce.416b, subsets = list(Mito = is.mito))
+# Total count for each cell
+summary(df$sum)
+
+# The number of detected genes
+summary(df$detected)
+
+# The percentage of reads mapped to mitochondrial transcripts
+summary(df$subsets_Mito_percent)
+
+# The percentage of reads mapped to ERCC transcripts
+summary(df$altexps_ERCC_percent)
+
+# Computes and appends the per-cell QC statistics to the colData
+sce.416b <- addPerCellQCMetrics(sce.416b, subsets=list(Mito=is.mito))
+colnames(colData(sce.416b))
+```
+
+A key assumption here is that the QC metrics are independent of the biological state of each cell. Poor values (e.g., low library sizes, high mitochondrial proportions) are presumed to be driven by technical factors rather than biological processes, meaning that the subsequent removal of cells will not misrepresent the biology in downstream analyses. 
+
+Major violations of this assumption would potentially result in the loss of cell types that have, say, systematically low RNA content or high numbers of mitochondria.
+
+### Identifying low-quality cells
+
+#### With fixed thresholds
+The simplest approach to identifying low-quality cells involves applying **fixed thresholds** to the QC metrics. 
+
+For example, we might consider cells to be low quality if they:
+
+- have library sizes below 100,000 reads; 
+- express fewer than 5,000 genes; 
+- have spike-in proportions above 10%; 
+- or have mitochondrial proportions above 10%.
+
+```{r}
+# With fixed thresholds
+qc.lib <- df$sum < 1e5
+qc.nexprs <- df$detected < 5e3
+qc.spike <- df$altexps_ERCC_percent > 10
+qc.mito <- df$subsets_Mito_percent > 10
+discard <- qc.lib | qc.nexprs | qc.spike | qc.mito
+
+# Summarize the number of cells removed for each reason.
+DataFrame(
+    LibSize = sum(qc.lib), NExprs = sum(qc.nexprs),
+    SpikeProp = sum(qc.spike), MitoProp = sum(qc.mito), Total = sum(discard)
+)
+```
+::: {.callout-note}
+While simple, this strategy requires considerable experience to determine appropriate thresholds for each experimental protocol and biological system. 
+- Thresholds for read count-based data are not applicable for UMI-based data, and vice versa. 
+- Differences in mitochondrial activity or total RNA content require constant adjustment of the mitochondrial and spike-in thresholds, respectively, for different biological systems. 
+- Indeed, even with the same protocol and system, the appropriate threshold can vary from run to run due to the vagaries of cDNA capture efficiency and sequencing depth per cell.
+:::
+
+
+#### With adaptive thresholds
+We then identify cells that are outliers for the various QC metrics, based on the median absolute deviation (MAD) from the median value of each metric across all cells. 
+
+By default, we consider a value to be an outlier if it is more than 3 MADs from the median in the “problematic” direction. This is loosely motivated by the fact that such a filter will retain 99% of non-outlier values that follow a normal distribution.
+
+```{r}
+# Identify cells with log-transformed library sizes that are more than 3 MADs below the median
+reasons <- perCellQCFilters(
+    df,
+    sub.fields = c("subsets_Mito_percent", "altexps_ERCC_percent")
+)
+colSums(as.matrix(reasons))
+
+# A cell that is an outlier for any of these metrics is considered to be of low quality and discarded
+summary(reasons$discard)
+
+# Exact filter thresholds from the attributes of each of the logical vectors
+attr(reasons$low_lib_size, "thresholds")
+attr(reasons$low_n_features, "thresholds")
+```
+
+#### Other approaches
+
+```{r}
+stats <- cbind(
+    log10(df$sum), log10(df$detected),
+    df$subsets_Mito_percent, df$altexps_ERCC_percent
+)
+
+outlying <- adjOutlyingness(stats, only.outlyingness = TRUE)
+multi.outlier <- isOutlier(outlying, type = "higher")
+summary(multi.outlier)
+```
+
+Outliers can also be identified from the gene expression profiles, rather than QC metrics. 
+
+We consider this to be a risky strategy as it can remove **high-quality cells in rare populations**.
+
+#### Diagnostic plots
+```{r}
+colData(sce.416b) <- cbind(colData(sce.416b), df)
+sce.416b$block <- factor(sce.416b$block)
+sce.416b$phenotype <- ifelse(
+    grepl("induced", sce.416b$phenotype),
+    "induced", "wild type"
+)
+sce.416b$discard <- reasons$discard
+
+gridExtra::grid.arrange(
+    plotColData(
+        sce.416b, x = "block", y = "sum", colour_by = "discard",
+        other_fields = "phenotype"
+    ) +
+        facet_wrap(~phenotype) +
+        scale_y_log10() + ggtitle("Total count"),
+
+    plotColData(
+        sce.416b, x = "block", y = "detected", colour_by = "discard",
+        other_fields = "phenotype"
+    ) +
+        facet_wrap(~phenotype) +
+        scale_y_log10() + ggtitle("Detected features"),
+
+    plotColData(
+        sce.416b, x = "block", y = "subsets_Mito_percent",
+        colour_by = "discard", other_fields = "phenotype"
+    ) +
+        facet_wrap(~phenotype) +
+        ggtitle("Mito percent"),
+
+    plotColData(
+        sce.416b, x = "block", y = "altexps_ERCC_percent",
+        colour_by = "discard", other_fields = "phenotype"
+    ) +
+        facet_wrap(~phenotype) +
+        ggtitle("ERCC percent"),
+    ncol = 1
+)
+```
+Another useful diagnostic involves plotting the proportion of mitochondrial counts against some of the other QC metrics. 
+
+The aim is to confirm that there are no cells with both large total counts and large mitochondrial counts, to ensure that we are not inadvertently removing **high-quality cells that happen to be highly metabolically active** (e.g., hepatocytes). 
+
+```{r}
+#--- loading ---#
+sce.zeisel <- ZeiselBrainData()
+sce.zeisel
+
+sce.zeisel <- aggregateAcrossFeatures(
+    sce.zeisel,
+    id = sub("_loc[0-9]+$", "", rownames(sce.zeisel))
+)
+
+#--- gene-annotation ---#
+rowData(sce.zeisel)$Ensembl <- mapIds(
+    org.Mm.eg.db,
+    keys = rownames(sce.zeisel),
+    keytype = "SYMBOL",
+    column = "ENSEMBL"
+)
+
+sce.zeisel <- addPerCellQC(
+    sce.zeisel,
+    subsets = list(Mt = rowData(sce.zeisel)$featureType == "mito")
+)
+
+qc <- quickPerCellQC(
+    colData(sce.zeisel),
+    sub.fields = c("altexps_ERCC_percent", "subsets_Mt_percent")
+)
+
+sce.zeisel$discard <- qc$discard
+
+plotColData(
+    sce.zeisel, x = "sum", y = "subsets_Mt_percent", colour_by = "discard"
+)
+```
+
+Low-quality cells with small mitochondrial percentages, large spike-in percentages and small library sizes are likely to be stripped nuclei, i.e., they have been so extensively damaged that they have lost all cytoplasmic content. 
+
+On the other hand, cells with high mitochondrial percentages and low ERCC percentages may represent undamaged cells that are metabolically active. 
+
+This interpretation also applies for single-nuclei studies but with a switch of focus: the stripped nuclei become the libraries of interest while the undamaged cells are considered to be low quality.
+
+```{r}
+plotColData(
+    sce.zeisel, x="altexps_ERCC_percent", y="subsets_Mt_percent",
+    colour_by="discard"
+)
+```
+These metrics exhibit weak correlations to each other, presumably a manifestation of a common underlying effect of cell damage.
+
+The weakness of the correlations motivates the use of several metrics to capture different aspects of technical quality.
+
+Of course, the flipside is that these metrics may also represent different aspects of biology, increasing the risk of inadvertently discarding entire cell types.
+
+### Remove low quality cells
+
+```{r}
+# Keeping the columns we DON'T want to discard.
+filtered <- sce.416b[, !reasons$discard]
+
+# Mark the low-quality cells as such and retain them in the downstream analysis
+marked <- sce.416b
+marked$discard <- reasons$discard
+```
+
+## Normalization
+
+### Library size normalization
+
+```{r}
+lib.sf.zeisel <- scater::librarySizeFactors(sce.zeisel)
+summary(lib.sf.zeisel)
+hist(log10(lib.sf.zeisel), xlab = "Log10[Size factor]", col = "grey80")
+```
+
+## Session Info
+```{r}
+#| code-fold: true
+sessionInfo()
+```

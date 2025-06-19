@@ -1,0 +1,16 @@
+{
+  "hash": "eafb1c855d8839bd22136d4e48f02fb3",
+  "result": {
+    "markdown": "---\ntitle: \"Use colorblind-friendly palette for visualization\"\ndate: 2022-01-22\nimage: colorblind_palette.jpg\ndescription: \"Use friendly colors in a graph with ggplot2\"\ncategories:\n  - colors\n---\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

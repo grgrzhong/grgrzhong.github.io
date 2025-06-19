@@ -1,0 +1,17 @@
+{
+  "hash": "7a088efdd5d48f4407ef9660728493d9",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Parallel Processing in R\"\ndate: 2024-06-05\ndate-modified: last-modified\ncategories:\n  - parallel\nimage: mapping.png\n---\n\n\n\n\nParallel processing is a powerful technique to speed up computations by utilizing multiple CPU cores simultaneously. In R, several functions and packages enable parallel processing, making it easier to handle large datasets and complex calculations efficiently. This blog post will introduce you to some of these key functions, such as `mclapply`, `parLapply`, and `parSapply`, and demonstrate how to use them in your R scripts.\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(parallel)\nlibrary(lme4)\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nLoading required package: Matrix\n```\n\n\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n### Check the number of cores\ndetectCores()\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 8\n```\n\n\n:::\n:::\n\n\n\n### mclapply\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n### mclapply works on unix system, it will call lapply in windows\nf <- function(i) {\n  lmer(Petal.Width ~ . - Species + (1 | Species), data = iris)\n}\n\nsystem.time(save1 <- lapply(1:100, f))\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n   user  system elapsed \n  0.618   0.005   0.628 \n```\n\n\n:::\n\n```{.r .cell-code}\nsystem.time(save2 <- mclapply(1:100, f))\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n   user  system elapsed \n  0.033   0.031   0.457 \n```\n\n\n:::\n:::\n\n\n\n\n### parlapply\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n### Works on windows, but slower than mclapply\nnumCores <- detectCores()\n\n### Starting a cluster\ncl <- makeCluster(numCores)\nparSapply(cl, Orange, mean, na.rm = TRUE)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n         Tree           age circumference \n           NA      922.1429      115.8571 \n```\n\n\n:::\n\n```{.r .cell-code}\n### Close the cluster, best practise\nstopCluster(cl)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n### lapply\nsystem.time({save1 <- lapply(1:100, f)})\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n   user  system elapsed \n  0.645   0.011   0.691 \n```\n\n\n:::\n\n```{.r .cell-code}\n### mclapply\nsystem.time({save2 <- mclapply(1:100, f)})\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n   user  system elapsed \n  0.031   0.033   0.459 \n```\n\n\n:::\n\n```{.r .cell-code}\n###\nsystem.time(\n    {\n        cl <- makeCluster(detectCores())\n        clusterEvalQ(cl, library(lme4))\n        save3 <- parLapply(cl, 1:100, f)\n        stopCluster(cl)\n    }\n)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n   user  system elapsed \n  0.115   0.017   1.215 \n```\n\n\n:::\n:::\n\n\n\n\n\n## Reference\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,333 @@
+---
+title: "Analysis of single cell RNA-seq data with {SingleCellExperiment}"
+date: 2024-03-15
+date-modified: last-modified
+categories:
+  - scrna
+image: singlecellexperiment.png
+description: Using SingleCellExperiment object to analysis single cell data
+execute: 
+  freeze: true
+  eval: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+#   fig.width = 6,
+#   fig.height = 6 * 0.618,
+#   fig.retina = 3,
+    dev = "ragg_png",
+    fig.align = "center",
+    out.width = "100%",
+#   cache.extra = 1234,  # Change number to invalidate cache
+    collapse = TRUE
+)
+
+options(
+    digits = 4,
+    width = 300,
+    dplyr.summarise.inform = FALSE
+)
+
+set.seed(1234)
+```
+
+
+::: {.callout-note}
+All the contents are credited or adapted from [Analysis of single cell RNA-seq data](https://www.singlecellcourse.org/index.html) for leaning purpose.
+:::
+
+## Initial general setup 
+
+```{r}
+### Install and load packatges 
+# if (!require("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# BiocManager::install(version = "3.18")
+# BiocManager::install(
+#     c(
+#         "scater", "SingleCellExperiment", "AnnotationDbi", "org.Hs.eg.db",
+#         "EnsDb.Hsapiens.v86"
+#     ),
+#     force = TRUE
+# )
+library(here)
+library(tidyverse)
+library(scater)
+library(SingleCellExperiment)
+library(AnnotationDbi)
+library(org.Hs.eg.db)
+library(EnsDb.Hsapiens.v86)
+library(scales)
+
+### Project dir
+dir <- here("projects/2024_SCE_Course")
+```
+
+## Qualtity control
+
+```{r}
+### Creating a SingleCellExperiment object 
+molecules <- read.delim(here(dir, "data/tung/molecules.txt"), row.names = 1)
+annotation <- read.delim(
+    here(dir, "data/tung/annotation.txt"), stringsAsFactors = TRUE
+)
+
+head(molecules[, 1:3])
+head(annotation)
+
+umi <- SingleCellExperiment(
+    assays = list(counts = as.matrix(molecules)), 
+    colData = annotation
+)
+umi
+
+```
+
+```{r}
+## Remove ERCC spike-ins features
+altExp(umi,"ERCC") <- umi[grep("^ERCC-",rownames(umi)), ]
+umi <- umi[grep("^ERCC-",rownames(umi), invert = TRUE), ]
+umi
+
+## Map Ensembl IDs to gene symbols
+gene_names <- mapIds(
+    org.Hs.eg.db,
+    keys = rownames(umi),
+    keytype = "ENSEMBL",
+    columns = "SYMBOL",
+    column = "SYMBOL"
+)
+
+head(gene_names)
+class(gene_names)
+
+## 903 returned NA
+rowData(umi)$SYMBOL <- gene_names
+table(is.na(gene_names))
+```
+
+```{r}
+## Remove all genes for which no symbols were found
+umi <- umi[!is.na(rowData(umi)$SYMBOL), ]
+
+##  Returns no mitrochandrial proteins in the newly annotated symbols
+grep("^MT-", rowData(umi)$SYMBOL, value = TRUE)
+
+## Find rebosomal proteins
+grep("^RP[LS]", rowData(umi)$SYMBOL, value = TRUE)
+
+## Annotation problems: mitochondrial protein ATP8 can be found
+grep("ATP8", rowData(umi)$SYMBOL, value = TRUE)
+
+columns(org.Hs.eg.db)
+
+## Use a more detailed database
+ensdb_genes <- genes(EnsDb.Hsapiens.v86)
+
+## Find 13 protein-coding genes located in the mitochondrion
+MT_names <- ensdb_genes[seqnames(ensdb_genes) == "MT"]$gene_id
+
+# MT_names <- ensdb_genes[seqnames(ensdb_genes) == "MT"]$gene_name
+is_mito <- rownames(umi) %in% MT_names
+table(is_mito)
+```
+
+### Baseic QC
+
+```{r}
+umi_cell <- scater::perCellQCMetrics(umi, subsets = list(Mito = is_mito))
+head(umi_cell)
+
+umi_feature <- scater::perFeatureQCMetrics(umi)
+head(umi_feature)
+
+## Add the metrics
+umi <- addPerCellQC(umi, subsets = list(Mito = is_mito))
+umi <- addPerFeatureQC(umi)
+
+## Manual filtering
+hist(umi$total, breaks = 100)
+abline(v = 25000, col = "red")
+
+hist(umi_cell$detected, breaks = 100)
+abline(v = 7000, col = "red")
+```
+
+Low number of detected genes, but high MT gene percentage, are hallmarks of a low quality cell
+
+```{r}
+## adaptive threshold can help us identify points that are more than
+## 3 median absolute deviations (MADs)
+qc.lib2 <- isOutlier(umi_cell$sum, log = TRUE, type = "lower")
+attr(qc.lib2, "thresholds")
+
+qc.nexprs2 <- isOutlier(umi_cell$detected, log = TRUE, type = "lower")
+attr(qc.nexprs2, "thresholds")
+
+qc.spike2 <- isOutlier(umi_cell$altexps_ERCC_percent, type = "higher")
+attr(qc.spike2, "thresholds")
+
+qc.mito2 <- isOutlier(umi_cell$subsets_Mito_percent, type = "higher")
+attr(qc.mito2, "thresholds")
+
+discard2 <- qc.lib2 | qc.nexprs2 | qc.spike2 | qc.mito2
+
+DataFrame(
+    LibSize = sum(qc.lib2), NExprs = sum(qc.nexprs2),
+    SpikeProp = sum(qc.spike2), MitoProp = sum(qc.mito2), Total = sum(discard2)
+)
+
+reasons <- quickPerCellQC(
+    umi_cell,
+    sub.fields = c("subsets_Mito_percent", "altexps_ERCC_percent")
+)
+colSums(as.matrix(reasons))
+
+umi$discard <- reasons$discard
+```
+
+```{r}
+## Plotting various coldata (cell-level medadata) assays against each other
+plotColData(umi, x = "sum", y = "subsets_Mito_percent", colour_by = "discard")
+plotColData(umi, x = "sum", y = "detected", colour_by = "discard")
+plotColData(
+    umi, x = "altexps_ERCC_percent", 
+    y = "subsets_Mito_percent", colour_by = "discard"
+)
+```
+
+```{r}
+## splitting by batches to see if there are substantial batch-specific differences
+plotColData(
+    umi, x = "sum", y = "detected", colour_by = "discard", 
+    other_fields = "individual"
+) +
+    facet_wrap(~individual) + 
+    scale_x_continuous(labels = unit_format(unit = "k", scale = 1e-3))
+```
+
+```{r}
+plotColData(
+    umi, x = "sum", y = "detected", colour_by = "discard", other_fields = "replicate"
+) +
+    facet_wrap(~replicate) +
+    scale_x_continuous(labels = unit_format(unit = "k", scale = 1e-3))
+```
+
+### Highly expressed genes
+
+```{r}
+## Most of the genes we see are mitochondrial or ribosomal proteins, which is pretty typical for most scRNA-seq datasets.
+plotHighestExprs(
+    umi, exprs_values = "counts",
+    feature_names_to_plot = "SYMBOL", colour_cells_by = "detected"
+)
+```
+
+keep the genes which were detected (expression value > 1) in 2 or more cells. We’ll discard approximately 4,000 weakly expressed genes.
+
+```{r}
+keep_feature <- nexprs(umi, byrow = TRUE, detection_limit = 1) >= 2
+rowData(umi)$discard <- !keep_feature
+table(rowData(umi)$discard)
+```
+
+```{r}
+assay(umi, "logcounts_raw") <- log2(counts(umi) + 1)
+# saveRDS(umi, file = here(dir, "data/tung/umi.rds"))
+```
+
+## Dimensionality reduction
+
+```{r}
+## Remove unnecessary poorly expressed genes and low quality cells
+umi.qc <- umi[!rowData(umi)$discard, !colData(umi)$discard]
+umi.qc
+```
+
+Without log-transformation or normalization, PCA plot fails to separate the datasets by replicate or individual. We mostly see the effects of sequencing depth - samples (cells) with lots of expression, and particularly highly expressed genes, dominate the PCs
+
+### Before QC 
+```{r}
+## Before QC, Without log-transformation or normalization
+umi <- runPCA(umi, exprs_values = "counts")
+dim(reducedDim(umi, "PCA"))
+p1 <- plotPCA(
+    umi, 
+    colour_by = "batch", 
+    size_by = "detected", 
+    shape_by = "individual"
+)
+```
+
+With log-transformation, we equalize the large difference between strongly and weakly expressed genes, and immediately see cells form groups by replicate, individual, and sequencing depth.
+
+```{r}
+umi <- runPCA(umi, exprs_values = "logcounts_raw")
+dim(reducedDim(umi, "PCA"))
+p2 <- plotPCA(
+    umi,
+    colour_by = "batch",
+    size_by = "detected",
+    shape_by = "individual"
+)   
+
+patchwork::wrap_plots(p1, p2, ncol = 1)
+```
+
+```{r}
+set.seed(123456)
+umi <- runTSNE(umi, exprs_values = "logcounts_raw", perplexity = 130)
+plotTSNE(
+    umi,
+    colour_by = "batch",
+    size_by = "detected",
+    shape_by = "individual"
+)
+```
+
+### After QC
+```{r}
+umi.qc <- runPCA(umi.qc, exprs_values = "logcounts_raw")
+dim(reducedDim(umi.qc, "PCA"))
+plotPCA(
+    umi.qc,
+    colour_by = "batch",
+    size_by = "detected",
+    shape_by = "individual"
+)
+
+set.seed(123456)
+umi.qc <- runTSNE(umi.qc, exprs_values = "logcounts_raw", perplexity = 130)
+plotTSNE(
+    umi.qc, 
+    colour_by = "batch",
+    size_by = "detected",
+    shape_by = "individual"
+)
+```
+### Identifying confounding factors 
+
+
+```{r}
+### Detected genes
+logcounts(umi.qc) <- assay(umi.qc, "logcounts_raw")
+getExplanatoryPCs(umi.qc,variables = "sum")
+
+## PC1 can be almost completely (86%) explained by the total UMI counts (sequencing depth)
+plotExplanatoryPCs(umi.qc,variables = "sum") 
+logcounts(umi.qc) <- NULL
+```
+
+```{r}
+plotExplanatoryVariables(
+    umi.qc,
+    exprs_values = "logcounts_raw",
+    variables = c(
+        "detected", "sum", "batch",
+        "individual", "altexps_ERCC_percent", "subsets_Mito_percent"
+    )
+)
+```
+

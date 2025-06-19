@@ -1,0 +1,15 @@
+---
+title: "Use colorblind-friendly palette for visualization"
+date: 2022-01-22
+image: colorblind_palette.jpg
+description: "Use friendly colors in a graph with ggplot2"
+categories:
+  - colors
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width = 6, fig.height = 3.8,
+                      fig.align = "center", fig.retina = 3,
+                      out.width = "85%", collapse = TRUE)
+```
+

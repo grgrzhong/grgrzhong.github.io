@@ -1,0 +1,241 @@
+---
+title: "Pseudobulk differential expression analysis"
+date: 2023-12-08
+date-modified: last-modified
+categories:
+    - r
+    - scrna
+    - pseudobulk
+image: pseudobulk.png
+
+execute: 
+    eval: false
+---
+
+Pseudobulk differential expression analysis is a method used to analyze single-cell RNA-seq data by aggregating counts at the sample level. This approach helps to reduce the noise inherent in single-cell data and provides more robust results. In this blog post, we will walk through the steps to perform pseudobulk differential expression analysis using R, including data preparation, aggregation, and differential expression testing with DESeq2.
+
+## Prepare single-cell RNA-seq data
+```{r}
+#| warning: false
+
+## Load packages
+library(ExperimentHub)
+library(Seurat)
+library(DESeq2)
+library(data.table)
+library(tidyverse)
+library(RColorBrewer)
+
+## retrieve data
+eh <- ExperimentHub()
+query(eh, "Kang")
+
+sce_obj <- eh[["EH2259"]]
+seu_obj <- as.Seurat(sce_obj, data = NULL)
+as_tibble(seu_obj@meta.data)
+
+## add mito percent
+seu_obj$mitoPercent <- PercentageFeatureSet(seu_obj, pattern = '^MT-')
+as_tibble(seu_obj@meta.data)
+
+## general qc and filter
+seu_obj <- subset(
+    seu_obj,
+    subset = nFeature_originalexp > 200 & nFeature_originalexp < 2500 &
+        nCount_originalexp > 800 &
+        mitoPercent < 5 &
+        multiplets == 'singlet'
+)
+message(ncol(sce_obj) - ncol(seu_obj), " cells are removed ...")
+
+## run Seurat's standard workflow steps
+seu_obj <- NormalizeData(seu_obj)
+seu_obj <- FindVariableFeatures(seu_obj)
+seu_obj <- ScaleData(seu_obj)
+seu_obj <- RunPCA(seu_obj)
+ElbowPlot(seu_obj)
+seu_obj <- RunUMAP(seu_obj, dims = 1:20)
+
+## visualize
+cell_plot <- DimPlot(
+    seu_obj, reduction = "umap", group.by = "cell", label = TRUE
+)
+cond_plot <- DimPlot(seu_obj, reduction = "umap", group.by = "stim")
+
+cell_plot | cond_plot
+
+## aggregate counts to sample level with condition
+
+```
+
+## Pseudobulk workflow
+```{r}
+## counts aggregate to sample level
+as_tibble(seu_obj@meta.data)
+seu_obj$samples <- paste0(seu_obj$stim, seu_obj$ind)
+DefaultAssay(seu_obj)
+
+counts <- AggregateExpression(
+    seu_obj,
+    group.by = c("cell", "samples"),
+    assays = "originalexp",
+    # slot = "counts",
+    return.seurat = FALSE
+)
+
+counts <- t(counts$originalexp) |> as.data.frame()
+counts[1:5, 1:5]
+
+## get values where to split
+split_rows <- gsub('_.*', '', rownames(counts))
+
+## split data.frame
+counts_list <- split.data.frame(counts, f = factor(split_rows))
+counts_list$`B cells`[1:5, 1:5]
+
+## fix colnames and transpose
+counts_list <- lapply(
+    counts_list, function(x) {
+        rownames(x) <- gsub('.*_(.*)', '\\1', rownames(x))
+        t(x)
+    }
+)
+```
+
+## DE testing with DESeq2
+```{r}
+## get counts matrix
+counts_bcell <- counts_list[["B cells"]]
+
+## generate sample level metadata
+col_data <- data.frame(samples = colnames(counts_bcell)) |>
+    mutate(condition = if_else(
+        grepl("stim", samples), "Stimulated", "Control")
+    ) |>
+    column_to_rownames(var = "samples")
+
+## create DESeq2 object
+dds <- DESeqDataSetFromMatrix(
+    countData = counts_bcell,
+    colData = col_data,
+    design = ~condition
+)
+
+## filter
+keep <- rowSums(counts(dds)) >= 10
+dds <- dds[keep, ]
+
+## plot PCA
+DESeq2::plotPCA(rld, ntop = 500, intgroup = "condition")
+rld <- rlog(dds, blind = TRUE) ## transform counts for data visualization
+
+## hierarchical clustering
+rld_mat <- assay(rld)
+rld_cor <- cor(rld_mat)
+pheatmap::pheatmap(
+    rld_cor, annotation = col_data[, c("condition"), drop = FALSE]
+)
+
+## run DESeq2
+dds <- DESeq(dds)
+plotDispEsts(dds) # Plot dispersion estimates
+resultsNames(dds) # Check the coefficients for the comparison
+
+## Generate results object
+res <- results(dds, name = "condition_Stimulated_vs_Control", alpha = 0.05)
+res
+
+## Shrink the log2 fold changes to be more appropriate using the apeglm method
+res <- lfcShrink(
+    dds,
+    coef = "group_id_stim_vs_ctrl",
+    res = res,
+    type = "apeglm"
+)
+
+## results tibble
+res_tbl <- res |>
+    data.frame() |>
+    rownames_to_column(var = "gene") |>
+    as_tibble() |>
+    arrange(padj)
+
+padj_cutoff <- 0.05
+log2fc_cutoff <- 0.58
+
+### significant genes
+sig_res <- res_tbl |>
+    dplyr::filter(padj < padj_cutoff) %>%
+    dplyr::arrange(padj)
+
+n_sig_up <- sig_res |>
+    dplyr::filter(log2FoldChange >= log2fc_cutoff) %>%
+    nrow()
+n_sig_dn <- sig_res |>
+    dplyr::filter(log2FoldChange <= -log2fc_cutoff) %>%
+    nrow()
+```
+
+## DE testing with Seurat
+```{r}
+
+```
+
+## Visualize the signifcant genes
+
+```{r}
+## Extract normalized counts from dds object
+normalized_counts <- counts(dds, normalized = TRUE)
+
+## Extract top 20 DEG from resLFC (make sure to order by padj)
+top20_sig_genes <- sig_res %>%
+    dplyr::arrange(padj) %>%
+    dplyr::pull(gene) %>%
+    head(n = 20)
+
+## Extract matching normalized count values from matrix
+top_sig_counts <- normalized_counts[
+    rownames(normalized_counts) %in% top20_sig_genes, ]
+
+## Convert wide matrix to long data frame for ggplot2
+top_sig_tbl <- top_sig_counts |>
+    as_tibble(rownames = "gene") |>
+    pivot_longer(-gene, names_to = "samples") |>
+    left_join(as_tibble(colData(dds), rownames = "samples"))
+
+## Generate scatter plot
+ggplot(top_sig_tbl, aes(y = value, x = condition, color = condition)) +
+    geom_jitter(height = 0, width = 0.15) +
+    scale_y_continuous(trans = "log10") +
+    ylab("log10 of normalized expression level") +
+    xlab("condition") +
+    ggtitle("Top 20 Significant DE Genes") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    facet_wrap(~gene)
+
+## Extract normalized counts for significant genes only
+sig_counts <- normalized_counts[rownames(normalized_counts) %in% sig_res$gene, ]
+dim(sig_counts)
+## Set a color-blind friendly palette
+heat_colors <- rev(brewer.pal(11, "PuOr"))
+col_data$condition
+rownames(col_data)
+colnames(sig_counts)
+## Run pheatmap using the metadata data frame for the annotation
+pheatmap::pheatmap(
+    sig_counts,
+    color = heat_colors,
+    cluster_rows = TRUE,
+    show_rownames = FALSE,
+    annotation = col_data[, c("condition"), drop = FALSE],
+    border_color = NA,
+    fontsize = 10,
+    scale = "row",
+    fontsize_row = 10,
+    height = 20
+)
+```
+
+## Reference
+- <https://rpubs.com/Sri_Upasna/1066070>
+- <https://hbctraining.github.io/scRNA-seq_online/lessons/pseudobulk_DESeq2_scrnaseq.html>

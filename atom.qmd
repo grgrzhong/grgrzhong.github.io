@@ -1,0 +1,15 @@
+---
+title: "Guorui Zhong's blog"
+search: false
+listing:
+  sort: "date desc"
+  feed: 
+    title: "Guorui Zhong's blog"
+    description: "Guorui Zhong's blog"
+    items: 40
+    type: full
+    language: en
+  contents:
+    - "blog/**/index.qmd"
+    - "!blog/index.qmd"
+---

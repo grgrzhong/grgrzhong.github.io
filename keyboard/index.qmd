@@ -1,0 +1,263 @@
+---
+title: Commonly used Keyboard Shortcuts
+date: 2023-01-01
+date-modified: last-modified
+title-block-banner: "#212529"
+published-title: Last updated
+toc: true
+toc-location: left
+toc-title: "Contents"
+---
+
+<!-- ![](keyboard.jpg) -->
+
+### VSCode
+
+| **Action**                        | **Mac**                  | **Windows**                 |
+|----------------------------------|--------------------------|-----------------------------|
+| **General Commands**             |                          |                             |
+| Command Palette                  | `Cmd + Shift + P`        | `Ctrl + Shift + P`          |
+| Open Settings                    | `Cmd + ,`                | `Ctrl + ,`                  |
+| Keyboard Shortcuts               | `Cmd + K Cmd + S`        | `Ctrl + K Ctrl + S`         |
+| Toggle Sidebar                   | `Cmd + B`                | `Ctrl + B`                  |
+| Full Screen                      | `Cmd + Ctrl + F`         | `F11`                       |
+| Open File                        | `Cmd + P`                | `Ctrl + P`                  |
+| New Window                       | `Cmd + Shift + N`        | `Ctrl + Shift + N`          |
+| Close Window                     | `Cmd + Shift + W`        | `Ctrl + Shift + W`          |
+
+| **Terminal Management**          |                          |                             |
+| Toggle Terminal                  | `` Cmd + ` ``            | ``Ctrl + ` ``               |
+| Create New Terminal              | ``Cmd + Shift + ` ``     | ``Ctrl + Shift + ` ``       |
+| Navigate Between Terminals       | `Cmd + Shift + [ / ]`    | `Ctrl + PgUp / PgDn`        |
+| Split Terminal                   | `Cmd + \`                | `Ctrl + \`                  |
+| Navigate Between Split Terminal  | `Cmd + Option + ← / →`   | `Alt + ↑ / ↓`               |
+
+| **Editor Management**            |                          |                             |
+| Close Tab                        | `Cmd + W`                | `Ctrl + W`                  |
+| Split Editor                     | `Cmd + \`                | `Ctrl + \`                  |
+| Navigate Tabs                    | `Cmd + Shift + Tab`      | `Ctrl + Shift + Tab`        |
+| Navigate Tab Groups              | `Cmd + 1 / 2 / 3`        | `Ctrl + 1 / 2 / 3`          |
+
+| **Text Manipulation**            |                          |                             |
+| Add Multiple Cursors             | `Cmd + Option + ↑ / ↓`   | `Ctrl + Alt + ↑ / ↓`        |
+| Scroll horizontal                | `Shift + Mouse wheel (scrolling)` | `Shift + Mouse wheel (scrolling)` |
+| Select Text                      | `Cmd + Shift + ↑ / ↓`    | `Ctrl + Shift + ↑ / ↓`      |
+| Move Line Up/Down                | `Option + ↑ / ↓`         | `Alt + ↑ / ↓`               |
+| Copy Line Up/Down                | `Shift + Option + ↑ / ↓` | `Shift + Alt + ↑ / ↓`       |
+| Select Word                      | `Cmd + D`                | `Ctrl + D`                  |
+| Select Current Line              | `Cmd + L`                | `Ctrl + L`                  |
+| Select All Occurrences           | `Cmd + Shift + L`        | `Ctrl + Shift + L`          |
+| Delete Current Line              | `Cmd + Shift + K`        | `Ctrl + Shift + K`          |
+| Delete Word Backward             | `Option + Backspace`     | `Ctrl + Backspace`          |
+| Comment/Uncomment Lines          | `Cmd + /`                | `Ctrl + /`                  |
+| Go to Line                       | `Cmd + G`                | `Ctrl + G`                  |
+| Go to last cursor position       | `Ctl + -`                | `Alt + ←`                   |
+| Go to next cursor position       | `Ctl + Shift -`          | `Alt + →`                   |
+| Code Folding                     | `Cmd + Option + [ / ]`   | `Ctrl + Shift + [ / ]`      |
+| Indent/Outdent Lines             | `Cmd + [ / ]`            | `Ctrl + [ / ]`              |
+| Format Selected Code             | `Cmd + K Cmd + F`        | `Ctrl + K Ctrl + F`         |
+| Format Document                  | `Shift + Option + F`     | `Shift + Alt + F`           |
+| Go to Word Start/End             | `Option + ← / →`         | `Ctrl + ← / →`              |
+| Go to Line Start/End             | `Cmd + ← / →`            | `Home / End`                |
+| Go to File Start/End             | `Cmd + ↑ / ↓`            | `Ctrl + Home / End`         |
+| Search Files                     | `Cmd + Shift + F`        | `Ctrl + Shift + F`          |
+| Find Text                        | `Cmd + F`                | `Ctrl + F`                  |
+| Replace Text                     | `Cmd + Option + F`       | `Ctrl + H`                  |
+
+### Zsh/Bash
+
+| **Action**                       | **Shortcut**        |
+|---------------------------------|---------------------|
+| **Cursor Movement**             |                     |
+| Move to the beginning of line   | `Ctrl + A`          |
+| Move to the end of line         | `Ctrl + E`          |
+| Move one word backward          | `Opt + ←`           |
+| Move one word forward           | `Opt + →`           |
+| Move one character backward     | `←`                 |
+| Move one character forward      | `→`                 |
+| Jump to the start of buffer     | `Alt + <`           |
+| Jump to the end of buffer       | `Alt + >`           |
+| **Deleting Text**               |                     |
+| Delete the current line         | `Ctrl + U`          |
+| Delete to end of the line       | `Ctrl + K`          |
+| Clear the screen                | `Ctrl + L`          |
+| Delete one word backward        | `Ctrl + W`          |
+| Delete one character forward    | `Ctrl + D`          |
+| Delete one character forward    | `Fn + Backspace`    |
+| Delete one character backward   | `Backspace`         |
+| Delete from cursor to start     | `Alt + Backspace`   |
+| Delete from cursor to word end  | `Alt + D`           |
+| **Process Management**          |                     |
+| Terminate a process             | `Ctrl + C`          |
+| Suspend a process               | `Ctrl + Z`          |
+| Exit the shell                  | `Ctrl + D`          |
+| Send process to background      | `Ctrl + Z` then `bg`|
+| Bring background process to fg  | `fg`                |
+| **Undo and History Navigation** |                     |
+| Undo the last change            | `Ctrl + _`          |
+| Recall previous command         | `↑`                 |
+| Recall next command             | `↓`                 |
+| Search command history          | `Ctrl + R`          |
+| Exit history search             | `Ctrl + G`          |
+| Show history                    | `history`           |
+| **Re-Execute Commands**         |                     |
+| Run the last command            | `!!`                |
+| Run last `pw` command           | `!pw`               |
+| Run command # from history      | `!<number>`         |
+| **Auto-Completion**             |                     |
+| Auto-complete command           | `TAB`               |
+| List matching commands          | `TAB TAB`           |
+| Cycle through matches           | `TAB TAB TAB...`    |
+| **Miscellaneous**               |                     |
+| Open last edited command        | `Ctrl + X Ctrl + E` |
+| Transpose two characters        | `Ctrl + T`          |
+| Capitalize word at cursor       | `Alt + C`           |
+| Convert word to lowercase       | `Alt + L`           |
+| Convert word to uppercase       | `Alt + U`           |
+| Swap position with prev word    | `Ctrl + W` `Alt + T`|
+
+### Vim
+
+| **Action**                     | **Shortcut**   |
+|--------------------------------|----------------|
+| **Modes**                      | `i`            |
+| Insert mode                    | `i`            |
+| Command mode (normal)          | `esc`          |
+| Visual mode (select text)      | `v`            |
+| Visual line mode               | `V`            |
+| Visual block mode              | `Ctrl + v`     |
+| **Saving and Quitting**        |                |
+| Save                           | `:w`           |
+| Quit                           | `:q`           |
+| Save and quit                  | `:wq`          |
+| Quit without saving            | `:q!`          |
+| Save and quit (shortcut)       | `ZZ`           |
+| Quit without saving (shortcut) | `ZQ`           |
+| **Using Arrow Keys**           |                |
+| Move left                      | `h`            |
+| Move down                      | `j`            |
+| Move up                        | `k`            |
+| Move right                     | `l`            |
+| **Moving the Cursor**          |                |
+| Next word                      | `w`            |
+| Previous word                  | `b`            |
+| Beginning of line              | `0`            |
+| First non-blank of line        | `^`            |
+| End of line                    | `$`            |
+| First line                     | `gg`           |
+| Last line                      | `G`            |
+| Go to line 33                  | `33G`          |
+| Up half a page                 | `Ctrl + u`     |
+| Down half a page               | `Ctrl + d`     |
+| **Searching**                  |                |
+| Search text                    | `/text`        |
+| Next match                     | `n`            |
+| Previous match                 | `N`            |
+| Search backward                | `?text`        |
+| Search current word            | `/`            |
+| **Editing**                    |                |
+| Delete char                    | `x`            |
+| Delete line                    | `dd`           |
+| Delete word                    | `dw`           |
+| Delete to end of line          | `d$`           |
+| Delete to start of line        | `d0`           |
+| Copy line                      | `yy`           |
+| Copy word                      | `yw`           |
+| Paste after cursor             | `p`            |
+| Paste before cursor            | `P`            |
+| Undo                           | `u`            |
+| Redo                           | `Ctrl + r`     |
+| Change text                    | `c`            |
+| Replace char                   | `r`            |
+| Join line with next            | `J`            |
+| **Other Useful Commands**      |                |
+| Split window horizontally      | `:split`       |
+| Split window vertically        | `:vsplit`      |
+| Move left split                | `Ctrl + w, h`  |
+| Move down split                | `Ctrl + w, j`  |
+| Move up split                  | `Ctrl + w, k`  |
+| Move right split               | `Ctrl + w, l`  |
+| Increase window size           | `:resize +N`   |
+| Decrease window size           | `:resize -N`   |
+| Open new tab                   | `:tabnew`      |
+| Next tab                       | `:tabnext`     |
+| Previous tab                   | `:tabprev`     |
+
+
+### Tmux 
+
+```bash
+### Shortcut in terminal
+alias t="tmux"
+alias ta="t a -t"
+alias tls="t ls"
+alias tn="t new -s"
+alias tk="t kill-session -t"
+alias tks="t kill-server"
+
+### Change defautl prefix in .tmux.conf
+set-option -g prefix C-a
+bind-key C-a send-prefix
+
+### To enter copy mode, drag mouse to select text first, then paste with 
+Ctrl + A + ]
+
+### Sessions
+tmux list-sessions
+tmux attach-session -t target-session
+Ctrl + A + s     # Switch between seesion
+Ctrl + A + l     # Switch to the lastest session, regardless of whether it was detached or attached
+Ctrl + A + d     # Detach from linux screen session
+
+### Windows
+Ctrl + A + w     # List all windows (the current window is marked with "*").
+Ctrl + A + ,     # Rename current window
+Ctrl + A + →     # Switch to the next window.                                
+Ctrl + A + ←     # Switch to the previous window.                            
+Ctrl + A + c     # create a new window.                         
+Ctrl + A + q     # kill the current window.                                  
+
+### Panes
+Shift + ↑     # Switch to the pane above the current one
+Shift + ↓     # Switch to the pane below the current one
+Shift + ←     # Switch to the pane left of the current one
+Shift + →     # Switch to the pane right of the current one
+Ctrl + A + x     # kill the current pane.                                  
+```
+
+
+### Screen
+
+```bash
+### Shortcut in terminal
+alias s="screen"   # start a screen session
+alias ss="s -S"    # start a named screen session
+alias sr="s -r"    # reattach to a screen session
+alias sls="s -ls"  # list the current running screen session
+
+### General commands
+screen                   # start a screen session
+screen -S session_name   # start a named session
+screen -r                # reattach to a linux screen
+screen -ls               # list the current running screen session
+
+### Shortcuts
+Ctrl + A + C            # create a new window (with shell).
+Ctrl + A + K            # kill the current window.
+Ctrl + A + W            # list all windows (the current window is marked with "*") .
+Ctrl + A + 0-9          # go to a window numbered 0-9 .
+Ctrl + A + N            # go to the next window.
+Ctrl + A  Ctrl + A      # toggle between the current and previous window.
+Ctrl + A + A            # rename the current window.
+Ctrl + A + S            # split current region horizontally into two regions.
+Ctrl + A + |            # split current region vertically into two regions.
+Ctrl + A + Tab          # switch the input focus to the next region.
+Ctrl + A + Ctrl + A     # toggle between the current and previous windows
+Ctrl + A + Q            # close all regions but the current one.
+Ctrl + A + X            # close the current region.
+Ctrl + A + D            # detach from linux screen session
+Ctrl + A + [            # start copy mode
+Ctrl + A + ]            # paste copied text
+Ctrl + A + ?            # help, display  a list commands
+Ctrl + A + Ctrl + \     # quit screen
+```
