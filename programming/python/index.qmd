@@ -1,5 +1,5 @@
 ---
-title: Python Programming
+title: Python
 date: 2020-09-09
 title-block-banner: "#212529"
 date-modified: last-modified
@@ -7,16 +7,136 @@ published-title: Last updated
 toc: true
 toc-location: left
 toc-title: "Contents"
+jupyter: python3
 execute:
     eval: false
 ---
 
-## Basic concepts
+# Python basics
+## Data types
 
-### Data structure
+in Python, understanding data types and structures is essential for writting
+effective code. Data types determine the kind of data a variable can hold,
+while data structures allow you to organize and manage that data efficiently.
 
-![](python_types.png)
+- Numbers: Represent numerical values, including integers and floating-point numbers.
+- Strings: Represent sequences of characters, used for text manipulation.
+- Booleans: Represent truth values, either True or False.
+- Lists: Ordered collections of items, allowing for duplicate values and mutable operations.
+- Tuples: Ordered collections of items, similar to lists but immutable.
+- Dictionaries: Unordered, Key-value pairs that allow for efficient data retrieval based on unique keys.
+- Sets: Unordered collections of unique items, useful for membership testing and eliminating duplicates.
 
+```{python}
+#| eval: false
+
+# Numbers and strings
+integer_num = 42
+float_num = 3.14
+string_text = "Hello, Python!"
+
+# List: mutable, ordered collection
+fruits = ["apple", "banana", "cherry"]
+
+# Tuple: immutable, ordered collection
+dimensions = (1920, 1080)
+
+# Dictionary: unordered, key-value pairs
+person = {"name": "Alice", "age": 30, "city": "New York"}
+
+# Set: unordered collection of unique items
+unique_numbers = {1, 2, 3, 4, 5}
+
+print("Integer:", integer_num)
+print("Float:", float_num)
+print("String:", string_text)
+print("List of fruits:", fruits)
+print("Tuple of dimensions:", dimensions)
+print("Dictionary of person:", person)
+print("Set of unique numbers:", unique_numbers)
+
+```
+
+## Control flow and Loops
+Control flow in Python allows you to make decisions and execute different blocks of code based on conditions. 
+Loops enable you to repeat a block of code multiple times.
+
+Best practices for control flow and loops include:
+- Keep conditions simple and clear. Break down complex conditions into smaller parts.
+- Use meaningful variable names to enhance readability.
+- Avoid deeply nested loops and conditions to maintain code clarity.
+- Use comments to explain the purpose of complex conditions or loops.
+- Test edge cases to ensure your control flow behaves as expected.
+
+```{python}
+#| eval: false
+
+# Conditional statements
+x = 10
+if x > 5:
+    print("x is greater than 5")
+elif x == 5:
+    print("x is equal to 5")
+else:
+    print("x is less than 5")
+
+# For loop: iterating over a list
+for i in range(5):
+    print("Iteration:", i)
+
+# While loop: continues until a condition is met
+count = 0
+while count < 5:
+    print("Count is:", count)
+    count += 1
+
+```
+
+# Python for R users
+
+## Install and libraries
+
+```{python}
+#| eval: false
+
+python3 -m pip install pandas
+
+```
+
+```{python}
+#| eval: false
+
+import pandas as pd
+import numpy as np
+import matplotlib as plt
+
+## Use a function from library, first specify the library nickname and then 
+## the function name, separated by a dot:
+np.log(7)
+
+```
+
+```{r}
+library(dplyr)
+```
+
+## Pandas data frame
+
+The syntax for the python involves a single argument corresponding to a type of object called a dictionary (a dictionary is defined with curly brackets) whose named entries each contain a python list ([1,2,3,4] and [5,6,7,8]) of the values that will form a column.
+
+```{python}
+df = pd.DataFrame(
+    {
+        'a': [1,2,3,4],
+        'b': [5,6,7,8]
+    }
+)
+print(df)
+```
+
+```{python}
+
+```
 ### Variable
 
 - `Number`
@@ -147,7 +267,7 @@ tuple()
 dict()
 ```
 
-## Reference
+# Reference
 
 - https://www.py4e.com/
 - https://omgenomics.com/
@@ -156,3 +276,5 @@ dict()
 - https://www.py4e.com/html3
 - http://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.epub
 - [Primer on Python for R Users](https://cran.r-project.org/web/packages/reticulate/vignettes/python_primer.html)
+- [An introduction to Python for R Users](https://rebeccabarter.com/blog/2023-09-11-from_r_to_python)
+- [Datanovia: Master Data Science, Machine Learning and Data Visualization with Python and R.](https://www.datanovia.com/)

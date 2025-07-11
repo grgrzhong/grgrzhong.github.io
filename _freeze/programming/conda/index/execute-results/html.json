@@ -1,0 +1,12 @@
+{
+  "hash": "38ac7757e4c67ce3d85530bbba510142",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Conda\ndate: 2020-09-09\ntitle-block-banner: \"#212529\"\ndate-modified: last-modified\npublished-title: Last updated\ntoc: true\ntoc-location: left\ntoc-title: \"Contents\"\nexecute:\n    eval: false\n---\n\n# Installation\n```{bash}\n\n# Miniforge linux\nwget \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh\"\n\n# Miniforge Mac\nwget \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh\"\n\n# Install it\nbash Miniforge3-$(uname)-$(uname -m).sh\n\n# Add conda to PATH if found\nif [ -f \"$HOME/miniconda3/etc/profile.d/conda.sh\" ]; then\n    . $HOME/miniconda3/etc/profile.d/conda.sh\nfi\n\n```\n\n# General configuration\n\n```{bash}\n\n# Init\nconda init --all\n\n# Use mamba for faster solving\nconda update -n base conda\nconda install -n base conda-libmamba-solver\n\n# Config\nconda config --set solver libmamba\nconda config --set always_yes true\nconda config --set auto_activate_base false\n\n# Setup channels\nconda config --add channels bioconda\nconda config --add channels conda-forge\n#conda config --set channel_priority strict\n\n# Install software from a specific channle\nconda install -c conda-forge numpy\n```\n\n# R environment setup\n```{bash}\n# Create R environment\nconda create -n renv r-4.3 r-languageserver r-tidyverse r-irkernel r-httpgd\n\n# Install bioconductor packages, all package names are lower case\nconda install -n renv bioconductor-deseq2 bioconductor-edger\n\n# Install repository packages\nconda install -n renv r-qs r-fs r-tidyverse\n```\n\n# Create and manage environments\n```{bash}\n# Remove a specific environment\nconda remove --name renv --all\n\n# Remove a software in a environment\nconda remove --name renv package_name\n\n# Export and save the conda env file with all software information\nconda env export -n renv > renv.yml\n\n# Export and save the conda env file with all software information\n# without the prefix and bundle information\nconda env export -n renv --no-builds > renv.yml\n\n# Create a new environment with a environment file\nconda env create -f renv.yml\n\n# Rename an environment\nconda create --name new_env_name --clone old_env_name\nconda activate new_env_name\nconda remove --name old_env_name --all\n```\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

@@ -5,6 +5,7 @@ project:
   render:
     - "*.qmd"
     - "*.md"
+    - "*.ipynb"
     - "!projects/"
 
   resources:
@@ -38,6 +39,7 @@ website:
           - file: "programming/python/index.qmd"
           - file: "programming/r/index.qmd"
           - file: "programming/conda/index.qmd"
+          - file: "programming/wsl/index.qmd"
       - text: "Wiki"
         file: "wiki/index.qmd"
       - text: "Keyboard"

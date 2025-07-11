@@ -11,10 +11,28 @@ execute:
     eval: false
 ---
 
-# Conda
+# Installation
+```bash
+
+# Miniforge linux
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
+
+# Miniforge Mac
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh"
+
+# Install it
+bash Miniforge3-$(uname)-$(uname -m).sh
+
+# Add conda to PATH if found
+if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+    . $HOME/miniconda3/etc/profile.d/conda.sh
+fi
+
+```
+
+# General configuration
 
 ```bash
-#| eval: false
 
 # Init
 conda init --all
@@ -35,18 +53,41 @@ conda config --add channels conda-forge
 
 # Install software from a specific channle
 conda install -c conda-forge numpy
+```
 
+# R environment setup
+```bash
 # Create R environment
 conda create -n renv r-4.3 r-languageserver r-tidyverse r-irkernel r-httpgd
 
-conda install conda-forge::r-qs       
+# Install bioconductor packages, all package names are lower case
+conda install -n renv bioconductor-deseq2 bioconductor-edger
+
+# Install repository packages
+conda install -n renv r-qs r-fs r-tidyverse
+```
+
+# Create and manage environments
+```bash
 # Remove a specific environment
-conda remove --name my_env --all
+conda remove --name renv --all
 
 # Remove a software in a environment
-conda remove --name my_env package_name
+conda remove --name renv package_name
 
 # Export and save the conda env file with all software information
 conda env export -n renv > renv.yml
+
+# Export and save the conda env file with all software information
+# without the prefix and bundle information
+conda env export -n renv --no-builds > renv.yml
+
+# Create a new environment with a environment file
 conda env create -f renv.yml
+
+# Rename an environment
+conda create --name new_env_name --clone old_env_name
+conda activate new_env_name
+conda remove --name old_env_name --all
 ```
+

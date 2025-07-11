@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2023-01-01">
 
-<title>Commonly used Keyboard Shortcuts – Guorui Zhong</title>
+<title>Keyboard Shortcuts Reference – Guorui Zhong</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,8 +105,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>
 
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #2c3e50;
+      }
+
       .quarto-title-block .quarto-title-banner {
-        background: #212529;
+        color: #2c3e50;
       }
 </style>
 
@@ -145,15 +155,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-programming">    
         <li>
     <a class="dropdown-item" href="../programming/python/index.html">
- <span class="dropdown-text">Python Programming</span></a>
+ <span class="dropdown-text">Python</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../programming/r/index.html">
- <span class="dropdown-text">R Programming</span></a>
+ <span class="dropdown-text">R</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../programming/conda/index.html">
  <span class="dropdown-text">Conda</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../programming/wsl/index.html">
+ <span class="dropdown-text">Linux</span></a>
   </li>  
     </ul>
   </li>
@@ -193,7 +207,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Commonly used Keyboard Shortcuts</h1>
+      <h1 class="title">Keyboard Shortcuts Reference</h1>
+            <p class="subtitle lead">A comprehensive guide to essential keyboard shortcuts</p>
                       </div>
   </div>
     
@@ -211,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">March 6, 2025</p>
+        <p class="date-modified">July 11, 2025</p>
       </div>
     </div>
       
@@ -225,11 +240,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#vscode" id="toc-vscode" class="nav-link active" data-scroll-target="#vscode">VSCode</a></li>
-  <li><a href="#zshbash" id="toc-zshbash" class="nav-link" data-scroll-target="#zshbash">Zsh/Bash</a></li>
-  <li><a href="#vim" id="toc-vim" class="nav-link" data-scroll-target="#vim">Vim</a></li>
-  <li><a href="#tmux" id="toc-tmux" class="nav-link" data-scroll-target="#tmux">Tmux</a></li>
-  <li><a href="#screen" id="toc-screen" class="nav-link" data-scroll-target="#screen">Screen</a></li>
+  <li><a href="#vscode" id="toc-vscode" class="nav-link active" data-scroll-target="#vscode">VSCode</a>
+  <ul class="collapse">
+  <li><a href="#general-commands" id="toc-general-commands" class="nav-link" data-scroll-target="#general-commands">General Commands</a></li>
+  <li><a href="#terminal-management" id="toc-terminal-management" class="nav-link" data-scroll-target="#terminal-management">Terminal Management</a></li>
+  <li><a href="#editor-management" id="toc-editor-management" class="nav-link" data-scroll-target="#editor-management">Editor Management</a></li>
+  <li><a href="#text-manipulation" id="toc-text-manipulation" class="nav-link" data-scroll-target="#text-manipulation">Text Manipulation</a></li>
+  <li><a href="#navigation-search" id="toc-navigation-search" class="nav-link" data-scroll-target="#navigation-search">Navigation &amp; Search</a></li>
+  <li><a href="#code-formatting" id="toc-code-formatting" class="nav-link" data-scroll-target="#code-formatting">Code Formatting</a></li>
+  </ul></li>
+  <li><a href="#shell" id="toc-shell" class="nav-link" data-scroll-target="#shell">Shell</a>
+  <ul class="collapse">
+  <li><a href="#cursor-movement" id="toc-cursor-movement" class="nav-link" data-scroll-target="#cursor-movement">Cursor Movement</a></li>
+  <li><a href="#text-editing" id="toc-text-editing" class="nav-link" data-scroll-target="#text-editing">Text Editing</a></li>
+  <li><a href="#process-management" id="toc-process-management" class="nav-link" data-scroll-target="#process-management">Process Management</a></li>
+  <li><a href="#history-commands" id="toc-history-commands" class="nav-link" data-scroll-target="#history-commands">History &amp; Commands</a></li>
+  <li><a href="#auto-completion-misc" id="toc-auto-completion-misc" class="nav-link" data-scroll-target="#auto-completion-misc">Auto-Completion &amp; Misc</a></li>
+  </ul></li>
+  <li><a href="#vim" id="toc-vim" class="nav-link" data-scroll-target="#vim">Vim</a>
+  <ul class="collapse">
+  <li><a href="#modes" id="toc-modes" class="nav-link" data-scroll-target="#modes">Modes</a></li>
+  <li><a href="#file-operations" id="toc-file-operations" class="nav-link" data-scroll-target="#file-operations">File Operations</a></li>
+  <li><a href="#navigation" id="toc-navigation" class="nav-link" data-scroll-target="#navigation">Navigation</a></li>
+  <li><a href="#search-replace" id="toc-search-replace" class="nav-link" data-scroll-target="#search-replace">Search &amp; Replace</a></li>
+  <li><a href="#editing" id="toc-editing" class="nav-link" data-scroll-target="#editing">Editing</a></li>
+  <li><a href="#window-management" id="toc-window-management" class="nav-link" data-scroll-target="#window-management">Window Management</a></li>
+  </ul></li>
+  <li><a href="#tmux" id="toc-tmux" class="nav-link" data-scroll-target="#tmux">Tmux</a>
+  <ul class="collapse">
+  <li><a href="#tmux-configuration" id="toc-tmux-configuration" class="nav-link" data-scroll-target="#tmux-configuration">Tmux Configuration</a></li>
+  <li><a href="#session-management" id="toc-session-management" class="nav-link" data-scroll-target="#session-management">Session Management</a></li>
+  <li><a href="#window-management-1" id="toc-window-management-1" class="nav-link" data-scroll-target="#window-management-1">Window Management</a></li>
+  <li><a href="#pane-management" id="toc-pane-management" class="nav-link" data-scroll-target="#pane-management">Pane Management</a></li>
+  <li><a href="#copy-mode" id="toc-copy-mode" class="nav-link" data-scroll-target="#copy-mode">Copy Mode</a></li>
+  </ul></li>
+  <li><a href="#screen" id="toc-screen" class="nav-link" data-scroll-target="#screen">Screen</a>
+  <ul class="collapse">
+  <li><a href="#basic-commands" id="toc-basic-commands" class="nav-link" data-scroll-target="#basic-commands">Basic Commands</a></li>
+  <li><a href="#window-management-2" id="toc-window-management-2" class="nav-link" data-scroll-target="#window-management-2">Window Management</a></li>
+  <li><a href="#region-management" id="toc-region-management" class="nav-link" data-scroll-target="#region-management">Region Management</a></li>
+  <li><a href="#session-copy-mode" id="toc-session-copy-mode" class="nav-link" data-scroll-target="#session-copy-mode">Session &amp; Copy Mode</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -244,9 +295,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<!-- ![](keyboard.jpg) -->
-<section id="vscode" class="level3">
-<h3 class="anchored" data-anchor-id="vscode">VSCode</h3>
+<p>::: <!-- ![Keyboard](keyboard.jpg){width=200 style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"} --> <img src="keyboard.jpg" class="img-fluid"></p>
+<p><strong>Master your workflow with essential keyboard shortcuts across popular development tools and applications.</strong> :::</p>
+<section id="vscode" class="level1">
+<h1>VSCode</h1>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pro Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VSCode has excellent keyboard shortcut customization. Press <code>Cmd/Ctrl + K Cmd/Ctrl + S</code> to access the Keyboard Shortcuts editor.</p>
+</div>
+</div>
+<section id="general-commands" class="level3">
+<h3 class="anchored" data-anchor-id="general-commands">General Commands</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 38%">
@@ -262,91 +329,327 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>General Commands</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
 <td>Command Palette</td>
 <td><code>Cmd + Shift + P</code></td>
 <td><code>Ctrl + Shift + P</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Open Settings</td>
 <td><code>Cmd + ,</code></td>
 <td><code>Ctrl + ,</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Keyboard Shortcuts</td>
 <td><code>Cmd + K Cmd + S</code></td>
 <td><code>Ctrl + K Ctrl + S</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Toggle Sidebar</td>
 <td><code>Cmd + B</code></td>
 <td><code>Ctrl + B</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Full Screen</td>
 <td><code>Cmd + Ctrl + F</code></td>
 <td><code>F11</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Open File</td>
 <td><code>Cmd + P</code></td>
 <td><code>Ctrl + P</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>New Window</td>
 <td><code>Cmd + Shift + N</code></td>
 <td><code>Ctrl + Shift + N</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Close Window</td>
 <td><code>Cmd + Shift + W</code></td>
 <td><code>Ctrl + Shift + W</code></td>
 </tr>
 </tbody>
 </table>
-<div class="line-block"><strong>Terminal Management</strong> | | |<br>
-Toggle Terminal | <code>Cmd + `</code> | <code>Ctrl + `</code> |<br>
-Create New Terminal | <code>Cmd + Shift + `</code> | <code>Ctrl + Shift + `</code> |<br>
-Navigate Between Terminals | <code>Cmd + Shift + [ / ]</code> | <code>Ctrl + PgUp / PgDn</code> |<br>
-Split Terminal | <code>Cmd + \</code> | <code>Ctrl + \</code> |<br>
-Navigate Between Split Terminal | <code>Cmd + Option + ← / →</code> | <code>Alt + ↑ / ↓</code> |</div>
-<div class="line-block"><strong>Editor Management</strong> | | |<br>
-Close Tab | <code>Cmd + W</code> | <code>Ctrl + W</code> |<br>
-Split Editor | <code>Cmd + \</code> | <code>Ctrl + \</code> |<br>
-Navigate Tabs | <code>Cmd + Shift + Tab</code> | <code>Ctrl + Shift + Tab</code> |<br>
-Navigate Tab Groups | <code>Cmd + 1 / 2 / 3</code> | <code>Ctrl + 1 / 2 / 3</code> |</div>
-<div class="line-block"><strong>Text Manipulation</strong> | | |<br>
-Add Multiple Cursors | <code>Cmd + Option + ↑ / ↓</code> | <code>Ctrl + Alt + ↑ / ↓</code> |<br>
-Scroll horizontal | <code>Shift + Mouse wheel (scrolling)</code> | <code>Shift + Mouse wheel (scrolling)</code> |<br>
-Select Text | <code>Cmd + Shift + ↑ / ↓</code> | <code>Ctrl + Shift + ↑ / ↓</code> |<br>
-Move Line Up/Down | <code>Option + ↑ / ↓</code> | <code>Alt + ↑ / ↓</code> |<br>
-Copy Line Up/Down | <code>Shift + Option + ↑ / ↓</code> | <code>Shift + Alt + ↑ / ↓</code> |<br>
-Select Word | <code>Cmd + D</code> | <code>Ctrl + D</code> |<br>
-Select Current Line | <code>Cmd + L</code> | <code>Ctrl + L</code> |<br>
-Select All Occurrences | <code>Cmd + Shift + L</code> | <code>Ctrl + Shift + L</code> |<br>
-Delete Current Line | <code>Cmd + Shift + K</code> | <code>Ctrl + Shift + K</code> |<br>
-Delete Word Backward | <code>Option + Backspace</code> | <code>Ctrl + Backspace</code> |<br>
-Comment/Uncomment Lines | <code>Cmd + /</code> | <code>Ctrl + /</code> |<br>
-Go to Line | <code>Cmd + G</code> | <code>Ctrl + G</code> |<br>
-Go to last cursor position | <code>Ctl + -</code> | <code>Alt + ←</code> |<br>
-Go to next cursor position | <code>Ctl + Shift -</code> | <code>Alt + →</code> |<br>
-Code Folding | <code>Cmd + Option + [ / ]</code> | <code>Ctrl + Shift + [ / ]</code> |<br>
-Indent/Outdent Lines | <code>Cmd + [ / ]</code> | <code>Ctrl + [ / ]</code> |<br>
-Format Selected Code | <code>Cmd + K Cmd + F</code> | <code>Ctrl + K Ctrl + F</code> |<br>
-Format Document | <code>Shift + Option + F</code> | <code>Shift + Alt + F</code> |<br>
-Go to Word Start/End | <code>Option + ← / →</code> | <code>Ctrl + ← / →</code> |<br>
-Go to Line Start/End | <code>Cmd + ← / →</code> | <code>Home / End</code> |<br>
-Go to File Start/End | <code>Cmd + ↑ / ↓</code> | <code>Ctrl + Home / End</code> |<br>
-Search Files | <code>Cmd + Shift + F</code> | <code>Ctrl + Shift + F</code> |<br>
-Find Text | <code>Cmd + F</code> | <code>Ctrl + F</code> |<br>
-Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 </section>
-<section id="zshbash" class="level3">
-<h3 class="anchored" data-anchor-id="zshbash">Zsh/Bash</h3>
+<section id="terminal-management" class="level3">
+<h3 class="anchored" data-anchor-id="terminal-management">Terminal Management</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 29%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Terminal Management</strong></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Toggle Terminal</td>
+<td><code>Cmd + `</code></td>
+<td><code>Ctrl + `</code></td>
+</tr>
+<tr class="even">
+<td>Create New Terminal</td>
+<td><code>Cmd + Shift + `</code></td>
+<td><code>Ctrl + Shift + `</code></td>
+</tr>
+<tr class="odd">
+<td>Navigate Between Terminals</td>
+<td><code>Cmd + Shift + [ / ]</code></td>
+<td><code>Ctrl + PgUp / PgDn</code></td>
+</tr>
+<tr class="even">
+<td>Split Terminal</td>
+<td><code>Cmd + \</code></td>
+<td><code>Ctrl + \</code></td>
+</tr>
+<tr class="odd">
+<td>Navigate Between Split Terminal</td>
+<td><code>Cmd + Option + ← / →</code></td>
+<td><code>Alt + ↑ / ↓</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="editor-management" class="level3">
+<h3 class="anchored" data-anchor-id="editor-management">Editor Management</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 29%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Editor Management</strong></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Close Tab</td>
+<td><code>Cmd + W</code></td>
+<td><code>Ctrl + W</code></td>
+</tr>
+<tr class="even">
+<td>Split Editor</td>
+<td><code>Cmd + \</code></td>
+<td><code>Ctrl + \</code></td>
+</tr>
+<tr class="odd">
+<td>Navigate Tabs</td>
+<td><code>Cmd + Shift + Tab</code></td>
+<td><code>Ctrl + Shift + Tab</code></td>
+</tr>
+<tr class="even">
+<td>Navigate Tab Groups</td>
+<td><code>Cmd + 1 / 2 / 3</code></td>
+<td><code>Ctrl + 1 / 2 / 3</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="text-manipulation" class="level3">
+<h3 class="anchored" data-anchor-id="text-manipulation">Text Manipulation</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 29%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Text Manipulation</strong></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Add Multiple Cursors</td>
+<td><code>Cmd + Option + ↑ / ↓</code></td>
+<td><code>Ctrl + Alt + ↑ / ↓</code></td>
+</tr>
+<tr class="even">
+<td>Scroll horizontal</td>
+<td><code>Shift + Mouse wheel</code></td>
+<td><code>Shift + Mouse wheel</code></td>
+</tr>
+<tr class="odd">
+<td>Select Text</td>
+<td><code>Cmd + Shift + ↑ / ↓</code></td>
+<td><code>Ctrl + Shift + ↑ / ↓</code></td>
+</tr>
+<tr class="even">
+<td>Move Line Up/Down</td>
+<td><code>Option + ↑ / ↓</code></td>
+<td><code>Alt + ↑ / ↓</code></td>
+</tr>
+<tr class="odd">
+<td>Copy Line Up/Down</td>
+<td><code>Shift + Option + ↑ / ↓</code></td>
+<td><code>Shift + Alt + ↑ / ↓</code></td>
+</tr>
+<tr class="even">
+<td>Select Word</td>
+<td><code>Cmd + D</code></td>
+<td><code>Ctrl + D</code></td>
+</tr>
+<tr class="odd">
+<td>Select Current Line</td>
+<td><code>Cmd + L</code></td>
+<td><code>Ctrl + L</code></td>
+</tr>
+<tr class="even">
+<td>Select All Occurrences</td>
+<td><code>Cmd + Shift + L</code></td>
+<td><code>Ctrl + Shift + L</code></td>
+</tr>
+<tr class="odd">
+<td>Delete Current Line</td>
+<td><code>Cmd + Shift + K</code></td>
+<td><code>Ctrl + Shift + K</code></td>
+</tr>
+<tr class="even">
+<td>Delete Word Backward</td>
+<td><code>Option + Backspace</code></td>
+<td><code>Ctrl + Backspace</code></td>
+</tr>
+<tr class="odd">
+<td>Comment/Uncomment Lines</td>
+<td><code>Cmd + /</code></td>
+<td><code>Ctrl + /</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="navigation-search" class="level3">
+<h3 class="anchored" data-anchor-id="navigation-search">Navigation &amp; Search</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 29%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Navigation &amp; Search</strong></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Go to Line</td>
+<td><code>Cmd + G</code></td>
+<td><code>Ctrl + G</code></td>
+</tr>
+<tr class="even">
+<td>Go to last cursor position</td>
+<td><code>Ctrl + -</code></td>
+<td><code>Alt + ←</code></td>
+</tr>
+<tr class="odd">
+<td>Go to next cursor position</td>
+<td><code>Ctrl + Shift + -</code></td>
+<td><code>Alt + →</code></td>
+</tr>
+<tr class="even">
+<td>Go to Word Start/End</td>
+<td><code>Option + ← / →</code></td>
+<td><code>Ctrl + ← / →</code></td>
+</tr>
+<tr class="odd">
+<td>Go to Line Start/End</td>
+<td><code>Cmd + ← / →</code></td>
+<td><code>Home / End</code></td>
+</tr>
+<tr class="even">
+<td>Go to File Start/End</td>
+<td><code>Cmd + ↑ / ↓</code></td>
+<td><code>Ctrl + Home / End</code></td>
+</tr>
+<tr class="odd">
+<td>Search Files</td>
+<td><code>Cmd + Shift + F</code></td>
+<td><code>Ctrl + Shift + F</code></td>
+</tr>
+<tr class="even">
+<td>Find Text</td>
+<td><code>Cmd + F</code></td>
+<td><code>Ctrl + F</code></td>
+</tr>
+<tr class="odd">
+<td>Replace Text</td>
+<td><code>Cmd + Option + F</code></td>
+<td><code>Ctrl + H</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-formatting" class="level3">
+<h3 class="anchored" data-anchor-id="code-formatting">Code Formatting</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 29%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Code Formatting</strong></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Code Folding</td>
+<td><code>Cmd + Option + [ / ]</code></td>
+<td><code>Ctrl + Shift + [ / ]</code></td>
+</tr>
+<tr class="even">
+<td>Indent/Outdent Lines</td>
+<td><code>Cmd + [ / ]</code></td>
+<td><code>Ctrl + [ / ]</code></td>
+</tr>
+<tr class="odd">
+<td>Format Selected Code</td>
+<td><code>Cmd + K Cmd + F</code></td>
+<td><code>Ctrl + K Ctrl + F</code></td>
+</tr>
+<tr class="even">
+<td>Format Document</td>
+<td><code>Shift + Option + F</code></td>
+<td><code>Shift + Alt + F</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="shell" class="level1">
+<h1>Shell</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📖 About Terminal Shortcuts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These shortcuts work in most Unix-like terminals including Terminal.app on macOS, GNOME Terminal, and Windows Terminal with WSL.</p>
+</div>
+</div>
+<section id="cursor-movement" class="level3">
+<h3 class="anchored" data-anchor-id="cursor-movement">Cursor Movement</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -356,45 +659,50 @@ Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Cursor Movement</strong></td>
-<td></td>
-</tr>
-<tr class="even">
 <td>Move to the beginning of line</td>
 <td><code>Ctrl + A</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Move to the end of line</td>
 <td><code>Ctrl + E</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Move one word backward</td>
 <td><code>Opt + ←</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Move one word forward</td>
 <td><code>Opt + →</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Move one character backward</td>
 <td><code>←</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Move one character forward</td>
 <td><code>→</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Jump to the start of buffer</td>
 <td><code>Alt + &lt;</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Jump to the end of buffer</td>
 <td><code>Alt + &gt;</code></td>
 </tr>
-<tr class="even">
-<td><strong>Deleting Text</strong></td>
-<td></td>
+</tbody>
+</table>
+</section>
+<section id="text-editing" class="level3">
+<h3 class="anchored" data-anchor-id="text-editing">Text Editing</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Text Editing</strong></th>
+<th><strong>Shortcut</strong></th>
 </tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td>Delete the current line</td>
 <td><code>Ctrl + U</code></td>
@@ -431,10 +739,19 @@ Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 <td>Delete from cursor to word end</td>
 <td><code>Alt + D</code></td>
 </tr>
-<tr class="even">
-<td><strong>Process Management</strong></td>
-<td></td>
+</tbody>
+</table>
+</section>
+<section id="process-management" class="level3">
+<h3 class="anchored" data-anchor-id="process-management">Process Management</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Process Management</strong></th>
+<th><strong>Shortcut</strong></th>
 </tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td>Terminate a process</td>
 <td><code>Ctrl + C</code></td>
@@ -455,10 +772,19 @@ Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 <td>Bring background process to fg</td>
 <td><code>fg</code></td>
 </tr>
-<tr class="even">
-<td><strong>Undo and History Navigation</strong></td>
-<td></td>
+</tbody>
+</table>
+</section>
+<section id="history-commands" class="level3">
+<h3 class="anchored" data-anchor-id="history-commands">History &amp; Commands</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>History &amp; Commands</strong></th>
+<th><strong>Shortcut</strong></th>
 </tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td>Undo the last change</td>
 <td><code>Ctrl + _</code></td>
@@ -484,40 +810,41 @@ Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 <td><code>history</code></td>
 </tr>
 <tr class="odd">
-<td><strong>Re-Execute Commands</strong></td>
-<td></td>
-</tr>
-<tr class="even">
 <td>Run the last command</td>
 <td><code>!!</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Run last <code>pw</code> command</td>
 <td><code>!pw</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Run command # from history</td>
 <td><code>!&lt;number&gt;</code></td>
 </tr>
-<tr class="odd">
-<td><strong>Auto-Completion</strong></td>
-<td></td>
+</tbody>
+</table>
+</section>
+<section id="auto-completion-misc" class="level3">
+<h3 class="anchored" data-anchor-id="auto-completion-misc">Auto-Completion &amp; Misc</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Auto-Completion &amp; Misc</strong></th>
+<th><strong>Shortcut</strong></th>
 </tr>
-<tr class="even">
+</thead>
+<tbody>
+<tr class="odd">
 <td>Auto-complete command</td>
 <td><code>TAB</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>List matching commands</td>
 <td><code>TAB TAB</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Cycle through matches</td>
 <td><code>TAB TAB TAB...</code></td>
-</tr>
-<tr class="odd">
-<td><strong>Miscellaneous</strong></td>
-<td></td>
 </tr>
 <tr class="even">
 <td>Open last edited command</td>
@@ -545,9 +872,26 @@ Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 </tr>
 </tbody>
 </table>
+<hr>
 </section>
-<section id="vim" class="level3">
-<h3 class="anchored" data-anchor-id="vim">Vim</h3>
+</section>
+<section id="vim" class="level1">
+<h1>Vim</h1>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+⚠️ Vim Modal Editor
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vim is a modal editor. Remember to press <code>Esc</code> to return to Normal mode before using most commands.</p>
+</div>
+</div>
+<section id="modes" class="level3">
+<h3 class="anchored" data-anchor-id="modes">Modes</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -557,16 +901,32 @@ Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Modes</strong></td>
-<td><code>i</code></td>
-</tr>
-<tr class="even">
 <td>Insert mode</td>
 <td><code>i</code></td>
 </tr>
+<tr class="even">
+<td>Insert at beginning of line</td>
+<td><code>I</code></td>
+</tr>
+<tr class="odd">
+<td>Insert new line below</td>
+<td><code>o</code></td>
+</tr>
+<tr class="even">
+<td>Insert new line above</td>
+<td><code>O</code></td>
+</tr>
+<tr class="odd">
+<td>Append after cursor</td>
+<td><code>a</code></td>
+</tr>
+<tr class="even">
+<td>Append at end of line</td>
+<td><code>A</code></td>
+</tr>
 <tr class="odd">
 <td>Command mode (normal)</td>
-<td><code>esc</code></td>
+<td><code>Esc</code></td>
 </tr>
 <tr class="even">
 <td>Visual mode (select text)</td>
@@ -580,38 +940,56 @@ Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 <td>Visual block mode</td>
 <td><code>Ctrl + v</code></td>
 </tr>
-<tr class="odd">
-<td><strong>Saving and Quitting</strong></td>
-<td></td>
+</tbody>
+</table>
+</section>
+<section id="file-operations" class="level3">
+<h3 class="anchored" data-anchor-id="file-operations">File Operations</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Action</strong></th>
+<th><strong>Shortcut</strong></th>
 </tr>
-<tr class="even">
+</thead>
+<tbody>
+<tr class="odd">
 <td>Save</td>
 <td><code>:w</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Quit</td>
 <td><code>:q</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Save and quit</td>
 <td><code>:wq</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Quit without saving</td>
 <td><code>:q!</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Save and quit (shortcut)</td>
 <td><code>ZZ</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Quit without saving (shortcut)</td>
 <td><code>ZQ</code></td>
 </tr>
-<tr class="even">
-<td><strong>Using Arrow Keys</strong></td>
-<td></td>
+</tbody>
+</table>
+</section>
+<section id="navigation" class="level3">
+<h3 class="anchored" data-anchor-id="navigation">Navigation</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Basic Movement</strong></th>
+<th><strong>Shortcut</strong></th>
 </tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td>Move left</td>
 <td><code>h</code></td>
@@ -629,7 +1007,7 @@ Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 <td><code>l</code></td>
 </tr>
 <tr class="odd">
-<td><strong>Moving the Cursor</strong></td>
+<td><strong>Advanced Movement</strong></td>
 <td></td>
 </tr>
 <tr class="even">
@@ -672,10 +1050,19 @@ Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 <td>Down half a page</td>
 <td><code>Ctrl + d</code></td>
 </tr>
-<tr class="even">
-<td><strong>Searching</strong></td>
-<td></td>
+</tbody>
+</table>
+</section>
+<section id="search-replace" class="level3">
+<h3 class="anchored" data-anchor-id="search-replace">Search &amp; Replace</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Search &amp; Replace</strong></th>
+<th><strong>Shortcut</strong></th>
 </tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td>Search text</td>
 <td><code>/text</code></td>
@@ -694,12 +1081,21 @@ Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 </tr>
 <tr class="odd">
 <td>Search current word</td>
-<td><code>/</code></td>
+<td><code>*</code></td>
 </tr>
-<tr class="even">
-<td><strong>Editing</strong></td>
-<td></td>
+</tbody>
+</table>
+</section>
+<section id="editing" class="level3">
+<h3 class="anchored" data-anchor-id="editing">Editing</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Editing</strong></th>
+<th><strong>Shortcut</strong></th>
 </tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td>Delete char</td>
 <td><code>x</code></td>
@@ -756,131 +1152,407 @@ Replace Text | <code>Cmd + Option + F</code> | <code>Ctrl + H</code> |</div>
 <td>Join line with next</td>
 <td><code>J</code></td>
 </tr>
-<tr class="odd">
-<td><strong>Other Useful Commands</strong></td>
-<td></td>
+</tbody>
+</table>
+</section>
+<section id="window-management" class="level3">
+<h3 class="anchored" data-anchor-id="window-management">Window Management</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Window Management</strong></th>
+<th><strong>Shortcut</strong></th>
 </tr>
-<tr class="even">
+</thead>
+<tbody>
+<tr class="odd">
 <td>Split window horizontally</td>
 <td><code>:split</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Split window vertically</td>
 <td><code>:vsplit</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Move left split</td>
 <td><code>Ctrl + w, h</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Move down split</td>
 <td><code>Ctrl + w, j</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Move up split</td>
 <td><code>Ctrl + w, k</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Move right split</td>
 <td><code>Ctrl + w, l</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Increase window size</td>
 <td><code>:resize +N</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Decrease window size</td>
 <td><code>:resize -N</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Open new tab</td>
 <td><code>:tabnew</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Next tab</td>
 <td><code>:tabnext</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Previous tab</td>
 <td><code>:tabprev</code></td>
 </tr>
 </tbody>
 </table>
+<hr>
 </section>
-<section id="tmux" class="level3">
-<h3 class="anchored" data-anchor-id="tmux">Tmux</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">### Shortcut in terminal</span></span>
+</section>
+<section id="tmux" class="level1">
+<h1>Tmux</h1>
+<section id="tmux-configuration" class="level3">
+<h3 class="anchored" data-anchor-id="tmux-configuration">Tmux Configuration</h3>
+<p>Consider adding these aliases to your shell configuration for quick tmux access. :::</p>
+<div class="code-block">
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal aliases for tmux</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> t=<span class="st">"tmux"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ta=<span class="st">"t a -t"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tls=<span class="st">"t ls"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tn=<span class="st">"t new -s"</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tk=<span class="st">"t kill-session -t"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tks=<span class="st">"t kill-server"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">### Change defautl prefix in .tmux.conf</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">set-option</span> <span class="at">-g</span> prefix C-a</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">bind-key</span> C-a send-prefix</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">### To enter copy mode, drag mouse to select text first, then paste with </span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + ]</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">### Sessions</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> list-sessions</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> attach-session <span class="at">-t</span> target-session</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + s     <span class="co"># Switch between seesion</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + l     <span class="co"># Switch to the lastest session, regardless of whether it was detached or attached</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + d     <span class="co"># Detach from linux screen session</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">### Windows</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + w     <span class="co"># List all windows (the current window is marked with "*").</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + ,     <span class="co"># Rename current window</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + →     <span class="co"># Switch to the next window.                                </span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + ←     <span class="co"># Switch to the previous window.                            </span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + c     <span class="co"># create a new window.                         </span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + q     <span class="co"># kill the current window.                                  </span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">### Panes</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ex">Shift</span> + ↑     <span class="co"># Switch to the pane above the current one</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ex">Shift</span> + ↓     <span class="co"># Switch to the pane below the current one</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ex">Shift</span> + ←     <span class="co"># Switch to the pane left of the current one</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ex">Shift</span> + →     <span class="co"># Switch to the pane right of the current one</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + x     <span class="co"># kill the current pane.                                  </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tks=<span class="st">"t kill-server"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔧 Custom Prefix Key
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Change the default prefix in <code>.tmux.conf</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">set-option</span> <span class="at">-g</span> prefix C-a</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bind-key</span> C-a send-prefix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </section>
-<section id="screen" class="level3">
-<h3 class="anchored" data-anchor-id="screen">Screen</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">### Shortcut in terminal</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> s=<span class="st">"screen"</span>   <span class="co"># start a screen session</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ss=<span class="st">"s -S"</span>    <span class="co"># start a named screen session</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sr=<span class="st">"s -r"</span>    <span class="co"># reattach to a screen session</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sls=<span class="st">"s -ls"</span>  <span class="co"># list the current running screen session</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">### General commands</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">screen</span>                   <span class="co"># start a screen session</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">screen</span> <span class="at">-S</span> session_name   <span class="co"># start a named session</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">screen</span> <span class="at">-r</span>                <span class="co"># reattach to a linux screen</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">screen</span> <span class="at">-ls</span>               <span class="co"># list the current running screen session</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">### Shortcuts</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + C            <span class="co"># create a new window (with shell).</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + K            <span class="co"># kill the current window.</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + W            <span class="co"># list all windows (the current window is marked with "*") .</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + 0-9          <span class="co"># go to a window numbered 0-9 .</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + N            <span class="co"># go to the next window.</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A  Ctrl + A      <span class="co"># toggle between the current and previous window.</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + A            <span class="co"># rename the current window.</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + S            <span class="co"># split current region horizontally into two regions.</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + <span class="kw">|</span>            <span class="co"># split current region vertically into two regions.</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + Tab          <span class="co"># switch the input focus to the next region.</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + Ctrl + A     <span class="co"># toggle between the current and previous windows</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + Q            <span class="co"># close all regions but the current one.</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + X            <span class="co"># close the current region.</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + D            <span class="co"># detach from linux screen session</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + [            <span class="co"># start copy mode</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + ]            <span class="co"># paste copied text</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + <span class="pp">?</span>            <span class="co"># help, display  a list commands</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A + Ctrl + <span class="dt">\ </span>    <span class="co"># quit screen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="session-management" class="level3">
+<h3 class="anchored" data-anchor-id="session-management">Session Management</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 53%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Action</strong></th>
+<th><strong>Command/Shortcut</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>List sessions</td>
+<td><code>tmux list-sessions</code></td>
+</tr>
+<tr class="even">
+<td>Attach to session</td>
+<td><code>tmux attach-session -t target-session</code></td>
+</tr>
+<tr class="odd">
+<td>Switch between sessions</td>
+<td><code>Ctrl + A + s</code></td>
+</tr>
+<tr class="even">
+<td>Switch to latest session</td>
+<td><code>Ctrl + A + l</code></td>
+</tr>
+<tr class="odd">
+<td>Detach from session</td>
+<td><code>Ctrl + A + d</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="window-management-1" class="level3">
+<h3 class="anchored" data-anchor-id="window-management-1">Window Management</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Action</strong></th>
+<th><strong>Shortcut</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>List all windows</td>
+<td><code>Ctrl + A + w</code></td>
+</tr>
+<tr class="even">
+<td>Rename current window</td>
+<td><code>Ctrl + A + ,</code></td>
+</tr>
+<tr class="odd">
+<td>Switch to next window</td>
+<td><code>Ctrl + A + →</code></td>
+</tr>
+<tr class="even">
+<td>Switch to previous window</td>
+<td><code>Ctrl + A + ←</code></td>
+</tr>
+<tr class="odd">
+<td>Create new window</td>
+<td><code>Ctrl + A + c</code></td>
+</tr>
+<tr class="even">
+<td>Kill current window</td>
+<td><code>Ctrl + A + q</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pane-management" class="level3">
+<h3 class="anchored" data-anchor-id="pane-management">Pane Management</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Action</strong></th>
+<th><strong>Shortcut</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Switch to pane above</td>
+<td><code>Shift + ↑</code></td>
+</tr>
+<tr class="even">
+<td>Switch to pane below</td>
+<td><code>Shift + ↓</code></td>
+</tr>
+<tr class="odd">
+<td>Switch to pane left</td>
+<td><code>Shift + ←</code></td>
+</tr>
+<tr class="even">
+<td>Switch to pane right</td>
+<td><code>Shift + →</code></td>
+</tr>
+<tr class="odd">
+<td>Kill current pane</td>
+<td><code>Ctrl + A + x</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="copy-mode" class="level3">
+<h3 class="anchored" data-anchor-id="copy-mode">Copy Mode</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Action</strong></th>
+<th><strong>Shortcut</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Enter copy mode</td>
+<td>Drag mouse to select text</td>
+</tr>
+<tr class="even">
+<td>Paste copied text</td>
+<td><code>Ctrl + A + ]</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="screen" class="level1">
+<h1>Screen</h1>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💡 Screen Aliases
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Add these aliases to your shell configuration for easier screen management.</p>
+</div>
+</div>
+<div class="code-block">
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal aliases for screen</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> s=<span class="st">"screen"</span>       <span class="co"># start a screen session</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ss=<span class="st">"s -S"</span>        <span class="co"># start a named screen session</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sr=<span class="st">"s -r"</span>        <span class="co"># reattach to a screen session</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sls=<span class="st">"s -ls"</span>      <span class="co"># list current running screen sessions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="basic-commands" class="level3">
+<h3 class="anchored" data-anchor-id="basic-commands">Basic Commands</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Action</strong></th>
+<th><strong>Command</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Start screen session</td>
+<td><code>screen</code></td>
+</tr>
+<tr class="even">
+<td>Start named session</td>
+<td><code>screen -S session_name</code></td>
+</tr>
+<tr class="odd">
+<td>Reattach to session</td>
+<td><code>screen -r</code></td>
+</tr>
+<tr class="even">
+<td>List running sessions</td>
+<td><code>screen -ls</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="window-management-2" class="level3">
+<h3 class="anchored" data-anchor-id="window-management-2">Window Management</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Action</strong></th>
+<th><strong>Shortcut</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Create new window</td>
+<td><code>Ctrl + A + C</code></td>
+</tr>
+<tr class="even">
+<td>Kill current window</td>
+<td><code>Ctrl + A + K</code></td>
+</tr>
+<tr class="odd">
+<td>List all windows</td>
+<td><code>Ctrl + A + W</code></td>
+</tr>
+<tr class="even">
+<td>Go to window 0-9</td>
+<td><code>Ctrl + A + 0-9</code></td>
+</tr>
+<tr class="odd">
+<td>Go to next window</td>
+<td><code>Ctrl + A + N</code></td>
+</tr>
+<tr class="even">
+<td>Toggle between windows</td>
+<td><code>Ctrl + A + Ctrl + A</code></td>
+</tr>
+<tr class="odd">
+<td>Rename current window</td>
+<td><code>Ctrl + A + A</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="region-management" class="level3">
+<h3 class="anchored" data-anchor-id="region-management">Region Management</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Action</strong></th>
+<th><strong>Shortcut</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Split horizontally</td>
+<td><code>Ctrl + A + S</code></td>
+</tr>
+<tr class="even">
+<td>Split vertically</td>
+<td><code>Ctrl + A + \|</code></td>
+</tr>
+<tr class="odd">
+<td>Switch between regions</td>
+<td><code>Ctrl + A + Tab</code></td>
+</tr>
+<tr class="even">
+<td>Close all regions but current</td>
+<td><code>Ctrl + A + Q</code></td>
+</tr>
+<tr class="odd">
+<td>Close current region</td>
+<td><code>Ctrl + A + X</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="session-copy-mode" class="level3">
+<h3 class="anchored" data-anchor-id="session-copy-mode">Session &amp; Copy Mode</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Action</strong></th>
+<th><strong>Shortcut</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Detach from session</td>
+<td><code>Ctrl + A + D</code></td>
+</tr>
+<tr class="even">
+<td>Start copy mode</td>
+<td><code>Ctrl + A + [</code></td>
+</tr>
+<tr class="odd">
+<td>Paste copied text</td>
+<td><code>Ctrl + A + ]</code></td>
+</tr>
+<tr class="even">
+<td>Show help</td>
+<td><code>Ctrl + A + ?</code></td>
+</tr>
+<tr class="odd">
+<td>Quit screen</td>
+<td><code>Ctrl + A + Ctrl + \</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Additional Resources
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>VSCode</strong>: <a href="https://code.visualstudio.com/docs/getstarted/keybindings">Official Keyboard Shortcuts Reference</a></li>
+<li><strong>Vim</strong>: <a href="https://vim.rtorr.com/">Vim Cheat Sheet</a></li>
+<li><strong>Tmux</strong>: <a href="https://tmuxcheatsheet.com/">Tmux Cheat Sheet</a></li>
+<li><strong>Terminal</strong>: <a href="https://www.gnu.org/software/bash/manual/">Bash Reference Manual</a></li>
+</ul>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

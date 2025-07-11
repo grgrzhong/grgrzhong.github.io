@@ -1,0 +1,12 @@
+{
+  "hash": "591c82915fc965aab9dae3d402b5b550",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Windows Subsystem for Linux (WSL)\ndate: 2022-10-09\ntitle-block-banner: \"#212529\"\ndate-modified: last-modified\npublished-title: Last updated\ntoc: true\ntoc-location: left\ntoc-title: \"Contents\"\nexecute:\n    eval: false\n---\n\n# System info\n```{bash}\n\n## Install the neofetch package\nsudo apt install neofetch -y\n\n## Show system info\nneofetch --memory_unit gib\n```\n\n# Change sudo password\n\nIn the windows terminal, run the following command to change the sudo password:\n```{bash}\n\nwsl -u root\n\n## Input the new password\npasswd <username>\n```\n\n# WSL configuration\n- WSL global config: `C:\\Users\\<UserName>\\.wslconfig`\n- WSL distro config: `\\\\wsl.localhost\\Ubuntu-24.04\\etc\\wsl.conf`\n\n",
+    "supporting": [
+      "index_files/figure-html"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

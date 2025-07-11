@@ -1,5 +1,5 @@
 ---
-title: R Programming
+title: R
 date: 2020-09-09
 title-block-banner: "#212529"
 date-modified: last-modified
@@ -18,13 +18,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Basic concepts
+# Basic concepts
 
-### Data structure
+# Data structure
 
 ![](R_data_structure.png)
 
-### General functions
+# General functions
 
 ```r
 dir()                            # Show the directory
@@ -49,7 +49,7 @@ system.file(package=“dagdata”)   # Extract the location of package
 colnames(installed.packages())   # list the installed packages
 ```
 
-## Best practise for R coding
+# Best practise for R coding
 
 - Variables = my_variable
 - Functions = RunThisStuffs()
@@ -67,7 +67,7 @@ colnames(installed.packages())   # list the installed packages
 - Keep track of `sessionInfo()` in project folder
 - Use version control
 
-## ggplot2 Variable repacement
+# ggplot2 Variable repacement
 
 `!!as.name()`, `get()`, `!!sym()`, `.data[[]]`
 
@@ -96,7 +96,7 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
   geom_point()
 
 ```
-## Using R in vscode with Conda environment
+# Using R in vscode with Conda environment
 
 ```json
 // Add these to the remove settings
@@ -116,7 +116,7 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
     "r.rterm.linux": "/home/zhonggr/miniforge3/envs/renv/bin/radian"
 }
 ```
-## Reference
+# Reference
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/)
 - [R for Data Science (2e)](https://r4ds.hadley.nz/)

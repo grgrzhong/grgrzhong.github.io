@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.7.31">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2020-09-09">
-<title>R Programming – Guorui Zhong</title>
+<title>R – Guorui Zhong</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,15 +134,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-programming">
 <li>
     <a class="dropdown-item" href="../../programming/python/index.html">
- <span class="dropdown-text">Python Programming</span></a>
+ <span class="dropdown-text">Python</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../programming/r/index.html">
- <span class="dropdown-text">R Programming</span></a>
+ <span class="dropdown-text">R</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../programming/conda/index.html">
  <span class="dropdown-text">Conda</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../programming/wsl/index.html">
+ <span class="dropdown-text">Linux</span></a>
   </li>  
     </ul>
 </li>
@@ -178,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">R Programming</h1>
+      <h1 class="title">R</h1>
                       </div>
   </div>
     
@@ -196,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">June 16, 2025</p>
+        <p class="date-modified">July 11, 2025</p>
       </div>
     </div>
       
@@ -208,13 +212,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li>
-<a href="#basic-concepts" id="toc-basic-concepts" class="nav-link active" data-scroll-target="#basic-concepts">Basic concepts</a>
-  <ul class="collapse">
-<li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure">Data structure</a></li>
+<li><a href="#basic-concepts" id="toc-basic-concepts" class="nav-link active" data-scroll-target="#basic-concepts">Basic concepts</a></li>
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure">Data structure</a></li>
   <li><a href="#general-functions" id="toc-general-functions" class="nav-link" data-scroll-target="#general-functions">General functions</a></li>
-  </ul>
-</li>
   <li><a href="#best-practise-for-r-coding" id="toc-best-practise-for-r-coding" class="nav-link" data-scroll-target="#best-practise-for-r-coding">Best practise for R coding</a></li>
   <li><a href="#ggplot2-variable-repacement" id="toc-ggplot2-variable-repacement" class="nav-link" data-scroll-target="#ggplot2-variable-repacement">ggplot2 Variable repacement</a></li>
   <li><a href="#using-r-in-vscode-with-conda-environment" id="toc-using-r-in-vscode-with-conda-environment" class="nav-link" data-scroll-target="#using-r-in-vscode-with-conda-environment">Using R in vscode with Conda environment</a></li>
@@ -225,10 +225,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="basic-concepts" class="level2"><h2 class="anchored" data-anchor-id="basic-concepts">Basic concepts</h2>
-<section id="data-structure" class="level3"><h3 class="anchored" data-anchor-id="data-structure">Data structure</h3>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="basic-concepts" class="level1"><h1>Basic concepts</h1>
+</section><section id="data-structure" class="level1"><h1>Data structure</h1>
 <p><img src="R_data_structure.png" class="img-fluid"></p>
-</section><section id="general-functions" class="level3"><h3 class="anchored" data-anchor-id="general-functions">General functions</h3>
+</section><section id="general-functions" class="level1"><h1>General functions</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>()                            <span class="co"># Show the directory</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()                          <span class="co"># Check working directory</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>()                          <span class="co"># Change working directory</span></span>
@@ -249,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package=</span><span class="st">""</span>)                 <span class="co"># Check the functions of R library</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">system.file</span>(<span class="at">package=</span>“dagdata”)   <span class="co"># Extract the location of package</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">installed.packages</span>())   <span class="co"># list the installed packages</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section><section id="best-practise-for-r-coding" class="level2"><h2 class="anchored" data-anchor-id="best-practise-for-r-coding">Best practise for R coding</h2>
+</section><section id="best-practise-for-r-coding" class="level1"><h1>Best practise for R coding</h1>
 <ul>
 <li>Variables = my_variable</li>
 <li>Functions = RunThisStuffs()</li>
@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Don’t save a session history</li>
 <li>Keep track of <code><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo()</a></code> in project folder</li>
 <li>Use version control</li>
-</ul></section><section id="ggplot2-variable-repacement" class="level2"><h2 class="anchored" data-anchor-id="ggplot2-variable-repacement">ggplot2 Variable repacement</h2>
+</ul></section><section id="ggplot2-variable-repacement" class="level1"><h1>ggplot2 Variable repacement</h1>
 <p><code>!!as.name()</code>, <code><a href="https://rdrr.io/r/base/get.html">get()</a></code>, <code>!!sym()</code>, <code>.data[[]]</code></p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, color <span class="op">=</span> <span class="va">.data</span><span class="op">[[</span><span class="va">color_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="using-r-in-vscode-with-conda-environment" class="level2"><h2 class="anchored" data-anchor-id="using-r-in-vscode-with-conda-environment">Using R in vscode with Conda environment</h2>
+</section><section id="using-r-in-vscode-with-conda-environment" class="level1"><h1>Using R in vscode with Conda environment</h1>
 <div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="er">//</span> <span class="er">Add</span> <span class="er">these</span> <span class="er">to</span> <span class="er">the</span> <span class="er">remove</span> <span class="er">settings</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
@@ -310,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"r.rpath.linux"</span><span class="fu">:</span> <span class="st">"/home/zhonggr/miniforge3/envs/renv/bin/R"</span><span class="fu">,</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"r.rterm.linux"</span><span class="fu">:</span> <span class="st">"/home/zhonggr/miniforge3/envs/renv/bin/radian"</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
+</section><section id="reference" class="level1"><h1>Reference</h1>
 <ul>
 <li><a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a></li>
 <li><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a></li>

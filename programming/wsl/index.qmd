@@ -1,0 +1,37 @@
+---
+title: Linux
+date: 2022-10-09
+title-block-banner: "#212529"
+date-modified: last-modified
+published-title: Last updated
+toc: true
+toc-location: left
+toc-title: "Contents"
+execute:
+    eval: false
+---
+
+# System info
+```bash
+
+## Install the neofetch package
+sudo apt install neofetch -y
+
+## Show system info
+neofetch --memory_unit gib
+```
+
+# WSL Change sudo password
+
+In the windows terminal, run the following command to change the sudo password:
+```bash
+
+wsl -u root
+
+## Input the new password
+passwd <username>
+```
+
+# WSL configuration
+- WSL global config: `C:\Users\<UserName>\.wslconfig`
+- WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`
