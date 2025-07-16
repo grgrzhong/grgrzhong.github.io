@@ -10,7 +10,7 @@
 
 # git remote add origin https://github.com/grgrzhong/grgrzhong.github.io.git
 
-# conda activate renv
+conda activate quarto
 
 ### render site files to docs
 quarto render
