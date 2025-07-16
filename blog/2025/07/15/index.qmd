@@ -1,0 +1,115 @@
+---
+title: "Copy number alteration (CNA)"
+date: "2025-07-15"
+# image: slurm.png
+categories: [WGS, WES]
+execute:
+    eval: false
+---
+
+## What is CNA
+Copy number alteration (CNA) refers to changes in the number of copies of a particular gene or genomic region. These alterations can lead to an increase (amplification) or decrease (deletion) in the genetic material, which can have significant implications for cellular function and disease, particularly in cancer.
+
+## Allele-specific CNA
+Allele-specific copy number alteration (CNA) is a more refined analysis that distinguishes between the contributions of different alleles to the overall copy number. This is particularly important in heterozygous regions where one allele may be amplified while the other remains unchanged or deleted. Allele-specific CNA can provide insights into tumor heterogeneity and the mechanisms of tumor evolution.
+
+- CN_MAJOR: Copy number of the major allele (the more abundant allele)
+- CN_MINOR: Copy number of the minor allele (the less abundant allele)
+
+::: {.callout-note}
+Total Copy Number: CN_MAJOR + CN_MINOR = Total copy number
+Normal diploid state: CN_MAJOR = 1, CN_MINOR = 1 (total = 2)
+Allelic imbalance: When CN_MAJOR ≠ CN_MINOR
+:::
+
+Common scenarios:
+- **CN_MAJOR = 1, CN_MINOR = 1**: Total = 2, Normal diploid state (no alteration)
+- **CN_MAJOR = 1, CN_MINOR = 0**: Total = 1, Heterozygous deletion (loss of one allele)
+- **CN_MAJOR = 0, CN_MINOR = 0**: Total = 0, Homozygous deletion (loss of both alleles)
+- **CN_MAJOR = 3, CN_MINOR = 0**: Total = 3, Amplification with LOH (loss of heterozygosity)
+- **CN_MAJOR = 2, CN_MINOR = 2**: Total = 4, Balanced amplification (both alleles amplified equally)
+- **CN_MAJOR = 3, CN_MINOR = 1**: Total = 4, Unbalanced amplification (one allele amplified more than the other)
+
+Clinical significance:
+- Loss of heterozygosity: CN_MINOR = 0
+- Copy-neutral LOH: CN_MAJOR = 2, CN_MINOR = 0, appears diploid but has allelic imbalance
+- Tumor suppressor inactivation: Often requireds CN_MINOR = 0 plus mutation in the remaining allele
+
+## Common abbreviations
+- amp: amplification
+- del: deletion
+- dup: duplication
+- gain: copy number gain
+- loss: copy number loss
+- homdel: homozygous deletion
+- LOH: loss of heterozygosity
+- CN: copy number
+- SVTYPE: structural variant type
+
+## CNV nomenclature
+
+- p arm: Short arm (from French "petit" = small)
+- q arm: Long arm (follows "p" alphabetically)
+
+```bash
+        p arm (short arm)
+           |
+    -------●-------
+           |
+        q arm (long arm)
+           
+    ● = centromere
+```
+Chromosome band notation:
+```bash
+[chromosome][arm][region].[band][sub-band]
+```
+Examples:
+```bash
+17p13.1    # Chromosome 17, short arm, region 1, band 3, sub-band 1
+17q21.31   # Chromosome 17, long arm, region 2, band 1, sub-band 31
+9p21.3     # Chromosome 9, short arm, region 2, band 1, sub-band 3
+22q11.2    # Chromosome 22, long arm, region 1, band 1, sub-band 2
+```
+Numbering system:
+From centromere outward:
+- p11, p12, p13... (moving toward telomere on short arm)
+- q11, q12, q13... (moving toward telomere on long arm)
+
+Visual representation:
+```bash
+Chromosome 17:
+
+p15 ----
+p14 ----
+p13 ----  ← TP53 location (17p13.1)
+p12 ----
+p11 ----
+     ●   (centromere)
+q11 ----
+q12 ----  ← ERBB2 location (17q12)
+q21 ----
+q22 ----
+q23 ----
+q24 ----
+q25 ----
+```
+
+Clinical examples:
+```bash
+TP53:     17p13.1    # Tumor suppressor
+ERBB2:    17q12      # Oncogene (HER2)
+MYC:      8q24.21    # Oncogene
+CDKN2A:   9p21.3     # Tumor suppressor
+EGFR:     7p11.2     # Oncogene
+PTEN:     10q23.31   # Tumor suppressor
+RB1:      13q14.2    # Tumor suppressor
+```
+
+Cytogenetic notation:
+```bash
+del(17)(p13.1)     # Deletion of 17p13.1 (TP53 region)
+amp(17)(q12)       # Amplification of 17q12 (ERBB2 region)
+del(9)(p21.3)      # Deletion of 9p21.3 (CDKN2A region)
+dup(8)(q24)        # Duplication of 8q24 (MYC region)
+```

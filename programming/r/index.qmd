@@ -1,9 +1,9 @@
 ---
 title: R
 date: 2020-09-09
-title-block-banner: "#212529"
+published-title: Created
 date-modified: last-modified
-published-title: Last updated
+title-block-banner: "#212529"
 toc: true
 toc-location: left
 toc-title: "Contents"
@@ -134,4 +134,8 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
 - [datanovia](https://www.datanovia.com/en/)
 - [Data Analysis in Genome Biology](https://girke.bioinformatics.ucr.edu/GEN242/)
 - [Data Viz with Python and R](https://datavizpyr.com/category/r/)
+- [PH525x series - Biomedical Data Science](http://genomicsclass.github.io/book/)
+- [An Introduction to Statistical Learning](https://www.statlearning.com/)
+- [The Epidemiologist R Handbook](https://epirhandbook.com/en/index.html)
+- [Data Analysis in Genome Biology](https://girke.bioinformatics.ucr.edu/GEN242/)
 - [PH525x series - Biomedical Data Science](http://genomicsclass.github.io/book/)

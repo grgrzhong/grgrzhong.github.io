@@ -1,9 +1,9 @@
 ---
 title: Python
 date: 2020-09-09
-title-block-banner: "#212529"
+published-title: Created
 date-modified: last-modified
-published-title: Last updated
+title-block-banner: "#212529"
 toc: true
 toc-location: left
 toc-title: "Contents"
