@@ -1,0 +1,31 @@
+---
+title: "Bulk vs. Single-Cell RNA-seq"
+date: "2025-07-28"
+# image: slurm.png
+categories: [NGS, RNA-seq, scRNA-seq]
+execute:
+    eval: false
+---
+
+## Bulk RNA-seq
+
+- Cheaper
+- Simpler
+- Statistically stronger with replicates
+
+Suitable for:
+✔️ Homogeneous samples (like cell lines)
+✔️ High-throughput designs with many conditions
+✔️ Studies where replication is key (e.g., drug treatments, time-course)
+✔️ Situations where per-cell resolution won’t change your biological conclusion
+
+## Single-Cell RNA-seq
+Use scRNA-seq if your question depends on:
+
+- Detecting rare populations
+- Disentangling heterogeneous tissues
+- Discovering cell-type-specific signals
+
+In these cases, resolution matters—and scRNA-seq earns its price tag.
+
+But know this: you’re trading off simplicity, QC, and replicability.

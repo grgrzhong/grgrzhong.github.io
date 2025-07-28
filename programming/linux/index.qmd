@@ -1,9 +1,9 @@
 ---
-title: Conda
-date: 2020-09-09
+title: Linux
+date: 2022-10-09
 published-title: Created
-title-block-banner: "#212529"
 date-modified: last-modified
+title-block-banner: "#212529"
 toc: true
 toc-location: left
 toc-title: "Contents"
@@ -11,7 +11,36 @@ execute:
     eval: false
 ---
 
-# Installation
+# WSL
+
+## System info
+```bash
+
+## Install the neofetch package
+sudo apt install neofetch -y
+
+## Show system info
+neofetch --memory_unit gib
+```
+
+## WSL Change sudo password
+
+In the windows terminal, run the following command to change the sudo password:
+```bash
+
+wsl -u root
+
+## Input the new password
+passwd <username>
+```
+
+## WSL configuration
+- WSL global config: `C:\Users\<UserName>\.wslconfig`
+- WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`
+
+# Conda
+
+## Installation
 ```bash
 
 # Miniforge linux
@@ -30,7 +59,7 @@ fi
 
 ```
 
-# General configuration
+## Configuration
 
 ```bash
 
@@ -55,7 +84,7 @@ conda config --add channels conda-forge
 conda install -c conda-forge numpy
 ```
 
-# R environment setup
+## R environment
 ```bash
 # Create R environment
 conda create -n renv r-4.3 r-languageserver r-tidyverse r-irkernel r-httpgd
@@ -65,10 +94,7 @@ conda install -n renv bioconductor-deseq2 bioconductor-edger
 
 # Install repository packages
 conda install -n renv r-qs r-fs r-tidyverse
-```
 
-# Create and manage environments
-```bash
 # Remove a specific environment
 conda remove --name renv --all
 

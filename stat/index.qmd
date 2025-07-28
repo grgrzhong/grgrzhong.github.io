@@ -1,0 +1,24 @@
+---
+title: "Statistical analysis"
+date: 2023-01-01
+date-modified: last-modified
+title-block-banner: true
+title-block-banner-color: "#2c3e50"
+published-title: "Last updated"
+toc: true
+toc-location: left
+toc-title: "Contents"
+toc-depth: 3
+execute:
+    eval: false
+---
+
+## T-test
+
+## Wilcoxon test
+
+## ANOVA
+
+## Chi-squared test
+
+## Fisher's exact test

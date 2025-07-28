@@ -2,6 +2,7 @@
 title: "Keyboard Shortcuts Reference"
 subtitle: "A comprehensive guide to essential keyboard shortcuts"
 date: 2023-01-01
+published-title: Created
 date-modified: last-modified
 title-block-banner: true
 title-block-banner-color: "#2c3e50"

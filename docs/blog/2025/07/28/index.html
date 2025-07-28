@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-04-09">
+<meta name="author" content="Guorui Zhong">
 
-<title>Wiki – Guorui Zhong</title>
+<title>Bulk vs.&nbsp;Single-Cell RNA-seq – Guorui Zhong</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,24 +24,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed09741bc9a4bc7923efc7a27dab3f48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-baabc0bdab06a695b25d56c023bbe1ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed09741bc9a4bc7923efc7a27dab3f48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-baabc0bdab06a695b25d56c023bbe1ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
     </a>
   </div>
@@ -96,42 +96,35 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog/index.html"> 
+    <a class="nav-link" href="../../../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programming" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Programming</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-programming">    
-        <li>
-    <a class="dropdown-item" href="../programming/python/index.html">
- <span class="dropdown-text">Python</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../programming/r/index.html">
- <span class="dropdown-text">R</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../programming/conda/index.html">
- <span class="dropdown-text">Conda</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../programming/wsl/index.html">
- <span class="dropdown-text">Linux</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item">
-    <a class="nav-link active" href="../wiki/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../../programming/linux/index.html"> 
+<span class="menu-text">Linux</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../programming/python/index.html"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../programming/r/index.html"> 
+<span class="menu-text">R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../stat/index.html"> 
+<span class="menu-text">Stats</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../wiki/index.html"> 
 <span class="menu-text">Wiki</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../keyboard/index.html"> 
+    <a class="nav-link" href="../../../../keyboard/index.html"> 
 <span class="menu-text">Keyboard</span></a>
   </li>  
 </ul>
@@ -162,27 +155,32 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Wiki</h1>
-                      </div>
+      <h1 class="title">Bulk vs.&nbsp;Single-Cell RNA-seq</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">NGS</div>
+                <div class="quarto-category">RNA-seq</div>
+                <div class="quarto-category">scRNA-seq</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p><a href="https://grgrzhong.github.io/">Guorui Zhong</a> <a href="https://orcid.org/0000-0002-1955-2847" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+            </div>
+    </div>
       
       <div>
-      <div class="quarto-title-meta-heading">Created</div>
+      <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 9, 2023</p>
+        <p class="date">Monday, July 28, 2025</p>
       </div>
     </div>
     
-      <div>
-      <div class="quarto-title-meta-heading">Modified</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date-modified">July 16, 2025</p>
-      </div>
-    </div>
       
     </div>
     
@@ -194,12 +192,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#training" id="toc-training" class="nav-link active" data-scroll-target="#training">Training</a></li>
-  <li><a href="#biologist" id="toc-biologist" class="nav-link" data-scroll-target="#biologist">Biologist</a></li>
-  <li><a href="#research-labs" id="toc-research-labs" class="nav-link" data-scroll-target="#research-labs">Research Labs</a></li>
-  <li><a href="#research-writing" id="toc-research-writing" class="nav-link" data-scroll-target="#research-writing">Research writing</a></li>
-  <li><a href="#useful-tools" id="toc-useful-tools" class="nav-link" data-scroll-target="#useful-tools">Useful Tools</a></li>
-  <li><a href="#nice-blogs" id="toc-nice-blogs" class="nav-link" data-scroll-target="#nice-blogs">Nice Blogs</a></li>
+  <li><a href="#bulk-rna-seq" id="toc-bulk-rna-seq" class="nav-link active" data-scroll-target="#bulk-rna-seq">Bulk RNA-seq</a></li>
+  <li><a href="#single-cell-rna-seq" id="toc-single-cell-rna-seq" class="nav-link" data-scroll-target="#single-cell-rna-seq">Single-Cell RNA-seq</a></li>
   </ul>
 </nav>
 </nav>
@@ -214,83 +208,25 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>These are the collections of things that I beleived useful in my daily researh work.</p>
-<section id="training" class="level2">
-<h2 class="anchored" data-anchor-id="training">Training</h2>
+<section id="bulk-rna-seq" class="level2">
+<h2 class="anchored" data-anchor-id="bulk-rna-seq">Bulk RNA-seq</h2>
 <ul>
-<li><a href="https://rafalab.dfci.harvard.edu/pages/harvardx.html">HarvardX Biomedical Data Science Open Online Training - rafalab</a></li>
-<li><a href="https://learn.gencore.bio.nyu.edu/">Next-Generation Sequencing Analysis Resources</a> -NGS analysis, concepts</li>
-<li><a href="https://cambiotraining.github.io/">Research Informatics Training - University of Cambbridge</a></li>
-<li><a href="https://carpentries-incubator.github.io/workflows-nextflow/">Introduction to Bioinformatics workflows with Nextflow and nf-core</a></li>
-<li><a href="https://docs.gdc.cancer.gov/Data/Introduction/">National cancer institute GDC documentation</a></li>
-<li><a href="https://biocorecrg.github.io/CRG_Bioinformatics_for_Biologists/">Bioinformatics for Biologists</a></li>
-<li><a href="https://bioinformatics.ccr.cancer.gov/btep/">National Cancer Institute: Bioinformatics Training &amp; Education Program</a></li>
-<li><a href="https://carpentries-incubator.github.io/high-dimensional-stats-r/aio/index.html">High dimensional statistics with R Introduction to high-dimensional data</a></li>
-<li><a href="https://hbctraining.github.io/main/">Bioinformatics Training at the Harvard Chan Bioinformatics Core</a></li>
-<li><a href="https://statquest.org/video-index/">STATQUEST!!!</a></li>
-<li><a href="https://protocols.hostmicrobe.org/">Protocols - Beiting Lab</a></li>
+<li>Cheaper</li>
+<li>Simpler</li>
+<li>Statistically stronger with replicates</li>
 </ul>
+<p>Suitable for: ✔️ Homogeneous samples (like cell lines) ✔️ High-throughput designs with many conditions ✔️ Studies where replication is key (e.g., drug treatments, time-course) ✔️ Situations where per-cell resolution won’t change your biological conclusion</p>
 </section>
-<section id="biologist" class="level2">
-<h2 class="anchored" data-anchor-id="biologist">Biologist</h2>
+<section id="single-cell-rna-seq" class="level2">
+<h2 class="anchored" data-anchor-id="single-cell-rna-seq">Single-Cell RNA-seq</h2>
+<p>Use scRNA-seq if your question depends on:</p>
 <ul>
-<li><a href="https://blog.bioturing.com/">Bioturing</a></li>
-<li><a href="https://www.ibiology.org/">iBiology - Bringing the world’s best biology to you, for free!</a></li>
-<li><a href="http://varnomen.hgvs.org/">Sequence Variant Nomenclature</a></li>
-<li><a href="https://www.britannica.com/">Encyclopedia Britannica</a></li>
-<li><a href="https://labpedia.net/">Labpedia.net</a></li>
-<li><a href="https://thebumblingbiochemist.com/">The bumbling chemist</a></li>
-<li><a href="https://www.toxmsdt.com/0-toxtutor-home.html">ToxTutor</a></li>
+<li>Detecting rare populations</li>
+<li>Disentangling heterogeneous tissues</li>
+<li>Discovering cell-type-specific signals</li>
 </ul>
-</section>
-<section id="research-labs" class="level2">
-<h2 class="anchored" data-anchor-id="research-labs">Research Labs</h2>
-<ul>
-<li><a href="http://rafalab.dfci.harvard.edu/" class="uri">http://rafalab.dfci.harvard.edu/</a> - Development of statistical tools</li>
-<li><a href="https://liulab-dfci.github.io/" class="uri">https://liulab-dfci.github.io/</a> - Computational methods for the design (SSC), analysis (MAGeCK), hit prioritization (NEST), and visualization (VISPR) of genome-wide CRISPR screens</li>
-<li><a href="https://www.jax.org" class="uri">https://www.jax.org</a> - Leading the research for tomorrow’s cures</li>
-<li><a href="https://www.snijderlab.org/" class="uri">https://www.snijderlab.org/</a> - Use systems biology to discover things about cells.</li>
-<li><a href="https://zlab.bio/" class="uri">https://zlab.bio/</a> - Zhang Feng Biological Discovery &amp; Engineering</li>
-<li><a href="https://www.ciccialab.com/" class="uri">https://www.ciccialab.com/</a> - Genome Integrity and Genome Editing</li>
-<li><a href="https://sizunjianglab.com" class="uri">https://sizunjianglab.com</a> - Investigate host-disease interaction</li>
-<li><a href="https://hostmicrobe.org/" class="uri">https://hostmicrobe.org/</a> - Study the biological basis of diseases caused by microbes</li>
-<li><a href="https://cheesemanlab.wi.mit.edu/" class="uri">https://cheesemanlab.wi.mit.edu/</a> - World of cell division</li>
-<li><a href="https://blainey.mit.edu/" class="uri">https://blainey.mit.edu/</a> - Pooled optical genetic screening in human cells</li>
-<li><a href="https://marsonlab.org/" class="uri">https://marsonlab.org/</a> - Decoding and rewriting human immune cells with CRISPR</li>
-<li><a href="https://odin.mdacc.tmc.edu/~wwang7/index.html">Statistical Bioinformatics Lab</a></li>
-</ul>
-</section>
-<section id="research-writing" class="level2">
-<h2 class="anchored" data-anchor-id="research-writing">Research writing</h2>
-<ul>
-<li><a href="https://www.nmrc.gov.sg/grants/competitive-research-grants/of-yirg">NMRC | Open Fund - Young Individual Research Grant</a></li>
-<li><a href="https://www.pennmedicine.org/cancer/cancer-research/for-researchers/investigators-only/funding-opportunities">Funding Opportunities - Abramson Cancer Center | Penn Medicine</a></li>
-<li><a href="https://www.niaid.nih.gov/grants-contracts/write-research-plan">Write Your Research Plan</a></li>
-<li><a href="https://www.embopress.org/doi/abs/10.15252/embr.202255114">The underappreciated art of creating publication-quality figures</a></li>
-</ul>
-</section>
-<section id="useful-tools" class="level2">
-<h2 class="anchored" data-anchor-id="useful-tools">Useful Tools</h2>
-<ul>
-<li><a href="https://diytranscriptomics.com/lab/">DIY.transcriptomics</a></li>
-<li><a href="https://proteinpaint.stjude.org/">ProteinPaint</a></li>
-<li><a href="https://hiplot.cn/">Hiplot</a></li>
-<li><a href="https://www.flaticon.com/">Free Icons and Stickers</a></li>
-<li><a href="https://icons.getbootstrap.com/">Bootstrap Icons</a></li>
-<li><a href="https://www.miltenyibiotec.com/US-en/resources/macs-handbook/human-cells-and-organs/human-cell-sources/blood-human.html">Blood PBMCs</a></li>
-<li><a href="https://distill.pub/">distill</a></li>
-</ul>
-</section>
-<section id="nice-blogs" class="level2">
-<h2 class="anchored" data-anchor-id="nice-blogs">Nice Blogs</h2>
-<ul>
-<li><a href="https://www.andrewheiss.com/blog/" class="uri">https://www.andrewheiss.com/blog/</a></li>
-<li><a href="https://www.andreashandel.com/" class="uri">https://www.andreashandel.com/</a></li>
-<li><a href="https://renkun.me/" class="uri">https://renkun.me/</a></li>
-<li><a href="https://morphoscape.wordpress.com/category/tech/" class="uri">https://morphoscape.wordpress.com/category/tech/</a></li>
-<li><a href="https://albert-rapp.de/" class="uri">https://albert-rapp.de/</a></li>
-<li><a href="https://jokergoo.github.io/" class="uri">https://jokergoo.github.io/</a></li>
-</ul>
+<p>In these cases, resolution matters—and scRNA-seq earns its price tag.</p>
+<p>But know this: you’re trading off simplicity, QC, and replicability.</p>
 
 
 </section>
