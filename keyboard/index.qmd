@@ -6,7 +6,6 @@ published-title: Created
 date-modified: last-modified
 title-block-banner: true
 title-block-banner-color: "#2c3e50"
-published-title: "Last updated"
 toc: true
 toc-location: left
 toc-title: "Contents"
@@ -15,12 +14,12 @@ execute:
     eval: false
 ---
 
-:::
+<!-- ::: -->
 <!-- ![Keyboard](keyboard.jpg){width=200 style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"} -->
 ![](keyboard.jpg)
 
 **Master your workflow with essential keyboard shortcuts across popular development tools and applications.**
-:::
+<!-- ::: -->
 
 # VSCode
 
