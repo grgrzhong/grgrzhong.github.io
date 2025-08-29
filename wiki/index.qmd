@@ -14,6 +14,8 @@ These are the collections of things that I beleived useful in my daily researh w
 
 ## Training
 
+- [Another Book on Data Science- Learn R and Python in Parallel](https://www.anotherbookondatascience.com/)
+- [Bioinformatics at COMAV](https://bioinf.comav.upv.es/courses/sequence_analysis/index.html)
 - [HarvardX Biomedical Data Science Open Online Training - rafalab](https://rafalab.dfci.harvard.edu/pages/harvardx.html)
 - [Next-Generation Sequencing Analysis Resources](https://learn.gencore.bio.nyu.edu/) -NGS analysis, concepts
 - [Research Informatics Training - University of Cambbridge](https://cambiotraining.github.io/)

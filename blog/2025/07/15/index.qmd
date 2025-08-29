@@ -17,23 +17,29 @@ Allele-specific copy number alteration (CNA) is a more refined analysis that dis
 - CN_MINOR: Copy number of the minor allele (the less abundant allele)
 
 ::: {.callout-note}
-Total Copy Number: CN_MAJOR + CN_MINOR = Total copy number
-Normal diploid state: CN_MAJOR = 1, CN_MINOR = 1 (total = 2)
+Total Copy Number: CN_MAJOR + CN_MINOR = Total copy number.
+
+Normal diploid state: CN_MAJOR = 1, CN_MINOR = 1 (total = 2).
+
 Allelic imbalance: When CN_MAJOR ≠ CN_MINOR
 :::
 
-Common scenarios:
-- **CN_MAJOR = 1, CN_MINOR = 1**: Total = 2, Normal diploid state (no alteration)
-- **CN_MAJOR = 1, CN_MINOR = 0**: Total = 1, Heterozygous deletion (loss of one allele)
-- **CN_MAJOR = 0, CN_MINOR = 0**: Total = 0, Homozygous deletion (loss of both alleles)
-- **CN_MAJOR = 3, CN_MINOR = 0**: Total = 3, Amplification with LOH (loss of heterozygosity)
-- **CN_MAJOR = 2, CN_MINOR = 2**: Total = 4, Balanced amplification (both alleles amplified equally)
-- **CN_MAJOR = 3, CN_MINOR = 1**: Total = 4, Unbalanced amplification (one allele amplified more than the other)
+### Common scenarios:
 
-Clinical significance:
-- Loss of heterozygosity: CN_MINOR = 0
-- Copy-neutral LOH: CN_MAJOR = 2, CN_MINOR = 0, appears diploid but has allelic imbalance
-- Tumor suppressor inactivation: Often requireds CN_MINOR = 0 plus mutation in the remaining allele
+- **CN_MAJOR = 1, CN_MINOR = 1**: Total = 2, Normal diploid state (no alteration).
+- **CN_MAJOR = 1, CN_MINOR = 0**: Total = 1, Heterozygous deletion (loss of one allele).
+- **CN_MAJOR = 0, CN_MINOR = 0**: Total = 0, Homozygous deletion (loss of both alleles).
+- **CN_MAJOR = 3, CN_MINOR = 0**: Total = 3, Amplification with LOH (loss of heterozygosity).
+- **CN_MAJOR = 2, CN_MINOR = 2**: Total = 4, Balanced amplification (both alleles amplified equally).
+- **CN_MAJOR = 3, CN_MINOR = 1**: Total = 4, Unbalanced amplification (one allele amplified more than the other).
+
+### Clinical significance:
+
+- Loss of heterozygosity: CN_MINOR = 0.
+
+- Copy-neutral LOH: CN_MAJOR = 2, CN_MINOR = 0, appears diploid but has allelic imbalance.
+
+- Tumor suppressor inactivation: Often requires CN_MINOR = 0 plus mutation in the remaining allele.
 
 ## Common abbreviations
 - amp: amplification
@@ -45,6 +51,36 @@ Clinical significance:
 - LOH: loss of heterozygosity
 - CN: copy number
 - SVTYPE: structural variant type
+
+## Focal and Broad
+
+In copy number alterations (CNAs), "focal" and "broad" refer to the size and scope of the genomic regions affected:
+
+### Focal Alterations
+
+* Small, localized changes typically affecting:
+    + Individual genes or small gene clusters
+    + Usually < 3 Mb in size
+    + Often span only a few cytobands or sub-bands
+
+* Characteristics:
+    + High amplitude (deep deletions or high-level amplifications)
+    + Target specific oncogenes or tumor suppressors
+    + More likely to be functionally significant
+    + Often recurrent across samples
+
+### Broad Alterations
+
+* Large-scale changes affecting:
+    + Entire chromosome arms or large chromosomal regions
+    + Usually > 3 Mb in size (some use > 10 Mb threshold)
+    + Can span multiple cytobands or entire chromosome arms
+
+* Characteristics:
+    + Lower amplitude changes
+    + Affect many genes simultaneously
+    + May reflect chromosomal instability
+    + Less gene-specific, more related to overall genomic instability
 
 ## CNV nomenclature
 

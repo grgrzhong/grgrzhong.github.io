@@ -223,8 +223,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#what-is-cna" id="toc-what-is-cna" class="nav-link active" data-scroll-target="#what-is-cna">What is CNA</a></li>
-  <li><a href="#allele-specific-cna" id="toc-allele-specific-cna" class="nav-link" data-scroll-target="#allele-specific-cna">Allele-specific CNA</a></li>
+  <li><a href="#allele-specific-cna" id="toc-allele-specific-cna" class="nav-link" data-scroll-target="#allele-specific-cna">Allele-specific CNA</a>
+  <ul class="collapse">
+  <li><a href="#common-scenarios" id="toc-common-scenarios" class="nav-link" data-scroll-target="#common-scenarios">Common scenarios:</a></li>
+  <li><a href="#clinical-significance" id="toc-clinical-significance" class="nav-link" data-scroll-target="#clinical-significance">Clinical significance:</a></li>
+  </ul></li>
   <li><a href="#common-abbreviations" id="toc-common-abbreviations" class="nav-link" data-scroll-target="#common-abbreviations">Common abbreviations</a></li>
+  <li><a href="#focal-and-broad" id="toc-focal-and-broad" class="nav-link" data-scroll-target="#focal-and-broad">Focal and Broad</a>
+  <ul class="collapse">
+  <li><a href="#focal-alterations" id="toc-focal-alterations" class="nav-link" data-scroll-target="#focal-alterations">Focal Alterations</a></li>
+  <li><a href="#broad-alterations" id="toc-broad-alterations" class="nav-link" data-scroll-target="#broad-alterations">Broad Alterations</a></li>
+  </ul></li>
   <li><a href="#cnv-nomenclature" id="toc-cnv-nomenclature" class="nav-link" data-scroll-target="#cnv-nomenclature">CNV nomenclature</a></li>
   </ul>
 </nav>
@@ -261,11 +270,30 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Total Copy Number: CN_MAJOR + CN_MINOR = Total copy number Normal diploid state: CN_MAJOR = 1, CN_MINOR = 1 (total = 2) Allelic imbalance: When CN_MAJOR ≠ CN_MINOR</p>
+<p>Total Copy Number: CN_MAJOR + CN_MINOR = Total copy number.</p>
+<p>Normal diploid state: CN_MAJOR = 1, CN_MINOR = 1 (total = 2).</p>
+<p>Allelic imbalance: When CN_MAJOR ≠ CN_MINOR</p>
 </div>
 </div>
-<p>Common scenarios: - <strong>CN_MAJOR = 1, CN_MINOR = 1</strong>: Total = 2, Normal diploid state (no alteration) - <strong>CN_MAJOR = 1, CN_MINOR = 0</strong>: Total = 1, Heterozygous deletion (loss of one allele) - <strong>CN_MAJOR = 0, CN_MINOR = 0</strong>: Total = 0, Homozygous deletion (loss of both alleles) - <strong>CN_MAJOR = 3, CN_MINOR = 0</strong>: Total = 3, Amplification with LOH (loss of heterozygosity) - <strong>CN_MAJOR = 2, CN_MINOR = 2</strong>: Total = 4, Balanced amplification (both alleles amplified equally) - <strong>CN_MAJOR = 3, CN_MINOR = 1</strong>: Total = 4, Unbalanced amplification (one allele amplified more than the other)</p>
-<p>Clinical significance: - Loss of heterozygosity: CN_MINOR = 0 - Copy-neutral LOH: CN_MAJOR = 2, CN_MINOR = 0, appears diploid but has allelic imbalance - Tumor suppressor inactivation: Often requireds CN_MINOR = 0 plus mutation in the remaining allele</p>
+<section id="common-scenarios" class="level3">
+<h3 class="anchored" data-anchor-id="common-scenarios">Common scenarios:</h3>
+<ul>
+<li><strong>CN_MAJOR = 1, CN_MINOR = 1</strong>: Total = 2, Normal diploid state (no alteration).</li>
+<li><strong>CN_MAJOR = 1, CN_MINOR = 0</strong>: Total = 1, Heterozygous deletion (loss of one allele).</li>
+<li><strong>CN_MAJOR = 0, CN_MINOR = 0</strong>: Total = 0, Homozygous deletion (loss of both alleles).</li>
+<li><strong>CN_MAJOR = 3, CN_MINOR = 0</strong>: Total = 3, Amplification with LOH (loss of heterozygosity).</li>
+<li><strong>CN_MAJOR = 2, CN_MINOR = 2</strong>: Total = 4, Balanced amplification (both alleles amplified equally).</li>
+<li><strong>CN_MAJOR = 3, CN_MINOR = 1</strong>: Total = 4, Unbalanced amplification (one allele amplified more than the other).</li>
+</ul>
+</section>
+<section id="clinical-significance" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-significance">Clinical significance:</h3>
+<ul>
+<li><p>Loss of heterozygosity: CN_MINOR = 0.</p></li>
+<li><p>Copy-neutral LOH: CN_MAJOR = 2, CN_MINOR = 0, appears diploid but has allelic imbalance.</p></li>
+<li><p>Tumor suppressor inactivation: Often requires CN_MINOR = 0 plus mutation in the remaining allele.</p></li>
+</ul>
+</section>
 </section>
 <section id="common-abbreviations" class="level2">
 <h2 class="anchored" data-anchor-id="common-abbreviations">Common abbreviations</h2>
@@ -280,6 +308,46 @@ Note
 <li>CN: copy number</li>
 <li>SVTYPE: structural variant type</li>
 </ul>
+</section>
+<section id="focal-and-broad" class="level2">
+<h2 class="anchored" data-anchor-id="focal-and-broad">Focal and Broad</h2>
+<p>In copy number alterations (CNAs), “focal” and “broad” refer to the size and scope of the genomic regions affected:</p>
+<section id="focal-alterations" class="level3">
+<h3 class="anchored" data-anchor-id="focal-alterations">Focal Alterations</h3>
+<ul>
+<li>Small, localized changes typically affecting:
+<ul>
+<li>Individual genes or small gene clusters</li>
+<li>Usually &lt; 3 Mb in size</li>
+<li>Often span only a few cytobands or sub-bands</li>
+</ul></li>
+<li>Characteristics:
+<ul>
+<li>High amplitude (deep deletions or high-level amplifications)</li>
+<li>Target specific oncogenes or tumor suppressors</li>
+<li>More likely to be functionally significant</li>
+<li>Often recurrent across samples</li>
+</ul></li>
+</ul>
+</section>
+<section id="broad-alterations" class="level3">
+<h3 class="anchored" data-anchor-id="broad-alterations">Broad Alterations</h3>
+<ul>
+<li>Large-scale changes affecting:
+<ul>
+<li>Entire chromosome arms or large chromosomal regions</li>
+<li>Usually &gt; 3 Mb in size (some use &gt; 10 Mb threshold)</li>
+<li>Can span multiple cytobands or entire chromosome arms</li>
+</ul></li>
+<li>Characteristics:
+<ul>
+<li>Lower amplitude changes</li>
+<li>Affect many genes simultaneously</li>
+<li>May reflect chromosomal instability</li>
+<li>Less gene-specific, more related to overall genomic instability</li>
+</ul></li>
+</ul>
+</section>
 </section>
 <section id="cnv-nomenclature" class="level2">
 <h2 class="anchored" data-anchor-id="cnv-nomenclature">CNV nomenclature</h2>
