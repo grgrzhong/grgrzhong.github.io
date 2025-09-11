@@ -2002,6 +2002,13 @@
     "text": "2021\n\n\n    \n    \n                  \n            June 1, 2021\n        \n        \n            Using greek unicode in Inkscape\n\n            \n            \n                \n                \n                    inkscape\n                \n                \n            \n            \n\n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n                  \n            March 16, 2021\n        \n        \n            Crop image and add scale bar with ImageJ/Fiji\n\n            \n            \n                \n                \n                    imagej\n                \n                \n            \n            \n\n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n                  \n            February 1, 2021\n        \n        \n            Punctuation marks words\n\n            \n            \n                \n                \n                    punctuation\n                \n                \n            \n            \n\n            I don't know why i can not remember this English punctuation marks\n        \n        \n        \n            \n        \n        \n    \n    \n    \n                  \n            January 2, 2021\n        \n        \n            Markdown input greek letters\n\n            \n            \n                \n                \n                    markdown\n                \n                \n            \n            \n\n            Commonly used greek letters when using markdown\n        \n        \n        \n            \n        \n        \n    \n    \n\nNo matching items"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Guorui Zhong",
+    "section": "",
+    "text": "My research interests focus on the genetic determinants underlying disease initiation, progression, and therapeutic response. Particaulary, I am interested in:\n- Genome edition technologies (e.g., CRISPR/Cas9) to dissect gene functions in cancer and immune cells.\n- High-throughput imaging and computational analysis to study cell behaviors.\n- Single-cell omics to study cellular heterogeneity and dynamics.\n- Develop and use quantitative in vitro/image assays and machine learning models to predict the biological effects of genetic mutations, drugs and/or environmental agents."
+  },
+  {
     "objectID": "programming/linux/index.html",
     "href": "programming/linux/index.html",
     "title": "Linux",
@@ -2069,7 +2076,7 @@
     "href": "wiki/index.html#training",
     "title": "Wiki",
     "section": "Training",
-    "text": "Training\n\nBioinformatics at COMAV\nHarvardX Biomedical Data Science Open Online Training - rafalab\nNext-Generation Sequencing Analysis Resources -NGS analysis, concepts\nResearch Informatics Training - University of Cambbridge\nIntroduction to Bioinformatics workflows with Nextflow and nf-core\nNational cancer institute GDC documentation\nBioinformatics for Biologists\nNational Cancer Institute: Bioinformatics Training & Education Program\nHigh dimensional statistics with R Introduction to high-dimensional data\nBioinformatics Training at the Harvard Chan Bioinformatics Core\nSTATQUEST!!!\nProtocols - Beiting Lab"
+    "text": "Training\n\nAnother Book on Data Science- Learn R and Python in Parallel\nBioinformatics at COMAV\nHarvardX Biomedical Data Science Open Online Training - rafalab\nNext-Generation Sequencing Analysis Resources -NGS analysis, concepts\nResearch Informatics Training - University of Cambbridge\nIntroduction to Bioinformatics workflows with Nextflow and nf-core\nNational cancer institute GDC documentation\nBioinformatics for Biologists\nNational Cancer Institute: Bioinformatics Training & Education Program\nHigh dimensional statistics with R Introduction to high-dimensional data\nBioinformatics Training at the Harvard Chan Bioinformatics Core\nSTATQUEST!!!\nProtocols - Beiting Lab"
   },
   {
     "objectID": "wiki/index.html#biologist",
