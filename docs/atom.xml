@@ -16,7 +16,927 @@
 <link>https://grgrzhong.github.io/atom.html</link>
 </image>
 <generator>quarto-1.7.31</generator>
-<lastBuildDate>Wed, 17 Sep 2025 16:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 18 Sep 2025 16:00:00 GMT</lastBuildDate>
+<item>
+  <title>Workflow | Containers for Reproducible Bioinformatics Environments</title>
+  <dc:creator>Guorui Zhong</dc:creator>
+  <link>https://grgrzhong.github.io/blog/2025/09/19/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>You have a container image for your RNA-seq toolkit—great. But repeatable end-to-end science requires orchestrating many containerized tools, handling digests, passing resources, and capturing provenance. Workflow managers (Snakemake, Nextflow) + containers = layered reproducibility: data → parameters → code → image digests → reference assets.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A single well-structured workflow run can become your provenance record: input checksums, container digests, parameter files, and software manifests.</p>
+</div>
+</div>
+</section>
+<section id="reproducibility-stack" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility-stack">Reproducibility Stack</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 28%">
+<col style="width: 23%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Example Artifacts</th>
+<th>Why It Matters</th>
+<th>Failure Mode If Missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data integrity</td>
+<td>FASTQ MD5, BAM CRAM headers</td>
+<td>Detect silent corruption</td>
+<td>Downstream QC anomalies</td>
+</tr>
+<tr class="even">
+<td>Parameters</td>
+<td>config.yaml / nextflow.config</td>
+<td>Freeze analysis intent</td>
+<td>Ambiguous reruns</td>
+</tr>
+<tr class="odd">
+<td>Workflow logic</td>
+<td>Snakefile / main.nf commit hash</td>
+<td>Versioned orchestration</td>
+<td>Divergent code paths</td>
+</tr>
+<tr class="even">
+<td>Tool environments</td>
+<td>Image digest <code>sha256:...</code></td>
+<td>Immutable execution state</td>
+<td>Drift via retagged images</td>
+</tr>
+<tr class="odd">
+<td>Reference assets</td>
+<td>Genome build version, annotation GTF checksum</td>
+<td>Interpretability &amp; comparability</td>
+<td>Misaligned coordinates</td>
+</tr>
+<tr class="even">
+<td>Runtime metadata</td>
+<td>Resource usage, seeds, random states</td>
+<td>Debug &amp; reproducibility</td>
+<td>Non-deterministic outputs</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="snakemake-container-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="snakemake-container-patterns">Snakemake Container Patterns</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 21%">
+<col style="width: 23%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Syntax</th>
+<th>Use Case</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rule-level container</td>
+<td><code>container: "docker://org/tool:1.0"</code></td>
+<td>Different tools per rule</td>
+<td>Granular control</td>
+<td>Repetition if many rules share same image</td>
+</tr>
+<tr class="even">
+<td>Global default</td>
+<td><code>--use-singularity --singularity-prefix</code></td>
+<td>Homogeneous tool stack</td>
+<td>Simple invocation</td>
+<td>Harder if mixed languages</td>
+</tr>
+<tr class="odd">
+<td>Per-env conda + fallback container</td>
+<td><code>conda:</code> + <code>container:</code> (choose one)</td>
+<td>Transitional migrations</td>
+<td>Flexibility</td>
+<td>Dual maintenance</td>
+</tr>
+<tr class="even">
+<td>Digest pinning</td>
+<td><code>container: "docker://org/tool@sha256:..."</code></td>
+<td>Long-term reproducibility</td>
+<td>Immutable</td>
+<td>Need to refresh manually</td>
+</tr>
+<tr class="odd">
+<td>Local SIF caching</td>
+<td>Pre-build images under <code>.snakemake/</code></td>
+<td>HPC speed</td>
+<td>Fast startup</td>
+<td>Storage overhead</td>
+</tr>
+</tbody>
+</table>
+<p>Example rule (digest pinned):</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">rule fastqc:</span>
+<span id="cb1-2">  <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">input</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{s}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">.fq.gz"</span></span>
+<span id="cb1-3">  output: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"qc/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{s}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_fastqc.html"</span></span>
+<span id="cb1-4">  container: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"docker://rnaseq/fastqc@sha256:6ab3..."</span></span>
+<span id="cb1-5">  threads: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb1-6">  shell: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fastqc </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{input}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> -o qc"</span></span></code></pre></div>
+<section id="singularity-flags-via-cli" class="level3">
+<h3 class="anchored" data-anchor-id="singularity-flags-via-cli">Singularity Flags via CLI</h3>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">snakemake</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--cores</span> 16 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb2-2">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--use-singularity</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb2-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--singularity-args</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"--bind /scratch:/scratch,/ref/genomes:/ref"</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb2-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--cache</span></span></code></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use <code>--cache</code> to avoid repeated pulls/build conversions across runs; pair with a cleanup policy for long-lived clusters.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="nextflow-container-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="nextflow-container-patterns">Nextflow Container Patterns</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Syntax</th>
+<th>Use Case</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Process-level container</td>
+<td><code>container 'org/tool:1.0'</code></td>
+<td>Heterogeneous pipeline</td>
+<td>Clear per-process</td>
+<td>Verbose with many processes</td>
+</tr>
+<tr class="even">
+<td>Global container</td>
+<td><code>process.container = 'org/core:base'</code></td>
+<td>Mostly uniform tools</td>
+<td>Minimal config</td>
+<td>Overrides needed for special cases</td>
+</tr>
+<tr class="odd">
+<td>Multi-engine support</td>
+<td><code>docker.enabled</code>, <code>singularity.enabled</code></td>
+<td>Portability</td>
+<td>Single config file toggles</td>
+<td>Some features engine-specific</td>
+</tr>
+<tr class="even">
+<td>Profile-based</td>
+<td><code>-profile docker</code> / <code>-profile singularity</code></td>
+<td>Environment switching</td>
+<td>Clean separation</td>
+<td>Must maintain profiles</td>
+</tr>
+<tr class="odd">
+<td>Digest pinning</td>
+<td><code>container 'org/tool@sha256:...'</code></td>
+<td>Archival runs</td>
+<td>Immutable</td>
+<td>Harder human reading</td>
+</tr>
+</tbody>
+</table>
+<p>Example process with resource &amp; container:</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb3-1">process QC_FASTQC <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb3-2">  tag <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">${</span>sample<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb3-3">  cpus <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb3-4">  memory <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'2 GB'</span></span>
+<span id="cb3-5">  container <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'rnaseq/fastqc:1.0'</span></span>
+<span id="cb3-6">  input<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb3-7">    path sample</span>
+<span id="cb3-8">  output<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb3-9">    path <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'qc'</span></span>
+<span id="cb3-10">  script<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb3-11">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb3-12"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">  fastqc </span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$sample</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> -o qc</span></span>
+<span id="cb3-13"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">  """</span></span>
+<span id="cb3-14"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div>
+<section id="profile-snippet-nextflow.config" class="level3">
+<h3 class="anchored" data-anchor-id="profile-snippet-nextflow.config">Profile Snippet (<code>nextflow.config</code>)</h3>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb4-1">profiles <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-2">  docker <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-3">    docker<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>enabled <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span></span>
+<span id="cb4-4">    singularity<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>enabled <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">false</span></span>
+<span id="cb4-5">  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb4-6">  singularity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb4-7">    docker<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>enabled <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">false</span></span>
+<span id="cb4-8">    singularity<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>enabled <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span></span>
+<span id="cb4-9">    singularity<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>cacheDir <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$baseDir</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/.nf-sif"</span></span>
+<span id="cb4-10">  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb4-11"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div>
+</section>
+</section>
+<section id="snakemake-vs-nextflow-container-handling" class="level2">
+<h2 class="anchored" data-anchor-id="snakemake-vs-nextflow-container-handling">Snakemake vs Nextflow (Container Handling)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 28%">
+<col style="width: 26%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Snakemake</th>
+<th>Nextflow</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Declarative granularity</td>
+<td>Rule-level</td>
+<td>Process-level</td>
+<td>Roughly analogous</td>
+</tr>
+<tr class="even">
+<td>Mixed engines (Docker/Singularity)</td>
+<td>CLI flags switch</td>
+<td>Profiles / auto-detect</td>
+<td>Profiles add clarity</td>
+</tr>
+<tr class="odd">
+<td>Built-in conda integration</td>
+<td>Strong</td>
+<td>External (via <code>conda</code> directive plugin in newer versions)</td>
+<td>Snakemake historically stronger</td>
+</tr>
+<tr class="even">
+<td>Digest pinning ergonomics</td>
+<td>Explicit string</td>
+<td>Same</td>
+<td>Equivalent</td>
+</tr>
+<tr class="odd">
+<td>Caching singularity images</td>
+<td><code>--cache</code> flag</td>
+<td><code>singularity.cacheDir</code></td>
+<td>Both good</td>
+</tr>
+<tr class="even">
+<td>Resource binding</td>
+<td><code>--singularity-args</code> manual</td>
+<td>Configurable directives</td>
+<td>Nextflow slightly cleaner</td>
+</tr>
+<tr class="odd">
+<td>Parameterization</td>
+<td>Pythonic config dict</td>
+<td>Groovy DSL / params.*</td>
+<td>Style preference</td>
+</tr>
+<tr class="even">
+<td>Provenance report</td>
+<td><code>--report</code> + <code>--summary</code></td>
+<td><code>timeline</code>, <code>trace</code>, <code>report.html</code></td>
+<td>Nextflow has richer HTML bundle</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="version-provenance-capture" class="level2">
+<h2 class="anchored" data-anchor-id="version-provenance-capture">Version &amp; Provenance Capture</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 40%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artifact</th>
+<th>Snakemake Approach</th>
+<th>Nextflow Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Container digests</td>
+<td><code>snakemake --list-packages</code> (planned) or manual script parsing</td>
+<td><code>nextflow log</code> + <code>trace</code></td>
+</tr>
+<tr class="even">
+<td>Software versions</td>
+<td><code>rule</code> outputs a VERSIONS file per rule</td>
+<td><code>collect</code> channel or work dir scanning</td>
+</tr>
+<tr class="odd">
+<td>Config snapshot</td>
+<td>Commit <code>config.yaml</code></td>
+<td>Auto include <code>nextflow.config</code> in repo</td>
+</tr>
+<tr class="even">
+<td>Parameter freeze</td>
+<td>Export rendered config</td>
+<td><code>-params-file params.json</code></td>
+</tr>
+</tbody>
+</table>
+<section id="simple-manifest-emitter-snakemake" class="level3">
+<h3 class="anchored" data-anchor-id="simple-manifest-emitter-snakemake">Simple Manifest Emitter (Snakemake)</h3>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">rule versions:</span>
+<span id="cb5-2">  output: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"VERSIONS.txt"</span></span>
+<span id="cb5-3">  run:</span>
+<span id="cb5-4">    <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> subprocess</span>
+<span id="cb5-5">    tools <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fastqc"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fastqc --version"</span> , <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"samtools"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"samtools --version | head -1"</span>}</span>
+<span id="cb5-6">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span>(output[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'w'</span>) <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> fh:</span>
+<span id="cb5-7">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> name, cmd <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> tools.items():</span>
+<span id="cb5-8">            out <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> subprocess.getoutput(cmd)</span>
+<span id="cb5-9">            fh.write(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>name<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\t</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>out<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div>
+</section>
+</section>
+<section id="caching-performance" class="level2">
+<h2 class="anchored" data-anchor-id="caching-performance">Caching &amp; Performance</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 26%">
+<col style="width: 23%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concern</th>
+<th>Snakemake</th>
+<th>Nextflow</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cold image pulls</td>
+<td>Each first-run</td>
+<td>Each first-run</td>
+<td>Pre-pull via warmup job</td>
+</tr>
+<tr class="even">
+<td>Conversion overhead (Docker→SIF)</td>
+<td>At first need</td>
+<td>At first need</td>
+<td>Long-lived cache directories</td>
+</tr>
+<tr class="odd">
+<td>Many small processes</td>
+<td>Startup overhead</td>
+<td>Similar</td>
+<td>Batch tasks or fuse steps</td>
+</tr>
+<tr class="even">
+<td>Large reference binds</td>
+<td>Manual <code>--singularity-args</code></td>
+<td>Automatic with <code>params.ref</code> mapping</td>
+<td>Use centralized <code>REF_BASE</code> variable</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="patterns-for-tool-tag-parameterization" class="level2">
+<h2 class="anchored" data-anchor-id="patterns-for-tool-tag-parameterization">Patterns for Tool Tag Parameterization</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 34%">
+<col style="width: 32%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Example Snakemake</th>
+<th>Example Nextflow</th>
+<th>Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Global dict</td>
+<td><code>TOOLS = {"fastqc": "org/fastqc:1.0"}</code></td>
+<td><code>params.images.fastqc = 'org/fastqc:1.0'</code></td>
+<td>Central control</td>
+</tr>
+<tr class="even">
+<td>YAML config</td>
+<td><code>config["containers"]["fastqc"]</code></td>
+<td><code>params.images.fastqc</code> loaded from JSON</td>
+<td>Editable without code changes</td>
+</tr>
+<tr class="odd">
+<td>Digest lockfile</td>
+<td><code>containers.lock</code> mapping tool→digest</td>
+<td>Same JSON</td>
+<td>Immutable mapping for archival</td>
+</tr>
+<tr class="even">
+<td>Matrix testing</td>
+<td>Loop over versions list</td>
+<td>Channel of tags</td>
+<td>Benchmark tool versions</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="failure-scenarios-debug-table" class="level2">
+<h2 class="anchored" data-anchor-id="failure-scenarios-debug-table">Failure Scenarios (Debug Table)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 36%">
+<col style="width: 26%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symptom</th>
+<th>Likely Cause</th>
+<th>Diagnosis</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tool not found in container</td>
+<td>PATH unset, wrong image</td>
+<td><code>docker run image which tool</code></td>
+<td>Rebuild image, set PATH</td>
+</tr>
+<tr class="even">
+<td>Different results on rerun</td>
+<td>Floating deps unpinned</td>
+<td>Compare old digest</td>
+<td>Pin versions / use digest</td>
+</tr>
+<tr class="odd">
+<td>Slow start each job</td>
+<td>Repeated image conversion</td>
+<td>Check singularity cache size</td>
+<td>Pre-build SIF, enlarge cache</td>
+</tr>
+<tr class="even">
+<td>Permission denied writing output</td>
+<td>Running as non-writable UID</td>
+<td>Check mount perms</td>
+<td>Adjust bind path or user mapping</td>
+</tr>
+<tr class="odd">
+<td>Exceeds memory silently</td>
+<td>No enforcement in container</td>
+<td>Workflow trace usage</td>
+<td>Set <code>resources</code> / <code>memory</code> properly</td>
+</tr>
+<tr class="even">
+<td>Random crash on HPC nodes only</td>
+<td>Missing host libs (GPU/MPI)</td>
+<td><code>ldd</code> inside container</td>
+<td>Bind host drivers or rebuild base</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="hybrid-strategy-modules-containers" class="level2">
+<h2 class="anchored" data-anchor-id="hybrid-strategy-modules-containers">Hybrid Strategy (Modules + Containers)</h2>
+<p>Sometimes you only containerize “volatile” tools (fast-evolving bioinformatics programs) while relying on stable module-provided compilers or MPI. Example: Use host <code>module load cuda/12</code> then run a minimal container with just Python libs, binding <code>/usr/local/cuda</code> inside.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Avoid double-toolchains: mixing host GCC + container-built libs can produce subtle ABI issues. Keep boundaries clean.</p>
+</div>
+</div>
+</section>
+<section id="end-to-end-mini-example" class="level2">
+<h2 class="anchored" data-anchor-id="end-to-end-mini-example">End-to-End Mini Example</h2>
+<section id="directory-layout" class="level3">
+<h3 class="anchored" data-anchor-id="directory-layout">Directory Layout</h3>
+<pre><code>workflow/
+  Snakefile
+  config.yaml
+  containers.lock
+  data/readsA.fq.gz</code></pre>
+</section>
+<section id="config.yaml" class="level3">
+<h3 class="anchored" data-anchor-id="config.yaml"><code>config.yaml</code></h3>
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">containers</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb7-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fastqc</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> docker://rnaseq/fastqc@sha256:6ab3...</span></span>
+<span id="cb7-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">align</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> docker://rnaseq/hisat2@sha256:aa91...</span></span></code></pre></div>
+</section>
+<section id="snakemake-snippet" class="level3">
+<h3 class="anchored" data-anchor-id="snakemake-snippet">Snakemake snippet</h3>
+<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> yaml</span>
+<span id="cb8-2">CONFIG <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> yaml.safe_load(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"config.yaml"</span>))</span>
+<span id="cb8-3"></span>
+<span id="cb8-4">rule <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">all</span>:</span>
+<span id="cb8-5">  <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">input</span>: expand(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"qc/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{s}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_fastqc.html"</span>, s<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"readsA"</span>])</span>
+<span id="cb8-6"></span>
+<span id="cb8-7">rule fastqc:</span>
+<span id="cb8-8">  <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">input</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{s}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">.fq.gz"</span></span>
+<span id="cb8-9">  output: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"qc/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{s}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_fastqc.html"</span></span>
+<span id="cb8-10">  container: CONFIG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"containers"</span>][<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fastqc"</span>]</span>
+<span id="cb8-11">  shell: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fastqc </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{input}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> -o qc"</span></span></code></pre></div>
+</section>
+</section>
+<section id="decision-cheat-sheet-summary-table" class="level2">
+<h2 class="anchored" data-anchor-id="decision-cheat-sheet-summary-table">Decision Cheat Sheet (Summary Table)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 28%">
+<col style="width: 25%">
+<col style="width: 16%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th>Preferred Workflow</th>
+<th>Container Engine</th>
+<th>Key Option</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Heterogeneous tools, Python heavy</td>
+<td>Snakemake</td>
+<td>Docker dev → Singularity prod</td>
+<td><code>--use-singularity</code></td>
+<td>Smooth conda fallback</td>
+</tr>
+<tr class="even">
+<td>Mixed cloud + HPC</td>
+<td>Nextflow</td>
+<td>Docker + Singularity</td>
+<td>Profiles</td>
+<td>Transparent cross-platform</td>
+</tr>
+<tr class="odd">
+<td>GPU alignment tasks</td>
+<td>Nextflow</td>
+<td>Docker (build) + Singularity (run)</td>
+<td><code>singularity.enabled</code></td>
+<td>Resource profiles cleaner</td>
+</tr>
+<tr class="even">
+<td>Archival publication run</td>
+<td>Either</td>
+<td>Digest-pinned images</td>
+<td>Digest references</td>
+<td>Exact immutability</td>
+</tr>
+<tr class="odd">
+<td>Rapid prototyping</td>
+<td>Snakemake</td>
+<td>Docker</td>
+<td>Local caching</td>
+<td>Lower config overhead</td>
+</tr>
+<tr class="even">
+<td>Massive parallel scatter (&gt;10k tasks)</td>
+<td>Nextflow</td>
+<td>Singularity</td>
+<td>Cache dir tuning</td>
+<td>Process orchestration scaling</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>Combining workflow engines with containers elevates reproducibility from “tool runs on my machine” to “pipeline is a portable scientific object.” Success hinges on disciplined version pinning, digest usage, provenance manifests, and calibrated caching strategies.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Add a CI job that attempts a dry-run with <code>--use-singularity</code> or profile <code>singularity</code> to detect broken digests early.</p>
+</div>
+</div>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>Snakemake docs: https://snakemake.readthedocs.io/</li>
+<li>Nextflow docs: https://www.nextflow.io/docs/latest/</li>
+<li>Apptainer: https://apptainer.org/</li>
+<li>OCI image spec: https://github.com/opencontainers/image-spec</li>
+<li>BioContainers: https://biocontainers.pro/</li>
+<li>Singularity caching tips: https://docs.sylabs.io/</li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Nextflow</category>
+  <category>Snakemake</category>
+  <guid>https://grgrzhong.github.io/blog/2025/09/19/</guid>
+  <pubDate>Thu, 18 Sep 2025 16:00:00 GMT</pubDate>
+  <media:content url="https://grgrzhong.github.io/blog/2025/09/19/nextflow-story.png" medium="image" type="image/png" height="70" width="144"/>
+</item>
 <item>
   <title>Containers | Environment management in bioinformatics data analysis</title>
   <dc:creator>Guorui Zhong</dc:creator>
@@ -81593,573 +82513,6 @@ font-style: inherit;">)</span></span></code></pre></div>
   <guid>https://grgrzhong.github.io/blog/2023/03/30/</guid>
   <pubDate>Wed, 29 Mar 2023 16:00:00 GMT</pubDate>
   <media:content url="https://grgrzhong.github.io/blog/2023/03/30/plot.png" medium="image" type="image/png" height="103" width="144"/>
-</item>
-<item>
-  <title>Barplot with negative and positive value</title>
-  <dc:creator>Guorui Zhong</dc:creator>
-  <link>https://grgrzhong.github.io/blog/2023/03/11/</link>
-  <description><![CDATA[ <p>Coloring Negative and Positive Bars Differently using ggplot2</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span>
-<span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span>
-<span></span>
-<span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">x</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Vcam1"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Pecam1"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Alcam"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Icam1"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Gja4"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Gja5"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"F11r"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span>
-<span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">y</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.1</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.05</span>, <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.08</span>, <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.12</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.15</span>, <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.18</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.2</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span>
-<span></span>
-<span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">fig3r.df</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">x</span>, <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span>
-<span></span>
-<span></span>
-<span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">fig3r.df</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">mutate</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">x</span>,levels <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Vcam1"</span>,<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Pecam1"</span>,<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Alcam"</span>,<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Icam1"</span>,<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Gja4"</span>,<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Gja5"</span>,<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"F11r"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">ggplot</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">aes</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">x</span>, <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">geom_col</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">aes</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>fill <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">y</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Negative"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Positive"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>, color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">geom_text</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">aes</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>y <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">y</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>, <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">y</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.02</span>, <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">y</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.02</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>                label <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">x</span>, color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">y</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Negative"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Positive"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>            angle <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">90</span>, hjust <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">y</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_fill_manual</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>values <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Positive"</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#ee7770"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Negative"</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#77b5fe"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>, </span>
-<span>                    guide <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"none"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_color_manual</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>values <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Positive"</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#ee7770"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Negative"</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#77b5fe"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">theme_classic</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">theme</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>axis.line.x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_blank</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        axis.text.x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_blank</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        axis.ticks.x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_blank</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        legend.position <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"none"</span>,</span>
-<span>        panel.grid.major.y <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_line</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        plot.title <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_text</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>hjust <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.5</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_y_continuous</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>limits <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.25</span>,<span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.25</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>                     breaks <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.25</span>,<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.2</span>,<span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.2</span>,by<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.1</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,<span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.25</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>                     expand <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">expansion</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>mult <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>,<span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>                     labels <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">""</span>,<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.2</span>,<span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.2</span>,by<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.1</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">""</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">labs</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">NULL</span>, y <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"log(FC)"</span>, title <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Art"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="https://grgrzhong.github.io/blog/2023/03/11/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
-<ul>
-<li><a href="https://r-graphics.org/recipe-bar-graph-color-neg" class="uri">https://r-graphics.org/recipe-bar-graph-color-neg</a></li>
-</ul>
-
-
-</section> ]]></description>
-  <category>r</category>
-  <category>barplot</category>
-  <guid>https://grgrzhong.github.io/blog/2023/03/11/</guid>
-  <pubDate>Fri, 10 Mar 2023 16:00:00 GMT</pubDate>
-  <media:content url="https://grgrzhong.github.io/blog/2023/03/11/plot.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>
 </rss>

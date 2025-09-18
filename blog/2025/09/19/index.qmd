@@ -1,0 +1,223 @@
+---
+title: "Workflow | Containers for Reproducible Bioinformatics Environments"
+date: "2025-09-19"
+image: nextflow-story.png
+categories: [Nextflow, Snakemake]
+description: "How to integrate Docker & Singularity/Apptainer containers into Snakemake and Nextflow for reproducible, traceable bioinformatics workflows." 
+execute:
+  eval: false
+---
+
+## Motivation
+You have a container image for your RNA-seq toolkit—great. But repeatable end-to-end science requires orchestrating many containerized tools, handling digests, passing resources, and capturing provenance. Workflow managers (Snakemake, Nextflow) + containers = layered reproducibility: data → parameters → code → image digests → reference assets.
+
+::: callout-note
+A single well-structured workflow run can become your provenance record: input checksums, container digests, parameter files, and software manifests.
+:::
+
+## Reproducibility Stack
+| Layer | Example Artifacts | Why It Matters | Failure Mode If Missing |
+|-------|-------------------|----------------|-------------------------|
+| Data integrity | FASTQ MD5, BAM CRAM headers | Detect silent corruption | Downstream QC anomalies |
+| Parameters | config.yaml / nextflow.config | Freeze analysis intent | Ambiguous reruns |
+| Workflow logic | Snakefile / main.nf commit hash | Versioned orchestration | Divergent code paths |
+| Tool environments | Image digest `sha256:...` | Immutable execution state | Drift via retagged images |
+| Reference assets | Genome build version, annotation GTF checksum | Interpretability & comparability | Misaligned coordinates |
+| Runtime metadata | Resource usage, seeds, random states | Debug & reproducibility | Non-deterministic outputs |
+
+## Snakemake Container Patterns
+| Pattern | Syntax | Use Case | Pros | Cons |
+|---------|--------|---------|------|------|
+| Rule-level container | `container: "docker://org/tool:1.0"` | Different tools per rule | Granular control | Repetition if many rules share same image |
+| Global default | `--use-singularity --singularity-prefix` | Homogeneous tool stack | Simple invocation | Harder if mixed languages | 
+| Per-env conda + fallback container | `conda:` + `container:` (choose one) | Transitional migrations | Flexibility | Dual maintenance |
+| Digest pinning | `container: "docker://org/tool@sha256:..."` | Long-term reproducibility | Immutable | Need to refresh manually | 
+| Local SIF caching | Pre-build images under `.snakemake/` | HPC speed | Fast startup | Storage overhead |
+
+Example rule (digest pinned):
+```python
+rule fastqc:
+  input: "data/{s}.fq.gz"
+  output: "qc/{s}_fastqc.html"
+  container: "docker://rnaseq/fastqc@sha256:6ab3..."
+  threads: 2
+  shell: "fastqc {input} -o qc"
+```
+
+### Singularity Flags via CLI
+```bash
+snakemake --cores 16 \
+  --use-singularity \
+  --singularity-args "--bind /scratch:/scratch,/ref/genomes:/ref" \
+  --cache
+```
+
+::: callout-tip
+Use `--cache` to avoid repeated pulls/build conversions across runs; pair with a cleanup policy for long-lived clusters.
+:::
+
+## Nextflow Container Patterns
+| Pattern | Syntax | Use Case | Pros | Cons |
+|---------|--------|----------|------|------|
+| Process-level container | `container 'org/tool:1.0'` | Heterogeneous pipeline | Clear per-process | Verbose with many processes |
+| Global container | `process.container = 'org/core:base'` | Mostly uniform tools | Minimal config | Overrides needed for special cases |
+| Multi-engine support | `docker.enabled`, `singularity.enabled` | Portability | Single config file toggles | Some features engine-specific |
+| Profile-based | `-profile docker` / `-profile singularity` | Environment switching | Clean separation | Must maintain profiles |
+| Digest pinning | `container 'org/tool@sha256:...'` | Archival runs | Immutable | Harder human reading |
+
+Example process with resource & container:
+```groovy
+process QC_FASTQC {
+  tag "${sample}"
+  cpus 2
+  memory '2 GB'
+  container 'rnaseq/fastqc:1.0'
+  input:
+    path sample
+  output:
+    path 'qc'
+  script:
+  """
+  fastqc $sample -o qc
+  """
+}
+```
+
+### Profile Snippet (`nextflow.config`)
+```groovy
+profiles {
+  docker {
+    docker.enabled = true
+    singularity.enabled = false
+  }
+  singularity {
+    docker.enabled = false
+    singularity.enabled = true
+    singularity.cacheDir = "$baseDir/.nf-sif"
+  }
+}
+```
+
+## Snakemake vs Nextflow (Container Handling)
+| Aspect | Snakemake | Nextflow | Comment |
+|--------|-----------|----------|---------|
+| Declarative granularity | Rule-level | Process-level | Roughly analogous |
+| Mixed engines (Docker/Singularity) | CLI flags switch | Profiles / auto-detect | Profiles add clarity |
+| Built-in conda integration | Strong | External (via `conda` directive plugin in newer versions) | Snakemake historically stronger |
+| Digest pinning ergonomics | Explicit string | Same | Equivalent |
+| Caching singularity images | `--cache` flag | `singularity.cacheDir` | Both good |
+| Resource binding | `--singularity-args` manual | Configurable directives | Nextflow slightly cleaner |
+| Parameterization | Pythonic config dict | Groovy DSL / params.* | Style preference |
+| Provenance report | `--report` + `--summary` | `timeline`, `trace`, `report.html` | Nextflow has richer HTML bundle |
+
+## Version & Provenance Capture
+| Artifact | Snakemake Approach | Nextflow Approach |
+|----------|--------------------|-------------------|
+| Container digests | `snakemake --list-packages` (planned) or manual script parsing | `nextflow log` + `trace` | Supplement with custom script |
+| Software versions | `rule` outputs a VERSIONS file per rule | `collect` channel or work dir scanning | Standardize on one manifest |
+| Config snapshot | Commit `config.yaml` | Auto include `nextflow.config` in repo | Commit hash in both |
+| Parameter freeze | Export rendered config | `-params-file params.json` | Keep params file in results |
+
+### Simple Manifest Emitter (Snakemake)
+```python
+rule versions:
+  output: "VERSIONS.txt"
+  run:
+    import subprocess
+    tools = {"fastqc": "fastqc --version" , "samtools": "samtools --version | head -1"}
+    with open(output[0], 'w') as fh:
+        for name, cmd in tools.items():
+            out = subprocess.getoutput(cmd)
+            fh.write(f"{name}\t{out}\n")
+```
+
+## Caching & Performance
+| Concern | Snakemake | Nextflow | Mitigation |
+|---------|-----------|----------|------------|
+| Cold image pulls | Each first-run | Each first-run | Pre-pull via warmup job |
+| Conversion overhead (Docker→SIF) | At first need | At first need | Long-lived cache directories |
+| Many small processes | Startup overhead | Similar | Batch tasks or fuse steps |
+| Large reference binds | Manual `--singularity-args` | Automatic with `params.ref` mapping | Use centralized `REF_BASE` variable |
+
+## Patterns for Tool Tag Parameterization
+| Pattern | Example Snakemake | Example Nextflow | Benefit |
+|---------|-------------------|------------------|---------|
+| Global dict | `TOOLS = {"fastqc": "org/fastqc:1.0"}` | `params.images.fastqc = 'org/fastqc:1.0'` | Central control |
+| YAML config | `config["containers"]["fastqc"]` | `params.images.fastqc` loaded from JSON | Editable without code changes |
+| Digest lockfile | `containers.lock` mapping tool→digest | Same JSON | Immutable mapping for archival |
+| Matrix testing | Loop over versions list | Channel of tags | Benchmark tool versions |
+
+## Failure Scenarios (Debug Table)
+| Symptom | Likely Cause | Diagnosis | Fix |
+|---------|--------------|----------|-----|
+| Tool not found in container | PATH unset, wrong image | `docker run image which tool` | Rebuild image, set PATH |
+| Different results on rerun | Floating deps unpinned | Compare old digest | Pin versions / use digest |
+| Slow start each job | Repeated image conversion | Check singularity cache size | Pre-build SIF, enlarge cache |
+| Permission denied writing output | Running as non-writable UID | Check mount perms | Adjust bind path or user mapping |
+| Exceeds memory silently | No enforcement in container | Workflow trace usage | Set `resources` / `memory` properly |
+| Random crash on HPC nodes only | Missing host libs (GPU/MPI) | `ldd` inside container | Bind host drivers or rebuild base |
+
+## Hybrid Strategy (Modules + Containers)
+Sometimes you only containerize “volatile” tools (fast-evolving bioinformatics programs) while relying on stable module-provided compilers or MPI. Example: Use host `module load cuda/12` then run a minimal container with just Python libs, binding `/usr/local/cuda` inside.
+
+::: callout-important
+Avoid double-toolchains: mixing host GCC + container-built libs can produce subtle ABI issues. Keep boundaries clean.
+:::
+
+## End-to-End Mini Example
+### Directory Layout
+```
+workflow/
+  Snakefile
+  config.yaml
+  containers.lock
+  data/readsA.fq.gz
+```
+
+### `config.yaml`
+```yaml
+containers:
+  fastqc: docker://rnaseq/fastqc@sha256:6ab3...
+  align: docker://rnaseq/hisat2@sha256:aa91...
+```
+
+### Snakemake snippet
+```python
+import yaml
+CONFIG = yaml.safe_load(open("config.yaml"))
+
+rule all:
+  input: expand("qc/{s}_fastqc.html", s=["readsA"])
+
+rule fastqc:
+  input: "data/{s}.fq.gz"
+  output: "qc/{s}_fastqc.html"
+  container: CONFIG["containers"]["fastqc"]
+  shell: "fastqc {input} -o qc"
+```
+
+## Decision Cheat Sheet (Summary Table)
+| Scenario | Preferred Workflow | Container Engine | Key Option | Rationale |
+|----------|--------------------|------------------|------------|-----------|
+| Heterogeneous tools, Python heavy | Snakemake | Docker dev → Singularity prod | `--use-singularity` | Smooth conda fallback |
+| Mixed cloud + HPC | Nextflow | Docker + Singularity | Profiles | Transparent cross-platform |
+| GPU alignment tasks | Nextflow | Docker (build) + Singularity (run) | `singularity.enabled` | Resource profiles cleaner |
+| Archival publication run | Either | Digest-pinned images | Digest references | Exact immutability |
+| Rapid prototyping | Snakemake | Docker | Local caching | Lower config overhead |
+| Massive parallel scatter (>10k tasks) | Nextflow | Singularity | Cache dir tuning | Process orchestration scaling |
+
+## Summary
+Combining workflow engines with containers elevates reproducibility from “tool runs on my machine” to “pipeline is a portable scientific object.” Success hinges on disciplined version pinning, digest usage, provenance manifests, and calibrated caching strategies.
+
+::: callout-tip
+Add a CI job that attempts a dry-run with `--use-singularity` or profile `singularity` to detect broken digests early.
+:::
+
+## References
+- Snakemake docs: https://snakemake.readthedocs.io/
+- Nextflow docs: https://www.nextflow.io/docs/latest/
+- Apptainer: https://apptainer.org/
+- OCI image spec: https://github.com/opencontainers/image-spec
+- BioContainers: https://biocontainers.pro/
+- Singularity caching tips: https://docs.sylabs.io/
+
