@@ -1,0 +1,266 @@
+---
+title: "Containers | Environment management in bioinformatics data analysis"
+date: "2025-09-18"
+description: "Practical guide to reproducible bioinformatics environments using Docker and Singularity/Apptainer: concepts, pitfalls, examples, HPC integration, and workflow tooling."
+categories: [Containers, Docker, Singularity]
+image: workflow.jpg
+# draft: true
+execute:
+  eval: false
+---
+
+## Why environments are still painful
+Re-running an analysis six months later can feel like archaeology: missing system libraries, different BLAST versions, broken Bioconductor installs, Python 3.X drift, orphaned `conda` envs, or an HPC node with older glibc. Traditional solutions (system modules, ad‑hoc conda envs, manual `pip install`) reduce friction short-term but leak entropy over time.
+
+Containers give you:
+- Immutability (image digest = frozen state)
+- Portable stacks across laptop → cloud → HPC (with Singularity/Apptainer)
+- Clear provenance (Dockerfile / definition recipe)
+- Smaller cognitive diff when you onboard collaborators
+
+They do NOT automatically guarantee:
+- Determinism (if you use `apt-get install foo` without pinning)
+- Security (you still pull unverified images?)
+- Performance (I/O heavy workloads can still bottleneck)
+- Zero maintenance (base images deprecate; CVEs accumulate)
+
+::: callout-note
+Containers encapsulate user space, not the kernel. Reproducibility ≠ identical hardware, kernel, or scheduler context.
+:::
+
+## Quick landscape: environment strategies
+| Strategy | Pros | Cons | Typical Use |
+|----------|------|------|-------------|
+| System modules | Native performance, curated by HPC admins | Diverges across clusters; hidden dependency webs | Classical HPC pipelines |
+| Conda / Mamba | Flexible, multi-language, no root | Dependency solver complexity, less immutable | Exploratory dev, local prototyping |
+| Docker | Rich ecosystem, caching, OCI standard | Root daemon (on many systems), sometimes banned on HPC | Cloud + local builds |
+| Singularity / Apptainer | Unprivileged run, HPC friendly | Single-file image (no layer reuse at runtime) | Production on clusters |
+| Nix/Guix | Strong reproducibility, pure builds | Steeper learning curve | Long-term archival |
+| Native packaging (deb/rpm) | Stable, audited | System-wide only (needs root) | Base layers in container builds |
+
+## Core concepts (mental model)
+| Term | Meaning | Analogy |
+|------|---------|---------|
+| Image | Read-only layered filesystem snapshot + config | Recipe output / frozen cake |
+| Container | Running process + isolated view of the image + overlay | A plated slice being served |
+| Layer | One diff in the filesystem graph | Git commit |
+| Registry | Distribution endpoint for images | Package repository |
+| Digest (sha256) | Content address (immutable) | Commit hash |
+| Tag | Mutable reference pointer | Branch name |
+
+### How layering works
+Each `RUN`, `COPY`, or `ADD` typically adds a new layer. Efficient Dockerfiles:
+- Order stable (rarely changing) layers first (base OS, core tools)
+- Group commands that change together to reduce rebuild churn
+- Avoid installing & removing large sets in the same layer without cleanup
+
+## Choosing Docker vs Singularity/Apptainer
+| Question | Docker Good? | Apptainer Good? | Notes |
+|----------|--------------|-----------------|-------|
+| Need to build locally with caching? | ✅ | ➖ (build via recipe, no layered runtime cache) | Use Docker for iterative builds |
+| Running on multi-user HPC without root? | ❌ (often blocked) | ✅ | Apptainer safest choice |
+| Need GPU (CUDA) support? | ✅ (with nvidia-container toolkit) | ✅ (passes through host drivers) | Versions must match host |
+| Want smallest compressed artifact? | ✅ (with multi-stage) | ✅ (squashed SIF) | Different mechanisms |
+| Need fine-grained image signing/policy? | ✅ (cosign, Notation) | ✅ (SIF signatures) | Supply chain matters |
+
+## Minimal examples
+### Simple Dockerfile (micromamba-based RNA-seq tooling)
+```Dockerfile
+FROM mambaorg/micromamba:1.5.9
+
+# Create env with pinned versions
+USER root
+RUN micromamba install -y -n base -c bioconda -c conda-forge \
+    fastqc=0.12.1 multiqc=1.15 hisat2=2.2.1 samtools=1.20 subread=2.0.6 \
+    python=3.11 && \
+    micromamba clean -a -y
+
+# Add a non-root user (safer default)
+RUN useradd -m analyst
+USER analyst
+WORKDIR /workspace
+
+ENTRYPOINT ["bash"]
+```
+
+Build & run (locally):
+```bash
+docker build -t rnaseq:1.0 .
+docker run --rm -it -v $(pwd):/workspace rnaseq:1.0 fastqc --help
+```
+
+### Equivalent Singularity/Apptainer definition
+```bash
+Bootstrap: docker
+From: mambaorg/micromamba:1.5.9
+
+%post
+    micromamba install -y -n base -c bioconda -c conda-forge \
+        fastqc=0.12.1 multiqc=1.15 hisat2=2.2.1 samtools=1.20 subread=2.0.6 python=3.11
+    micromamba clean -a -y
+    useradd -m analyst || true
+
+%environment
+    export PATH=/opt/conda/bin:$PATH
+
+%runscript
+    exec "$@"
+```
+Build on HPC login node (no root required if fuse/suid setup):
+```bash
+apptainer build rnaseq.sif rnaseq.def
+apptainer run rnaseq.sif fastqc --version
+```
+
+::: callout-tip
+If your cluster forbids remote pulls, pre-build the image elsewhere and transfer the `.sif` file (checksummed).
+:::
+
+## Common pitfalls & fixes
+| Pitfall | Cause | Fix |
+|---------|-------|-----|
+| Bloated image (8–10 GB) | Large conda env; unused build caches | Use micromamba, pin only required tools, remove caches |
+| Inconsistent results | Unpinned OS packages (`apt-get update`) | Freeze apt sources or install exact versions; record manifest |
+| Time-consuming rebuilds | Layers invalidated early | Put volatile steps (copy source) later |
+| Fails on HPC | Docker daemon blocked | Convert via Apptainer or build Apptainer def directly |
+| Hidden network dependency | Conda solving at runtime | Pre-solve at build time, avoid env creation inside workflow step |
+
+## Layer ordering strategy (example)
+```Dockerfile
+# 1. Base image (rarely changes)
+FROM ubuntu:24.04 AS base
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates && rm -rf /var/lib/apt/lists/*
+
+# 2. Toolchain layer
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential wget bzip2 && rm -rf /var/lib/apt/lists/*
+
+# 3. Micromamba + bio tools
+# (Changes if you alter version pins)
+# ...
+
+# 4. Pipeline scripts (volatile)
+COPY workflow/ /opt/workflow/
+```
+Goal: Stable early layers cache across small workflow edits.
+
+## Reproducible build practices
+1. Pin everything (base image digest, package versions, channels ordering)
+2. Capture a manifest: write `conda list --explicit > env.lock` during build
+3. Prefer micromamba (faster solver, smaller footprint)
+4. No `apt-get upgrade` — install specific packages only
+5. Use multi-stage builds to compile large tools then copy binaries into a slim runtime
+6. Generate Software Bill of Materials (SBOM) (`syft packages dir:` or `tern`)
+7. Sign images (`cosign sign --key cosign.key image@sha256:...`)
+
+## Example: multi-stage to shrink Bioconductor image
+```Dockerfile
+FROM bioconductor/bioconductor_docker:RELEASE_3_19 AS build
+RUN R -q -e 'install.packages(c("BiocManager")); BiocManager::install(c("DESeq2"), ask=FALSE)'
+
+FROM rocker/r2u:jammy
+# Copy only needed libs from previous stage
+COPY --from=build /usr/local/lib/R /usr/local/lib/R
+COPY --from=build /usr/local/bin/R /usr/local/bin/R
+ENTRYPOINT ["R"]
+```
+
+## Integrating with workflow engines
+### Snakemake
+```python
+rule fastqc:
+    input: "data/{sample}.fq.gz"
+    output: "qc/{sample}_fastqc.html"
+    container: "docker://rnaseq:1.0"  # or "apptainer://rnaseq.sif"
+    threads: 2
+    shell: "fastqc {input} -o qc"
+```
+
+### Nextflow
+```groovy
+process FASTQC {
+  container 'rnaseq:1.0'
+  input:
+    path reads
+  output:
+    path "qc"
+  script:
+  """
+  fastqc $reads -o qc
+  """
+}
+```
+
+### Rmarkdown / Quarto
+Use a named project execution environment or call external container via `processx` + `docker run` if necessary for isolation.
+
+## HPC binding patterns (Apptainer)
+```bash
+apptainer exec \
+  --bind /scratch:/scratch,/project/genomes:/ref \
+  rnaseq.sif \
+  hisat2 -x /ref/hg38 -U sample.fq.gz -S sample.sam
+```
+Common mounts: `/scratch`, large shared reference directories, license servers, GPU drivers (`/usr/lib64/nvidia` auto-detected).
+
+::: callout-important
+Never embed large static reference genomes inside the image unless they are versioned and universally reused—prefer mounted read-only references to reduce duplication.
+:::
+
+## Security & provenance quick wins
+| Practice | Tool |
+|----------|------|
+| Scan for CVEs | `trivy image rnaseq:1.0` |
+| Generate SBOM | `syft rnaseq:1.0 -o json > sbom.json` |
+| Sign image | `cosign sign` |
+| Verify digest in workflow | Use `image@sha256:...` |
+| Least privilege | Non-root user; minimal packages |
+
+## When NOT to containerize
+- Ultra-fast iteration on a one-off exploratory script (use conda + micro env)
+- Tight coupling to HPC vendor-tuned MPI stack (use system modules)
+- Extremely large monolithic datasets (prefer external mounts)
+
+## Quick cheatsheet
+```bash
+# Build docker image
+docker build -t toolset:0.1 .
+# Export to singularity (method 1)
+apptainer build toolset.sif docker-daemon://toolset:0.1
+# Or pull directly (method 2)
+apptainer pull docker://yourrepo/toolset:0.1
+# Run command
+apptainer exec toolset.sif samtools --version
+```
+
+## Minimal version manifest pattern
+```bash
+cat <<EOF > VERSIONS.txt
+fastqc $(fastqc --version 2>&1 | awk '{print $2}')
+$(samtools --version | head -1)
+$(hisat2 --version | head -1)
+EOF
+```
+Commit that with pipeline outputs for provenance.
+
+## Future directions
+- Reproducible builds with `--provenance` attestations (increasing adoption)
+- Hybrid: Nix builds exported to OCI images
+- Content trust pipelines (Rekor transparency logs + SBOM diffing)
+- WASM-based bioinformatics modules for partially sandboxed execution
+
+## Summary
+Containers provide a portable, inspectable, and (mostly) reproducible substrate for bioinformatics workflows—especially across heterogeneous compute environments. Effective practice centers on pinning, layering discipline, security hygiene, and clean integration with workflow managers.
+
+::: callout-tip
+Start small: containerize one stable tool chain (QC + alignment) before wrapping your entire multi-omics pipeline.
+:::
+
+## References & further reading
+- Apptainer docs: https://apptainer.org/docs/
+- OCI Image Spec: https://github.com/opencontainers/image-spec
+- Bioconda: https://bioconda.github.io/
+- Snakemake containers: https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html
+- Nextflow containers: https://www.nextflow.io/docs/latest/container.html
+- Micromamba: https://mamba.readthedocs.io/
+- Trivy (scanning): https://aquasecurity.github.io/trivy/
+- Syft (SBOM): https://github.com/anchore/syft
