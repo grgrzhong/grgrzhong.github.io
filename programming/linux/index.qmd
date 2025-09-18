@@ -11,7 +11,39 @@ execute:
     eval: false
 ---
 
-# WSL
+# Sync two folders
+```bash
+## Basic command
+rsync -av /source/folder/ /destination/folder/
+
+## Sync source to destination
+rsync -av --delete /source/folder/ /destination/folder/
+
+## If you need two-way sync, run both directions
+rsync -av --delete /folder1/ /folder2/
+rsync -av --delete /folder2/ /folder1/
+
+## Network sync
+rsync -av --delete /local/folder/ user@remote:/remote/folder/
+
+## Copy only new files (files that don't exist in the destination)
+rsync -av --ignore-existing /source/folder/ /destination/folder/
+
+## Copy only if source is newer
+rsync -av --update /source/folder/ /destination/folder/
+```
+
+:::{.callout-note}
+- `-a` (archive): Preserves permissions, timestamps, symbolic links, etc.
+- `-v` (verbose): Shows progress
+- `--delete`: Removes files in destination that don't exist in source
+- `-n` (dry-run): Preview changes without actually syncing
+- `-u` (update): Only copy newer file
+- `--ignore-existing`: Skips files that already exist in destination (regardless of age)
+- `--update`: Only copies if source file is newer than destination
+:::
+
+# Windows Subsystem for Linux
 
 ## System info
 ```bash
@@ -38,7 +70,7 @@ passwd <username>
 - WSL global config: `C:\Users\<UserName>\.wslconfig`
 - WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`
 
-# Conda
+# Conda environment
 
 ## Installation
 ```bash

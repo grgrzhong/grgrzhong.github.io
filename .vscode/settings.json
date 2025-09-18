@@ -6,6 +6,5 @@
         "statusBarItem.hoverBackground": "#2fcefa",
         "statusBarItem.remoteBackground": "#61dafb",
         "statusBarItem.remoteForeground": "#15202b"
-    },
-    "python.REPL.enableREPLSmartSend": false
+    }
 }
