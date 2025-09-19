@@ -6,8 +6,5 @@
         "statusBarItem.hoverBackground": "#2fcefa",
         "statusBarItem.remoteBackground": "#61dafb",
         "statusBarItem.remoteForeground": "#15202b"
-    },
-    "python-envs.defaultEnvManager": "ms-python.python:conda",
-    "python-envs.defaultPackageManager": "ms-python.python:conda",
-    "python-envs.pythonProjects": []
+    }
 }

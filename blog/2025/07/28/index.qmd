@@ -10,9 +10,71 @@ execute:
 ## Overall Workflow
 ![RNA-seq Workflow](counts-workflow.png)
 
-### Counting reads associated with genes
-- featureCounts (subread package)
-- HTSeq-count
+### 1. RNA extraction and library preparation
+* Enriching for RNA: DNAse to remove any contaminating DNA -> rRNA depletion or polyA selection.
+    + Generally, ribosomal RNA represents the majority of the RNAs present in a cell, while messenger RNAs represent a small percentage of total RNA (~2% in humans). 
+    + Therefore, if we want to study the protein-coding genes, we need to enrich for mRNA or deplete the rRNA. 
+    + For differential gene expression analysis, it is best to enrich for Poly(A)+, unless you are aiming to obtain information about long non-coding RNAs, in which case ribosomal RNA depletion is recommended.
+* RNA quality check: check for the RNA integrity prior to starting the cDNA library preparation.
+    + Inspection of the ribosomal RNA bands via gel electrophoresis
+    + Agilent Bioanalyzer -> RIN (RNA Integrity Number) -> provides a means by which RNA quality from different sources can be compared.
+* Fragmentation and size selection
+    + Chemical, enzymatic (e.g., RNAses), or physical process
+    + Size selection to retain only those fragments that Illumina sequencing machines can handle
+    + ~150-300bp
+* Reverse transcribe RNA into double-stranded cDNA
+    + Most commonly used method incorporates deoxy-UTP (dUTP) during second strand synthesis
+    + Add sequence adapters to the ends of the cDNA fragments
+* PCR amplification
+    + Run as few amplication cycles as possible to avoid  PCR artefacets.
+
+[](library_prep.png)
+
+### 2. Sequencing - Illumina
+* Sequencing of the cDNA libraries will generate reads
+    + SE-Single end dataset  -> Only Read1
+    + PE-Paired end dataset -> Read1 + Read2
+
+* Sequencing by synthesis**
+    + Cluster growth: Number of clusters ~= Number of reads
+    + Sequencing
+    + Image acquisition
+    + Base calling: Number of sequencing cycles = Length of reads
+
+[](illumina_sequencing_process.png)
+
+## Counting reads associated with genes
+
+### 1. Quality control of raw reads 
+
+* FastQC: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
+### 2. Quantify expression
+
+To identify from which transcript each of the reads originated from and the total number of reads associated with each transcript.
+Lightweight alignment tools & avoid base-to-base genomic alignment of the reads
+* Kallisto
+* Sailfish
+* Salmon
+
+Genomic alignment Splice aware alignment tools
+* STAR
+* HISAT2
+
+Quality control of aligned reads
+
+* QualiMap: https://qualimap.bioinfo.cipf.es/
+    + DNA or rRNA contamination
+    + 5' to 3' bias
+    + Coverage biases
+
+Quantification tools
+* featureCounts (subread package)
+* HTSeq-count
+
+[](deseq_counts_overview.png)
+
+
 
 
     The above tools only report the “raw” counts of reads that map to a single location (uniquely mapping) and are best at counting at the gene level. Essentially, total read count associated with a gene (meta-feature) = the sum of reads associated with each of the exons (feature) that “belong” to that gene.
