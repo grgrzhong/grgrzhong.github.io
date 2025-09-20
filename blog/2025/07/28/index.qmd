@@ -6,8 +6,102 @@ categories: [NGS, RNA-seq, scRNA-seq]
 execute:
     eval: false
 ---
+## Experimental design
+
+1. Number and type of replicates
+2. Avoiding confounding factors
+3. Addressing batch effects
+
+### Replicates
+* Technical replicates: use the same biological sample to repeat the technical or experimental steps in order to accurately measure technical variation and remove it during analysis.
+* Biological replicates: use different biological samples of the same condition to measure the biological variation between samples.
+
+![](replicates.png)
+
+:::{.callout-Note}
+- With the current RNA-seq technologies, technical variation is minimal, so technical replicates are generally not necessary.
+- In contrast, biological variation can be substantial, so biological replicates are essential for robust statistical analysis.
+- For differential expression analysis, the more biological replicates, the better the estimates of biological variation and the more precise our estimates of the mean expression levels.
+- Biological replicates are of greater importance than sequencing depth
+:::
+
+<img src="de_replicates_img2.png" width="300">
+
+* General gene-level differntial expression:
+    + 30M reads per sample for single-end reads
+    + 15M reads per sample if replicates >=3
+    + Length of reads: >=50-100bp
+
+* lowly expressed gene-level differntial expression:
+    + 30-60M reads 
+    + Length of reads: >=50bp
+
+* Isoform-level differntial expression:
+    + Known isoforms, at least >=30M reads per sample and paired-end reads
+    + Novel isoforms, at least >=60M reads per sample and paired-end reads
+    + Length of reads: >=50bp paired-end reads
+
+### Confounding
+A confounded RNA-seq experiment is one where you **cannot distinguish the separate effects of two different sources of variation** in the data. 
+
+For example, we know that sex has large effects on gene expression, and if all of our *control* mice were female and all of the *treatment* mice were male, then our treatment effect would be confounded by sex. **We could not differentiate the effect of treatment from the effect of sex.**
+
+<img src="confounded_design.png" width="500">  
+
+**To AVOID confounding:**
+
+- Ensure animals in each condition are all the **same sex, age, litter, and batch**, if possible.
+
+- If not possible, then ensure to split the animals equally between conditions
+
+<img src="non_confounded_design.png" width="500">
+
+### Batch effects
+
+Batch effects are a significant issue for RNA-seq analyses, since you can see significant differences in expression due solely to the batch effect.
+
+<img src="batch_effect_pca.png" width="500">
+
+**How to know whether you have batches?**
+
+- Were all RNA isolations performed on the same day?
+
+- Were all library preparations performed on the same day?
+
+- Did the same person perform the RNA isolation/library preparation for all samples?
+
+- Did you use the same reagents for all samples?
+
+- Did you perform the RNA isolation/library preparation in the same location?
+
+If *any* of the answers is **‘No’**, then you have batches.
+
+**Best practices regarding batches:**
+
+- Design the experiment in a way to **avoid batches**, if possible.
+
+- If unable to avoid batches:
+
+  - **Do NOT confound** your experiment by batch:
+
+<img src="confounded_batch.png" width="300">
+    
+
+  - **DO** split replicates of the different sample groups across batches. The more replicates, the better (definitely more than 2).
+
+    <img src="batch_effect.png" width="300">
+    
+  - **DO** include batch information in your **experimental metadata**. During the analysis, we can regress out the variation due to batch if not confounded so it doesn’t affect our results -- if we have that information.
+
+<img src="metadata_batch.png" width="300">
+
 
 ## Overall Workflow
+
+- Sequencing depth: total number of reads sequenced for a sample
+- Read length: number of base pairs in each read
+- Coverage: average number of reads that align to, or "cover," each base in a reference sequence
+
 ![RNA-seq Workflow](counts-workflow.png)
 
 ### 1. RNA extraction and library preparation
