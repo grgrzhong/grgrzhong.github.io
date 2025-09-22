@@ -1,8 +1,10 @@
 ---
 title: "Guorui Zhong"
 about:
-  template: jolla
-  # image: /files/profiles/avatar.png
+  template: trestles
+  image-width: 20em
+  image-shape: round
+  image: /files/profiles/IMG_6045.jpg
   links:
     - icon: journal-check
       # text: Google
@@ -17,12 +19,24 @@ about:
       href: https://www.linkedin.com/in/guorui-zhong-754761185/
 ---
 
-<!-- Hi! This is Guorui. I'am a Post-doctoral Research Fellow in the Department of Pathology, Li Ka Shing Faculty of Medicine, The University of Hong Kong.  -->
-
 My research interests focus on the genetic determinants underlying disease initiation, progression, and therapeutic response. Particaulary, I am interested in:
 
-    - Genome edition technologies (e.g., CRISPR/Cas9) to dissect gene functions in cancer and immune cells.
-    - High-throughput imaging and computational analysis to study cell behaviors.
-    - Single-cell omics to study cellular heterogeneity and dynamics.
-    - Develop and use quantitative in vitro/image assays and machine learning models to predict the biological effects of genetic mutations, drugs and/or environmental agents.
+## Education
+2014 - 2019 Ph.D., Biochemistry and Molecular Biology, South China University of Technology,
+Guangzhou, China.
+
+2010 - 2014 B.S. Biotechnology, Jiangxi Normal University, Nanchang, China.
+
+## Experience
+2025 – Present Postdoctoral Research Fellow, Department of Pathology, LKS Faculty of Medicine,
+The University of Hong Kong (HKU), Hong Kong SAR, China.
+
+2019 – 2024 Scientist / Postdoctoral Research Fellow, Bioinformatics Institute (BII), Agency for
+Science, Technology and Research (A*STAR), Singapore.
+
+## Research Interests
+* Genome edition technologies (e.g., CRISPR/Cas9) to dissect gene functions in cancer and immune cells.
+* High-throughput imaging and computational analysis to study cell behaviors.
+* Single-cell omics to study cellular heterogeneity and dynamics.
+* Develop and use quantitative in vitro/image assays and machine learning models to predict the biological effects of genetic mutations, drugs and/or environmental agents.
 

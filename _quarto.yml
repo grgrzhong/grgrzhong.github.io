@@ -7,6 +7,7 @@ project:
     - "*.md"
     - "*.ipynb"
     - "!projects/"
+    - "!tutorial/"
 
   resources:
     - "files/**"
@@ -53,20 +54,20 @@ website:
         #   - file: "programming/conda/index.qmd"
         #   - file: "programming/linux/index.qmd"
 
-    right: 
-      - icon: journal-check
-        aria-label: journal-check
-        href: https://scholar.google.com/citations?user=g0MfTPMAAAAJ&hl=en
-      - icon: linkedin
-        aria-label: linkedin
-        href: https://www.linkedin.com/in/guorui-zhong-754761185/
-      - icon: github
-        aria-label: github
-        href: https://github.com/guoruizhong
+    # right: 
+    #   - icon: journal-check
+    #     aria-label: journal-check
+    #     href: https://scholar.google.com/citations?user=g0MfTPMAAAAJ&hl=en
+    #   - icon: linkedin
+    #     aria-label: linkedin
+    #     href: https://www.linkedin.com/in/guorui-zhong-754761185/
+    #   - icon: github
+    #     aria-label: github
+    #     href: https://github.com/guoruizhong
   
   page-footer:
     center: |
-      <span class="faux-block">{{< fa brands creative-commons >}} 2021-2024 Guorui Zhong ~ Made with [{{< fa brands r-project >}}](https://www.r-project.org/) and [Quarto](https://quarto.org/)</span>
+      <span class="faux-block">{{< fa brands creative-commons >}} 2021-2025 Guorui Zhong ~ Made with [{{< fa brands r-project >}}](https://www.r-project.org/) and [Quarto](https://quarto.org/)</span>
 
 format:
   html:

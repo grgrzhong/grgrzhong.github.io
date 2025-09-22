@@ -1,3 +1,6 @@
 {
-    "peacock.remoteColor": "#61dafb"
+    "peacock.remoteColor": "#61dafb",
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "python-envs.pythonProjects": []
 }
