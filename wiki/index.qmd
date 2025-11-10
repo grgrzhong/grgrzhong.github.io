@@ -11,73 +11,85 @@ toc-title: "Contents"
 
 These are the collections of things that I beleived useful in my daily researh work.
 
+## Databases
+* [COSMIC](https://cancer.sanger.ac.uk/cosmic) - Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
+* [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) - NCBI database of single nucleotide polymorphisms (SNPs) and multiple small-scale variations that include insertions/deletions, microsatellites, and non-polymorphic variants.
+* [1000 Genomes Project](https://www.internationalgenome.org/) - a deep catalog of human genetic variation.
+* [gnomAD](https://gnomad.broadinstitute.org/) - Genome Aggregation Database.
+* [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) - a freely accessible, public archive of reports of the relationships among human variations and phenotypes, with supporting evidence.
+* [VarSome](https://varsome.com/) - search engine for human genomic variants
+* [OncoKB](https://www.oncokb.org/) - precision oncology knowledge base
+* [Ensembl](https://www.ensembl.org/index.html) - genome browser for vertebrate genomes
+* [cBioPortal](https://www.cbioportal.org/) - provides visualization, analysis
+* [NCBI](https://www.ncbi.nlm.nih.gov/) - National Center for Biotechnology Information
+* [UCSC Genome Browser](https://genome.ucsc.edu/) - an online, interactive tool for the display and analysis of genomic data.
 
 ## Computational Biology
 
-- [Bioinformatics Notebook](https://rnnh.github.io/bioinfo-notebook)
-- [Another Book on Data Science- Learn R and Python in Parallel](https://www.anotherbookondatascience.com/)
-- [Bioinformatics at COMAV](https://bioinf.comav.upv.es/courses/sequence_analysis/index.html)
-- [HarvardX Biomedical Data Science Open Online Training - rafalab](https://rafalab.dfci.harvard.edu/pages/harvardx.html)
-- [Next-Generation Sequencing Analysis Resources](https://learn.gencore.bio.nyu.edu/) -NGS analysis, concepts
-- [Research Informatics Training - University of Cambbridge](https://cambiotraining.github.io/)
-- [Introduction to Bioinformatics workflows with Nextflow and nf-core](https://carpentries-incubator.github.io/workflows-nextflow/)
-- [National cancer institute GDC documentation](https://docs.gdc.cancer.gov/Data/Introduction/)
-- [Bioinformatics for Biologists](https://biocorecrg.github.io/CRG_Bioinformatics_for_Biologists/)
-- [National Cancer Institute: Bioinformatics Training & Education Program](https://bioinformatics.ccr.cancer.gov/btep/)
-- [High dimensional statistics with R Introduction to high-dimensional data](https://carpentries-incubator.github.io/high-dimensional-stats-r/aio/index.html)
-- [Bioinformatics Training at the Harvard Chan Bioinformatics Core](https://hbctraining.github.io/main/)
-- [STATQUEST!!!](https://statquest.org/video-index/)
-- [Protocols - Beiting Lab](https://protocols.hostmicrobe.org/)
+* [Bioinformatics Notebook](https://rnnh.github.io/bioinfo-notebook)
+* [Another Book on Data Science- Learn R and Python in Parallel](https://www.anotherbookondatascience.com/)
+* [Bioinformatics at COMAV](https://bioinf.comav.upv.es/courses/sequence_analysis/index.html)
+* [HarvardX Biomedical Data Science Open Online Training - rafalab](https://rafalab.dfci.harvard.edu/pages/harvardx.html)
+* [Next-Generation Sequencing Analysis Resources](https://learn.gencore.bio.nyu.edu/) -NGS analysis, concepts
+* [Research Informatics Training - University of Cambbridge](https://cambiotraining.github.io/)
+* [Introduction to Bioinformatics workflows with Nextflow and nf-core](https://carpentries-incubator.github.io/workflows-nextflow/)
+* [National cancer institute GDC documentation](https://docs.gdc.cancer.gov/Data/Introduction/)
+* [Bioinformatics for Biologists](https://biocorecrg.github.io/CRG_Bioinformatics_for_Biologists/)
+* [National Cancer Institute: Bioinformatics Training & Education Program](https://bioinformatics.ccr.cancer.gov/btep/)
+* [High dimensional statistics with R Introduction to high-dimensional data](https://carpentries-incubator.github.io/high-dimensional-stats-r/aio/index.html)
+* [Bioinformatics Training at the Harvard Chan Bioinformatics Core](https://hbctraining.github.io/main/)
+* [STATQUEST!!!](https://statquest.org/video-index/)
+* [Protocols - Beiting Lab](https://protocols.hostmicrobe.org/)
 
 ## Biologist
 
-- [Bioturing](https://blog.bioturing.com/)
-- [iBiology - Bringing the world's best biology to you, for free!](https://www.ibiology.org/)
-- [Sequence Variant Nomenclature](http://varnomen.hgvs.org/)
-- [Encyclopedia Britannica](https://www.britannica.com/)
-- [Labpedia.net](https://labpedia.net/)
-- [The bumbling chemist](https://thebumblingbiochemist.com/)
-- [ToxTutor](https://www.toxmsdt.com/0-toxtutor-home.html)
+* [Bioturing](https://blog.bioturing.com/)
+* [iBiology - Bringing the world's best biology to you, for free!](https://www.ibiology.org/)
+* [Sequence Variant Nomenclature](http://varnomen.hgvs.org/)
+* [Encyclopedia Britannica](https://www.britannica.com/)
+* [Labpedia.net](https://labpedia.net/)
+* [The bumbling chemist](https://thebumblingbiochemist.com/)
+* [ToxTutor](https://www.toxmsdt.com/0-toxtutor-home.html)
 
 ## Research Labs
 
-- <http://rafalab.dfci.harvard.edu/> - Development of statistical tools
-- <https://liulab-dfci.github.io/> - Computational methods for the design (SSC), analysis (MAGeCK), hit prioritization (NEST), and visualization (VISPR) of genome-wide CRISPR screens
-- <https://www.jax.org> - Leading the research for tomorrow's cures
-- <https://www.snijderlab.org/> - Use systems biology to discover things about cells.
-- <https://zlab.bio/> - Zhang Feng Biological Discovery & Engineering
-- <https://www.ciccialab.com/> - Genome Integrity and Genome Editing
-- <https://sizunjianglab.com> - Investigate host-disease interaction
-- <https://hostmicrobe.org/> - Study the biological basis of diseases caused by microbes
-- <https://cheesemanlab.wi.mit.edu/> - World of cell division
-- <https://blainey.mit.edu/> - Pooled optical genetic screening in human cells
-- <https://marsonlab.org/> - Decoding and rewriting human immune cells with CRISPR
-- [Statistical Bioinformatics Lab](https://odin.mdacc.tmc.edu/~wwang7/index.html)
+* <http://rafalab.dfci.harvard.edu/> - Development of statistical tools
+* <https://liulab-dfci.github.io/> - Computational methods for the design (SSC), analysis (MAGeCK), hit prioritization (NEST), and visualization (VISPR) of genome-wide CRISPR screens
+* <https://www.jax.org> - Leading the research for tomorrow's cures
+* <https://www.snijderlab.org/> - Use systems biology to discover things about cells.
+* <https://zlab.bio/> - Zhang Feng Biological Discovery & Engineering
+* <https://www.ciccialab.com/> - Genome Integrity and Genome Editing
+* <https://sizunjianglab.com> - Investigate host-disease interaction
+* <https://hostmicrobe.org/> - Study the biological basis of diseases caused by microbes
+* <https://cheesemanlab.wi.mit.edu/> - World of cell division
+* <https://blainey.mit.edu/> - Pooled optical genetic screening in human cells
+* <https://marsonlab.org/> - Decoding and rewriting human immune cells with CRISPR
+* [Statistical Bioinformatics Lab](https://odin.mdacc.tmc.edu/~wwang7/index.html)
 
 
 ## Research writing
 
-- [NMRC | Open Fund - Young Individual Research Grant](https://www.nmrc.gov.sg/grants/competitive-research-grants/of-yirg)
-- [Funding Opportunities - Abramson Cancer Center | Penn Medicine](https://www.pennmedicine.org/cancer/cancer-research/for-researchers/investigators-only/funding-opportunities)
-- [Write Your Research Plan](https://www.niaid.nih.gov/grants-contracts/write-research-plan)
-- [The underappreciated art of creating publication-quality figures](https://www.embopress.org/doi/abs/10.15252/embr.202255114)
+* [NMRC | Open Fund - Young Individual Research Grant](https://www.nmrc.gov.sg/grants/competitive-research-grants/of-yirg)
+* [Funding Opportunities - Abramson Cancer Center | Penn Medicine](https://www.pennmedicine.org/cancer/cancer-research/for-researchers/investigators-only/funding-opportunities)
+* [Write Your Research Plan](https://www.niaid.nih.gov/grants-contracts/write-research-plan)
+* [The underappreciated art of creating publication-quality figures](https://www.embopress.org/doi/abs/10.15252/embr.202255114)
 
 
 ## Useful Tools
 
-- [DIY.transcriptomics](https://diytranscriptomics.com/lab/)
-- [ProteinPaint](https://proteinpaint.stjude.org/)
-- [Hiplot](https://hiplot.cn/)
-- [Free Icons and Stickers](https://www.flaticon.com/)
-- [Bootstrap Icons](https://icons.getbootstrap.com/)
-- [Blood PBMCs](https://www.miltenyibiotec.com/US-en/resources/macs-handbook/human-cells-and-organs/human-cell-sources/blood-human.html)
-- [distill](https://distill.pub/)
+* [DIY.transcriptomics](https://diytranscriptomics.com/lab/)
+* [ProteinPaint](https://proteinpaint.stjude.org/)
+* [Hiplot](https://hiplot.cn/)
+* [Free Icons and Stickers](https://www.flaticon.com/)
+* [Bootstrap Icons](https://icons.getbootstrap.com/)
+* [Blood PBMCs](https://www.miltenyibiotec.com/US-en/resources/macs-handbook/human-cells-and-organs/human-cell-sources/blood-human.html)
+* [distill](https://distill.pub/)
 
 ## Nice Blogs
 
-- <https://www.andrewheiss.com/blog/>
-- <https://www.andreashandel.com/>
-- <https://renkun.me/>
-- <https://morphoscape.wordpress.com/category/tech/>
-- <https://albert-rapp.de/>
-- <https://jokergoo.github.io/>
+* <https://www.andrewheiss.com/blog/>
+* <https://www.andreashandel.com/>
+* <https://renkun.me/>
+* <https://morphoscape.wordpress.com/category/tech/>
+* <https://albert-rapp.de/>
+* <https://jokergoo.github.io/>

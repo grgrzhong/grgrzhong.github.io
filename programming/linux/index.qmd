@@ -11,7 +11,37 @@ execute:
     eval: false
 ---
 
-# Sync two folders
+## Shell
+```bash
+## Show current shell
+echo $SHELL
+
+## Change default shell to bash
+chsh -s /bin/bash
+chsh -s /bin/zsh
+
+``` 
+## Permissions
+
+Only the user can copy, execute, and change
+```bash
+chmod 700 /path/to/folder
+```
+`700` means:
+
+* Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)
+* Group: 0 (no permissions)
+* Others: 0 (no permissions)
+
+All can read and execute, only the owner can change
+```bash
+chmod 755 /path/to/folder
+```
+* Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)
+* Group: 5 (read = 4, execute = 1; 4+1 = 5)
+* Others: 5 (read = 4, execute = 1; 4+1 = 5)
+
+## Sync
 ```bash
 ## Basic command
 rsync -av /source/folder/ /destination/folder/
@@ -43,9 +73,9 @@ rsync -av --update /source/folder/ /destination/folder/
 - `--update`: Only copies if source file is newer than destination
 :::
 
-# Windows Subsystem for Linux
+## WSL
 
-## System info
+### System info
 ```bash
 
 ## Install the neofetch package
@@ -55,7 +85,7 @@ sudo apt install neofetch -y
 neofetch --memory_unit gib
 ```
 
-## WSL Change sudo password
+### WSL Change sudo password
 
 In the windows terminal, run the following command to change the sudo password:
 ```bash
@@ -66,13 +96,13 @@ wsl -u root
 passwd <username>
 ```
 
-## WSL configuration
+### WSL configuration
 - WSL global config: `C:\Users\<UserName>\.wslconfig`
 - WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`
 
-# Conda environment
+## Conda
 
-## Installation
+### Installation
 ```bash
 
 # Miniforge linux
@@ -91,7 +121,7 @@ fi
 
 ```
 
-## Configuration
+### Configuration
 
 ```bash
 
@@ -112,11 +142,10 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 #conda config --set channel_priority strict
 
-# Install software from a specific channle
+# Install software from a specific channel
 conda install -c conda-forge numpy
 ```
-
-## R environment
+### Environment
 ```bash
 # Create R environment
 conda create -n renv r-4.3 r-languageserver r-tidyverse r-irkernel r-httpgd
@@ -139,9 +168,10 @@ conda env export -n renv > renv.yml
 # Export and save the conda env file with all software information
 # without the prefix and bundle information
 conda env export -n renv --no-builds > renv.yml
+conda env export -n renv --no-builds --file renv.yml
 
 # Create a new environment with a environment file
-conda env create -f renv.yml
+conda env create --file renv.yml
 
 # Rename an environment
 conda create --name new_env_name --clone old_env_name

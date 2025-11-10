@@ -1,22 +1,69 @@
 ---
-title: "Bulk RNA-seq | From reads to DEGs"
+title: "Bulk RNA-seq and its Applications"
 date: "2025-07-28"
 # image: slurm.png
 categories: [NGS, RNA-seq, scRNA-seq]
 execute:
     eval: false
 ---
+
+## Overall Workflow
+
+- Sequencing depth: total number of reads sequenced for a sample
+- Read length: number of base pairs in each read
+- Coverage: average number of reads that align to, or "cover," each base in a reference sequence
+
+![](counts-workflow.png)
+
+### 1. Library preparation
+![](library_prep.png)
+
+* Enriching for RNA
+    + DNAse to remove any contaminating DNA -> rRNA depletion or polyA selection.
+    + ribosomal RNA represents the majority of the RNAs, 
+    + messenger RNAs represent a small percentage of total RNA (~2% in humans). 
+    + To study the protein-coding genes -> enrich for mRNA or deplete the rRNA. 
+    + For DEG analysis -> best to enrich for Poly(A)+, unless you are aiming to obtain information about long non-coding RNAs, in which case ribosomal RNA depletion is recommended.
+
+* RNA quality check: 
+    + RNA integrity prior to starting the cDNA library preparation -> Inspection of the ribosomal RNA bands via gel electrophoresis.
+    + Agilent Bioanalyzer -> RIN (RNA Integrity Number) -> provides a means by which RNA quality from different sources can be compared.
+
+* Fragmentation and size selection
+    + Chemical, enzymatic (e.g., RNAses), or physical process
+    + Size selection to retain only those fragments that Illumina sequencing machines can handle
+    + ~150-300bp
+
+* Reverse transcribe RNA into double-stranded cDNA
+    + Mostly incorporates deoxy-UTP (dUTP) during second strand synthesis
+    + Add **sequence adapters** to the ends of the cDNA fragments
+
+* PCR amplification
+    + Run as few amplication cycles as possible to avoid  PCR artefacets.
+
+### 2. Sequencing - Illumina
+![](illumina_sequencing_process.png)
+
+* SE-Single end dataset  -> Only Read1
+* PE-Paired end dataset -> Read1 + Read2
+* Paired-end reads are 2x more expensive
+* **Sequencing by synthesis**
+    + Cluster growth: Number of clusters ~= Number of reads
+    + Sequencing
+    + Image acquisition
+    + Base calling: Number of sequencing cycles = Length of reads
+
+
 ## Experimental design
 
 1. Number and type of replicates
 2. Avoiding confounding factors
 3. Addressing batch effects
 
-### Replicates
+### 1. Replicates
+![](replicates.png)
 * Technical replicates: use the same biological sample to repeat the technical or experimental steps in order to accurately measure technical variation and remove it during analysis.
 * Biological replicates: use different biological samples of the same condition to measure the biological variation between samples.
-
-![](replicates.png)
 
 :::{.callout-Note}
 - With the current RNA-seq technologies, technical variation is minimal, so technical replicates are generally not necessary.
@@ -41,7 +88,7 @@ execute:
     + Novel isoforms, at least >=60M reads per sample and paired-end reads
     + Length of reads: >=50bp paired-end reads
 
-### Confounding
+### 2. Confounding
 A confounded RNA-seq experiment is one where you **cannot distinguish the separate effects of two different sources of variation** in the data. 
 
 For example, we know that sex has large effects on gene expression, and if all of our *control* mice were female and all of the *treatment* mice were male, then our treatment effect would be confounded by sex. **We could not differentiate the effect of treatment from the effect of sex.**
@@ -56,7 +103,7 @@ For example, we know that sex has large effects on gene expression, and if all o
 
 <img src="non_confounded_design.png" width="500">
 
-### Batch effects
+### 3. Batch effects
 
 Batch effects are a significant issue for RNA-seq analyses, since you can see significant differences in expression due solely to the batch effect.
 
@@ -95,47 +142,6 @@ If *any* of the answers is **‘No’**, then you have batches.
 
 <img src="metadata_batch.png" width="300">
 
-
-## Overall Workflow
-
-- Sequencing depth: total number of reads sequenced for a sample
-- Read length: number of base pairs in each read
-- Coverage: average number of reads that align to, or "cover," each base in a reference sequence
-
-![RNA-seq Workflow](counts-workflow.png)
-
-### 1. RNA extraction and library preparation
-* Enriching for RNA: DNAse to remove any contaminating DNA -> rRNA depletion or polyA selection.
-    + Generally, ribosomal RNA represents the majority of the RNAs present in a cell, while messenger RNAs represent a small percentage of total RNA (~2% in humans). 
-    + Therefore, if we want to study the protein-coding genes, we need to enrich for mRNA or deplete the rRNA. 
-    + For differential gene expression analysis, it is best to enrich for Poly(A)+, unless you are aiming to obtain information about long non-coding RNAs, in which case ribosomal RNA depletion is recommended.
-* RNA quality check: check for the RNA integrity prior to starting the cDNA library preparation.
-    + Inspection of the ribosomal RNA bands via gel electrophoresis
-    + Agilent Bioanalyzer -> RIN (RNA Integrity Number) -> provides a means by which RNA quality from different sources can be compared.
-* Fragmentation and size selection
-    + Chemical, enzymatic (e.g., RNAses), or physical process
-    + Size selection to retain only those fragments that Illumina sequencing machines can handle
-    + ~150-300bp
-* Reverse transcribe RNA into double-stranded cDNA
-    + Most commonly used method incorporates deoxy-UTP (dUTP) during second strand synthesis
-    + Add sequence adapters to the ends of the cDNA fragments
-* PCR amplification
-    + Run as few amplication cycles as possible to avoid  PCR artefacets.
-
-[](library_prep.png)
-
-### 2. Sequencing - Illumina
-* Sequencing of the cDNA libraries will generate reads
-    + SE-Single end dataset  -> Only Read1
-    + PE-Paired end dataset -> Read1 + Read2
-
-* Sequencing by synthesis**
-    + Cluster growth: Number of clusters ~= Number of reads
-    + Sequencing
-    + Image acquisition
-    + Base calling: Number of sequencing cycles = Lengtßh of reads
-
-[](illumina_sequencing_process.png)
 
 ## Counting reads
 Count normalization is 

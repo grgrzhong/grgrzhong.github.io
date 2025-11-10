@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.8.24">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
-<title>Bulk RNA-seq | From reads to DEGs – Guorui Zhong</title>
+<title>Bulk RNA-seq and its Applications – Guorui Zhong</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -157,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Bulk RNA-seq | From reads to DEGs</h1>
+      <h1 class="title">Bulk RNA-seq and its Applications</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">NGS</div>
                 <div class="quarto-category">RNA-seq</div>
@@ -193,18 +193,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#experimental-design" id="toc-experimental-design" class="nav-link active" data-scroll-target="#experimental-design">Experimental design</a>
+<a href="#overall-workflow" id="toc-overall-workflow" class="nav-link active" data-scroll-target="#overall-workflow">Overall Workflow</a>
   <ul class="collapse">
-<li><a href="#replicates" id="toc-replicates" class="nav-link" data-scroll-target="#replicates">Replicates</a></li>
-  <li><a href="#confounding" id="toc-confounding" class="nav-link" data-scroll-target="#confounding">Confounding</a></li>
-  <li><a href="#batch-effects" id="toc-batch-effects" class="nav-link" data-scroll-target="#batch-effects">Batch effects</a></li>
+<li><a href="#library-preparation" id="toc-library-preparation" class="nav-link" data-scroll-target="#library-preparation">1. Library preparation</a></li>
+  <li><a href="#sequencing---illumina" id="toc-sequencing---illumina" class="nav-link" data-scroll-target="#sequencing---illumina">2. Sequencing - Illumina</a></li>
   </ul>
 </li>
   <li>
-<a href="#overall-workflow" id="toc-overall-workflow" class="nav-link" data-scroll-target="#overall-workflow">Overall Workflow</a>
+<a href="#experimental-design" id="toc-experimental-design" class="nav-link" data-scroll-target="#experimental-design">Experimental design</a>
   <ul class="collapse">
-<li><a href="#rna-extraction-and-library-preparation" id="toc-rna-extraction-and-library-preparation" class="nav-link" data-scroll-target="#rna-extraction-and-library-preparation">1. RNA extraction and library preparation</a></li>
-  <li><a href="#sequencing---illumina" id="toc-sequencing---illumina" class="nav-link" data-scroll-target="#sequencing---illumina">2. Sequencing - Illumina</a></li>
+<li><a href="#replicates" id="toc-replicates" class="nav-link" data-scroll-target="#replicates">1. Replicates</a></li>
+  <li><a href="#confounding" id="toc-confounding" class="nav-link" data-scroll-target="#confounding">2. Confounding</a></li>
+  <li><a href="#batch-effects" id="toc-batch-effects" class="nav-link" data-scroll-target="#batch-effects">3. Batch effects</a></li>
   </ul>
 </li>
   <li>
@@ -238,18 +238,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><section id="experimental-design" class="level2"><h2 class="anchored" data-anchor-id="experimental-design">Experimental design</h2>
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><section id="overall-workflow" class="level2"><h2 class="anchored" data-anchor-id="overall-workflow">Overall Workflow</h2>
+<ul>
+<li>Sequencing depth: total number of reads sequenced for a sample</li>
+<li>Read length: number of base pairs in each read</li>
+<li>Coverage: average number of reads that align to, or “cover,” each base in a reference sequence</li>
+</ul>
+<p><img src="counts-workflow.png" class="img-fluid"></p>
+<section id="library-preparation" class="level3"><h3 class="anchored" data-anchor-id="library-preparation">1. Library preparation</h3>
+<p><img src="library_prep.png" class="img-fluid"></p>
+<ul>
+<li>Enriching for RNA
+<ul>
+<li>DNAse to remove any contaminating DNA -&gt; rRNA depletion or polyA selection.</li>
+<li>ribosomal RNA represents the majority of the RNAs,</li>
+<li>messenger RNAs represent a small percentage of total RNA (~2% in humans).</li>
+<li>To study the protein-coding genes -&gt; enrich for mRNA or deplete the rRNA.</li>
+<li>For DEG analysis -&gt; best to enrich for Poly(A)+, unless you are aiming to obtain information about long non-coding RNAs, in which case ribosomal RNA depletion is recommended.</li>
+</ul>
+</li>
+<li>RNA quality check:
+<ul>
+<li>RNA integrity prior to starting the cDNA library preparation -&gt; Inspection of the ribosomal RNA bands via gel electrophoresis.</li>
+<li>Agilent Bioanalyzer -&gt; RIN (RNA Integrity Number) -&gt; provides a means by which RNA quality from different sources can be compared.</li>
+</ul>
+</li>
+<li>Fragmentation and size selection
+<ul>
+<li>Chemical, enzymatic (e.g., RNAses), or physical process</li>
+<li>Size selection to retain only those fragments that Illumina sequencing machines can handle</li>
+<li>~150-300bp</li>
+</ul>
+</li>
+<li>Reverse transcribe RNA into double-stranded cDNA
+<ul>
+<li>Mostly incorporates deoxy-UTP (dUTP) during second strand synthesis</li>
+<li>Add <strong>sequence adapters</strong> to the ends of the cDNA fragments</li>
+</ul>
+</li>
+<li>PCR amplification
+<ul>
+<li>Run as few amplication cycles as possible to avoid PCR artefacets.</li>
+</ul>
+</li>
+</ul></section><section id="sequencing---illumina" class="level3"><h3 class="anchored" data-anchor-id="sequencing---illumina">2. Sequencing - Illumina</h3>
+<p><img src="illumina_sequencing_process.png" class="img-fluid"></p>
+<ul>
+<li>SE-Single end dataset -&gt; Only Read1</li>
+<li>PE-Paired end dataset -&gt; Read1 + Read2</li>
+<li>Paired-end reads are 2x more expensive</li>
+<li>
+<strong>Sequencing by synthesis</strong>
+<ul>
+<li>Cluster growth: Number of clusters ~= Number of reads</li>
+<li>Sequencing</li>
+<li>Image acquisition</li>
+<li>Base calling: Number of sequencing cycles = Length of reads</li>
+</ul>
+</li>
+</ul></section></section><section id="experimental-design" class="level2"><h2 class="anchored" data-anchor-id="experimental-design">Experimental design</h2>
 <ol type="1">
 <li>Number and type of replicates</li>
 <li>Avoiding confounding factors</li>
 <li>Addressing batch effects</li>
 </ol>
-<section id="replicates" class="level3"><h3 class="anchored" data-anchor-id="replicates">Replicates</h3>
-<ul>
-<li>Technical replicates: use the same biological sample to repeat the technical or experimental steps in order to accurately measure technical variation and remove it during analysis.</li>
-<li>Biological replicates: use different biological samples of the same condition to measure the biological variation between samples.</li>
-</ul>
-<p><img src="replicates.png" class="img-fluid"></p>
+<section id="replicates" class="level3"><h3 class="anchored" data-anchor-id="replicates">1. Replicates</h3>
+<p><img src="replicates.png" class="img-fluid"> * Technical replicates: use the same biological sample to repeat the technical or experimental steps in order to accurately measure technical variation and remove it during analysis. * Biological replicates: use different biological samples of the same condition to measure the biological variation between samples.</p>
 <div class="callout-Note">
 <ul>
 <li>With the current RNA-seq technologies, technical variation is minimal, so technical replicates are generally not necessary.</li>
@@ -280,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Length of reads: &gt;=50bp paired-end reads</li>
 </ul>
 </li>
-</ul></section><section id="confounding" class="level3"><h3 class="anchored" data-anchor-id="confounding">Confounding</h3>
+</ul></section><section id="confounding" class="level3"><h3 class="anchored" data-anchor-id="confounding">2. Confounding</h3>
 <p>A confounded RNA-seq experiment is one where you <strong>cannot distinguish the separate effects of two different sources of variation</strong> in the data.</p>
 <p>For example, we know that sex has large effects on gene expression, and if all of our <em>control</em> mice were female and all of the <em>treatment</em> mice were male, then our treatment effect would be confounded by sex. <strong>We could not differentiate the effect of treatment from the effect of sex.</strong></p>
 <p><img src="confounded_design.png" width="500"></p>
@@ -290,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>If not possible, then ensure to split the animals equally between conditions</p></li>
 </ul>
 <p><img src="non_confounded_design.png" width="500"></p>
-</section><section id="batch-effects" class="level3"><h3 class="anchored" data-anchor-id="batch-effects">Batch effects</h3>
+</section><section id="batch-effects" class="level3"><h3 class="anchored" data-anchor-id="batch-effects">3. Batch effects</h3>
 <p>Batch effects are a significant issue for RNA-seq analyses, since you can see significant differences in expression due solely to the batch effect.</p>
 <p><img src="batch_effect_pca.png" width="500"></p>
 <p><strong>How to know whether you have batches?</strong></p>
@@ -322,69 +376,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>DO</strong> include batch information in your <strong>experimental metadata</strong>. During the analysis, we can regress out the variation due to batch if not confounded so it doesn’t affect our results – if we have that information.</p></li>
 </ul>
 <p><img src="metadata_batch.png" width="300"></p>
-</section></section><section id="overall-workflow" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="overall-workflow">Overall Workflow</h2>
-<ul>
-<li>Sequencing depth: total number of reads sequenced for a sample</li>
-<li>Read length: number of base pairs in each read</li>
-<li>Coverage: average number of reads that align to, or “cover,” each base in a reference sequence</li>
-</ul>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full"><p><img src="counts-workflow.png" class="img-fluid figure-img"></p>
-<figcaption class="margin-caption">RNA-seq Workflow</figcaption></figure>
-</div>
-<section id="rna-extraction-and-library-preparation" class="level3"><h3 class="anchored" data-anchor-id="rna-extraction-and-library-preparation">1. RNA extraction and library preparation</h3>
-<ul>
-<li>Enriching for RNA: DNAse to remove any contaminating DNA -&gt; rRNA depletion or polyA selection.
-<ul>
-<li>Generally, ribosomal RNA represents the majority of the RNAs present in a cell, while messenger RNAs represent a small percentage of total RNA (~2% in humans).</li>
-<li>Therefore, if we want to study the protein-coding genes, we need to enrich for mRNA or deplete the rRNA.</li>
-<li>For differential gene expression analysis, it is best to enrich for Poly(A)+, unless you are aiming to obtain information about long non-coding RNAs, in which case ribosomal RNA depletion is recommended.</li>
-</ul>
-</li>
-<li>RNA quality check: check for the RNA integrity prior to starting the cDNA library preparation.
-<ul>
-<li>Inspection of the ribosomal RNA bands via gel electrophoresis</li>
-<li>Agilent Bioanalyzer -&gt; RIN (RNA Integrity Number) -&gt; provides a means by which RNA quality from different sources can be compared.</li>
-</ul>
-</li>
-<li>Fragmentation and size selection
-<ul>
-<li>Chemical, enzymatic (e.g., RNAses), or physical process</li>
-<li>Size selection to retain only those fragments that Illumina sequencing machines can handle</li>
-<li>~150-300bp</li>
-</ul>
-</li>
-<li>Reverse transcribe RNA into double-stranded cDNA
-<ul>
-<li>Most commonly used method incorporates deoxy-UTP (dUTP) during second strand synthesis</li>
-<li>Add sequence adapters to the ends of the cDNA fragments</li>
-</ul>
-</li>
-<li>PCR amplification
-<ul>
-<li>Run as few amplication cycles as possible to avoid PCR artefacets.</li>
-</ul>
-</li>
-</ul>
-<p><a href="library_prep.png"></a></p>
-</section><section id="sequencing---illumina" class="level3"><h3 class="anchored" data-anchor-id="sequencing---illumina">2. Sequencing - Illumina</h3>
-<ul>
-<li>Sequencing of the cDNA libraries will generate reads
-<ul>
-<li>SE-Single end dataset -&gt; Only Read1</li>
-<li>PE-Paired end dataset -&gt; Read1 + Read2</li>
-</ul>
-</li>
-<li>Sequencing by synthesis**
-<ul>
-<li>Cluster growth: Number of clusters ~= Number of reads</li>
-<li>Sequencing</li>
-<li>Image acquisition</li>
-<li>Base calling: Number of sequencing cycles = Lengtßh of reads</li>
-</ul>
-</li>
-</ul>
-<p><a href="illumina_sequencing_process.png"></a></p>
 </section></section><section id="counting-reads" class="level2"><h2 class="anchored" data-anchor-id="counting-reads">Counting reads</h2>
 <p>Count normalization is</p>
 <section id="quality-control-of-raw-reads" class="level3"><h3 class="anchored" data-anchor-id="quality-control-of-raw-reads">1. Quality control of raw reads</h3>

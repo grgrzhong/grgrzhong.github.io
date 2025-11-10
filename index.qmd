@@ -19,7 +19,15 @@ about:
       href: https://www.linkedin.com/in/guorui-zhong-754761185/
 ---
 
-My research interests focus on the genetic determinants underlying disease initiation, progression, and therapeutic response. Particaulary, I am interested in:
+👋 Hi, I am Guorui Zhong.
+
+🔬 Cell biologist with applied skills in bioinformatics and computational biology.
+🧪 Wet‑lab expertise in developing genome-editing cell models with CRISPR/Cas9.
+📊 Experienced in analyzing Multi-Omics dataset, including WGS, WES, RNA‑seq, scRNA-seq, methylation arrays, and proteomics datasets.
+📊 Experienced in imaging-based phenotypic profiling with machine learning application.
+💻 Skilled in R (tidyverse, Bioconductor, ggplot2) and expanding my Python toolkit.
+<!-- 🎓 Certified in Data Analysis for Genomics (HarvardX). -->
+🌱 Actively exploring public datasets (TCGA, PDC) and sharing reproducible analyses here on GitHub.
 
 ## Education
 2014 - 2019 Ph.D., Biochemistry and Molecular Biology, South China University of Technology,
