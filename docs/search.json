@@ -245,36 +245,36 @@
     "text": "Fisher’s exact test"
   },
   {
-    "objectID": "programming/python/index.html",
-    "href": "programming/python/index.html",
+    "objectID": "python/index.html",
+    "href": "python/index.html",
     "title": "Python",
     "section": "",
     "text": "in Python, understanding data types and structures is essential for writting effective code. Data types determine the kind of data a variable can hold, while data structures allow you to organize and manage that data efficiently.\n\nNumbers: Represent numerical values, including integers and floating-point numbers.\nStrings: Represent sequences of characters, used for text manipulation.\nBooleans: Represent truth values, either True or False.\nLists: Ordered collections of items, allowing for duplicate values and mutable operations.\nTuples: Ordered collections of items, similar to lists but immutable.\nDictionaries: Unordered, Key-value pairs that allow for efficient data retrieval based on unique keys.\nSets: Unordered collections of unique items, useful for membership testing and eliminating duplicates.\n\n\n# Numbers and strings\ninteger_num = 42\nfloat_num = 3.14\nstring_text = \"Hello, Python!\"\n\n# List: mutable, ordered collection\nfruits = [\"apple\", \"banana\", \"cherry\"]\n\n# Tuple: immutable, ordered collection\ndimensions = (1920, 1080)\n\n# Dictionary: unordered, key-value pairs\nperson = {\"name\": \"Alice\", \"age\": 30, \"city\": \"New York\"}\n\n# Set: unordered collection of unique items\nunique_numbers = {1, 2, 3, 4, 5}\n\nprint(\"Integer:\", integer_num)\nprint(\"Float:\", float_num)\nprint(\"String:\", string_text)\nprint(\"List of fruits:\", fruits)\nprint(\"Tuple of dimensions:\", dimensions)\nprint(\"Dictionary of person:\", person)\nprint(\"Set of unique numbers:\", unique_numbers)\n\n\n\n\nControl flow in Python allows you to make decisions and execute different blocks of code based on conditions. Loops enable you to repeat a block of code multiple times.\nBest practices for control flow and loops include: - Keep conditions simple and clear. Break down complex conditions into smaller parts. - Use meaningful variable names to enhance readability. - Avoid deeply nested loops and conditions to maintain code clarity. - Use comments to explain the purpose of complex conditions or loops. - Test edge cases to ensure your control flow behaves as expected.\n\n# Conditional statements\nx = 10\nif x &gt; 5:\n    print(\"x is greater than 5\")\nelif x == 5:\n    print(\"x is equal to 5\")\nelse:\n    print(\"x is less than 5\")\n\n# For loop: iterating over a list\nfor i in range(5):\n    print(\"Iteration:\", i)\n\n# While loop: continues until a condition is met\ncount = 0\nwhile count &lt; 5:\n    print(\"Count is:\", count)\n    count += 1"
   },
   {
-    "objectID": "programming/python/index.html#data-types",
-    "href": "programming/python/index.html#data-types",
+    "objectID": "python/index.html#data-types",
+    "href": "python/index.html#data-types",
     "title": "Python",
     "section": "",
     "text": "in Python, understanding data types and structures is essential for writting effective code. Data types determine the kind of data a variable can hold, while data structures allow you to organize and manage that data efficiently.\n\nNumbers: Represent numerical values, including integers and floating-point numbers.\nStrings: Represent sequences of characters, used for text manipulation.\nBooleans: Represent truth values, either True or False.\nLists: Ordered collections of items, allowing for duplicate values and mutable operations.\nTuples: Ordered collections of items, similar to lists but immutable.\nDictionaries: Unordered, Key-value pairs that allow for efficient data retrieval based on unique keys.\nSets: Unordered collections of unique items, useful for membership testing and eliminating duplicates.\n\n\n# Numbers and strings\ninteger_num = 42\nfloat_num = 3.14\nstring_text = \"Hello, Python!\"\n\n# List: mutable, ordered collection\nfruits = [\"apple\", \"banana\", \"cherry\"]\n\n# Tuple: immutable, ordered collection\ndimensions = (1920, 1080)\n\n# Dictionary: unordered, key-value pairs\nperson = {\"name\": \"Alice\", \"age\": 30, \"city\": \"New York\"}\n\n# Set: unordered collection of unique items\nunique_numbers = {1, 2, 3, 4, 5}\n\nprint(\"Integer:\", integer_num)\nprint(\"Float:\", float_num)\nprint(\"String:\", string_text)\nprint(\"List of fruits:\", fruits)\nprint(\"Tuple of dimensions:\", dimensions)\nprint(\"Dictionary of person:\", person)\nprint(\"Set of unique numbers:\", unique_numbers)"
   },
   {
-    "objectID": "programming/python/index.html#control-flow-and-loops",
-    "href": "programming/python/index.html#control-flow-and-loops",
+    "objectID": "python/index.html#control-flow-and-loops",
+    "href": "python/index.html#control-flow-and-loops",
     "title": "Python",
     "section": "",
     "text": "Control flow in Python allows you to make decisions and execute different blocks of code based on conditions. Loops enable you to repeat a block of code multiple times.\nBest practices for control flow and loops include: - Keep conditions simple and clear. Break down complex conditions into smaller parts. - Use meaningful variable names to enhance readability. - Avoid deeply nested loops and conditions to maintain code clarity. - Use comments to explain the purpose of complex conditions or loops. - Test edge cases to ensure your control flow behaves as expected.\n\n# Conditional statements\nx = 10\nif x &gt; 5:\n    print(\"x is greater than 5\")\nelif x == 5:\n    print(\"x is equal to 5\")\nelse:\n    print(\"x is less than 5\")\n\n# For loop: iterating over a list\nfor i in range(5):\n    print(\"Iteration:\", i)\n\n# While loop: continues until a condition is met\ncount = 0\nwhile count &lt; 5:\n    print(\"Count is:\", count)\n    count += 1"
   },
   {
-    "objectID": "programming/python/index.html#install-and-libraries",
-    "href": "programming/python/index.html#install-and-libraries",
+    "objectID": "python/index.html#install-and-libraries",
+    "href": "python/index.html#install-and-libraries",
     "title": "Python",
     "section": "Install and libraries",
     "text": "Install and libraries\n\npython3 -m pip install pandas\n\n\nimport pandas as pd\nimport numpy as np\nimport matplotlib as plt\n\n## Use a function from library, first specify the library nickname and then \n## the function name, separated by a dot:\nnp.log(7)\n\nlibrary(dplyr)"
   },
   {
-    "objectID": "programming/python/index.html#pandas-data-frame",
-    "href": "programming/python/index.html#pandas-data-frame",
+    "objectID": "python/index.html#pandas-data-frame",
+    "href": "python/index.html#pandas-data-frame",
     "title": "Python",
     "section": "Pandas data frame",
     "text": "Pandas data frame\nThe syntax for the python involves a single argument corresponding to a type of object called a dictionary (a dictionary is defined with curly brackets) whose named entries each contain a python list ([1,2,3,4] and [5,6,7,8]) of the values that will form a column.\n\ndf = pd.DataFrame(\n    {\n        'a': [1,2,3,4],\n        'b': [5,6,7,8]\n    }\n)\nprint(df)\n\n\nVariable\n\nNumber\nString\nTuple\nList: Mutable, container\nDictionary: Mutable, container\nSet: Mutable, container\nNone: empty value\n\ntuple = (1, 2, 3)\nlist = [1, 2, 3]\ndict = {\"ele1\":1, \"ele2\":2, \"ele3\":3}\n\n\nOperators\nNumerical Operators: - &lt; : less than - &gt; : greater than - &lt;= : less than or equal to - &gt;= : greater than or equal to - == : equal to - != : not equal to\nString Operators: - == : equal to - != : not equal to\nLogical Operators: - and - or - not\n\n\nConditional execution\nConditional execution in Python is achieved using the if/else construct (if and else are reserved words).\n# Conidtional execution\nx = 10\nif x &gt; 10:\n    print(\"I am a big number\")\nelse:\n    print(\"I am a small number\")\n\n# Multi-way if/else\nx = 10\nif x &gt; 10:\n    print(\"I am a big number\")\nelif x &gt; 5:\n    print(\"I am kind of small\")\nelse:\n    print(\"I am really number\")\n\n\nIteration/Lopps\nTwo looping constructs in Python\n\nFor : used when the number of possible iterations (repetitions) are known in advance\nWhile: used when the number of possible iterations (repetitions) can not be defined in advance. Can lead to infinite loops, if conditions are not handled properly\n\nfor customer in [“John”, “Mary”, “Jane”]:\n    print(“Hello ”, customer)\n    print(“Please pay”)\n    collectCash()\n    giveGoods()\n\nhour_of_day = 9\nwhile hour_of_day &lt; 17:\n    moveToWarehouse()\n    locateGoods()\n    moveGoodsToShip()\n    hour_of_day = getCurrentTime()\nWhat happens if you need to stop early? We use the break keyword to do this.\nIt stops the iteration immediately and moves on to the statement that follows the looping\nwhile hour_of_day &lt; 17:\n    if shipIsFull() == True:\n        break\n    moveToWarehouse()\n    locateGoods()\n    moveGoodsToShip()\n    hour_of_day = getCurrentTime()\ncollectPay()\nWhat happens when you want to just skip the rest of the steps? We can use the continue keyword for this.\nIt skips the rest of the steps but moves on to the next iteration.\nfor customer in [\"John\", \"Mary\", \"Jane\"]:\n    print(“Hello ”, customer)\n    print(“Please pay”)\n    paid = collectCash()\n    if paid == false:\n        continue\n    giveGoods()\n\n\nExceptions\n\nExceptions are errors that are found during execution of the Python program.\nThey typically cause the program to fail.\nHowever we can handle them using the ‘try/except’ construct.\n\nnum = input(\"Please enter a number: \")\ntry:\n    num = int(num)\n    print(\"number squared is \" + str(num**2))\nexcept:\n    print(\"You did not enter a valid number\")\n\n\nGeneral functions\nhelp()\ntype()\nlen() \nrange()\nlist()      \ntuple()\ndict()"
@@ -2254,50 +2254,50 @@
     "text": "Research Interests\n\nGenome edition technologies (e.g., CRISPR/Cas9) to dissect gene functions in cancer and immune cells.\nHigh-throughput imaging and computational analysis to study cell behaviors.\nSingle-cell omics to study cellular heterogeneity and dynamics.\nDevelop and use quantitative in vitro/image assays and machine learning models to predict the biological effects of genetic mutations, drugs and/or environmental agents."
   },
   {
-    "objectID": "programming/linux/index.html",
-    "href": "programming/linux/index.html",
+    "objectID": "linux/index.html",
+    "href": "linux/index.html",
     "title": "Linux",
     "section": "",
     "text": "## Show current shell\necho $SHELL\n\n## Change default shell to bash\nchsh -s /bin/bash\nchsh -s /bin/zsh"
   },
   {
-    "objectID": "programming/linux/index.html#shell",
-    "href": "programming/linux/index.html#shell",
+    "objectID": "linux/index.html#shell",
+    "href": "linux/index.html#shell",
     "title": "Linux",
     "section": "",
     "text": "## Show current shell\necho $SHELL\n\n## Change default shell to bash\nchsh -s /bin/bash\nchsh -s /bin/zsh"
   },
   {
-    "objectID": "programming/linux/index.html#permissions",
-    "href": "programming/linux/index.html#permissions",
+    "objectID": "linux/index.html#permissions",
+    "href": "linux/index.html#permissions",
     "title": "Linux",
     "section": "Permissions",
-    "text": "Permissions\nOnly the user can copy, execute, and change\nchmod 700 /path/to/folder\n700 means:\n\nOwner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)\nGroup: 0 (no permissions)\nOthers: 0 (no permissions)\n\nAll can read and execute, only the owner can change\nchmod 755 /path/to/folder\n\nOwner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)\nGroup: 5 (read = 4, execute = 1; 4+1 = 5)\nOthers: 5 (read = 4, execute = 1; 4+1 = 5)"
+    "text": "Permissions\nOnly the user can copy, execute, and change\nchmod 700 /path/to/folder\n700 means:\n\nOwner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)\nGroup: 0 (no permissions)\nOthers: 0 (no permissions)\n\nAll can read and execute, only the owner can change\nchmod 755 /path/to/folder\n\nOwner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)\nGroup: 5 (read = 4, execute = 1; 4+1 = 5)\nOthers: 5 (read = 4, execute = 1; 4+1 = 5)\n\nChange owner\nsudo chown username:groupname /path/to/folder"
   },
   {
-    "objectID": "programming/linux/index.html#sync",
-    "href": "programming/linux/index.html#sync",
+    "objectID": "linux/index.html#sync",
+    "href": "linux/index.html#sync",
     "title": "Linux",
     "section": "Sync",
     "text": "Sync\n## Basic command\nrsync -av /source/folder/ /destination/folder/\n\n## Sync source to destination\nrsync -av --delete /source/folder/ /destination/folder/\n\n## If you need two-way sync, run both directions\nrsync -av --delete /folder1/ /folder2/\nrsync -av --delete /folder2/ /folder1/\n\n## Network sync\nrsync -av --delete /local/folder/ user@remote:/remote/folder/\n\n## Copy only new files (files that don't exist in the destination)\nrsync -av --ignore-existing /source/folder/ /destination/folder/\n\n## Copy only if source is newer\nrsync -av --update /source/folder/ /destination/folder/\n\n\n\n\n\n\nNote\n\n\n\n\n-a (archive): Preserves permissions, timestamps, symbolic links, etc.\n-v (verbose): Shows progress\n--delete: Removes files in destination that don’t exist in source\n-n (dry-run): Preview changes without actually syncing\n-u (update): Only copy newer file\n--ignore-existing: Skips files that already exist in destination (regardless of age)\n--update: Only copies if source file is newer than destination"
   },
   {
-    "objectID": "programming/linux/index.html#wsl",
-    "href": "programming/linux/index.html#wsl",
+    "objectID": "linux/index.html#wsl",
+    "href": "linux/index.html#wsl",
     "title": "Linux",
     "section": "WSL",
     "text": "WSL\n\nSystem info\n\n## Install the neofetch package\nsudo apt install neofetch -y\n\n## Show system info\nneofetch --memory_unit gib\n\n\nWSL Change sudo password\nIn the windows terminal, run the following command to change the sudo password:\n\nwsl -u root\n\n## Input the new password\npasswd &lt;username&gt;\n\n\nWSL configuration\n\nWSL global config: C:\\Users\\&lt;UserName&gt;\\.wslconfig\nWSL distro config: \\\\wsl.localhost\\Ubuntu-24.04\\etc\\wsl.conf"
   },
   {
-    "objectID": "programming/linux/index.html#conda",
-    "href": "programming/linux/index.html#conda",
+    "objectID": "linux/index.html#conda",
+    "href": "linux/index.html#conda",
     "title": "Linux",
     "section": "Conda",
     "text": "Conda\n\nInstallation\n\n# Miniforge linux\nwget \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh\"\n\n# Miniforge Mac\nwget \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh\"\n\n# Install it\nbash Miniforge3-$(uname)-$(uname -m).sh\n\n# Add conda to PATH if found\nif [ -f \"$HOME/miniconda3/etc/profile.d/conda.sh\" ]; then\n    . $HOME/miniconda3/etc/profile.d/conda.sh\nfi\n\n\nConfiguration\n\n# Init\nconda init --all\n\n# Use mamba for faster solving\nconda update -n base conda\nconda install -n base conda-libmamba-solver\n\n# Config\nconda config --set solver libmamba\nconda config --set always_yes true\nconda config --set auto_activate_base false\n\n# Setup channels\nconda config --add channels bioconda\nconda config --add channels conda-forge\n#conda config --set channel_priority strict\n\n# Install software from a specific channel\nconda install -c conda-forge numpy\n\n\nEnvironment\n# Create R environment\nconda create -n renv r-4.3 r-languageserver r-tidyverse r-irkernel r-httpgd\n\n# Install bioconductor packages, all package names are lower case\nconda install -n renv bioconductor-deseq2 bioconductor-edger\n\n# Install repository packages\nconda install -n renv r-qs r-fs r-tidyverse\n\n# Remove a specific environment\nconda remove --name renv --all\n\n# Remove a software in a environment\nconda remove --name renv package_name\n\n# Export and save the conda env file with all software information\nconda env export -n renv &gt; renv.yml\n\n# Export and save the conda env file with all software information\n# without the prefix and bundle information\nconda env export -n renv --no-builds &gt; renv.yml\nconda env export -n renv --no-builds --file renv.yml\n\n# Create a new environment with a environment file\nconda env create --file renv.yml\n\n# Rename an environment\nconda create --name new_env_name --clone old_env_name\nconda activate new_env_name\nconda remove --name old_env_name --all"
   },
   {
-    "objectID": "programming/r/index.html",
-    "href": "programming/r/index.html",
+    "objectID": "r/index.html",
+    "href": "r/index.html",
     "title": "R",
     "section": "",
     "text": "Basic concepts\nData structure\n\nGeneral functions\ndir()                            # Show the directory\ngetwd()                          # Check working directory\nsetwd()                          # Change working directory\ndata()                           # Load built-in dataset\nview()                           # View the entire dataset\ntail()                           # Just show the last 6 rows\nclass()                          # Check the class of an R object\nstr()                            # Display internal structure of an R object\nlength()                         # Give length of a vector\ndim()                            # View the number of rows and columns of a matrix or a data frame\nnames()                          # List names of variables in a data frame\nset.seed()                       # Generate random number seed to make sure the results do not change.\nls()                             # list the variables in the workspace\nrm()                             # remove the variable from workspace\nrm(list = ls())                  # remove all the variables from the workspace\nlist.files()                     # List the filename under specific directory\n.libPaths()                      # R installation site\nhelp(package=\"\")                 # Check the functions of R library\nsystem.file(package=“dagdata”)   # Extract the location of package\ncolnames(installed.packages())   # list the installed packages\nBest practise for R coding\n\nVariables = my_variable\nFunctions = RunThisStuffs()\nConstants = CONSTANTS\nUse 4 spaces (and not tab) for indentations\nAlways writing documentation above function definition\nA function should not be longer than one screen\nAvoid using for loop, learn lapply and vector operations\nNever ever use hard-coded variables in functions\n\n### ====== to divide function blocks\n\n### ------ to divide parts in a function\nName and style code consistently\n\nrm(list =ls()) and gc() to tidy up its memory\nDon’t save a session history\nKeep track of sessionInfo() in project folder\nUse version control\nggplot2 Variable repacement\n!!as.name(), get(), !!sym(), .data[[]]\n\nlibrary(ggplot2)\ndata &lt;- data.frame(\n  x = c(1, 2, 3, 4),\n  y = c(10, 20, 30, 40),\n  group = c(\"A\", \"A\", \"B\", \"B\")\n)\n\ncolor_var &lt;- \"group\"\nggplot(data, aes(x = x, y = y, color = !!as.name(color_var))) +\n  geom_point()\n  \nggplot(data, aes(x = x, y = y, color = get(color_var))) +\n  geom_point()\n\n\nggplot(data, aes(x = x, y = y, color = !!sym(color_var))) +\n  geom_point()\n\nggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +\n  geom_point()\n\nUsing R in vscode with Conda environment\n// Add these to the remove settings\n\n{\n    \"r.alwaysUseActiveTerminal\": true,\n    \"r.bracketedPaste\": true,\n    \"r.helpPanel.cacheIndexFiles\": \"Global\",\n    \"r.plot.useHttpgd\": true,\n    \"r.rmarkdown.chunkBackgroundColor\": \"\",\n    \"r.rterm.option\": [\n        \"--no-save\",\n        \"--no-restore\",\n        \"--r-binary=/home/zhonggr/miniforge3/envs/renv/bin/R\"\n    ],\n    \"r.rpath.linux\": \"/home/zhonggr/miniforge3/envs/renv/bin/R\",\n    \"r.rterm.linux\": \"/home/zhonggr/miniforge3/envs/renv/bin/radian\"\n}\nReference\n\nAn Introduction to Statistical Learning\nR for Data Science (2e)\nR Graphics Cookbook, 2nd edition\nAdvanced R\nggplot2: Elegant Graphics for Data Analysis\nFunctional Programming\nThe Epidemiologist R Handbook\nModern Statistics for Modern Biology\nData Analysis and Prediction Algorithms with R\nBioinformatics Training & Education Program\nSaving R Graphics across OSs\nTutorial on Advanced Stats and Machine Learning with R\nPublication ready plots using ggpubr\ndatanovia\nData Analysis in Genome Biology\nData Viz with Python and R\nPH525x series - Biomedical Data Science\nAn Introduction to Statistical Learning\nThe Epidemiologist R Handbook\nData Analysis in Genome Biology\nPH525x series - Biomedical Data Science"
