@@ -19,7 +19,7 @@ quarto render
 git add .
 # git add docs
 
-git commit -m "update blogs"
+git commit -m "Update blogs"
 
 ### push to the remote repository
 git push -u origin main --force

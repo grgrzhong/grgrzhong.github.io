@@ -12,8 +12,7 @@ execute:
     eval: false
 ---
 
-# Python basics
-## Data types
+# Data types
 
 in Python, understanding data types and structures is essential for writting
 effective code. Data types determine the kind of data a variable can hold,
@@ -57,7 +56,7 @@ print("Set of unique numbers:", unique_numbers)
 
 ```
 
-## Control flow and Loops
+# Control flow and Loops
 Control flow in Python allows you to make decisions and execute different blocks of code based on conditions. 
 Loops enable you to repeat a block of code multiple times.
 
@@ -120,7 +119,31 @@ np.log(7)
 library(dplyr)
 ```
 
-## Pandas data frame
+## Loading libraries
+
+::: {.panel-tabset}
+
+### Python
+```{python}
+#| eval: false
+#| message: false
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+```
+### R
+```{r}
+#| message: false
+#| warning: false
+#| eval: false
+
+library(dplyr)
+filter(iris, Species == "virginica")
+```
+
+:::
+
+# Pandas data frame
 
 The syntax for the python involves a single argument corresponding to a type of object called a dictionary (a dictionary is defined with curly brackets) whose named entries each contain a python list ([1,2,3,4] and [5,6,7,8]) of the values that will form a column.
 
@@ -137,7 +160,7 @@ print(df)
 ```{python}
 
 ```
-### Variable
+## Variable
 
 - `Number`
 - `String`
