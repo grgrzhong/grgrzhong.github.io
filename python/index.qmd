@@ -12,7 +12,9 @@ execute:
     eval: false
 ---
 
-# Data types
+## Python basics
+
+### Data type
 
 in Python, understanding data types and structures is essential for writting
 effective code. Data types determine the kind of data a variable can hold,
@@ -55,8 +57,41 @@ print("Dictionary of person:", person)
 print("Set of unique numbers:", unique_numbers)
 
 ```
+### Variable
 
-# Control flow and Loops
+- `Number`
+- `String`
+- `Tuple`
+- `List`: Mutable, container
+- `Dictionary`: Mutable, container
+- `Set`: Mutable, container
+- `None`: empty value
+
+```python
+tuple = (1, 2, 3)
+list = [1, 2, 3]
+dict = {"ele1":1, "ele2":2, "ele3":3}
+```
+### Operator
+
+Numerical Operators:
+- `< ` : less than
+- `> ` : greater than
+- `<=` : less than or equal to
+- `>=` : greater than or equal to
+- `==` : equal to
+- `!=` : not equal to
+
+String Operators:
+- `==` : equal to
+- `!=` : not equal to
+
+Logical Operators:
+- and
+- or
+- not
+
+### Control flow
 Control flow in Python allows you to make decisions and execute different blocks of code based on conditions. 
 Loops enable you to repeat a block of code multiple times.
 
@@ -79,126 +114,27 @@ elif x == 5:
 else:
     print("x is less than 5")
 
-# For loop: iterating over a list
+```
+### Iteration
+```{python}
+#| eval: false
+
+## For loop: iterating over a list
 for i in range(5):
     print("Iteration:", i)
 
-# While loop: continues until a condition is met
+## While loop: continues until a condition is met
 count = 0
 while count < 5:
     print("Count is:", count)
     count += 1
-
 ```
-
-# Python for R users
-
-## Install and libraries
-
-```{python}
-#| eval: false
-
-python3 -m pip install pandas
-
-```
-
-```{python}
-#| eval: false
-
-import pandas as pd
-import numpy as np
-import matplotlib as plt
-
-## Use a function from library, first specify the library nickname and then 
-## the function name, separated by a dot:
-np.log(7)
-
-```
-
-```{r}
-library(dplyr)
-```
-
-## Loading libraries
-
-::: {.panel-tabset}
-
-### Python
-```{python}
-#| eval: false
-#| message: false
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-```
-### R
-```{r}
-#| message: false
-#| warning: false
-#| eval: false
-
-library(dplyr)
-filter(iris, Species == "virginica")
-```
-
-:::
-
-# Pandas data frame
-
-The syntax for the python involves a single argument corresponding to a type of object called a dictionary (a dictionary is defined with curly brackets) whose named entries each contain a python list ([1,2,3,4] and [5,6,7,8]) of the values that will form a column.
-
-```{python}
-df = pd.DataFrame(
-    {
-        'a': [1,2,3,4],
-        'b': [5,6,7,8]
-    }
-)
-print(df)
-```
-
-```{python}
-
-```
-## Variable
-
-- `Number`
-- `String`
-- `Tuple`
-- `List`: Mutable, container
-- `Dictionary`: Mutable, container
-- `Set`: Mutable, container
-- `None`: empty value
-
-```python
-tuple = (1, 2, 3)
-list = [1, 2, 3]
-dict = {"ele1":1, "ele2":2, "ele3":3}
-```
-### Operators
-
-Numerical Operators:
-- `< ` : less than
-- `> ` : greater than
-- `<=` : less than or equal to
-- `>=` : greater than or equal to
-- `==` : equal to
-- `!=` : not equal to
-
-String Operators:
-- `==` : equal to
-- `!=` : not equal to
-
-Logical Operators:
-- and
-- or
-- not
-
-### Conditional execution
 
 Conditional execution in Python is achieved using the if/else construct (if and else are reserved words).
 
-```python
+```{python}
+#| eval: false
+
 # Conidtional execution
 x = 10
 if x > 10:
@@ -224,10 +160,12 @@ Two looping constructs in Python
 
 - `While`: used when the number of possible iterations (repetitions) can not be defined in advance. Can lead to infinite loops, if conditions are not handled properly
 
-```python
-for customer in [“John”, “Mary”, “Jane”]:
-	print(“Hello ”, customer)
-	print(“Please pay”)
+```{python} 
+#| eval: false
+
+for customer in ["John", "Mary", "Jane"]:
+	print("Hello ", customer)
+	print("Please pay")
 	collectCash()
 	giveGoods()
 
@@ -242,7 +180,9 @@ What happens if you need to stop early? We use the `break` keyword to do this.
 
 It stops the iteration immediately and moves on to the statement that follows the looping
 
-```python
+```{python}
+#| eval: false
+
 while hour_of_day < 17:
 	if shipIsFull() == True:
 		break
@@ -256,12 +196,13 @@ What happens when you want to just skip the rest of the steps? We can use the `c
 
 It skips the rest of the steps but moves on to the next iteration.
 
-```python
+```{python}
+#| eval: false
 for customer in ["John", "Mary", "Jane"]:
-	print(“Hello ”, customer)
-	print(“Please pay”)
+	print("Hello ", customer)
+	print("Please pay")
 	paid = collectCash()
-	if paid == false:
+	if paid == False:
 		continue
 	giveGoods()
 ```
@@ -270,7 +211,8 @@ for customer in ["John", "Mary", "Jane"]:
 - They typically cause the program to fail.
 - However we can handle them using the ‘try/except’ construct.
 
-```python
+```{python}
+#| eval: false
 num = input("Please enter a number: ")
 try:
 	num = int(num)
@@ -280,7 +222,8 @@ except:
 ```
 ### General functions
 
-```python
+```{python}
+#| eval: false
 help()
 type()
 len() 
@@ -290,7 +233,59 @@ tuple()
 dict()
 ```
 
-# Reference
+## Python for R users
+
+### Install and load library
+::: {.panel-tabset}
+#### Python
+```{python}
+#| eval: false
+## Install library using pip
+python3 -m pip install pandas numpy matplotlib
+
+## Install library using conda
+conda install pandas numpy matplotlib
+
+## Load library
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+## Use a function from library, first specify the library nickname and then 
+## the function name, separated by a dot:
+np.log(7)
+```
+
+#### R
+```{r}
+#| eval: false
+## Install package using install.packages()
+install.packages("dplyr")
+## Install package using devtools
+install.packages("devtools")
+devtools::install_github("tidyverse/dplyr")
+
+## Install package using bioconductor
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("dplyr", force = TRUE, ask = FALSE)
+
+## Install package using conda
+conda install -n renv r-dplyr bioconductor-dplyr
+
+## Load library
+library(dplyr)
+suppressPackageStartupMessages(
+    suppressWarnings({
+        library(ggplot2)
+        library(tidyr)
+    })
+)
+```
+:::
+
+
+## Reference
 
 - https://www.py4e.com/
 - https://omgenomics.com/
