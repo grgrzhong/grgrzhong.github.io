@@ -9,6 +9,12 @@ toc-location: left
 toc-title: "Contents"
 execute:
     eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+
 ---
 
 ## Shell

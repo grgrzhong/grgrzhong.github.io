@@ -14,12 +14,9 @@ execute:
     eval: false
 ---
 
-<!-- ::: -->
-<!-- ![Keyboard](keyboard.jpg){width=200 style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"} -->
 ![](keyboard.jpg)
 
 **Master your workflow with essential keyboard shortcuts across popular development tools and applications.**
-<!-- ::: -->
 
 # VSCode
 

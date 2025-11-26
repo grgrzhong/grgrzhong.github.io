@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.24">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
 <title>SingleCellExperiment | Practise Single-cell RNA-seq data analysis – Guorui Zhong</title>
@@ -63,14 +63,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../../../">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed09741bc9a4bc7923efc7a27dab3f48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-12b3df05fff64bd15c9bad32e15a2ea0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-baabc0bdab06a695b25d56c023bbe1ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-fa8806f0f1fe2c4c07c0086bb395541c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -109,6 +110,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
     </a>
@@ -242,7 +245,7 @@ Note
 <p><a href="workflow.png"></a></p>
 </section><section id="install-and-load-packages" class="level2"><h2 class="anchored" data-anchor-id="install-and-load-packages">Install and Load packages</h2>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># BiocManager::install("OSCA.intro")</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># BiocManager::install("OSCA.intro")</span></span>
 <span><span class="co"># BiocManager::install("SingleCellExperiment", force = TRUE)</span></span>
 <span><span class="co"># BiocManager::install(c("scuttle", "scran", "scater", "uwot", "rtracklayer"))</span></span>
 <span></span>
@@ -250,7 +253,7 @@ Note
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">scuttle</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">scater</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://robustbase.R-forge.R-project.org/">robustbase</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">org.Mm.eg.db</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">org.Mm.eg.db</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="read-counts-into-r" class="level2"><h2 class="anchored" data-anchor-id="read-counts-into-r">Read counts into R</h2>
 <section id="from-tabular-formats" class="level3"><h3 class="anchored" data-anchor-id="from-tabular-formats">From tabular formats</h3>
@@ -265,15 +268,15 @@ Note
 <li>number of expressed features</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#--- loading ---#</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#--- loading ---#</span></span>
 <span><span class="va">sce.416b</span> <span class="op">&lt;-</span> <span class="fu">LunSpikeInData</span><span class="op">(</span>which<span class="op">=</span><span class="st">"416b"</span><span class="op">)</span></span>
 <span><span class="va">sce.416b</span><span class="op">$</span><span class="va">block</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">sce.416b</span><span class="op">$</span><span class="va">block</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># 46604 features x  192 cells</span></span>
-<span><span class="va">sce.416b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">sce.416b</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Identifying the mitochondrial transcripts in our SingleCellExperiment.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Identifying the mitochondrial transcripts in our SingleCellExperiment.</span></span>
 <span><span class="va">location</span> <span class="op">&lt;-</span> <span class="fu">rowRanges</span><span class="op">(</span><span class="va">sce.416b</span><span class="op">)</span></span>
 <span><span class="va">is.mito</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu">seqnames</span><span class="op">(</span><span class="va">location</span><span class="op">)</span> <span class="op">==</span> <span class="st">"MT"</span><span class="op">)</span></span>
 <span></span>
@@ -292,7 +295,7 @@ Note
 <span></span>
 <span><span class="co"># Computes and appends the per-cell QC statistics to the colData</span></span>
 <span><span class="va">sce.416b</span> <span class="op">&lt;-</span> <span class="fu">addPerCellQCMetrics</span><span class="op">(</span><span class="va">sce.416b</span>, subsets<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Mito<span class="op">=</span><span class="va">is.mito</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">sce.416b</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">sce.416b</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>A key assumption here is that the QC metrics are independent of the biological state of each cell. Poor values (e.g., low library sizes, high mitochondrial proportions) are presumed to be driven by technical factors rather than biological processes, meaning that the subsequent removal of cells will not misrepresent the biology in downstream analyses.</p>
 <p>Major violations of this assumption would potentially result in the loss of cell types that have, say, systematically low RNA content or high numbers of mitochondria.</p>
@@ -307,7 +310,7 @@ Note
 <li>or have mitochondrial proportions above 10%.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># With fixed thresholds</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># With fixed thresholds</span></span>
 <span><span class="va">qc.lib</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">$</span><span class="va">sum</span> <span class="op">&lt;</span> <span class="fl">1e5</span></span>
 <span><span class="va">qc.nexprs</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">$</span><span class="va">detected</span> <span class="op">&lt;</span> <span class="fl">5e3</span></span>
 <span><span class="va">qc.spike</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">$</span><span class="va">altexps_ERCC_percent</span> <span class="op">&gt;</span> <span class="fl">10</span></span>
@@ -318,7 +321,7 @@ Note
 <span><span class="fu">DataFrame</span><span class="op">(</span></span>
 <span>    LibSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">qc.lib</span><span class="op">)</span>, NExprs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">qc.nexprs</span><span class="op">)</span>,</span>
 <span>    SpikeProp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">qc.spike</span><span class="op">)</span>, MitoProp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">qc.mito</span><span class="op">)</span>, Total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">discard</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -337,7 +340,7 @@ Note
 <p>We then identify cells that are outliers for the various QC metrics, based on the median absolute deviation (MAD) from the median value of each metric across all cells.</p>
 <p>By default, we consider a value to be an outlier if it is more than 3 MADs from the median in the “problematic” direction. This is loosely motivated by the fact that such a filter will retain 99% of non-outlier values that follow a normal distribution.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Identify cells with log-transformed library sizes that are more than 3 MADs below the median</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Identify cells with log-transformed library sizes that are more than 3 MADs below the median</span></span>
 <span><span class="va">reasons</span> <span class="op">&lt;-</span> <span class="fu">perCellQCFilters</span><span class="op">(</span></span>
 <span>    <span class="va">df</span>,</span>
 <span>    sub.fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"subsets_Mito_percent"</span>, <span class="st">"altexps_ERCC_percent"</span><span class="op">)</span></span>
@@ -349,24 +352,24 @@ Note
 <span></span>
 <span><span class="co"># Exact filter thresholds from the attributes of each of the logical vectors</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">reasons</span><span class="op">$</span><span class="va">low_lib_size</span>, <span class="st">"thresholds"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">reasons</span><span class="op">$</span><span class="va">low_n_features</span>, <span class="st">"thresholds"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">reasons</span><span class="op">$</span><span class="va">low_n_features</span>, <span class="st">"thresholds"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="other-approaches" class="level4"><h4 class="anchored" data-anchor-id="other-approaches">Other approaches</h4>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">sum</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">detected</span><span class="op">)</span>,</span>
 <span>    <span class="va">df</span><span class="op">$</span><span class="va">subsets_Mito_percent</span>, <span class="va">df</span><span class="op">$</span><span class="va">altexps_ERCC_percent</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">outlying</span> <span class="op">&lt;-</span> <span class="fu">adjOutlyingness</span><span class="op">(</span><span class="va">stats</span>, only.outlyingness <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">multi.outlier</span> <span class="op">&lt;-</span> <span class="fu">isOutlier</span><span class="op">(</span><span class="va">outlying</span>, type <span class="op">=</span> <span class="st">"higher"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">multi.outlier</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">multi.outlier</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Outliers can also be identified from the gene expression profiles, rather than QC metrics.</p>
 <p>We consider this to be a risky strategy as it can remove <strong>high-quality cells in rare populations</strong>.</p>
 </section><section id="diagnostic-plots" class="level4"><h4 class="anchored" data-anchor-id="diagnostic-plots">Diagnostic plots</h4>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">colData</span><span class="op">(</span><span class="va">sce.416b</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">sce.416b</span><span class="op">)</span>, <span class="va">df</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">colData</span><span class="op">(</span><span class="va">sce.416b</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">sce.416b</span><span class="op">)</span>, <span class="va">df</span><span class="op">)</span></span>
 <span><span class="va">sce.416b</span><span class="op">$</span><span class="va">block</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">sce.416b</span><span class="op">$</span><span class="va">block</span><span class="op">)</span></span>
 <span><span class="va">sce.416b</span><span class="op">$</span><span class="va">phenotype</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"induced"</span>, <span class="va">sce.416b</span><span class="op">$</span><span class="va">phenotype</span><span class="op">)</span>,</span>
@@ -403,12 +406,12 @@ Note
 <span>        <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">phenotype</span><span class="op">)</span> <span class="op">+</span></span>
 <span>        <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"ERCC percent"</span><span class="op">)</span>,</span>
 <span>    ncol <span class="op">=</span> <span class="fl">1</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Another useful diagnostic involves plotting the proportion of mitochondrial counts against some of the other QC metrics.</p>
 <p>The aim is to confirm that there are no cells with both large total counts and large mitochondrial counts, to ensure that we are not inadvertently removing <strong>high-quality cells that happen to be highly metabolically active</strong> (e.g., hepatocytes).</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#--- loading ---#</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#--- loading ---#</span></span>
 <span><span class="va">sce.zeisel</span> <span class="op">&lt;-</span> <span class="fu">ZeiselBrainData</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">sce.zeisel</span></span>
 <span></span>
@@ -439,39 +442,39 @@ Note
 <span></span>
 <span><span class="fu">plotColData</span><span class="op">(</span></span>
 <span>    <span class="va">sce.zeisel</span>, x <span class="op">=</span> <span class="st">"sum"</span>, y <span class="op">=</span> <span class="st">"subsets_Mt_percent"</span>, colour_by <span class="op">=</span> <span class="st">"discard"</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Low-quality cells with small mitochondrial percentages, large spike-in percentages and small library sizes are likely to be stripped nuclei, i.e., they have been so extensively damaged that they have lost all cytoplasmic content.</p>
 <p>On the other hand, cells with high mitochondrial percentages and low ERCC percentages may represent undamaged cells that are metabolically active.</p>
 <p>This interpretation also applies for single-nuclei studies but with a switch of focus: the stripped nuclei become the libraries of interest while the undamaged cells are considered to be low quality.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">plotColData</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">plotColData</span><span class="op">(</span></span>
 <span>    <span class="va">sce.zeisel</span>, x<span class="op">=</span><span class="st">"altexps_ERCC_percent"</span>, y<span class="op">=</span><span class="st">"subsets_Mt_percent"</span>,</span>
 <span>    colour_by<span class="op">=</span><span class="st">"discard"</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>These metrics exhibit weak correlations to each other, presumably a manifestation of a common underlying effect of cell damage.</p>
 <p>The weakness of the correlations motivates the use of several metrics to capture different aspects of technical quality.</p>
 <p>Of course, the flipside is that these metrics may also represent different aspects of biology, increasing the risk of inadvertently discarding entire cell types.</p>
 </section></section><section id="remove-low-quality-cells" class="level3"><h3 class="anchored" data-anchor-id="remove-low-quality-cells">Remove low quality cells</h3>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Keeping the columns we DON'T want to discard.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Keeping the columns we DON'T want to discard.</span></span>
 <span><span class="va">filtered</span> <span class="op">&lt;-</span> <span class="va">sce.416b</span><span class="op">[</span>, <span class="op">!</span><span class="va">reasons</span><span class="op">$</span><span class="va">discard</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co"># Mark the low-quality cells as such and retain them in the downstream analysis</span></span>
 <span><span class="va">marked</span> <span class="op">&lt;-</span> <span class="va">sce.416b</span></span>
-<span><span class="va">marked</span><span class="op">$</span><span class="va">discard</span> <span class="op">&lt;-</span> <span class="va">reasons</span><span class="op">$</span><span class="va">discard</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">marked</span><span class="op">$</span><span class="va">discard</span> <span class="op">&lt;-</span> <span class="va">reasons</span><span class="op">$</span><span class="va">discard</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section><section id="normalization" class="level2"><h2 class="anchored" data-anchor-id="normalization">Normalization</h2>
 <section id="library-size-normalization" class="level3"><h3 class="anchored" data-anchor-id="library-size-normalization">Library size normalization</h3>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lib.sf.zeisel</span> <span class="op">&lt;-</span> <span class="fu">scater</span><span class="fu">::</span><span class="fu">librarySizeFactors</span><span class="op">(</span><span class="va">sce.zeisel</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lib.sf.zeisel</span> <span class="op">&lt;-</span> <span class="fu">scater</span><span class="fu">::</span><span class="fu">librarySizeFactors</span><span class="op">(</span><span class="va">sce.zeisel</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lib.sf.zeisel</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">lib.sf.zeisel</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"Log10[Size factor]"</span>, col <span class="op">=</span> <span class="st">"grey80"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">lib.sf.zeisel</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"Log10[Size factor]"</span>, col <span class="op">=</span> <span class="st">"grey80"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section><section id="session-info" class="level2"><h2 class="anchored" data-anchor-id="session-info">Session Info</h2>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 
@@ -527,13 +530,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

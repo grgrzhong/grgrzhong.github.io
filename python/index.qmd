@@ -236,7 +236,9 @@ dict()
 ## Python for R users
 
 ### Install and load library
-::: {.panel-tabset}
+
+::: {.panel-tabset group="language"}
+
 #### Python
 ```{python}
 #| eval: false
