@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.31">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
 <title>Seurat V5 | 10X course example – Guorui Zhong</title>
@@ -63,15 +63,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../../../">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-12b3df05fff64bd15c9bad32e15a2ea0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed09741bc9a4bc7923efc7a27dab3f48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-fa8806f0f1fe2c4c07c0086bb395541c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-baabc0bdab06a695b25d56c023bbe1ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -110,8 +109,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
     </a>
@@ -221,14 +218,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content"><section id="load-packages-and-data" class="level2"><h2 class="anchored" data-anchor-id="load-packages-and-data">Load packages and data</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://satijalab.org/seurat">Seurat</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://lce.biohpc.swmed.edu/scina/">SCINA</a></span><span class="op">)</span></span>
-<span><span class="fu">theme_set</span><span class="op">(</span><span class="fu">theme_bw</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">theme_set</span><span class="op">(</span><span class="fu">theme_bw</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="op">(</span><span class="st">"projects/babraham_training_bioinformatics/10X_scRNAseq_Course"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="op">(</span><span class="st">"projects/babraham_training_bioinformatics/10X_scRNAseq_Course"</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">Read10X_h5</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/filtered_feature_bc_matrix.h5"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">CreateSeuratObject</span><span class="op">(</span></span>
 <span>    counts <span class="op">=</span> <span class="va">data</span>,</span>
@@ -238,11 +235,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span>
 <span><span class="va">data</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="explore-qc-metrics" class="level2"><h2 class="anchored" data-anchor-id="explore-qc-metrics">Explore QC metrics</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Amount of MT genes</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Amount of MT genes</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"^MT-"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">data</span><span class="op">$</span><span class="va">percent_MT</span> <span class="op">&lt;-</span> <span class="fu">PercentageFeatureSet</span><span class="op">(</span><span class="va">data</span>, pattern <span class="op">=</span> <span class="st">"^MT-"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">percent_MT</span><span class="op">)</span></span>
@@ -278,10 +275,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">data</span><span class="op">$</span><span class="va">percent.Largest.Gene</span> <span class="op">&lt;-</span> <span class="va">data_nomalat</span><span class="op">$</span><span class="va">percent.Largest.Gene</span></span>
 <span></span>
 <span><span class="va">data</span><span class="op">[[</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">data_nomalat</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">data_nomalat</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### For some metrics it’s better to view on a log scale.</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### For some metrics it’s better to view on a log scale.</span></span>
 <span><span class="fu">VlnPlot</span><span class="op">(</span></span>
 <span>    <span class="va">data</span>,</span>
 <span>    layer <span class="op">=</span> <span class="st">"counts"</span>,</span>
@@ -296,10 +293,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="va">data</span>,</span>
 <span>    feature1 <span class="op">=</span> <span class="st">"nCount_RNA"</span>, </span>
 <span>    feature2 <span class="op">=</span> <span class="st">"percent.Largest.Gene"</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## ggplot</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## ggplot</span></span>
 <span><span class="va">qc_metrics</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">as_tibble</span><span class="op">(</span></span>
 <span>    <span class="va">data</span><span class="op">[[</span><span class="op">]</span><span class="op">]</span>,</span>
 <span>    rownames <span class="op">=</span> <span class="st">"Cell.Barcode"</span></span>
@@ -326,10 +323,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu">geom_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">750</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">scale_x_log10</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">scale_y_log10</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">scale_y_log10</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Complexity </span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Complexity </span></span>
 <span><span class="va">qc_metrics</span> <span class="op">&lt;-</span> <span class="va">qc_metrics</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>complexity<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">nFeature_RNA</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">nCount_RNA</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -357,10 +354,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="va">qc_metrics</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">complexity_diff</span>, y<span class="op">=</span><span class="va">percent.Largest.Gene</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Largest gene</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Largest gene</span></span>
 <span><span class="va">largest_gene_list</span> <span class="op">&lt;-</span> <span class="va">qc_metrics</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">largest_gene</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">count</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -410,11 +407,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>      <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">complexity_diff</span>, y <span class="op">=</span> <span class="va">percent.Largest.Gene</span>, colour <span class="op">=</span> <span class="va">percent_Ribosomal</span><span class="op">)</span></span>
 <span>    <span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">scale_colour_gradient</span><span class="op">(</span>low <span class="op">=</span> <span class="st">"grey"</span>, high <span class="op">=</span> <span class="st">"red2"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">scale_colour_gradient</span><span class="op">(</span>low <span class="op">=</span> <span class="st">"grey"</span>, high <span class="op">=</span> <span class="st">"red2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="setting-qc-cutoff-and-filtering" class="level2"><h2 class="anchored" data-anchor-id="setting-qc-cutoff-and-filtering">Setting QC Cutoff and Filtering</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">qc_metrics</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">qc_metrics</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">percent_MT</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"yellow"</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Distribution of Percentage Mitochondrion"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -434,11 +431,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>        <span class="va">percent.Largest.Gene</span> <span class="op">&lt;</span> <span class="fl">10</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="va">data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="normalisation-selection-and-scaling" class="level2"><h2 class="anchored" data-anchor-id="normalisation-selection-and-scaling">Normalisation, Selection and Scaling</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Normalization</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Normalization</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">NormalizeData</span><span class="op">(</span><span class="va">data</span>, normalization.method <span class="op">=</span> <span class="st">"LogNormalize"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">gene_expression</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">data</span><span class="op">@</span><span class="va">assays</span><span class="op">$</span><span class="va">RNA</span><span class="op">@</span><span class="va">layers</span><span class="op">$</span><span class="va">data</span>, <span class="fl">1</span>, <span class="va">mean</span><span class="op">)</span></span>
@@ -460,10 +457,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>        values_to <span class="op">=</span> <span class="st">"expression"</span></span>
 <span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cell</span>, y <span class="op">=</span> <span class="va">expression</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">stat_summary</span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"crossbar"</span>, fun.data <span class="op">=</span> <span class="va">mean_sdl</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">stat_summary</span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"crossbar"</span>, fun.data <span class="op">=</span> <span class="va">mean_sdl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Cell Cycle Scoring</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Cell Cycle Scoring</span></span>
 <span><span class="va">cc.genes.updated.2019</span></span>
 <span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">CellCycleScoring</span><span class="op">(</span></span>
@@ -481,10 +478,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu">as_tibble</span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">S.Score</span>, y <span class="op">=</span> <span class="va">G2M.Score</span>, color <span class="op">=</span> <span class="va">Phase</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">coord_cartesian</span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">coord_cartesian</span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Gene selection</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Gene selection</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">FindVariableFeatures</span><span class="op">(</span></span>
 <span>    <span class="va">data</span>,</span>
 <span>    selection.method <span class="op">=</span> <span class="st">"vst"</span>,</span>
@@ -505,16 +502,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">variance_data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">variance</span><span class="op">)</span>, color <span class="op">=</span> <span class="va">hypervariable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Scaling</span></span>
-<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">ScaleData</span><span class="op">(</span><span class="va">data</span>, features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Scaling</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">ScaleData</span><span class="op">(</span><span class="va">data</span>, features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="dimensionality-reduction" class="level2"><h2 class="anchored" data-anchor-id="dimensionality-reduction">Dimensionality reduction</h2>
 <section id="pca" class="level3"><h3 class="anchored" data-anchor-id="pca">PCA</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Calculate all PCs</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Calculate all PCs</span></span>
 <span><span class="co">### list of genes which are most highly and lowly weighted in the different PCs</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">RunPCA</span><span class="op">(</span><span class="va">data</span>, features <span class="op">=</span> <span class="fu">VariableFeatures</span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -541,11 +538,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">### shown against the set of cells which are most highly influenced by the PC. </span></span>
 <span><span class="co">### The idea is that as long as we’re seeing clear structure in one of these </span></span>
 <span><span class="co">### plots then we’re still adding potentially useful information to the analysis.</span></span>
-<span><span class="fu">DimHeatmap</span><span class="op">(</span><span class="va">data</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, cells <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">DimHeatmap</span><span class="op">(</span><span class="va">data</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, cells <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="tsne" class="level3"><h3 class="anchored" data-anchor-id="tsne">tSNE</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Setting this to a low value will help resolve small clusters, </span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Setting this to a low value will help resolve small clusters, </span></span>
 <span><span class="co">### but at the expense of large clusters becoming more diffuse</span></span>
 <span><span class="va">saved_seed</span> <span class="op">&lt;-</span> <span class="fl">8482</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">saved_seed</span><span class="op">)</span></span>
@@ -560,25 +557,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">RunTSNE</span><span class="op">(</span><span class="va">data</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, seed.use <span class="op">=</span> <span class="va">saved_seed</span><span class="op">)</span></span>
 <span><span class="fu">DimPlot</span><span class="op">(</span><span class="va">data</span>, reduction <span class="op">=</span> <span class="st">"tsne"</span>, pt.size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"tSNE with default Perplexity (30)"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"tSNE with default Perplexity (30)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="defining-cell-clusters" class="level2"><h2 class="anchored" data-anchor-id="defining-cell-clusters">Defining Cell Clusters</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Finds the ‘k’ nearest neighbours to each cell and makes this into a graph</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Finds the ‘k’ nearest neighbours to each cell and makes this into a graph</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">FindNeighbors</span><span class="op">(</span><span class="va">data</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">### Get another sparse matrix of distances.</span></span>
-<span><span class="va">data</span><span class="op">@</span><span class="va">graphs</span><span class="op">$</span><span class="va">RNA_snn</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="va">data</span><span class="op">@</span><span class="va">graphs</span><span class="op">$</span><span class="va">RNA_snn</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Segment the graph, </span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Segment the graph, </span></span>
 <span><span class="co">### Larger resolution give larger clusters, smaller values gives smaller clusters.</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">FindClusters</span><span class="op">(</span><span class="va">data</span>, resolution <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">seurat_clusters</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">seurat_clusters</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Some of the clusters don't resolve very well in PC1 vs PC2</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Some of the clusters don't resolve very well in PC1 vs PC2</span></span>
 <span><span class="fu">DimPlot</span><span class="op">(</span><span class="va">data</span>, reduction <span class="op">=</span> <span class="st">"pca"</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"PC1 vs PC2 with Clusters"</span><span class="op">)</span></span>
 <span></span>
@@ -590,10 +587,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co">### tSNE plot showing all of the information across the PCs used is preserved</span></span>
 <span><span class="co">### and we see the overall similarity of the cells</span></span>
-<span><span class="fu">DimPlot</span><span class="op">(</span><span class="va">data</span>, reduction <span class="op">=</span> <span class="st">"tsne"</span>, pt.size <span class="op">=</span> <span class="fl">1</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, label.size <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">DimPlot</span><span class="op">(</span><span class="va">data</span>, reduction <span class="op">=</span> <span class="st">"tsne"</span>, pt.size <span class="op">=</span> <span class="fl">1</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, label.size <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Check the clusters to see if they are influenced by any of the QC metrics</span></span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Check the clusters to see if they are influenced by any of the QC metrics</span></span>
 <span><span class="co">### We can see that some of the clusters are skewed in one or more of the</span></span>
 <span><span class="co">### metrics we’ve calculated so we will want to take note of this.</span></span>
 <span><span class="co">### Some of these skews could be biological in nature,</span></span>
@@ -630,10 +627,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">seurat_clusters</span>, y <span class="op">=</span> <span class="va">percent</span>, fill <span class="op">=</span> <span class="va">Phase</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Percentage of cell cycle phases per cluster"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Percentage of cell cycle phases per cluster"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### That’s already quite nice for explaining some of the functionality of the </span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### That’s already quite nice for explaining some of the functionality of the </span></span>
 <span><span class="co">### clusters, but there’s more in there than just the behaviour of the most </span></span>
 <span><span class="co">### expressed gene</span></span>
 <span><span class="va">data</span><span class="op">@</span><span class="va">reductions</span><span class="op">$</span><span class="va">tsne</span><span class="op">@</span><span class="va">cell.embeddings</span> <span class="op">|&gt;</span></span>
@@ -644,11 +641,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">largest_gene</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">largest_genes_to_plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">tSNE_1</span>, y <span class="op">=</span> <span class="va">tSNE_2</span>, colour <span class="op">=</span> <span class="va">seurat_clusters</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">largest_gene</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">largest_gene</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="find-markers" class="level2"><h2 class="anchored" data-anchor-id="find-markers">Find Markers</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Evaluate the cluster by identifying genes whose expression definies each</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Evaluate the cluster by identifying genes whose expression definies each</span></span>
 <span><span class="co">### cluster which has been identified</span></span>
 <span></span>
 <span><span class="co">### Find genes appears to be upregulated in a specific cluster compared to all</span></span>
@@ -660,10 +657,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">### clusters, but we can also see that it is also reasonably highly expressed </span></span>
 <span><span class="co">### in clusters 9 and 12. These were both clusters we suspected of being </span></span>
 <span><span class="co">### multiple cells though</span></span>
-<span><span class="fu">VlnPlot</span><span class="op">(</span><span class="va">data</span>, features <span class="op">=</span> <span class="st">"VCAN"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">VlnPlot</span><span class="op">(</span><span class="va">data</span>, features <span class="op">=</span> <span class="st">"VCAN"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### FindMarkers function on all of the clusters</span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### FindMarkers function on all of the clusters</span></span>
 <span><span class="va">cluster_markers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="st">"seurat_clusters"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
 <span>    <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">FindMarkers</span><span class="op">(</span><span class="va">data</span>, ident.1 <span class="op">=</span> <span class="va">x</span>, min.pct <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></span>
@@ -705,11 +702,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu">VlnPlot</span><span class="op">(</span><span class="va">data</span>, features <span class="op">=</span> <span class="st">"LTB"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">### This could actually be a better option to use as a marker for this cluster.</span></span>
-<span><span class="fu">VlnPlot</span><span class="op">(</span><span class="va">data</span>, features <span class="op">=</span> <span class="st">"TPT1"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">VlnPlot</span><span class="op">(</span><span class="va">data</span>, features <span class="op">=</span> <span class="st">"TPT1"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="automated-cell-type-annotation" class="level2"><h2 class="anchored" data-anchor-id="automated-cell-type-annotation">Automated Cell Type Annotation</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scina_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">GetAssayData</span><span class="op">(</span><span class="va">data</span>, layer <span class="op">=</span> <span class="st">"data"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scina_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">GetAssayData</span><span class="op">(</span><span class="va">data</span>, layer <span class="op">=</span> <span class="st">"data"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">signatures</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/get.html">get</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"example_signatures.RData"</span>, package <span class="op">=</span> <span class="st">"SCINA"</span><span class="op">)</span><span class="op">)</span></span>
@@ -757,21 +754,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">cluster</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">xlab</span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">ylab</span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">ylab</span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Colouring by genes</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Colouring by genes</span></span>
 <span><span class="co">### Some of these genes very specifically isolate to their own cluster, but for</span></span>
 <span><span class="co">### others we see expression which is more widely spread over a number of clusters</span></span>
-<span><span class="fu">FeaturePlot</span><span class="op">(</span><span class="va">data</span>, features <span class="op">=</span> <span class="va">best_wilcox_gene_per_cluster</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">FeaturePlot</span><span class="op">(</span><span class="va">data</span>, features <span class="op">=</span> <span class="va">best_wilcox_gene_per_cluster</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data</span><span class="op">@</span><span class="va">reductions</span><span class="op">$</span><span class="va">tsne</span><span class="op">@</span><span class="va">cell.embeddings</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data</span><span class="op">@</span><span class="va">reductions</span><span class="op">$</span><span class="va">tsne</span><span class="op">@</span><span class="va">cell.embeddings</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span></span>
 <span></span>
 <span><span class="co"># data@reductions$tsne@cell.embeddings[, ] |&gt;</span></span>
 <span><span class="co">#     as_tibble(rownames = "barcode") |&gt;</span></span>
 <span><span class="co">#     mutate(barcode = paste0(barcode, "-1")) |&gt;</span></span>
-<span><span class="co">#     write_csv("for_loupe_import.csv")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#     write_csv("for_loupe_import.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <ol type="1">
@@ -779,7 +776,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="https://hbctraining.github.io/scRNA-seq_online/schedule/links-to-lessons.html">Single-cell RNA-seq data analysis workshop</a></p></li>
 </ol></section><section id="session-info" class="level2"><h2 class="anchored" data-anchor-id="session-info">Session info</h2>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
@@ -835,14 +832,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

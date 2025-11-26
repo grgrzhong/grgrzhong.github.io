@@ -69,14 +69,89 @@ rsync -av --update /source/folder/ /destination/folder/
 ```
 
 :::{.callout-note}
-- `-a` (archive): Preserves permissions, timestamps, symbolic links, etc.
-- `-v` (verbose): Shows progress
+- `-archive`: Preserves permissions, timestamps, symbolic links, etc.
+- `--verbose`: Shows progress
 - `--delete`: Removes files in destination that don't exist in source
-- `-n` (dry-run): Preview changes without actually syncing
-- `-u` (update): Only copy newer file
+- `--dry-run`: Preview changes without actually syncing
+- `--update`: Only copy newer file
 - `--ignore-existing`: Skips files that already exist in destination (regardless of age)
 - `--update`: Only copies if source file is newer than destination
+- `--no-perms`: Don't preserve Unix permissions
+- `--no-times`: Don't preserve modification times
+- `--inplace`: Write directly without temp files
 :::
+
+- Sync remote server folders to local using rsync
+
+```bash
+## Remote server details
+remote_user="username"
+remote_host="hpcio2" # hpc2021-io1.hku.hk,hpc2021-io2.hku.hk  
+
+## Define folders to sync (absolute paths)
+## Format: "local_absolute_path:remote_absolute_path"
+folders_to_sync=(
+    # "/mnt/m/Reference:/lustre1/g/path_my/Reference"
+    # "/mnt/m/WES/DFSP/Annovar:/lustre1/g/path_my/pipeline/somatic_variants_calling/data/DFSP/Annovar"
+    "/mnt/m/WES/SARC/BAM:/lustre1/g/path_my/pipeline/somatic_variants_calling/data/SARC/BAM"
+    # Add more folders as needed in the same format
+)
+
+## Sync each folder
+for folder_pair in "${folders_to_sync[@]}"; do
+    # Split the pair into local and remote paths
+    local_path="${folder_pair%%:*}"
+    remote_path="${folder_pair#*:}"
+    
+    echo "Syncing ${remote_user}@${remote_host}:${remote_path} to ${local_path}"
+    
+    # Create local directory structure
+    mkdir -p "${local_path}"
+    
+    # Sync the folder contents from remote to local (trailing slash on source copies contents)
+    rsync -av --update --progress --inplace --no-perms --no-times \
+        "${remote_user}@${remote_host}:${remote_path}/" \
+        "${local_path}/"
+        
+    echo "-----------------------------------"
+done
+```
+
+- Sync local folders to remote server
+
+```bash
+## Remote server details
+remote_user="username"
+remote_host="hpcio1" # hpc2021-io1.hku.hk 
+
+## Define folders to sync (absolute paths)
+## Format: "local_absolute_path:remote_absolute_path"
+folders_to_sync=(
+    "/mnt/f/Reference:/lustre1/g/path_my/Reference"
+    # Add more folders as needed in the same format
+)
+
+## Sync each folder
+for folder_pair in "${folders_to_sync[@]}"; do
+
+    # Split the pair into local and remote paths
+    local_path="${folder_pair%%:*}"
+    remote_path="${folder_pair#*:}"
+    
+    echo "Syncing ${local_path} to ${remote_user}@${remote_host}:${remote_path}"
+    
+    # Create remote directory structure
+    ssh ${remote_user}@${remote_host} "mkdir -p ${remote_path}"
+    
+    # Sync the folder contents (trailing slash on source copies contents)
+    rsync -av --update --progress \
+        "${local_path}/" \
+        "${remote_user}@${remote_host}:${remote_path}/"
+        
+    echo "-----------------------------------"
+done
+```
+
 
 ## WSL
 

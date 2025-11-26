@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.31">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
 <meta name="description" content="Principle component methods are used to summarize and viusalize the information contained in a large multivariate datasets.">
@@ -64,15 +64,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../../../">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-12b3df05fff64bd15c9bad32e15a2ea0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed09741bc9a4bc7923efc7a27dab3f48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-fa8806f0f1fe2c4c07c0086bb395541c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-baabc0bdab06a695b25d56c023bbe1ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -111,8 +110,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
     </a>
@@ -225,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="pca2.png" class="img-fluid"></p>
 <section id="compute-pca" class="level2"><h2 class="anchored" data-anchor-id="compute-pca">Compute PCA</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load packages</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman">pacman</a></span><span class="op">)</span></span>
 <span><span class="fu">p_load</span><span class="op">(</span></span>
 <span>    <span class="va">tidyverse</span>,  <span class="co"># tidy data</span></span>
@@ -266,11 +263,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## 12 "$call$centre"     "mean of the variables"              </span></span>
 <span><span class="co">## 13 "$call$ecart.type" "standard error of the variables"    </span></span>
 <span><span class="co">## 14 "$call$row.w"      "weights for the individuals"        </span></span>
-<span><span class="co">## 15 "$call$col.w"      "weights for the variables"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## 15 "$call$col.w"      "weights for the variables"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="variances" class="level2"><h2 class="anchored" data-anchor-id="variances">Variances</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### eigenvalues measure the amount of variation retained by each principal component</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### eigenvalues measure the amount of variation retained by each principal component</span></span>
 <span><span class="va">eig_val</span> <span class="op">&lt;-</span> <span class="fu">get_eigenvalue</span><span class="op">(</span><span class="va">res_pca</span><span class="op">)</span></span>
 <span><span class="va">eig_val</span></span>
 <span><span class="co">##        eigenvalue variance.percent cumulative.variance.percent</span></span>
@@ -286,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## Dim.10  0.1219710         1.219710                   100.00000</span></span>
 <span></span>
 <span><span class="co">### scree plot to visualize the eigenvalues</span></span>
-<span><span class="fu">fviz_eig</span><span class="op">(</span><span class="va">res_pca</span>, addlabels <span class="op">=</span> <span class="cn">TRUE</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">fviz_eig</span><span class="op">(</span><span class="va">res_pca</span>, addlabels <span class="op">=</span> <span class="cn">TRUE</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -296,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="variables" class="level2"><h2 class="anchored" data-anchor-id="variables">Variables</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### graph of variables</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### graph of variables</span></span>
 <span><span class="va">var</span> <span class="op">&lt;-</span> <span class="fu">get_pca_var</span><span class="op">(</span><span class="va">res_pca</span><span class="op">)</span></span>
 <span><span class="va">var</span></span>
 <span><span class="co">## Principal Component Analysis Results for variables</span></span>
@@ -339,14 +336,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## X110m.hurdle 14.157544  0.0332933 16.261261  0.03483735  7.166193</span></span>
 <span></span>
 <span><span class="co">### plot variables. it shows the relationship between all variables</span></span>
-<span><span class="fu">fviz_pca_var</span><span class="op">(</span><span class="va">res_pca</span>, col.var <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">fviz_pca_var</span><span class="op">(</span><span class="va">res_pca</span>, col.var <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### quality of representation</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">var</span><span class="op">$</span><span class="va">cos2</span>, <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="co">##               Dim.1       Dim.2      Dim.3      Dim.4      Dim.5</span></span>
@@ -354,46 +351,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## Long.jump 0.6307229 0.078880629 0.03630798 0.01331475 0.05436203</span></span>
 <span><span class="co">## Shot.put  0.5386279 0.007293864 0.26790749 0.01650412 0.06190783</span></span>
 <span><span class="co">## High.jump 0.3722025 0.216424207 0.10895622 0.02089474 0.16216747</span></span>
-<span><span class="fu">corrplot</span><span class="op">(</span><span class="va">var</span><span class="op">$</span><span class="va">cos2</span>, is.corr<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">corrplot</span><span class="op">(</span><span class="va">var</span><span class="op">$</span><span class="va">cos2</span>, is.corr<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### bar plot total cos2 of variables on Dim.1 and Dim.2</span></span>
-<span><span class="fu">fviz_cos2</span><span class="op">(</span><span class="va">res_pca</span>, choice <span class="op">=</span> <span class="st">"var"</span>, axes <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">fviz_cos2</span><span class="op">(</span><span class="va">res_pca</span>, choice <span class="op">=</span> <span class="st">"var"</span>, axes <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### Color by cos2 values: quality on the factor map</span></span>
 <span><span class="fu">fviz_pca_var</span><span class="op">(</span></span>
 <span>  <span class="va">res_pca</span>, </span>
 <span>  col.var <span class="op">=</span> <span class="st">"cos2"</span>,</span>
 <span>  gradient.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span><span class="op">)</span>, </span>
 <span>  repel <span class="op">=</span> <span class="cn">TRUE</span> <span class="co"># Avoid text overlapping</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### Change the transparency by cos2 values</span></span>
-<span><span class="fu">fviz_pca_var</span><span class="op">(</span><span class="va">res_pca</span>, alpha.var <span class="op">=</span> <span class="st">"cos2"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">fviz_pca_var</span><span class="op">(</span><span class="va">res_pca</span>, alpha.var <span class="op">=</span> <span class="st">"cos2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### contribution of variables to PCs</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">var</span><span class="op">$</span><span class="va">contrib</span>, <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="co">##               Dim.1      Dim.2     Dim.3     Dim.4     Dim.5</span></span>
@@ -403,63 +400,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## High.jump  9.024811 11.7715838  8.792888 2.5498795 23.115504</span></span>
 <span></span>
 <span><span class="co">### highlight the most contributing variables for each dimension</span></span>
-<span><span class="fu">corrplot</span><span class="op">(</span><span class="va">var</span><span class="op">$</span><span class="va">contrib</span>, is.corr<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">corrplot</span><span class="op">(</span><span class="va">var</span><span class="op">$</span><span class="va">contrib</span>, is.corr<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co"># Contributions of variables to PC1</span></span>
-<span><span class="fu">fviz_contrib</span><span class="op">(</span><span class="va">res_pca</span>, choice <span class="op">=</span> <span class="st">"var"</span>, axes <span class="op">=</span> <span class="fl">1</span>, top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">fviz_contrib</span><span class="op">(</span><span class="va">res_pca</span>, choice <span class="op">=</span> <span class="st">"var"</span>, axes <span class="op">=</span> <span class="fl">1</span>, top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co"># Contributions of variables to PC2</span></span>
-<span><span class="fu">fviz_contrib</span><span class="op">(</span><span class="va">res_pca</span>, choice <span class="op">=</span> <span class="st">"var"</span>, axes <span class="op">=</span> <span class="fl">2</span>, top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">fviz_contrib</span><span class="op">(</span><span class="va">res_pca</span>, choice <span class="op">=</span> <span class="st">"var"</span>, axes <span class="op">=</span> <span class="fl">2</span>, top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### total contribution to PC1 and PC2 </span></span>
-<span><span class="fu">fviz_contrib</span><span class="op">(</span><span class="va">res_pca</span>, choice <span class="op">=</span> <span class="st">"var"</span>, axes <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">fviz_contrib</span><span class="op">(</span><span class="va">res_pca</span>, choice <span class="op">=</span> <span class="st">"var"</span>, axes <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### highlight most important variables on the correlation plot</span></span>
 <span><span class="fu">fviz_pca_var</span><span class="op">(</span></span>
 <span>  <span class="va">res_pca</span>, </span>
 <span>  col.var <span class="op">=</span> <span class="st">"contrib"</span>,</span>
 <span>  gradient.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-10.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### Change the transparency by contrib values</span></span>
-<span><span class="fu">fviz_pca_var</span><span class="op">(</span><span class="va">res_pca</span>, alpha.var <span class="op">=</span> <span class="st">"contrib"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">fviz_pca_var</span><span class="op">(</span><span class="va">res_pca</span>, alpha.var <span class="op">=</span> <span class="st">"contrib"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-11.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### color variables by custom continus variable</span></span>
 <span><span class="co"># Create a random continuous variable of length 10</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
@@ -470,14 +467,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  col.var <span class="op">=</span> <span class="va">my_cont_var</span>,</span>
 <span>  gradient.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span><span class="op">)</span>,</span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Cont.Var"</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-12.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### color by groups, create a grouping variables using kmeans</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="va">res_km</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">var</span><span class="op">$</span><span class="va">coord</span>, centers <span class="op">=</span> <span class="fl">3</span>, nstart <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
@@ -489,14 +486,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  col.var <span class="op">=</span> <span class="va">grp</span>, </span>
 <span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#0073C2FF"</span>, <span class="st">"#EFC000FF"</span>, <span class="st">"#868686FF"</span><span class="op">)</span>,</span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Cluster"</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-13.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### dimension description</span></span>
 <span><span class="va">res_desc</span> <span class="op">&lt;-</span> <span class="fu">dimdesc</span><span class="op">(</span><span class="va">res_pca</span>, axes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, proba <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co"># Description of dimension 1</span></span>
@@ -521,11 +518,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">##            correlation      p.value</span></span>
 <span><span class="co">## Pole.vault   0.8074511 3.205016e-06</span></span>
 <span><span class="co">## X1500m       0.7844802 9.384747e-06</span></span>
-<span><span class="co">## High.jump   -0.4652142 2.529390e-02</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## High.jump   -0.4652142 2.529390e-02</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="individuals" class="level2"><h2 class="anchored" data-anchor-id="individuals">Individuals</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### extract results for individuals</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### extract results for individuals</span></span>
 <span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu">get_pca_ind</span><span class="op">(</span><span class="va">res_pca</span><span class="op">)</span></span>
 <span><span class="va">ind</span></span>
 <span><span class="co">## Principal Component Analysis Results for individuals</span></span>
@@ -569,14 +566,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  col.ind <span class="op">=</span> <span class="st">"cos2"</span>, </span>
 <span>  gradient.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span><span class="op">)</span>,</span>
 <span>  repel <span class="op">=</span> <span class="cn">TRUE</span> <span class="co"># Avoid text overlapping (slow if many points)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### change the point size according to the cos2 of corresponding individuals</span></span>
 <span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
 <span>  <span class="va">res_pca</span>, </span>
@@ -584,14 +581,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  pointshape <span class="op">=</span> <span class="fl">21</span>, </span>
 <span>  fill <span class="op">=</span> <span class="st">"#E7B800"</span>,</span>
 <span>  repel <span class="op">=</span> <span class="cn">TRUE</span> <span class="co"># Avoid text overlapping (slow if many points)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### change both point size and color by cos2</span></span>
 <span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
 <span>  <span class="va">res_pca</span>, </span>
@@ -599,23 +596,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  pointsize <span class="op">=</span> <span class="st">"cos2"</span>,</span>
 <span>  gradient.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span><span class="op">)</span>,</span>
 <span>  repel <span class="op">=</span> <span class="cn">TRUE</span> <span class="co"># Avoid text overlapping (slow if many points)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### total contribution on PC1 and PC2</span></span>
-<span><span class="fu">fviz_contrib</span><span class="op">(</span><span class="va">res_pca</span>, choice <span class="op">=</span> <span class="st">"ind"</span>, axes <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">fviz_contrib</span><span class="op">(</span><span class="va">res_pca</span>, choice <span class="op">=</span> <span class="st">"ind"</span>, axes <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### color by custom continus variable</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="va">my_cont_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span></span>
@@ -625,7 +622,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  col.ind <span class="op">=</span> <span class="va">my_cont_var</span>,</span>
 <span>  gradient.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span><span class="op">)</span>,</span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Cont.Var"</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-4-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -635,18 +632,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="other-dimensions" class="level2"><h2 class="anchored" data-anchor-id="other-dimensions">Other Dimensions</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### visualize variables/individuals on dimension 2 and 3</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### visualize variables/individuals on dimension 2 and 3</span></span>
 <span></span>
 <span><span class="co"># Variables on dimensions 2 and 3</span></span>
-<span><span class="fu">fviz_pca_var</span><span class="op">(</span><span class="va">res_pca</span>, axes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">fviz_pca_var</span><span class="op">(</span><span class="va">res_pca</span>, axes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Individuals on dimensions 2 and 3</span></span>
-<span><span class="fu">fviz_pca_ind</span><span class="op">(</span><span class="va">res_pca</span>, axes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Individuals on dimensions 2 and 3</span></span>
+<span><span class="fu">fviz_pca_ind</span><span class="op">(</span><span class="va">res_pca</span>, axes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -712,14 +709,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

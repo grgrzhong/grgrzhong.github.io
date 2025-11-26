@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.31">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
 <meta name="description" content="Arguments to customize the PCA graph of variables and individuals.">
@@ -64,15 +64,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../../../">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-12b3df05fff64bd15c9bad32e15a2ea0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed09741bc9a4bc7923efc7a27dab3f48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-fa8806f0f1fe2c4c07c0086bb395541c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-baabc0bdab06a695b25d56c023bbe1ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -111,8 +110,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
     </a>
@@ -215,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content"><section id="compute-pca" class="level2"><h2 class="anchored" data-anchor-id="compute-pca">Compute PCA</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load packages</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman">pacman</a></span><span class="op">)</span></span>
 <span><span class="fu">p_load</span><span class="op">(</span></span>
 <span>    <span class="va">tidyverse</span>,  <span class="co"># tidy data</span></span>
@@ -253,18 +250,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## 12 "$call$centre"     "mean of the variables"              </span></span>
 <span><span class="co">## 13 "$call$ecart.type" "standard error of the variables"    </span></span>
 <span><span class="co">## 14 "$call$row.w"      "weights for the individuals"        </span></span>
-<span><span class="co">## 15 "$call$col.w"      "weights for the variables"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## 15 "$call$col.w"      "weights for the variables"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="color-individuals-by-groups" class="level2"><h2 class="anchored" data-anchor-id="color-individuals-by-groups">Color individuals by groups</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>,</span>
 <span>  geom.ind <span class="op">=</span> <span class="st">"point"</span>, <span class="co"># show points only (nbut not "text")</span></span>
 <span>  col.ind <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span>, <span class="co"># color by groups</span></span>
 <span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span><span class="op">)</span>,</span>
 <span>  addEllipses <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># Concentration ellipses</span></span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Groups"</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -274,21 +271,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="add-confidence-ellipses" class="level2"><h2 class="anchored" data-anchor-id="add-confidence-ellipses">Add confidence ellipses</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>, </span>
 <span>  geom.ind <span class="op">=</span> <span class="st">"point"</span>, </span>
 <span>  col.ind <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span>, </span>
 <span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span><span class="op">)</span>,</span>
 <span>  addEllipses <span class="op">=</span> <span class="cn">TRUE</span>, ellipse.type <span class="op">=</span> <span class="st">"confidence"</span>,</span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Groups"</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co">### use color from jco</span></span>
 <span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>,</span>
@@ -296,14 +293,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  habillage <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span>, <span class="co"># color by groups</span></span>
 <span>  addEllipses <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># Concentration ellipses</span></span>
 <span>  palette <span class="op">=</span> <span class="st">"jco"</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co"># Add confidence ellipses</span></span>
 <span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>, </span>
@@ -313,14 +310,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  addEllipses <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>  ellipse.type <span class="op">=</span> <span class="st">"confidence"</span>,</span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Groups"</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co"># Convex hull</span></span>
 <span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>, </span>
@@ -330,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  addEllipses <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>  ellipse.type <span class="op">=</span> <span class="st">"convex"</span>,</span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Groups"</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -340,13 +337,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="group-mean-points" class="level2"><h2 class="anchored" data-anchor-id="group-mean-points">Group mean points</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>,</span>
 <span>  geom.ind <span class="op">=</span> <span class="st">"point"</span>, <span class="co"># show points only (but not "text")</span></span>
 <span>  group.ind <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span>, <span class="co"># color by groups</span></span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Groups"</span>,</span>
 <span>  mean.point <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -364,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Themes. Allowed values include: theme_gray(), theme_bw(), theme_minimal(), theme_classic(), theme_void().</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind_p</span> <span class="op">&lt;-</span> <span class="fu">fviz_pca_ind</span><span class="op">(</span><span class="va">iris_pca</span>, geom <span class="op">=</span> <span class="st">"point"</span>, col.ind <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind_p</span> <span class="op">&lt;-</span> <span class="fu">fviz_pca_ind</span><span class="op">(</span><span class="va">iris_pca</span>, geom <span class="op">=</span> <span class="st">"point"</span>, col.ind <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggpubr</span><span class="fu">::</span><span class="fu">ggpar</span><span class="op">(</span><span class="va">ind_p</span>,</span>
 <span>              title <span class="op">=</span> <span class="st">"Principal Component Analysis"</span>,</span>
@@ -373,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>              xlab <span class="op">=</span> <span class="st">"PC1"</span>, ylab <span class="op">=</span> <span class="st">"PC2"</span>,</span>
 <span>              legend.title <span class="op">=</span> <span class="st">"Species"</span>, legend.position <span class="op">=</span> <span class="st">"top"</span>,</span>
 <span>              ggtheme <span class="op">=</span> <span class="fu">theme_gray</span><span class="op">(</span><span class="op">)</span>, palette <span class="op">=</span> <span class="st">"jco"</span></span>
-<span>              <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>              <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -383,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="biplot" class="level2"><h2 class="anchored" data-anchor-id="biplot">Biplot</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_biplot</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_biplot</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>, </span>
 <span>  col.ind <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span>, </span>
 <span>  palette <span class="op">=</span> <span class="st">"jco"</span>, </span>
@@ -392,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  col.var <span class="op">=</span> <span class="st">"black"</span>, </span>
 <span>  repel <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Species"</span></span>
-<span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -402,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="color-by-groups" class="level2"><h2 class="anchored" data-anchor-id="color-by-groups">Color by groups</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_biplot</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_biplot</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>, </span>
 <span>  <span class="co"># Fill individuals by groups</span></span>
 <span>  geom.ind <span class="op">=</span> <span class="st">"point"</span>,</span>
@@ -416,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  repel <span class="op">=</span> <span class="cn">TRUE</span>        <span class="co"># Avoid label overplotting</span></span>
 <span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggpubr</span><span class="fu">::</span><span class="fu">fill_palette</span><span class="op">(</span><span class="st">"jco"</span><span class="op">)</span><span class="op">+</span>      <span class="co"># Indiviual fill color</span></span>
-<span>  <span class="fu">ggpubr</span><span class="fu">::</span><span class="fu">color_palette</span><span class="op">(</span><span class="st">"npg"</span><span class="op">)</span>      <span class="co"># Variable colors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>  <span class="fu">ggpubr</span><span class="fu">::</span><span class="fu">color_palette</span><span class="op">(</span><span class="st">"npg"</span><span class="op">)</span>      <span class="co"># Variable colors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -425,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_biplot</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_biplot</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>, </span>
 <span>  <span class="co"># Individuals</span></span>
 <span>  geom.ind <span class="op">=</span> <span class="st">"point"</span>,</span>
@@ -444,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    color <span class="op">=</span> <span class="st">"Contrib"</span>, </span>
 <span>    alpha <span class="op">=</span> <span class="st">"Contrib"</span></span>
 <span>    <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -509,14 +506,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

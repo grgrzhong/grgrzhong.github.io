@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.31">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
 <meta name="description" content="The plot shows all data points with a color-code for each replicate, as well as the averages of each replicate, the total average and the SEM.">
@@ -64,15 +64,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../../../">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-12b3df05fff64bd15c9bad32e15a2ea0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed09741bc9a4bc7923efc7a27dab3f48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-fa8806f0f1fe2c4c07c0086bb395541c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-baabc0bdab06a695b25d56c023bbe1ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -111,8 +110,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
     </a>
@@ -208,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content"><p>The code is adapted from <a href="https://github.com/duzzio/Superplots_R_script">here</a></p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load packages</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load packages</span></span>
 <span><span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load</span><span class="op">(</span><span class="va">ggplot2</span>, <span class="va">dplyr</span>, <span class="va">ggpubr</span>, <span class="va">ggbeeswarm</span>, <span class="va">readxl</span>, <span class="va">rstatix</span>, <span class="va">here</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">### Import dataset</span></span>
@@ -253,10 +250,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## Calculate total average</span></span>
 <span><span class="va">total_mean</span> <span class="op">&lt;-</span> <span class="va">replicate_mean</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">variable</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>    <span class="fu">summarise_at</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">value</span><span class="op">)</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">summarise_at</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">value</span><span class="op">)</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Plots Superplot based on biological repicate averags</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Plots Superplot based on biological repicate averags</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dataset</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co">### Add individual data points</span></span>
 <span>    <span class="fu">geom_beeswarm</span><span class="op">(</span>cex <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
@@ -296,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>        panel.grid.minor <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>        panel.background <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>, </span>
 <span>        panel.border <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
@@ -358,14 +355,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

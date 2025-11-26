@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.31">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
 <meta name="description" content="Comat models batch effects as multiplicative and additive noise to the biological signal and uses a Bayesian framework to fit linear models that factor such noise out of the readouts.">
@@ -64,15 +64,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../../../">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-12b3df05fff64bd15c9bad32e15a2ea0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed09741bc9a4bc7923efc7a27dab3f48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-fa8806f0f1fe2c4c07c0086bb395541c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-baabc0bdab06a695b25d56c023bbe1ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -111,8 +110,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
     </a>
@@ -241,17 +238,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><img src="sample.png" class="img-fluid"></p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load packages</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">sva</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">bladderbatch</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pamr</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">limma</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### load data</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### load data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">bladderdata</span><span class="op">)</span></span>
 <span><span class="co">### variable data</span></span>
 <span><span class="va">pheno</span> <span class="op">&lt;-</span> <span class="fu">pData</span><span class="op">(</span><span class="va">bladderEset</span><span class="op">)</span></span>
@@ -279,11 +276,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">### create full model matrix, including both the adjustment variables and the variable of interest (cancer status)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span></span>
 <span><span class="co">### Create null model matrix, ontains only the adjustment variables.</span></span>
-<span><span class="va">mod0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="va">mod0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="eestimate-batch-effect-and-other-artifacts-using-sva" class="level2"><h2 class="anchored" data-anchor-id="eestimate-batch-effect-and-other-artifacts-using-sva">Eestimate batch effect and other artifacts using sva</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### identify the number of latent factors that need to be estimated</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### identify the number of latent factors that need to be estimated</span></span>
 <span><span class="va">n_sv</span> <span class="op">&lt;-</span> <span class="fu">num.sv</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, method <span class="op">=</span> <span class="st">"leek"</span><span class="op">)</span></span>
 <span><span class="va">n_sv</span></span>
 <span><span class="co">## [1] 2</span></span>
@@ -337,37 +334,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## Multiple R-squared:  0.2248, Adjusted R-squared:  0.2107 </span></span>
 <span><span class="co">## F-statistic: 15.95 on 1 and 55 DF,  p-value: 0.0001945</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">~</span> <span class="va">pheno</span><span class="op">$</span><span class="va">batch</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/jitter.html">jitter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">pheno</span><span class="op">$</span><span class="va">batch</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">pheno</span><span class="op">$</span><span class="va">batch</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/jitter.html">jitter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">pheno</span><span class="op">$</span><span class="va">batch</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">pheno</span><span class="op">$</span><span class="va">batch</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">## null device </span></span>
-<span><span class="co">##           1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">##           1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="adjusting-for-surrogate-variables-using-f.pvalue-function" class="level2"><h2 class="anchored" data-anchor-id="adjusting-for-surrogate-variables-using-f.pvalue-function">Adjusting for surrogate variables using f.pvalue function</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### calculate the parametric F-test p-values for each row of a data matrix</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### calculate the parametric F-test p-values for each row of a data matrix</span></span>
 <span><span class="va">pvalues</span> <span class="op">&lt;-</span> <span class="fu">f.pvalue</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, <span class="va">mod0</span><span class="op">)</span></span>
 <span><span class="co">### adjust them for multiple teseting</span></span>
-<span><span class="va">qvalues</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">pvalues</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="va">qvalues</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">pvalues</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nearly 70% of the genes are strongly differentially expressed at an FDR of less than 5% between groups.<br>
 This number seems artifically high.</p>
 <p>Get the adjusted p-values and q-values accounting for surrogate variables.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### include the surrogate variables</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### include the surrogate variables</span></span>
 <span><span class="va">modsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">mod</span>, <span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span><span class="op">)</span></span>
 <span><span class="va">mod0sv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">mod0</span>, <span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span><span class="op">)</span></span>
 <span><span class="va">pvalues_sv</span> <span class="op">&lt;-</span> <span class="fu">f.pvalue</span><span class="op">(</span><span class="va">edata</span>, <span class="va">modsv</span>, <span class="va">mod0sv</span><span class="op">)</span></span>
-<span><span class="va">qvalues_sv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">pvalues</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="va">qvalues_sv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">pvalues</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="adjusting-for-surrogate-variables-using-the-limma" class="level2"><h2 class="anchored" data-anchor-id="adjusting-for-surrogate-variables-using-the-limma">Adjusting for surrogate variables using the limma</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### fit the linear model with the surrogate variabels</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### fit the linear model with the surrogate variabels</span></span>
 <span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">lmFit</span><span class="op">(</span><span class="va">edata</span>, <span class="va">modsv</span><span class="op">)</span></span>
 <span><span class="co">### compute the contrasts between cancer/normal terms</span></span>
 <span><span class="va">contrast_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span></span>
@@ -390,12 +387,12 @@ This number seems artifically high.</p>
 <span><span class="co">## 211445_x_at -10.15890 -0.06633356  9.853817 5256.114 9.845076e-64 3.133969e-60</span></span>
 <span><span class="co">## 213084_x_at -12.59345  0.03015520 13.046529 4790.107 1.260201e-62 3.510132e-59</span></span>
 <span><span class="co">## 201429_s_at -13.33686  0.28358293 12.941208 4464.995 8.675221e-62 2.147888e-58</span></span>
-<span><span class="co">## 214327_x_at -12.60146  0.20934783 11.832607 4312.087 2.257025e-61 5.029329e-58</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## 214327_x_at -12.60146  0.20934783 11.832607 4312.087 2.257025e-61 5.029329e-58</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="adjusting-for-known-batches-using-combat" class="level2"><h2 class="anchored" data-anchor-id="adjusting-for-known-batches-using-combat">Adjusting for known batches using Combat</h2>
 <p><code>ComBat</code> returns a “cleaned” data matrix after batch effects have been removed. Here we pass a model matrix with any known adjustment variables and a second parameter that is the batch variable.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### get known batch variable</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### get known batch variable</span></span>
 <span><span class="va">batch</span> <span class="op">&lt;-</span> <span class="va">pheno</span><span class="op">$</span><span class="va">batch</span></span>
 <span><span class="co">### model matrix</span></span>
 <span><span class="va">modcombat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="fl">1</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span></span>
@@ -418,7 +415,7 @@ This number seems artifically high.</p>
 <span><span class="va">qvalue_combat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">pvalue_combat</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">combat_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lmfit.html">lm.fit</a></span><span class="op">(</span><span class="va">modcancer</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">combat_edata</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">combat_fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, col <span class="op">=</span> <span class="fl">4</span>, breaks <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">combat_fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, col <span class="op">=</span> <span class="fl">4</span>, breaks <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -429,13 +426,13 @@ This number seems artifically high.</p>
 </section><section id="removing-known-batch-effects-with-a-linear-model" class="level2"><h2 class="anchored" data-anchor-id="removing-known-batch-effects-with-a-linear-model">Removing known batch effects with a linear model</h2>
 <p>In this case, we use two models. - One with the variable we care about - cancer status - the other is just the known adjustment variables, in this case, we assume none</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mod_batch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">batch</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mod_batch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">batch</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span></span>
 <span><span class="va">mod0_batch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">batch</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span></span>
 <span><span class="va">pvalues_batch</span> <span class="op">&lt;-</span> <span class="fu">f.pvalue</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod_batch</span>, <span class="va">mod0_batch</span><span class="op">)</span></span>
 <span><span class="va">qvalues_batch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">pvalues_batch</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lmfit.html">lm.fit</a></span><span class="op">(</span><span class="va">mod_batch</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">edata</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, col <span class="op">=</span> <span class="fl">4</span>, breaks <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, col <span class="op">=</span> <span class="fl">4</span>, breaks <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -446,23 +443,23 @@ This number seems artifically high.</p>
 </section><section id="comparing-combat-and-linear-adjustment" class="level2"><h2 class="anchored" data-anchor-id="comparing-combat-and-linear-adjustment">Comparing ComBat and linear adjustment</h2>
 <p>We can compare the estimated coefficients from Combat and linear adjustment by looking at the right coefficients for each model.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
 <span>  <span class="va">fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, <span class="va">combat_fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, col <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Linear Model"</span>, ylab <span class="op">=</span> <span class="st">"Combat"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">## null device </span></span>
-<span><span class="co">##           1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">##           1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Add the surrogate variables to the model matrix and perform model fit</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Add the surrogate variables to the model matrix and perform model fit</span></span>
 <span><span class="va">modsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">mod</span>, <span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span><span class="op">)</span></span>
 <span><span class="va">fitsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lmfit.html">lm.fit</a></span><span class="op">(</span><span class="va">modsv</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">edata</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -477,20 +474,20 @@ This number seems artifically high.</p>
 <span>  <span class="va">fitsv</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span>, <span class="va">fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, </span>
 <span>  col <span class="op">=</span> <span class="fl">2</span>, xlab <span class="op">=</span> <span class="st">"SVA"</span>, ylab <span class="op">=</span> <span class="st">"Linear model"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">## null device </span></span>
-<span><span class="co">##           1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">##           1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="combat-seq-for-batch-adjustment-on-rna-seq-count-data" class="level2"><h2 class="anchored" data-anchor-id="combat-seq-for-batch-adjustment-on-rna-seq-count-data">Combat-seq for batch adjustment on RNA-seq count data</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### expression matrix</span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### expression matrix</span></span>
 <span><span class="va">count_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/NegBinomial.html">rnbinom</a></span><span class="op">(</span><span class="fl">400</span>, size <span class="op">=</span> <span class="fl">10</span>, prob <span class="op">=</span>  <span class="fl">0.1</span><span class="op">)</span>,</span>
 <span>  nrow <span class="op">=</span> <span class="fl">50</span>, ncol <span class="op">=</span> <span class="fl">8</span></span>
@@ -543,18 +540,18 @@ This number seems artifically high.</p>
 <span><span class="co">## Estimating dispersions</span></span>
 <span><span class="co">## Fitting the GLM model</span></span>
 <span><span class="co">## Shrinkage off - using GLM estimates for parameters</span></span>
-<span><span class="co">## Adjusting the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## Adjusting the data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="variance-filtering-to-speed-computations" class="level2"><h2 class="anchored" data-anchor-id="variance-filtering-to-speed-computations">Variance filtering to speed computations</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_sv</span> <span class="op">&lt;-</span> <span class="fu">num.sv</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, vfilter <span class="op">=</span> <span class="fl">2000</span>, method <span class="op">=</span> <span class="st">"leek"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_sv</span> <span class="op">&lt;-</span> <span class="fu">num.sv</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, vfilter <span class="op">=</span> <span class="fl">2000</span>, method <span class="op">=</span> <span class="st">"leek"</span><span class="op">)</span></span>
 <span><span class="va">svaobj</span> <span class="op">&lt;-</span> <span class="fu">sva</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, <span class="va">mod0</span>, n.sv <span class="op">=</span> <span class="va">n_sv</span>, vfilter <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span>
 <span><span class="co">## Number of significant surrogate variables is:  46 </span></span>
-<span><span class="co">## Iteration (out of 5 ):1  2  3  4  5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## Iteration (out of 5 ):1  2  3  4  5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="applying-the-fsva-function-to-remove-batch-effects-for-prediction" class="level2"><h2 class="anchored" data-anchor-id="applying-the-fsva-function-to-remove-batch-effects-for-prediction">Applying the fsva function to remove batch effects for prediction</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### seprate data to traning and test set</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### seprate data to traning and test set</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12354</span><span class="op">)</span></span>
 <span><span class="va">train_indicator</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">57</span>, size <span class="op">=</span> <span class="fl">30</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">test_indicator</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">57</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="va">train_indicator</span><span class="op">]</span></span>
@@ -588,7 +585,7 @@ This number seems artifically high.</p>
 <span><span class="va">fsvaobj</span> <span class="op">&lt;-</span> <span class="fu">fsva</span><span class="op">(</span><span class="va">train_data</span>, <span class="va">train_mod</span>, <span class="va">train_sv</span>, <span class="va">test_data</span><span class="op">)</span></span>
 <span><span class="va">mydata_sv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">fsvaobj</span><span class="op">$</span><span class="va">db</span>, y <span class="op">=</span> <span class="va">train_pheno</span><span class="op">$</span><span class="va">cancer</span><span class="op">)</span></span>
 <span><span class="va">mytrain_sv</span> <span class="op">&lt;-</span> <span class="fu">pamr.train</span><span class="op">(</span><span class="va">mydata_sv</span><span class="op">)</span></span>
-<span><span class="co">## 123456789101112131415161718192021222324252627282930</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## 123456789101112131415161718192021222324252627282930</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <ul>
@@ -649,14 +646,13 @@ This number seems artifically high.</p>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

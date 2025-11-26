@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.31">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
 <title>Analyze Omics data using [structToolbox] – Guorui Zhong</title>
@@ -63,15 +63,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../../../">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-12b3df05fff64bd15c9bad32e15a2ea0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed09741bc9a4bc7923efc7a27dab3f48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-fa8806f0f1fe2c4c07c0086bb395541c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-baabc0bdab06a695b25d56c023bbe1ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -110,8 +109,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
     </a>
@@ -210,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content"><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load</span><span class="op">(</span></span>
 <span>    <span class="co">### BiocManager packages</span></span>
 <span>    <span class="va">structToolbox</span>,</span>
 <span>    <span class="va">pmp</span>,</span>
@@ -224,11 +221,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">### use the BiocFileCache</span></span>
-<span><span class="co"># bfc &lt;- BiocFileCache(ask = FALSE)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co"># bfc &lt;- BiocFileCache(ask = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="dataset" class="level2"><h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### iris dataset</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### iris dataset</span></span>
 <span><span class="va">D</span> <span class="op">&lt;-</span> <span class="fu">iris_DatasetExperiment</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">D</span><span class="op">$</span><span class="va">sample_meta</span><span class="op">$</span><span class="va">class</span> <span class="op">&lt;-</span> <span class="va">D</span><span class="op">$</span><span class="va">sample_meta</span><span class="op">$</span><span class="va">Species</span></span>
 <span><span class="va">D</span></span>
@@ -249,11 +246,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## 3          4.7         3.2          1.3         0.2</span></span>
 <span><span class="co">## 4          4.6         3.1          1.5         0.2</span></span>
 <span><span class="co">## 5          5.0         3.6          1.4         0.2</span></span>
-<span><span class="co">## 6          5.4         3.9          1.7         0.4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## 6          5.4         3.9          1.7         0.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="using-struct-model-objects" class="level2"><h2 class="anchored" data-anchor-id="using-struct-model-objects">Using {struct} model objects</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Statistical models</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Statistical models</span></span>
 <span><span class="va">P</span> <span class="op">=</span> <span class="fu">PCA</span><span class="op">(</span>number_components<span class="op">=</span><span class="fl">15</span><span class="op">)</span></span>
 <span><span class="va">P</span><span class="op">$</span><span class="va">number_components</span>  <span class="op">&lt;-</span>  <span class="fl">5</span></span>
 <span><span class="va">P</span><span class="op">$</span><span class="va">number_components</span></span>
@@ -289,14 +286,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## [4] "pca_loadings_plot"    "pca_scores_plot"      "pca_scree_plot"</span></span>
 <span><span class="co">### plot PCA scores plot</span></span>
 <span><span class="va">C</span> <span class="op">=</span> <span class="fu">pca_scores_plot</span><span class="op">(</span>factor_name<span class="op">=</span><span class="st">'class'</span><span class="op">)</span> <span class="co"># colour by class</span></span>
-<span><span class="fu">chart_plot</span><span class="op">(</span><span class="va">C</span>,<span class="va">M</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">chart_plot</span><span class="op">(</span><span class="va">C</span>,<span class="va">M</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co"># add petal width to meta data of pca scores</span></span>
 <span><span class="va">M</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">$</span><span class="va">scores</span><span class="op">$</span><span class="va">sample_meta</span><span class="op">$</span><span class="va">example</span><span class="op">=</span><span class="va">D</span><span class="op">$</span><span class="va">data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
 <span><span class="co"># update plot</span></span>
@@ -311,14 +308,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## ℹ This can happen when ggplot fails to infer the correct grouping structure in</span></span>
 <span><span class="co">##   the data.</span></span>
 <span><span class="co">## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span><span class="co">##   variable into a factor?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">##   variable into a factor?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="co"># scores plot</span></span>
 <span><span class="va">C1</span> <span class="op">=</span> <span class="fu">pca_scores_plot</span><span class="op">(</span>factor_name<span class="op">=</span><span class="st">'class'</span><span class="op">)</span> <span class="co"># colour by class</span></span>
 <span><span class="va">g1</span> <span class="op">=</span> <span class="fu">chart_plot</span><span class="op">(</span><span class="va">C1</span>,<span class="va">M</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
@@ -328,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">g2</span> <span class="op">=</span> <span class="fu">chart_plot</span><span class="op">(</span><span class="va">C2</span>,<span class="va">M</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># arange in grid</span></span>
-<span><span class="fu">grid.arrange</span><span class="op">(</span>grobs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">g1</span>,<span class="va">g2</span><span class="op">)</span>,nrow<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">grid.arrange</span><span class="op">(</span>grobs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">g1</span>,<span class="va">g2</span><span class="op">)</span>,nrow<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
@@ -340,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="dataset-1" class="level3"><h3 class="anchored" data-anchor-id="dataset-1">Dataset</h3>
 <p>The MTBLS79 dataset represents a systematic evaluation of the reproducibility of a multi-batch direct-infusion mass spectrometry (DIMS)-based metabolomics study of cardiac tissue extracts. It comprises twenty biological samples (cow vs.&nbsp;sheep) that were analysed repeatedly, in 8 batches across 7 days, together with a concurrent set of quality control (QC) samples. Data are presented from each step of the data processing workflow and are available through MetaboLights (https://www.ebi.ac.uk/metabolights/MTBLS79).</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># the pmp SE object</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># the pmp SE object</span></span>
 <span><span class="va">SE</span>  <span class="op">&lt;-</span>  <span class="va">MTBLS79</span></span>
 <span><span class="co"># convert to DE</span></span>
 <span><span class="va">DE</span>  <span class="op">&lt;-</span>  <span class="fu">as.DatasetExperiment</span><span class="op">(</span><span class="va">SE</span><span class="op">)</span></span>
@@ -367,12 +364,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## description:   Converted from SE provided by the pmp package</span></span>
 <span><span class="co">## data:          172 rows x 2488 columns</span></span>
 <span><span class="co">## sample_meta:   172 rows x 6 columns</span></span>
-<span><span class="co">## variable_meta: 2488 rows x 0 columns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## variable_meta: 2488 rows x 0 columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="signal-drift-and-batch-correction" class="level3"><h3 class="anchored" data-anchor-id="signal-drift-and-batch-correction">Signal drift and batch correction</h3>
 <p>A batch correction algorithm is applied to reduce intra- and inter- batch variations in the dataset. Quality Control-Robust Spline Correction (QC-RSC) is provided in the pmp package, and it has been wrapped into a structToolbox object called sb_corr.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="co"># batch correction</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="co"># batch correction</span></span>
 <span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu">sb_corr</span><span class="op">(</span></span>
 <span>    order_col <span class="op">=</span> <span class="st">"run_order"</span>,</span>
 <span>    batch_col <span class="op">=</span> <span class="st">"Batch"</span>,</span>
@@ -393,22 +390,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># plot and modify using ggplot2 </span></span>
-<span><span class="fu">chart_plot</span><span class="op">(</span><span class="va">C</span>,<span class="va">DE</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ylab</span><span class="op">(</span><span class="st">'Peak area'</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggtitle</span><span class="op">(</span><span class="st">'Before'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">chart_plot</span><span class="op">(</span><span class="va">C</span>,<span class="va">DE</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ylab</span><span class="op">(</span><span class="st">'Peak area'</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggtitle</span><span class="op">(</span><span class="st">'Before'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="fu">chart_plot</span><span class="op">(</span><span class="va">C</span>,<span class="fu">predicted</span><span class="op">(</span><span class="va">M</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu">ylab</span><span class="op">(</span><span class="st">'Peak area'</span><span class="op">)</span><span class="op">+</span><span class="fu">ggtitle</span><span class="op">(</span><span class="st">'After'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<span><span class="fu">chart_plot</span><span class="op">(</span><span class="va">C</span>,<span class="fu">predicted</span><span class="op">(</span><span class="va">M</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu">ylab</span><span class="op">(</span><span class="st">'Peak area'</span><span class="op">)</span><span class="op">+</span><span class="fu">ggtitle</span><span class="op">(</span><span class="st">'After'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="va">M2</span> <span class="op">=</span> <span class="fu">filter_na_count</span><span class="op">(</span></span>
 <span>      threshold<span class="op">=</span><span class="fl">3</span>,</span>
 <span>      factor_name<span class="op">=</span><span class="st">'Batch'</span></span>
@@ -419,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">nc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="fu">predicted</span><span class="op">(</span><span class="va">M2</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">'Number of features removed: '</span>, <span class="va">nc</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Number of features removed: 425</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## Number of features removed: 425</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="feature-filtering" class="level3"><h3 class="anchored" data-anchor-id="feature-filtering">Feature filtering</h3>
 </section></section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
@@ -479,14 +476,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

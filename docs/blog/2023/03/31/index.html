@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.31">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
 <title>Add p-value and significant level at facet boxplot – Guorui Zhong</title>
@@ -63,15 +63,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../../../">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-12b3df05fff64bd15c9bad32e15a2ea0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed09741bc9a4bc7923efc7a27dab3f48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-fa8806f0f1fe2c4c07c0086bb395541c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-baabc0bdab06a695b25d56c023bbe1ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -110,8 +109,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
     </a>
@@ -228,7 +225,7 @@ Note
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load</span><span class="op">(</span></span>
 <span>    <span class="va">tidyverse</span>,</span>
 <span>    <span class="va">ggsci</span>,</span>
 <span>    <span class="va">ggprism</span>,</span>
@@ -236,11 +233,11 @@ Note
 <span>    <span class="va">ggpubr</span>,</span>
 <span>    <span class="va">gapminder</span>,</span>
 <span>    <span class="va">ggpmisc</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="add-t-test-annotation-in-specific-subgroup" class="level2"><h2 class="anchored" data-anchor-id="add-t-test-annotation-in-specific-subgroup">Add t-test annotation in specific subgroup</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## subset data</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## subset data</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1957</span>, <span class="fl">2002</span>, <span class="fl">2007</span><span class="op">)</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">select</span><span class="op">(</span><span class="va">country</span>, <span class="va">year</span>, <span class="va">lifeExp</span>, <span class="va">continent</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -284,10 +281,10 @@ Note
 <span><span class="co">## 11 Europe    lifeExp 1957   2007      30    30        13 6.31e-15 7.57e-14</span></span>
 <span><span class="co">## 12 Europe    lifeExp 2002   2007      30    30       358 1.77e- 1 1   e+ 0</span></span>
 <span><span class="co">## # ℹ 5 more variables: p.adj.signif &lt;chr&gt;, y.position &lt;dbl&gt;,</span></span>
-<span><span class="co">## #   groups &lt;named list&gt;, xmin &lt;dbl&gt;, xmax &lt;dbl&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## #   groups &lt;named list&gt;, xmin &lt;dbl&gt;, xmax &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">stat_boxplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">..lower..</span>, ymax <span class="op">=</span> <span class="va">..upper..</span><span class="op">)</span>, outlier.shape <span class="op">=</span> <span class="cn">NA</span>, width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">stat_boxplot</span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"errorbar"</span>, <span class="fu">aes</span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">..ymax..</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.35</span><span class="op">)</span> <span class="op">+</span></span>
@@ -325,7 +322,7 @@ Note
 <span><span class="co">## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.</span></span>
 <span><span class="co">## ℹ Please use the `linewidth` argument instead.</span></span>
 <span><span class="co">## Warning: The dot-dot notation (`..lower..`) was deprecated in ggplot2 3.4.0.</span></span>
-<span><span class="co">## ℹ Please use `after_stat(lower)` instead.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## ℹ Please use `after_stat(lower)` instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -335,7 +332,7 @@ Note
 </div>
 </section><section id="paried-t-test-in-subgroup-facet" class="level2"><h2 class="anchored" data-anchor-id="paried-t-test-in-subgroup-facet">Paried t-test in subgroup facet</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Boxplot Parired t-test multiple group</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Boxplot Parired t-test multiple group</span></span>
 <span><span class="va">df</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">year</span>, <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">stat_boxplot</span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"errorbar"</span>, position <span class="op">=</span> <span class="fu">position_dodge</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
@@ -363,20 +360,20 @@ Note
 <span>        legend.position <span class="op">=</span> <span class="st">"none"</span>,</span>
 <span>        panel.spacing <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">0</span>, <span class="st">"lines"</span><span class="op">)</span></span>
 <span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">coord_cartesian</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">coord_cartesian</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ggsave(</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ggsave(</span></span>
 <span><span class="co">#     here("blog", "2023", "03", "07", "plot.png")</span></span>
-<span><span class="co"># )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co"># )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="boxplot" class="level2"><h2 class="anchored" data-anchor-id="boxplot">Boxplot</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">year</span>, <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">stat_boxplot</span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"errorbar"</span>, position <span class="op">=</span> <span class="fu">position_dodge</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_boxplot</span><span class="op">(</span>position <span class="op">=</span> <span class="fu">position_dodge</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
@@ -411,7 +408,7 @@ Note
 <span>        panel.spacing <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">0</span>, <span class="st">"lines"</span><span class="op">)</span></span>
 <span>    <span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">coord_cartesian</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -472,14 +469,13 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
