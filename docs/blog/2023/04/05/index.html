@@ -213,10 +213,10 @@ window.Quarto = {
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#what-is-feature-scaling-normalization" id="toc-what-is-feature-scaling-normalization" class="nav-link active" data-scroll-target="#what-is-feature-scaling-normalization">What is feature scaling (normalization)?</a></li>
-  <li><a href="#standard-scaling" id="toc-standard-scaling" class="nav-link" data-scroll-target="#standard-scaling">Standard scaling</a></li>
-  <li><a href="#normalization" id="toc-normalization" class="nav-link" data-scroll-target="#normalization">Normalization</a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+  <li><a href="#what-is-feature-scaling-normalization" id="toc-what-is-feature-scaling-normalization" class="nav-link active" data-scroll-target="#what-is-feature-scaling-normalization"><span class="header-section-number">1</span> What is feature scaling (normalization)?</a></li>
+  <li><a href="#standard-scaling" id="toc-standard-scaling" class="nav-link" data-scroll-target="#standard-scaling"><span class="header-section-number">2</span> Standard scaling</a></li>
+  <li><a href="#normalization" id="toc-normalization" class="nav-link" data-scroll-target="#normalization"><span class="header-section-number">3</span> Normalization</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">4</span> Reference</a></li>
   </ul>
 </nav>
 </nav>
@@ -236,12 +236,12 @@ window.Quarto = {
 Normalization or Min-Max scaling
 Percentile transformation</code></pre>
 <p><img src="scale.png" class="img-fluid"></p>
-<section id="what-is-feature-scaling-normalization" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-feature-scaling-normalization">What is feature scaling (normalization)?</h2>
+<section id="what-is-feature-scaling-normalization" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="what-is-feature-scaling-normalization"><span class="header-section-number">1</span> What is feature scaling (normalization)?</h2>
 <p>In short, feature scaling means to scale the data into a fixed range — generally between 0 and 1. Normalization is normally performed when doing a multivariate analysis where you want each feature (variable) to contribute equally to the analysis.</p>
 </section>
-<section id="standard-scaling" class="level2">
-<h2 class="anchored" data-anchor-id="standard-scaling">Standard scaling</h2>
+<section id="standard-scaling" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="standard-scaling"><span class="header-section-number">2</span> Standard scaling</h2>
 <p><strong>Standard scaling</strong>, also known as standardization or Z-score normalization, consists of subtracting the mean and divide by the standard deviation. In such a case, each value would reflect the distance from the mean in units of standard deviation.</p>
 <p>If we would assume all variables come from some normal distribution, then scaling would bring them all close to the standard normal distribution. The resulting distribution has a mean of 0 and a standard deviation of 1.</p>
 <p><strong>Standard scaling formula</strong>:</p>
@@ -251,8 +251,8 @@ Percentile transformation</code></pre>
 <p><span class="math display">\[Transformed.Values = \frac{Values - Mean}{Maximum - Minimum}\]</span></p>
 <p>Standardization and Mean Normalization can be used for algorithms that assumes zero centric data like <em>Principal Component Analysis</em>(PCA).</p>
 </section>
-<section id="normalization" class="level2">
-<h2 class="anchored" data-anchor-id="normalization">Normalization</h2>
+<section id="normalization" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="normalization"><span class="header-section-number">3</span> Normalization</h2>
 <p>When variables in the data comes from possibly different (and non-normal) distributions, other transformations may be in order. Another possibility is to normalize the variables to brings data to the 0 to 1 scale by subtracting the minimum and dividing by the maximum of all observations.</p>
 <p>This preserves the shape of each variable’s distribution while making them easily comparable on the same “scale”.</p>
 <p><strong>Formula to normalize data between 0 and 1</strong> :</p>
@@ -262,8 +262,8 @@ Percentile transformation</code></pre>
 <p>where <code>a,b</code> are the min-max values.</p>
 <p><strong>Normalize data in R</strong>. Using the Min-Max normalization function on <code>mtcars</code> data easily reveals columns with only two (<code>am</code>, <code>vs</code>) or three (<code>gear</code>, <code>cyl</code>) variables compared with variables that have a higher resolution of possible values:</p>
 </section>
-<section id="reference" class="level2">
-<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<section id="reference" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="reference"><span class="header-section-number">4</span> Reference</h2>
 <ol type="1">
 <li><a href="https://www.datanovia.com/en/lessons/heatmap-in-r-static-and-interactive-visualization/" class="uri">https://www.datanovia.com/en/lessons/heatmap-in-r-static-and-interactive-visualization/</a></li>
 </ol>

@@ -215,36 +215,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#why-environments-are-still-painful" id="toc-why-environments-are-still-painful" class="nav-link active" data-scroll-target="#why-environments-are-still-painful">Why environments are still painful</a></li>
-  <li><a href="#quick-landscape-environment-strategies" id="toc-quick-landscape-environment-strategies" class="nav-link" data-scroll-target="#quick-landscape-environment-strategies">Quick landscape: environment strategies</a></li>
-  <li><a href="#core-concepts-mental-model" id="toc-core-concepts-mental-model" class="nav-link" data-scroll-target="#core-concepts-mental-model">Core concepts (mental model)</a>
+  <li><a href="#why-environments-are-still-painful" id="toc-why-environments-are-still-painful" class="nav-link active" data-scroll-target="#why-environments-are-still-painful"><span class="header-section-number">1</span> Why environments are still painful</a></li>
+  <li><a href="#quick-landscape-environment-strategies" id="toc-quick-landscape-environment-strategies" class="nav-link" data-scroll-target="#quick-landscape-environment-strategies"><span class="header-section-number">2</span> Quick landscape: environment strategies</a></li>
+  <li><a href="#core-concepts-mental-model" id="toc-core-concepts-mental-model" class="nav-link" data-scroll-target="#core-concepts-mental-model"><span class="header-section-number">3</span> Core concepts (mental model)</a>
   <ul class="collapse">
-  <li><a href="#how-layering-works" id="toc-how-layering-works" class="nav-link" data-scroll-target="#how-layering-works">How layering works</a></li>
+  <li><a href="#how-layering-works" id="toc-how-layering-works" class="nav-link" data-scroll-target="#how-layering-works"><span class="header-section-number">3.1</span> How layering works</a></li>
   </ul></li>
-  <li><a href="#choosing-docker-vs-singularityapptainer" id="toc-choosing-docker-vs-singularityapptainer" class="nav-link" data-scroll-target="#choosing-docker-vs-singularityapptainer">Choosing Docker vs Singularity/Apptainer</a></li>
-  <li><a href="#minimal-examples" id="toc-minimal-examples" class="nav-link" data-scroll-target="#minimal-examples">Minimal examples</a>
+  <li><a href="#choosing-docker-vs-singularityapptainer" id="toc-choosing-docker-vs-singularityapptainer" class="nav-link" data-scroll-target="#choosing-docker-vs-singularityapptainer"><span class="header-section-number">4</span> Choosing Docker vs Singularity/Apptainer</a></li>
+  <li><a href="#minimal-examples" id="toc-minimal-examples" class="nav-link" data-scroll-target="#minimal-examples"><span class="header-section-number">5</span> Minimal examples</a>
   <ul class="collapse">
-  <li><a href="#simple-dockerfile-micromamba-based-rna-seq-tooling" id="toc-simple-dockerfile-micromamba-based-rna-seq-tooling" class="nav-link" data-scroll-target="#simple-dockerfile-micromamba-based-rna-seq-tooling">Simple Dockerfile (micromamba-based RNA-seq tooling)</a></li>
-  <li><a href="#equivalent-singularityapptainer-definition" id="toc-equivalent-singularityapptainer-definition" class="nav-link" data-scroll-target="#equivalent-singularityapptainer-definition">Equivalent Singularity/Apptainer definition</a></li>
+  <li><a href="#simple-dockerfile-micromamba-based-rna-seq-tooling" id="toc-simple-dockerfile-micromamba-based-rna-seq-tooling" class="nav-link" data-scroll-target="#simple-dockerfile-micromamba-based-rna-seq-tooling"><span class="header-section-number">5.1</span> Simple Dockerfile (micromamba-based RNA-seq tooling)</a></li>
+  <li><a href="#equivalent-singularityapptainer-definition" id="toc-equivalent-singularityapptainer-definition" class="nav-link" data-scroll-target="#equivalent-singularityapptainer-definition"><span class="header-section-number">5.2</span> Equivalent Singularity/Apptainer definition</a></li>
   </ul></li>
-  <li><a href="#common-pitfalls-fixes" id="toc-common-pitfalls-fixes" class="nav-link" data-scroll-target="#common-pitfalls-fixes">Common pitfalls &amp; fixes</a></li>
-  <li><a href="#layer-ordering-strategy-example" id="toc-layer-ordering-strategy-example" class="nav-link" data-scroll-target="#layer-ordering-strategy-example">Layer ordering strategy (example)</a></li>
-  <li><a href="#reproducible-build-practices" id="toc-reproducible-build-practices" class="nav-link" data-scroll-target="#reproducible-build-practices">Reproducible build practices</a></li>
-  <li><a href="#example-multi-stage-to-shrink-bioconductor-image" id="toc-example-multi-stage-to-shrink-bioconductor-image" class="nav-link" data-scroll-target="#example-multi-stage-to-shrink-bioconductor-image">Example: multi-stage to shrink Bioconductor image</a></li>
-  <li><a href="#integrating-with-workflow-engines" id="toc-integrating-with-workflow-engines" class="nav-link" data-scroll-target="#integrating-with-workflow-engines">Integrating with workflow engines</a>
+  <li><a href="#common-pitfalls-fixes" id="toc-common-pitfalls-fixes" class="nav-link" data-scroll-target="#common-pitfalls-fixes"><span class="header-section-number">6</span> Common pitfalls &amp; fixes</a></li>
+  <li><a href="#layer-ordering-strategy-example" id="toc-layer-ordering-strategy-example" class="nav-link" data-scroll-target="#layer-ordering-strategy-example"><span class="header-section-number">7</span> Layer ordering strategy (example)</a></li>
+  <li><a href="#reproducible-build-practices" id="toc-reproducible-build-practices" class="nav-link" data-scroll-target="#reproducible-build-practices"><span class="header-section-number">8</span> Reproducible build practices</a></li>
+  <li><a href="#example-multi-stage-to-shrink-bioconductor-image" id="toc-example-multi-stage-to-shrink-bioconductor-image" class="nav-link" data-scroll-target="#example-multi-stage-to-shrink-bioconductor-image"><span class="header-section-number">9</span> Example: multi-stage to shrink Bioconductor image</a></li>
+  <li><a href="#integrating-with-workflow-engines" id="toc-integrating-with-workflow-engines" class="nav-link" data-scroll-target="#integrating-with-workflow-engines"><span class="header-section-number">10</span> Integrating with workflow engines</a>
   <ul class="collapse">
-  <li><a href="#snakemake" id="toc-snakemake" class="nav-link" data-scroll-target="#snakemake">Snakemake</a></li>
-  <li><a href="#nextflow" id="toc-nextflow" class="nav-link" data-scroll-target="#nextflow">Nextflow</a></li>
-  <li><a href="#rmarkdown-quarto" id="toc-rmarkdown-quarto" class="nav-link" data-scroll-target="#rmarkdown-quarto">Rmarkdown / Quarto</a></li>
+  <li><a href="#snakemake" id="toc-snakemake" class="nav-link" data-scroll-target="#snakemake"><span class="header-section-number">10.1</span> Snakemake</a></li>
+  <li><a href="#nextflow" id="toc-nextflow" class="nav-link" data-scroll-target="#nextflow"><span class="header-section-number">10.2</span> Nextflow</a></li>
+  <li><a href="#rmarkdown-quarto" id="toc-rmarkdown-quarto" class="nav-link" data-scroll-target="#rmarkdown-quarto"><span class="header-section-number">10.3</span> Rmarkdown / Quarto</a></li>
   </ul></li>
-  <li><a href="#hpc-binding-patterns-apptainer" id="toc-hpc-binding-patterns-apptainer" class="nav-link" data-scroll-target="#hpc-binding-patterns-apptainer">HPC binding patterns (Apptainer)</a></li>
-  <li><a href="#security-provenance-quick-wins" id="toc-security-provenance-quick-wins" class="nav-link" data-scroll-target="#security-provenance-quick-wins">Security &amp; provenance quick wins</a></li>
-  <li><a href="#when-not-to-containerize" id="toc-when-not-to-containerize" class="nav-link" data-scroll-target="#when-not-to-containerize">When NOT to containerize</a></li>
-  <li><a href="#quick-cheatsheet" id="toc-quick-cheatsheet" class="nav-link" data-scroll-target="#quick-cheatsheet">Quick cheatsheet</a></li>
-  <li><a href="#minimal-version-manifest-pattern" id="toc-minimal-version-manifest-pattern" class="nav-link" data-scroll-target="#minimal-version-manifest-pattern">Minimal version manifest pattern</a></li>
-  <li><a href="#future-directions" id="toc-future-directions" class="nav-link" data-scroll-target="#future-directions">Future directions</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading">References &amp; further reading</a></li>
+  <li><a href="#hpc-binding-patterns-apptainer" id="toc-hpc-binding-patterns-apptainer" class="nav-link" data-scroll-target="#hpc-binding-patterns-apptainer"><span class="header-section-number">11</span> HPC binding patterns (Apptainer)</a></li>
+  <li><a href="#security-provenance-quick-wins" id="toc-security-provenance-quick-wins" class="nav-link" data-scroll-target="#security-provenance-quick-wins"><span class="header-section-number">12</span> Security &amp; provenance quick wins</a></li>
+  <li><a href="#when-not-to-containerize" id="toc-when-not-to-containerize" class="nav-link" data-scroll-target="#when-not-to-containerize"><span class="header-section-number">13</span> When NOT to containerize</a></li>
+  <li><a href="#quick-cheatsheet" id="toc-quick-cheatsheet" class="nav-link" data-scroll-target="#quick-cheatsheet"><span class="header-section-number">14</span> Quick cheatsheet</a></li>
+  <li><a href="#minimal-version-manifest-pattern" id="toc-minimal-version-manifest-pattern" class="nav-link" data-scroll-target="#minimal-version-manifest-pattern"><span class="header-section-number">15</span> Minimal version manifest pattern</a></li>
+  <li><a href="#future-directions" id="toc-future-directions" class="nav-link" data-scroll-target="#future-directions"><span class="header-section-number">16</span> Future directions</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">17</span> Summary</a></li>
+  <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><span class="header-section-number">18</span> References &amp; further reading</a></li>
   </ul>
 </nav>
 </nav>
@@ -259,8 +259,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="why-environments-are-still-painful" class="level2">
-<h2 class="anchored" data-anchor-id="why-environments-are-still-painful">Why environments are still painful</h2>
+<section id="why-environments-are-still-painful" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="why-environments-are-still-painful"><span class="header-section-number">1</span> Why environments are still painful</h2>
 <p>Re-running an analysis six months later can feel like archaeology: missing system libraries, different BLAST versions, broken Bioconductor installs, Python 3.X drift, orphaned <code>conda</code> envs, or an HPC node with older glibc. Traditional solutions (system modules, ad‑hoc conda envs, manual <code>pip install</code>) reduce friction short-term but leak entropy over time.</p>
 <p>Containers give you: - Immutability (image digest = frozen state) - Portable stacks across laptop → cloud → HPC (with Singularity/Apptainer) - Clear provenance (Dockerfile / definition recipe) - Smaller cognitive diff when you onboard collaborators</p>
 <p>They do NOT automatically guarantee: - Determinism (if you use <code>apt-get install foo</code> without pinning) - Security (you still pull unverified images?) - Performance (I/O heavy workloads can still bottleneck) - Zero maintenance (base images deprecate; CVEs accumulate)</p>
@@ -278,8 +278,8 @@ Note
 </div>
 </div>
 </section>
-<section id="quick-landscape-environment-strategies" class="level2">
-<h2 class="anchored" data-anchor-id="quick-landscape-environment-strategies">Quick landscape: environment strategies</h2>
+<section id="quick-landscape-environment-strategies" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="quick-landscape-environment-strategies"><span class="header-section-number">2</span> Quick landscape: environment strategies</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 28%">
@@ -335,8 +335,8 @@ Note
 </tbody>
 </table>
 </section>
-<section id="core-concepts-mental-model" class="level2">
-<h2 class="anchored" data-anchor-id="core-concepts-mental-model">Core concepts (mental model)</h2>
+<section id="core-concepts-mental-model" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="core-concepts-mental-model"><span class="header-section-number">3</span> Core concepts (mental model)</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -383,13 +383,13 @@ Note
 </tr>
 </tbody>
 </table>
-<section id="how-layering-works" class="level3">
-<h3 class="anchored" data-anchor-id="how-layering-works">How layering works</h3>
+<section id="how-layering-works" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="how-layering-works"><span class="header-section-number">3.1</span> How layering works</h3>
 <p>Each <code>RUN</code>, <code>COPY</code>, or <code>ADD</code> typically adds a new layer. Efficient Dockerfiles: - Order stable (rarely changing) layers first (base OS, core tools) - Group commands that change together to reduce rebuild churn - Avoid installing &amp; removing large sets in the same layer without cleanup</p>
 </section>
 </section>
-<section id="choosing-docker-vs-singularityapptainer" class="level2">
-<h2 class="anchored" data-anchor-id="choosing-docker-vs-singularityapptainer">Choosing Docker vs Singularity/Apptainer</h2>
+<section id="choosing-docker-vs-singularityapptainer" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="choosing-docker-vs-singularityapptainer"><span class="header-section-number">4</span> Choosing Docker vs Singularity/Apptainer</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -439,10 +439,10 @@ Note
 </tbody>
 </table>
 </section>
-<section id="minimal-examples" class="level2">
-<h2 class="anchored" data-anchor-id="minimal-examples">Minimal examples</h2>
-<section id="simple-dockerfile-micromamba-based-rna-seq-tooling" class="level3">
-<h3 class="anchored" data-anchor-id="simple-dockerfile-micromamba-based-rna-seq-tooling">Simple Dockerfile (micromamba-based RNA-seq tooling)</h3>
+<section id="minimal-examples" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="minimal-examples"><span class="header-section-number">5</span> Minimal examples</h2>
+<section id="simple-dockerfile-micromamba-based-rna-seq-tooling" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="simple-dockerfile-micromamba-based-rna-seq-tooling"><span class="header-section-number">5.1</span> Simple Dockerfile (micromamba-based RNA-seq tooling)</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> mambaorg/micromamba:1.5.9</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create env with pinned versions</span></span>
@@ -462,8 +462,8 @@ Note
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> rnaseq:1.0 .</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/workspace rnaseq:1.0 fastqc <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="equivalent-singularityapptainer-definition" class="level3">
-<h3 class="anchored" data-anchor-id="equivalent-singularityapptainer-definition">Equivalent Singularity/Apptainer definition</h3>
+<section id="equivalent-singularityapptainer-definition" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="equivalent-singularityapptainer-definition"><span class="header-section-number">5.2</span> Equivalent Singularity/Apptainer definition</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Bootstrap:</span> docker</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">From:</span> mambaorg/micromamba:1.5.9</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -496,8 +496,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="common-pitfalls-fixes" class="level2">
-<h2 class="anchored" data-anchor-id="common-pitfalls-fixes">Common pitfalls &amp; fixes</h2>
+<section id="common-pitfalls-fixes" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="common-pitfalls-fixes"><span class="header-section-number">6</span> Common pitfalls &amp; fixes</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 42%">
@@ -540,8 +540,8 @@ Tip
 </tbody>
 </table>
 </section>
-<section id="layer-ordering-strategy-example" class="level2">
-<h2 class="anchored" data-anchor-id="layer-ordering-strategy-example">Layer ordering strategy (example)</h2>
+<section id="layer-ordering-strategy-example" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="layer-ordering-strategy-example"><span class="header-section-number">7</span> Layer ordering strategy (example)</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Base image (rarely changes)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ubuntu:24.04 <span class="kw">AS</span> base</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> <span class="at">--no-install-recommends</span> curl ca-certificates <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> <span class="at">-rf</span> /var/lib/apt/lists/<span class="pp">*</span></span>
@@ -557,8 +557,8 @@ Tip
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> workflow/ /opt/workflow/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Goal: Stable early layers cache across small workflow edits.</p>
 </section>
-<section id="reproducible-build-practices" class="level2">
-<h2 class="anchored" data-anchor-id="reproducible-build-practices">Reproducible build practices</h2>
+<section id="reproducible-build-practices" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="reproducible-build-practices"><span class="header-section-number">8</span> Reproducible build practices</h2>
 <ol type="1">
 <li>Pin everything (base image digest, package versions, channels ordering)</li>
 <li>Capture a manifest: write <code>conda list --explicit &gt; env.lock</code> during build</li>
@@ -569,8 +569,8 @@ Tip
 <li>Sign images (<code>cosign sign --key cosign.key image@sha256:...</code>)</li>
 </ol>
 </section>
-<section id="example-multi-stage-to-shrink-bioconductor-image" class="level2">
-<h2 class="anchored" data-anchor-id="example-multi-stage-to-shrink-bioconductor-image">Example: multi-stage to shrink Bioconductor image</h2>
+<section id="example-multi-stage-to-shrink-bioconductor-image" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="example-multi-stage-to-shrink-bioconductor-image"><span class="header-section-number">9</span> Example: multi-stage to shrink Bioconductor image</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> bioconductor/bioconductor_docker:RELEASE_3_19 <span class="kw">AS</span> build</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">R</span> <span class="at">-q</span> <span class="at">-e</span> <span class="st">'install.packages(c("BiocManager")); BiocManager::install(c("DESeq2"), ask=FALSE)'</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -580,10 +580,10 @@ Tip
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=build</span> /usr/local/bin/R /usr/local/bin/R</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ENTRYPOINT</span> [<span class="st">"R"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="integrating-with-workflow-engines" class="level2">
-<h2 class="anchored" data-anchor-id="integrating-with-workflow-engines">Integrating with workflow engines</h2>
-<section id="snakemake" class="level3">
-<h3 class="anchored" data-anchor-id="snakemake">Snakemake</h3>
+<section id="integrating-with-workflow-engines" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="integrating-with-workflow-engines"><span class="header-section-number">10</span> Integrating with workflow engines</h2>
+<section id="snakemake" class="level3" data-number="10.1">
+<h3 data-number="10.1" class="anchored" data-anchor-id="snakemake"><span class="header-section-number">10.1</span> Snakemake</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rule fastqc:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span>: <span class="st">"data/</span><span class="sc">{sample}</span><span class="st">.fq.gz"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    output: <span class="st">"qc/</span><span class="sc">{sample}</span><span class="st">_fastqc.html"</span></span>
@@ -591,8 +591,8 @@ Tip
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    threads: <span class="dv">2</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    shell: <span class="st">"fastqc </span><span class="sc">{input}</span><span class="st"> -o qc"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="nextflow" class="level3">
-<h3 class="anchored" data-anchor-id="nextflow">Nextflow</h3>
+<section id="nextflow" class="level3" data-number="10.2">
+<h3 data-number="10.2" class="anchored" data-anchor-id="nextflow"><span class="header-section-number">10.2</span> Nextflow</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>process FASTQC <span class="op">{</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  container <span class="st">'rnaseq:1.0'</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  input<span class="op">:</span></span>
@@ -605,13 +605,13 @@ Tip
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="st">  """</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="rmarkdown-quarto" class="level3">
-<h3 class="anchored" data-anchor-id="rmarkdown-quarto">Rmarkdown / Quarto</h3>
+<section id="rmarkdown-quarto" class="level3" data-number="10.3">
+<h3 data-number="10.3" class="anchored" data-anchor-id="rmarkdown-quarto"><span class="header-section-number">10.3</span> Rmarkdown / Quarto</h3>
 <p>Use a named project execution environment or call external container via <code>processx</code> + <code>docker run</code> if necessary for isolation.</p>
 </section>
 </section>
-<section id="hpc-binding-patterns-apptainer" class="level2">
-<h2 class="anchored" data-anchor-id="hpc-binding-patterns-apptainer">HPC binding patterns (Apptainer)</h2>
+<section id="hpc-binding-patterns-apptainer" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="hpc-binding-patterns-apptainer"><span class="header-section-number">11</span> HPC binding patterns (Apptainer)</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec <span class="dt">\</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--bind</span> /scratch:/scratch,/project/genomes:/ref <span class="dt">\</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  rnaseq.sif <span class="dt">\</span></span>
@@ -631,8 +631,8 @@ Important
 </div>
 </div>
 </section>
-<section id="security-provenance-quick-wins" class="level2">
-<h2 class="anchored" data-anchor-id="security-provenance-quick-wins">Security &amp; provenance quick wins</h2>
+<section id="security-provenance-quick-wins" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="security-provenance-quick-wins"><span class="header-section-number">12</span> Security &amp; provenance quick wins</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -664,16 +664,16 @@ Important
 </tbody>
 </table>
 </section>
-<section id="when-not-to-containerize" class="level2">
-<h2 class="anchored" data-anchor-id="when-not-to-containerize">When NOT to containerize</h2>
+<section id="when-not-to-containerize" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="when-not-to-containerize"><span class="header-section-number">13</span> When NOT to containerize</h2>
 <ul>
 <li>Ultra-fast iteration on a one-off exploratory script (use conda + micro env)</li>
 <li>Tight coupling to HPC vendor-tuned MPI stack (use system modules)</li>
 <li>Extremely large monolithic datasets (prefer external mounts)</li>
 </ul>
 </section>
-<section id="quick-cheatsheet" class="level2">
-<h2 class="anchored" data-anchor-id="quick-cheatsheet">Quick cheatsheet</h2>
+<section id="quick-cheatsheet" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="quick-cheatsheet"><span class="header-section-number">14</span> Quick cheatsheet</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build docker image</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> toolset:0.1 .</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Export to singularity (method 1)</span></span>
@@ -683,8 +683,8 @@ Important
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run command</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec toolset.sif samtools <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="minimal-version-manifest-pattern" class="level2">
-<h2 class="anchored" data-anchor-id="minimal-version-manifest-pattern">Minimal version manifest pattern</h2>
+<section id="minimal-version-manifest-pattern" class="level2" data-number="15">
+<h2 data-number="15" class="anchored" data-anchor-id="minimal-version-manifest-pattern"><span class="header-section-number">15</span> Minimal version manifest pattern</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;&lt;EOF</span> <span class="op">&gt;</span> VERSIONS.txt</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="st">fastqc </span><span class="va">$(</span><span class="ex">fastqc</span> <span class="at">--version</span> <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $2}'</span><span class="va">)</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="va">$(</span><span class="ex">samtools</span> <span class="at">--version</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span><span class="va">)</span></span>
@@ -692,8 +692,8 @@ Important
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Commit that with pipeline outputs for provenance.</p>
 </section>
-<section id="future-directions" class="level2">
-<h2 class="anchored" data-anchor-id="future-directions">Future directions</h2>
+<section id="future-directions" class="level2" data-number="16">
+<h2 data-number="16" class="anchored" data-anchor-id="future-directions"><span class="header-section-number">16</span> Future directions</h2>
 <ul>
 <li>Reproducible builds with <code>--provenance</code> attestations (increasing adoption)</li>
 <li>Hybrid: Nix builds exported to OCI images</li>
@@ -701,8 +701,8 @@ Important
 <li>WASM-based bioinformatics modules for partially sandboxed execution</li>
 </ul>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<section id="summary" class="level2" data-number="17">
+<h2 data-number="17" class="anchored" data-anchor-id="summary"><span class="header-section-number">17</span> Summary</h2>
 <p>Containers provide a portable, inspectable, and (mostly) reproducible substrate for bioinformatics workflows—especially across heterogeneous compute environments. Effective practice centers on pinning, layering discipline, security hygiene, and clean integration with workflow managers.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -718,8 +718,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="references-further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="references-further-reading">References &amp; further reading</h2>
+<section id="references-further-reading" class="level2" data-number="18">
+<h2 data-number="18" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">18</span> References &amp; further reading</h2>
 <ul>
 <li>Apptainer docs: https://apptainer.org/docs/</li>
 <li>OCI Image Spec: https://github.com/opencontainers/image-spec</li>

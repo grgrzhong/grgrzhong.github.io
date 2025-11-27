@@ -204,20 +204,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#shell" id="toc-shell" class="nav-link active" data-scroll-target="#shell">Shell</a></li>
-  <li><a href="#permissions" id="toc-permissions" class="nav-link" data-scroll-target="#permissions">Permissions</a></li>
-  <li><a href="#sync" id="toc-sync" class="nav-link" data-scroll-target="#sync">Sync</a></li>
-  <li><a href="#wsl" id="toc-wsl" class="nav-link" data-scroll-target="#wsl">WSL</a>
+  <li><a href="#shell" id="toc-shell" class="nav-link active" data-scroll-target="#shell"><span class="header-section-number">1</span> Shell</a></li>
+  <li><a href="#permissions" id="toc-permissions" class="nav-link" data-scroll-target="#permissions"><span class="header-section-number">2</span> Permissions</a></li>
+  <li><a href="#sync" id="toc-sync" class="nav-link" data-scroll-target="#sync"><span class="header-section-number">3</span> Sync</a></li>
+  <li><a href="#wsl" id="toc-wsl" class="nav-link" data-scroll-target="#wsl"><span class="header-section-number">4</span> WSL</a>
   <ul class="collapse">
-  <li><a href="#system-info" id="toc-system-info" class="nav-link" data-scroll-target="#system-info">System info</a></li>
-  <li><a href="#wsl-change-sudo-password" id="toc-wsl-change-sudo-password" class="nav-link" data-scroll-target="#wsl-change-sudo-password">WSL Change sudo password</a></li>
-  <li><a href="#wsl-configuration" id="toc-wsl-configuration" class="nav-link" data-scroll-target="#wsl-configuration">WSL configuration</a></li>
+  <li><a href="#system-info" id="toc-system-info" class="nav-link" data-scroll-target="#system-info"><span class="header-section-number">4.1</span> System info</a></li>
+  <li><a href="#wsl-change-sudo-password" id="toc-wsl-change-sudo-password" class="nav-link" data-scroll-target="#wsl-change-sudo-password"><span class="header-section-number">4.2</span> WSL Change sudo password</a></li>
+  <li><a href="#wsl-configuration" id="toc-wsl-configuration" class="nav-link" data-scroll-target="#wsl-configuration"><span class="header-section-number">4.3</span> WSL configuration</a></li>
   </ul></li>
-  <li><a href="#conda" id="toc-conda" class="nav-link" data-scroll-target="#conda">Conda</a>
+  <li><a href="#conda" id="toc-conda" class="nav-link" data-scroll-target="#conda"><span class="header-section-number">5</span> Conda</a>
   <ul class="collapse">
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#configuration" id="toc-configuration" class="nav-link" data-scroll-target="#configuration">Configuration</a></li>
-  <li><a href="#environment" id="toc-environment" class="nav-link" data-scroll-target="#environment">Environment</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">5.1</span> Installation</a></li>
+  <li><a href="#configuration" id="toc-configuration" class="nav-link" data-scroll-target="#configuration"><span class="header-section-number">5.2</span> Configuration</a></li>
+  <li><a href="#environment" id="toc-environment" class="nav-link" data-scroll-target="#environment"><span class="header-section-number">5.3</span> Environment</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -233,8 +233,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="shell" class="level2">
-<h2 class="anchored" data-anchor-id="shell">Shell</h2>
+<section id="shell" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="shell"><span class="header-section-number">1</span> Shell</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show current shell</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$SHELL</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -242,8 +242,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chsh</span> <span class="at">-s</span> /bin/bash</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">chsh</span> <span class="at">-s</span> /bin/zsh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="permissions" class="level2">
-<h2 class="anchored" data-anchor-id="permissions">Permissions</h2>
+<section id="permissions" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="permissions"><span class="header-section-number">2</span> Permissions</h2>
 <p>Only the user can copy, execute, and change</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 700 /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>700</code> means:</p>
@@ -262,8 +262,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Change owner</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown username:groupname /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="sync" class="level2">
-<h2 class="anchored" data-anchor-id="sync">Sync</h2>
+<section id="sync" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sync"><span class="header-section-number">3</span> Sync</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Basic command</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> /source/folder/ /destination/folder/</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -374,10 +374,10 @@ Note
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"-----------------------------------"</span></span>
 <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="wsl" class="level2">
-<h2 class="anchored" data-anchor-id="wsl">WSL</h2>
-<section id="system-info" class="level3">
-<h3 class="anchored" data-anchor-id="system-info">System info</h3>
+<section id="wsl" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="wsl"><span class="header-section-number">4</span> WSL</h2>
+<section id="system-info" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="system-info"><span class="header-section-number">4.1</span> System info</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Install the neofetch package</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install neofetch <span class="at">-y</span></span>
@@ -385,8 +385,8 @@ Note
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Show system info</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">neofetch</span> <span class="at">--memory_unit</span> gib</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="wsl-change-sudo-password" class="level3">
-<h3 class="anchored" data-anchor-id="wsl-change-sudo-password">WSL Change sudo password</h3>
+<section id="wsl-change-sudo-password" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="wsl-change-sudo-password"><span class="header-section-number">4.2</span> WSL Change sudo password</h3>
 <p>In the windows terminal, run the following command to change the sudo password:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> <span class="at">-u</span> root</span>
@@ -394,18 +394,18 @@ Note
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Input the new password</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">passwd</span> <span class="op">&lt;</span>username<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="wsl-configuration" class="level3">
-<h3 class="anchored" data-anchor-id="wsl-configuration">WSL configuration</h3>
+<section id="wsl-configuration" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="wsl-configuration"><span class="header-section-number">4.3</span> WSL configuration</h3>
 <ul>
 <li>WSL global config: <code>C:\Users\&lt;UserName&gt;\.wslconfig</code></li>
 <li>WSL distro config: <code>\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf</code></li>
 </ul>
 </section>
 </section>
-<section id="conda" class="level2">
-<h2 class="anchored" data-anchor-id="conda">Conda</h2>
-<section id="installation" class="level3">
-<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<section id="conda" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="conda"><span class="header-section-number">5</span> Conda</h2>
+<section id="installation" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">5.1</span> Installation</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Miniforge linux</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"</span></span>
@@ -421,8 +421,8 @@ Note
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">.</span> <span class="va">$HOME</span>/miniconda3/etc/profile.d/conda.sh</span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="configuration" class="level3">
-<h3 class="anchored" data-anchor-id="configuration">Configuration</h3>
+<section id="configuration" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="configuration"><span class="header-section-number">5.2</span> Configuration</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Init</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init <span class="at">--all</span></span>
@@ -444,8 +444,8 @@ Note
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Install software from a specific channel</span></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge numpy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="environment" class="level3">
-<h3 class="anchored" data-anchor-id="environment">Environment</h3>
+<section id="environment" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="environment"><span class="header-section-number">5.3</span> Environment</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create R environment</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> renv r-4.3 r-languageserver r-tidyverse r-irkernel r-httpgd</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>

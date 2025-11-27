@@ -202,30 +202,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#retrieve-data" id="toc-retrieve-data" class="nav-link" data-scroll-target="#retrieve-data">Retrieve data</a></li>
-  <li><a href="#load-batch-data" id="toc-load-batch-data" class="nav-link" data-scroll-target="#load-batch-data">Load batch data</a></li>
+<li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages"><span class="header-section-number">1</span> Packages</a></li>
+  <li><a href="#retrieve-data" id="toc-retrieve-data" class="nav-link" data-scroll-target="#retrieve-data"><span class="header-section-number">2</span> Retrieve data</a></li>
+  <li><a href="#load-batch-data" id="toc-load-batch-data" class="nav-link" data-scroll-target="#load-batch-data"><span class="header-section-number">3</span> Load batch data</a></li>
   <li>
-<a href="#merage-samples-data" id="toc-merage-samples-data" class="nav-link" data-scroll-target="#merage-samples-data">Merage samples data</a>
+<a href="#merage-samples-data" id="toc-merage-samples-data" class="nav-link" data-scroll-target="#merage-samples-data"><span class="header-section-number">4</span> Merage samples data</a>
   <ul>
 <li>
-<a href="#directly-merge" id="toc-directly-merge" class="nav-link" data-scroll-target="#directly-merge">Directly merge</a>
+<a href="#directly-merge" id="toc-directly-merge" class="nav-link" data-scroll-target="#directly-merge"><span class="header-section-number">4.1</span> Directly merge</a>
   <ul class="collapse">
 <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter">Filter</a></li>
   <li><a href="#seurat-workflow" id="toc-seurat-workflow" class="nav-link" data-scroll-target="#seurat-workflow">Seurat workflow</a></li>
   <li><a href="#umap" id="toc-umap" class="nav-link" data-scroll-target="#umap">UMAP</a></li>
   </ul>
 </li>
-  <li><a href="#harmony-to-remove-batch-effect" id="toc-harmony-to-remove-batch-effect" class="nav-link" data-scroll-target="#harmony-to-remove-batch-effect">Harmony to remove batch effect</a></li>
+  <li><a href="#harmony-to-remove-batch-effect" id="toc-harmony-to-remove-batch-effect" class="nav-link" data-scroll-target="#harmony-to-remove-batch-effect"><span class="header-section-number">4.2</span> Harmony to remove batch effect</a></li>
   </ul>
 </li>
-  <li><a href="#visualize-marker-genes" id="toc-visualize-marker-genes" class="nav-link" data-scroll-target="#visualize-marker-genes">Visualize marker genes</a></li>
+  <li><a href="#visualize-marker-genes" id="toc-visualize-marker-genes" class="nav-link" data-scroll-target="#visualize-marker-genes"><span class="header-section-number">5</span> Visualize marker genes</a></li>
   <li>
-<a href="#annotate-clusters" id="toc-annotate-clusters" class="nav-link" data-scroll-target="#annotate-clusters">Annotate clusters</a>
+<a href="#annotate-clusters" id="toc-annotate-clusters" class="nav-link" data-scroll-target="#annotate-clusters"><span class="header-section-number">6</span> Annotate clusters</a>
   <ul>
-<li><a href="#using-vector" id="toc-using-vector" class="nav-link" data-scroll-target="#using-vector">Using Vector</a></li>
-  <li><a href="#directly-assign" id="toc-directly-assign" class="nav-link" data-scroll-target="#directly-assign">Directly assign</a></li>
-  <li><a href="#add-annotation-to-meta-data" id="toc-add-annotation-to-meta-data" class="nav-link" data-scroll-target="#add-annotation-to-meta-data">Add annotation to meta data</a></li>
+<li><a href="#using-vector" id="toc-using-vector" class="nav-link" data-scroll-target="#using-vector"><span class="header-section-number">6.1</span> Using Vector</a></li>
+  <li><a href="#directly-assign" id="toc-directly-assign" class="nav-link" data-scroll-target="#directly-assign"><span class="header-section-number">6.2</span> Directly assign</a></li>
+  <li><a href="#add-annotation-to-meta-data" id="toc-add-annotation-to-meta-data" class="nav-link" data-scroll-target="#add-annotation-to-meta-data"><span class="header-section-number">6.3</span> Add annotation to meta data</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -234,7 +234,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="packages" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="packages">
+<span class="header-section-number">1</span> Packages</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://satijalab.org/seurat">Seurat</a></span><span class="op">)</span></span>
@@ -266,7 +267,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## here() starts at /Users/zhonggr/Library/CloudStorage/OneDrive-Personal/quarto</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">httpgd</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="retrieve-data" class="level2"><h2 class="anchored" data-anchor-id="retrieve-data">Retrieve data</h2>
+</section><section id="retrieve-data" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="retrieve-data">
+<span class="header-section-number">2</span> Retrieve data</h2>
 <ul>
 <li>The source data is from <a href="https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-020-00776-9">Single-cell transcriptome analysis of tumor and stromal compartments of pancreatic ductal adenocarcinoma primary tumors and metastatic lesions</a>
 </li>
@@ -296,7 +298,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="load-batch-data" class="level2"><h2 class="anchored" data-anchor-id="load-batch-data">Load batch data</h2>
+</section><section id="load-batch-data" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="load-batch-data">
+<span class="header-section-number">3</span> Load batch data</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Change working directory</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"./learn/2023_scRNA_Seurat/data/GSE154778_RAW/"</span><span class="op">)</span></span>
@@ -308,8 +311,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="merage-samples-data" class="level2"><h2 class="anchored" data-anchor-id="merage-samples-data">Merage samples data</h2>
-<section id="directly-merge" class="level3"><h3 class="anchored" data-anchor-id="directly-merge">Directly merge</h3>
+</section><section id="merage-samples-data" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="merage-samples-data">
+<span class="header-section-number">4</span> Merage samples data</h2>
+<section id="directly-merge" class="level3" data-number="4.1"><h3 data-number="4.1" class="anchored" data-anchor-id="directly-merge">
+<span class="header-section-number">4.1</span> Directly merge</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Use Seurat merge</span></span>
 <span><span class="va">sce.all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span></span>
@@ -531,7 +536,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section></section><section id="harmony-to-remove-batch-effect" class="level3"><h3 class="anchored" data-anchor-id="harmony-to-remove-batch-effect">Harmony to remove batch effect</h3>
+</section></section><section id="harmony-to-remove-batch-effect" class="level3" data-number="4.2"><h3 data-number="4.2" class="anchored" data-anchor-id="harmony-to-remove-batch-effect">
+<span class="header-section-number">4.2</span> Harmony to remove batch effect</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sce2</span> <span class="op">&lt;-</span> <span class="va">sce</span>  <span class="op">|&gt;</span>  <span class="fu">RunHarmony</span><span class="op">(</span><span class="st">"sample"</span>, plot_convergence <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">## Transposing data matrix</span></span>
@@ -602,7 +608,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section></section><section id="visualize-marker-genes" class="level2"><h2 class="anchored" data-anchor-id="visualize-marker-genes">Visualize marker genes</h2>
+</section></section><section id="visualize-marker-genes" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="visualize-marker-genes">
+<span class="header-section-number">5</span> Visualize marker genes</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Marker</span>  <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>  Epi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"EPCAM"</span><span class="op">)</span>,</span>
@@ -657,8 +664,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="annotate-clusters" class="level2"><h2 class="anchored" data-anchor-id="annotate-clusters">Annotate clusters</h2>
-<section id="using-vector" class="level3"><h3 class="anchored" data-anchor-id="using-vector">Using Vector</h3>
+</section><section id="annotate-clusters" class="level2" data-number="6"><h2 data-number="6" class="anchored" data-anchor-id="annotate-clusters">
+<span class="header-section-number">6</span> Annotate clusters</h2>
+<section id="using-vector" class="level3" data-number="6.1"><h3 data-number="6.1" class="anchored" data-anchor-id="using-vector">
+<span class="header-section-number">6.1</span> Using Vector</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new.cluster.ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>  <span class="st">'Epi'</span>,<span class="st">'Epi'</span>,<span class="st">'Myeloid'</span>,<span class="st">'Fibroblast'</span>,<span class="st">'Epi'</span>,<span class="st">'Epi'</span>,<span class="st">'Fibroblast'</span>,<span class="st">'Epi'</span>,<span class="st">'T'</span>,<span class="st">'Epi'</span>,<span class="st">'Fibroblast'</span>,<span class="st">'Epi'</span>,<span class="st">'Endo'</span>,<span class="st">'un'</span>,<span class="st">'Epi'</span>,<span class="st">'Epi'</span>,<span class="st">'Fibroblast'</span>,<span class="st">'un'</span>,<span class="st">'Fibroblast'</span></span>
@@ -678,7 +687,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="directly-assign" class="level3"><h3 class="anchored" data-anchor-id="directly-assign">Directly assign</h3>
+</section><section id="directly-assign" class="level3" data-number="6.2"><h3 data-number="6.2" class="anchored" data-anchor-id="directly-assign">
+<span class="header-section-number">6.2</span> Directly assign</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Idents</span><span class="op">(</span><span class="va">sce2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"seurat_clusters"</span></span>
 <span><span class="va">sce2</span> <span class="op">&lt;-</span> <span class="fu">RenameIdents</span><span class="op">(</span><span class="va">sce2</span>,</span>
@@ -712,7 +722,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="add-annotation-to-meta-data" class="level3"><h3 class="anchored" data-anchor-id="add-annotation-to-meta-data">Add annotation to meta data</h3>
+</section><section id="add-annotation-to-meta-data" class="level3" data-number="6.3"><h3 data-number="6.3" class="anchored" data-anchor-id="add-annotation-to-meta-data">
+<span class="header-section-number">6.3</span> Add annotation to meta data</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sce2</span><span class="op">$</span><span class="va">Anno</span> <span class="op">&lt;-</span> <span class="st">"NA"</span></span>
 <span><span class="va">celltype</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>

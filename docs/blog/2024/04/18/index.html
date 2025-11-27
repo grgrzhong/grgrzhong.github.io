@@ -196,70 +196,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#initial-general-setup" id="toc-initial-general-setup" class="nav-link active" data-scroll-target="#initial-general-setup">Initial general setup</a></li>
+<li><a href="#initial-general-setup" id="toc-initial-general-setup" class="nav-link active" data-scroll-target="#initial-general-setup"><span class="header-section-number">1</span> Initial general setup</a></li>
   <li>
-<a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data preparation</a>
+<a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">2</span> Data preparation</a>
   <ul class="collapse">
-<li><a href="#download-example-data" id="toc-download-example-data" class="nav-link" data-scroll-target="#download-example-data">Download example data</a></li>
-  <li><a href="#preprocess-data" id="toc-preprocess-data" class="nav-link" data-scroll-target="#preprocess-data">Preprocess data</a></li>
-  <li><a href="#read-in-images" id="toc-read-in-images" class="nav-link" data-scroll-target="#read-in-images">Read in images</a></li>
-  <li><a href="#save-data" id="toc-save-data" class="nav-link" data-scroll-target="#save-data">Save data</a></li>
+<li><a href="#download-example-data" id="toc-download-example-data" class="nav-link" data-scroll-target="#download-example-data"><span class="header-section-number">2.1</span> Download example data</a></li>
+  <li><a href="#preprocess-data" id="toc-preprocess-data" class="nav-link" data-scroll-target="#preprocess-data"><span class="header-section-number">2.2</span> Preprocess data</a></li>
+  <li><a href="#read-in-images" id="toc-read-in-images" class="nav-link" data-scroll-target="#read-in-images"><span class="header-section-number">2.3</span> Read in images</a></li>
+  <li><a href="#save-data" id="toc-save-data" class="nav-link" data-scroll-target="#save-data"><span class="header-section-number">2.4</span> Save data</a></li>
   </ul>
 </li>
   <li>
-<a href="#spillover-correction" id="toc-spillover-correction" class="nav-link" data-scroll-target="#spillover-correction">Spillover correction</a>
+<a href="#spillover-correction" id="toc-spillover-correction" class="nav-link" data-scroll-target="#spillover-correction"><span class="header-section-number">3</span> Spillover correction</a>
   <ul class="collapse">
-<li><a href="#generate-the-spillover-matrix" id="toc-generate-the-spillover-matrix" class="nav-link" data-scroll-target="#generate-the-spillover-matrix">Generate the spillover matrix</a></li>
-  <li><a href="#single-cell-data-compensation" id="toc-single-cell-data-compensation" class="nav-link" data-scroll-target="#single-cell-data-compensation">Single-cell data compensation</a></li>
-  <li><a href="#image-compensation" id="toc-image-compensation" class="nav-link" data-scroll-target="#image-compensation">Image compensation</a></li>
-  <li><a href="#write-out-compensated-images" id="toc-write-out-compensated-images" class="nav-link" data-scroll-target="#write-out-compensated-images">Write out compensated images</a></li>
+<li><a href="#generate-the-spillover-matrix" id="toc-generate-the-spillover-matrix" class="nav-link" data-scroll-target="#generate-the-spillover-matrix"><span class="header-section-number">3.1</span> Generate the spillover matrix</a></li>
+  <li><a href="#single-cell-data-compensation" id="toc-single-cell-data-compensation" class="nav-link" data-scroll-target="#single-cell-data-compensation"><span class="header-section-number">3.2</span> Single-cell data compensation</a></li>
+  <li><a href="#image-compensation" id="toc-image-compensation" class="nav-link" data-scroll-target="#image-compensation"><span class="header-section-number">3.3</span> Image compensation</a></li>
+  <li><a href="#write-out-compensated-images" id="toc-write-out-compensated-images" class="nav-link" data-scroll-target="#write-out-compensated-images"><span class="header-section-number">3.4</span> Write out compensated images</a></li>
   </ul>
 </li>
   <li>
-<a href="#image-and-cell-quality-control" id="toc-image-and-cell-quality-control" class="nav-link" data-scroll-target="#image-and-cell-quality-control">Image and cell quality control</a>
+<a href="#image-and-cell-quality-control" id="toc-image-and-cell-quality-control" class="nav-link" data-scroll-target="#image-and-cell-quality-control"><span class="header-section-number">4</span> Image and cell quality control</a>
   <ul class="collapse">
-<li><a href="#segmentation-quality-control" id="toc-segmentation-quality-control" class="nav-link" data-scroll-target="#segmentation-quality-control">Segmentation quality control</a></li>
-  <li><a href="#image_level-quality-control" id="toc-image_level-quality-control" class="nav-link" data-scroll-target="#image_level-quality-control">Image_level quality control</a></li>
-  <li><a href="#cell_level-quality-control" id="toc-cell_level-quality-control" class="nav-link" data-scroll-target="#cell_level-quality-control">Cell_level quality control</a></li>
+<li><a href="#segmentation-quality-control" id="toc-segmentation-quality-control" class="nav-link" data-scroll-target="#segmentation-quality-control"><span class="header-section-number">4.1</span> Segmentation quality control</a></li>
+  <li><a href="#image_level-quality-control" id="toc-image_level-quality-control" class="nav-link" data-scroll-target="#image_level-quality-control"><span class="header-section-number">4.2</span> Image_level quality control</a></li>
+  <li><a href="#cell_level-quality-control" id="toc-cell_level-quality-control" class="nav-link" data-scroll-target="#cell_level-quality-control"><span class="header-section-number">4.3</span> Cell_level quality control</a></li>
   </ul>
 </li>
   <li>
-<a href="#batch-effect-correction" id="toc-batch-effect-correction" class="nav-link" data-scroll-target="#batch-effect-correction">Batch effect correction</a>
+<a href="#batch-effect-correction" id="toc-batch-effect-correction" class="nav-link" data-scroll-target="#batch-effect-correction"><span class="header-section-number">5</span> Batch effect correction</a>
   <ul class="collapse">
-<li><a href="#fastmnn-correction" id="toc-fastmnn-correction" class="nav-link" data-scroll-target="#fastmnn-correction">fastMNN correction</a></li>
-  <li><a href="#harmony-correction" id="toc-harmony-correction" class="nav-link" data-scroll-target="#harmony-correction">harmony correction</a></li>
-  <li><a href="#seurat-correction" id="toc-seurat-correction" class="nav-link" data-scroll-target="#seurat-correction">Seurat correction</a></li>
+<li><a href="#fastmnn-correction" id="toc-fastmnn-correction" class="nav-link" data-scroll-target="#fastmnn-correction"><span class="header-section-number">5.1</span> fastMNN correction</a></li>
+  <li><a href="#harmony-correction" id="toc-harmony-correction" class="nav-link" data-scroll-target="#harmony-correction"><span class="header-section-number">5.2</span> harmony correction</a></li>
+  <li><a href="#seurat-correction" id="toc-seurat-correction" class="nav-link" data-scroll-target="#seurat-correction"><span class="header-section-number">5.3</span> Seurat correction</a></li>
   </ul>
 </li>
   <li>
-<a href="#cell-phenotyping" id="toc-cell-phenotyping" class="nav-link" data-scroll-target="#cell-phenotyping">Cell phenotyping</a>
+<a href="#cell-phenotyping" id="toc-cell-phenotyping" class="nav-link" data-scroll-target="#cell-phenotyping"><span class="header-section-number">6</span> Cell phenotyping</a>
   <ul class="collapse">
-<li><a href="#rphenograph" id="toc-rphenograph" class="nav-link" data-scroll-target="#rphenograph">Rphenograph</a></li>
-  <li><a href="#shared-nearest-neighbour-graph" id="toc-shared-nearest-neighbour-graph" class="nav-link" data-scroll-target="#shared-nearest-neighbour-graph">Shared nearest neighbour graph</a></li>
-  <li><a href="#self-organizing-maps" id="toc-self-organizing-maps" class="nav-link" data-scroll-target="#self-organizing-maps">Self organizing maps</a></li>
-  <li><a href="#compare-between-clustering-approaches" id="toc-compare-between-clustering-approaches" class="nav-link" data-scroll-target="#compare-between-clustering-approaches">Compare between clustering approaches</a></li>
-  <li><a href="#further-clustering-notes" id="toc-further-clustering-notes" class="nav-link" data-scroll-target="#further-clustering-notes">Further clustering notes</a></li>
-  <li><a href="#classfication-approach" id="toc-classfication-approach" class="nav-link" data-scroll-target="#classfication-approach">Classfication approach</a></li>
+<li><a href="#rphenograph" id="toc-rphenograph" class="nav-link" data-scroll-target="#rphenograph"><span class="header-section-number">6.1</span> Rphenograph</a></li>
+  <li><a href="#shared-nearest-neighbour-graph" id="toc-shared-nearest-neighbour-graph" class="nav-link" data-scroll-target="#shared-nearest-neighbour-graph"><span class="header-section-number">6.2</span> Shared nearest neighbour graph</a></li>
+  <li><a href="#self-organizing-maps" id="toc-self-organizing-maps" class="nav-link" data-scroll-target="#self-organizing-maps"><span class="header-section-number">6.3</span> Self organizing maps</a></li>
+  <li><a href="#compare-between-clustering-approaches" id="toc-compare-between-clustering-approaches" class="nav-link" data-scroll-target="#compare-between-clustering-approaches"><span class="header-section-number">6.4</span> Compare between clustering approaches</a></li>
+  <li><a href="#further-clustering-notes" id="toc-further-clustering-notes" class="nav-link" data-scroll-target="#further-clustering-notes"><span class="header-section-number">6.5</span> Further clustering notes</a></li>
+  <li><a href="#classfication-approach" id="toc-classfication-approach" class="nav-link" data-scroll-target="#classfication-approach"><span class="header-section-number">6.6</span> Classfication approach</a></li>
   </ul>
 </li>
   <li>
-<a href="#single-cell-visualization" id="toc-single-cell-visualization" class="nav-link" data-scroll-target="#single-cell-visualization">Single cell visualization</a>
+<a href="#single-cell-visualization" id="toc-single-cell-visualization" class="nav-link" data-scroll-target="#single-cell-visualization"><span class="header-section-number">7</span> Single cell visualization</a>
   <ul class="collapse">
-<li><a href="#inital-setup" id="toc-inital-setup" class="nav-link" data-scroll-target="#inital-setup">Inital setup</a></li>
-  <li><a href="#cell-type-level" id="toc-cell-type-level" class="nav-link" data-scroll-target="#cell-type-level">Cell-type level</a></li>
-  <li><a href="#sample-level" id="toc-sample-level" class="nav-link" data-scroll-target="#sample-level">Sample level</a></li>
-  <li><a href="#complexheatmap" id="toc-complexheatmap" class="nav-link" data-scroll-target="#complexheatmap">ComplexHeatmap</a></li>
+<li><a href="#inital-setup" id="toc-inital-setup" class="nav-link" data-scroll-target="#inital-setup"><span class="header-section-number">7.1</span> Inital setup</a></li>
+  <li><a href="#cell-type-level" id="toc-cell-type-level" class="nav-link" data-scroll-target="#cell-type-level"><span class="header-section-number">7.2</span> Cell-type level</a></li>
+  <li><a href="#sample-level" id="toc-sample-level" class="nav-link" data-scroll-target="#sample-level"><span class="header-section-number">7.3</span> Sample level</a></li>
+  <li><a href="#complexheatmap" id="toc-complexheatmap" class="nav-link" data-scroll-target="#complexheatmap"><span class="header-section-number">7.4</span> ComplexHeatmap</a></li>
   </ul>
 </li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
-  <li><a href="#sessioninfo" id="toc-sessioninfo" class="nav-link" data-scroll-target="#sessioninfo">Sessioninfo</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">8</span> Reference</a></li>
+  <li><a href="#sessioninfo" id="toc-sessioninfo" class="nav-link" data-scroll-target="#sessioninfo"><span class="header-section-number">9</span> Sessioninfo</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="initial-general-setup" class="level2"><h2 class="anchored" data-anchor-id="initial-general-setup">Initial general setup</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="initial-general-setup" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="initial-general-setup">
+<span class="header-section-number">1</span> Initial general setup</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Required libraries</span></span>
 <span><span class="co"># if (!require("BiocManager", quietly = TRUE))</span></span>
@@ -320,9 +321,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="op">(</span><span class="st">"projects/2024_IMC_Profile"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">20240419</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="data-preparation" class="level2"><h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
+</section><section id="data-preparation" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="data-preparation">
+<span class="header-section-number">2</span> Data preparation</h2>
 <p>IMC example data is from <a href="https://zenodo.org/records/7624451">here</a></p>
-<section id="download-example-data" class="level3"><h3 class="anchored" data-anchor-id="download-example-data">Download example data</h3>
+<section id="download-example-data" class="level3" data-number="2.1"><h3 data-number="2.1" class="anchored" data-anchor-id="download-example-data">
+<span class="header-section-number">2.1</span> Download example data</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Create directory for data </span></span>
 <span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/create.html">dir_create</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/steinbock"</span><span class="op">)</span></span>
@@ -404,7 +407,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/gated_cells.zip"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="preprocess-data" class="level3"><h3 class="anchored" data-anchor-id="preprocess-data">Preprocess data</h3>
+</section><section id="preprocess-data" class="level3" data-number="2.2"><h3 data-number="2.2" class="anchored" data-anchor-id="preprocess-data">
+<span class="header-section-number">2.2</span> Preprocess data</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Read steinbock generated data into a SpatialExperiment object</span></span>
 <span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu">imcRtools</span><span class="fu">::</span><span class="fu">read_steinbock</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/steinbock/"</span><span class="op">)</span><span class="op">)</span></span>
@@ -607,7 +611,8 @@ HLADR                            1 ug/mL         0.2</code></pre>
 <span></span>
 <span><span class="fu">metadata</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">$</span><span class="va">color_vectors</span> <span class="op">&lt;-</span> <span class="va">color_vectors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="read-in-images" class="level3"><h3 class="anchored" data-anchor-id="read-in-images">Read in images</h3>
+</section><section id="read-in-images" class="level3" data-number="2.3"><h3 data-number="2.3" class="anchored" data-anchor-id="read-in-images">
+<span class="header-section-number">2.3</span> Read in images</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">images</span> <span class="op">&lt;-</span> <span class="fu">loadImages</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/steinbock/img/"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -644,14 +649,17 @@ channelNames(40): MPO HistoneH3 SMA CD16 CD38 HLADR CD27 CD15 CD45RA CD163 B2M C
 <span>    indication <span class="op">=</span> <span class="va">indication</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="save-data" class="level3"><h3 class="anchored" data-anchor-id="save-data">Save data</h3>
+</section><section id="save-data" class="level3" data-number="2.4"><h3 data-number="2.4" class="anchored" data-anchor-id="save-data">
+<span class="header-section-number">2.4</span> Save data</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">qsave</span><span class="op">(</span><span class="va">spe</span>, <span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/spe.qs"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">qsave</span><span class="op">(</span><span class="va">images</span>, <span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/images.qs"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">qsave</span><span class="op">(</span><span class="va">masks</span>, <span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/masks.qs"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="spillover-correction" class="level2"><h2 class="anchored" data-anchor-id="spillover-correction">Spillover correction</h2>
-<section id="generate-the-spillover-matrix" class="level3"><h3 class="anchored" data-anchor-id="generate-the-spillover-matrix">Generate the spillover matrix</h3>
+</section></section><section id="spillover-correction" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="spillover-correction">
+<span class="header-section-number">3</span> Spillover correction</h2>
+<section id="generate-the-spillover-matrix" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="generate-the-spillover-matrix">
+<span class="header-section-number">3.1</span> Generate the spillover matrix</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Create SingleCellExperiment from TXT files</span></span>
 <span><span class="va">sce</span> <span class="op">&lt;-</span> <span class="fu">readSCEfromTXT</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/compensation/"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -775,7 +783,8 @@ ggplot2 3.3.4.
 <span><span class="va">sm</span> <span class="op">&lt;-</span> <span class="fu">metadata</span><span class="op">(</span><span class="va">sce</span><span class="op">)</span><span class="op">$</span><span class="va">spillover_matrix</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv</a></span><span class="op">(</span><span class="va">sm</span>, <span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/sm.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="single-cell-data-compensation" class="level3"><h3 class="anchored" data-anchor-id="single-cell-data-compensation">Single-cell data compensation</h3>
+</section><section id="single-cell-data-compensation" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="single-cell-data-compensation">
+<span class="header-section-number">3.2</span> Single-cell data compensation</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu">qread</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/spe.qs"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -811,7 +820,8 @@ ggplot2 3.3.4.
 <span><span class="fu">assay</span><span class="op">(</span><span class="va">spe</span>, <span class="st">"exprs"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">assay</span><span class="op">(</span><span class="va">spe</span>, <span class="st">"compexprs"</span><span class="op">)</span> </span>
 <span><span class="fu">assay</span><span class="op">(</span><span class="va">spe</span>, <span class="st">"compcounts"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">assay</span><span class="op">(</span><span class="va">spe</span>, <span class="st">"compexprs"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="image-compensation" class="level3"><h3 class="anchored" data-anchor-id="image-compensation">Image compensation</h3>
+</section><section id="image-compensation" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="image-compensation">
+<span class="header-section-number">3.3</span> Image compensation</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">images</span> <span class="op">&lt;-</span> <span class="fu">qread</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/images.qs"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -855,7 +865,8 @@ ggplot2 3.3.4.
 <span><span class="co">### Re-set the channelNames to their biological targtes</span></span>
 <span><span class="fu">channelNames</span><span class="op">(</span><span class="va">images_comp</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="write-out-compensated-images" class="level3"><h3 class="anchored" data-anchor-id="write-out-compensated-images">Write out compensated images</h3>
+</section><section id="write-out-compensated-images" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="write-out-compensated-images">
+<span class="header-section-number">3.4</span> Write out compensated images</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/create.html">dir_create</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/comp_img"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span></span>
@@ -871,8 +882,10 @@ ggplot2 3.3.4.
 <span><span class="fu">qsave</span><span class="op">(</span><span class="va">spe</span>, <span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/spe.qs"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">qsave</span><span class="op">(</span><span class="va">images_comp</span>, <span class="fu">here</span><span class="op">(</span><span class="va">dir</span>,<span class="st">"data/images.qs"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="image-and-cell-quality-control" class="level2"><h2 class="anchored" data-anchor-id="image-and-cell-quality-control">Image and cell quality control</h2>
-<section id="segmentation-quality-control" class="level3"><h3 class="anchored" data-anchor-id="segmentation-quality-control">Segmentation quality control</h3>
+</section></section><section id="image-and-cell-quality-control" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="image-and-cell-quality-control">
+<span class="header-section-number">4</span> Image and cell quality control</h2>
+<section id="segmentation-quality-control" class="level3" data-number="4.1"><h3 data-number="4.1" class="anchored" data-anchor-id="segmentation-quality-control">
+<span class="header-section-number">4.1</span> Segmentation quality control</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load data: 63.01 MB</span></span>
 <span><span class="va">images</span> <span class="op">&lt;-</span> <span class="fu">qread</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/images.qs"</span><span class="op">)</span><span class="op">)</span></span>
@@ -945,7 +958,8 @@ ggplot2 3.3.4.
 </div>
 </div>
 </div>
-</section><section id="image_level-quality-control" class="level3"><h3 class="anchored" data-anchor-id="image_level-quality-control">Image_level quality control</h3>
+</section><section id="image_level-quality-control" class="level3" data-number="4.2"><h3 data-number="4.2" class="anchored" data-anchor-id="image_level-quality-control">
+<span class="header-section-number">4.2</span> Image_level quality control</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Average SNR versus the average signal intensity across all images</span></span>
 <span><span class="va">cur_snr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">images</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
@@ -1098,7 +1112,8 @@ increasing max.overlaps</code></pre>
 </div>
 </div>
 </div>
-</section><section id="cell_level-quality-control" class="level3"><h3 class="anchored" data-anchor-id="cell_level-quality-control">Cell_level quality control</h3>
+</section><section id="cell_level-quality-control" class="level3" data-number="4.3"><h3 data-number="4.3" class="anchored" data-anchor-id="cell_level-quality-control">
+<span class="header-section-number">4.3</span> Cell_level quality control</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">220224</span><span class="op">)</span></span>
 <span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
@@ -1616,8 +1631,10 @@ Note
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb185"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Save objects for further downstream analysis</span></span>
 <span><span class="fu">qsave</span><span class="op">(</span><span class="va">spe</span>, <span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/spe.qs"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="batch-effect-correction" class="level2"><h2 class="anchored" data-anchor-id="batch-effect-correction">Batch effect correction</h2>
-<section id="fastmnn-correction" class="level3"><h3 class="anchored" data-anchor-id="fastmnn-correction">fastMNN correction</h3>
+</section></section><section id="batch-effect-correction" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="batch-effect-correction">
+<span class="header-section-number">5</span> Batch effect correction</h2>
+<section id="fastmnn-correction" class="level3" data-number="5.1"><h3 data-number="5.1" class="anchored" data-anchor-id="fastmnn-correction">
+<span class="header-section-number">5.1</span> fastMNN correction</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb186"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu">qread</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/spe.qs"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -1794,7 +1811,8 @@ Adding another scale for colour, which will replace the existing scale.</code></
 </div>
 </div>
 </div>
-</section><section id="harmony-correction" class="level3"><h3 class="anchored" data-anchor-id="harmony-correction">harmony correction</h3>
+</section><section id="harmony-correction" class="level3" data-number="5.2"><h3 data-number="5.2" class="anchored" data-anchor-id="harmony-correction">
+<span class="header-section-number">5.2</span> harmony correction</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb210"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### harmony returns the corrected low-dimensional coordinates for each cell</span></span>
 <span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu">runPCA</span><span class="op">(</span></span>
@@ -1951,7 +1969,8 @@ Adding another scale for colour, which will replace the existing scale.</code></
 </div>
 </div>
 </div>
-</section><section id="seurat-correction" class="level3"><h3 class="anchored" data-anchor-id="seurat-correction">Seurat correction</h3>
+</section><section id="seurat-correction" class="level3" data-number="5.3"><h3 data-number="5.3" class="anchored" data-anchor-id="seurat-correction">
+<span class="header-section-number">5.3</span> Seurat correction</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb237"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">seurat_obj</span> <span class="op">&lt;-</span> <span class="fu">as.Seurat</span><span class="op">(</span><span class="va">spe</span>, counts <span class="op">=</span> <span class="st">"counts"</span>, data <span class="op">=</span> <span class="st">"exprs"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -2294,7 +2313,8 @@ Adding another scale for colour, which will replace the existing scale.</code></
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb316"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Save modified object</span></span>
 <span><span class="fu">qsave</span><span class="op">(</span><span class="va">spe</span>, <span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/spe.qs"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="cell-phenotyping" class="level2"><h2 class="anchored" data-anchor-id="cell-phenotyping">Cell phenotyping</h2>
+</section></section><section id="cell-phenotyping" class="level2" data-number="6"><h2 data-number="6" class="anchored" data-anchor-id="cell-phenotyping">
+<span class="header-section-number">6</span> Cell phenotyping</h2>
 <p>A common step during single-cell data analysis is the annotation of cells based on their phenotype. Defining cell phenotypes is often subjective and relies on previous biological knowledge.</p>
 <p>In highly-multiplexed imaging, target proteins or molecules are manually selected based on the biological question at hand. It narrows down the feature space and facilitates the manual annotation of clusters to derive cell phenotypes.</p>
 <div class="cell">
@@ -2304,7 +2324,8 @@ Adding another scale for colour, which will replace the existing scale.</code></
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">220619</span><span class="op">)</span></span>
 <span><span class="va">cur_cells</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2000</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="rphenograph" class="level3"><h3 class="anchored" data-anchor-id="rphenograph">Rphenograph</h3>
+<section id="rphenograph" class="level3" data-number="6.1"><h3 data-number="6.1" class="anchored" data-anchor-id="rphenograph">
+<span class="header-section-number">6.1</span> Rphenograph</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb318"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu">assay</span><span class="op">(</span><span class="va">spe</span>, <span class="st">"exprs"</span><span class="op">)</span><span class="op">[</span><span class="fu">rowData</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">$</span><span class="va">use_channel</span>, <span class="op">]</span><span class="op">)</span></span>
 <span></span>
@@ -2424,7 +2445,8 @@ Adding another scale for colour, which will replace the existing scale.</code></
 </div>
 </div>
 </div>
-</section><section id="shared-nearest-neighbour-graph" class="level3"><h3 class="anchored" data-anchor-id="shared-nearest-neighbour-graph">Shared nearest neighbour graph</h3>
+</section><section id="shared-nearest-neighbour-graph" class="level3" data-number="6.2"><h3 data-number="6.2" class="anchored" data-anchor-id="shared-nearest-neighbour-graph">
+<span class="header-section-number">6.2</span> Shared nearest neighbour graph</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb332"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu">assay</span><span class="op">(</span><span class="va">spe</span>, <span class="st">"exprs"</span><span class="op">)</span><span class="op">[</span><span class="fu">rowData</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span><span class="op">$</span><span class="va">use_channel</span>, <span class="op">]</span><span class="op">)</span></span>
 <span></span>
@@ -2559,7 +2581,8 @@ Adding another scale for colour, which will replace the existing scale.</code></
 </div>
 </div>
 </div>
-</section><section id="self-organizing-maps" class="level3"><h3 class="anchored" data-anchor-id="self-organizing-maps">Self organizing maps</h3>
+</section><section id="self-organizing-maps" class="level3" data-number="6.3"><h3 data-number="6.3" class="anchored" data-anchor-id="self-organizing-maps">
+<span class="header-section-number">6.3</span> Self organizing maps</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb338"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Run FlowSOM and ConsensusClusterPlus clustering</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">220410</span><span class="op">)</span></span>
@@ -2972,7 +2995,8 @@ Attaching package: 'kohonen'</code></pre>
 </div>
 </div>
 </div>
-</section><section id="compare-between-clustering-approaches" class="level3"><h3 class="anchored" data-anchor-id="compare-between-clustering-approaches">Compare between clustering approaches</h3>
+</section><section id="compare-between-clustering-approaches" class="level3" data-number="6.4"><h3 data-number="6.4" class="anchored" data-anchor-id="compare-between-clustering-approaches">
+<span class="header-section-number">6.4</span> Compare between clustering approaches</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb382"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pheatmap</span><span class="op">)</span></span>
@@ -3038,7 +3062,8 @@ Attaching package: 'gridExtra'</code></pre>
 </div>
 </div>
 </div>
-</section><section id="further-clustering-notes" class="level3"><h3 class="anchored" data-anchor-id="further-clustering-notes">Further clustering notes</h3>
+</section><section id="further-clustering-notes" class="level3" data-number="6.5"><h3 data-number="6.5" class="anchored" data-anchor-id="further-clustering-notes">
+<span class="header-section-number">6.5</span> Further clustering notes</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb391"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="va">cluster_celltype</span> <span class="op">&lt;-</span> <span class="fu">recode</span><span class="op">(</span><span class="va">spe</span><span class="op">$</span><span class="va">nn_clusters_corrected</span>,</span>
@@ -3061,7 +3086,8 @@ Attaching package: 'gridExtra'</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb392"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">qsave</span><span class="op">(</span><span class="va">spe</span>, <span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/spe.qs"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="classfication-approach" class="level3"><h3 class="anchored" data-anchor-id="classfication-approach">Classfication approach</h3>
+</section><section id="classfication-approach" class="level3" data-number="6.6"><h3 data-number="6.6" class="anchored" data-anchor-id="classfication-approach">
+<span class="header-section-number">6.6</span> Classfication approach</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb393"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Manual labeling of cells</span></span>
 <span><span class="co"># if (interactive()) {</span></span>
@@ -3492,8 +3518,10 @@ Plasma_cell      Stroma        Treg       Tumor
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb419"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">qsave</span><span class="op">(</span><span class="va">spe</span>, <span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/spe.qs"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="single-cell-visualization" class="level2"><h2 class="anchored" data-anchor-id="single-cell-visualization">Single cell visualization</h2>
-<section id="inital-setup" class="level3"><h3 class="anchored" data-anchor-id="inital-setup">Inital setup</h3>
+</section></section><section id="single-cell-visualization" class="level2" data-number="7"><h2 data-number="7" class="anchored" data-anchor-id="single-cell-visualization">
+<span class="header-section-number">7</span> Single cell visualization</h2>
+<section id="inital-setup" class="level3" data-number="7.1"><h3 data-number="7.1" class="anchored" data-anchor-id="inital-setup">
+<span class="header-section-number">7.1</span> Inital setup</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb420"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu">qread</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/spe.qs"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">reducedDims</span><span class="op">(</span><span class="va">spe</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -3530,7 +3558,8 @@ names(9): UMAP TSNE fastMNN ... UMAP_harmony seurat UMAP_seurat</code></pre>
 <span>        <span class="st">"other"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="cell-type-level" class="level3"><h3 class="anchored" data-anchor-id="cell-type-level">Cell-type level</h3>
+</section><section id="cell-type-level" class="level3" data-number="7.2"><h3 data-number="7.2" class="anchored" data-anchor-id="cell-type-level">
+<span class="header-section-number">7.2</span> Cell-type level</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb425"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Dimensionality reduction visualization</span></span>
 <span><span class="co">### Interpreting these UMAP, tSNE plots is not trivial, but local neighborhoods </span></span>
@@ -3880,7 +3909,8 @@ Adding another scale for colour, which will replace the existing scale.</code></
 </div>
 </div>
 </div>
-</section><section id="sample-level" class="level3"><h3 class="anchored" data-anchor-id="sample-level">Sample level</h3>
+</section><section id="sample-level" class="level3" data-number="7.3"><h3 data-number="7.3" class="anchored" data-anchor-id="sample-level">
+<span class="header-section-number">7.3</span> Sample level</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb452"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Dimensionality reduction visualization</span></span>
 <span><span class="co">## UMAP colored by cell type and expression - dittoDimPlot</span></span>
@@ -4061,7 +4091,8 @@ Adding another scale for fill, which will replace the existing scale.</code></pr
 </div>
 </div>
 </div>
-</section><section id="complexheatmap" class="level3"><h3 class="anchored" data-anchor-id="complexheatmap">ComplexHeatmap</h3>
+</section><section id="complexheatmap" class="level3" data-number="7.4"><h3 data-number="7.4" class="anchored" data-anchor-id="complexheatmap">
+<span class="header-section-number">7.4</span> ComplexHeatmap</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb468"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">22</span><span class="op">)</span></span>
 <span></span>
@@ -4208,11 +4239,13 @@ Warning: Heatmap/annotation names are duplicated: mean exprs</code></pre>
 </div>
 </div>
 </div>
-</section></section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
+</section></section><section id="reference" class="level2" data-number="8"><h2 data-number="8" class="anchored" data-anchor-id="reference">
+<span class="header-section-number">8</span> Reference</h2>
 <ul>
 <li><a href="https://bodenmillergroup.github.io/IMCDataAnalysis/">Analysis workflow for IMC data</a></li>
 <li><a href="https://complexinterface.com/research/projects/image-analysis/">Working with CellProfiler data in R</a></li>
-</ul></section><section id="sessioninfo" class="level2"><h2 class="anchored" data-anchor-id="sessioninfo">Sessioninfo</h2>
+</ul></section><section id="sessioninfo" class="level2" data-number="9"><h2 data-number="9" class="anchored" data-anchor-id="sessioninfo">
+<span class="header-section-number">9</span> Sessioninfo</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb471"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">

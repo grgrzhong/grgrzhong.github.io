@@ -209,13 +209,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#job-scheduling-commands" id="toc-job-scheduling-commands" class="nav-link" data-scroll-target="#job-scheduling-commands">Job scheduling commands</a></li>
-  <li><a href="#job-management-commands" id="toc-job-management-commands" class="nav-link" data-scroll-target="#job-management-commands">Job management commands</a></li>
-  <li><a href="#job-script-basics" id="toc-job-script-basics" class="nav-link" data-scroll-target="#job-script-basics">Job script basics</a></li>
-  <li><a href="#important-options" id="toc-important-options" class="nav-link" data-scroll-target="#important-options">Important options</a></li>
-  <li><a href="#interactive-session" id="toc-interactive-session" class="nav-link" data-scroll-target="#interactive-session">Interactive session</a></li>
-  <li><a href="#getting-information-on-past-jobs" id="toc-getting-information-on-past-jobs" class="nav-link" data-scroll-target="#getting-information-on-past-jobs">Getting information on past jobs</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#job-scheduling-commands" id="toc-job-scheduling-commands" class="nav-link" data-scroll-target="#job-scheduling-commands"><span class="header-section-number">2</span> Job scheduling commands</a></li>
+  <li><a href="#job-management-commands" id="toc-job-management-commands" class="nav-link" data-scroll-target="#job-management-commands"><span class="header-section-number">3</span> Job management commands</a></li>
+  <li><a href="#job-script-basics" id="toc-job-script-basics" class="nav-link" data-scroll-target="#job-script-basics"><span class="header-section-number">4</span> Job script basics</a></li>
+  <li><a href="#important-options" id="toc-important-options" class="nav-link" data-scroll-target="#important-options"><span class="header-section-number">5</span> Important options</a></li>
+  <li><a href="#interactive-session" id="toc-interactive-session" class="nav-link" data-scroll-target="#interactive-session"><span class="header-section-number">6</span> Interactive session</a></li>
+  <li><a href="#getting-information-on-past-jobs" id="toc-getting-information-on-past-jobs" class="nav-link" data-scroll-target="#getting-information-on-past-jobs"><span class="header-section-number">7</span> Getting information on past jobs</a></li>
   </ul>
 </nav>
 </nav>
@@ -230,13 +230,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <p>SLURM (Simple Linux Utility for Resource Management) is a powerful and flexible job scheduler used in High-Performance Computing (HPC) environments. It helps manage and allocate resources efficiently across a cluster of computers. In this blog post, we will cover some of the most commonly used SLURM commands.</p>
 <p>The following are from <a href="https://bioinformaticsworkbook.org/Appendix/HPC/SLURM/slurm-cheatsheat.html#gsc.tab=0">Quick reference sheet for SLURM resource manager</a></p>
 </section>
-<section id="job-scheduling-commands" class="level2">
-<h2 class="anchored" data-anchor-id="job-scheduling-commands">Job scheduling commands</h2>
+<section id="job-scheduling-commands" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="job-scheduling-commands"><span class="header-section-number">2</span> Job scheduling commands</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 19%">
@@ -280,8 +280,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="job-management-commands" class="level2">
-<h2 class="anchored" data-anchor-id="job-management-commands">Job management commands</h2>
+<section id="job-management-commands" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="job-management-commands"><span class="header-section-number">3</span> Job management commands</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 49%">
@@ -317,8 +317,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="job-script-basics" class="level2">
-<h2 class="anchored" data-anchor-id="job-script-basics">Job script basics</h2>
+<section id="job-script-basics" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="job-script-basics"><span class="header-section-number">4</span> Job script basics</h2>
 <p>A typical job script will look like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
@@ -337,8 +337,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ex">your_commands_goes_here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="important-options" class="level2">
-<h2 class="anchored" data-anchor-id="important-options">Important options</h2>
+<section id="important-options" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="important-options"><span class="header-section-number">5</span> Important options</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -386,15 +386,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="interactive-session" class="level2">
-<h2 class="anchored" data-anchor-id="interactive-session">Interactive session</h2>
+<section id="interactive-session" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="interactive-session"><span class="header-section-number">6</span> Interactive session</h2>
 <p>To start a interactive session execute the following:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#this command will give 1 Node for a time of 4 hours</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">-N</span> 1 <span class="at">-t</span> 4:00:00 <span class="at">--pty</span> /bin/bash</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="getting-information-on-past-jobs" class="level2">
-<h2 class="anchored" data-anchor-id="getting-information-on-past-jobs">Getting information on past jobs</h2>
+<section id="getting-information-on-past-jobs" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="getting-information-on-past-jobs"><span class="header-section-number">7</span> Getting information on past jobs</h2>
 <p>You can use slurm database to see how much memory your previous jobs used, e.g.&nbsp;the following command will report requested memory and used residential and virtual memory for job</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sacct</span> <span class="at">-j</span> <span class="op">&lt;</span>JOBID<span class="op">&gt;</span> --format JobID,Partition,Submit,Start,End,NodeList%40,ReqMem,MaxRSS,MaxRSSNode,MaxRSSTask,MaxVMSize,ExitCode</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 

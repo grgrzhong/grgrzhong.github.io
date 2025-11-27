@@ -73,14 +73,18 @@ format:
   html:
     theme:
       - html/ath.scss
-    toc: false
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    number-depth: 3
     code-link: true
     anchor-sections: true
     fig-cap-location: margin
     reference-location: margin
     footnotes-hover: true
-    # highlight-style: github-dark
     highlight-style: dracula
+    # highlight-style: github-dark
     # highlight-style: monokai
 
 # bibliography: files/bib/references.bib
@@ -90,6 +94,6 @@ format:
 # pagetitle: "{{< meta title >}} | {{< meta website.title >}}"
 # description-meta: "{{< meta description >}}"
 # author-meta: "Guorui Zhong"
-
+jupyter: python3
 execute:
   freeze: auto

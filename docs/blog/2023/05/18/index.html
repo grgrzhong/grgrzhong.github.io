@@ -199,21 +199,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#compute-pca" id="toc-compute-pca" class="nav-link active" data-scroll-target="#compute-pca">Compute PCA</a></li>
-  <li><a href="#color-individuals-by-groups" id="toc-color-individuals-by-groups" class="nav-link" data-scroll-target="#color-individuals-by-groups">Color individuals by groups</a></li>
-  <li><a href="#add-confidence-ellipses" id="toc-add-confidence-ellipses" class="nav-link" data-scroll-target="#add-confidence-ellipses">Add confidence ellipses</a></li>
-  <li><a href="#group-mean-points" id="toc-group-mean-points" class="nav-link" data-scroll-target="#group-mean-points">Group mean points</a></li>
-  <li><a href="#graphical-parameters" id="toc-graphical-parameters" class="nav-link" data-scroll-target="#graphical-parameters">Graphical parameters</a></li>
-  <li><a href="#biplot" id="toc-biplot" class="nav-link" data-scroll-target="#biplot">Biplot</a></li>
-  <li><a href="#color-by-groups" id="toc-color-by-groups" class="nav-link" data-scroll-target="#color-by-groups">Color by groups</a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+<li><a href="#compute-pca" id="toc-compute-pca" class="nav-link active" data-scroll-target="#compute-pca"><span class="header-section-number">1</span> Compute PCA</a></li>
+  <li><a href="#color-individuals-by-groups" id="toc-color-individuals-by-groups" class="nav-link" data-scroll-target="#color-individuals-by-groups"><span class="header-section-number">2</span> Color individuals by groups</a></li>
+  <li><a href="#add-confidence-ellipses" id="toc-add-confidence-ellipses" class="nav-link" data-scroll-target="#add-confidence-ellipses"><span class="header-section-number">3</span> Add confidence ellipses</a></li>
+  <li><a href="#group-mean-points" id="toc-group-mean-points" class="nav-link" data-scroll-target="#group-mean-points"><span class="header-section-number">4</span> Group mean points</a></li>
+  <li><a href="#graphical-parameters" id="toc-graphical-parameters" class="nav-link" data-scroll-target="#graphical-parameters"><span class="header-section-number">5</span> Graphical parameters</a></li>
+  <li><a href="#biplot" id="toc-biplot" class="nav-link" data-scroll-target="#biplot"><span class="header-section-number">6</span> Biplot</a></li>
+  <li><a href="#color-by-groups" id="toc-color-by-groups" class="nav-link" data-scroll-target="#color-by-groups"><span class="header-section-number">7</span> Color by groups</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">8</span> Reference</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="compute-pca" class="level2"><h2 class="anchored" data-anchor-id="compute-pca">Compute PCA</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="compute-pca" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="compute-pca">
+<span class="header-section-number">1</span> Compute PCA</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman">pacman</a></span><span class="op">)</span></span>
@@ -255,7 +256,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## 14 "$call$row.w"      "weights for the individuals"        </span></span>
 <span><span class="co">## 15 "$call$col.w"      "weights for the variables"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="color-individuals-by-groups" class="level2"><h2 class="anchored" data-anchor-id="color-individuals-by-groups">Color individuals by groups</h2>
+</section><section id="color-individuals-by-groups" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="color-individuals-by-groups">
+<span class="header-section-number">2</span> Color individuals by groups</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>,</span>
@@ -272,7 +274,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="add-confidence-ellipses" class="level2"><h2 class="anchored" data-anchor-id="add-confidence-ellipses">Add confidence ellipses</h2>
+</section><section id="add-confidence-ellipses" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="add-confidence-ellipses">
+<span class="header-section-number">3</span> Add confidence ellipses</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>, </span>
@@ -338,7 +341,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="group-mean-points" class="level2"><h2 class="anchored" data-anchor-id="group-mean-points">Group mean points</h2>
+</section><section id="group-mean-points" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="group-mean-points">
+<span class="header-section-number">4</span> Group mean points</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_ind</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>,</span>
@@ -354,7 +358,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="graphical-parameters" class="level2"><h2 class="anchored" data-anchor-id="graphical-parameters">Graphical parameters</h2>
+</section><section id="graphical-parameters" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="graphical-parameters">
+<span class="header-section-number">5</span> Graphical parameters</h2>
 <p>To change easily the graphical of any ggplots, you can use the function ggpar() [ggpubr package]</p>
 <p>The graphical parameters that can be changed using ggpar() include:</p>
 <ul>
@@ -381,7 +386,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="biplot" class="level2"><h2 class="anchored" data-anchor-id="biplot">Biplot</h2>
+</section><section id="biplot" class="level2" data-number="6"><h2 data-number="6" class="anchored" data-anchor-id="biplot">
+<span class="header-section-number">6</span> Biplot</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_biplot</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>, </span>
@@ -400,7 +406,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="color-by-groups" class="level2"><h2 class="anchored" data-anchor-id="color-by-groups">Color by groups</h2>
+</section><section id="color-by-groups" class="level2" data-number="7"><h2 data-number="7" class="anchored" data-anchor-id="color-by-groups">
+<span class="header-section-number">7</span> Color by groups</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fviz_pca_biplot</span><span class="op">(</span></span>
 <span>  <span class="va">iris_pca</span>, </span>
@@ -452,7 +459,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
+</section><section id="reference" class="level2" data-number="8"><h2 data-number="8" class="anchored" data-anchor-id="reference">
+<span class="header-section-number">8</span> Reference</h2>
 <ul>
 <li><a href="http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/">Principal Component Methods in R: Practical Guide</a></li>
 </ul>

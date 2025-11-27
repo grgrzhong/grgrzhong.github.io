@@ -214,34 +214,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#reproducibility-stack" id="toc-reproducibility-stack" class="nav-link" data-scroll-target="#reproducibility-stack">Reproducibility Stack</a></li>
-  <li><a href="#snakemake-container-patterns" id="toc-snakemake-container-patterns" class="nav-link" data-scroll-target="#snakemake-container-patterns">Snakemake Container Patterns</a>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><span class="header-section-number">1</span> Motivation</a></li>
+  <li><a href="#reproducibility-stack" id="toc-reproducibility-stack" class="nav-link" data-scroll-target="#reproducibility-stack"><span class="header-section-number">2</span> Reproducibility Stack</a></li>
+  <li><a href="#snakemake-container-patterns" id="toc-snakemake-container-patterns" class="nav-link" data-scroll-target="#snakemake-container-patterns"><span class="header-section-number">3</span> Snakemake Container Patterns</a>
   <ul class="collapse">
-  <li><a href="#singularity-flags-via-cli" id="toc-singularity-flags-via-cli" class="nav-link" data-scroll-target="#singularity-flags-via-cli">Singularity Flags via CLI</a></li>
+  <li><a href="#singularity-flags-via-cli" id="toc-singularity-flags-via-cli" class="nav-link" data-scroll-target="#singularity-flags-via-cli"><span class="header-section-number">3.1</span> Singularity Flags via CLI</a></li>
   </ul></li>
-  <li><a href="#nextflow-container-patterns" id="toc-nextflow-container-patterns" class="nav-link" data-scroll-target="#nextflow-container-patterns">Nextflow Container Patterns</a>
+  <li><a href="#nextflow-container-patterns" id="toc-nextflow-container-patterns" class="nav-link" data-scroll-target="#nextflow-container-patterns"><span class="header-section-number">4</span> Nextflow Container Patterns</a>
   <ul class="collapse">
-  <li><a href="#profile-snippet-nextflow.config" id="toc-profile-snippet-nextflow.config" class="nav-link" data-scroll-target="#profile-snippet-nextflow.config">Profile Snippet (<code>nextflow.config</code>)</a></li>
+  <li><a href="#profile-snippet-nextflow.config" id="toc-profile-snippet-nextflow.config" class="nav-link" data-scroll-target="#profile-snippet-nextflow.config"><span class="header-section-number">4.1</span> Profile Snippet (<code>nextflow.config</code>)</a></li>
   </ul></li>
-  <li><a href="#snakemake-vs-nextflow-container-handling" id="toc-snakemake-vs-nextflow-container-handling" class="nav-link" data-scroll-target="#snakemake-vs-nextflow-container-handling">Snakemake vs Nextflow (Container Handling)</a></li>
-  <li><a href="#version-provenance-capture" id="toc-version-provenance-capture" class="nav-link" data-scroll-target="#version-provenance-capture">Version &amp; Provenance Capture</a>
+  <li><a href="#snakemake-vs-nextflow-container-handling" id="toc-snakemake-vs-nextflow-container-handling" class="nav-link" data-scroll-target="#snakemake-vs-nextflow-container-handling"><span class="header-section-number">5</span> Snakemake vs Nextflow (Container Handling)</a></li>
+  <li><a href="#version-provenance-capture" id="toc-version-provenance-capture" class="nav-link" data-scroll-target="#version-provenance-capture"><span class="header-section-number">6</span> Version &amp; Provenance Capture</a>
   <ul class="collapse">
-  <li><a href="#simple-manifest-emitter-snakemake" id="toc-simple-manifest-emitter-snakemake" class="nav-link" data-scroll-target="#simple-manifest-emitter-snakemake">Simple Manifest Emitter (Snakemake)</a></li>
+  <li><a href="#simple-manifest-emitter-snakemake" id="toc-simple-manifest-emitter-snakemake" class="nav-link" data-scroll-target="#simple-manifest-emitter-snakemake"><span class="header-section-number">6.1</span> Simple Manifest Emitter (Snakemake)</a></li>
   </ul></li>
-  <li><a href="#caching-performance" id="toc-caching-performance" class="nav-link" data-scroll-target="#caching-performance">Caching &amp; Performance</a></li>
-  <li><a href="#patterns-for-tool-tag-parameterization" id="toc-patterns-for-tool-tag-parameterization" class="nav-link" data-scroll-target="#patterns-for-tool-tag-parameterization">Patterns for Tool Tag Parameterization</a></li>
-  <li><a href="#failure-scenarios-debug-table" id="toc-failure-scenarios-debug-table" class="nav-link" data-scroll-target="#failure-scenarios-debug-table">Failure Scenarios (Debug Table)</a></li>
-  <li><a href="#hybrid-strategy-modules-containers" id="toc-hybrid-strategy-modules-containers" class="nav-link" data-scroll-target="#hybrid-strategy-modules-containers">Hybrid Strategy (Modules + Containers)</a></li>
-  <li><a href="#end-to-end-mini-example" id="toc-end-to-end-mini-example" class="nav-link" data-scroll-target="#end-to-end-mini-example">End-to-End Mini Example</a>
+  <li><a href="#caching-performance" id="toc-caching-performance" class="nav-link" data-scroll-target="#caching-performance"><span class="header-section-number">7</span> Caching &amp; Performance</a></li>
+  <li><a href="#patterns-for-tool-tag-parameterization" id="toc-patterns-for-tool-tag-parameterization" class="nav-link" data-scroll-target="#patterns-for-tool-tag-parameterization"><span class="header-section-number">8</span> Patterns for Tool Tag Parameterization</a></li>
+  <li><a href="#failure-scenarios-debug-table" id="toc-failure-scenarios-debug-table" class="nav-link" data-scroll-target="#failure-scenarios-debug-table"><span class="header-section-number">9</span> Failure Scenarios (Debug Table)</a></li>
+  <li><a href="#hybrid-strategy-modules-containers" id="toc-hybrid-strategy-modules-containers" class="nav-link" data-scroll-target="#hybrid-strategy-modules-containers"><span class="header-section-number">10</span> Hybrid Strategy (Modules + Containers)</a></li>
+  <li><a href="#end-to-end-mini-example" id="toc-end-to-end-mini-example" class="nav-link" data-scroll-target="#end-to-end-mini-example"><span class="header-section-number">11</span> End-to-End Mini Example</a>
   <ul class="collapse">
-  <li><a href="#directory-layout" id="toc-directory-layout" class="nav-link" data-scroll-target="#directory-layout">Directory Layout</a></li>
-  <li><a href="#config.yaml" id="toc-config.yaml" class="nav-link" data-scroll-target="#config.yaml"><code>config.yaml</code></a></li>
-  <li><a href="#snakemake-snippet" id="toc-snakemake-snippet" class="nav-link" data-scroll-target="#snakemake-snippet">Snakemake snippet</a></li>
+  <li><a href="#directory-layout" id="toc-directory-layout" class="nav-link" data-scroll-target="#directory-layout"><span class="header-section-number">11.1</span> Directory Layout</a></li>
+  <li><a href="#config.yaml" id="toc-config.yaml" class="nav-link" data-scroll-target="#config.yaml"><span class="header-section-number">11.2</span> <code>config.yaml</code></a></li>
+  <li><a href="#snakemake-snippet" id="toc-snakemake-snippet" class="nav-link" data-scroll-target="#snakemake-snippet"><span class="header-section-number">11.3</span> Snakemake snippet</a></li>
   </ul></li>
-  <li><a href="#decision-cheat-sheet-summary-table" id="toc-decision-cheat-sheet-summary-table" class="nav-link" data-scroll-target="#decision-cheat-sheet-summary-table">Decision Cheat Sheet (Summary Table)</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#decision-cheat-sheet-summary-table" id="toc-decision-cheat-sheet-summary-table" class="nav-link" data-scroll-target="#decision-cheat-sheet-summary-table"><span class="header-section-number">12</span> Decision Cheat Sheet (Summary Table)</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">13</span> Summary</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">14</span> References</a></li>
   </ul>
 </nav>
 </nav>
@@ -256,8 +256,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="motivation" class="level2">
-<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<section id="motivation" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">1</span> Motivation</h2>
 <p>You have a container image for your RNA-seq toolkit—great. But repeatable end-to-end science requires orchestrating many containerized tools, handling digests, passing resources, and capturing provenance. Workflow managers (Snakemake, Nextflow) + containers = layered reproducibility: data → parameters → code → image digests → reference assets.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -273,8 +273,8 @@ Note
 </div>
 </div>
 </section>
-<section id="reproducibility-stack" class="level2">
-<h2 class="anchored" data-anchor-id="reproducibility-stack">Reproducibility Stack</h2>
+<section id="reproducibility-stack" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="reproducibility-stack"><span class="header-section-number">2</span> Reproducibility Stack</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 10%">
@@ -330,8 +330,8 @@ Note
 </tbody>
 </table>
 </section>
-<section id="snakemake-container-patterns" class="level2">
-<h2 class="anchored" data-anchor-id="snakemake-container-patterns">Snakemake Container Patterns</h2>
+<section id="snakemake-container-patterns" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="snakemake-container-patterns"><span class="header-section-number">3</span> Snakemake Container Patterns</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -394,8 +394,8 @@ Note
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  container: <span class="st">"docker://rnaseq/fastqc@sha256:6ab3..."</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  threads: <span class="dv">2</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  shell: <span class="st">"fastqc </span><span class="sc">{input}</span><span class="st"> -o qc"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="singularity-flags-via-cli" class="level3">
-<h3 class="anchored" data-anchor-id="singularity-flags-via-cli">Singularity Flags via CLI</h3>
+<section id="singularity-flags-via-cli" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="singularity-flags-via-cli"><span class="header-section-number">3.1</span> Singularity Flags via CLI</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">--cores</span> 16 <span class="dt">\</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--use-singularity</span> <span class="dt">\</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--singularity-args</span> <span class="st">"--bind /scratch:/scratch,/ref/genomes:/ref"</span> <span class="dt">\</span></span>
@@ -415,8 +415,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="nextflow-container-patterns" class="level2">
-<h2 class="anchored" data-anchor-id="nextflow-container-patterns">Nextflow Container Patterns</h2>
+<section id="nextflow-container-patterns" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="nextflow-container-patterns"><span class="header-section-number">4</span> Nextflow Container Patterns</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -487,8 +487,8 @@ Tip
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">  fastqc </span><span class="ss">$sample</span><span class="st"> -o qc</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">  """</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="profile-snippet-nextflow.config" class="level3">
-<h3 class="anchored" data-anchor-id="profile-snippet-nextflow.config">Profile Snippet (<code>nextflow.config</code>)</h3>
+<section id="profile-snippet-nextflow.config" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="profile-snippet-nextflow.config"><span class="header-section-number">4.1</span> Profile Snippet (<code>nextflow.config</code>)</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>profiles <span class="op">{</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  docker <span class="op">{</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    docker<span class="op">.</span>enabled <span class="op">=</span> <span class="kw">true</span></span>
@@ -502,8 +502,8 @@ Tip
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="snakemake-vs-nextflow-container-handling" class="level2">
-<h2 class="anchored" data-anchor-id="snakemake-vs-nextflow-container-handling">Snakemake vs Nextflow (Container Handling)</h2>
+<section id="snakemake-vs-nextflow-container-handling" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="snakemake-vs-nextflow-container-handling"><span class="header-section-number">5</span> Snakemake vs Nextflow (Container Handling)</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 21%">
@@ -571,8 +571,8 @@ Tip
 </tbody>
 </table>
 </section>
-<section id="version-provenance-capture" class="level2">
-<h2 class="anchored" data-anchor-id="version-provenance-capture">Version &amp; Provenance Capture</h2>
+<section id="version-provenance-capture" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="version-provenance-capture"><span class="header-section-number">6</span> Version &amp; Provenance Capture</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -609,8 +609,8 @@ Tip
 </tr>
 </tbody>
 </table>
-<section id="simple-manifest-emitter-snakemake" class="level3">
-<h3 class="anchored" data-anchor-id="simple-manifest-emitter-snakemake">Simple Manifest Emitter (Snakemake)</h3>
+<section id="simple-manifest-emitter-snakemake" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="simple-manifest-emitter-snakemake"><span class="header-section-number">6.1</span> Simple Manifest Emitter (Snakemake)</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rule versions:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  output: <span class="st">"VERSIONS.txt"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  run:</span>
@@ -622,8 +622,8 @@ Tip
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            fh.write(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ch">\t</span><span class="sc">{</span>out<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="caching-performance" class="level2">
-<h2 class="anchored" data-anchor-id="caching-performance">Caching &amp; Performance</h2>
+<section id="caching-performance" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="caching-performance"><span class="header-section-number">7</span> Caching &amp; Performance</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 21%">
@@ -667,8 +667,8 @@ Tip
 </tbody>
 </table>
 </section>
-<section id="patterns-for-tool-tag-parameterization" class="level2">
-<h2 class="anchored" data-anchor-id="patterns-for-tool-tag-parameterization">Patterns for Tool Tag Parameterization</h2>
+<section id="patterns-for-tool-tag-parameterization" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="patterns-for-tool-tag-parameterization"><span class="header-section-number">8</span> Patterns for Tool Tag Parameterization</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 16%">
@@ -712,8 +712,8 @@ Tip
 </tbody>
 </table>
 </section>
-<section id="failure-scenarios-debug-table" class="level2">
-<h2 class="anchored" data-anchor-id="failure-scenarios-debug-table">Failure Scenarios (Debug Table)</h2>
+<section id="failure-scenarios-debug-table" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="failure-scenarios-debug-table"><span class="header-section-number">9</span> Failure Scenarios (Debug Table)</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -769,8 +769,8 @@ Tip
 </tbody>
 </table>
 </section>
-<section id="hybrid-strategy-modules-containers" class="level2">
-<h2 class="anchored" data-anchor-id="hybrid-strategy-modules-containers">Hybrid Strategy (Modules + Containers)</h2>
+<section id="hybrid-strategy-modules-containers" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="hybrid-strategy-modules-containers"><span class="header-section-number">10</span> Hybrid Strategy (Modules + Containers)</h2>
 <p>Sometimes you only containerize “volatile” tools (fast-evolving bioinformatics programs) while relying on stable module-provided compilers or MPI. Example: Use host <code>module load cuda/12</code> then run a minimal container with just Python libs, binding <code>/usr/local/cuda</code> inside.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -786,24 +786,24 @@ Important
 </div>
 </div>
 </section>
-<section id="end-to-end-mini-example" class="level2">
-<h2 class="anchored" data-anchor-id="end-to-end-mini-example">End-to-End Mini Example</h2>
-<section id="directory-layout" class="level3">
-<h3 class="anchored" data-anchor-id="directory-layout">Directory Layout</h3>
+<section id="end-to-end-mini-example" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="end-to-end-mini-example"><span class="header-section-number">11</span> End-to-End Mini Example</h2>
+<section id="directory-layout" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="directory-layout"><span class="header-section-number">11.1</span> Directory Layout</h3>
 <pre><code>workflow/
   Snakefile
   config.yaml
   containers.lock
   data/readsA.fq.gz</code></pre>
 </section>
-<section id="config.yaml" class="level3">
-<h3 class="anchored" data-anchor-id="config.yaml"><code>config.yaml</code></h3>
+<section id="config.yaml" class="level3" data-number="11.2">
+<h3 data-number="11.2" class="anchored" data-anchor-id="config.yaml"><span class="header-section-number">11.2</span> <code>config.yaml</code></h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">containers</span><span class="kw">:</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fastqc</span><span class="kw">:</span><span class="at"> docker://rnaseq/fastqc@sha256:6ab3...</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">align</span><span class="kw">:</span><span class="at"> docker://rnaseq/hisat2@sha256:aa91...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="snakemake-snippet" class="level3">
-<h3 class="anchored" data-anchor-id="snakemake-snippet">Snakemake snippet</h3>
+<section id="snakemake-snippet" class="level3" data-number="11.3">
+<h3 data-number="11.3" class="anchored" data-anchor-id="snakemake-snippet"><span class="header-section-number">11.3</span> Snakemake snippet</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>CONFIG <span class="op">=</span> yaml.safe_load(<span class="bu">open</span>(<span class="st">"config.yaml"</span>))</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -817,8 +817,8 @@ Important
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  shell: <span class="st">"fastqc </span><span class="sc">{input}</span><span class="st"> -o qc"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="decision-cheat-sheet-summary-table" class="level2">
-<h2 class="anchored" data-anchor-id="decision-cheat-sheet-summary-table">Decision Cheat Sheet (Summary Table)</h2>
+<section id="decision-cheat-sheet-summary-table" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="decision-cheat-sheet-summary-table"><span class="header-section-number">12</span> Decision Cheat Sheet (Summary Table)</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 14%">
@@ -882,8 +882,8 @@ Important
 </tbody>
 </table>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<section id="summary" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="summary"><span class="header-section-number">13</span> Summary</h2>
 <p>Combining workflow engines with containers elevates reproducibility from “tool runs on my machine” to “pipeline is a portable scientific object.” Success hinges on disciplined version pinning, digest usage, provenance manifests, and calibrated caching strategies.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -899,8 +899,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="references" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="references"><span class="header-section-number">14</span> References</h2>
 <ul>
 <li>Snakemake docs: https://snakemake.readthedocs.io/</li>
 <li>Nextflow docs: https://www.nextflow.io/docs/latest/</li>

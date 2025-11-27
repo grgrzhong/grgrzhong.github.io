@@ -190,25 +190,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
-  <li><a href="#using-struct-model-objects" id="toc-using-struct-model-objects" class="nav-link" data-scroll-target="#using-struct-model-objects">Using {struct} model objects</a></li>
+<li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages"><span class="header-section-number">1</span> Packages</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset"><span class="header-section-number">2</span> Dataset</a></li>
+  <li><a href="#using-struct-model-objects" id="toc-using-struct-model-objects" class="nav-link" data-scroll-target="#using-struct-model-objects"><span class="header-section-number">3</span> Using {struct} model objects</a></li>
   <li>
-<a href="#typical-workflow" id="toc-typical-workflow" class="nav-link" data-scroll-target="#typical-workflow">Typical workflow</a>
+<a href="#typical-workflow" id="toc-typical-workflow" class="nav-link" data-scroll-target="#typical-workflow"><span class="header-section-number">4</span> Typical workflow</a>
   <ul>
-<li><a href="#dataset-1" id="toc-dataset-1" class="nav-link" data-scroll-target="#dataset-1">Dataset</a></li>
-  <li><a href="#signal-drift-and-batch-correction" id="toc-signal-drift-and-batch-correction" class="nav-link" data-scroll-target="#signal-drift-and-batch-correction">Signal drift and batch correction</a></li>
-  <li><a href="#feature-filtering" id="toc-feature-filtering" class="nav-link" data-scroll-target="#feature-filtering">Feature filtering</a></li>
+<li><a href="#dataset-1" id="toc-dataset-1" class="nav-link" data-scroll-target="#dataset-1"><span class="header-section-number">4.1</span> Dataset</a></li>
+  <li><a href="#signal-drift-and-batch-correction" id="toc-signal-drift-and-batch-correction" class="nav-link" data-scroll-target="#signal-drift-and-batch-correction"><span class="header-section-number">4.2</span> Signal drift and batch correction</a></li>
+  <li><a href="#feature-filtering" id="toc-feature-filtering" class="nav-link" data-scroll-target="#feature-filtering"><span class="header-section-number">4.3</span> Feature filtering</a></li>
   </ul>
 </li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">5</span> Reference</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="packages" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="packages">
+<span class="header-section-number">1</span> Packages</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load</span><span class="op">(</span></span>
 <span>    <span class="co">### BiocManager packages</span></span>
@@ -226,7 +227,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">### use the BiocFileCache</span></span>
 <span><span class="co"># bfc &lt;- BiocFileCache(ask = FALSE)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="dataset" class="level2"><h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+</section><section id="dataset" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="dataset">
+<span class="header-section-number">2</span> Dataset</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### iris dataset</span></span>
 <span><span class="va">D</span> <span class="op">&lt;-</span> <span class="fu">iris_DatasetExperiment</span><span class="op">(</span><span class="op">)</span></span>
@@ -251,7 +253,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## 5          5.0         3.6          1.4         0.2</span></span>
 <span><span class="co">## 6          5.4         3.9          1.7         0.4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="using-struct-model-objects" class="level2"><h2 class="anchored" data-anchor-id="using-struct-model-objects">Using {struct} model objects</h2>
+</section><section id="using-struct-model-objects" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="using-struct-model-objects">
+<span class="header-section-number">3</span> Using {struct} model objects</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Statistical models</span></span>
 <span><span class="va">P</span> <span class="op">=</span> <span class="fu">PCA</span><span class="op">(</span>number_components<span class="op">=</span><span class="fl">15</span><span class="op">)</span></span>
@@ -336,8 +339,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="typical-workflow" class="level2"><h2 class="anchored" data-anchor-id="typical-workflow">Typical workflow</h2>
-<section id="dataset-1" class="level3"><h3 class="anchored" data-anchor-id="dataset-1">Dataset</h3>
+</section><section id="typical-workflow" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="typical-workflow">
+<span class="header-section-number">4</span> Typical workflow</h2>
+<section id="dataset-1" class="level3" data-number="4.1"><h3 data-number="4.1" class="anchored" data-anchor-id="dataset-1">
+<span class="header-section-number">4.1</span> Dataset</h3>
 <p>The MTBLS79 dataset represents a systematic evaluation of the reproducibility of a multi-batch direct-infusion mass spectrometry (DIMS)-based metabolomics study of cardiac tissue extracts. It comprises twenty biological samples (cow vs.&nbsp;sheep) that were analysed repeatedly, in 8 batches across 7 days, together with a concurrent set of quality control (QC) samples. Data are presented from each step of the data processing workflow and are available through MetaboLights (https://www.ebi.ac.uk/metabolights/MTBLS79).</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># the pmp SE object</span></span>
@@ -369,7 +374,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## sample_meta:   172 rows x 6 columns</span></span>
 <span><span class="co">## variable_meta: 2488 rows x 0 columns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="signal-drift-and-batch-correction" class="level3"><h3 class="anchored" data-anchor-id="signal-drift-and-batch-correction">Signal drift and batch correction</h3>
+</section><section id="signal-drift-and-batch-correction" class="level3" data-number="4.2"><h3 data-number="4.2" class="anchored" data-anchor-id="signal-drift-and-batch-correction">
+<span class="header-section-number">4.2</span> Signal drift and batch correction</h3>
 <p>A batch correction algorithm is applied to reduce intra- and inter- batch variations in the dataset. Quality Control-Robust Spline Correction (QC-RSC) is provided in the pmp package, and it has been wrapped into a structToolbox object called sb_corr.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="co"># batch correction</span></span>
@@ -421,8 +427,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">'Number of features removed: '</span>, <span class="va">nc</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Number of features removed: 425</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="feature-filtering" class="level3"><h3 class="anchored" data-anchor-id="feature-filtering">Feature filtering</h3>
-</section></section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
+</section><section id="feature-filtering" class="level3" data-number="4.3"><h3 data-number="4.3" class="anchored" data-anchor-id="feature-filtering">
+<span class="header-section-number">4.3</span> Feature filtering</h3>
+</section></section><section id="reference" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="reference">
+<span class="header-section-number">5</span> Reference</h2>
 <ul>
 <li><a href="https://bioconductor.statistik.tu-dortmund.de/packages/3.11/bioc/vignettes/structToolbox/inst/doc/data_analysis_omics_using_the_structtoolbox.html#1_introduction">Data analysis of metabolomics and other omics datasets using the structToolbox</a></li>
 </ul>

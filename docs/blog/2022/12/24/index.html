@@ -208,10 +208,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#setup-ssh-remote-keys" id="toc-setup-ssh-remote-keys" class="nav-link active" data-scroll-target="#setup-ssh-remote-keys">Setup SSH Remote Keys</a></li>
-  <li><a href="#make-bash-with-colors" id="toc-make-bash-with-colors" class="nav-link" data-scroll-target="#make-bash-with-colors">Make Bash with colors</a></li>
-  <li><a href="#powerful-terminal" id="toc-powerful-terminal" class="nav-link" data-scroll-target="#powerful-terminal">Powerful Terminal</a></li>
-  <li><a href="#mount-remote-files-on-mac" id="toc-mount-remote-files-on-mac" class="nav-link" data-scroll-target="#mount-remote-files-on-mac">Mount remote files on mac</a></li>
+  <li><a href="#setup-ssh-remote-keys" id="toc-setup-ssh-remote-keys" class="nav-link active" data-scroll-target="#setup-ssh-remote-keys"><span class="header-section-number">1</span> Setup SSH Remote Keys</a></li>
+  <li><a href="#make-bash-with-colors" id="toc-make-bash-with-colors" class="nav-link" data-scroll-target="#make-bash-with-colors"><span class="header-section-number">2</span> Make Bash with colors</a></li>
+  <li><a href="#powerful-terminal" id="toc-powerful-terminal" class="nav-link" data-scroll-target="#powerful-terminal"><span class="header-section-number">3</span> Powerful Terminal</a></li>
+  <li><a href="#mount-remote-files-on-mac" id="toc-mount-remote-files-on-mac" class="nav-link" data-scroll-target="#mount-remote-files-on-mac"><span class="header-section-number">4</span> Mount remote files on mac</a></li>
   </ul>
 </nav>
 </nav>
@@ -226,8 +226,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="setup-ssh-remote-keys" class="level2">
-<h2 class="anchored" data-anchor-id="setup-ssh-remote-keys">Setup SSH Remote Keys</h2>
+<section id="setup-ssh-remote-keys" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="setup-ssh-remote-keys"><span class="header-section-number">1</span> Setup SSH Remote Keys</h2>
 <p>The following setup will help to ogin to server without using password and IP address with SSH remote key</p>
 <ol type="1">
 <li>Add remote server host into lost hosts files</li>
@@ -260,13 +260,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">local</span><span class="op">&gt;</span> cat id_ed25519.pub</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="key.jpg" class="img-fluid"></p>
 </section>
-<section id="make-bash-with-colors" class="level2">
-<h2 class="anchored" data-anchor-id="make-bash-with-colors">Make Bash with colors</h2>
+<section id="make-bash-with-colors" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="make-bash-with-colors"><span class="header-section-number">2</span> Make Bash with colors</h2>
 <p>In the remote server, add the following script to the <code>~/.bashrc</code></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">PS1</span><span class="op">=</span><span class="st">'\[\033[1;36m\]\u\[\033[1;37m\] @\[\033[1;32m\] \h:\[\033[1;33m\] \w\[\033[0;97m [\t]\[\033[0;97m \n\[\033[1;35m\]\$\[\033[0m\] '</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="powerful-terminal" class="level2">
-<h2 class="anchored" data-anchor-id="powerful-terminal">Powerful Terminal</h2>
+<section id="powerful-terminal" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="powerful-terminal"><span class="header-section-number">3</span> Powerful Terminal</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">### Install [Home-brew](https://brew.sh/)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -299,8 +299,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co">### Make it working</span></span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="mount-remote-files-on-mac" class="level2">
-<h2 class="anchored" data-anchor-id="mount-remote-files-on-mac">Mount remote files on mac</h2>
+<section id="mount-remote-files-on-mac" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="mount-remote-files-on-mac"><span class="header-section-number">4</span> Mount remote files on mac</h2>
 <p><img src="macfuse.png" class="img-fluid"></p>
 <ol type="1">
 <li><p>Install <code>macFUSE</code> and <code>SSHFS</code>: <a href="https://osxfuse.github.io/" class="uri">https://osxfuse.github.io/</a></p></li>

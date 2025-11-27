@@ -220,24 +220,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#umap" id="toc-umap" class="nav-link" data-scroll-target="#umap">UMAP</a>
+  <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages"><span class="header-section-number">1</span> Packages</a></li>
+  <li><a href="#umap" id="toc-umap" class="nav-link" data-scroll-target="#umap"><span class="header-section-number">2</span> UMAP</a>
   <ul>
-  <li><a href="#load-seurat-object" id="toc-load-seurat-object" class="nav-link" data-scroll-target="#load-seurat-object">Load Seurat object</a></li>
-  <li><a href="#default-seurat-umap" id="toc-default-seurat-umap" class="nav-link" data-scroll-target="#default-seurat-umap">Default seurat UMAP</a></li>
-  <li><a href="#umap-with-ggplot2" id="toc-umap-with-ggplot2" class="nav-link" data-scroll-target="#umap-with-ggplot2">UMAP with ggplot2</a></li>
-  <li><a href="#annotate-cell-type-on-umap" id="toc-annotate-cell-type-on-umap" class="nav-link" data-scroll-target="#annotate-cell-type-on-umap">Annotate cell type on UMAP</a></li>
+  <li><a href="#load-seurat-object" id="toc-load-seurat-object" class="nav-link" data-scroll-target="#load-seurat-object"><span class="header-section-number">2.1</span> Load Seurat object</a></li>
+  <li><a href="#default-seurat-umap" id="toc-default-seurat-umap" class="nav-link" data-scroll-target="#default-seurat-umap"><span class="header-section-number">2.2</span> Default seurat UMAP</a></li>
+  <li><a href="#umap-with-ggplot2" id="toc-umap-with-ggplot2" class="nav-link" data-scroll-target="#umap-with-ggplot2"><span class="header-section-number">2.3</span> UMAP with ggplot2</a></li>
+  <li><a href="#annotate-cell-type-on-umap" id="toc-annotate-cell-type-on-umap" class="nav-link" data-scroll-target="#annotate-cell-type-on-umap"><span class="header-section-number">2.4</span> Annotate cell type on UMAP</a></li>
   </ul></li>
-  <li><a href="#featureplot" id="toc-featureplot" class="nav-link" data-scroll-target="#featureplot">FeaturePlot</a>
+  <li><a href="#featureplot" id="toc-featureplot" class="nav-link" data-scroll-target="#featureplot"><span class="header-section-number">3</span> FeaturePlot</a>
   <ul>
-  <li><a href="#default-seurat-featureplot" id="toc-default-seurat-featureplot" class="nav-link" data-scroll-target="#default-seurat-featureplot">Default Seurat FeaturePlot</a></li>
-  <li><a href="#feature-with-ggplot2" id="toc-feature-with-ggplot2" class="nav-link" data-scroll-target="#feature-with-ggplot2">Feature with ggplot2</a></li>
+  <li><a href="#default-seurat-featureplot" id="toc-default-seurat-featureplot" class="nav-link" data-scroll-target="#default-seurat-featureplot"><span class="header-section-number">3.1</span> Default Seurat FeaturePlot</a></li>
+  <li><a href="#feature-with-ggplot2" id="toc-feature-with-ggplot2" class="nav-link" data-scroll-target="#feature-with-ggplot2"><span class="header-section-number">3.2</span> Feature with ggplot2</a></li>
   </ul></li>
-  <li><a href="#dotplot" id="toc-dotplot" class="nav-link" data-scroll-target="#dotplot">Dotplot</a>
+  <li><a href="#dotplot" id="toc-dotplot" class="nav-link" data-scroll-target="#dotplot"><span class="header-section-number">4</span> Dotplot</a>
   <ul>
-  <li><a href="#deafult-dotplot-within-seurat" id="toc-deafult-dotplot-within-seurat" class="nav-link" data-scroll-target="#deafult-dotplot-within-seurat">Deafult Dotplot within Seurat</a></li>
-  <li><a href="#dotplot-with-complexheatmap" id="toc-dotplot-with-complexheatmap" class="nav-link" data-scroll-target="#dotplot-with-complexheatmap">Dotplot with Complexheatmap</a></li>
-  <li><a href="#dotplot-with-sccustomize" id="toc-dotplot-with-sccustomize" class="nav-link" data-scroll-target="#dotplot-with-sccustomize">Dotplot with scCustomize</a></li>
+  <li><a href="#deafult-dotplot-within-seurat" id="toc-deafult-dotplot-within-seurat" class="nav-link" data-scroll-target="#deafult-dotplot-within-seurat"><span class="header-section-number">4.1</span> Deafult Dotplot within Seurat</a></li>
+  <li><a href="#dotplot-with-complexheatmap" id="toc-dotplot-with-complexheatmap" class="nav-link" data-scroll-target="#dotplot-with-complexheatmap"><span class="header-section-number">4.2</span> Dotplot with Complexheatmap</a></li>
+  <li><a href="#dotplot-with-sccustomize" id="toc-dotplot-with-sccustomize" class="nav-link" data-scroll-target="#dotplot-with-sccustomize"><span class="header-section-number">4.3</span> Dotplot with scCustomize</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -253,8 +253,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="packages" class="level2">
-<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<section id="packages" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="packages"><span class="header-section-number">1</span> Packages</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -273,10 +273,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Scillus)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="umap" class="level2">
-<h2 class="anchored" data-anchor-id="umap">UMAP</h2>
-<section id="load-seurat-object" class="level3">
-<h3 class="anchored" data-anchor-id="load-seurat-object">Load Seurat object</h3>
+<section id="umap" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="umap"><span class="header-section-number">2</span> UMAP</h2>
+<section id="load-seurat-object" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="load-seurat-object"><span class="header-section-number">2.1</span> Load Seurat object</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Load data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">"projects"</span>, <span class="st">"2023_scRNA_Seurat"</span>, <span class="st">"pbmc_tutorial_singleR.RData"</span>))</span>
@@ -315,8 +315,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 2.51e-112       3.57 0.132 0.023 1.30e-107 1       SPRR1A</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="default-seurat-umap" class="level3">
-<h3 class="anchored" data-anchor-id="default-seurat-umap">Default seurat UMAP</h3>
+<section id="default-seurat-umap" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="default-seurat-umap"><span class="header-section-number">2.2</span> Default seurat UMAP</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the UMAP</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot</span>(pbmc, <span class="at">group.by =</span> <span class="fu">c</span>(<span class="st">"seurat_clusters"</span>, <span class="st">"labels"</span>), <span class="at">reduction =</span> <span class="st">"umap"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -329,8 +329,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="umap-with-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="umap-with-ggplot2">UMAP with ggplot2</h3>
+<section id="umap-with-ggplot2" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="umap-with-ggplot2"><span class="header-section-number">2.3</span> UMAP with ggplot2</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the UMAP data</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pbmc)</span>
@@ -739,8 +739,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="annotate-cell-type-on-umap" class="level3">
-<h3 class="anchored" data-anchor-id="annotate-cell-type-on-umap">Annotate cell type on UMAP</h3>
+<section id="annotate-cell-type-on-umap" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="annotate-cell-type-on-umap"><span class="header-section-number">2.4</span> Annotate cell type on UMAP</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcualte the median coordinates of each cluster</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cell_type_med <span class="ot">&lt;-</span> umap <span class="sc">|&gt;</span></span>
@@ -763,10 +763,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="featureplot" class="level2">
-<h2 class="anchored" data-anchor-id="featureplot">FeaturePlot</h2>
-<section id="default-seurat-featureplot" class="level3">
-<h3 class="anchored" data-anchor-id="default-seurat-featureplot">Default Seurat FeaturePlot</h3>
+<section id="featureplot" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="featureplot"><span class="header-section-number">3</span> FeaturePlot</h2>
+<section id="default-seurat-featureplot" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="default-seurat-featureplot"><span class="header-section-number">3.1</span> Default Seurat FeaturePlot</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot</span>(pbmc, <span class="at">label =</span> <span class="cn">TRUE</span>)<span class="sc">|</span><span class="fu">FeaturePlot</span>(pbmc, <span class="at">features =</span> <span class="st">"CD79A"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
@@ -802,8 +802,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="feature-with-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="feature-with-ggplot2">Feature with ggplot2</h3>
+<section id="feature-with-ggplot2" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="feature-with-ggplot2"><span class="header-section-number">3.2</span> Feature with ggplot2</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mydata  <span class="ot">&lt;-</span> <span class="fu">FetchData</span>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    pbmc,</span>
@@ -870,10 +870,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="dotplot" class="level2">
-<h2 class="anchored" data-anchor-id="dotplot">Dotplot</h2>
-<section id="deafult-dotplot-within-seurat" class="level3">
-<h3 class="anchored" data-anchor-id="deafult-dotplot-within-seurat">Deafult Dotplot within Seurat</h3>
+<section id="dotplot" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="dotplot"><span class="header-section-number">4</span> Dotplot</h2>
+<section id="deafult-dotplot-within-seurat" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="deafult-dotplot-within-seurat"><span class="header-section-number">4.1</span> Deafult Dotplot within Seurat</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find marker genes</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># all_markers &lt;- FindAllMarkers(object = sce2)</span></span>
@@ -911,8 +911,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="dotplot-with-complexheatmap" class="level3">
-<h3 class="anchored" data-anchor-id="dotplot-with-complexheatmap">Dotplot with Complexheatmap</h3>
+<section id="dotplot-with-complexheatmap" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="dotplot-with-complexheatmap"><span class="header-section-number">4.2</span> Dotplot with Complexheatmap</h3>
 <p>We can refer to details from <a href="https://divingintogeneticsandgenomics.com/post/clustered-dotplot-for-single-cell-rnaseq/">here</a> for detailed parameters customization.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve data</span></span>
@@ -1058,8 +1058,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="fu">draw</span>(hp, <span class="at">annotation_legend_list =</span> lgd_list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="dotplot-with-sccustomize" class="level3">
-<h3 class="anchored" data-anchor-id="dotplot-with-sccustomize">Dotplot with scCustomize</h3>
+<section id="dotplot-with-sccustomize" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="dotplot-with-sccustomize"><span class="header-section-number">4.3</span> Dotplot with scCustomize</h3>
 
 
 </section>

@@ -7,6 +7,7 @@ title-block-banner: "#212529"
 toc: true
 toc-location: left
 toc-title: "Contents"
+editor: source
 jupyter: python3
 execute:
     eval: false

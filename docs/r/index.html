@@ -187,23 +187,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#basic-concepts" id="toc-basic-concepts" class="nav-link active" data-scroll-target="#basic-concepts">Basic concepts</a></li>
-  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure">Data structure</a></li>
-  <li><a href="#general-functions" id="toc-general-functions" class="nav-link" data-scroll-target="#general-functions">General functions</a></li>
-  <li><a href="#best-practise-for-r-coding" id="toc-best-practise-for-r-coding" class="nav-link" data-scroll-target="#best-practise-for-r-coding">Best practise for R coding</a></li>
-  <li><a href="#ggplot2-variable-repacement" id="toc-ggplot2-variable-repacement" class="nav-link" data-scroll-target="#ggplot2-variable-repacement">ggplot2 Variable repacement</a></li>
-  <li><a href="#using-r-in-vscode-with-conda-environment" id="toc-using-r-in-vscode-with-conda-environment" class="nav-link" data-scroll-target="#using-r-in-vscode-with-conda-environment">Using R in vscode with Conda environment</a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+<li><a href="#basic-concepts" id="toc-basic-concepts" class="nav-link active" data-scroll-target="#basic-concepts"><span class="header-section-number">1</span> Basic concepts</a></li>
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure"><span class="header-section-number">2</span> Data structure</a></li>
+  <li><a href="#general-functions" id="toc-general-functions" class="nav-link" data-scroll-target="#general-functions"><span class="header-section-number">3</span> General functions</a></li>
+  <li><a href="#best-practise-for-r-coding" id="toc-best-practise-for-r-coding" class="nav-link" data-scroll-target="#best-practise-for-r-coding"><span class="header-section-number">4</span> Best practise for R coding</a></li>
+  <li><a href="#ggplot2-variable-repacement" id="toc-ggplot2-variable-repacement" class="nav-link" data-scroll-target="#ggplot2-variable-repacement"><span class="header-section-number">5</span> ggplot2 Variable repacement</a></li>
+  <li><a href="#using-r-in-vscode-with-conda-environment" id="toc-using-r-in-vscode-with-conda-environment" class="nav-link" data-scroll-target="#using-r-in-vscode-with-conda-environment"><span class="header-section-number">6</span> Using R in vscode with Conda environment</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">7</span> Reference</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="basic-concepts" class="level1"><h1>Basic concepts</h1>
-</section><section id="data-structure" class="level1"><h1>Data structure</h1>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="basic-concepts" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> Basic concepts</h1>
+</section><section id="data-structure" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> Data structure</h1>
 <p><img src="R_data_structure.png" class="img-fluid"></p>
-</section><section id="general-functions" class="level1"><h1>General functions</h1>
+</section><section id="general-functions" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> General functions</h1>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>()                            <span class="co"># Show the directory</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()                          <span class="co"># Check working directory</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>()                          <span class="co"># Change working directory</span></span>
@@ -224,7 +227,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package=</span><span class="st">""</span>)                 <span class="co"># Check the functions of R library</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">system.file</span>(<span class="at">package=</span>“dagdata”)   <span class="co"># Extract the location of package</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">installed.packages</span>())   <span class="co"># list the installed packages</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section><section id="best-practise-for-r-coding" class="level1"><h1>Best practise for R coding</h1>
+</section><section id="best-practise-for-r-coding" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> Best practise for R coding</h1>
 <ul>
 <li>Variables = my_variable</li>
 <li>Functions = RunThisStuffs()</li>
@@ -244,7 +248,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Don’t save a session history</li>
 <li>Keep track of <code><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo()</a></code> in project folder</li>
 <li>Use version control</li>
-</ul></section><section id="ggplot2-variable-repacement" class="level1"><h1>ggplot2 Variable repacement</h1>
+</ul></section><section id="ggplot2-variable-repacement" class="level1" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> ggplot2 Variable repacement</h1>
 <p><code>!!as.name()</code>, <code><a href="https://rdrr.io/r/base/get.html">get()</a></code>, <code>!!sym()</code>, <code>.data[[]]</code></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
@@ -268,7 +273,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, color <span class="op">=</span> <span class="va">.data</span><span class="op">[[</span><span class="va">color_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="using-r-in-vscode-with-conda-environment" class="level1"><h1>Using R in vscode with Conda environment</h1>
+</section><section id="using-r-in-vscode-with-conda-environment" class="level1" data-number="6"><h1 data-number="6">
+<span class="header-section-number">6</span> Using R in vscode with Conda environment</h1>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="er">//</span> <span class="er">Add</span> <span class="er">these</span> <span class="er">to</span> <span class="er">the</span> <span class="er">remove</span> <span class="er">settings</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
@@ -285,7 +291,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"r.rpath.linux"</span><span class="fu">:</span> <span class="st">"/home/zhonggr/miniforge3/envs/renv/bin/R"</span><span class="fu">,</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"r.rterm.linux"</span><span class="fu">:</span> <span class="st">"/home/zhonggr/miniforge3/envs/renv/bin/radian"</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section><section id="reference" class="level1"><h1>Reference</h1>
+</section><section id="reference" class="level1" data-number="7"><h1 data-number="7">
+<span class="header-section-number">7</span> Reference</h1>
 <ul>
 <li><a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a></li>
 <li><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a></li>

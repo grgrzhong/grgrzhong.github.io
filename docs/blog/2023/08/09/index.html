@@ -202,39 +202,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#what-is-batch-effect" id="toc-what-is-batch-effect" class="nav-link active" data-scroll-target="#what-is-batch-effect">What is batch effect?</a></li>
-  <li><a href="#why-is-batch-effect-a-problem" id="toc-why-is-batch-effect-a-problem" class="nav-link" data-scroll-target="#why-is-batch-effect-a-problem">Why is batch effect a problem</a></li>
-  <li><a href="#sva-package-for-removing-batch-effects" id="toc-sva-package-for-removing-batch-effects" class="nav-link" data-scroll-target="#sva-package-for-removing-batch-effects">SVA package for removing batch effects</a></li>
-  <li><a href="#setting-up-the-data-from-an-expressionset" id="toc-setting-up-the-data-from-an-expressionset" class="nav-link" data-scroll-target="#setting-up-the-data-from-an-expressionset">Setting up the data from an ExpressionSet</a></li>
-  <li><a href="#eestimate-batch-effect-and-other-artifacts-using-sva" id="toc-eestimate-batch-effect-and-other-artifacts-using-sva" class="nav-link" data-scroll-target="#eestimate-batch-effect-and-other-artifacts-using-sva">Eestimate batch effect and other artifacts using sva</a></li>
-  <li><a href="#adjusting-for-surrogate-variables-using-f.pvalue-function" id="toc-adjusting-for-surrogate-variables-using-f.pvalue-function" class="nav-link" data-scroll-target="#adjusting-for-surrogate-variables-using-f.pvalue-function">Adjusting for surrogate variables using f.pvalue function</a></li>
-  <li><a href="#adjusting-for-surrogate-variables-using-the-limma" id="toc-adjusting-for-surrogate-variables-using-the-limma" class="nav-link" data-scroll-target="#adjusting-for-surrogate-variables-using-the-limma">Adjusting for surrogate variables using the limma</a></li>
-  <li><a href="#adjusting-for-known-batches-using-combat" id="toc-adjusting-for-known-batches-using-combat" class="nav-link" data-scroll-target="#adjusting-for-known-batches-using-combat">Adjusting for known batches using Combat</a></li>
-  <li><a href="#removing-known-batch-effects-with-a-linear-model" id="toc-removing-known-batch-effects-with-a-linear-model" class="nav-link" data-scroll-target="#removing-known-batch-effects-with-a-linear-model">Removing known batch effects with a linear model</a></li>
-  <li><a href="#comparing-combat-and-linear-adjustment" id="toc-comparing-combat-and-linear-adjustment" class="nav-link" data-scroll-target="#comparing-combat-and-linear-adjustment">Comparing ComBat and linear adjustment</a></li>
-  <li><a href="#combat-seq-for-batch-adjustment-on-rna-seq-count-data" id="toc-combat-seq-for-batch-adjustment-on-rna-seq-count-data" class="nav-link" data-scroll-target="#combat-seq-for-batch-adjustment-on-rna-seq-count-data">Combat-seq for batch adjustment on RNA-seq count data</a></li>
-  <li><a href="#variance-filtering-to-speed-computations" id="toc-variance-filtering-to-speed-computations" class="nav-link" data-scroll-target="#variance-filtering-to-speed-computations">Variance filtering to speed computations</a></li>
-  <li><a href="#applying-the-fsva-function-to-remove-batch-effects-for-prediction" id="toc-applying-the-fsva-function-to-remove-batch-effects-for-prediction" class="nav-link" data-scroll-target="#applying-the-fsva-function-to-remove-batch-effects-for-prediction">Applying the fsva function to remove batch effects for prediction</a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+<li><a href="#what-is-batch-effect" id="toc-what-is-batch-effect" class="nav-link active" data-scroll-target="#what-is-batch-effect"><span class="header-section-number">1</span> What is batch effect?</a></li>
+  <li><a href="#why-is-batch-effect-a-problem" id="toc-why-is-batch-effect-a-problem" class="nav-link" data-scroll-target="#why-is-batch-effect-a-problem"><span class="header-section-number">2</span> Why is batch effect a problem</a></li>
+  <li><a href="#sva-package-for-removing-batch-effects" id="toc-sva-package-for-removing-batch-effects" class="nav-link" data-scroll-target="#sva-package-for-removing-batch-effects"><span class="header-section-number">3</span> SVA package for removing batch effects</a></li>
+  <li><a href="#setting-up-the-data-from-an-expressionset" id="toc-setting-up-the-data-from-an-expressionset" class="nav-link" data-scroll-target="#setting-up-the-data-from-an-expressionset"><span class="header-section-number">4</span> Setting up the data from an ExpressionSet</a></li>
+  <li><a href="#eestimate-batch-effect-and-other-artifacts-using-sva" id="toc-eestimate-batch-effect-and-other-artifacts-using-sva" class="nav-link" data-scroll-target="#eestimate-batch-effect-and-other-artifacts-using-sva"><span class="header-section-number">5</span> Eestimate batch effect and other artifacts using sva</a></li>
+  <li><a href="#adjusting-for-surrogate-variables-using-f.pvalue-function" id="toc-adjusting-for-surrogate-variables-using-f.pvalue-function" class="nav-link" data-scroll-target="#adjusting-for-surrogate-variables-using-f.pvalue-function"><span class="header-section-number">6</span> Adjusting for surrogate variables using f.pvalue function</a></li>
+  <li><a href="#adjusting-for-surrogate-variables-using-the-limma" id="toc-adjusting-for-surrogate-variables-using-the-limma" class="nav-link" data-scroll-target="#adjusting-for-surrogate-variables-using-the-limma"><span class="header-section-number">7</span> Adjusting for surrogate variables using the limma</a></li>
+  <li><a href="#adjusting-for-known-batches-using-combat" id="toc-adjusting-for-known-batches-using-combat" class="nav-link" data-scroll-target="#adjusting-for-known-batches-using-combat"><span class="header-section-number">8</span> Adjusting for known batches using Combat</a></li>
+  <li><a href="#removing-known-batch-effects-with-a-linear-model" id="toc-removing-known-batch-effects-with-a-linear-model" class="nav-link" data-scroll-target="#removing-known-batch-effects-with-a-linear-model"><span class="header-section-number">9</span> Removing known batch effects with a linear model</a></li>
+  <li><a href="#comparing-combat-and-linear-adjustment" id="toc-comparing-combat-and-linear-adjustment" class="nav-link" data-scroll-target="#comparing-combat-and-linear-adjustment"><span class="header-section-number">10</span> Comparing ComBat and linear adjustment</a></li>
+  <li><a href="#combat-seq-for-batch-adjustment-on-rna-seq-count-data" id="toc-combat-seq-for-batch-adjustment-on-rna-seq-count-data" class="nav-link" data-scroll-target="#combat-seq-for-batch-adjustment-on-rna-seq-count-data"><span class="header-section-number">11</span> Combat-seq for batch adjustment on RNA-seq count data</a></li>
+  <li><a href="#variance-filtering-to-speed-computations" id="toc-variance-filtering-to-speed-computations" class="nav-link" data-scroll-target="#variance-filtering-to-speed-computations"><span class="header-section-number">12</span> Variance filtering to speed computations</a></li>
+  <li><a href="#applying-the-fsva-function-to-remove-batch-effects-for-prediction" id="toc-applying-the-fsva-function-to-remove-batch-effects-for-prediction" class="nav-link" data-scroll-target="#applying-the-fsva-function-to-remove-batch-effects-for-prediction"><span class="header-section-number">13</span> Applying the fsva function to remove batch effects for prediction</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">14</span> Reference</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="what-is-batch-effect" class="level2"><h2 class="anchored" data-anchor-id="what-is-batch-effect">What is batch effect?</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="what-is-batch-effect" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="what-is-batch-effect">
+<span class="header-section-number">1</span> What is batch effect?</h2>
 <p>Batch effects are sub-groubs of measurements that have qualitatively different behaviour across conditions and unrelated to the biological or scientific variables in a study. - Experiments run on different time - Different technician - Differnt doing the sample preparation - Sequencing at a differnt institute - Prepare the sample at different timepoint - Different lots of reagents, chips or instruments …</p>
 <p>All of these factors are considered to be factors as batches</p>
-</section><section id="why-is-batch-effect-a-problem" class="level2"><h2 class="anchored" data-anchor-id="why-is-batch-effect-a-problem">Why is batch effect a problem</h2>
+</section><section id="why-is-batch-effect-a-problem" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="why-is-batch-effect-a-problem">
+<span class="header-section-number">2</span> Why is batch effect a problem</h2>
 <ul>
 <li>Not biological difference</li>
 <li>Just the other factors are taking actions, and are showing differences</li>
 <li>Most of the time, batch effect deviate our finding from the real biological relevant information</li>
 </ul>
 <p>Try our best to eliminate batch effect to get a real difference between conditions!</p>
-</section><section id="sva-package-for-removing-batch-effects" class="level2"><h2 class="anchored" data-anchor-id="sva-package-for-removing-batch-effects">SVA package for removing batch effects</h2>
+</section><section id="sva-package-for-removing-batch-effects" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="sva-package-for-removing-batch-effects">
+<span class="header-section-number">3</span> SVA package for removing batch effects</h2>
 <p>The assumption is that you will be trying to analyze the association between the variables of interest and gene expression, adjusting for the adjustment variables</p>
-</section><section id="setting-up-the-data-from-an-expressionset" class="level2"><h2 class="anchored" data-anchor-id="setting-up-the-data-from-an-expressionset">Setting up the data from an ExpressionSet</h2>
+</section><section id="setting-up-the-data-from-an-expressionset" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="setting-up-the-data-from-an-expressionset">
+<span class="header-section-number">4</span> Setting up the data from an ExpressionSet</h2>
 <ul>
 <li>The data should be a matrix with features in the rows and samples in the columns.</li>
 <li>The data should be standardized before applying for correction.</li>
@@ -281,7 +285,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">### Create null model matrix, ontains only the adjustment variables.</span></span>
 <span><span class="va">mod0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="eestimate-batch-effect-and-other-artifacts-using-sva" class="level2"><h2 class="anchored" data-anchor-id="eestimate-batch-effect-and-other-artifacts-using-sva">Eestimate batch effect and other artifacts using sva</h2>
+</section><section id="eestimate-batch-effect-and-other-artifacts-using-sva" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="eestimate-batch-effect-and-other-artifacts-using-sva">
+<span class="header-section-number">5</span> Eestimate batch effect and other artifacts using sva</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### identify the number of latent factors that need to be estimated</span></span>
 <span><span class="va">n_sv</span> <span class="op">&lt;-</span> <span class="fu">num.sv</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, method <span class="op">=</span> <span class="st">"leek"</span><span class="op">)</span></span>
@@ -348,7 +353,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## null device </span></span>
 <span><span class="co">##           1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="adjusting-for-surrogate-variables-using-f.pvalue-function" class="level2"><h2 class="anchored" data-anchor-id="adjusting-for-surrogate-variables-using-f.pvalue-function">Adjusting for surrogate variables using f.pvalue function</h2>
+</section><section id="adjusting-for-surrogate-variables-using-f.pvalue-function" class="level2" data-number="6"><h2 data-number="6" class="anchored" data-anchor-id="adjusting-for-surrogate-variables-using-f.pvalue-function">
+<span class="header-section-number">6</span> Adjusting for surrogate variables using f.pvalue function</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### calculate the parametric F-test p-values for each row of a data matrix</span></span>
 <span><span class="va">pvalues</span> <span class="op">&lt;-</span> <span class="fu">f.pvalue</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, <span class="va">mod0</span><span class="op">)</span></span>
@@ -365,7 +371,8 @@ This number seems artifically high.</p>
 <span><span class="va">pvalues_sv</span> <span class="op">&lt;-</span> <span class="fu">f.pvalue</span><span class="op">(</span><span class="va">edata</span>, <span class="va">modsv</span>, <span class="va">mod0sv</span><span class="op">)</span></span>
 <span><span class="va">qvalues_sv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">pvalues</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="adjusting-for-surrogate-variables-using-the-limma" class="level2"><h2 class="anchored" data-anchor-id="adjusting-for-surrogate-variables-using-the-limma">Adjusting for surrogate variables using the limma</h2>
+</section><section id="adjusting-for-surrogate-variables-using-the-limma" class="level2" data-number="7"><h2 data-number="7" class="anchored" data-anchor-id="adjusting-for-surrogate-variables-using-the-limma">
+<span class="header-section-number">7</span> Adjusting for surrogate variables using the limma</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### fit the linear model with the surrogate variabels</span></span>
 <span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">lmFit</span><span class="op">(</span><span class="va">edata</span>, <span class="va">modsv</span><span class="op">)</span></span>
@@ -392,7 +399,8 @@ This number seems artifically high.</p>
 <span><span class="co">## 201429_s_at -13.33686  0.28358293 12.941208 4464.995 8.675221e-62 2.147888e-58</span></span>
 <span><span class="co">## 214327_x_at -12.60146  0.20934783 11.832607 4312.087 2.257025e-61 5.029329e-58</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="adjusting-for-known-batches-using-combat" class="level2"><h2 class="anchored" data-anchor-id="adjusting-for-known-batches-using-combat">Adjusting for known batches using Combat</h2>
+</section><section id="adjusting-for-known-batches-using-combat" class="level2" data-number="8"><h2 data-number="8" class="anchored" data-anchor-id="adjusting-for-known-batches-using-combat">
+<span class="header-section-number">8</span> Adjusting for known batches using Combat</h2>
 <p><code>ComBat</code> returns a “cleaned” data matrix after batch effects have been removed. Here we pass a model matrix with any known adjustment variables and a second parameter that is the batch variable.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### get known batch variable</span></span>
@@ -426,7 +434,8 @@ This number seems artifically high.</p>
 </div>
 </div>
 </div>
-</section><section id="removing-known-batch-effects-with-a-linear-model" class="level2"><h2 class="anchored" data-anchor-id="removing-known-batch-effects-with-a-linear-model">Removing known batch effects with a linear model</h2>
+</section><section id="removing-known-batch-effects-with-a-linear-model" class="level2" data-number="9"><h2 data-number="9" class="anchored" data-anchor-id="removing-known-batch-effects-with-a-linear-model">
+<span class="header-section-number">9</span> Removing known batch effects with a linear model</h2>
 <p>In this case, we use two models. - One with the variable we care about - cancer status - the other is just the known adjustment variables, in this case, we assume none</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mod_batch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">batch</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span></span>
@@ -443,7 +452,8 @@ This number seems artifically high.</p>
 </div>
 </div>
 </div>
-</section><section id="comparing-combat-and-linear-adjustment" class="level2"><h2 class="anchored" data-anchor-id="comparing-combat-and-linear-adjustment">Comparing ComBat and linear adjustment</h2>
+</section><section id="comparing-combat-and-linear-adjustment" class="level2" data-number="10"><h2 data-number="10" class="anchored" data-anchor-id="comparing-combat-and-linear-adjustment">
+<span class="header-section-number">10</span> Comparing ComBat and linear adjustment</h2>
 <p>We can compare the estimated coefficients from Combat and linear adjustment by looking at the right coefficients for each model.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
@@ -488,7 +498,8 @@ This number seems artifically high.</p>
 <span><span class="co">## null device </span></span>
 <span><span class="co">##           1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="combat-seq-for-batch-adjustment-on-rna-seq-count-data" class="level2"><h2 class="anchored" data-anchor-id="combat-seq-for-batch-adjustment-on-rna-seq-count-data">Combat-seq for batch adjustment on RNA-seq count data</h2>
+</section><section id="combat-seq-for-batch-adjustment-on-rna-seq-count-data" class="level2" data-number="11"><h2 data-number="11" class="anchored" data-anchor-id="combat-seq-for-batch-adjustment-on-rna-seq-count-data">
+<span class="header-section-number">11</span> Combat-seq for batch adjustment on RNA-seq count data</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### expression matrix</span></span>
 <span><span class="va">count_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span></span>
@@ -545,14 +556,16 @@ This number seems artifically high.</p>
 <span><span class="co">## Shrinkage off - using GLM estimates for parameters</span></span>
 <span><span class="co">## Adjusting the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="variance-filtering-to-speed-computations" class="level2"><h2 class="anchored" data-anchor-id="variance-filtering-to-speed-computations">Variance filtering to speed computations</h2>
+</section><section id="variance-filtering-to-speed-computations" class="level2" data-number="12"><h2 data-number="12" class="anchored" data-anchor-id="variance-filtering-to-speed-computations">
+<span class="header-section-number">12</span> Variance filtering to speed computations</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_sv</span> <span class="op">&lt;-</span> <span class="fu">num.sv</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, vfilter <span class="op">=</span> <span class="fl">2000</span>, method <span class="op">=</span> <span class="st">"leek"</span><span class="op">)</span></span>
 <span><span class="va">svaobj</span> <span class="op">&lt;-</span> <span class="fu">sva</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, <span class="va">mod0</span>, n.sv <span class="op">=</span> <span class="va">n_sv</span>, vfilter <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span>
 <span><span class="co">## Number of significant surrogate variables is:  46 </span></span>
 <span><span class="co">## Iteration (out of 5 ):1  2  3  4  5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="applying-the-fsva-function-to-remove-batch-effects-for-prediction" class="level2"><h2 class="anchored" data-anchor-id="applying-the-fsva-function-to-remove-batch-effects-for-prediction">Applying the fsva function to remove batch effects for prediction</h2>
+</section><section id="applying-the-fsva-function-to-remove-batch-effects-for-prediction" class="level2" data-number="13"><h2 data-number="13" class="anchored" data-anchor-id="applying-the-fsva-function-to-remove-batch-effects-for-prediction">
+<span class="header-section-number">13</span> Applying the fsva function to remove batch effects for prediction</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### seprate data to traning and test set</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12354</span><span class="op">)</span></span>
@@ -590,7 +603,8 @@ This number seems artifically high.</p>
 <span><span class="va">mytrain_sv</span> <span class="op">&lt;-</span> <span class="fu">pamr.train</span><span class="op">(</span><span class="va">mydata_sv</span><span class="op">)</span></span>
 <span><span class="co">## 123456789101112131415161718192021222324252627282930</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
+</section><section id="reference" class="level2" data-number="14"><h2 data-number="14" class="anchored" data-anchor-id="reference">
+<span class="header-section-number">14</span> Reference</h2>
 <ul>
 <li><a href="http://jtleek.com/genstats/inst/doc/02_13_batch-effects.html">Batch effects and confounders</a></li>
 <li><a href="https://www.bioconductor.org/packages/release/bioc/vignettes/sva/inst/doc/sva.pdf">The SVA package for removing batch effects and other unwanted variation in high-throughput experiments</a></li>

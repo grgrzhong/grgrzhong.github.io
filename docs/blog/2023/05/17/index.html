@@ -199,12 +199,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#compute-pca" id="toc-compute-pca" class="nav-link active" data-scroll-target="#compute-pca">Compute PCA</a></li>
-  <li><a href="#variances" id="toc-variances" class="nav-link" data-scroll-target="#variances">Variances</a></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
-  <li><a href="#individuals" id="toc-individuals" class="nav-link" data-scroll-target="#individuals">Individuals</a></li>
-  <li><a href="#other-dimensions" id="toc-other-dimensions" class="nav-link" data-scroll-target="#other-dimensions">Other Dimensions</a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+<li><a href="#compute-pca" id="toc-compute-pca" class="nav-link active" data-scroll-target="#compute-pca"><span class="header-section-number">1</span> Compute PCA</a></li>
+  <li><a href="#variances" id="toc-variances" class="nav-link" data-scroll-target="#variances"><span class="header-section-number">2</span> Variances</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">3</span> Variables</a></li>
+  <li><a href="#individuals" id="toc-individuals" class="nav-link" data-scroll-target="#individuals"><span class="header-section-number">4</span> Individuals</a></li>
+  <li><a href="#other-dimensions" id="toc-other-dimensions" class="nav-link" data-scroll-target="#other-dimensions"><span class="header-section-number">5</span> Other Dimensions</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">6</span> Reference</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -223,7 +223,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>identify correlated variables</li>
 </ul>
 <p><img src="pca2.png" class="img-fluid"></p>
-<section id="compute-pca" class="level2"><h2 class="anchored" data-anchor-id="compute-pca">Compute PCA</h2>
+<section id="compute-pca" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="compute-pca">
+<span class="header-section-number">1</span> Compute PCA</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman">pacman</a></span><span class="op">)</span></span>
@@ -268,7 +269,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## 14 "$call$row.w"      "weights for the individuals"        </span></span>
 <span><span class="co">## 15 "$call$col.w"      "weights for the variables"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="variances" class="level2"><h2 class="anchored" data-anchor-id="variances">Variances</h2>
+</section><section id="variances" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="variances">
+<span class="header-section-number">2</span> Variances</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### eigenvalues measure the amount of variation retained by each principal component</span></span>
 <span><span class="va">eig_val</span> <span class="op">&lt;-</span> <span class="fu">get_eigenvalue</span><span class="op">(</span><span class="va">res_pca</span><span class="op">)</span></span>
@@ -294,7 +296,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="variables" class="level2"><h2 class="anchored" data-anchor-id="variables">Variables</h2>
+</section><section id="variables" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="variables">
+<span class="header-section-number">3</span> Variables</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### graph of variables</span></span>
 <span><span class="va">var</span> <span class="op">&lt;-</span> <span class="fu">get_pca_var</span><span class="op">(</span><span class="va">res_pca</span><span class="op">)</span></span>
@@ -523,7 +526,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## X1500m       0.7844802 9.384747e-06</span></span>
 <span><span class="co">## High.jump   -0.4652142 2.529390e-02</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="individuals" class="level2"><h2 class="anchored" data-anchor-id="individuals">Individuals</h2>
+</section><section id="individuals" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="individuals">
+<span class="header-section-number">4</span> Individuals</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### extract results for individuals</span></span>
 <span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu">get_pca_ind</span><span class="op">(</span><span class="va">res_pca</span><span class="op">)</span></span>
@@ -633,7 +637,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="other-dimensions" class="level2"><h2 class="anchored" data-anchor-id="other-dimensions">Other Dimensions</h2>
+</section><section id="other-dimensions" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="other-dimensions">
+<span class="header-section-number">5</span> Other Dimensions</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### visualize variables/individuals on dimension 2 and 3</span></span>
 <span></span>
@@ -654,7 +659,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
+</section><section id="reference" class="level2" data-number="6"><h2 data-number="6" class="anchored" data-anchor-id="reference">
+<span class="header-section-number">6</span> Reference</h2>
 <ul>
 <li><a href="http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/">Principal Component Methods in R: Practical Guide</a></li>
 <li><a href="https://www.r-bloggers.com/2017/02/factoextra-r-package-easy-multivariate-data-analyses-and-elegant-visualization/">Factoextra R Package: Easy Multivariate Data Analyses and Elegant Visualization</a></li>

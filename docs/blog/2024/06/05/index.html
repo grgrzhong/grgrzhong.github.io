@@ -196,9 +196,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#mclapply" id="toc-mclapply" class="nav-link active" data-scroll-target="#mclapply">mclapply</a></li>
-  <li><a href="#parlapply" id="toc-parlapply" class="nav-link" data-scroll-target="#parlapply">parlapply</a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+<li><a href="#mclapply" id="toc-mclapply" class="nav-link active" data-scroll-target="#mclapply"><span class="header-section-number">0.1</span> mclapply</a></li>
+  <li><a href="#parlapply" id="toc-parlapply" class="nav-link" data-scroll-target="#parlapply"><span class="header-section-number">0.2</span> parlapply</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">1</span> Reference</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -220,7 +220,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 8</code></pre>
 </div>
 </div>
-<section id="mclapply" class="level3"><h3 class="anchored" data-anchor-id="mclapply">mclapply</h3>
+<section id="mclapply" class="level3" data-number="0.1"><h3 data-number="0.1" class="anchored" data-anchor-id="mclapply">
+<span class="header-section-number">0.1</span> mclapply</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### mclapply works on unix system, it will call lapply in windows</span></span>
 <span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span></span>
@@ -238,7 +239,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   0.033   0.031   0.457 </code></pre>
 </div>
 </div>
-</section><section id="parlapply" class="level3"><h3 class="anchored" data-anchor-id="parlapply">parlapply</h3>
+</section><section id="parlapply" class="level3" data-number="0.2"><h3 data-number="0.2" class="anchored" data-anchor-id="parlapply">
+<span class="header-section-number">0.2</span> parlapply</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Works on windows, but slower than mclapply</span></span>
 <span><span class="va">numCores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -280,7 +282,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   0.115   0.017   1.215 </code></pre>
 </div>
 </div>
-</section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
+</section><section id="reference" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="reference">
+<span class="header-section-number">1</span> Reference</h2>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
