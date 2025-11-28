@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta charset="UTF-8">
+<meta name="generator" content="quarto-1.8.26">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
 <meta name="description" content="Practise scRNA data analysis with Genome Medicine using Seurat package.">
@@ -69,10 +68,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-12b3df05fff64bd15c9bad32e15a2ea0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-fa8806f0f1fe2c4c07c0086bb395541c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-6a40b608aec917e9f37b11a5a2bc5f9d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -111,8 +110,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
     </a>
@@ -265,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="co">## here() starts at /Users/zhonggr/Library/CloudStorage/OneDrive-Personal/quarto</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">httpgd</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nx10/httpgd">httpgd</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="retrieve-data" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="retrieve-data">
 <span class="header-section-number">2</span> Retrieve data</h2>
@@ -283,13 +280,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># Check files</span></span>
 <span><span class="va">fs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="st">"./"</span>, <span class="st">"^GSM"</span><span class="op">)</span></span>
 <span><span class="co"># Get the sample names</span></span>
-<span><span class="va">samples</span> <span class="op">&lt;-</span> <span class="fu">str_split</span><span class="op">(</span><span class="va">fs</span>, <span class="st">"_"</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">fs</span>, <span class="st">"_"</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">samples</span><span class="op">)</span></span>
 <span><span class="co"># Create folders for each sample, and rename</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">samples</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">y</span>  <span class="op">&lt;-</span> <span class="va">fs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">fs</span><span class="op">)</span><span class="op">]</span></span>
-<span>    <span class="va">folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu">str_split</span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="st">"_"</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span>    <span class="va">folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="st">"_"</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="va">folder</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/files.html">file.rename</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">folder</span>, <span class="st">"barcodes.tsv.gz"</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="co"># Note the seurat version to check features.tsv.gz or genes.tsv.gz</span></span>
@@ -1193,7 +1190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2021-2025 Guorui Zhong ~ Made with <a href="https://www.r-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a> and <a href="https://quarto.org/">Quarto</a></span></p>
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2021-2026 Guorui Zhong ~ Made with <a href="https://www.r-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a>, <a href="https://www.python.org/"><i class="fa-brands fa-python" aria-label="python"></i></a> and <a href="https://quarto.org/">Quarto</a></span></p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

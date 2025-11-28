@@ -270,9 +270,9 @@ Vim is a modal editor. Remember to press `Esc` to return to Normal mode before u
 ---
 
 # Tmux
+
 ### Tmux Configuration
 Consider adding these aliases to your shell configuration for quick tmux access.
-:::
 
 ::: {.code-block}
 ```bash

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta charset="UTF-8">
+<meta name="generator" content="quarto-1.8.26">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
 <title>Pseudobulk differential expression analysis – Guorui Zhong</title>
@@ -68,10 +67,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-12b3df05fff64bd15c9bad32e15a2ea0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-fa8806f0f1fe2c4c07c0086bb395541c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-6a40b608aec917e9f37b11a5a2bc5f9d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -110,8 +109,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
     </a>
@@ -228,11 +225,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="va">sce_obj</span> <span class="op">&lt;-</span> <span class="va">eh</span><span class="op">[[</span><span class="st">"EH2259"</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">seu_obj</span> <span class="op">&lt;-</span> <span class="fu">as.Seurat</span><span class="op">(</span><span class="va">sce_obj</span>, data <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
-<span><span class="fu">as_tibble</span><span class="op">(</span><span class="va">seu_obj</span><span class="op">@</span><span class="va">meta.data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">seu_obj</span><span class="op">@</span><span class="va">meta.data</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## add mito percent</span></span>
 <span><span class="va">seu_obj</span><span class="op">$</span><span class="va">mitoPercent</span> <span class="op">&lt;-</span> <span class="fu">PercentageFeatureSet</span><span class="op">(</span><span class="va">seu_obj</span>, pattern <span class="op">=</span> <span class="st">'^MT-'</span><span class="op">)</span></span>
-<span><span class="fu">as_tibble</span><span class="op">(</span><span class="va">seu_obj</span><span class="op">@</span><span class="va">meta.data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">seu_obj</span><span class="op">@</span><span class="va">meta.data</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## general qc and filter</span></span>
 <span><span class="va">seu_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span></span>
@@ -266,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2</span> Pseudobulk workflow</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## counts aggregate to sample level</span></span>
-<span><span class="fu">as_tibble</span><span class="op">(</span><span class="va">seu_obj</span><span class="op">@</span><span class="va">meta.data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">seu_obj</span><span class="op">@</span><span class="va">meta.data</span><span class="op">)</span></span>
 <span><span class="va">seu_obj</span><span class="op">$</span><span class="va">samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">seu_obj</span><span class="op">$</span><span class="va">stim</span>, <span class="va">seu_obj</span><span class="op">$</span><span class="va">ind</span><span class="op">)</span></span>
 <span><span class="fu">DefaultAssay</span><span class="op">(</span><span class="va">seu_obj</span><span class="op">)</span></span>
 <span></span>
@@ -304,10 +301,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co">## generate sample level metadata</span></span>
 <span><span class="va">col_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>samples <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">counts_bcell</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">mutate</span><span class="op">(</span>condition <span class="op">=</span> <span class="fu">if_else</span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>condition <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span></span>
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"stim"</span>, <span class="va">samples</span><span class="op">)</span>, <span class="st">"Stimulated"</span>, <span class="st">"Control"</span><span class="op">)</span></span>
 <span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">column_to_rownames</span><span class="op">(</span>var <span class="op">=</span> <span class="st">"samples"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">column_to_rownames</a></span><span class="op">(</span>var <span class="op">=</span> <span class="st">"samples"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## create DESeq2 object</span></span>
 <span><span class="va">dds</span> <span class="op">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span><span class="op">(</span></span>
@@ -351,23 +348,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## results tibble</span></span>
 <span><span class="va">res_tbl</span> <span class="op">&lt;-</span> <span class="va">res</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">rownames_to_column</span><span class="op">(</span>var <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">arrange</span><span class="op">(</span><span class="va">padj</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span>var <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">padj</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">padj_cutoff</span> <span class="op">&lt;-</span> <span class="fl">0.05</span></span>
 <span><span class="va">log2fc_cutoff</span> <span class="op">&lt;-</span> <span class="fl">0.58</span></span>
 <span></span>
 <span><span class="co">### significant genes</span></span>
 <span><span class="va">sig_res</span> <span class="op">&lt;-</span> <span class="va">res_tbl</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">filter</span><span class="op">(</span><span class="va">padj</span> <span class="op">&lt;</span> <span class="va">padj_cutoff</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">arrange</span><span class="op">(</span><span class="va">padj</span><span class="op">)</span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">padj</span> <span class="op">&lt;</span> <span class="va">padj_cutoff</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">padj</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">n_sig_up</span> <span class="op">&lt;-</span> <span class="va">sig_res</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">filter</span><span class="op">(</span><span class="va">log2FoldChange</span> <span class="op">&gt;=</span> <span class="va">log2fc_cutoff</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">log2FoldChange</span> <span class="op">&gt;=</span> <span class="va">log2fc_cutoff</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">n_sig_dn</span> <span class="op">&lt;-</span> <span class="va">sig_res</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">filter</span><span class="op">(</span><span class="va">log2FoldChange</span> <span class="op">&lt;=</span> <span class="op">-</span><span class="va">log2fc_cutoff</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">log2FoldChange</span> <span class="op">&lt;=</span> <span class="op">-</span><span class="va">log2fc_cutoff</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="de-testing-with-seurat" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="de-testing-with-seurat">
@@ -379,9 +376,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">normalized_counts</span> <span class="op">&lt;-</span> <span class="fu">counts</span><span class="op">(</span><span class="va">dds</span>, normalized <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Extract top 20 DEG from resLFC (make sure to order by padj)</span></span>
-<span><span class="va">top20_sig_genes</span> <span class="op">&lt;-</span> <span class="va">sig_res</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">arrange</span><span class="op">(</span><span class="va">padj</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">pull</span><span class="op">(</span><span class="va">gene</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">top20_sig_genes</span> <span class="op">&lt;-</span> <span class="va">sig_res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">padj</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">gene</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Extract matching normalized count values from matrix</span></span>
@@ -390,19 +387,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co">## Convert wide matrix to long data frame for ggplot2</span></span>
 <span><span class="va">top_sig_tbl</span> <span class="op">&lt;-</span> <span class="va">top_sig_counts</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">as_tibble</span><span class="op">(</span>rownames <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">pivot_longer</span><span class="op">(</span><span class="op">-</span><span class="va">gene</span>, names_to <span class="op">=</span> <span class="st">"samples"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">left_join</span><span class="op">(</span><span class="fu">as_tibble</span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">dds</span><span class="op">)</span>, rownames <span class="op">=</span> <span class="st">"samples"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span>rownames <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">gene</span>, names_to <span class="op">=</span> <span class="st">"samples"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">dds</span><span class="op">)</span>, rownames <span class="op">=</span> <span class="st">"samples"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Generate scatter plot</span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">top_sig_tbl</span>, <span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">value</span>, x <span class="op">=</span> <span class="va">condition</span>, color <span class="op">=</span> <span class="va">condition</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">geom_jitter</span><span class="op">(</span>height <span class="op">=</span> <span class="fl">0</span>, width <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">scale_y_continuous</span><span class="op">(</span>trans <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">ylab</span><span class="op">(</span><span class="st">"log10 of normalized expression level"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">xlab</span><span class="op">(</span><span class="st">"condition"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Top 20 Significant DE Genes"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">theme</span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">gene</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">top_sig_tbl</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">value</span>, x <span class="op">=</span> <span class="va">condition</span>, color <span class="op">=</span> <span class="va">condition</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">0</span>, width <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>trans <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"log10 of normalized expression level"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"condition"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Top 20 Significant DE Genes"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">gene</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Extract normalized counts for significant genes only</span></span>
 <span><span class="va">sig_counts</span> <span class="op">&lt;-</span> <span class="va">normalized_counts</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">normalized_counts</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">sig_res</span><span class="op">$</span><span class="va">gene</span>, <span class="op">]</span></span>
@@ -840,7 +837,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2021-2025 Guorui Zhong ~ Made with <a href="https://www.r-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a> and <a href="https://quarto.org/">Quarto</a></span></p>
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2021-2026 Guorui Zhong ~ Made with <a href="https://www.r-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a>, <a href="https://www.python.org/"><i class="fa-brands fa-python" aria-label="python"></i></a> and <a href="https://quarto.org/">Quarto</a></span></p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

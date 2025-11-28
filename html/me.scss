@@ -43,7 +43,6 @@ $dark:      $black !default;
 
 // Fonts
 
-
 $font-family-sans-serif: "Libre Franklin" !default;
 
 $headings-font-family: "Jost" !default;
@@ -56,12 +55,10 @@ $footer-font-family: "Jost" !default;
 // $font-size-base: 1.1rem !default; // Assumes the browser default, typically `16px`
 // $font-size-sm: $font-size-base * .875 !default;
 
-// Font
-// $fontcolor: $gray-400 !default;
 
 // Body
-$body-color: $gray-400 !default;
-$body-bg: $gray-900 !default;
+$body-color: $gray-900 !default;
+
 // Links
 $link-color: $orange !default;
 $link-decoration: none !default;
@@ -80,6 +77,9 @@ $toc-color: $orange;
 $toc-font-size: 1em;
 
 // Navbar
+// $navbar-bg: $purple !default;
+// $navbar-fg: $white !default;
+// $navbar-hl: $light-orange !default;
 $navbar-bg: $gray-900 !default;
 $navbar-fg: $gray-200 !default;
 $navbar-hl: $light-orange !default;
@@ -144,6 +144,7 @@ pre.text, pre.sourceCode, .cell-output pre {
 #TOC {
     font-family: $toc-font-family;
     padding-bottom: 0.1em;
+    font-weight: 300;
 
     .active {
         font-weight: 400;
@@ -154,11 +155,18 @@ pre.text, pre.sourceCode, .cell-output pre {
     }
 }
 
+.header-section-number {
+    color: $black;
+    font-family: $headings-font-family;
+    font-weight: 400;
+}
+
 .sidebar nav[role="doc-toc"]>ul li a {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
 }
 
+// Blog categories
 #quarto-margin-sidebar {
     .quarto-listing-category-title {
         margin-left: 0.5em;
@@ -328,6 +336,22 @@ pre.text, pre.sourceCode, .cell-output pre {
                 cursor: pointer;
             }
         }
+               
+        .post-doi {
+            font-weight: 300;
+            font-size: 0.85em;
+            margin: 0.5em 0;
+            text-align: right;
+            
+            .doi-icon {
+                width: 1.1em;
+                padding-bottom: 1px;
+            }
+            
+            a {
+                color: $gray-600;
+            }
+        }
     }
 }
 
@@ -342,6 +366,20 @@ pre.text, pre.sourceCode, .cell-output pre {
             font-size: 0.65em;
             opacity: 1;
         }
+    }
+    
+    .quarto-title-author-orcid img {
+        margin-bottom: -3px;
+    }
+    
+    .quarto-title-meta-contents .doi::before {
+        content: "";
+        background-image: url(/files/doi.svg);
+        background-size: 1.1em;
+        display: inline-block;
+        width: 1.1em;
+        height: 1.1em;
+        margin-bottom: -3px;
     }
 }
 

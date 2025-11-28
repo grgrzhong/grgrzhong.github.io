@@ -10,9 +10,9 @@
 
 # git remote add origin https://github.com/grgrzhong/grgrzhong.github.io.git
 
-source $(conda info --base)/etc/profile.d/conda.sh
+# source $(conda info --base)/etc/profile.d/conda.sh
 
-conda activate quarto
+# conda activate quarto
 
 ### render site files to docs
 quarto render

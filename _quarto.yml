@@ -13,14 +13,14 @@ project:
     - "files/**"
     # Things that need to be at the site root
     - ".htaccess"
-    - "LiveSearchSiteAuth.xml"
+    - "LiveSearchSite.xml"
     # - "keybase.txt"
     - "y_key_31e0c4105fc75710.html"
     - "pgp_ath.asc.txt"
 
 website:
   title: "Guorui Zhong"
-  image: "/files/profiles/avatar.png"
+  # image: "/files/profiles/avatar.png"
   # favicon: "/files/profiles/avatar.png"
   description: ""
   search: 
@@ -67,12 +67,12 @@ website:
   
   page-footer:
     center: |
-      <span class="faux-block">{{< fa brands creative-commons >}} 2021-2025 Guorui Zhong ~ Made with [{{< fa brands r-project >}}](https://www.r-project.org/) and [Quarto](https://quarto.org/)</span>
+      <span class="faux-block">{{< fa brands creative-commons >}} 2021-2026 Guorui Zhong ~ Made with [{{< fa brands r-project >}}](https://www.r-project.org/), [{{< fa brands python >}}](https://www.python.org/) and [Quarto](https://quarto.org/)</span>
 
 format:
   html:
     theme:
-      - html/ath.scss
+      - html/me.scss
     toc: true
     toc-depth: 3
     toc-location: left
@@ -83,8 +83,8 @@ format:
     fig-cap-location: margin
     reference-location: margin
     footnotes-hover: true
-    highlight-style: dracula
-    # highlight-style: github-dark
+    highlight-style: github-dark
+    # highlight-style: dracula
     # highlight-style: monokai
 
 # bibliography: files/bib/references.bib
