@@ -21,3 +21,13 @@ r-xml2 = ">=1.5.0,<2"
 r-languageserver = ">=0.3.16,<0.4"
 r-httpgd = ">=2.0.4,<3"
 r-markdown = ">=2.0,<3"
+python = ">=3.14.0,<3.15"
+
+[feature.test.dependencies]
+pytest = "*"
+
+[feature.test.tasks]
+test = "pytest"
+
+[environments]
+test = ["test"]

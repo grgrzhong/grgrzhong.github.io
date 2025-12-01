@@ -11,6 +11,11 @@ editor: source
 jupyter: python3
 execute:
     eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
 ---
 
 ## Python basics
