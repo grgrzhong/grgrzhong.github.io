@@ -190,8 +190,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#single-group" id="toc-single-group" class="nav-link active" data-scroll-target="#single-group"><span class="header-section-number">1</span> Single group</a></li>
-  <li><a href="#multiple-group" id="toc-multiple-group" class="nav-link" data-scroll-target="#multiple-group"><span class="header-section-number">2</span> Multiple group</a></li>
+<li><a href="#single-group" id="toc-single-group" class="nav-link active" data-scroll-target="#single-group">Single group</a></li>
+  <li><a href="#multiple-group" id="toc-multiple-group" class="nav-link" data-scroll-target="#multiple-group">Multiple group</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -215,8 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#   }</span></span>
 <span><span class="co"># }</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="single-group" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="single-group">
-<span class="header-section-number">1</span> Single group</h2>
+<section id="single-group" class="level2"><h2 class="anchored" data-anchor-id="single-group">Single group</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">ToothGrowth</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">dose</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -303,8 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span> <span class="co">#     here("blog", "2023", "03", "06", "plot.png")</span></span>
 <span> <span class="co"># )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="multiple-group" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="multiple-group">
-<span class="header-section-number">2</span> Multiple group</h2>
+</section><section id="multiple-group" class="level2"><h2 class="anchored" data-anchor-id="multiple-group">Multiple group</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat.test</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>

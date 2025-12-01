@@ -200,20 +200,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#initial-general-setup" id="toc-initial-general-setup" class="nav-link active" data-scroll-target="#initial-general-setup"><span class="header-section-number">1</span> Initial general setup</a></li>
+<li><a href="#initial-general-setup" id="toc-initial-general-setup" class="nav-link active" data-scroll-target="#initial-general-setup">Initial general setup</a></li>
   <li>
-<a href="#qualtity-control" id="toc-qualtity-control" class="nav-link" data-scroll-target="#qualtity-control"><span class="header-section-number">2</span> Qualtity control</a>
+<a href="#qualtity-control" id="toc-qualtity-control" class="nav-link" data-scroll-target="#qualtity-control">Qualtity control</a>
   <ul class="collapse">
-<li><a href="#baseic-qc" id="toc-baseic-qc" class="nav-link" data-scroll-target="#baseic-qc"><span class="header-section-number">2.1</span> Baseic QC</a></li>
-  <li><a href="#highly-expressed-genes" id="toc-highly-expressed-genes" class="nav-link" data-scroll-target="#highly-expressed-genes"><span class="header-section-number">2.2</span> Highly expressed genes</a></li>
+<li><a href="#baseic-qc" id="toc-baseic-qc" class="nav-link" data-scroll-target="#baseic-qc">Baseic QC</a></li>
+  <li><a href="#highly-expressed-genes" id="toc-highly-expressed-genes" class="nav-link" data-scroll-target="#highly-expressed-genes">Highly expressed genes</a></li>
   </ul>
 </li>
   <li>
-<a href="#dimensionality-reduction" id="toc-dimensionality-reduction" class="nav-link" data-scroll-target="#dimensionality-reduction"><span class="header-section-number">3</span> Dimensionality reduction</a>
+<a href="#dimensionality-reduction" id="toc-dimensionality-reduction" class="nav-link" data-scroll-target="#dimensionality-reduction">Dimensionality reduction</a>
   <ul class="collapse">
-<li><a href="#before-qc" id="toc-before-qc" class="nav-link" data-scroll-target="#before-qc"><span class="header-section-number">3.1</span> Before QC</a></li>
-  <li><a href="#after-qc" id="toc-after-qc" class="nav-link" data-scroll-target="#after-qc"><span class="header-section-number">3.2</span> After QC</a></li>
-  <li><a href="#identifying-confounding-factors" id="toc-identifying-confounding-factors" class="nav-link" data-scroll-target="#identifying-confounding-factors"><span class="header-section-number">3.3</span> Identifying confounding factors</a></li>
+<li><a href="#before-qc" id="toc-before-qc" class="nav-link" data-scroll-target="#before-qc">Before QC</a></li>
+  <li><a href="#after-qc" id="toc-after-qc" class="nav-link" data-scroll-target="#after-qc">After QC</a></li>
+  <li><a href="#identifying-confounding-factors" id="toc-identifying-confounding-factors" class="nav-link" data-scroll-target="#identifying-confounding-factors">Identifying confounding factors</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -235,8 +235,7 @@ Note
 <p>All the contents are credited or adapted from <a href="https://www.singlecellcourse.org/index.html">Analysis of single cell RNA-seq data</a> for leaning purpose.</p>
 </div>
 </div>
-<section id="initial-general-setup" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="initial-general-setup">
-<span class="header-section-number">1</span> Initial general setup</h2>
+<section id="initial-general-setup" class="level2"><h2 class="anchored" data-anchor-id="initial-general-setup">Initial general setup</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Install and load packatges </span></span>
 <span><span class="co"># if (!require("BiocManager", quietly = TRUE))</span></span>
@@ -261,8 +260,7 @@ Note
 <span><span class="co">### Project dir</span></span>
 <span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"projects/2024_SCE_Course"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="qualtity-control" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="qualtity-control">
-<span class="header-section-number">2</span> Qualtity control</h2>
+</section><section id="qualtity-control" class="level2"><h2 class="anchored" data-anchor-id="qualtity-control">Qualtity control</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Creating a SingleCellExperiment object </span></span>
 <span><span class="va">molecules</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"data/tung/molecules.txt"</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -326,8 +324,7 @@ Note
 <span><span class="va">is_mito</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">umi</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">MT_names</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">is_mito</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="baseic-qc" class="level3" data-number="2.1"><h3 data-number="2.1" class="anchored" data-anchor-id="baseic-qc">
-<span class="header-section-number">2.1</span> Baseic QC</h3>
+<section id="baseic-qc" class="level3"><h3 class="anchored" data-anchor-id="baseic-qc">Baseic QC</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">umi_cell</span> <span class="op">&lt;-</span> <span class="fu">scater</span><span class="fu">::</span><span class="fu">perCellQCMetrics</span><span class="op">(</span><span class="va">umi</span>, subsets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Mito <span class="op">=</span> <span class="va">is_mito</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">umi_cell</span><span class="op">)</span></span>
@@ -402,8 +399,7 @@ Note
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">replicate</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/unit_format.html">unit_format</a></span><span class="op">(</span>unit <span class="op">=</span> <span class="st">"k"</span>, scale <span class="op">=</span> <span class="fl">1e-3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="highly-expressed-genes" class="level3" data-number="2.2"><h3 data-number="2.2" class="anchored" data-anchor-id="highly-expressed-genes">
-<span class="header-section-number">2.2</span> Highly expressed genes</h3>
+</section><section id="highly-expressed-genes" class="level3"><h3 class="anchored" data-anchor-id="highly-expressed-genes">Highly expressed genes</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Most of the genes we see are mitochondrial or ribosomal proteins, which is pretty typical for most scRNA-seq datasets.</span></span>
 <span><span class="fu">plotHighestExprs</span><span class="op">(</span></span>
@@ -421,16 +417,14 @@ Note
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">assay</span><span class="op">(</span><span class="va">umi</span>, <span class="st">"logcounts_raw"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log2</a></span><span class="op">(</span><span class="fu">counts</span><span class="op">(</span><span class="va">umi</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co"># saveRDS(umi, file = here(dir, "data/tung/umi.rds"))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="dimensionality-reduction" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="dimensionality-reduction">
-<span class="header-section-number">3</span> Dimensionality reduction</h2>
+</section></section><section id="dimensionality-reduction" class="level2"><h2 class="anchored" data-anchor-id="dimensionality-reduction">Dimensionality reduction</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Remove unnecessary poorly expressed genes and low quality cells</span></span>
 <span><span class="va">umi.qc</span> <span class="op">&lt;-</span> <span class="va">umi</span><span class="op">[</span><span class="op">!</span><span class="fu">rowData</span><span class="op">(</span><span class="va">umi</span><span class="op">)</span><span class="op">$</span><span class="va">discard</span>, <span class="op">!</span><span class="fu">colData</span><span class="op">(</span><span class="va">umi</span><span class="op">)</span><span class="op">$</span><span class="va">discard</span><span class="op">]</span></span>
 <span><span class="va">umi.qc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Without log-transformation or normalization, PCA plot fails to separate the datasets by replicate or individual. We mostly see the effects of sequencing depth - samples (cells) with lots of expression, and particularly highly expressed genes, dominate the PCs</p>
-<section id="before-qc" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="before-qc">
-<span class="header-section-number">3.1</span> Before QC</h3>
+<section id="before-qc" class="level3"><h3 class="anchored" data-anchor-id="before-qc">Before QC</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Before QC, Without log-transformation or normalization</span></span>
 <span><span class="va">umi</span> <span class="op">&lt;-</span> <span class="fu">runPCA</span><span class="op">(</span><span class="va">umi</span>, exprs_values <span class="op">=</span> <span class="st">"counts"</span><span class="op">)</span></span>
@@ -465,8 +459,7 @@ Note
 <span>    shape_by <span class="op">=</span> <span class="st">"individual"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="after-qc" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="after-qc">
-<span class="header-section-number">3.2</span> After QC</h3>
+</section><section id="after-qc" class="level3"><h3 class="anchored" data-anchor-id="after-qc">After QC</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">umi.qc</span> <span class="op">&lt;-</span> <span class="fu">runPCA</span><span class="op">(</span><span class="va">umi.qc</span>, exprs_values <span class="op">=</span> <span class="st">"logcounts_raw"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="fu">reducedDim</span><span class="op">(</span><span class="va">umi.qc</span>, <span class="st">"PCA"</span><span class="op">)</span><span class="op">)</span></span>
@@ -486,8 +479,7 @@ Note
 <span>    shape_by <span class="op">=</span> <span class="st">"individual"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="identifying-confounding-factors" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="identifying-confounding-factors">
-<span class="header-section-number">3.3</span> Identifying confounding factors</h3>
+</section><section id="identifying-confounding-factors" class="level3"><h3 class="anchored" data-anchor-id="identifying-confounding-factors">Identifying confounding factors</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Detected genes</span></span>
 <span><span class="fu">logcounts</span><span class="op">(</span><span class="va">umi.qc</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">assay</span><span class="op">(</span><span class="va">umi.qc</span>, <span class="st">"logcounts_raw"</span><span class="op">)</span></span>

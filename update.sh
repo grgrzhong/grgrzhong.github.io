@@ -2,16 +2,14 @@
 
 ### completely remove git
 # rm -rf .git
-# git init
 
+# git init
 # git remote remove origin
 # git checkout -b main 
 # git branch -M main
-
 # git remote add origin https://github.com/grgrzhong/grgrzhong.github.io.git
 
 # source $(conda info --base)/etc/profile.d/conda.sh
-
 # conda activate quarto
 
 ### render site files to docs

@@ -201,25 +201,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#harmony-to-integrating-cell-line-datasets-from-10x" id="toc-harmony-to-integrating-cell-line-datasets-from-10x" class="nav-link active" data-scroll-target="#harmony-to-integrating-cell-line-datasets-from-10x"><span class="header-section-number">1</span> Harmony to integrating cell line datasets from 10X</a></li>
-  <li><a href="#mudan" id="toc-mudan" class="nav-link" data-scroll-target="#mudan"><span class="header-section-number">2</span> MUDAN</a></li>
+<li><a href="#harmony-to-integrating-cell-line-datasets-from-10x" id="toc-harmony-to-integrating-cell-line-datasets-from-10x" class="nav-link active" data-scroll-target="#harmony-to-integrating-cell-line-datasets-from-10x">Harmony to integrating cell line datasets from 10X</a></li>
+  <li><a href="#mudan" id="toc-mudan" class="nav-link" data-scroll-target="#mudan">MUDAN</a></li>
   <li>
-<a href="#using-harmony-with-seurat" id="toc-using-harmony-with-seurat" class="nav-link" data-scroll-target="#using-harmony-with-seurat"><span class="header-section-number">3</span> Using Harmony with Seurat</a>
+<a href="#using-harmony-with-seurat" id="toc-using-harmony-with-seurat" class="nav-link" data-scroll-target="#using-harmony-with-seurat">Using Harmony with Seurat</a>
   <ul>
-<li><a href="#run-harmony" id="toc-run-harmony" class="nav-link" data-scroll-target="#run-harmony"><span class="header-section-number">3.1</span> Run Harmony</a></li>
-  <li><a href="#down-stream-analysis" id="toc-down-stream-analysis" class="nav-link" data-scroll-target="#down-stream-analysis"><span class="header-section-number">3.2</span> Down stream analysis</a></li>
+<li><a href="#run-harmony" id="toc-run-harmony" class="nav-link" data-scroll-target="#run-harmony">Run Harmony</a></li>
+  <li><a href="#down-stream-analysis" id="toc-down-stream-analysis" class="nav-link" data-scroll-target="#down-stream-analysis">Down stream analysis</a></li>
   </ul>
 </li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">4</span> Reference</a></li>
-  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">5</span> Session info</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info">Session info</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="harmony-to-integrating-cell-line-datasets-from-10x" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="harmony-to-integrating-cell-line-datasets-from-10x">
-<span class="header-section-number">1</span> Harmony to integrating cell line datasets from 10X</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="harmony-to-integrating-cell-line-datasets-from-10x" class="level2"><h2 class="anchored" data-anchor-id="harmony-to-integrating-cell-line-datasets-from-10x">Harmony to integrating cell line datasets from 10X</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">cell_lines</span><span class="op">)</span></span>
 <span><span class="va">scaled_pcs</span> <span class="op">&lt;-</span> <span class="va">cell_lines</span><span class="op">$</span><span class="va">scaled_pcs</span></span>
@@ -256,8 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="mudan" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="mudan">
-<span class="header-section-number">2</span> MUDAN</h2>
+</section><section id="mudan" class="level2"><h2 class="anchored" data-anchor-id="mudan">MUDAN</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### get data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"pbmcA"</span><span class="op">)</span></span>
@@ -353,8 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># Look at cell-type proportions per sample</span></span>
 <span><span class="co"># print(t(table(annot_bad, meta))/as.numeric(table(meta)))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="using-harmony-with-seurat" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="using-harmony-with-seurat">
-<span class="header-section-number">3</span> Using Harmony with Seurat</h2>
+</section><section id="using-harmony-with-seurat" class="level2"><h2 class="anchored" data-anchor-id="using-harmony-with-seurat">Using Harmony with Seurat</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### load required data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"pbmc_stim"</span><span class="op">)</span></span>
@@ -399,8 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="run-harmony" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="run-harmony">
-<span class="header-section-number">3.1</span> Run Harmony</h3>
+<section id="run-harmony" class="level3"><h3 class="anchored" data-anchor-id="run-harmony">Run Harmony</h3>
 <p>Harmony works on an existing matrix with cell embeddings and outputs its transformed version with the datasets aligned according to some user-defined experimental conditions.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### run harmony to perform integrated analysis</span></span>
@@ -455,8 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="down-stream-analysis" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="down-stream-analysis">
-<span class="header-section-number">3.2</span> Down stream analysis</h3>
+</section><section id="down-stream-analysis" class="level3"><h3 class="anchored" data-anchor-id="down-stream-analysis">Down stream analysis</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="va">pbmc</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="co">### perform clustering using the harmonized vectors of cells</span></span>
@@ -531,13 +526,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section></section><section id="reference" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="reference">
-<span class="header-section-number">4</span> Reference</h2>
+</section></section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <ul>
 <li><a href="https://portals.broadinstitute.org/harmony/index.html" class="uri">https://portals.broadinstitute.org/harmony/index.html</a></li>
 <li><a href="https://hbctraining.github.io/scRNA-seq_online/lessons/06a_integration_harmony.html">Single-cell RNA-seq: Integration with Harmony</a></li>
-</ul></section><section id="session-info" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="session-info">
-<span class="header-section-number">5</span> Session info</h2>
+</ul></section><section id="session-info" class="level2"><h2 class="anchored" data-anchor-id="session-info">Session info</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">## R version 4.3.1 (2023-06-16)</span></span>

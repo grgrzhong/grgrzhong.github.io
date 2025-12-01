@@ -80,13 +80,12 @@ website:
       <span class="faux-block">{{< fa brands creative-commons >}} 2021-2026 Guorui Zhong ~ Made with [{{< fa brands r-project >}}](https://www.r-project.org/), [{{< fa brands python >}}](https://www.python.org/) and [Quarto](https://quarto.org/)</span>
 
 execute:
-  freeze: auto
-  cache: true
-  eval: true
-  warning: false
-  error: false
-  message: false
-  echo: true
+  freeze: auto # Prevent re-execution of code cells unless the code or its dependencies have changed
+  eval: true # Enable code execution
+  warning: false # Suppress warnings in output
+  error: false # Suppress errors in output
+  message: false # Suppress messages in output
+  echo: true # Show code in output
 
 format:
   html:

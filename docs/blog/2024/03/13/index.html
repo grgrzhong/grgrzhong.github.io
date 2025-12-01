@@ -194,32 +194,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#overall-workflow" id="toc-overall-workflow" class="nav-link active" data-scroll-target="#overall-workflow"><span class="header-section-number">1</span> Overall Workflow</a></li>
-  <li><a href="#install-and-load-packages" id="toc-install-and-load-packages" class="nav-link" data-scroll-target="#install-and-load-packages"><span class="header-section-number">2</span> Install and Load packages</a></li>
+<li><a href="#overall-workflow" id="toc-overall-workflow" class="nav-link active" data-scroll-target="#overall-workflow">Overall Workflow</a></li>
+  <li><a href="#install-and-load-packages" id="toc-install-and-load-packages" class="nav-link" data-scroll-target="#install-and-load-packages">Install and Load packages</a></li>
   <li>
-<a href="#read-counts-into-r" id="toc-read-counts-into-r" class="nav-link" data-scroll-target="#read-counts-into-r"><span class="header-section-number">3</span> Read counts into R</a>
+<a href="#read-counts-into-r" id="toc-read-counts-into-r" class="nav-link" data-scroll-target="#read-counts-into-r">Read counts into R</a>
   <ul class="collapse">
-<li><a href="#from-tabular-formats" id="toc-from-tabular-formats" class="nav-link" data-scroll-target="#from-tabular-formats"><span class="header-section-number">3.1</span> From tabular formats</a></li>
-  <li><a href="#from-cellranger-output" id="toc-from-cellranger-output" class="nav-link" data-scroll-target="#from-cellranger-output"><span class="header-section-number">3.2</span> From Cellranger output</a></li>
-  <li><a href="#from-hdf5-based-formats" id="toc-from-hdf5-based-formats" class="nav-link" data-scroll-target="#from-hdf5-based-formats"><span class="header-section-number">3.3</span> From HDF5-based formats</a></li>
+<li><a href="#from-tabular-formats" id="toc-from-tabular-formats" class="nav-link" data-scroll-target="#from-tabular-formats">From tabular formats</a></li>
+  <li><a href="#from-cellranger-output" id="toc-from-cellranger-output" class="nav-link" data-scroll-target="#from-cellranger-output">From Cellranger output</a></li>
+  <li><a href="#from-hdf5-based-formats" id="toc-from-hdf5-based-formats" class="nav-link" data-scroll-target="#from-hdf5-based-formats">From HDF5-based formats</a></li>
   </ul>
 </li>
-  <li><a href="#singlecellexperiment-class" id="toc-singlecellexperiment-class" class="nav-link" data-scroll-target="#singlecellexperiment-class"><span class="header-section-number">4</span> SingleCellExperiment class</a></li>
+  <li><a href="#singlecellexperiment-class" id="toc-singlecellexperiment-class" class="nav-link" data-scroll-target="#singlecellexperiment-class">SingleCellExperiment class</a></li>
   <li>
-<a href="#quality-control" id="toc-quality-control" class="nav-link" data-scroll-target="#quality-control"><span class="header-section-number">5</span> Quality Control</a>
+<a href="#quality-control" id="toc-quality-control" class="nav-link" data-scroll-target="#quality-control">Quality Control</a>
   <ul class="collapse">
-<li><a href="#qc-metrics" id="toc-qc-metrics" class="nav-link" data-scroll-target="#qc-metrics"><span class="header-section-number">5.1</span> QC metrics</a></li>
-  <li><a href="#identifying-low-quality-cells" id="toc-identifying-low-quality-cells" class="nav-link" data-scroll-target="#identifying-low-quality-cells"><span class="header-section-number">5.2</span> Identifying low-quality cells</a></li>
-  <li><a href="#remove-low-quality-cells" id="toc-remove-low-quality-cells" class="nav-link" data-scroll-target="#remove-low-quality-cells"><span class="header-section-number">5.3</span> Remove low quality cells</a></li>
+<li><a href="#qc-metrics" id="toc-qc-metrics" class="nav-link" data-scroll-target="#qc-metrics">QC metrics</a></li>
+  <li><a href="#identifying-low-quality-cells" id="toc-identifying-low-quality-cells" class="nav-link" data-scroll-target="#identifying-low-quality-cells">Identifying low-quality cells</a></li>
+  <li><a href="#remove-low-quality-cells" id="toc-remove-low-quality-cells" class="nav-link" data-scroll-target="#remove-low-quality-cells">Remove low quality cells</a></li>
   </ul>
 </li>
   <li>
-<a href="#normalization" id="toc-normalization" class="nav-link" data-scroll-target="#normalization"><span class="header-section-number">6</span> Normalization</a>
+<a href="#normalization" id="toc-normalization" class="nav-link" data-scroll-target="#normalization">Normalization</a>
   <ul class="collapse">
-<li><a href="#library-size-normalization" id="toc-library-size-normalization" class="nav-link" data-scroll-target="#library-size-normalization"><span class="header-section-number">6.1</span> Library size normalization</a></li>
+<li><a href="#library-size-normalization" id="toc-library-size-normalization" class="nav-link" data-scroll-target="#library-size-normalization">Library size normalization</a></li>
   </ul>
 </li>
-  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">7</span> Session Info</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info">Session Info</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -239,11 +239,9 @@ Note
 <p>All the contents are credited or adapted from <a href="https://bioconductor.org/books/release/OSCA/">Orchestrating Single-Cell Analysis with Bioconductor</a> for leaning purpose.</p>
 </div>
 </div>
-<section id="overall-workflow" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="overall-workflow">
-<span class="header-section-number">1</span> Overall Workflow</h2>
+<section id="overall-workflow" class="level2"><h2 class="anchored" data-anchor-id="overall-workflow">Overall Workflow</h2>
 <p><a href="workflow.png"></a></p>
-</section><section id="install-and-load-packages" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="install-and-load-packages">
-<span class="header-section-number">2</span> Install and Load packages</h2>
+</section><section id="install-and-load-packages" class="level2"><h2 class="anchored" data-anchor-id="install-and-load-packages">Install and Load packages</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># BiocManager::install("OSCA.intro")</span></span>
 <span><span class="co"># BiocManager::install("SingleCellExperiment", force = TRUE)</span></span>
@@ -255,20 +253,13 @@ Note
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://robustbase.R-forge.R-project.org/">robustbase</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">org.Mm.eg.db</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="read-counts-into-r" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="read-counts-into-r">
-<span class="header-section-number">3</span> Read counts into R</h2>
-<section id="from-tabular-formats" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="from-tabular-formats">
-<span class="header-section-number">3.1</span> From tabular formats</h3>
-</section><section id="from-cellranger-output" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="from-cellranger-output">
-<span class="header-section-number">3.2</span> From Cellranger output</h3>
-</section><section id="from-hdf5-based-formats" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="from-hdf5-based-formats">
-<span class="header-section-number">3.3</span> From HDF5-based formats</h3>
-</section></section><section id="singlecellexperiment-class" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="singlecellexperiment-class">
-<span class="header-section-number">4</span> SingleCellExperiment class</h2>
-</section><section id="quality-control" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="quality-control">
-<span class="header-section-number">5</span> Quality Control</h2>
-<section id="qc-metrics" class="level3" data-number="5.1"><h3 data-number="5.1" class="anchored" data-anchor-id="qc-metrics">
-<span class="header-section-number">5.1</span> QC metrics</h3>
+</section><section id="read-counts-into-r" class="level2"><h2 class="anchored" data-anchor-id="read-counts-into-r">Read counts into R</h2>
+<section id="from-tabular-formats" class="level3"><h3 class="anchored" data-anchor-id="from-tabular-formats">From tabular formats</h3>
+</section><section id="from-cellranger-output" class="level3"><h3 class="anchored" data-anchor-id="from-cellranger-output">From Cellranger output</h3>
+</section><section id="from-hdf5-based-formats" class="level3"><h3 class="anchored" data-anchor-id="from-hdf5-based-formats">From HDF5-based formats</h3>
+</section></section><section id="singlecellexperiment-class" class="level2"><h2 class="anchored" data-anchor-id="singlecellexperiment-class">SingleCellExperiment class</h2>
+</section><section id="quality-control" class="level2"><h2 class="anchored" data-anchor-id="quality-control">Quality Control</h2>
+<section id="qc-metrics" class="level3"><h3 class="anchored" data-anchor-id="qc-metrics">QC metrics</h3>
 <p>Common QC metrics to identify low-quality cells based on their expression profiles.</p>
 <ul>
 <li>library size</li>
@@ -306,8 +297,7 @@ Note
 </div>
 <p>A key assumption here is that the QC metrics are independent of the biological state of each cell. Poor values (e.g., low library sizes, high mitochondrial proportions) are presumed to be driven by technical factors rather than biological processes, meaning that the subsequent removal of cells will not misrepresent the biology in downstream analyses.</p>
 <p>Major violations of this assumption would potentially result in the loss of cell types that have, say, systematically low RNA content or high numbers of mitochondria.</p>
-</section><section id="identifying-low-quality-cells" class="level3" data-number="5.2"><h3 data-number="5.2" class="anchored" data-anchor-id="identifying-low-quality-cells">
-<span class="header-section-number">5.2</span> Identifying low-quality cells</h3>
+</section><section id="identifying-low-quality-cells" class="level3"><h3 class="anchored" data-anchor-id="identifying-low-quality-cells">Identifying low-quality cells</h3>
 <section id="with-fixed-thresholds" class="level4"><h4 class="anchored" data-anchor-id="with-fixed-thresholds">With fixed thresholds</h4>
 <p>The simplest approach to identifying low-quality cells involves applying <strong>fixed thresholds</strong> to the QC metrics.</p>
 <p>For example, we might consider cells to be low quality if they:</p>
@@ -464,8 +454,7 @@ Note
 <p>These metrics exhibit weak correlations to each other, presumably a manifestation of a common underlying effect of cell damage.</p>
 <p>The weakness of the correlations motivates the use of several metrics to capture different aspects of technical quality.</p>
 <p>Of course, the flipside is that these metrics may also represent different aspects of biology, increasing the risk of inadvertently discarding entire cell types.</p>
-</section></section><section id="remove-low-quality-cells" class="level3" data-number="5.3"><h3 data-number="5.3" class="anchored" data-anchor-id="remove-low-quality-cells">
-<span class="header-section-number">5.3</span> Remove low quality cells</h3>
+</section></section><section id="remove-low-quality-cells" class="level3"><h3 class="anchored" data-anchor-id="remove-low-quality-cells">Remove low quality cells</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Keeping the columns we DON'T want to discard.</span></span>
 <span><span class="va">filtered</span> <span class="op">&lt;-</span> <span class="va">sce.416b</span><span class="op">[</span>, <span class="op">!</span><span class="va">reasons</span><span class="op">$</span><span class="va">discard</span><span class="op">]</span></span>
@@ -474,17 +463,14 @@ Note
 <span><span class="va">marked</span> <span class="op">&lt;-</span> <span class="va">sce.416b</span></span>
 <span><span class="va">marked</span><span class="op">$</span><span class="va">discard</span> <span class="op">&lt;-</span> <span class="va">reasons</span><span class="op">$</span><span class="va">discard</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="normalization" class="level2" data-number="6"><h2 data-number="6" class="anchored" data-anchor-id="normalization">
-<span class="header-section-number">6</span> Normalization</h2>
-<section id="library-size-normalization" class="level3" data-number="6.1"><h3 data-number="6.1" class="anchored" data-anchor-id="library-size-normalization">
-<span class="header-section-number">6.1</span> Library size normalization</h3>
+</section></section><section id="normalization" class="level2"><h2 class="anchored" data-anchor-id="normalization">Normalization</h2>
+<section id="library-size-normalization" class="level3"><h3 class="anchored" data-anchor-id="library-size-normalization">Library size normalization</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lib.sf.zeisel</span> <span class="op">&lt;-</span> <span class="fu">scater</span><span class="fu">::</span><span class="fu">librarySizeFactors</span><span class="op">(</span><span class="va">sce.zeisel</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lib.sf.zeisel</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">lib.sf.zeisel</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"Log10[Size factor]"</span>, col <span class="op">=</span> <span class="st">"grey80"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="session-info" class="level2" data-number="7"><h2 data-number="7" class="anchored" data-anchor-id="session-info">
-<span class="header-section-number">7</span> Session Info</h2>
+</section></section><section id="session-info" class="level2"><h2 class="anchored" data-anchor-id="session-info">Session Info</h2>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>

@@ -196,12 +196,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#prepare-single-cell-rna-seq-data" id="toc-prepare-single-cell-rna-seq-data" class="nav-link active" data-scroll-target="#prepare-single-cell-rna-seq-data"><span class="header-section-number">1</span> Prepare single-cell RNA-seq data</a></li>
-  <li><a href="#pseudobulk-workflow" id="toc-pseudobulk-workflow" class="nav-link" data-scroll-target="#pseudobulk-workflow"><span class="header-section-number">2</span> Pseudobulk workflow</a></li>
-  <li><a href="#de-testing-with-deseq2" id="toc-de-testing-with-deseq2" class="nav-link" data-scroll-target="#de-testing-with-deseq2"><span class="header-section-number">3</span> DE testing with DESeq2</a></li>
-  <li><a href="#de-testing-with-seurat" id="toc-de-testing-with-seurat" class="nav-link" data-scroll-target="#de-testing-with-seurat"><span class="header-section-number">4</span> DE testing with Seurat</a></li>
-  <li><a href="#visualize-the-signifcant-genes" id="toc-visualize-the-signifcant-genes" class="nav-link" data-scroll-target="#visualize-the-signifcant-genes"><span class="header-section-number">5</span> Visualize the signifcant genes</a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">6</span> Reference</a></li>
+<li><a href="#prepare-single-cell-rna-seq-data" id="toc-prepare-single-cell-rna-seq-data" class="nav-link active" data-scroll-target="#prepare-single-cell-rna-seq-data">Prepare single-cell RNA-seq data</a></li>
+  <li><a href="#pseudobulk-workflow" id="toc-pseudobulk-workflow" class="nav-link" data-scroll-target="#pseudobulk-workflow">Pseudobulk workflow</a></li>
+  <li><a href="#de-testing-with-deseq2" id="toc-de-testing-with-deseq2" class="nav-link" data-scroll-target="#de-testing-with-deseq2">DE testing with DESeq2</a></li>
+  <li><a href="#de-testing-with-seurat" id="toc-de-testing-with-seurat" class="nav-link" data-scroll-target="#de-testing-with-seurat">DE testing with Seurat</a></li>
+  <li><a href="#visualize-the-signifcant-genes" id="toc-visualize-the-signifcant-genes" class="nav-link" data-scroll-target="#visualize-the-signifcant-genes">Visualize the signifcant genes</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -209,8 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content"><p>Pseudobulk differential expression analysis is a method used to analyze single-cell RNA-seq data by aggregating counts at the sample level. This approach helps to reduce the noise inherent in single-cell data and provides more robust results. In this blog post, we will walk through the steps to perform pseudobulk differential expression analysis using R, including data preparation, aggregation, and differential expression testing with DESeq2.</p>
-<section id="prepare-single-cell-rna-seq-data" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="prepare-single-cell-rna-seq-data">
-<span class="header-section-number">1</span> Prepare single-cell RNA-seq data</h2>
+<section id="prepare-single-cell-rna-seq-data" class="level2"><h2 class="anchored" data-anchor-id="prepare-single-cell-rna-seq-data">Prepare single-cell RNA-seq data</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ExperimentHub</span><span class="op">)</span></span>
@@ -260,8 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co">## aggregate counts to sample level with condition</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="pseudobulk-workflow" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="pseudobulk-workflow">
-<span class="header-section-number">2</span> Pseudobulk workflow</h2>
+</section><section id="pseudobulk-workflow" class="level2"><h2 class="anchored" data-anchor-id="pseudobulk-workflow">Pseudobulk workflow</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## counts aggregate to sample level</span></span>
 <span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">seu_obj</span><span class="op">@</span><span class="va">meta.data</span><span class="op">)</span></span>
@@ -294,8 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="de-testing-with-deseq2" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="de-testing-with-deseq2">
-<span class="header-section-number">3</span> DE testing with DESeq2</h2>
+</section><section id="de-testing-with-deseq2" class="level2"><h2 class="anchored" data-anchor-id="de-testing-with-deseq2">DE testing with DESeq2</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## get counts matrix</span></span>
 <span><span class="va">counts_bcell</span> <span class="op">&lt;-</span> <span class="va">counts_list</span><span class="op">[[</span><span class="st">"B cells"</span><span class="op">]</span><span class="op">]</span></span>
@@ -368,10 +365,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">log2FoldChange</span> <span class="op">&lt;=</span> <span class="op">-</span><span class="va">log2fc_cutoff</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="de-testing-with-seurat" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="de-testing-with-seurat">
-<span class="header-section-number">4</span> DE testing with Seurat</h2>
-</section><section id="visualize-the-signifcant-genes" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="visualize-the-signifcant-genes">
-<span class="header-section-number">5</span> Visualize the signifcant genes</h2>
+</section><section id="de-testing-with-seurat" class="level2"><h2 class="anchored" data-anchor-id="de-testing-with-seurat">DE testing with Seurat</h2>
+</section><section id="visualize-the-signifcant-genes" class="level2"><h2 class="anchored" data-anchor-id="visualize-the-signifcant-genes">Visualize the signifcant genes</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Extract normalized counts from dds object</span></span>
 <span><span class="va">normalized_counts</span> <span class="op">&lt;-</span> <span class="fu">counts</span><span class="op">(</span><span class="va">dds</span>, normalized <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -424,8 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    height <span class="op">=</span> <span class="fl">20</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="reference" class="level2" data-number="6"><h2 data-number="6" class="anchored" data-anchor-id="reference">
-<span class="header-section-number">6</span> Reference</h2>
+</section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <ul>
 <li><a href="https://rpubs.com/Sri_Upasna/1066070" class="uri">https://rpubs.com/Sri_Upasna/1066070</a></li>
 <li><a href="https://hbctraining.github.io/scRNA-seq_online/lessons/pseudobulk_DESeq2_scrnaseq.html" class="uri">https://hbctraining.github.io/scRNA-seq_online/lessons/pseudobulk_DESeq2_scrnaseq.html</a></li>

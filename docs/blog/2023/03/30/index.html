@@ -191,16 +191,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#basic-barplot-or-boxplot-with-p-value" id="toc-basic-barplot-or-boxplot-with-p-value" class="nav-link active" data-scroll-target="#basic-barplot-or-boxplot-with-p-value"><span class="header-section-number">1</span> Basic Barplot or Boxplot with p-value</a>
+<a href="#basic-barplot-or-boxplot-with-p-value" id="toc-basic-barplot-or-boxplot-with-p-value" class="nav-link active" data-scroll-target="#basic-barplot-or-boxplot-with-p-value">Basic Barplot or Boxplot with p-value</a>
   <ul>
-<li><a href="#comparing-two-means" id="toc-comparing-two-means" class="nav-link" data-scroll-target="#comparing-two-means"><span class="header-section-number">1.1</span> Comparing two means</a></li>
-  <li><a href="#pairwise-comparisons" id="toc-pairwise-comparisons" class="nav-link" data-scroll-target="#pairwise-comparisons"><span class="header-section-number">1.2</span> Pairwise comparisons</a></li>
-  <li><a href="#comparsions-against-reference-groups" id="toc-comparsions-against-reference-groups" class="nav-link" data-scroll-target="#comparsions-against-reference-groups"><span class="header-section-number">1.3</span> Comparsions against reference groups</a></li>
-  <li><a href="#comparsions-against-all-basemean" id="toc-comparsions-against-all-basemean" class="nav-link" data-scroll-target="#comparsions-against-all-basemean"><span class="header-section-number">1.4</span> Comparsions against all (basemean)</a></li>
+<li><a href="#comparing-two-means" id="toc-comparing-two-means" class="nav-link" data-scroll-target="#comparing-two-means">Comparing two means</a></li>
+  <li><a href="#pairwise-comparisons" id="toc-pairwise-comparisons" class="nav-link" data-scroll-target="#pairwise-comparisons">Pairwise comparisons</a></li>
+  <li><a href="#comparsions-against-reference-groups" id="toc-comparsions-against-reference-groups" class="nav-link" data-scroll-target="#comparsions-against-reference-groups">Comparsions against reference groups</a></li>
+  <li><a href="#comparsions-against-all-basemean" id="toc-comparsions-against-all-basemean" class="nav-link" data-scroll-target="#comparsions-against-all-basemean">Comparsions against all (basemean)</a></li>
   </ul>
 </li>
-  <li><a href="#add-p-values-to-horizontal-ggplots" id="toc-add-p-values-to-horizontal-ggplots" class="nav-link" data-scroll-target="#add-p-values-to-horizontal-ggplots"><span class="header-section-number">2</span> Add p-values to horizontal ggplots</a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">3</span> Reference</a></li>
+  <li><a href="#add-p-values-to-horizontal-ggplots" id="toc-add-p-values-to-horizontal-ggplots" class="nav-link" data-scroll-target="#add-p-values-to-horizontal-ggplots">Add p-values to horizontal ggplots</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -245,10 +245,8 @@ Note
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a></span><span class="op">)</span>        <span class="co"># pipe-friendly tools for easy statistical analyses</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="basic-barplot-or-boxplot-with-p-value" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="basic-barplot-or-boxplot-with-p-value">
-<span class="header-section-number">1</span> Basic Barplot or Boxplot with p-value</h2>
-<section id="comparing-two-means" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="comparing-two-means">
-<span class="header-section-number">1.1</span> Comparing two means</h3>
+<section id="basic-barplot-or-boxplot-with-p-value" class="level2"><h2 class="anchored" data-anchor-id="basic-barplot-or-boxplot-with-p-value">Basic Barplot or Boxplot with p-value</h2>
+<section id="comparing-two-means" class="level3"><h3 class="anchored" data-anchor-id="comparing-two-means">Comparing two means</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Transform `dose` into factor variable</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">ToothGrowth</span></span>
@@ -389,8 +387,7 @@ Note
 </div>
 </div>
 </div>
-</section><section id="pairwise-comparisons" class="level3" data-number="1.2"><h3 data-number="1.2" class="anchored" data-anchor-id="pairwise-comparisons">
-<span class="header-section-number">1.2</span> Pairwise comparisons</h3>
+</section><section id="pairwise-comparisons" class="level3"><h3 class="anchored" data-anchor-id="pairwise-comparisons">Pairwise comparisons</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### boxplot</span></span>
 <span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -437,8 +434,7 @@ Note
 </div>
 </div>
 </div>
-</section><section id="comparsions-against-reference-groups" class="level3" data-number="1.3"><h3 data-number="1.3" class="anchored" data-anchor-id="comparsions-against-reference-groups">
-<span class="header-section-number">1.3</span> Comparsions against reference groups</h3>
+</section><section id="comparsions-against-reference-groups" class="level3"><h3 class="anchored" data-anchor-id="comparsions-against-reference-groups">Comparsions against reference groups</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span>, ref.group <span class="op">=</span> <span class="st">"0.5"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -472,8 +468,7 @@ Note
 </div>
 </div>
 </div>
-</section><section id="comparsions-against-all-basemean" class="level3" data-number="1.4"><h3 data-number="1.4" class="anchored" data-anchor-id="comparsions-against-all-basemean">
-<span class="header-section-number">1.4</span> Comparsions against all (basemean)</h3>
+</section><section id="comparsions-against-all-basemean" class="level3"><h3 class="anchored" data-anchor-id="comparsions-against-all-basemean">Comparsions against all (basemean)</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span>, ref.group <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -511,8 +506,7 @@ Note
 </div>
 </div>
 </div>
-</section></section><section id="add-p-values-to-horizontal-ggplots" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="add-p-values-to-horizontal-ggplots">
-<span class="header-section-number">2</span> Add p-values to horizontal ggplots</h2>
+</section></section><section id="add-p-values-to-horizontal-ggplots" class="level2"><h2 class="anchored" data-anchor-id="add-p-values-to-horizontal-ggplots">Add p-values to horizontal ggplots</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Transform `dose` into factor variable</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">ToothGrowth</span></span>
@@ -576,8 +570,7 @@ Note
 </div>
 </div>
 </div>
-</section><section id="reference" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="reference">
-<span class="header-section-number">3</span> Reference</h2>
+</section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <ol type="1">
 <li><a href="https://www.datanovia.com/en/blog/how-to-add-p-values-onto-basic-ggplots/">How to Add P-Values onto Basic GGPLOTS</a></li>
 <li><a href="https://www.datanovia.com/en/blog/how-to-add-p-values-onto-horizontal-ggplots/">How to Add P-Values onto Horizontal GGPLOTS</a></li>

@@ -213,9 +213,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#install-renv" id="toc-install-renv" class="nav-link active" data-scroll-target="#install-renv"><span class="header-section-number">1</span> Install renv</a></li>
-  <li><a href="#remove-renv" id="toc-remove-renv" class="nav-link" data-scroll-target="#remove-renv"><span class="header-section-number">2</span> Remove renv</a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">3</span> Reference</a></li>
+  <li><a href="#install-renv" id="toc-install-renv" class="nav-link active" data-scroll-target="#install-renv">Install renv</a></li>
+  <li><a href="#remove-renv" id="toc-remove-renv" class="nav-link" data-scroll-target="#remove-renv">Remove renv</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
   </ul>
 </nav>
 </nav>
@@ -231,15 +231,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>R works by defaultly by installing packages to a central library and shares them between the projects. It sounds like a good and time-saving feature. After all, you don’t need to install the same package in every project. But that’s where the problems arise. You might have a newer version of some package than your coworkers – resulting in a deprecated or not-implemented functionality.</p>
-<section id="install-renv" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="install-renv"><span class="header-section-number">1</span> Install renv</h2>
+<section id="install-renv" class="level2">
+<h2 class="anchored" data-anchor-id="install-renv">Install renv</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(renv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="renv.png" class="img-fluid"></p>
 <p><code>renv</code> create separate, reproducible environment that you and your coworkers can use, hassle free</p>
 <p>This nice post introduced how to use it to manage dependencies in R projects easily</p>
 </section>
-<section id="remove-renv" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="remove-renv"><span class="header-section-number">2</span> Remove renv</h2>
+<section id="remove-renv" class="level2">
+<h2 class="anchored" data-anchor-id="remove-renv">Remove renv</h2>
 <ol type="1">
 <li>Deactivate <code>renv</code> in a project</li>
 </ol>
@@ -254,8 +254,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">### Remove packages</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">remove.packages</span>(<span class="st">"renv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="reference" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="reference"><span class="header-section-number">3</span> Reference</h2>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <ul>
 <li><a href="https://appsilon.com/renv-how-to-manage-dependencies-in-r/">R renv: How to Manage Dependencies in R Projects Easily</a></li>
 </ul>

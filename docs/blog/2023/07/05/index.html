@@ -191,12 +191,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#packages-and-data" id="toc-packages-and-data" class="nav-link active" data-scroll-target="#packages-and-data"><span class="header-section-number">1</span> Packages and Data</a></li>
-  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca"><span class="header-section-number">2</span> PCA</a></li>
-  <li><a href="#pls-da" id="toc-pls-da" class="nav-link" data-scroll-target="#pls-da"><span class="header-section-number">3</span> PLS-DA</a></li>
-  <li><a href="#opls-da" id="toc-opls-da" class="nav-link" data-scroll-target="#opls-da"><span class="header-section-number">4</span> OPLS-DA</a></li>
-  <li><a href="#predict-models" id="toc-predict-models" class="nav-link" data-scroll-target="#predict-models"><span class="header-section-number">5</span> Predict models</a></li>
-  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other"><span class="header-section-number">6</span> Other</a></li>
+<li><a href="#packages-and-data" id="toc-packages-and-data" class="nav-link active" data-scroll-target="#packages-and-data">Packages and Data</a></li>
+  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca">PCA</a></li>
+  <li><a href="#pls-da" id="toc-pls-da" class="nav-link" data-scroll-target="#pls-da">PLS-DA</a></li>
+  <li><a href="#opls-da" id="toc-opls-da" class="nav-link" data-scroll-target="#opls-da">OPLS-DA</a></li>
+  <li><a href="#predict-models" id="toc-predict-models" class="nav-link" data-scroll-target="#predict-models">Predict models</a></li>
+  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other">Other</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -205,8 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content"><p>PCA (also called eigenvector analysis) is unsupervised pattern recognition technique mostly utilized as data reduction and modelling technique. It determines the degree or extent to which variables are related. Large data of many variables are unavoidably superfluous and overlap, the use of correlation matrix generally quantifies these anomalies by extracting the eigenvalues and eigenvectors from the square matrix originated by multiplying the data matrix. The purpose of PCA is to find orthogonal variables that capture the maximum amount of variance in the data without considering class information. PCA provide the information about the relationships and patterns and help identify major sources of variation and potential outliers</p>
 <p>PLS discriminant analysis is a supervised technique that uses the PLS algorithm to explain and predict the membership of observations to several classes using quantitative or qualitative explanatory variables or parameters. The purpose of PLS-DA is to identify the latent variables that maximize the discrimination between the predefined classes in the data. PLS-DA focus on the the separation of classes in the dataset and provide information on important features that serparate classes.</p>
-<section id="packages-and-data" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="packages-and-data">
-<span class="header-section-number">1</span> Packages and Data</h2>
+<section id="packages-and-data" class="level2"><h2 class="anchored" data-anchor-id="packages-and-data">Packages and Data</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load</span><span class="op">(</span><span class="va">ropls</span>, <span class="va">tidyverse</span>, <span class="va">ggsci</span><span class="op">)</span></span>
 <span></span>
@@ -252,8 +251,7 @@ Xanthosine                                    1 HMDB00299        Nucleo</code></
 <span><span class="co"># View(variableMetadata)</span></span>
 <span><span class="co"># View(sampleMetadata)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="pca" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="pca">
-<span class="header-section-number">2</span> PCA</h2>
+</section><section id="pca" class="level2"><h2 class="anchored" data-anchor-id="pca">PCA</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu">opls</span><span class="op">(</span><span class="va">dataMatrix</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -298,8 +296,7 @@ Total    0.501   8   0</code></pre>
           1 </code></pre>
 </div>
 </div>
-</section><section id="pls-da" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="pls-da">
-<span class="header-section-number">3</span> PLS-DA</h2>
+</section><section id="pls-da" class="level2"><h2 class="anchored" data-anchor-id="pls-da">PLS-DA</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### PLSDA analysis</span></span>
 <span><span class="va">plsda</span> <span class="op">&lt;-</span> <span class="fu">opls</span><span class="op">(</span><span class="va">dataMatrix</span>, <span class="va">genderFc</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -396,8 +393,7 @@ Total    0.275     0.73   0.584 0.262   3   0 0.05 0.05</code></pre>
 </div>
 </div>
 </div>
-</section><section id="opls-da" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="opls-da">
-<span class="header-section-number">4</span> OPLS-DA</h2>
+</section><section id="opls-da" class="level2"><h2 class="anchored" data-anchor-id="opls-da">OPLS-DA</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### OPLS-DA analysis</span></span>
 <span><span class="va">oplsda</span> <span class="op">&lt;-</span> <span class="fu">opls</span><span class="op">(</span><span class="va">dataMatrix</span>, <span class="va">genderFc</span>, predI <span class="op">=</span> <span class="fl">1</span>, orthoI <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -490,8 +486,7 @@ Total    0.275     0.73   0.602 0.262   1   2 0.05 0.05</code></pre>
 </div>
 </div>
 </div>
-</section><section id="predict-models" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="predict-models">
-<span class="header-section-number">5</span> Predict models</h2>
+</section><section id="predict-models" class="level2"><h2 class="anchored" data-anchor-id="predict-models">Predict models</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### OPLS-DA model training</span></span>
 <span><span class="va">oplsda.2</span>  <span class="op">&lt;-</span>  <span class="fu">opls</span><span class="op">(</span><span class="va">dataMatrix</span>, <span class="va">genderFc</span>, predI <span class="op">=</span> <span class="fl">1</span>, orthoI <span class="op">=</span> <span class="cn">NA</span>,subset <span class="op">=</span> <span class="st">"odd"</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -525,8 +520,7 @@ Total     0.26    0.825   0.608 0.213 0.341   1   2</code></pre>
 <pre><code>[1] "model accuracy：84.62%"</code></pre>
 </div>
 </div>
-</section><section id="other" class="level2" data-number="6"><h2 data-number="6" class="anchored" data-anchor-id="other">
-<span class="header-section-number">6</span> Other</h2>
+</section><section id="other" class="level2"><h2 class="anchored" data-anchor-id="other">Other</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># volcano plot</span></span>
 <span><span class="va">df</span>  <span class="op">&lt;-</span>  <span class="va">dataMatrix</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>

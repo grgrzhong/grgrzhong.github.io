@@ -204,45 +204,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#step1-check-the-quality-of-raw-reads" id="toc-step1-check-the-quality-of-raw-reads" class="nav-link active" data-scroll-target="#step1-check-the-quality-of-raw-reads"><span class="header-section-number">1</span> Step1: Check the quality of raw reads</a></li>
-  <li><a href="#step2-mapping-reads-with-kallisto-pseudoaligment" id="toc-step2-mapping-reads-with-kallisto-pseudoaligment" class="nav-link" data-scroll-target="#step2-mapping-reads-with-kallisto-pseudoaligment"><span class="header-section-number">2</span> Step2: Mapping reads with Kallisto pseudoaligment</a></li>
+<li><a href="#step1-check-the-quality-of-raw-reads" id="toc-step1-check-the-quality-of-raw-reads" class="nav-link active" data-scroll-target="#step1-check-the-quality-of-raw-reads">Step1: Check the quality of raw reads</a></li>
+  <li><a href="#step2-mapping-reads-with-kallisto-pseudoaligment" id="toc-step2-mapping-reads-with-kallisto-pseudoaligment" class="nav-link" data-scroll-target="#step2-mapping-reads-with-kallisto-pseudoaligment">Step2: Mapping reads with Kallisto pseudoaligment</a></li>
   <li>
-<a href="#step3-import-data-into-r" id="toc-step3-import-data-into-r" class="nav-link" data-scroll-target="#step3-import-data-into-r"><span class="header-section-number">3</span> Step3: Import data into R</a>
+<a href="#step3-import-data-into-r" id="toc-step3-import-data-into-r" class="nav-link" data-scroll-target="#step3-import-data-into-r">Step3: Import data into R</a>
   <ul>
-<li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages"><span class="header-section-number">3.1</span> Load packages</a></li>
-  <li><a href="#import-study-design-files" id="toc-import-study-design-files" class="nav-link" data-scroll-target="#import-study-design-files"><span class="header-section-number">3.2</span> Import study design files</a></li>
-  <li><a href="#get-organsim-specific-annotations" id="toc-get-organsim-specific-annotations" class="nav-link" data-scroll-target="#get-organsim-specific-annotations"><span class="header-section-number">3.3</span> Get organsim specific annotations</a></li>
-  <li><a href="#load-transcript-counts" id="toc-load-transcript-counts" class="nav-link" data-scroll-target="#load-transcript-counts"><span class="header-section-number">3.4</span> Load transcript counts</a></li>
+<li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages">Load packages</a></li>
+  <li><a href="#import-study-design-files" id="toc-import-study-design-files" class="nav-link" data-scroll-target="#import-study-design-files">Import study design files</a></li>
+  <li><a href="#get-organsim-specific-annotations" id="toc-get-organsim-specific-annotations" class="nav-link" data-scroll-target="#get-organsim-specific-annotations">Get organsim specific annotations</a></li>
+  <li><a href="#load-transcript-counts" id="toc-load-transcript-counts" class="nav-link" data-scroll-target="#load-transcript-counts">Load transcript counts</a></li>
   </ul>
 </li>
-  <li><a href="#step4-wrangling-gene-expression" id="toc-step4-wrangling-gene-expression" class="nav-link" data-scroll-target="#step4-wrangling-gene-expression"><span class="header-section-number">4</span> Step4: Wrangling gene expression</a></li>
+  <li><a href="#step4-wrangling-gene-expression" id="toc-step4-wrangling-gene-expression" class="nav-link" data-scroll-target="#step4-wrangling-gene-expression">Step4: Wrangling gene expression</a></li>
   <li>
-<a href="#step5-data-exploration-with-multivariate-analysis" id="toc-step5-data-exploration-with-multivariate-analysis" class="nav-link" data-scroll-target="#step5-data-exploration-with-multivariate-analysis"><span class="header-section-number">5</span> Step5: Data exploration with multivariate analysis</a>
+<a href="#step5-data-exploration-with-multivariate-analysis" id="toc-step5-data-exploration-with-multivariate-analysis" class="nav-link" data-scroll-target="#step5-data-exploration-with-multivariate-analysis">Step5: Data exploration with multivariate analysis</a>
   <ul>
-<li><a href="#hierarchical-clustering" id="toc-hierarchical-clustering" class="nav-link" data-scroll-target="#hierarchical-clustering"><span class="header-section-number">5.1</span> Hierarchical clustering</a></li>
-  <li><a href="#principal-compoent-analysis" id="toc-principal-compoent-analysis" class="nav-link" data-scroll-target="#principal-compoent-analysis"><span class="header-section-number">5.2</span> Principal compoent analysis</a></li>
+<li><a href="#hierarchical-clustering" id="toc-hierarchical-clustering" class="nav-link" data-scroll-target="#hierarchical-clustering">Hierarchical clustering</a></li>
+  <li><a href="#principal-compoent-analysis" id="toc-principal-compoent-analysis" class="nav-link" data-scroll-target="#principal-compoent-analysis">Principal compoent analysis</a></li>
   </ul>
 </li>
   <li>
-<a href="#step6-differential-gene-expression" id="toc-step6-differential-gene-expression" class="nav-link" data-scroll-target="#step6-differential-gene-expression"><span class="header-section-number">6</span> Step6: Differential gene expression</a>
+<a href="#step6-differential-gene-expression" id="toc-step6-differential-gene-expression" class="nav-link" data-scroll-target="#step6-differential-gene-expression">Step6: Differential gene expression</a>
   <ul>
-<li><a href="#set-up-design-matrix" id="toc-set-up-design-matrix" class="nav-link" data-scroll-target="#set-up-design-matrix"><span class="header-section-number">6.1</span> Set up design matrix</a></li>
-  <li><a href="#model-mean-variance-trend-and-fit-linear-model-to-data" id="toc-model-mean-variance-trend-and-fit-linear-model-to-data" class="nav-link" data-scroll-target="#model-mean-variance-trend-and-fit-linear-model-to-data"><span class="header-section-number">6.2</span> Model mean-variance trend and fit linear model to data</a></li>
+<li><a href="#set-up-design-matrix" id="toc-set-up-design-matrix" class="nav-link" data-scroll-target="#set-up-design-matrix">Set up design matrix</a></li>
+  <li><a href="#model-mean-variance-trend-and-fit-linear-model-to-data" id="toc-model-mean-variance-trend-and-fit-linear-model-to-data" class="nav-link" data-scroll-target="#model-mean-variance-trend-and-fit-linear-model-to-data">Model mean-variance trend and fit linear model to data</a></li>
   </ul>
 </li>
-  <li><a href="#step7-module-identification" id="toc-step7-module-identification" class="nav-link" data-scroll-target="#step7-module-identification"><span class="header-section-number">7</span> Step7: Module identification</a></li>
+  <li><a href="#step7-module-identification" id="toc-step7-module-identification" class="nav-link" data-scroll-target="#step7-module-identification">Step7: Module identification</a></li>
   <li>
-<a href="#step8-functional-enrichment-analysis" id="toc-step8-functional-enrichment-analysis" class="nav-link" data-scroll-target="#step8-functional-enrichment-analysis"><span class="header-section-number">8</span> Step8: Functional enrichment analysis</a>
+<a href="#step8-functional-enrichment-analysis" id="toc-step8-functional-enrichment-analysis" class="nav-link" data-scroll-target="#step8-functional-enrichment-analysis">Step8: Functional enrichment analysis</a>
   <ul>
-<li><a href="#go-enrichment-analysis" id="toc-go-enrichment-analysis" class="nav-link" data-scroll-target="#go-enrichment-analysis"><span class="header-section-number">8.1</span> Go enrichment analysis</a></li>
-  <li><a href="#perform-gsea-using-clusterprofiler" id="toc-perform-gsea-using-clusterprofiler" class="nav-link" data-scroll-target="#perform-gsea-using-clusterprofiler"><span class="header-section-number">8.2</span> Perform GSEA using clusterProfiler</a></li>
-  <li><a href="#competitive-gsea-using-camera" id="toc-competitive-gsea-using-camera" class="nav-link" data-scroll-target="#competitive-gsea-using-camera"><span class="header-section-number">8.3</span> Competitive GSEA using CAMERA</a></li>
-  <li><a href="#self-contained-gsea-using-roast" id="toc-self-contained-gsea-using-roast" class="nav-link" data-scroll-target="#self-contained-gsea-using-roast"><span class="header-section-number">8.4</span> Self-contained GSEA using ROAST</a></li>
-  <li><a href="#single-sample-gsea-using-the-gsva-package" id="toc-single-sample-gsea-using-the-gsva-package" class="nav-link" data-scroll-target="#single-sample-gsea-using-the-gsva-package"><span class="header-section-number">8.5</span> Single sample GSEA using the GSVA package</a></li>
+<li><a href="#go-enrichment-analysis" id="toc-go-enrichment-analysis" class="nav-link" data-scroll-target="#go-enrichment-analysis">Go enrichment analysis</a></li>
+  <li><a href="#perform-gsea-using-clusterprofiler" id="toc-perform-gsea-using-clusterprofiler" class="nav-link" data-scroll-target="#perform-gsea-using-clusterprofiler">Perform GSEA using clusterProfiler</a></li>
+  <li><a href="#competitive-gsea-using-camera" id="toc-competitive-gsea-using-camera" class="nav-link" data-scroll-target="#competitive-gsea-using-camera">Competitive GSEA using CAMERA</a></li>
+  <li><a href="#self-contained-gsea-using-roast" id="toc-self-contained-gsea-using-roast" class="nav-link" data-scroll-target="#self-contained-gsea-using-roast">Self-contained GSEA using ROAST</a></li>
+  <li><a href="#single-sample-gsea-using-the-gsva-package" id="toc-single-sample-gsea-using-the-gsva-package" class="nav-link" data-scroll-target="#single-sample-gsea-using-the-gsva-package">Single sample GSEA using the GSVA package</a></li>
   </ul>
 </li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">9</span> Reference</a></li>
-  <li><a href="#sessioninfo" id="toc-sessioninfo" class="nav-link" data-scroll-target="#sessioninfo"><span class="header-section-number">10</span> SessionInfo</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+  <li><a href="#sessioninfo" id="toc-sessioninfo" class="nav-link" data-scroll-target="#sessioninfo">SessionInfo</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -250,16 +250,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content"><p><img src="workflow.png" class="img-fluid"></p>
-<section id="step1-check-the-quality-of-raw-reads" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="step1-check-the-quality-of-raw-reads">
-<span class="header-section-number">1</span> Step1: Check the quality of raw reads</h2>
+<section id="step1-check-the-quality-of-raw-reads" class="level2"><h2 class="anchored" data-anchor-id="step1-check-the-quality-of-raw-reads">Step1: Check the quality of raw reads</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">### go to row reads folder</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/../..DIY_Transcriptomics/data/fastq</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">### activate env</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> active rnaseq</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">### use fastqc to check the quality of fastq files</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="pp">*</span>.gz <span class="at">-t</span> 4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section><section id="step2-mapping-reads-with-kallisto-pseudoaligment" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="step2-mapping-reads-with-kallisto-pseudoaligment">
-<span class="header-section-number">2</span> Step2: Mapping reads with Kallisto pseudoaligment</h2>
+</section><section id="step2-mapping-reads-with-kallisto-pseudoaligment" class="level2"><h2 class="anchored" data-anchor-id="step2-mapping-reads-with-kallisto-pseudoaligment">Step2: Mapping reads with Kallisto pseudoaligment</h2>
 <ul>
 <li><p>Download reference transciptome files from <a href="https://asia.ensembl.org/info/data/ftp/index.html">here</a></p></li>
 <li><p>Build an index from reference fasta file</p></li>
@@ -290,10 +288,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">### Summarize outputs</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ex">multiqc</span> <span class="at">-d</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section><section id="step3-import-data-into-r" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="step3-import-data-into-r">
-<span class="header-section-number">3</span> Step3: Import data into R</h2>
-<section id="load-packages" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="load-packages">
-<span class="header-section-number">3.1</span> Load packages</h3>
+</section><section id="step3-import-data-into-r" class="level2"><h2 class="anchored" data-anchor-id="step3-import-data-into-r">Step3: Import data into R</h2>
+<section id="load-packages" class="level3"><h3 class="anchored" data-anchor-id="load-packages">Load packages</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">rhdf5</span><span class="op">)</span> <span class="co"># provides functions for handling hdf5 file formats (kallisto outputs bootstraps in this format)</span></span>
@@ -324,8 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://igordot.github.io/msigdbr/">msigdbr</a></span><span class="op">)</span> <span class="co"># access to msigdb collections directly within R</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">enrichplot</span><span class="op">)</span> <span class="co"># great for making the standard GSEA enrichment plots</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="import-study-design-files" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="import-study-design-files">
-<span class="header-section-number">3.2</span> Import study design files</h3>
+</section><section id="import-study-design-files" class="level3"><h3 class="anchored" data-anchor-id="import-study-design-files">Import study design files</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### load study design</span></span>
 <span><span class="va">targets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span></span>
@@ -366,8 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## [1] TRUE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="get-organsim-specific-annotations" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="get-organsim-specific-annotations">
-<span class="header-section-number">3.3</span> Get organsim specific annotations</h3>
+</section><section id="get-organsim-specific-annotations" class="level3"><h3 class="anchored" data-anchor-id="get-organsim-specific-annotations">Get organsim specific annotations</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tx</span> <span class="op">&lt;-</span> <span class="fu">transcripts</span><span class="op">(</span></span>
 <span>    <span class="va">EnsDb.Hsapiens.v86</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tx_id"</span>, <span class="st">"gene_name"</span><span class="op">)</span></span>
@@ -394,8 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">### move transcrip ID the first column in the dataframe</span></span>
 <span><span class="va">tx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">tx</span>, <span class="st">"target_id"</span>, <span class="st">"gene_name"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="load-transcript-counts" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="load-transcript-counts">
-<span class="header-section-number">3.4</span> Load transcript counts</h3>
+</section><section id="load-transcript-counts" class="level3"><h3 class="anchored" data-anchor-id="load-transcript-counts">Load transcript counts</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">txi_gene</span> <span class="op">&lt;-</span> <span class="fu">tximport</span><span class="op">(</span></span>
 <span>    <span class="va">path</span>,</span>
@@ -413,8 +406,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## [1] "abundance"           "counts"              "length"             </span></span>
 <span><span class="co">## [4] "countsFromAbundance"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="step4-wrangling-gene-expression" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="step4-wrangling-gene-expression">
-<span class="header-section-number">4</span> Step4: Wrangling gene expression</h2>
+</section></section><section id="step4-wrangling-gene-expression" class="level2"><h2 class="anchored" data-anchor-id="step4-wrangling-gene-expression">Step4: Wrangling gene expression</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### examine the data</span></span>
 <span><span class="va">tpm</span> <span class="op">&lt;-</span> <span class="va">txi_gene</span><span class="op">$</span><span class="va">abundance</span></span>
@@ -665,8 +657,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="step5-data-exploration-with-multivariate-analysis" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="step5-data-exploration-with-multivariate-analysis">
-<span class="header-section-number">5</span> Step5: Data exploration with multivariate analysis</h2>
+</section><section id="step5-data-exploration-with-multivariate-analysis" class="level2"><h2 class="anchored" data-anchor-id="step5-data-exploration-with-multivariate-analysis">Step5: Data exploration with multivariate analysis</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Identify variables of interest in study design file</span></span>
 <span><span class="va">group</span> <span class="op">&lt;-</span> <span class="va">targets</span><span class="op">$</span><span class="va">group</span></span>
@@ -676,8 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## [10] disease</span></span>
 <span><span class="co">## Levels: disease healthy</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="hierarchical-clustering" class="level3" data-number="5.1"><h3 data-number="5.1" class="anchored" data-anchor-id="hierarchical-clustering">
-<span class="header-section-number">5.1</span> Hierarchical clustering</h3>
+<section id="hierarchical-clustering" class="level3"><h3 class="anchored" data-anchor-id="hierarchical-clustering">Hierarchical clustering</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### calculate distance  methods (e.g. switch from 'maximum' to 'euclidean')</span></span>
 <span><span class="va">distance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span></span>
@@ -695,8 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="principal-compoent-analysis" class="level3" data-number="5.2"><h3 data-number="5.2" class="anchored" data-anchor-id="principal-compoent-analysis">
-<span class="header-section-number">5.2</span> Principal compoent analysis</h3>
+</section><section id="principal-compoent-analysis" class="level3"><h3 class="anchored" data-anchor-id="principal-compoent-analysis">Principal compoent analysis</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">log2_cpm_filtered_norm</span><span class="op">)</span>,</span>
@@ -1500,10 +1489,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ggplotly(myplot)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="step6-differential-gene-expression" class="level2" data-number="6"><h2 data-number="6" class="anchored" data-anchor-id="step6-differential-gene-expression">
-<span class="header-section-number">6</span> Step6: Differential gene expression</h2>
-<section id="set-up-design-matrix" class="level3" data-number="6.1"><h3 data-number="6.1" class="anchored" data-anchor-id="set-up-design-matrix">
-<span class="header-section-number">6.1</span> Set up design matrix</h3>
+</section></section><section id="step6-differential-gene-expression" class="level2"><h2 class="anchored" data-anchor-id="step6-differential-gene-expression">Step6: Differential gene expression</h2>
+<section id="set-up-design-matrix" class="level3"><h3 class="anchored" data-anchor-id="set-up-design-matrix">Set up design matrix</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">targets</span><span class="op">$</span><span class="va">group</span><span class="op">)</span></span>
 <span><span class="va">design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="fl">0</span> <span class="op">+</span> <span class="va">group</span><span class="op">)</span></span>
@@ -1513,8 +1500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># design &lt;- model.matrix(~block + treatment)</span></span>
 <span><span class="co"># this is just an example. 'block' and 'treatment' would need to be objects in your environment</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="model-mean-variance-trend-and-fit-linear-model-to-data" class="level3" data-number="6.2"><h3 data-number="6.2" class="anchored" data-anchor-id="model-mean-variance-trend-and-fit-linear-model-to-data">
-<span class="header-section-number">6.2</span> Model mean-variance trend and fit linear model to data</h3>
+</section><section id="model-mean-variance-trend-and-fit-linear-model-to-data" class="level3"><h3 class="anchored" data-anchor-id="model-mean-variance-trend-and-fit-linear-model-to-data">Model mean-variance trend and fit linear model to data</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Use VOOM function from Limma package to model the mean-variance relationship</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">DGEList_filtered_norm</span><span class="op">)</span></span>
@@ -1716,8 +1702,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># write_tsv(diffGenes_df, "DiffGenes.txt") </span></span>
 <span><span class="co">#NOTE: this .txt file can be directly used for input into other clustering or network analysis tools (e.g., String, Clust (https://github.com/BaselAbujamous/clust, etc.)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="step7-module-identification" class="level2" data-number="7"><h2 data-number="7" class="anchored" data-anchor-id="step7-module-identification">
-<span class="header-section-number">7</span> Step7: Module identification</h2>
+</section></section><section id="step7-module-identification" class="level2"><h2 class="anchored" data-anchor-id="step7-module-identification">Step7: Module identification</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heatcolors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"RdBu"</span>, n<span class="op">=</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1798,10 +1783,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="step8-functional-enrichment-analysis" class="level2" data-number="8"><h2 data-number="8" class="anchored" data-anchor-id="step8-functional-enrichment-analysis">
-<span class="header-section-number">8</span> Step8: Functional enrichment analysis</h2>
-<section id="go-enrichment-analysis" class="level3" data-number="8.1"><h3 data-number="8.1" class="anchored" data-anchor-id="go-enrichment-analysis">
-<span class="header-section-number">8.1</span> Go enrichment analysis</h3>
+</section><section id="step8-functional-enrichment-analysis" class="level2"><h2 class="anchored" data-anchor-id="step8-functional-enrichment-analysis">Step8: Functional enrichment analysis</h2>
+<section id="go-enrichment-analysis" class="level3"><h3 class="anchored" data-anchor-id="go-enrichment-analysis">Go enrichment analysis</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### carry out GO enrichment using gProfiler2</span></span>
 <span><span class="co">#### use topTable result to pick the top genes for carrying out a Gene Ontology (GO) enrichment analysis</span></span>
@@ -1871,8 +1854,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># now repeat the above steps using only genes from a single module from the step 6 script, by using `rownames(myModule)`</span></span>
 <span><span class="co"># what is value in breaking up DEGs into modules for functional enrichment analysis?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="perform-gsea-using-clusterprofiler" class="level3" data-number="8.2"><h3 data-number="8.2" class="anchored" data-anchor-id="perform-gsea-using-clusterprofiler">
-<span class="header-section-number">8.2</span> Perform GSEA using clusterProfiler</h3>
+</section><section id="perform-gsea-using-clusterprofiler" class="level3"><h3 class="anchored" data-anchor-id="perform-gsea-using-clusterprofiler">Perform GSEA using clusterProfiler</h3>
 <p>There are a few ways to get msigDB collections into R:</p>
 <ul>
 <li>Option1: download directly from msigdb and load from your computer. can use the ‘read.gmt’ function from clusterProfiler package to create a dataframe. alternatively, you can read in using ‘getGmt’ function from GSEABase package if you need a GeneSetCollection object</li>
@@ -2001,8 +1983,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="competitive-gsea-using-camera" class="level3" data-number="8.3"><h3 data-number="8.3" class="anchored" data-anchor-id="competitive-gsea-using-camera">
-<span class="header-section-number">8.3</span> Competitive GSEA using CAMERA</h3>
+</section><section id="competitive-gsea-using-camera" class="level3"><h3 class="anchored" data-anchor-id="competitive-gsea-using-camera">Competitive GSEA using CAMERA</h3>
 <p>For competitive tests the null hypothesis is that genes in the set are, at most, as often differentially expressed as genes outside the set.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Create a few signatures to test in our enrichment analysis</span></span>
@@ -2026,8 +2007,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## 1 real        50 Up        5.85e-20 1.17e-19</span></span>
 <span><span class="co">## 2 fake        50 Up        9.57e- 1 9.57e- 1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="self-contained-gsea-using-roast" class="level3" data-number="8.4"><h3 data-number="8.4" class="anchored" data-anchor-id="self-contained-gsea-using-roast">
-<span class="header-section-number">8.4</span> Self-contained GSEA using ROAST</h3>
+</section><section id="self-contained-gsea-using-roast" class="level3"><h3 class="anchored" data-anchor-id="self-contained-gsea-using-roast">Self-contained GSEA using ROAST</h3>
 <p>For self-contained the null hypothesis is that no genes in the set are differentially expressed.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mroast</span><span class="op">(</span></span>
@@ -2111,8 +2091,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="single-sample-gsea-using-the-gsva-package" class="level3" data-number="8.5"><h3 data-number="8.5" class="anchored" data-anchor-id="single-sample-gsea-using-the-gsva-package">
-<span class="header-section-number">8.5</span> Single sample GSEA using the GSVA package</h3>
+</section><section id="single-sample-gsea-using-the-gsva-package" class="level3"><h3 class="anchored" data-anchor-id="single-sample-gsea-using-the-gsva-package">Single sample GSEA using the GSVA package</h3>
 <p>The GSVA package offers a different way of approaching functional enrichment analysis.</p>
 <ul>
 <li>In contrast to most GSE methods, GSVA performs a change in coordinate systems,transforming the data from a gene by sample matrix to a gene set (signature) by sample matrix. This allows for the evaluation of pathway enrichment for each sample.</li>
@@ -2572,13 +2551,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section></section><section id="reference" class="level2" data-number="9"><h2 data-number="9" class="anchored" data-anchor-id="reference">
-<span class="header-section-number">9</span> Reference</h2>
+</section></section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <ul>
 <li><a href="https://diytranscriptomics.com/">DIY Transcriptomics</a></li>
 <li><a href="https://protocols.hostmicrobe.org/">protocols</a></li>
-</ul></section><section id="sessioninfo" class="level2" data-number="10"><h2 data-number="10" class="anchored" data-anchor-id="sessioninfo">
-<span class="header-section-number">10</span> SessionInfo</h2>
+</ul></section><section id="sessioninfo" class="level2"><h2 class="anchored" data-anchor-id="sessioninfo">SessionInfo</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">## R version 4.3.1 (2023-06-16)</span></span>

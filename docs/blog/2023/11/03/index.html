@@ -212,12 +212,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link active" data-scroll-target="#naming-conventions"><span class="header-section-number">0.1</span> Naming Conventions</a></li>
-  <li><a href="#code-formatting" id="toc-code-formatting" class="nav-link" data-scroll-target="#code-formatting"><span class="header-section-number">0.2</span> Code Formatting</a></li>
-  <li><a href="#efficient-coding" id="toc-efficient-coding" class="nav-link" data-scroll-target="#efficient-coding"><span class="header-section-number">0.3</span> Efficient Coding</a></li>
-  <li><a href="#code-organization" id="toc-code-organization" class="nav-link" data-scroll-target="#code-organization"><span class="header-section-number">0.4</span> Code Organization</a></li>
-  <li><a href="#memory-management" id="toc-memory-management" class="nav-link" data-scroll-target="#memory-management"><span class="header-section-number">0.5</span> Memory Management</a></li>
-  <li><a href="#project-management" id="toc-project-management" class="nav-link" data-scroll-target="#project-management"><span class="header-section-number">0.6</span> Project Management</a></li>
+  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link active" data-scroll-target="#naming-conventions">Naming Conventions</a></li>
+  <li><a href="#code-formatting" id="toc-code-formatting" class="nav-link" data-scroll-target="#code-formatting">Code Formatting</a></li>
+  <li><a href="#efficient-coding" id="toc-efficient-coding" class="nav-link" data-scroll-target="#efficient-coding">Efficient Coding</a></li>
+  <li><a href="#code-organization" id="toc-code-organization" class="nav-link" data-scroll-target="#code-organization">Code Organization</a></li>
+  <li><a href="#memory-management" id="toc-memory-management" class="nav-link" data-scroll-target="#memory-management">Memory Management</a></li>
+  <li><a href="#project-management" id="toc-project-management" class="nav-link" data-scroll-target="#project-management">Project Management</a></li>
   </ul>
 </nav>
 </nav>
@@ -233,45 +233,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Writing clean, efficient, and maintainable code is crucial for any programming language, and R is no exception. In this blog post, we will discuss best practices for R programming. These guidelines will help you write better R code, making it easier to read, debug, and share with others. Whether you are a beginner or an experienced R programmer, following these best practices will improve your coding skills and enhance your productivity.</p>
-<section id="naming-conventions" class="level3" data-number="0.1">
-<h3 data-number="0.1" class="anchored" data-anchor-id="naming-conventions"><span class="header-section-number">0.1</span> Naming Conventions</h3>
+<section id="naming-conventions" class="level3">
+<h3 class="anchored" data-anchor-id="naming-conventions">Naming Conventions</h3>
 <ul>
 <li><strong>Variables</strong>: Use descriptive names with underscores to separate words (e.g., <code>my_variable</code>).</li>
 <li><strong>Functions</strong>: Use camelCase for function names (e.g., <code>runThisStuff()</code>).</li>
 <li><strong>Constants</strong>: Use all uppercase letters with underscores to separate words (e.g., <code>CONSTANTS</code>).</li>
 </ul>
 </section>
-<section id="code-formatting" class="level3" data-number="0.2">
-<h3 data-number="0.2" class="anchored" data-anchor-id="code-formatting"><span class="header-section-number">0.2</span> Code Formatting</h3>
+<section id="code-formatting" class="level3">
+<h3 class="anchored" data-anchor-id="code-formatting">Code Formatting</h3>
 <ul>
 <li><strong>Indentation</strong>: Use 4 spaces for indentation (do not use tabs).</li>
 <li><strong>Documentation</strong>: Always write documentation above function definitions.</li>
 <li><strong>Function Length</strong>: A function should not be longer than one screen.</li>
 </ul>
 </section>
-<section id="efficient-coding" class="level3" data-number="0.3">
-<h3 data-number="0.3" class="anchored" data-anchor-id="efficient-coding"><span class="header-section-number">0.3</span> Efficient Coding</h3>
+<section id="efficient-coding" class="level3">
+<h3 class="anchored" data-anchor-id="efficient-coding">Efficient Coding</h3>
 <ul>
 <li><strong>Avoid Loops</strong>: Avoid using <code>for</code> loops; instead, learn to use <code>lapply</code> and vectorized operations.</li>
 <li><strong>No Hard-Coded Variables</strong>: Never use hard-coded variables in functions.</li>
 </ul>
 </section>
-<section id="code-organization" class="level3" data-number="0.4">
-<h3 data-number="0.4" class="anchored" data-anchor-id="code-organization"><span class="header-section-number">0.4</span> Code Organization</h3>
+<section id="code-organization" class="level3">
+<h3 class="anchored" data-anchor-id="code-organization">Code Organization</h3>
 <ul>
 <li><strong>Block Dividers</strong>: Use <code>### ======</code> to divide function blocks and <code>### ------</code> to divide parts within a function.</li>
 <li><strong>Consistent Naming and Style</strong>: Name and style your code consistently.</li>
 </ul>
 </section>
-<section id="memory-management" class="level3" data-number="0.5">
-<h3 data-number="0.5" class="anchored" data-anchor-id="memory-management"><span class="header-section-number">0.5</span> Memory Management</h3>
+<section id="memory-management" class="level3">
+<h3 class="anchored" data-anchor-id="memory-management">Memory Management</h3>
 <ul>
 <li><strong>Clean Up</strong>: Use <code>rm(list = ls())</code> and <code>gc()</code> to tidy up memory.</li>
 <li><strong>Session History</strong>: Do not save session history.</li>
 </ul>
 </section>
-<section id="project-management" class="level3" data-number="0.6">
-<h3 data-number="0.6" class="anchored" data-anchor-id="project-management"><span class="header-section-number">0.6</span> Project Management</h3>
+<section id="project-management" class="level3">
+<h3 class="anchored" data-anchor-id="project-management">Project Management</h3>
 <ul>
 <li><strong>Session Info</strong>: Keep track of <code>sessionInfo()</code> in the project folder.</li>
 <li><strong>Version Control</strong>: Use version control systems like Git to manage your code.</li>

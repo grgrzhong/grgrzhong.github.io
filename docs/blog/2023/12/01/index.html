@@ -201,22 +201,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#color-packages" id="toc-color-packages" class="nav-link active" data-scroll-target="#color-packages"><span class="header-section-number">1</span> Color packages</a></li>
-  <li><a href="#basic-colors" id="toc-basic-colors" class="nav-link" data-scroll-target="#basic-colors"><span class="header-section-number">2</span> Basic colors</a></li>
-  <li><a href="#color" id="toc-color" class="nav-link" data-scroll-target="#color"><span class="header-section-number">3</span> Color()</a></li>
-  <li><a href="#rcolorbrewer" id="toc-rcolorbrewer" class="nav-link" data-scroll-target="#rcolorbrewer"><span class="header-section-number">4</span> RColorBrewer</a></li>
-  <li><a href="#ggsci" id="toc-ggsci" class="nav-link" data-scroll-target="#ggsci"><span class="header-section-number">5</span> ggsci</a></li>
-  <li><a href="#paletteer" id="toc-paletteer" class="nav-link" data-scroll-target="#paletteer"><span class="header-section-number">6</span> paletteer</a></li>
-  <li><a href="#cols4all" id="toc-cols4all" class="nav-link" data-scroll-target="#cols4all"><span class="header-section-number">7</span> cols4all</a></li>
-  <li><a href="#pick-color-from-images" id="toc-pick-color-from-images" class="nav-link" data-scroll-target="#pick-color-from-images"><span class="header-section-number">8</span> Pick color from images</a></li>
+<li><a href="#color-packages" id="toc-color-packages" class="nav-link active" data-scroll-target="#color-packages">Color packages</a></li>
+  <li><a href="#basic-colors" id="toc-basic-colors" class="nav-link" data-scroll-target="#basic-colors">Basic colors</a></li>
+  <li><a href="#color" id="toc-color" class="nav-link" data-scroll-target="#color">Color()</a></li>
+  <li><a href="#rcolorbrewer" id="toc-rcolorbrewer" class="nav-link" data-scroll-target="#rcolorbrewer">RColorBrewer</a></li>
+  <li><a href="#ggsci" id="toc-ggsci" class="nav-link" data-scroll-target="#ggsci">ggsci</a></li>
+  <li><a href="#paletteer" id="toc-paletteer" class="nav-link" data-scroll-target="#paletteer">paletteer</a></li>
+  <li><a href="#cols4all" id="toc-cols4all" class="nav-link" data-scroll-target="#cols4all">cols4all</a></li>
+  <li><a href="#pick-color-from-images" id="toc-pick-color-from-images" class="nav-link" data-scroll-target="#pick-color-from-images">Pick color from images</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="color-packages" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="color-packages">
-<span class="header-section-number">1</span> Color packages</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="color-packages" class="level2"><h2 class="anchored" data-anchor-id="color-packages">Color packages</h2>
 <p><img src="colorblind_palette.jpg" class="img-fluid"></p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
@@ -231,8 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RImagePalette</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="basic-colors" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="basic-colors">
-<span class="header-section-number">2</span> Basic colors</h2>
+</section><section id="basic-colors" class="level2"><h2 class="anchored" data-anchor-id="basic-colors">Basic colors</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># gray colors</span></span>
 <span><span class="va">cbp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gray"</span>, <span class="st">"lightgray"</span>, <span class="st">"darkgray"</span>, <span class="st">"black"</span><span class="op">)</span></span>
@@ -292,8 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="color" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="color">
-<span class="header-section-number">3</span> Color()</h2>
+</section><section id="color" class="level2"><h2 class="anchored" data-anchor-id="color">Color()</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"projects"</span>, <span class="st">"2023_scRNA_Seurat"</span>, <span class="st">"pbmc_tutorial.RData"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># 657 colors</span></span>
@@ -327,8 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="rcolorbrewer" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="rcolorbrewer">
-<span class="header-section-number">4</span> RColorBrewer</h2>
+</section><section id="rcolorbrewer" class="level2"><h2 class="anchored" data-anchor-id="rcolorbrewer">RColorBrewer</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">display.brewer.all</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -343,8 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">b2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">8</span>, <span class="st">"Set2"</span><span class="op">)</span></span>
 <span><span class="va">mycolor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">b1</span>,<span class="va">b2</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="ggsci" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="ggsci">
-<span class="header-section-number">5</span> ggsci</h2>
+</section><section id="ggsci" class="level2"><h2 class="anchored" data-anchor-id="ggsci">ggsci</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://nanx.me/ggsci/">ggsci</a></span><span class="op">)</span></span>
 <span><span class="co"># vignette("ggsci")</span></span>
@@ -359,8 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mycolor</span> <span class="op">&lt;-</span> <span class="fu">pal_nejm</span><span class="op">(</span><span class="st">"default"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">(</span><span class="fl">8</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="paletteer" class="level2" data-number="6"><h2 data-number="6" class="anchored" data-anchor-id="paletteer">
-<span class="header-section-number">6</span> paletteer</h2>
+</section><section id="paletteer" class="level2"><h2 class="anchored" data-anchor-id="paletteer">paletteer</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EmilHvitfeldt/paletteer">paletteer</a></span><span class="op">)</span>  </span>
 <span><span class="fu">paletteer_c</span><span class="op">(</span><span class="st">"scico::berlin"</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
@@ -373,8 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## &lt;colors&gt;</span></span>
 <span><span class="co">## #E5F0DAFF #D9E8CEFF #CDE1C2FF #C1D9B6FF #B5D2AAFF #A9CB9FFF #9DC393FF #91BC87FF #85B47BFF #75AA6BFF #65A15CFF #55974CFF #458D3DFF #35832DFF #287721FF #22651DFF #1C5319FF #164116FF #102F12FF #0A1E0FFF</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="cols4all" class="level2" data-number="7"><h2 data-number="7" class="anchored" data-anchor-id="cols4all">
-<span class="header-section-number">7</span> cols4all</h2>
+</section><section id="cols4all" class="level2"><h2 class="anchored" data-anchor-id="cols4all">cols4all</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remotes::install_github("mtennekes/cols4all")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cols4all.github.io/cols4all-R/">cols4all</a></span><span class="op">)</span></span>
@@ -450,8 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="pick-color-from-images" class="level2" data-number="8"><h2 data-number="8" class="anchored" data-anchor-id="pick-color-from-images">
-<span class="header-section-number">8</span> Pick color from images</h2>
+</section><section id="pick-color-from-images" class="level2"><h2 class="anchored" data-anchor-id="pick-color-from-images">Pick color from images</h2>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># devtools::install_github("joelcarlson/RImagePalette")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RImagePalette</span><span class="op">)</span></span>

@@ -24,23 +24,21 @@ while data structures allow you to organize and manage that data efficiently.
 - Sets: Unordered collections of unique items, useful for membership testing and eliminating duplicates.
 
 ```{python}
-#| eval: false
-
-# Numbers and strings
+## Numbers and strings
 integer_num = 42
 float_num = 3.14
 string_text = "Hello, Python!"
 
-# List: mutable, ordered collection
+## List: mutable, ordered collection
 fruits = ["apple", "banana", "cherry"]
 
-# Tuple: immutable, ordered collection
+## Tuple: immutable, ordered collection
 dimensions = (1920, 1080)
 
-# Dictionary: unordered, key-value pairs
+## Dictionary: unordered, key-value pairs
 person = {"name": "Alice", "age": 30, "city": "New York"}
 
-# Set: unordered collection of unique items
+## Set: unordered collection of unique items
 unique_numbers = {1, 2, 3, 4, 5}
 
 print("Integer:", integer_num)
@@ -62,7 +60,7 @@ print("Set of unique numbers:", unique_numbers)
 - `Set`: Mutable, container
 - `None`: empty value
 
-```python
+```{python}
 tuple = (1, 2, 3)
 list = [1, 2, 3]
 dict = {"ele1":1, "ele2":2, "ele3":3}
@@ -235,14 +233,18 @@ dict()
 ::: {.panel-tabset group="language"}
 
 #### Python
-```{.python}
+
+```{bash}
 #| eval: false
 ## Install library using pip
 python3 -m pip install pandas numpy matplotlib
 
 ## Install library using conda
 conda install pandas numpy matplotlib
+```
 
+```{.python}
+#| eval: false
 ## Load library
 import pandas as pd
 import numpy as np
@@ -254,6 +256,13 @@ np.log(7)
 ```
 
 #### R
+
+```{bash}
+#| eval: false
+## Install package using conda
+conda install -n renv r-dplyr bioconductor-dplyr
+```
+
 ```{.r}
 #| eval: false
 ## Install package using install.packages()
@@ -267,16 +276,15 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install("dplyr", force = TRUE, ask = FALSE)
 
-## Install package using conda
-conda install -n renv r-dplyr bioconductor-dplyr
-
 ## Load library
 library(dplyr)
 suppressPackageStartupMessages(
-    suppressWarnings({
-        library(ggplot2)
-        library(tidyr)
-    })
+    suppressWarnings(
+        {
+            library(ggplot2)
+            library(tidyr)
+        }
+    )
 )
 ```
 :::
