@@ -4,18 +4,7 @@ date: 2020-09-09
 published-title: Created
 date-modified: last-modified
 title-block-banner: "#212529"
-toc: true
-toc-location: left
-toc-title: "Contents"
 editor: source
-jupyter: python3
-execute:
-    eval: false
-format:
-    html:
-        code-tools:
-            source: true
-            toggle: true
 ---
 
 ## Python basics
@@ -246,7 +235,7 @@ dict()
 ::: {.panel-tabset group="language"}
 
 #### Python
-```{python}
+```{.python}
 #| eval: false
 ## Install library using pip
 python3 -m pip install pandas numpy matplotlib
@@ -265,7 +254,7 @@ np.log(7)
 ```
 
 #### R
-```{r}
+```{.r}
 #| eval: false
 ## Install package using install.packages()
 install.packages("dplyr")

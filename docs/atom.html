@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -38,10 +73,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-1b3db88def35042d172274863c1cdcf0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6a40b608aec917e9f37b11a5a2bc5f9d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a59be64ae26c4866fb77368000ae33d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -100,6 +135,7 @@ ul.task-list li input[type="checkbox"] {
     }
   })
   </script>
+<style>html{ scroll-behavior: smooth; }</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -200,7 +236,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Guorui Zhong’s blog</h1>
+<div class="quarto-title-block"><div><h1 class="title">Guorui Zhong’s blog</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -219,6 +255,8 @@ window.Quarto = {
 
 
 
+
+<!-- -->
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
@@ -276,7 +314,7 @@ Guorui Zhong
 <div class="quarto-post image-right" data-index="2" data-categories="TkdTJTJDUk5BLXNlcSUyQ3NjUk5BLXNlcQ==" data-listing-date-sort="1753632000000" data-listing-file-modified-sort="1759541189000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3431">
 <div class="thumbnail"><a href="./blog/2025/07/28/index.html" class="no-external">
 
-<p class="card-img-top"><img src="blog/2025/07/28/counts-workflow.png"  class="thumbnail-image card-img"/></p>
+<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:blog/2025/07/28/index.html -->
 
 </a></div>
 <div class="body">
@@ -284,7 +322,7 @@ Guorui Zhong
 <a href="./blog/2025/07/28/index.html" class="no-external">Bulk RNA-seq and its Applications</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2025/07/28/index.html" class="no-external">
- * Technical replicates: use the same biological sample to repeat the technical or experimental steps in order to accurately measure technical variation and remove it during…
+<!-- desc(5A0113B34292)[max=175]:blog/2025/07/28/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -301,7 +339,7 @@ Guorui Zhong
 <div class="quarto-post image-right" data-index="3" data-categories="V0dTJTJDV0VT" data-listing-date-sort="1752508800000" data-listing-file-modified-sort="1754620916447" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="812">
 <div class="thumbnail"><a href="./blog/2025/07/15/index.html" class="no-external">
 
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:blog/2025/07/15/index.html -->
 
 </a></div>
 <div class="body">
@@ -309,7 +347,7 @@ Guorui Zhong
 <a href="./blog/2025/07/15/index.html" class="no-external">Copy number alteration (CNA)</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2025/07/15/index.html" class="no-external">
-Copy number alteration (CNA) refers to changes in the number of copies of a particular gene or genomic region. These alterations can lead to an increase (amplification) or…
+<!-- desc(5A0113B34292)[max=175]:blog/2025/07/15/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -334,7 +372,7 @@ Guorui Zhong
 <a href="./blog/2025/03/01/index.html" class="no-external">Commonly Used SLURM Commands in HPC</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2025/03/01/index.html" class="no-external">
-SLURM (Simple Linux Utility for Resource Management) is a powerful and flexible job scheduler used in High-Performance Computing (HPC) environments. It helps manage and…
+<!-- desc(5A0113B34292)[max=175]:blog/2025/03/01/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -359,7 +397,7 @@ Guorui Zhong
 <a href="./blog/2024/06/05/index.html" class="no-external">Parallel Processing in R</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2024/06/05/index.html" class="no-external">
-Parallel processing is a powerful technique to speed up computations by utilizing multiple CPU cores simultaneously. In R, several functions and packages enable parallel…<code></code><code></code><code></code>
+<!-- desc(5A0113B34292)[max=175]:blog/2024/06/05/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -409,7 +447,7 @@ Guorui Zhong
 <a href="./blog/2024/04/18/index.html" class="no-external">Multiplex image-based phenotypic data analysis</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2024/04/18/index.html" class="no-external">
-IMC example data is from here
+<!-- desc(5A0113B34292)[max=175]:blog/2024/04/18/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -426,7 +464,7 @@ Guorui Zhong
 <div class="quarto-post image-right" data-index="8" data-categories="c2V1cmF0JTJDc2NybmE=" data-listing-date-sort="1710691200000" data-listing-file-modified-sort="1737879715000" data-listing-date-modified-sort="1737879715000" data-listing-reading-time-sort="13" data-listing-word-count-sort="2512">
 <div class="thumbnail"><a href="./blog/2024/03/01/index.html" class="no-external">
 
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:blog/2024/03/01/index.html -->
 
 </a></div>
 <div class="body">
@@ -434,7 +472,7 @@ Guorui Zhong
 <a href="./blog/2024/03/01/index.html" class="no-external">Seurat V5 | 10X course example</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2024/03/01/index.html" class="no-external">
-Seurat Example
+<!-- desc(5A0113B34292)[max=175]:blog/2024/03/01/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -484,7 +522,7 @@ Guorui Zhong
 <a href="./blog/2024/03/13/index.html" class="no-external">SingleCellExperiment | Practise Single-cell RNA-seq data analysis</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2024/03/13/index.html" class="no-external">
-All the contents are credited or adapted from Orchestrating Single-Cell Analysis with Bioconductor for leaning purpose.
+<!-- desc(5A0113B34292)[max=175]:blog/2024/03/13/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -509,7 +547,7 @@ Guorui Zhong
 <a href="./blog/2023/12/08/index.html" class="no-external">Pseudobulk differential expression analysis</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/12/08/index.html" class="no-external">
-Pseudobulk differential expression analysis is a method used to analyze single-cell RNA-seq data by aggregating counts at the sample level. This approach helps to reduce the…
+<!-- desc(5A0113B34292)[max=175]:blog/2023/12/08/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -734,7 +772,7 @@ Guorui Zhong
 <a href="./blog/2023/11/03/index.html" class="no-external">Best Practise for R programming</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/11/03/index.html" class="no-external">
-Writing clean, efficient, and maintainable code is crucial for any programming language, and R is no exception. In this blog post, we will discuss best practices for R…
+<!-- desc(5A0113B34292)[max=175]:blog/2023/11/03/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -759,7 +797,7 @@ Guorui Zhong
 <a href="./blog/2023/10/01/index.html" class="no-external">General understanding of scRNA-seq data analysis</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/10/01/index.html" class="no-external">
-Typical workflows including:
+<!-- desc(5A0113B34292)[max=175]:blog/2023/10/01/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -859,7 +897,7 @@ Guorui Zhong
 <a href="./blog/2023/08/08/index.html" class="no-external">Using renv to manage R environment for reproducible coding</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/08/08/index.html" class="no-external">
-R works by defaultly by installing packages to a central library and shares them between the projects. It sounds like a good and time-saving feature. After all, you don’t…
+<!-- desc(5A0113B34292)[max=175]:blog/2023/08/08/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -909,7 +947,7 @@ Guorui Zhong
 <a href="./blog/2023/07/05/index.html" class="no-external">Learning [ropls] for multivariate analysis and feature selection of omics data</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/07/05/index.html" class="no-external">
-PCA (also called eigenvector analysis) is unsupervised pattern recognition technique mostly utilized as data reduction and modelling technique. It determines the degree or…
+<!-- desc(5A0113B34292)[max=175]:blog/2023/07/05/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -934,7 +972,7 @@ Guorui Zhong
 <a href="./blog/2023/07/04/index.html" class="no-external">Analyze Omics data using [structToolbox]</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/07/04/index.html" class="no-external">
-The MTBLS79 dataset represents a systematic evaluation of the reproducibility of a multi-batch direct-infusion mass spectrometry (DIMS)-based metabolomics study of cardiac…
+<!-- desc(5A0113B34292)[max=175]:blog/2023/07/04/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -959,7 +997,7 @@ Guorui Zhong
 <a href="./blog/2023/06/08/index.html" class="no-external">Regular expression with R</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/06/08/index.html" class="no-external">
-Regular expressions are also called regex or regexp. A regex is a text string that defines a search pattern. Regex can be used to manipulate and extract information from…
+<!-- desc(5A0113B34292)[max=175]:blog/2023/06/08/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -1001,7 +1039,7 @@ Guorui Zhong
 <div class="quarto-post image-right" data-index="31" data-categories="cGxzZGElMkNzdXBlcnZpc2Vk" data-listing-date-sort="1685203200000" data-listing-file-modified-sort="1694160547000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="45">
 <div class="thumbnail"><a href="./blog/2023/06/07/index.html" class="no-external">
 
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+<!-- img(9CEB782EFEE6)[progressive=true, height=]:listing:blog/2023/06/07/index.html -->
 
 </a></div>
 <div class="body">
@@ -1009,7 +1047,7 @@ Guorui Zhong
 <a href="./blog/2023/06/07/index.html" class="no-external">PCA, PLS-DA and OPLS-DA analysis using [ropls]</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/06/07/index.html" class="no-external">
-
+<!-- desc(5A0113B34292)[max=175]:blog/2023/06/07/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -1159,7 +1197,7 @@ Guorui Zhong
 <a href="./blog/2023/03/31/index.html" class="no-external">Add p-value and significant level at facet boxplot</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/03/31/index.html" class="no-external">
-How to compute and add p-values to basic ggplots using the rstatix and the ggpubr R packages.
+<!-- desc(5A0113B34292)[max=175]:blog/2023/03/31/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -1184,7 +1222,7 @@ Guorui Zhong
 <a href="./blog/2023/03/30/index.html" class="no-external">Add p-values onto basic barplot or boxplot</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/03/30/index.html" class="no-external">
-How to compute and add p-values to basic ggplots using the rstatix and the ggpubr R packages.
+<!-- desc(5A0113B34292)[max=175]:blog/2023/03/30/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -1209,7 +1247,7 @@ Guorui Zhong
 <a href="./blog/2023/03/11/index.html" class="no-external">Barplot with negative and positive value</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/03/11/index.html" class="no-external">
-Coloring Negative and Positive Bars Differently using ggplot2
+<!-- desc(5A0113B34292)[max=175]:blog/2023/03/11/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -1234,7 +1272,7 @@ Guorui Zhong
 <a href="./blog/2023/03/08/index.html" class="no-external">Ridgeline plots in ggplot2</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/03/08/index.html" class="no-external">
-Visualizing changes in distributions over time or space nicely usning ggrigges.
+<!-- desc(5A0113B34292)[max=175]:blog/2023/03/08/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -1259,7 +1297,7 @@ Guorui Zhong
 <a href="./blog/2023/03/01/index.html" class="no-external">Equalizing Bar Widths</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/03/01/index.html" class="no-external">
-Make the widths of bars to be same when the level of subgroups are not equal
+<!-- desc(5A0113B34292)[max=175]:blog/2023/03/01/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -1284,7 +1322,7 @@ Guorui Zhong
 <a href="./blog/2023/03/06/index.html" class="no-external">ggplot2 with p-value and significant level</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/03/06/index.html" class="no-external">
-A sample example to add p-value and significant level to barpot.
+<!-- desc(5A0113B34292)[max=175]:blog/2023/03/06/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -1309,7 +1347,7 @@ Guorui Zhong
 <a href="./blog/2023/03/05/index.html" class="no-external">Scatter plot with ggplot2</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2023/03/05/index.html" class="no-external">
-Make a nice scatter plot
+<!-- desc(5A0113B34292)[max=175]:blog/2023/03/05/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -1384,7 +1422,7 @@ Guorui Zhong
 <a href="./blog/2022/02/01/index.html" class="no-external">Add errorbar and p-value on barplot with ggsignif</a>
 </h3>
 <div class="delink listing-description"><a href="./blog/2022/02/01/index.html" class="no-external">
-Creating informative and visually appealing barplots is essential for data analysis and presentation. In this blog post, we will demonstrate how to add error bars and…<code></code>
+<!-- desc(5A0113B34292)[max=175]:blog/2022/02/01/index.html -->
 </a></div>
 </div>
 <div class="metadata">
@@ -1428,7 +1466,7 @@ Guorui Zhong
 <nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
   <ul class="pagination"></ul>
 </nav>
-</div></main> <!-- /main -->
+</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1499,6 +1537,57 @@ Guorui Zhong
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1828,7 +1917,23 @@ Guorui Zhong
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Guorui Zhong's blog"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">search:</span><span class="co"> false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">listing:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  sort: "date desc"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  feed: </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    title: "Guorui Zhong's blog"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    description: "Guorui Zhong's blog"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    items: 40</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    type: full</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    language: en</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">  contents:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    - "blog/**/index.qmd"</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    - "!blog/index.qmd"</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -1847,4 +1952,5 @@ Guorui Zhong
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

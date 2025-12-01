@@ -20,6 +20,7 @@ format:
 ## Command
 
 [explainshell.com](https://explainshell.com/) - Lean fancy shell commands by breaking them down into individual components and providing explanations for each part.
+
 [Linux shell for beginners](https://bioinformatics.mdc-berlin.de/intro2UnixandSGE/unix_for_beginners/README.html) - A comprehensive guide for beginners to learn Linux shell commands and concepts.
 
 ```bash
@@ -157,7 +158,7 @@ rsync -av --update /source/folder/ /destination/folder/
 ```
 
 :::{.callout-note}
-- `-archive`: Preserves permissions, timestamps, symbolic links, etc.
+- `--archive`: Preserves permissions, timestamps, symbolic links, etc.
 - `--verbose`: Shows progress
 - `--delete`: Removes files in destination that don't exist in source
 - `--dry-run`: Preview changes without actually syncing

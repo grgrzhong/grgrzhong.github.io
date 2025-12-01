@@ -73,10 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-1b3db88def35042d172274863c1cdcf0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-6a40b608aec917e9f37b11a5a2bc5f9d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-a59be64ae26c4866fb77368000ae33d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -105,6 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <style>
 
       .quarto-title-block .quarto-title-banner {
@@ -171,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Workflow | Containers for Reproducible Bioinformatics Environments</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Workflow | Containers for Reproducible Bioinformatics Environments</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
                   <div>
         <div class="description">
           How to integrate Docker &amp; Singularity/Apptainer containers into Snakemake and Nextflow for reproducible, traceable bioinformatics workflows.
@@ -909,9 +910,11 @@ Tip
 </ul>
 
 
+<!-- -->
+
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -982,6 +985,57 @@ Tip
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1311,7 +1365,230 @@ Tip
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Workflow | Containers for Reproducible Bioinformatics Environments"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2025-09-19"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> nextflow-story.png</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Nextflow, Snakemake]</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "How to integrate Docker &amp; Singularity/Apptainer containers into Snakemake and Nextflow for reproducible, traceable bioinformatics workflows." </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: false</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Motivation</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>You have a container image for your RNA-seq toolkit—great. But repeatable end-to-end science requires orchestrating many containerized tools, handling digests, passing resources, and capturing provenance. Workflow managers (Snakemake, Nextflow) + containers = layered reproducibility: data → parameters → code → image digests → reference assets.</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>A single well-structured workflow run can become your provenance record: input checksums, container digests, parameter files, and software manifests.</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducibility Stack</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Layer <span class="pp">|</span> Example Artifacts <span class="pp">|</span> Why It Matters <span class="pp">|</span> Failure Mode If Missing <span class="pp">|</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|-------------------|----------------|-------------------------|</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Data integrity <span class="pp">|</span> FASTQ MD5, BAM CRAM headers <span class="pp">|</span> Detect silent corruption <span class="pp">|</span> Downstream QC anomalies <span class="pp">|</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Parameters <span class="pp">|</span> config.yaml / nextflow.config <span class="pp">|</span> Freeze analysis intent <span class="pp">|</span> Ambiguous reruns <span class="pp">|</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Workflow logic <span class="pp">|</span> Snakefile / main.nf commit hash <span class="pp">|</span> Versioned orchestration <span class="pp">|</span> Divergent code paths <span class="pp">|</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tool environments <span class="pp">|</span> Image digest <span class="in">`sha256:...`</span> <span class="pp">|</span> Immutable execution state <span class="pp">|</span> Drift via retagged images <span class="pp">|</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reference assets <span class="pp">|</span> Genome build version, annotation GTF checksum <span class="pp">|</span> Interpretability &amp; comparability <span class="pp">|</span> Misaligned coordinates <span class="pp">|</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Runtime metadata <span class="pp">|</span> Resource usage, seeds, random states <span class="pp">|</span> Debug &amp; reproducibility <span class="pp">|</span> Non-deterministic outputs <span class="pp">|</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Snakemake Container Patterns</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pattern <span class="pp">|</span> Syntax <span class="pp">|</span> Use Case <span class="pp">|</span> Pros <span class="pp">|</span> Cons <span class="pp">|</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|--------|---------|------|------|</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rule-level container <span class="pp">|</span> <span class="in">`container: "docker://org/tool:1.0"`</span> <span class="pp">|</span> Different tools per rule <span class="pp">|</span> Granular control <span class="pp">|</span> Repetition if many rules share same image <span class="pp">|</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Global default <span class="pp">|</span> <span class="in">`--use-singularity --singularity-prefix`</span> <span class="pp">|</span> Homogeneous tool stack <span class="pp">|</span> Simple invocation <span class="pp">|</span> Harder if mixed languages <span class="pp">|</span> </span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Per-env conda + fallback container <span class="pp">|</span> <span class="in">`conda:`</span> + <span class="in">`container:`</span> (choose one) <span class="pp">|</span> Transitional migrations <span class="pp">|</span> Flexibility <span class="pp">|</span> Dual maintenance <span class="pp">|</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Digest pinning <span class="pp">|</span> <span class="in">`container: "docker://org/tool@sha256:..."`</span> <span class="pp">|</span> Long-term reproducibility <span class="pp">|</span> Immutable <span class="pp">|</span> Need to refresh manually <span class="pp">|</span> </span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Local SIF caching <span class="pp">|</span> Pre-build images under <span class="in">`.snakemake/`</span> <span class="pp">|</span> HPC speed <span class="pp">|</span> Fast startup <span class="pp">|</span> Storage overhead <span class="pp">|</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>Example rule (digest pinned):</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>rule fastqc:</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  <span class="bu">input</span>: <span class="st">"data/</span><span class="sc">{s}</span><span class="st">.fq.gz"</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>  output: <span class="st">"qc/</span><span class="sc">{s}</span><span class="st">_fastqc.html"</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>  container: <span class="st">"docker://rnaseq/fastqc@sha256:6ab3..."</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>  threads: <span class="dv">2</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>  shell: <span class="st">"fastqc </span><span class="sc">{input}</span><span class="st"> -o qc"</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Singularity Flags via CLI</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">--cores</span> 16 <span class="dt">\</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">--use-singularity</span> <span class="dt">\</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">--singularity-args</span> <span class="st">"--bind /scratch:/scratch,/ref/genomes:/ref"</span> <span class="dt">\</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">--cache</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`--cache`</span> to avoid repeated pulls/build conversions across runs; pair with a cleanup policy for long-lived clusters.</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Nextflow Container Patterns</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pattern <span class="pp">|</span> Syntax <span class="pp">|</span> Use Case <span class="pp">|</span> Pros <span class="pp">|</span> Cons <span class="pp">|</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|--------|----------|------|------|</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Process-level container <span class="pp">|</span> <span class="in">`container 'org/tool:1.0'`</span> <span class="pp">|</span> Heterogeneous pipeline <span class="pp">|</span> Clear per-process <span class="pp">|</span> Verbose with many processes <span class="pp">|</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Global container <span class="pp">|</span> <span class="in">`process.container = 'org/core:base'`</span> <span class="pp">|</span> Mostly uniform tools <span class="pp">|</span> Minimal config <span class="pp">|</span> Overrides needed for special cases <span class="pp">|</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Multi-engine support <span class="pp">|</span> <span class="in">`docker.enabled`</span>, <span class="in">`singularity.enabled`</span> <span class="pp">|</span> Portability <span class="pp">|</span> Single config file toggles <span class="pp">|</span> Some features engine-specific <span class="pp">|</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Profile-based <span class="pp">|</span> <span class="in">`-profile docker`</span> / <span class="in">`-profile singularity`</span> <span class="pp">|</span> Environment switching <span class="pp">|</span> Clean separation <span class="pp">|</span> Must maintain profiles <span class="pp">|</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Digest pinning <span class="pp">|</span> <span class="in">`container 'org/tool@sha256:...'`</span> <span class="pp">|</span> Archival runs <span class="pp">|</span> Immutable <span class="pp">|</span> Harder human reading <span class="pp">|</span></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>Example process with resource &amp; container:</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="in">```groovy</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="in">process QC_FASTQC {</span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="in">  tag "${sample}"</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="in">  cpus 2</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="in">  memory '2 GB'</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="in">  container 'rnaseq/fastqc:1.0'</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="in">  input:</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="in">    path sample</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a><span class="in">  output:</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a><span class="in">    path 'qc'</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a><span class="in">  script:</span></span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="in">  """</span></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a><span class="in">  fastqc $sample -o qc</span></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a><span class="in">  """</span></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a><span class="fu">### Profile Snippet (`nextflow.config`)</span></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a><span class="in">```groovy</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a><span class="in">profiles {</span></span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a><span class="in">  docker {</span></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a><span class="in">    docker.enabled = true</span></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a><span class="in">    singularity.enabled = false</span></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a><span class="in">  singularity {</span></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a><span class="in">    docker.enabled = false</span></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a><span class="in">    singularity.enabled = true</span></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a><span class="in">    singularity.cacheDir = "$baseDir/.nf-sif"</span></span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Snakemake vs Nextflow (Container Handling)</span></span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aspect <span class="pp">|</span> Snakemake <span class="pp">|</span> Nextflow <span class="pp">|</span> Comment <span class="pp">|</span></span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|-----------|----------|---------|</span></span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Declarative granularity <span class="pp">|</span> Rule-level <span class="pp">|</span> Process-level <span class="pp">|</span> Roughly analogous <span class="pp">|</span></span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mixed engines (Docker/Singularity) <span class="pp">|</span> CLI flags switch <span class="pp">|</span> Profiles / auto-detect <span class="pp">|</span> Profiles add clarity <span class="pp">|</span></span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Built-in conda integration <span class="pp">|</span> Strong <span class="pp">|</span> External (via <span class="in">`conda`</span> directive plugin in newer versions) <span class="pp">|</span> Snakemake historically stronger <span class="pp">|</span></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Digest pinning ergonomics <span class="pp">|</span> Explicit string <span class="pp">|</span> Same <span class="pp">|</span> Equivalent <span class="pp">|</span></span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Caching singularity images <span class="pp">|</span> <span class="in">`--cache`</span> flag <span class="pp">|</span> <span class="in">`singularity.cacheDir`</span> <span class="pp">|</span> Both good <span class="pp">|</span></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Resource binding <span class="pp">|</span> <span class="in">`--singularity-args`</span> manual <span class="pp">|</span> Configurable directives <span class="pp">|</span> Nextflow slightly cleaner <span class="pp">|</span></span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Parameterization <span class="pp">|</span> Pythonic config dict <span class="pp">|</span> Groovy DSL / params.* <span class="pp">|</span> Style preference <span class="pp">|</span></span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Provenance report <span class="pp">|</span> <span class="in">`--report`</span> + <span class="in">`--summary`</span> <span class="pp">|</span> <span class="in">`timeline`</span>, <span class="in">`trace`</span>, <span class="in">`report.html`</span> <span class="pp">|</span> Nextflow has richer HTML bundle <span class="pp">|</span></span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Version &amp; Provenance Capture</span></span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Artifact <span class="pp">|</span> Snakemake Approach <span class="pp">|</span> Nextflow Approach <span class="pp">|</span></span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|--------------------|-------------------|</span></span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Container digests <span class="pp">|</span> <span class="in">`snakemake --list-packages`</span> (planned) or manual script parsing <span class="pp">|</span> <span class="in">`nextflow log`</span> + <span class="in">`trace`</span> <span class="pp">|</span> Supplement with custom script <span class="pp">|</span></span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Software versions <span class="pp">|</span> <span class="in">`rule`</span> outputs a VERSIONS file per rule <span class="pp">|</span> <span class="in">`collect`</span> channel or work dir scanning <span class="pp">|</span> Standardize on one manifest <span class="pp">|</span></span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Config snapshot <span class="pp">|</span> Commit <span class="in">`config.yaml`</span> <span class="pp">|</span> Auto include <span class="in">`nextflow.config`</span> in repo <span class="pp">|</span> Commit hash in both <span class="pp">|</span></span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Parameter freeze <span class="pp">|</span> Export rendered config <span class="pp">|</span> <span class="in">`-params-file params.json`</span> <span class="pp">|</span> Keep params file in results <span class="pp">|</span></span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a><span class="fu">### Simple Manifest Emitter (Snakemake)</span></span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>rule versions:</span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a>  output: <span class="st">"VERSIONS.txt"</span></span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>  run:</span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> subprocess</span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>    tools <span class="op">=</span> {<span class="st">"fastqc"</span>: <span class="st">"fastqc --version"</span> , <span class="st">"samtools"</span>: <span class="st">"samtools --version | head -1"</span>}</span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(output[<span class="dv">0</span>], <span class="st">'w'</span>) <span class="im">as</span> fh:</span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> name, cmd <span class="kw">in</span> tools.items():</span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>            out <span class="op">=</span> subprocess.getoutput(cmd)</span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>            fh.write(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ch">\t</span><span class="sc">{</span>out<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a><span class="fu">## Caching &amp; Performance</span></span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concern <span class="pp">|</span> Snakemake <span class="pp">|</span> Nextflow <span class="pp">|</span> Mitigation <span class="pp">|</span></span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|-----------|----------|------------|</span></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cold image pulls <span class="pp">|</span> Each first-run <span class="pp">|</span> Each first-run <span class="pp">|</span> Pre-pull via warmup job <span class="pp">|</span></span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Conversion overhead (Docker→SIF) <span class="pp">|</span> At first need <span class="pp">|</span> At first need <span class="pp">|</span> Long-lived cache directories <span class="pp">|</span></span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Many small processes <span class="pp">|</span> Startup overhead <span class="pp">|</span> Similar <span class="pp">|</span> Batch tasks or fuse steps <span class="pp">|</span></span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Large reference binds <span class="pp">|</span> Manual <span class="in">`--singularity-args`</span> <span class="pp">|</span> Automatic with <span class="in">`params.ref`</span> mapping <span class="pp">|</span> Use centralized <span class="in">`REF_BASE`</span> variable <span class="pp">|</span></span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Patterns for Tool Tag Parameterization</span></span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pattern <span class="pp">|</span> Example Snakemake <span class="pp">|</span> Example Nextflow <span class="pp">|</span> Benefit <span class="pp">|</span></span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|-------------------|------------------|---------|</span></span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Global dict <span class="pp">|</span> <span class="in">`TOOLS = {"fastqc": "org/fastqc:1.0"}`</span> <span class="pp">|</span> <span class="in">`params.images.fastqc = 'org/fastqc:1.0'`</span> <span class="pp">|</span> Central control <span class="pp">|</span></span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> YAML config <span class="pp">|</span> <span class="in">`config["containers"]["fastqc"]`</span> <span class="pp">|</span> <span class="in">`params.images.fastqc`</span> loaded from JSON <span class="pp">|</span> Editable without code changes <span class="pp">|</span></span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Digest lockfile <span class="pp">|</span> <span class="in">`containers.lock`</span> mapping tool→digest <span class="pp">|</span> Same JSON <span class="pp">|</span> Immutable mapping for archival <span class="pp">|</span></span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Matrix testing <span class="pp">|</span> Loop over versions list <span class="pp">|</span> Channel of tags <span class="pp">|</span> Benchmark tool versions <span class="pp">|</span></span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a><span class="fu">## Failure Scenarios (Debug Table)</span></span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Symptom <span class="pp">|</span> Likely Cause <span class="pp">|</span> Diagnosis <span class="pp">|</span> Fix <span class="pp">|</span></span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|--------------|----------|-----|</span></span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tool not found in container <span class="pp">|</span> PATH unset, wrong image <span class="pp">|</span> <span class="in">`docker run image which tool`</span> <span class="pp">|</span> Rebuild image, set PATH <span class="pp">|</span></span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Different results on rerun <span class="pp">|</span> Floating deps unpinned <span class="pp">|</span> Compare old digest <span class="pp">|</span> Pin versions / use digest <span class="pp">|</span></span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Slow start each job <span class="pp">|</span> Repeated image conversion <span class="pp">|</span> Check singularity cache size <span class="pp">|</span> Pre-build SIF, enlarge cache <span class="pp">|</span></span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Permission denied writing output <span class="pp">|</span> Running as non-writable UID <span class="pp">|</span> Check mount perms <span class="pp">|</span> Adjust bind path or user mapping <span class="pp">|</span></span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Exceeds memory silently <span class="pp">|</span> No enforcement in container <span class="pp">|</span> Workflow trace usage <span class="pp">|</span> Set <span class="in">`resources`</span> / <span class="in">`memory`</span> properly <span class="pp">|</span></span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Random crash on HPC nodes only <span class="pp">|</span> Missing host libs (GPU/MPI) <span class="pp">|</span> <span class="in">`ldd`</span> inside container <span class="pp">|</span> Bind host drivers or rebuild base <span class="pp">|</span></span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hybrid Strategy (Modules + Containers)</span></span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>Sometimes you only containerize “volatile” tools (fast-evolving bioinformatics programs) while relying on stable module-provided compilers or MPI. Example: Use host <span class="in">`module load cuda/12`</span> then run a minimal container with just Python libs, binding <span class="in">`/usr/local/cuda`</span> inside.</span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>Avoid double-toolchains: mixing host GCC + container-built libs can produce subtle ABI issues. Keep boundaries clean.</span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a><span class="fu">## End-to-End Mini Example</span></span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a><span class="fu">### Directory Layout</span></span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a><span class="in">workflow/</span></span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a><span class="in">  Snakefile</span></span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a><span class="in">  config.yaml</span></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a><span class="in">  containers.lock</span></span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a><span class="in">  data/readsA.fq.gz</span></span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a><span class="fu">### `config.yaml`</span></span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a><span class="in">```yaml</span></span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fastqc</span><span class="kw">:</span><span class="at"> docker://rnaseq/fastqc@sha256:6ab3...</span></span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">align</span><span class="kw">:</span><span class="at"> docker://rnaseq/hisat2@sha256:aa91...</span></span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a><span class="fu">### Snakemake snippet</span></span>
+<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a>CONFIG <span class="op">=</span> yaml.safe_load(<span class="bu">open</span>(<span class="st">"config.yaml"</span>))</span>
+<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a>rule <span class="bu">all</span>:</span>
+<span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a>  <span class="bu">input</span>: expand(<span class="st">"qc/</span><span class="sc">{s}</span><span class="st">_fastqc.html"</span>, s<span class="op">=</span>[<span class="st">"readsA"</span>])</span>
+<span id="cb9-191"><a href="#cb9-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-192"><a href="#cb9-192" aria-hidden="true" tabindex="-1"></a>rule fastqc:</span>
+<span id="cb9-193"><a href="#cb9-193" aria-hidden="true" tabindex="-1"></a>  <span class="bu">input</span>: <span class="st">"data/</span><span class="sc">{s}</span><span class="st">.fq.gz"</span></span>
+<span id="cb9-194"><a href="#cb9-194" aria-hidden="true" tabindex="-1"></a>  output: <span class="st">"qc/</span><span class="sc">{s}</span><span class="st">_fastqc.html"</span></span>
+<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a>  container: CONFIG[<span class="st">"containers"</span>][<span class="st">"fastqc"</span>]</span>
+<span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a>  shell: <span class="st">"fastqc </span><span class="sc">{input}</span><span class="st"> -o qc"</span></span>
+<span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision Cheat Sheet (Summary Table)</span></span>
+<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Scenario <span class="pp">|</span> Preferred Workflow <span class="pp">|</span> Container Engine <span class="pp">|</span> Key Option <span class="pp">|</span> Rationale <span class="pp">|</span></span>
+<span id="cb9-201"><a href="#cb9-201" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|--------------------|------------------|------------|-----------|</span></span>
+<span id="cb9-202"><a href="#cb9-202" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Heterogeneous tools, Python heavy <span class="pp">|</span> Snakemake <span class="pp">|</span> Docker dev → Singularity prod <span class="pp">|</span> <span class="in">`--use-singularity`</span> <span class="pp">|</span> Smooth conda fallback <span class="pp">|</span></span>
+<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mixed cloud + HPC <span class="pp">|</span> Nextflow <span class="pp">|</span> Docker + Singularity <span class="pp">|</span> Profiles <span class="pp">|</span> Transparent cross-platform <span class="pp">|</span></span>
+<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GPU alignment tasks <span class="pp">|</span> Nextflow <span class="pp">|</span> Docker (build) + Singularity (run) <span class="pp">|</span> <span class="in">`singularity.enabled`</span> <span class="pp">|</span> Resource profiles cleaner <span class="pp">|</span></span>
+<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Archival publication run <span class="pp">|</span> Either <span class="pp">|</span> Digest-pinned images <span class="pp">|</span> Digest references <span class="pp">|</span> Exact immutability <span class="pp">|</span></span>
+<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rapid prototyping <span class="pp">|</span> Snakemake <span class="pp">|</span> Docker <span class="pp">|</span> Local caching <span class="pp">|</span> Lower config overhead <span class="pp">|</span></span>
+<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Massive parallel scatter (&gt;10k tasks) <span class="pp">|</span> Nextflow <span class="pp">|</span> Singularity <span class="pp">|</span> Cache dir tuning <span class="pp">|</span> Process orchestration scaling <span class="pp">|</span></span>
+<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary</span></span>
+<span id="cb9-210"><a href="#cb9-210" aria-hidden="true" tabindex="-1"></a>Combining workflow engines with containers elevates reproducibility from “tool runs on my machine” to “pipeline is a portable scientific object.” Success hinges on disciplined version pinning, digest usage, provenance manifests, and calibrated caching strategies.</span>
+<span id="cb9-211"><a href="#cb9-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a>Add a CI job that attempts a dry-run with <span class="in">`--use-singularity`</span> or profile <span class="in">`singularity`</span> to detect broken digests early.</span>
+<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-215"><a href="#cb9-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-216"><a href="#cb9-216" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb9-217"><a href="#cb9-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Snakemake docs: https://snakemake.readthedocs.io/</span>
+<span id="cb9-218"><a href="#cb9-218" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Nextflow docs: https://www.nextflow.io/docs/latest/</span>
+<span id="cb9-219"><a href="#cb9-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Apptainer: https://apptainer.org/</span>
+<span id="cb9-220"><a href="#cb9-220" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>OCI image spec: https://github.com/opencontainers/image-spec</span>
+<span id="cb9-221"><a href="#cb9-221" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>BioContainers: https://biocontainers.pro/</span>
+<span id="cb9-222"><a href="#cb9-222" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Singularity caching tips: https://docs.sylabs.io/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -1330,4 +1607,5 @@ Tip
 
 
 
+<script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

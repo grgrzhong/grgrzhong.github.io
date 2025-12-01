@@ -1,7 +1,15 @@
 project:
   type: website
-  execute-dir: project
+  
+  preview: 
+    port: 5555
+    browser: true
+    watch-inputs: true
+    navigate: true
+
   output-dir: docs
+  execute-dir: project
+
   render:
     - "*.qmd"
     - "*.md"
@@ -28,6 +36,8 @@ website:
     type: overlay
   site-url: "https://grgrzhong.github.io/"
   repo-url: "https://github.com/grgrzhong/quarto"
+  back-to-top-navigation: true
+  page-navigation: true
   navbar:
     pinned: true
     left:
@@ -69,23 +79,38 @@ website:
     center: |
       <span class="faux-block">{{< fa brands creative-commons >}} 2021-2026 Guorui Zhong ~ Made with [{{< fa brands r-project >}}](https://www.r-project.org/), [{{< fa brands python >}}](https://www.python.org/) and [Quarto](https://quarto.org/)</span>
 
+execute:
+  freeze: auto
+  cache: true
+  eval: true
+  warning: false
+  error: false
+  message: false
+  echo: true
+
 format:
   html:
     theme:
       - html/me.scss
+    grid:
+      body-width: 900px
     toc: true
     toc-depth: 3
     toc-location: left
-    number-sections: true
+    number-sections: false
     number-depth: 3
     code-link: true
     anchor-sections: true
     fig-cap-location: margin
     reference-location: margin
     footnotes-hover: true
-    highlight-style: github-dark
+    smooth-scroll: true
+    code-tools:
+      source: true
+      toggle: true
+    # highlight-style: github-dark
     # highlight-style: dracula
-    # highlight-style: monokai
+    highlight-style: monokai
 
 # bibliography: files/bib/references.bib
 # csl: files/bib/chicago-author-date.csl
@@ -94,6 +119,3 @@ format:
 # pagetitle: "{{< meta title >}} | {{< meta website.title >}}"
 # description-meta: "{{< meta description >}}"
 # author-meta: "Guorui Zhong"
-jupyter: python3
-execute:
-  freeze: auto

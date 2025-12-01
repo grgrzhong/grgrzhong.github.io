@@ -18,7 +18,7 @@ execute:
 
 **Master your workflow with essential keyboard shortcuts across popular development tools and applications.**
 
-# VSCode
+## VSCode
 
 ::: {.callout-tip}
 ### Pro Tip
@@ -97,10 +97,10 @@ VSCode has excellent keyboard shortcut customization. Press `Cmd/Ctrl + K Cmd/Ct
 
 ---
 
-# Shell
+## Shell
 
 ::: {.callout-note}
-## 📖 About Terminal Shortcuts
+### 📖 About Terminal Shortcuts
 These shortcuts work in most Unix-like terminals including Terminal.app on macOS, GNOME Terminal, and Windows Terminal with WSL.
 :::
 
@@ -170,7 +170,7 @@ These shortcuts work in most Unix-like terminals including Terminal.app on macOS
 
 ---
 
-# Vim
+## Vim
 
 ::: {.callout-important}
 ### ⚠️ Vim Modal Editor
@@ -269,7 +269,7 @@ Vim is a modal editor. Remember to press `Esc` to return to Normal mode before u
 
 ---
 
-# Tmux
+## Tmux
 
 ### Tmux Configuration
 Consider adding these aliases to your shell configuration for quick tmux access.
@@ -335,7 +335,7 @@ bind-key C-a send-prefix
 
 ---
 
-# Screen
+## Screen
 
 ::: {.callout-tip}
 ### 💡 Screen Aliases

@@ -22,6 +22,7 @@ r-languageserver = ">=0.3.16,<0.4"
 r-httpgd = ">=2.0.4,<3"
 r-markdown = ">=2.0,<3"
 python = ">=3.14.0,<3.15"
+r-reticulate = ">=1.44.1,<2"
 
 [feature.test.dependencies]
 pytest = "*"
