@@ -297,7 +297,7 @@ suppressPackageStartupMessages(
 ::: {.panel-tabset group="language"}
 
 #### R
-```{r}
+```{.r}
 if(TRUE) {
     print("This is R")
     if(TRUE) {
@@ -306,7 +306,7 @@ if(TRUE) {
 }
 ```
 #### Python
-```{python}
+```{.python}
 ## Python accepts tabs or spaces, but spaces are preferred
 if True:
     print("This is Python")
@@ -332,7 +332,7 @@ if True:
 
 #### R
 
-```{r}
+```{.r}
 ## R contains a native data frame
 r_df <- data.frame(
     Name = c("Alice", "Bob", "Charlie"),
@@ -343,7 +343,7 @@ print(r_df)
 ```
 #### Python
 
-```{python}
+```{.python}
 ## Python's dataframe comes form the pandas library
 import pandas as pd
 
