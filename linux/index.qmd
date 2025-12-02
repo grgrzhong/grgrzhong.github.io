@@ -348,3 +348,9 @@ conda activate new_env_name
 conda remove --name old_env_name --all
 ```
 
+## Pixi
+
+```bash
+## Auto-activate pixi when entering project directory
+eval "$(pixi completion --shell bash)"  # or zsh
+```

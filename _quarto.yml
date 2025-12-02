@@ -86,6 +86,7 @@ execute:
   error: false # Suppress errors in output
   message: false # Suppress messages in output
   echo: true # Show code in output
+  include: true # Include code output in output
 
 format:
   html:
@@ -95,10 +96,15 @@ format:
       body-width: 900px
     toc: true
     toc-depth: 3
+    toc_float: true
     toc-location: left
     number-sections: false
     number-depth: 3
     code-link: true
+    code-fold: false # true to enable code folding
+    code-overflow: wrap # scroll/wrap 
+    code-line-numbers: false
+    df-print: default # default/kable/tibble/paged for data frame printing
     anchor-sections: true
     fig-cap-location: margin
     reference-location: margin
