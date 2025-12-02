@@ -326,8 +326,6 @@ if True:
     + `set`: unordered, mutable, no duplicate elements
     + `dict`: unordered, mutable, key-value pairs
 
-
-
 ### Data frame
 
 ::: {.panel-tabset group="language"}
