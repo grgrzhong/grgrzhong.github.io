@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2023-01-01">
 
-<title>Keyboard Shortcuts Reference – Guorui Zhong</title>
+<title>Visual Studio Code Comprehensive Guide – Guorui Zhong</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../keyboard/index.html" aria-current="page"> 
-<span class="menu-text">Keyboard</span></a>
+<span class="menu-text">VSCode</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -177,8 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">Keyboard Shortcuts Reference</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-            <p class="subtitle lead">A comprehensive guide to essential keyboard shortcuts</p>
+      <div class="quarto-title-block"><div><h1 class="title">Visual Studio Code Comprehensive Guide</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
                       </div>
   </div>
     
@@ -196,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">December 1, 2025</p>
+        <p class="date-modified">December 4, 2025</p>
       </div>
     </div>
       
@@ -207,50 +206,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#vscode" id="toc-vscode" class="nav-link active" data-scroll-target="#vscode">VSCode</a>
-  <ul class="collapse">
-  <li><a href="#general-commands" id="toc-general-commands" class="nav-link" data-scroll-target="#general-commands">General Commands</a></li>
+  <li><a href="#general-commands" id="toc-general-commands" class="nav-link active" data-scroll-target="#general-commands">General Commands</a></li>
   <li><a href="#terminal-management" id="toc-terminal-management" class="nav-link" data-scroll-target="#terminal-management">Terminal Management</a></li>
   <li><a href="#editor-management" id="toc-editor-management" class="nav-link" data-scroll-target="#editor-management">Editor Management</a></li>
   <li><a href="#text-manipulation" id="toc-text-manipulation" class="nav-link" data-scroll-target="#text-manipulation">Text Manipulation</a></li>
   <li><a href="#navigation-search" id="toc-navigation-search" class="nav-link" data-scroll-target="#navigation-search">Navigation &amp; Search</a></li>
   <li><a href="#code-formatting" id="toc-code-formatting" class="nav-link" data-scroll-target="#code-formatting">Code Formatting</a></li>
-  </ul></li>
-  <li><a href="#shell" id="toc-shell" class="nav-link" data-scroll-target="#shell">Shell</a>
-  <ul class="collapse">
-  <li><a href="#cursor-movement" id="toc-cursor-movement" class="nav-link" data-scroll-target="#cursor-movement">Cursor Movement</a></li>
-  <li><a href="#text-editing" id="toc-text-editing" class="nav-link" data-scroll-target="#text-editing">Text Editing</a></li>
-  <li><a href="#process-management" id="toc-process-management" class="nav-link" data-scroll-target="#process-management">Process Management</a></li>
-  <li><a href="#history-commands" id="toc-history-commands" class="nav-link" data-scroll-target="#history-commands">History &amp; Commands</a></li>
-  <li><a href="#auto-completion-misc" id="toc-auto-completion-misc" class="nav-link" data-scroll-target="#auto-completion-misc">Auto-Completion &amp; Misc</a></li>
-  </ul></li>
-  <li><a href="#vim" id="toc-vim" class="nav-link" data-scroll-target="#vim">Vim</a>
-  <ul class="collapse">
-  <li><a href="#modes" id="toc-modes" class="nav-link" data-scroll-target="#modes">Modes</a></li>
-  <li><a href="#file-operations" id="toc-file-operations" class="nav-link" data-scroll-target="#file-operations">File Operations</a></li>
-  <li><a href="#navigation" id="toc-navigation" class="nav-link" data-scroll-target="#navigation">Navigation</a></li>
-  <li><a href="#search-replace" id="toc-search-replace" class="nav-link" data-scroll-target="#search-replace">Search &amp; Replace</a></li>
-  <li><a href="#editing" id="toc-editing" class="nav-link" data-scroll-target="#editing">Editing</a></li>
-  <li><a href="#window-management" id="toc-window-management" class="nav-link" data-scroll-target="#window-management">Window Management</a></li>
-  </ul></li>
-  <li><a href="#tmux" id="toc-tmux" class="nav-link" data-scroll-target="#tmux">Tmux</a>
-  <ul class="collapse">
-  <li><a href="#tmux-configuration" id="toc-tmux-configuration" class="nav-link" data-scroll-target="#tmux-configuration">Tmux Configuration</a></li>
-  <li><a href="#session-management" id="toc-session-management" class="nav-link" data-scroll-target="#session-management">Session Management</a></li>
-  <li><a href="#window-management-1" id="toc-window-management-1" class="nav-link" data-scroll-target="#window-management-1">Window Management</a></li>
-  <li><a href="#pane-management" id="toc-pane-management" class="nav-link" data-scroll-target="#pane-management">Pane Management</a></li>
-  <li><a href="#copy-mode" id="toc-copy-mode" class="nav-link" data-scroll-target="#copy-mode">Copy Mode</a></li>
-  </ul></li>
-  <li><a href="#screen" id="toc-screen" class="nav-link" data-scroll-target="#screen">Screen</a>
-  <ul class="collapse">
-  <li><a href="#basic-commands" id="toc-basic-commands" class="nav-link" data-scroll-target="#basic-commands">Basic Commands</a></li>
-  <li><a href="#window-management-2" id="toc-window-management-2" class="nav-link" data-scroll-target="#window-management-2">Window Management</a></li>
-  <li><a href="#region-management" id="toc-region-management" class="nav-link" data-scroll-target="#region-management">Region Management</a></li>
-  <li><a href="#session-copy-mode" id="toc-session-copy-mode" class="nav-link" data-scroll-target="#session-copy-mode">Session &amp; Copy Mode</a></li>
-  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -266,20 +230,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><img src="keyboard.jpg" class="img-fluid"></p>
-<p><strong>Master your workflow with essential keyboard shortcuts across popular development tools and applications.</strong></p>
-<section id="vscode" class="level2">
-<h2 class="anchored" data-anchor-id="vscode">VSCode</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Pro Tip
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>VSCode has excellent keyboard shortcut customization. Press <code>Cmd/Ctrl + K Cmd/Ctrl + S</code> to access the Keyboard Shortcuts editor.</p>
+<p>VSCode is my primary code editor, and mastering its keyboard shortcuts can significantly enhance productivity. Below is a comprehensive list of essential keyboard shortcuts setup for both Mac and Windows users.</p>
 </div>
 </div>
 <section id="general-commands" class="level3">
@@ -601,930 +562,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <hr>
-</section>
-</section>
-<section id="shell" class="level2">
-<h2 class="anchored" data-anchor-id="shell">Shell</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>📖 About Terminal Shortcuts
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>These shortcuts work in most Unix-like terminals including Terminal.app on macOS, GNOME Terminal, and Windows Terminal with WSL.</p>
-</div>
-</div>
-<section id="cursor-movement" class="level3">
-<h3 class="anchored" data-anchor-id="cursor-movement">Cursor Movement</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Action</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Move to the beginning of line</td>
-<td><code>Ctrl + A</code></td>
-</tr>
-<tr class="even">
-<td>Move to the end of line</td>
-<td><code>Ctrl + E</code></td>
-</tr>
-<tr class="odd">
-<td>Move one word backward</td>
-<td><code>Opt + ←</code></td>
-</tr>
-<tr class="even">
-<td>Move one word forward</td>
-<td><code>Opt + →</code></td>
-</tr>
-<tr class="odd">
-<td>Move one character backward</td>
-<td><code>←</code></td>
-</tr>
-<tr class="even">
-<td>Move one character forward</td>
-<td><code>→</code></td>
-</tr>
-<tr class="odd">
-<td>Jump to the start of buffer</td>
-<td><code>Alt + &lt;</code></td>
-</tr>
-<tr class="even">
-<td>Jump to the end of buffer</td>
-<td><code>Alt + &gt;</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="text-editing" class="level3">
-<h3 class="anchored" data-anchor-id="text-editing">Text Editing</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Text Editing</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Delete the current line</td>
-<td><code>Ctrl + U</code></td>
-</tr>
-<tr class="even">
-<td>Delete to end of the line</td>
-<td><code>Ctrl + K</code></td>
-</tr>
-<tr class="odd">
-<td>Clear the screen</td>
-<td><code>Ctrl + L</code></td>
-</tr>
-<tr class="even">
-<td>Delete one word backward</td>
-<td><code>Ctrl + W</code></td>
-</tr>
-<tr class="odd">
-<td>Delete one character forward</td>
-<td><code>Ctrl + D</code></td>
-</tr>
-<tr class="even">
-<td>Delete one character forward</td>
-<td><code>Fn + Backspace</code></td>
-</tr>
-<tr class="odd">
-<td>Delete one character backward</td>
-<td><code>Backspace</code></td>
-</tr>
-<tr class="even">
-<td>Delete from cursor to start</td>
-<td><code>Alt + Backspace</code></td>
-</tr>
-<tr class="odd">
-<td>Delete from cursor to word end</td>
-<td><code>Alt + D</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="process-management" class="level3">
-<h3 class="anchored" data-anchor-id="process-management">Process Management</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Process Management</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Terminate a process</td>
-<td><code>Ctrl + C</code></td>
-</tr>
-<tr class="even">
-<td>Suspend a process</td>
-<td><code>Ctrl + Z</code></td>
-</tr>
-<tr class="odd">
-<td>Exit the shell</td>
-<td><code>Ctrl + D</code></td>
-</tr>
-<tr class="even">
-<td>Send process to background</td>
-<td><code>Ctrl + Z</code> then <code>bg</code></td>
-</tr>
-<tr class="odd">
-<td>Bring background process to fg</td>
-<td><code>fg</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="history-commands" class="level3">
-<h3 class="anchored" data-anchor-id="history-commands">History &amp; Commands</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>History &amp; Commands</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Undo the last change</td>
-<td><code>Ctrl + _</code></td>
-</tr>
-<tr class="even">
-<td>Recall previous command</td>
-<td><code>↑</code></td>
-</tr>
-<tr class="odd">
-<td>Recall next command</td>
-<td><code>↓</code></td>
-</tr>
-<tr class="even">
-<td>Search command history</td>
-<td><code>Ctrl + R</code></td>
-</tr>
-<tr class="odd">
-<td>Exit history search</td>
-<td><code>Ctrl + G</code></td>
-</tr>
-<tr class="even">
-<td>Show history</td>
-<td><code>history</code></td>
-</tr>
-<tr class="odd">
-<td>Run the last command</td>
-<td><code>!!</code></td>
-</tr>
-<tr class="even">
-<td>Run last <code>pw</code> command</td>
-<td><code>!pw</code></td>
-</tr>
-<tr class="odd">
-<td>Run command # from history</td>
-<td><code>!&lt;number&gt;</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="auto-completion-misc" class="level3">
-<h3 class="anchored" data-anchor-id="auto-completion-misc">Auto-Completion &amp; Misc</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Auto-Completion &amp; Misc</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Auto-complete command</td>
-<td><code>TAB</code></td>
-</tr>
-<tr class="even">
-<td>List matching commands</td>
-<td><code>TAB TAB</code></td>
-</tr>
-<tr class="odd">
-<td>Cycle through matches</td>
-<td><code>TAB TAB TAB...</code></td>
-</tr>
-<tr class="even">
-<td>Open last edited command</td>
-<td><code>Ctrl + X Ctrl + E</code></td>
-</tr>
-<tr class="odd">
-<td>Transpose two characters</td>
-<td><code>Ctrl + T</code></td>
-</tr>
-<tr class="even">
-<td>Capitalize word at cursor</td>
-<td><code>Alt + C</code></td>
-</tr>
-<tr class="odd">
-<td>Convert word to lowercase</td>
-<td><code>Alt + L</code></td>
-</tr>
-<tr class="even">
-<td>Convert word to uppercase</td>
-<td><code>Alt + U</code></td>
-</tr>
-<tr class="odd">
-<td>Swap position with prev word</td>
-<td><code>Ctrl + W</code> <code>Alt + T</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-</section>
-<section id="vim" class="level2">
-<h2 class="anchored" data-anchor-id="vim">Vim</h2>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>⚠️ Vim Modal Editor
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Vim is a modal editor. Remember to press <code>Esc</code> to return to Normal mode before using most commands.</p>
-</div>
-</div>
-<section id="modes" class="level3">
-<h3 class="anchored" data-anchor-id="modes">Modes</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Action</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Insert mode</td>
-<td><code>i</code></td>
-</tr>
-<tr class="even">
-<td>Insert at beginning of line</td>
-<td><code>I</code></td>
-</tr>
-<tr class="odd">
-<td>Insert new line below</td>
-<td><code>o</code></td>
-</tr>
-<tr class="even">
-<td>Insert new line above</td>
-<td><code>O</code></td>
-</tr>
-<tr class="odd">
-<td>Append after cursor</td>
-<td><code>a</code></td>
-</tr>
-<tr class="even">
-<td>Append at end of line</td>
-<td><code>A</code></td>
-</tr>
-<tr class="odd">
-<td>Command mode (normal)</td>
-<td><code>Esc</code></td>
-</tr>
-<tr class="even">
-<td>Visual mode (select text)</td>
-<td><code>v</code></td>
-</tr>
-<tr class="odd">
-<td>Visual line mode</td>
-<td><code>V</code></td>
-</tr>
-<tr class="even">
-<td>Visual block mode</td>
-<td><code>Ctrl + v</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="file-operations" class="level3">
-<h3 class="anchored" data-anchor-id="file-operations">File Operations</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Action</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Save</td>
-<td><code>:w</code></td>
-</tr>
-<tr class="even">
-<td>Quit</td>
-<td><code>:q</code></td>
-</tr>
-<tr class="odd">
-<td>Save and quit</td>
-<td><code>:wq</code></td>
-</tr>
-<tr class="even">
-<td>Quit without saving</td>
-<td><code>:q!</code></td>
-</tr>
-<tr class="odd">
-<td>Save and quit (shortcut)</td>
-<td><code>ZZ</code></td>
-</tr>
-<tr class="even">
-<td>Quit without saving (shortcut)</td>
-<td><code>ZQ</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="navigation" class="level3">
-<h3 class="anchored" data-anchor-id="navigation">Navigation</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Basic Movement</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Move left</td>
-<td><code>h</code></td>
-</tr>
-<tr class="even">
-<td>Move down</td>
-<td><code>j</code></td>
-</tr>
-<tr class="odd">
-<td>Move up</td>
-<td><code>k</code></td>
-</tr>
-<tr class="even">
-<td>Move right</td>
-<td><code>l</code></td>
-</tr>
-<tr class="odd">
-<td><strong>Advanced Movement</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Next word</td>
-<td><code>w</code></td>
-</tr>
-<tr class="odd">
-<td>Previous word</td>
-<td><code>b</code></td>
-</tr>
-<tr class="even">
-<td>Beginning of line</td>
-<td><code>0</code></td>
-</tr>
-<tr class="odd">
-<td>First non-blank of line</td>
-<td><code>^</code></td>
-</tr>
-<tr class="even">
-<td>End of line</td>
-<td><code>$</code></td>
-</tr>
-<tr class="odd">
-<td>First line</td>
-<td><code>gg</code></td>
-</tr>
-<tr class="even">
-<td>Last line</td>
-<td><code>G</code></td>
-</tr>
-<tr class="odd">
-<td>Go to line 33</td>
-<td><code>33G</code></td>
-</tr>
-<tr class="even">
-<td>Up half a page</td>
-<td><code>Ctrl + u</code></td>
-</tr>
-<tr class="odd">
-<td>Down half a page</td>
-<td><code>Ctrl + d</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="search-replace" class="level3">
-<h3 class="anchored" data-anchor-id="search-replace">Search &amp; Replace</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Search &amp; Replace</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Search text</td>
-<td><code>/text</code></td>
-</tr>
-<tr class="even">
-<td>Next match</td>
-<td><code>n</code></td>
-</tr>
-<tr class="odd">
-<td>Previous match</td>
-<td><code>N</code></td>
-</tr>
-<tr class="even">
-<td>Search backward</td>
-<td><code>?text</code></td>
-</tr>
-<tr class="odd">
-<td>Search current word</td>
-<td><code>*</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="editing" class="level3">
-<h3 class="anchored" data-anchor-id="editing">Editing</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Editing</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Delete char</td>
-<td><code>x</code></td>
-</tr>
-<tr class="even">
-<td>Delete line</td>
-<td><code>dd</code></td>
-</tr>
-<tr class="odd">
-<td>Delete word</td>
-<td><code>dw</code></td>
-</tr>
-<tr class="even">
-<td>Delete to end of line</td>
-<td><code>d$</code></td>
-</tr>
-<tr class="odd">
-<td>Delete to start of line</td>
-<td><code>d0</code></td>
-</tr>
-<tr class="even">
-<td>Copy line</td>
-<td><code>yy</code></td>
-</tr>
-<tr class="odd">
-<td>Copy word</td>
-<td><code>yw</code></td>
-</tr>
-<tr class="even">
-<td>Paste after cursor</td>
-<td><code>p</code></td>
-</tr>
-<tr class="odd">
-<td>Paste before cursor</td>
-<td><code>P</code></td>
-</tr>
-<tr class="even">
-<td>Undo</td>
-<td><code>u</code></td>
-</tr>
-<tr class="odd">
-<td>Redo</td>
-<td><code>Ctrl + r</code></td>
-</tr>
-<tr class="even">
-<td>Change text</td>
-<td><code>c</code></td>
-</tr>
-<tr class="odd">
-<td>Replace char</td>
-<td><code>r</code></td>
-</tr>
-<tr class="even">
-<td>Join line with next</td>
-<td><code>J</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="window-management" class="level3">
-<h3 class="anchored" data-anchor-id="window-management">Window Management</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Window Management</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Split window horizontally</td>
-<td><code>:split</code></td>
-</tr>
-<tr class="even">
-<td>Split window vertically</td>
-<td><code>:vsplit</code></td>
-</tr>
-<tr class="odd">
-<td>Move left split</td>
-<td><code>Ctrl + w, h</code></td>
-</tr>
-<tr class="even">
-<td>Move down split</td>
-<td><code>Ctrl + w, j</code></td>
-</tr>
-<tr class="odd">
-<td>Move up split</td>
-<td><code>Ctrl + w, k</code></td>
-</tr>
-<tr class="even">
-<td>Move right split</td>
-<td><code>Ctrl + w, l</code></td>
-</tr>
-<tr class="odd">
-<td>Increase window size</td>
-<td><code>:resize +N</code></td>
-</tr>
-<tr class="even">
-<td>Decrease window size</td>
-<td><code>:resize -N</code></td>
-</tr>
-<tr class="odd">
-<td>Open new tab</td>
-<td><code>:tabnew</code></td>
-</tr>
-<tr class="even">
-<td>Next tab</td>
-<td><code>:tabnext</code></td>
-</tr>
-<tr class="odd">
-<td>Previous tab</td>
-<td><code>:tabprev</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-</section>
-<section id="tmux" class="level2">
-<h2 class="anchored" data-anchor-id="tmux">Tmux</h2>
-<section id="tmux-configuration" class="level3">
-<h3 class="anchored" data-anchor-id="tmux-configuration">Tmux Configuration</h3>
-<p>Consider adding these aliases to your shell configuration for quick tmux access.</p>
-<div class="code-block">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal aliases for tmux</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> t=<span class="st">"tmux"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ta=<span class="st">"t a -t"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tls=<span class="st">"t ls"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tn=<span class="st">"t new -s"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tk=<span class="st">"t kill-session -t"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tks=<span class="st">"t kill-server"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>🔧 Custom Prefix Key
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Change the default prefix in <code>.tmux.conf</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">set-option</span> <span class="at">-g</span> prefix C-a</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bind-key</span> C-a send-prefix</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="session-management" class="level3">
-<h3 class="anchored" data-anchor-id="session-management">Session Management</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 53%">
-<col style="width: 46%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Action</strong></th>
-<th><strong>Command/Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>List sessions</td>
-<td><code>tmux list-sessions</code></td>
-</tr>
-<tr class="even">
-<td>Attach to session</td>
-<td><code>tmux attach-session -t target-session</code></td>
-</tr>
-<tr class="odd">
-<td>Switch between sessions</td>
-<td><code>Ctrl + A + s</code></td>
-</tr>
-<tr class="even">
-<td>Switch to latest session</td>
-<td><code>Ctrl + A + l</code></td>
-</tr>
-<tr class="odd">
-<td>Detach from session</td>
-<td><code>Ctrl + A + d</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="window-management-1" class="level3">
-<h3 class="anchored" data-anchor-id="window-management-1">Window Management</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Action</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>List all windows</td>
-<td><code>Ctrl + A + w</code></td>
-</tr>
-<tr class="even">
-<td>Rename current window</td>
-<td><code>Ctrl + A + ,</code></td>
-</tr>
-<tr class="odd">
-<td>Switch to next window</td>
-<td><code>Ctrl + A + →</code></td>
-</tr>
-<tr class="even">
-<td>Switch to previous window</td>
-<td><code>Ctrl + A + ←</code></td>
-</tr>
-<tr class="odd">
-<td>Create new window</td>
-<td><code>Ctrl + A + c</code></td>
-</tr>
-<tr class="even">
-<td>Kill current window</td>
-<td><code>Ctrl + A + q</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="pane-management" class="level3">
-<h3 class="anchored" data-anchor-id="pane-management">Pane Management</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Action</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Switch to pane above</td>
-<td><code>Shift + ↑</code></td>
-</tr>
-<tr class="even">
-<td>Switch to pane below</td>
-<td><code>Shift + ↓</code></td>
-</tr>
-<tr class="odd">
-<td>Switch to pane left</td>
-<td><code>Shift + ←</code></td>
-</tr>
-<tr class="even">
-<td>Switch to pane right</td>
-<td><code>Shift + →</code></td>
-</tr>
-<tr class="odd">
-<td>Kill current pane</td>
-<td><code>Ctrl + A + x</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="copy-mode" class="level3">
-<h3 class="anchored" data-anchor-id="copy-mode">Copy Mode</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Action</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Enter copy mode</td>
-<td>Drag mouse to select text</td>
-</tr>
-<tr class="even">
-<td>Paste copied text</td>
-<td><code>Ctrl + A + ]</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-</section>
-<section id="screen" class="level2">
-<h2 class="anchored" data-anchor-id="screen">Screen</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>💡 Screen Aliases
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Add these aliases to your shell configuration for easier screen management.</p>
-</div>
-</div>
-<div class="code-block">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal aliases for screen</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> s=<span class="st">"screen"</span>       <span class="co"># start a screen session</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ss=<span class="st">"s -S"</span>        <span class="co"># start a named screen session</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sr=<span class="st">"s -r"</span>        <span class="co"># reattach to a screen session</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sls=<span class="st">"s -ls"</span>      <span class="co"># list current running screen sessions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="basic-commands" class="level3">
-<h3 class="anchored" data-anchor-id="basic-commands">Basic Commands</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Action</strong></th>
-<th><strong>Command</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Start screen session</td>
-<td><code>screen</code></td>
-</tr>
-<tr class="even">
-<td>Start named session</td>
-<td><code>screen -S session_name</code></td>
-</tr>
-<tr class="odd">
-<td>Reattach to session</td>
-<td><code>screen -r</code></td>
-</tr>
-<tr class="even">
-<td>List running sessions</td>
-<td><code>screen -ls</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="window-management-2" class="level3">
-<h3 class="anchored" data-anchor-id="window-management-2">Window Management</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Action</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Create new window</td>
-<td><code>Ctrl + A + C</code></td>
-</tr>
-<tr class="even">
-<td>Kill current window</td>
-<td><code>Ctrl + A + K</code></td>
-</tr>
-<tr class="odd">
-<td>List all windows</td>
-<td><code>Ctrl + A + W</code></td>
-</tr>
-<tr class="even">
-<td>Go to window 0-9</td>
-<td><code>Ctrl + A + 0-9</code></td>
-</tr>
-<tr class="odd">
-<td>Go to next window</td>
-<td><code>Ctrl + A + N</code></td>
-</tr>
-<tr class="even">
-<td>Toggle between windows</td>
-<td><code>Ctrl + A + Ctrl + A</code></td>
-</tr>
-<tr class="odd">
-<td>Rename current window</td>
-<td><code>Ctrl + A + A</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="region-management" class="level3">
-<h3 class="anchored" data-anchor-id="region-management">Region Management</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Action</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Split horizontally</td>
-<td><code>Ctrl + A + S</code></td>
-</tr>
-<tr class="even">
-<td>Split vertically</td>
-<td><code>Ctrl + A + \|</code></td>
-</tr>
-<tr class="odd">
-<td>Switch between regions</td>
-<td><code>Ctrl + A + Tab</code></td>
-</tr>
-<tr class="even">
-<td>Close all regions but current</td>
-<td><code>Ctrl + A + Q</code></td>
-</tr>
-<tr class="odd">
-<td>Close current region</td>
-<td><code>Ctrl + A + X</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="session-copy-mode" class="level3">
-<h3 class="anchored" data-anchor-id="session-copy-mode">Session &amp; Copy Mode</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Action</strong></th>
-<th><strong>Shortcut</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Detach from session</td>
-<td><code>Ctrl + A + D</code></td>
-</tr>
-<tr class="even">
-<td>Start copy mode</td>
-<td><code>Ctrl + A + [</code></td>
-</tr>
-<tr class="odd">
-<td>Paste copied text</td>
-<td><code>Ctrl + A + ]</code></td>
-</tr>
-<tr class="even">
-<td>Show help</td>
-<td><code>Ctrl + A + ?</code></td>
-</tr>
-<tr class="odd">
-<td>Quit screen</td>
-<td><code>Ctrl + A + Ctrl + \</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Additional Resources
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><strong>VSCode</strong>: <a href="https://code.visualstudio.com/docs/getstarted/keybindings">Official Keyboard Shortcuts Reference</a></li>
-<li><strong>Vim</strong>: <a href="https://vim.rtorr.com/">Vim Cheat Sheet</a></li>
-<li><strong>Tmux</strong>: <a href="https://tmuxcheatsheet.com/">Tmux Cheat Sheet</a></li>
-<li><strong>Terminal</strong>: <a href="https://www.gnu.org/software/bash/manual/">Bash Reference Manual</a></li>
-</ul>
-</div>
-</div>
 
 
 <!-- -->
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1979,410 +1020,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Keyboard Shortcuts Reference"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "A comprehensive guide to essential keyboard shortcuts"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2023-01-01</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">published-title:</span><span class="co"> Created</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> last-modified</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner-color:</span><span class="co"> "#2c3e50"</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="an">toc-location:</span><span class="co"> left</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="an">toc-title:</span><span class="co"> "Contents"</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="an">toc-depth:</span><span class="co"> 3</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    eval: false</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="al">![](keyboard.jpg)</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>**Master your workflow with essential keyboard shortcuts across popular development tools and applications.**</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## VSCode</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pro Tip</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>VSCode has excellent keyboard shortcut customization. Press <span class="in">`Cmd/Ctrl + K Cmd/Ctrl + S`</span> to access the Keyboard Shortcuts editor.</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="fu">### General Commands</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                       | **Mac**                  | **Windows**                 <span class="pp">|</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Command Palette                  <span class="pp">|</span> <span class="in">`Cmd + Shift + P`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + P`</span>          <span class="pp">|</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Open Settings                    <span class="pp">|</span> <span class="in">`Cmd + ,`</span>                <span class="pp">|</span> <span class="in">`Ctrl + ,`</span>                  <span class="pp">|</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Keyboard Shortcuts               <span class="pp">|</span> <span class="in">`Cmd + K Cmd + S`</span>        <span class="pp">|</span> <span class="in">`Ctrl + K Ctrl + S`</span>         <span class="pp">|</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Toggle Sidebar                   <span class="pp">|</span> <span class="in">`Cmd + B`</span>                <span class="pp">|</span> <span class="in">`Ctrl + B`</span>                  <span class="pp">|</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Full Screen                      <span class="pp">|</span> <span class="in">`Cmd + Ctrl + F`</span>         <span class="pp">|</span> <span class="in">`F11`</span>                       <span class="pp">|</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Open File                        <span class="pp">|</span> <span class="in">`Cmd + P`</span>                <span class="pp">|</span> <span class="in">`Ctrl + P`</span>                  <span class="pp">|</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> New Window                       <span class="pp">|</span> <span class="in">`Cmd + Shift + N`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + N`</span>          <span class="pp">|</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Close Window                     <span class="pp">|</span> <span class="in">`Cmd + Shift + W`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + W`</span>          <span class="pp">|</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Terminal Management</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Terminal Management**          <span class="pp">|</span>                          <span class="pp">|</span>                             <span class="pp">|</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span> </span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Toggle Terminal                  <span class="pp">|</span> `<span class="in">` Cmd + `</span> ``            <span class="pp">|</span> `<span class="in">`Ctrl + `</span> ``               <span class="pp">|</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Create New Terminal              <span class="pp">|</span> `<span class="in">`Cmd + Shift + `</span> ``     <span class="pp">|</span> `<span class="in">`Ctrl + Shift + `</span> ``       <span class="pp">|</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Navigate Between Terminals       <span class="pp">|</span> <span class="in">`Cmd + Shift + [ / ]`</span>    <span class="pp">|</span> <span class="in">`Ctrl + PgUp / PgDn`</span>        <span class="pp">|</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split Terminal                   <span class="pp">|</span> <span class="in">`Cmd + \`</span>                <span class="pp">|</span> <span class="in">`Ctrl + \`</span>                  <span class="pp">|</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Navigate Between Split Terminal  <span class="pp">|</span> <span class="in">`Cmd + Option + ← / →`</span>   <span class="pp">|</span> <span class="in">`Alt + ↑ / ↓`</span>               <span class="pp">|</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="fu">### Editor Management</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Editor Management**            <span class="pp">|</span>                          <span class="pp">|</span>                             <span class="pp">|</span></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span> </span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Close Tab                        <span class="pp">|</span> <span class="in">`Cmd + W`</span>                <span class="pp">|</span> <span class="in">`Ctrl + W`</span>                  <span class="pp">|</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split Editor                     <span class="pp">|</span> <span class="in">`Cmd + \`</span>                <span class="pp">|</span> <span class="in">`Ctrl + \`</span>                  <span class="pp">|</span></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Navigate Tabs                    <span class="pp">|</span> <span class="in">`Cmd + Shift + Tab`</span>      <span class="pp">|</span> <span class="in">`Ctrl + Shift + Tab`</span>        <span class="pp">|</span></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Navigate Tab Groups              <span class="pp">|</span> <span class="in">`Cmd + 1 / 2 / 3`</span>        <span class="pp">|</span> <span class="in">`Ctrl + 1 / 2 / 3`</span>          <span class="pp">|</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="fu">### Text Manipulation</span></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Text Manipulation**            <span class="pp">|</span>                          <span class="pp">|</span>                             <span class="pp">|</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span> </span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Add Multiple Cursors             <span class="pp">|</span> <span class="in">`Cmd + Option + ↑ / ↓`</span>   <span class="pp">|</span> <span class="in">`Ctrl + Alt + ↑ / ↓`</span>        <span class="pp">|</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Scroll horizontal                <span class="pp">|</span> <span class="in">`Shift + Mouse wheel`</span>    <span class="pp">|</span> <span class="in">`Shift + Mouse wheel`</span>       <span class="pp">|</span></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Select Text                      <span class="pp">|</span> <span class="in">`Cmd + Shift + ↑ / ↓`</span>    <span class="pp">|</span> <span class="in">`Ctrl + Shift + ↑ / ↓`</span>      <span class="pp">|</span></span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move Line Up/Down                <span class="pp">|</span> <span class="in">`Option + ↑ / ↓`</span>         <span class="pp">|</span> <span class="in">`Alt + ↑ / ↓`</span>               <span class="pp">|</span></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Copy Line Up/Down                <span class="pp">|</span> <span class="in">`Shift + Option + ↑ / ↓`</span> <span class="pp">|</span> <span class="in">`Shift + Alt + ↑ / ↓`</span>       <span class="pp">|</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Select Word                      <span class="pp">|</span> <span class="in">`Cmd + D`</span>                <span class="pp">|</span> <span class="in">`Ctrl + D`</span>                  <span class="pp">|</span></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Select Current Line              <span class="pp">|</span> <span class="in">`Cmd + L`</span>                <span class="pp">|</span> <span class="in">`Ctrl + L`</span>                  <span class="pp">|</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Select All Occurrences           <span class="pp">|</span> <span class="in">`Cmd + Shift + L`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + L`</span>          <span class="pp">|</span></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete Current Line              <span class="pp">|</span> <span class="in">`Cmd + Shift + K`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + K`</span>          <span class="pp">|</span></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete Word Backward             <span class="pp">|</span> <span class="in">`Option + Backspace`</span>     <span class="pp">|</span> <span class="in">`Ctrl + Backspace`</span>          <span class="pp">|</span></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Comment/Uncomment Lines          <span class="pp">|</span> <span class="in">`Cmd + /`</span>                <span class="pp">|</span> <span class="in">`Ctrl + /`</span>                  <span class="pp">|</span></span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="fu">### Navigation &amp; Search</span></span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Navigation &amp; Search**          <span class="pp">|</span>                          <span class="pp">|</span>                             <span class="pp">|</span></span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span> </span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to Line                       <span class="pp">|</span> <span class="in">`Cmd + G`</span>                <span class="pp">|</span> <span class="in">`Ctrl + G`</span>                  <span class="pp">|</span></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to last cursor position       <span class="pp">|</span> <span class="in">`Ctrl + -`</span>               <span class="pp">|</span> <span class="in">`Alt + ←`</span>                   <span class="pp">|</span></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to next cursor position       <span class="pp">|</span> <span class="in">`Ctrl + Shift + -`</span>       <span class="pp">|</span> <span class="in">`Alt + →`</span>                   <span class="pp">|</span></span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to Word Start/End             <span class="pp">|</span> <span class="in">`Option + ← / →`</span>         <span class="pp">|</span> <span class="in">`Ctrl + ← / →`</span>              <span class="pp">|</span></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to Line Start/End             <span class="pp">|</span> <span class="in">`Cmd + ← / →`</span>            <span class="pp">|</span> <span class="in">`Home / End`</span>                <span class="pp">|</span></span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to File Start/End             <span class="pp">|</span> <span class="in">`Cmd + ↑ / ↓`</span>            <span class="pp">|</span> <span class="in">`Ctrl + Home / End`</span>         <span class="pp">|</span></span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search Files                     <span class="pp">|</span> <span class="in">`Cmd + Shift + F`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + F`</span>          <span class="pp">|</span></span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Find Text                        <span class="pp">|</span> <span class="in">`Cmd + F`</span>                <span class="pp">|</span> <span class="in">`Ctrl + F`</span>                  <span class="pp">|</span></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Replace Text                     <span class="pp">|</span> <span class="in">`Cmd + Option + F`</span>       <span class="pp">|</span> <span class="in">`Ctrl + H`</span>                  <span class="pp">|</span></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="fu">### Code Formatting</span></span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Code Formatting**              <span class="pp">|</span>                          <span class="pp">|</span>                             <span class="pp">|</span></span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span> </span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Code Folding                     <span class="pp">|</span> <span class="in">`Cmd + Option + [ / ]`</span>   <span class="pp">|</span> <span class="in">`Ctrl + Shift + [ / ]`</span>      <span class="pp">|</span></span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Indent/Outdent Lines             <span class="pp">|</span> <span class="in">`Cmd + [ / ]`</span>            <span class="pp">|</span> <span class="in">`Ctrl + [ / ]`</span>              <span class="pp">|</span></span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Format Selected Code             <span class="pp">|</span> <span class="in">`Cmd + K Cmd + F`</span>        <span class="pp">|</span> <span class="in">`Ctrl + K Ctrl + F`</span>         <span class="pp">|</span></span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Format Document                  <span class="pp">|</span> <span class="in">`Shift + Option + F`</span>     <span class="pp">|</span> <span class="in">`Shift + Alt + F`</span>           <span class="pp">|</span></span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Shell</span></span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📖 About Terminal Shortcuts</span></span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>These shortcuts work in most Unix-like terminals including Terminal.app on macOS, GNOME Terminal, and Windows Terminal with WSL.</span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cursor Movement</span></span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                       | **Shortcut**        <span class="pp">|</span></span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------------------------|---------------------|</span></span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move to the beginning of line   <span class="pp">|</span> <span class="in">`Ctrl + A`</span>          <span class="pp">|</span></span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move to the end of line         <span class="pp">|</span> <span class="in">`Ctrl + E`</span>          <span class="pp">|</span></span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move one word backward          <span class="pp">|</span> <span class="in">`Opt + ←`</span>           <span class="pp">|</span></span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move one word forward           <span class="pp">|</span> <span class="in">`Opt + →`</span>           <span class="pp">|</span></span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move one character backward     <span class="pp">|</span> <span class="in">`←`</span>                 <span class="pp">|</span></span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move one character forward      <span class="pp">|</span> <span class="in">`→`</span>                 <span class="pp">|</span></span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Jump to the start of buffer     <span class="pp">|</span> <span class="in">`Alt + &lt;`</span>           <span class="pp">|</span></span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Jump to the end of buffer       <span class="pp">|</span> <span class="in">`Alt + &gt;`</span>           <span class="pp">|</span></span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a><span class="fu">### Text Editing</span></span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Text Editing**                | **Shortcut**        <span class="pp">|</span></span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------------------------|---------------------|</span></span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete the current line         <span class="pp">|</span> <span class="in">`Ctrl + U`</span>          <span class="pp">|</span></span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete to end of the line       <span class="pp">|</span> <span class="in">`Ctrl + K`</span>          <span class="pp">|</span></span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clear the screen                <span class="pp">|</span> <span class="in">`Ctrl + L`</span>          <span class="pp">|</span></span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete one word backward        <span class="pp">|</span> <span class="in">`Ctrl + W`</span>          <span class="pp">|</span></span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete one character forward    <span class="pp">|</span> <span class="in">`Ctrl + D`</span>          <span class="pp">|</span></span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete one character forward    <span class="pp">|</span> <span class="in">`Fn + Backspace`</span>    <span class="pp">|</span></span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete one character backward   <span class="pp">|</span> <span class="in">`Backspace`</span>         <span class="pp">|</span></span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete from cursor to start     <span class="pp">|</span> <span class="in">`Alt + Backspace`</span>   <span class="pp">|</span></span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete from cursor to word end  <span class="pp">|</span> <span class="in">`Alt + D`</span>           <span class="pp">|</span></span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="fu">### Process Management</span></span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Process Management**          | **Shortcut**        <span class="pp">|</span></span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------------------------|---------------------|</span></span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Terminate a process             <span class="pp">|</span> <span class="in">`Ctrl + C`</span>          <span class="pp">|</span></span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Suspend a process               <span class="pp">|</span> <span class="in">`Ctrl + Z`</span>          <span class="pp">|</span></span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Exit the shell                  <span class="pp">|</span> <span class="in">`Ctrl + D`</span>          <span class="pp">|</span></span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Send process to background      <span class="pp">|</span> <span class="in">`Ctrl + Z`</span> then <span class="in">`bg`</span><span class="pp">|</span></span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bring background process to fg  <span class="pp">|</span> <span class="in">`fg`</span>                <span class="pp">|</span></span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="fu">### History &amp; Commands</span></span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **History &amp; Commands**          | **Shortcut**        <span class="pp">|</span></span>
-<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------------------------|---------------------|</span></span>
-<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Undo the last change            <span class="pp">|</span> <span class="in">`Ctrl + _`</span>          <span class="pp">|</span></span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Recall previous command         <span class="pp">|</span> <span class="in">`↑`</span>                 <span class="pp">|</span></span>
-<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Recall next command             <span class="pp">|</span> <span class="in">`↓`</span>                 <span class="pp">|</span></span>
-<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search command history          <span class="pp">|</span> <span class="in">`Ctrl + R`</span>          <span class="pp">|</span></span>
-<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Exit history search             <span class="pp">|</span> <span class="in">`Ctrl + G`</span>          <span class="pp">|</span></span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Show history                    <span class="pp">|</span> <span class="in">`history`</span>           <span class="pp">|</span></span>
-<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Run the last command            <span class="pp">|</span> <span class="in">`!!`</span>                <span class="pp">|</span></span>
-<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Run last <span class="in">`pw`</span> command           <span class="pp">|</span> <span class="in">`!pw`</span>               <span class="pp">|</span></span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Run command # from history      <span class="pp">|</span> <span class="in">`!&lt;number&gt;`</span>         <span class="pp">|</span></span>
-<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="fu">### Auto-Completion &amp; Misc</span></span>
-<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Auto-Completion &amp; Misc**      | **Shortcut**        <span class="pp">|</span></span>
-<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------------------------|---------------------|</span></span>
-<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Auto-complete command           <span class="pp">|</span> <span class="in">`TAB`</span>               <span class="pp">|</span></span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List matching commands          <span class="pp">|</span> <span class="in">`TAB TAB`</span>           <span class="pp">|</span></span>
-<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cycle through matches           <span class="pp">|</span> <span class="in">`TAB TAB TAB...`</span>    <span class="pp">|</span></span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Open last edited command        <span class="pp">|</span> <span class="in">`Ctrl + X Ctrl + E`</span> <span class="pp">|</span></span>
-<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Transpose two characters        <span class="pp">|</span> <span class="in">`Ctrl + T`</span>          <span class="pp">|</span></span>
-<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Capitalize word at cursor       <span class="pp">|</span> <span class="in">`Alt + C`</span>           <span class="pp">|</span></span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Convert word to lowercase       <span class="pp">|</span> <span class="in">`Alt + L`</span>           <span class="pp">|</span></span>
-<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Convert word to uppercase       <span class="pp">|</span> <span class="in">`Alt + U`</span>           <span class="pp">|</span></span>
-<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Swap position with prev word    <span class="pp">|</span> <span class="in">`Ctrl + W`</span> <span class="in">`Alt + T`</span><span class="pp">|</span></span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vim</span></span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a><span class="fu">### ⚠️ Vim Modal Editor</span></span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>Vim is a modal editor. Remember to press <span class="in">`Esc`</span> to return to Normal mode before using most commands.</span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="fu">### Modes</span></span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert mode                    <span class="pp">|</span> <span class="in">`i`</span>            <span class="pp">|</span></span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert at beginning of line    <span class="pp">|</span> <span class="in">`I`</span>            <span class="pp">|</span></span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert new line below          <span class="pp">|</span> <span class="in">`o`</span>            <span class="pp">|</span></span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert new line above          <span class="pp">|</span> <span class="in">`O`</span>            <span class="pp">|</span></span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Append after cursor            <span class="pp">|</span> <span class="in">`a`</span>            <span class="pp">|</span></span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Append at end of line          <span class="pp">|</span> <span class="in">`A`</span>            <span class="pp">|</span></span>
-<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Command mode (normal)          <span class="pp">|</span> <span class="in">`Esc`</span>          <span class="pp">|</span></span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Visual mode (select text)      <span class="pp">|</span> <span class="in">`v`</span>            <span class="pp">|</span></span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Visual line mode               <span class="pp">|</span> <span class="in">`V`</span>            <span class="pp">|</span></span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Visual block mode              <span class="pp">|</span> <span class="in">`Ctrl + v`</span>     <span class="pp">|</span></span>
-<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="fu">### File Operations</span></span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Save                           <span class="pp">|</span> <span class="in">`:w`</span>           <span class="pp">|</span></span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit                           <span class="pp">|</span> <span class="in">`:q`</span>           <span class="pp">|</span></span>
-<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Save and quit                  <span class="pp">|</span> <span class="in">`:wq`</span>          <span class="pp">|</span></span>
-<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit without saving            <span class="pp">|</span> <span class="in">`:q!`</span>          <span class="pp">|</span></span>
-<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Save and quit (shortcut)       <span class="pp">|</span> <span class="in">`ZZ`</span>           <span class="pp">|</span></span>
-<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit without saving (shortcut) <span class="pp">|</span> <span class="in">`ZQ`</span>           <span class="pp">|</span></span>
-<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a><span class="fu">### Navigation</span></span>
-<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Basic Movement**             | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move left                      <span class="pp">|</span> <span class="in">`h`</span>            <span class="pp">|</span></span>
-<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move down                      <span class="pp">|</span> <span class="in">`j`</span>            <span class="pp">|</span></span>
-<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move up                        <span class="pp">|</span> <span class="in">`k`</span>            <span class="pp">|</span></span>
-<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move right                     <span class="pp">|</span> <span class="in">`l`</span>            <span class="pp">|</span></span>
-<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Advanced Movement**          <span class="pp">|</span>                <span class="pp">|</span></span>
-<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Next word                      <span class="pp">|</span> <span class="in">`w`</span>            <span class="pp">|</span></span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Previous word                  <span class="pp">|</span> <span class="in">`b`</span>            <span class="pp">|</span></span>
-<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Beginning of line              <span class="pp">|</span> <span class="in">`0`</span>            <span class="pp">|</span></span>
-<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> First non-blank of line        <span class="pp">|</span> <span class="in">`^`</span>            <span class="pp">|</span></span>
-<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> End of line                    <span class="pp">|</span> <span class="in">`$`</span>            <span class="pp">|</span></span>
-<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> First line                     <span class="pp">|</span> <span class="in">`gg`</span>           <span class="pp">|</span></span>
-<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Last line                      <span class="pp">|</span> <span class="in">`G`</span>            <span class="pp">|</span></span>
-<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to line 33                  <span class="pp">|</span> <span class="in">`33G`</span>          <span class="pp">|</span></span>
-<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Up half a page                 <span class="pp">|</span> <span class="in">`Ctrl + u`</span>     <span class="pp">|</span></span>
-<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Down half a page               <span class="pp">|</span> <span class="in">`Ctrl + d`</span>     <span class="pp">|</span></span>
-<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a><span class="fu">### Search &amp; Replace</span></span>
-<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Search &amp; Replace**           | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search text                    <span class="pp">|</span> <span class="in">`/text`</span>        <span class="pp">|</span></span>
-<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Next match                     <span class="pp">|</span> <span class="in">`n`</span>            <span class="pp">|</span></span>
-<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Previous match                 <span class="pp">|</span> <span class="in">`N`</span>            <span class="pp">|</span></span>
-<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search backward                <span class="pp">|</span> <span class="in">`?text`</span>        <span class="pp">|</span></span>
-<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search current word            <span class="pp">|</span> <span class="in">`*`</span>            <span class="pp">|</span></span>
-<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a><span class="fu">### Editing</span></span>
-<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Editing**                    | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete char                    <span class="pp">|</span> <span class="in">`x`</span>            <span class="pp">|</span></span>
-<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete line                    <span class="pp">|</span> <span class="in">`dd`</span>           <span class="pp">|</span></span>
-<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete word                    <span class="pp">|</span> <span class="in">`dw`</span>           <span class="pp">|</span></span>
-<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete to end of line          <span class="pp">|</span> <span class="in">`d$`</span>           <span class="pp">|</span></span>
-<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete to start of line        <span class="pp">|</span> <span class="in">`d0`</span>           <span class="pp">|</span></span>
-<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Copy line                      <span class="pp">|</span> <span class="in">`yy`</span>           <span class="pp">|</span></span>
-<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Copy word                      <span class="pp">|</span> <span class="in">`yw`</span>           <span class="pp">|</span></span>
-<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste after cursor             <span class="pp">|</span> <span class="in">`p`</span>            <span class="pp">|</span></span>
-<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste before cursor            <span class="pp">|</span> <span class="in">`P`</span>            <span class="pp">|</span></span>
-<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Undo                           <span class="pp">|</span> <span class="in">`u`</span>            <span class="pp">|</span></span>
-<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Redo                           <span class="pp">|</span> <span class="in">`Ctrl + r`</span>     <span class="pp">|</span></span>
-<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Change text                    <span class="pp">|</span> <span class="in">`c`</span>            <span class="pp">|</span></span>
-<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Replace char                   <span class="pp">|</span> <span class="in">`r`</span>            <span class="pp">|</span></span>
-<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Join line with next            <span class="pp">|</span> <span class="in">`J`</span>            <span class="pp">|</span></span>
-<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a><span class="fu">### Window Management</span></span>
-<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Window Management**          | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split window horizontally      <span class="pp">|</span> <span class="in">`:split`</span>       <span class="pp">|</span></span>
-<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split window vertically        <span class="pp">|</span> <span class="in">`:vsplit`</span>      <span class="pp">|</span></span>
-<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move left split                <span class="pp">|</span> <span class="in">`Ctrl + w, h`</span>  <span class="pp">|</span></span>
-<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move down split                <span class="pp">|</span> <span class="in">`Ctrl + w, j`</span>  <span class="pp">|</span></span>
-<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move up split                  <span class="pp">|</span> <span class="in">`Ctrl + w, k`</span>  <span class="pp">|</span></span>
-<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move right split               <span class="pp">|</span> <span class="in">`Ctrl + w, l`</span>  <span class="pp">|</span></span>
-<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Increase window size           <span class="pp">|</span> <span class="in">`:resize +N`</span>   <span class="pp">|</span></span>
-<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Decrease window size           <span class="pp">|</span> <span class="in">`:resize -N`</span>   <span class="pp">|</span></span>
-<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Open new tab                   <span class="pp">|</span> <span class="in">`:tabnew`</span>      <span class="pp">|</span></span>
-<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Next tab                       <span class="pp">|</span> <span class="in">`:tabnext`</span>     <span class="pp">|</span></span>
-<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Previous tab                   <span class="pp">|</span> <span class="in">`:tabprev`</span>     <span class="pp">|</span></span>
-<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tmux</span></span>
-<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tmux Configuration</span></span>
-<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a>Consider adding these aliases to your shell configuration for quick tmux access.</span>
-<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a>::: {.code-block}</span>
-<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal aliases for tmux</span></span>
-<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> t=<span class="st">"tmux"</span></span>
-<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ta=<span class="st">"t a -t"</span></span>
-<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tls=<span class="st">"t ls"</span></span>
-<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tn=<span class="st">"t new -s"</span></span>
-<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tk=<span class="st">"t kill-session -t"</span></span>
-<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tks=<span class="st">"t kill-server"</span></span>
-<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🔧 Custom Prefix Key</span></span>
-<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>Change the default prefix in <span class="in">`.tmux.conf`</span>:</span>
-<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a><span class="ex">set-option</span> <span class="at">-g</span> prefix C-a</span>
-<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a><span class="ex">bind-key</span> C-a send-prefix</span>
-<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a><span class="fu">### Session Management</span></span>
-<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Command/Shortcut**       <span class="pp">|</span></span>
-<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List sessions                  <span class="pp">|</span> <span class="in">`tmux list-sessions`</span>       <span class="pp">|</span></span>
-<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Attach to session              <span class="pp">|</span> <span class="in">`tmux attach-session -t target-session`</span> <span class="pp">|</span></span>
-<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch between sessions       <span class="pp">|</span> <span class="in">`Ctrl + A + s`</span>             <span class="pp">|</span></span>
-<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to latest session      <span class="pp">|</span> <span class="in">`Ctrl + A + l`</span>             <span class="pp">|</span></span>
-<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Detach from session           <span class="pp">|</span> <span class="in">`Ctrl + A + d`</span>             <span class="pp">|</span></span>
-<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a><span class="fu">### Window Management</span></span>
-<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-310"><a href="#cb4-310" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb4-311"><a href="#cb4-311" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List all windows              <span class="pp">|</span> <span class="in">`Ctrl + A + w`</span>             <span class="pp">|</span></span>
-<span id="cb4-313"><a href="#cb4-313" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rename current window          <span class="pp">|</span> <span class="in">`Ctrl + A + ,`</span>             <span class="pp">|</span></span>
-<span id="cb4-314"><a href="#cb4-314" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to next window          <span class="pp">|</span> <span class="in">`Ctrl + A + →`</span>             <span class="pp">|</span></span>
-<span id="cb4-315"><a href="#cb4-315" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to previous window      <span class="pp">|</span> <span class="in">`Ctrl + A + ←`</span>             <span class="pp">|</span></span>
-<span id="cb4-316"><a href="#cb4-316" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Create new window              <span class="pp">|</span> <span class="in">`Ctrl + A + c`</span>             <span class="pp">|</span></span>
-<span id="cb4-317"><a href="#cb4-317" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kill current window            <span class="pp">|</span> <span class="in">`Ctrl + A + q`</span>             <span class="pp">|</span></span>
-<span id="cb4-318"><a href="#cb4-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-319"><a href="#cb4-319" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pane Management</span></span>
-<span id="cb4-320"><a href="#cb4-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-321"><a href="#cb4-321" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb4-322"><a href="#cb4-322" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb4-323"><a href="#cb4-323" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane above           <span class="pp">|</span> <span class="in">`Shift + ↑`</span>                <span class="pp">|</span></span>
-<span id="cb4-324"><a href="#cb4-324" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane below           <span class="pp">|</span> <span class="in">`Shift + ↓`</span>                <span class="pp">|</span></span>
-<span id="cb4-325"><a href="#cb4-325" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane left            <span class="pp">|</span> <span class="in">`Shift + ←`</span>                <span class="pp">|</span></span>
-<span id="cb4-326"><a href="#cb4-326" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane right           <span class="pp">|</span> <span class="in">`Shift + →`</span>                <span class="pp">|</span></span>
-<span id="cb4-327"><a href="#cb4-327" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kill current pane             <span class="pp">|</span> <span class="in">`Ctrl + A + x`</span>             <span class="pp">|</span></span>
-<span id="cb4-328"><a href="#cb4-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-329"><a href="#cb4-329" aria-hidden="true" tabindex="-1"></a><span class="fu">### Copy Mode</span></span>
-<span id="cb4-330"><a href="#cb4-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-331"><a href="#cb4-331" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb4-332"><a href="#cb4-332" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb4-333"><a href="#cb4-333" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Enter copy mode               <span class="pp">|</span> Drag mouse to select text   <span class="pp">|</span></span>
-<span id="cb4-334"><a href="#cb4-334" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste copied text             <span class="pp">|</span> <span class="in">`Ctrl + A + ]`</span>             <span class="pp">|</span></span>
-<span id="cb4-335"><a href="#cb4-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-336"><a href="#cb4-336" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-337"><a href="#cb4-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-338"><a href="#cb4-338" aria-hidden="true" tabindex="-1"></a><span class="fu">## Screen</span></span>
-<span id="cb4-339"><a href="#cb4-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-340"><a href="#cb4-340" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb4-341"><a href="#cb4-341" aria-hidden="true" tabindex="-1"></a><span class="fu">### 💡 Screen Aliases</span></span>
-<span id="cb4-342"><a href="#cb4-342" aria-hidden="true" tabindex="-1"></a>Add these aliases to your shell configuration for easier screen management.</span>
-<span id="cb4-343"><a href="#cb4-343" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-344"><a href="#cb4-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-345"><a href="#cb4-345" aria-hidden="true" tabindex="-1"></a>::: {.code-block}</span>
-<span id="cb4-346"><a href="#cb4-346" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb4-347"><a href="#cb4-347" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal aliases for screen</span></span>
-<span id="cb4-348"><a href="#cb4-348" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> s=<span class="st">"screen"</span>       <span class="co"># start a screen session</span></span>
-<span id="cb4-349"><a href="#cb4-349" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ss=<span class="st">"s -S"</span>        <span class="co"># start a named screen session</span></span>
-<span id="cb4-350"><a href="#cb4-350" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sr=<span class="st">"s -r"</span>        <span class="co"># reattach to a screen session</span></span>
-<span id="cb4-351"><a href="#cb4-351" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sls=<span class="st">"s -ls"</span>      <span class="co"># list current running screen sessions</span></span>
-<span id="cb4-352"><a href="#cb4-352" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-353"><a href="#cb4-353" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-354"><a href="#cb4-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-355"><a href="#cb4-355" aria-hidden="true" tabindex="-1"></a><span class="fu">### Basic Commands</span></span>
-<span id="cb4-356"><a href="#cb4-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-357"><a href="#cb4-357" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Command**                    <span class="pp">|</span></span>
-<span id="cb4-358"><a href="#cb4-358" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|--------------------------------|</span></span>
-<span id="cb4-359"><a href="#cb4-359" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Start screen session          <span class="pp">|</span> <span class="in">`screen`</span>                       <span class="pp">|</span></span>
-<span id="cb4-360"><a href="#cb4-360" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Start named session           <span class="pp">|</span> <span class="in">`screen -S session_name`</span>       <span class="pp">|</span></span>
-<span id="cb4-361"><a href="#cb4-361" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reattach to session           <span class="pp">|</span> <span class="in">`screen -r`</span>                    <span class="pp">|</span></span>
-<span id="cb4-362"><a href="#cb4-362" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List running sessions         <span class="pp">|</span> <span class="in">`screen -ls`</span>                   <span class="pp">|</span></span>
-<span id="cb4-363"><a href="#cb4-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-364"><a href="#cb4-364" aria-hidden="true" tabindex="-1"></a><span class="fu">### Window Management</span></span>
-<span id="cb4-365"><a href="#cb4-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-366"><a href="#cb4-366" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb4-367"><a href="#cb4-367" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb4-368"><a href="#cb4-368" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Create new window              <span class="pp">|</span> <span class="in">`Ctrl + A + C`</span>             <span class="pp">|</span></span>
-<span id="cb4-369"><a href="#cb4-369" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kill current window            <span class="pp">|</span> <span class="in">`Ctrl + A + K`</span>             <span class="pp">|</span></span>
-<span id="cb4-370"><a href="#cb4-370" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List all windows              <span class="pp">|</span> <span class="in">`Ctrl + A + W`</span>             <span class="pp">|</span></span>
-<span id="cb4-371"><a href="#cb4-371" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to window 0-9               <span class="pp">|</span> <span class="in">`Ctrl + A + 0-9`</span>           <span class="pp">|</span></span>
-<span id="cb4-372"><a href="#cb4-372" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to next window              <span class="pp">|</span> <span class="in">`Ctrl + A + N`</span>             <span class="pp">|</span></span>
-<span id="cb4-373"><a href="#cb4-373" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Toggle between windows         <span class="pp">|</span> <span class="in">`Ctrl + A + Ctrl + A`</span>      <span class="pp">|</span></span>
-<span id="cb4-374"><a href="#cb4-374" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rename current window          <span class="pp">|</span> <span class="in">`Ctrl + A + A`</span>             <span class="pp">|</span></span>
-<span id="cb4-375"><a href="#cb4-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-376"><a href="#cb4-376" aria-hidden="true" tabindex="-1"></a><span class="fu">### Region Management</span></span>
-<span id="cb4-377"><a href="#cb4-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-378"><a href="#cb4-378" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb4-379"><a href="#cb4-379" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb4-380"><a href="#cb4-380" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split horizontally             <span class="pp">|</span> <span class="in">`Ctrl + A + S`</span>             <span class="pp">|</span></span>
-<span id="cb4-381"><a href="#cb4-381" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split vertically               <span class="pp">|</span> <span class="in">`Ctrl + A + \|`</span>            <span class="pp">|</span></span>
-<span id="cb4-382"><a href="#cb4-382" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch between regions         <span class="pp">|</span> <span class="in">`Ctrl + A + Tab`</span>           <span class="pp">|</span></span>
-<span id="cb4-383"><a href="#cb4-383" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Close all regions but current  <span class="pp">|</span> <span class="in">`Ctrl + A + Q`</span>             <span class="pp">|</span></span>
-<span id="cb4-384"><a href="#cb4-384" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Close current region           <span class="pp">|</span> <span class="in">`Ctrl + A + X`</span>             <span class="pp">|</span></span>
-<span id="cb4-385"><a href="#cb4-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-386"><a href="#cb4-386" aria-hidden="true" tabindex="-1"></a><span class="fu">### Session &amp; Copy Mode</span></span>
-<span id="cb4-387"><a href="#cb4-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-388"><a href="#cb4-388" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb4-389"><a href="#cb4-389" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb4-390"><a href="#cb4-390" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Detach from session           <span class="pp">|</span> <span class="in">`Ctrl + A + D`</span>             <span class="pp">|</span></span>
-<span id="cb4-391"><a href="#cb4-391" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Start copy mode               <span class="pp">|</span> <span class="in">`Ctrl + A + [`</span>             <span class="pp">|</span></span>
-<span id="cb4-392"><a href="#cb4-392" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste copied text             <span class="pp">|</span> <span class="in">`Ctrl + A + ]`</span>             <span class="pp">|</span></span>
-<span id="cb4-393"><a href="#cb4-393" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Show help                     <span class="pp">|</span> <span class="in">`Ctrl + A + ?`</span>             <span class="pp">|</span></span>
-<span id="cb4-394"><a href="#cb4-394" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit screen                   <span class="pp">|</span> <span class="in">`Ctrl + A + Ctrl + \`</span>      <span class="pp">|</span></span>
-<span id="cb4-395"><a href="#cb4-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-396"><a href="#cb4-396" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-397"><a href="#cb4-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-398"><a href="#cb4-398" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb4-399"><a href="#cb4-399" aria-hidden="true" tabindex="-1"></a><span class="fu">### Additional Resources</span></span>
-<span id="cb4-400"><a href="#cb4-400" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**VSCode**: <span class="co">[</span><span class="ot">Official Keyboard Shortcuts Reference</span><span class="co">](https://code.visualstudio.com/docs/getstarted/keybindings)</span></span>
-<span id="cb4-401"><a href="#cb4-401" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Vim**: <span class="co">[</span><span class="ot">Vim Cheat Sheet</span><span class="co">](https://vim.rtorr.com/)</span></span>
-<span id="cb4-402"><a href="#cb4-402" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Tmux**: <span class="co">[</span><span class="ot">Tmux Cheat Sheet</span><span class="co">](https://tmuxcheatsheet.com/)</span></span>
-<span id="cb4-403"><a href="#cb4-403" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Terminal**: <span class="co">[</span><span class="ot">Bash Reference Manual</span><span class="co">](https://www.gnu.org/software/bash/manual/)</span></span>
-<span id="cb4-404"><a href="#cb4-404" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visual Studio Code Comprehensive Guide"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># subtitle: "A comprehensive guide to essential keyboard shortcuts"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2023-01-01</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">published-title:</span><span class="co"> Created</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> last-modified</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner-color:</span><span class="co"> "#2c3e50"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    eval: false</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="al">![](keyboard.jpg)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>VSCode is my primary code editor, and mastering its keyboard shortcuts can significantly enhance productivity. Below is a comprehensive list of essential keyboard shortcuts setup for both Mac and Windows users.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### General Commands</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                       | **Mac**                  | **Windows**                 <span class="pp">|</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Command Palette                  <span class="pp">|</span> <span class="in">`Cmd + Shift + P`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + P`</span>          <span class="pp">|</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Open Settings                    <span class="pp">|</span> <span class="in">`Cmd + ,`</span>                <span class="pp">|</span> <span class="in">`Ctrl + ,`</span>                  <span class="pp">|</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Keyboard Shortcuts               <span class="pp">|</span> <span class="in">`Cmd + K Cmd + S`</span>        <span class="pp">|</span> <span class="in">`Ctrl + K Ctrl + S`</span>         <span class="pp">|</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Toggle Sidebar                   <span class="pp">|</span> <span class="in">`Cmd + B`</span>                <span class="pp">|</span> <span class="in">`Ctrl + B`</span>                  <span class="pp">|</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Full Screen                      <span class="pp">|</span> <span class="in">`Cmd + Ctrl + F`</span>         <span class="pp">|</span> <span class="in">`F11`</span>                       <span class="pp">|</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Open File                        <span class="pp">|</span> <span class="in">`Cmd + P`</span>                <span class="pp">|</span> <span class="in">`Ctrl + P`</span>                  <span class="pp">|</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> New Window                       <span class="pp">|</span> <span class="in">`Cmd + Shift + N`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + N`</span>          <span class="pp">|</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Close Window                     <span class="pp">|</span> <span class="in">`Cmd + Shift + W`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + W`</span>          <span class="pp">|</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">### Terminal Management</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Terminal Management**          <span class="pp">|</span>                          <span class="pp">|</span>                             <span class="pp">|</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span> </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Toggle Terminal                  <span class="pp">|</span> `<span class="in">` Cmd + `</span> ``            <span class="pp">|</span> `<span class="in">`Ctrl + `</span> ``               <span class="pp">|</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Create New Terminal              <span class="pp">|</span> `<span class="in">`Cmd + Shift + `</span> ``     <span class="pp">|</span> `<span class="in">`Ctrl + Shift + `</span> ``       <span class="pp">|</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Navigate Between Terminals       <span class="pp">|</span> <span class="in">`Cmd + Shift + [ / ]`</span>    <span class="pp">|</span> <span class="in">`Ctrl + PgUp / PgDn`</span>        <span class="pp">|</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split Terminal                   <span class="pp">|</span> <span class="in">`Cmd + \`</span>                <span class="pp">|</span> <span class="in">`Ctrl + \`</span>                  <span class="pp">|</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Navigate Between Split Terminal  <span class="pp">|</span> <span class="in">`Cmd + Option + ← / →`</span>   <span class="pp">|</span> <span class="in">`Alt + ↑ / ↓`</span>               <span class="pp">|</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Editor Management</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Editor Management**            <span class="pp">|</span>                          <span class="pp">|</span>                             <span class="pp">|</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span> </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Close Tab                        <span class="pp">|</span> <span class="in">`Cmd + W`</span>                <span class="pp">|</span> <span class="in">`Ctrl + W`</span>                  <span class="pp">|</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split Editor                     <span class="pp">|</span> <span class="in">`Cmd + \`</span>                <span class="pp">|</span> <span class="in">`Ctrl + \`</span>                  <span class="pp">|</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Navigate Tabs                    <span class="pp">|</span> <span class="in">`Cmd + Shift + Tab`</span>      <span class="pp">|</span> <span class="in">`Ctrl + Shift + Tab`</span>        <span class="pp">|</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Navigate Tab Groups              <span class="pp">|</span> <span class="in">`Cmd + 1 / 2 / 3`</span>        <span class="pp">|</span> <span class="in">`Ctrl + 1 / 2 / 3`</span>          <span class="pp">|</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">### Text Manipulation</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Text Manipulation**            <span class="pp">|</span>                          <span class="pp">|</span>                             <span class="pp">|</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span> </span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Add Multiple Cursors             <span class="pp">|</span> <span class="in">`Cmd + Option + ↑ / ↓`</span>   <span class="pp">|</span> <span class="in">`Ctrl + Alt + ↑ / ↓`</span>        <span class="pp">|</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Scroll horizontal                <span class="pp">|</span> <span class="in">`Shift + Mouse wheel`</span>    <span class="pp">|</span> <span class="in">`Shift + Mouse wheel`</span>       <span class="pp">|</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Select Text                      <span class="pp">|</span> <span class="in">`Cmd + Shift + ↑ / ↓`</span>    <span class="pp">|</span> <span class="in">`Ctrl + Shift + ↑ / ↓`</span>      <span class="pp">|</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move Line Up/Down                <span class="pp">|</span> <span class="in">`Option + ↑ / ↓`</span>         <span class="pp">|</span> <span class="in">`Alt + ↑ / ↓`</span>               <span class="pp">|</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Copy Line Up/Down                <span class="pp">|</span> <span class="in">`Shift + Option + ↑ / ↓`</span> <span class="pp">|</span> <span class="in">`Shift + Alt + ↑ / ↓`</span>       <span class="pp">|</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Select Word                      <span class="pp">|</span> <span class="in">`Cmd + D`</span>                <span class="pp">|</span> <span class="in">`Ctrl + D`</span>                  <span class="pp">|</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Select Current Line              <span class="pp">|</span> <span class="in">`Cmd + L`</span>                <span class="pp">|</span> <span class="in">`Ctrl + L`</span>                  <span class="pp">|</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Select All Occurrences           <span class="pp">|</span> <span class="in">`Cmd + Shift + L`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + L`</span>          <span class="pp">|</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete Current Line              <span class="pp">|</span> <span class="in">`Cmd + Shift + K`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + K`</span>          <span class="pp">|</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete Word Backward             <span class="pp">|</span> <span class="in">`Option + Backspace`</span>     <span class="pp">|</span> <span class="in">`Ctrl + Backspace`</span>          <span class="pp">|</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Comment/Uncomment Lines          <span class="pp">|</span> <span class="in">`Cmd + /`</span>                <span class="pp">|</span> <span class="in">`Ctrl + /`</span>                  <span class="pp">|</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### Navigation &amp; Search</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Navigation &amp; Search**          <span class="pp">|</span>                          <span class="pp">|</span>                             <span class="pp">|</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span> </span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to Line                       <span class="pp">|</span> <span class="in">`Cmd + G`</span>                <span class="pp">|</span> <span class="in">`Ctrl + G`</span>                  <span class="pp">|</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to last cursor position       <span class="pp">|</span> <span class="in">`Ctrl + -`</span>               <span class="pp">|</span> <span class="in">`Alt + ←`</span>                   <span class="pp">|</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to next cursor position       <span class="pp">|</span> <span class="in">`Ctrl + Shift + -`</span>       <span class="pp">|</span> <span class="in">`Alt + →`</span>                   <span class="pp">|</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to Word Start/End             <span class="pp">|</span> <span class="in">`Option + ← / →`</span>         <span class="pp">|</span> <span class="in">`Ctrl + ← / →`</span>              <span class="pp">|</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to Line Start/End             <span class="pp">|</span> <span class="in">`Cmd + ← / →`</span>            <span class="pp">|</span> <span class="in">`Home / End`</span>                <span class="pp">|</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to File Start/End             <span class="pp">|</span> <span class="in">`Cmd + ↑ / ↓`</span>            <span class="pp">|</span> <span class="in">`Ctrl + Home / End`</span>         <span class="pp">|</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search Files                     <span class="pp">|</span> <span class="in">`Cmd + Shift + F`</span>        <span class="pp">|</span> <span class="in">`Ctrl + Shift + F`</span>          <span class="pp">|</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Find Text                        <span class="pp">|</span> <span class="in">`Cmd + F`</span>                <span class="pp">|</span> <span class="in">`Ctrl + F`</span>                  <span class="pp">|</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Replace Text                     <span class="pp">|</span> <span class="in">`Cmd + Option + F`</span>       <span class="pp">|</span> <span class="in">`Ctrl + H`</span>                  <span class="pp">|</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="fu">### Code Formatting</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Code Formatting**              <span class="pp">|</span>                          <span class="pp">|</span>                             <span class="pp">|</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------------------|--------------------------|-----------------------------|</span> </span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Code Folding                     <span class="pp">|</span> <span class="in">`Cmd + Option + [ / ]`</span>   <span class="pp">|</span> <span class="in">`Ctrl + Shift + [ / ]`</span>      <span class="pp">|</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Indent/Outdent Lines             <span class="pp">|</span> <span class="in">`Cmd + [ / ]`</span>            <span class="pp">|</span> <span class="in">`Ctrl + [ / ]`</span>              <span class="pp">|</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Format Selected Code             <span class="pp">|</span> <span class="in">`Cmd + K Cmd + F`</span>        <span class="pp">|</span> <span class="in">`Ctrl + K Ctrl + F`</span>         <span class="pp">|</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Format Document                  <span class="pp">|</span> <span class="in">`Shift + Option + F`</span>     <span class="pp">|</span> <span class="in">`Shift + Alt + F`</span>           <span class="pp">|</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>---</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
