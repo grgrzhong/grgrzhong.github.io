@@ -47,7 +47,7 @@ website:
         file: "blog/index.qmd"
       # - text: "Wiki"
       #   file: "wiki/index.qmd"
-      - text: "VSCode"
+      - text: "Keyboard"
         file: "keyboard/index.qmd"
       - text: "Linux"
         file: "linux/index.qmd"

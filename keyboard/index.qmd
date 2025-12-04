@@ -14,7 +14,7 @@ toc-title: "Contents"
 VSCode is my primary code editor, and mastering its keyboard shortcuts can significantly enhance productivity. Below is a comprehensive list of essential keyboard shortcuts setup for both Mac and Windows users.
 :::
 
-## Shortcuts
+## Shortcut
 
 ### General Commands
 

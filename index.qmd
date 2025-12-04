@@ -25,21 +25,22 @@ format:
       source: false
 ---
 
-👋 Hi, This is Guorui Zhong.
+👋 Hi, This is Guorui Zhong. Something about my stuff:
 
-🔬 Cell biologist with applied skills in bioinformatics and computational biology.
+- Cell biologist with applied skills in bioinformatics and computational biology.
 
-🧪 Wet‑lab expertise in developing genome-editing cell models with CRISPR/Cas9.
+- Wet‑lab expertise in developing genome-editing cell models with CRISPR/Cas9.
 
-📊 Experienced in analyzing Multi-Omics dataset, including WGS, WES, RNA‑seq, scRNA-seq, methylation arrays, and proteomics datasets.
+- Experienced in analyzing Multi-Omics dataset, including WGS, WES, RNA‑seq, scRNA-seq, methylation arrays, and proteomics datasets.
 
-📊 Experienced in imaging-based phenotypic profiling with machine learning application.
+- Experienced in imaging-based phenotypic profiling with machine learning application.
 
-💻 Skilled in R (tidyverse, Bioconductor, ggplot2) and expanding my Python toolkit.
-<!-- 🎓 Certified in Data Analysis for Genomics (HarvardX). -->
+- Skilled in R (tidyverse, Bioconductor, ggplot2) and expanding my Python toolkit.
 
 
 ## Research Interests
+
+
 * Genome edition technologies (e.g., CRISPR/Cas9) to dissect gene functions in cancer and immune cells.
 
 * High-throughput imaging and computational analysis to study cell behaviors.
