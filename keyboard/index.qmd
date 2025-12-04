@@ -4,7 +4,6 @@ title: "Visual Studio Code Comprehensive Guide"
 date: 2023-01-01
 published-title: Created
 date-modified: last-modified
-title-block-banner: true
 title-block-banner: "#212529"
 toc-title: "Contents"
 ---

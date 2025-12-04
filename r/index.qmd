@@ -4,8 +4,6 @@ date: 2020-09-09
 published-title: Created
 date-modified: last-modified
 title-block-banner: "#212529"
-toc: true
-toc-location: left
 toc-title: "Contents"
 execute:
     eval: false
@@ -18,13 +16,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Basic concepts
+## Basic concepts
 
-# Data structure
+## Data structure
 
 ![](R_data_structure.png)
 
-# General functions
+## General functions
 
 ```r
 .libPaths()                      # Show library paths
@@ -50,7 +48,7 @@ system.file(package=“dagdata”)   # Extract the location of package
 colnames(installed.packages())   # list the installed packages
 ```
 
-# Best practise for R coding
+## Best practise for R coding
 
 - Variables = my_variable
 - Functions = RunThisStuffs()
@@ -68,7 +66,7 @@ colnames(installed.packages())   # list the installed packages
 - Keep track of `sessionInfo()` in project folder
 - Use version control
 
-# ggplot2 Variable repacement
+## ggplot2 Variable repacement
 
 `!!as.name()`, `get()`, `!!sym()`, `.data[[]]`
 
@@ -97,7 +95,7 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
   geom_point()
 
 ```
-# Using R in vscode with Conda environment
+## Using R in vscode with Conda environment
 
 ```json
 // Add these to the remove settings
@@ -117,8 +115,10 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
     "r.rterm.linux": "/home/zhonggr/miniforge3/envs/renv/bin/radian"
 }
 ```
-# Reference
+## Reference
 
+- [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R.html)
+- [Best Practice for R - Cheat Sheet](https://github.com/wurli/r-best-practice)
 - [An Introduction to Statistical Learning](https://www.statlearning.com/)
 - [R for Data Science (2e)](https://r4ds.hadley.nz/)
 - [R Graphics Cookbook, 2nd edition](https://r-graphics.org/)

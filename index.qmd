@@ -32,11 +32,11 @@ format:
 🧪 Wet‑lab expertise in developing genome-editing cell models with CRISPR/Cas9.
 
 📊 Experienced in analyzing Multi-Omics dataset, including WGS, WES, RNA‑seq, scRNA-seq, methylation arrays, and proteomics datasets.
+
 📊 Experienced in imaging-based phenotypic profiling with machine learning application.
 
 💻 Skilled in R (tidyverse, Bioconductor, ggplot2) and expanding my Python toolkit.
 <!-- 🎓 Certified in Data Analysis for Genomics (HarvardX). -->
-🌱 Actively exploring public datasets (TCGA, PDC) and sharing reproducible analyses here on GitHub.
 
 
 ## Research Interests

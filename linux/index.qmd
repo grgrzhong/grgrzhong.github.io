@@ -660,3 +660,6 @@ conda remove --name old_env_name --all
 ## Auto-activate pixi when entering project directory
 eval "$(pixi completion --shell bash)"  # or zsh
 ```
+
+## Git
+
