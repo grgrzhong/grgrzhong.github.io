@@ -12,17 +12,17 @@ toc-title: "Contents"
 These are the collections of things that I beleived useful in my daily researh work.
 
 ## Databases
-* [COSMIC](https://cancer.sanger.ac.uk/cosmic) - Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
-* [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) - NCBI database of single nucleotide polymorphisms (SNPs) and multiple small-scale variations that include insertions/deletions, microsatellites, and non-polymorphic variants.
-* [1000 Genomes Project](https://www.internationalgenome.org/) - a deep catalog of human genetic variation.
-* [gnomAD](https://gnomad.broadinstitute.org/) - Genome Aggregation Database.
-* [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) - a freely accessible, public archive of reports of the relationships among human variations and phenotypes, with supporting evidence.
-* [VarSome](https://varsome.com/) - search engine for human genomic variants
-* [OncoKB](https://www.oncokb.org/) - precision oncology knowledge base
-* [Ensembl](https://www.ensembl.org/index.html) - genome browser for vertebrate genomes
-* [cBioPortal](https://www.cbioportal.org/) - provides visualization, analysis
-* [NCBI](https://www.ncbi.nlm.nih.gov/) - National Center for Biotechnology Information
-* [UCSC Genome Browser](https://genome.ucsc.edu/) - an online, interactive tool for the display and analysis of genomic data.
+[COSMIC](https://cancer.sanger.ac.uk/cosmic) - Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
+[dbSNP](https://www.ncbi.nlm.nih.gov/snp/) - NCBI database of single nucleotide polymorphisms (SNPs) and multiple small-scale variations that include insertions/deletions, microsatellites, and non-polymorphic variants.
+[1000 Genomes Project](https://www.internationalgenome.org/) - a deep catalog of human genetic variation.
+[gnomAD](https://gnomad.broadinstitute.org/) - Genome Aggregation Database.
+[ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) - a freely accessible, public archive of reports of the relationships among human variations and phenotypes, with supporting evidence.
+[VarSome](https://varsome.com/) - search engine for human genomic variants
+[OncoKB](https://www.oncokb.org/) - precision oncology knowledge base
+[Ensembl](https://www.ensembl.org/index.html) - genome browser for vertebrate genomes
+[cBioPortal](https://www.cbioportal.org/) - provides visualization, analysis
+[NCBI](https://www.ncbi.nlm.nih.gov/) - National Center for Biotechnology Information
+[UCSC Genome Browser](https://genome.ucsc.edu/) - an online, interactive tool for the display and analysis of genomic data.
 
 ## Computational Biology
 

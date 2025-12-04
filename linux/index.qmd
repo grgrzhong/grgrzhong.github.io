@@ -23,6 +23,8 @@ format:
 
 [Linux shell for beginners](https://bioinformatics.mdc-berlin.de/intro2UnixandSGE/unix_for_beginners/README.html) - A comprehensive guide for beginners to learn Linux shell commands and concepts.
 
+[Useful Programs and Unix Basics](https://bioinformaticsworkbook.org/Appendix/programs.html#gsc.tab=0) - A collection of useful Unix commands and programs for bioinformatics.  
+
 ```bash
 ## Basic command
 pwd # Show current directory
