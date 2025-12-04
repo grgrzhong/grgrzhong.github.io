@@ -1,5 +1,5 @@
 ---
-title: "Guorui Zhong"
+title: ""
 about:
   template: trestles
   image-width: 20em
@@ -17,34 +17,34 @@ about:
     - icon: linkedin
       aria-label: linkedin
       href: https://www.linkedin.com/in/guorui-zhong-754761185/
+
+format:
+  html:
+    toc: false
+    code-tools:
+      source: false
 ---
 
-👋 Hi, I am Guorui Zhong.
+👋 Hi, This is Guorui Zhong.
 
 🔬 Cell biologist with applied skills in bioinformatics and computational biology.
+
 🧪 Wet‑lab expertise in developing genome-editing cell models with CRISPR/Cas9.
+
 📊 Experienced in analyzing Multi-Omics dataset, including WGS, WES, RNA‑seq, scRNA-seq, methylation arrays, and proteomics datasets.
 📊 Experienced in imaging-based phenotypic profiling with machine learning application.
+
 💻 Skilled in R (tidyverse, Bioconductor, ggplot2) and expanding my Python toolkit.
 <!-- 🎓 Certified in Data Analysis for Genomics (HarvardX). -->
 🌱 Actively exploring public datasets (TCGA, PDC) and sharing reproducible analyses here on GitHub.
 
-## Education
-2014 - 2019 Ph.D., Biochemistry and Molecular Biology, South China University of Technology,
-Guangzhou, China.
-
-2010 - 2014 B.S. Biotechnology, Jiangxi Normal University, Nanchang, China.
-
-## Experience
-2025 – Present Postdoctoral Research Fellow, Department of Pathology, LKS Faculty of Medicine,
-The University of Hong Kong (HKU), Hong Kong SAR, China.
-
-2019 – 2024 Scientist / Postdoctoral Research Fellow, Bioinformatics Institute (BII), Agency for
-Science, Technology and Research (A*STAR), Singapore.
 
 ## Research Interests
 * Genome edition technologies (e.g., CRISPR/Cas9) to dissect gene functions in cancer and immune cells.
+
 * High-throughput imaging and computational analysis to study cell behaviors.
+
 * Single-cell omics to study cellular heterogeneity and dynamics.
+
 * Develop and use quantitative in vitro/image assays and machine learning models to predict the biological effects of genetic mutations, drugs and/or environmental agents.
 

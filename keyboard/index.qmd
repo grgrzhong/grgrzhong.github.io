@@ -5,9 +5,8 @@ date: 2023-01-01
 published-title: Created
 date-modified: last-modified
 title-block-banner: true
-title-block-banner-color: "#2c3e50"
-execute:
-    eval: false
+title-block-banner: "#212529"
+toc-title: "Contents"
 ---
 
 ![](keyboard.jpg)
@@ -15,6 +14,8 @@ execute:
 ::: {.callout-tip}
 VSCode is my primary code editor, and mastering its keyboard shortcuts can significantly enhance productivity. Below is a comprehensive list of essential keyboard shortcuts setup for both Mac and Windows users.
 :::
+
+## Shortcuts
 
 ### General Commands
 

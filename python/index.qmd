@@ -4,6 +4,7 @@ date: 2020-09-09
 published-title: Created
 date-modified: last-modified
 title-block-banner: "#212529"
+toc-title: "Contents"
 ---
 
 ## Python basics
