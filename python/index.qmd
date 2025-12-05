@@ -228,20 +228,49 @@ dict()
 
 ## Python for R users
 
-### Install and load library
+### Install library
 
 ::: {.panel-tabset group="language"}
 
 #### Python
-
-```{bash}
+```{.bash}
 #| eval: false
 ## Install library using pip
 python3 -m pip install pandas numpy matplotlib
-
-## Install library using conda
-conda install pandas numpy matplotlib
 ```
+
+#### R
+```{.r}
+## Install package using install.packages()
+install.packages("dplyr")
+## Install package using devtools
+install.packages("devtools")
+devtools::install_github("tidyverse/dplyr")
+
+## Install package using bioconductor
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("dplyr", force = TRUE, ask = FALSE)
+```
+
+#### Conda
+```{.bash}
+#| eval: false
+
+## Install Python library using conda
+conda install pandas numpy matplotlib
+
+## Install R package using conda
+conda install -n renv r-dplyr bioconductor-dplyr
+```
+
+:::
+
+### Load library
+
+::: {.panel-tabset group="language"}
+
+#### Python
 
 ```{.python}
 #| eval: false
@@ -257,24 +286,8 @@ np.log(7)
 
 #### R
 
-```{bash}
-#| eval: false
-## Install package using conda
-conda install -n renv r-dplyr bioconductor-dplyr
-```
-
 ```{.r}
 #| eval: false
-## Install package using install.packages()
-install.packages("dplyr")
-## Install package using devtools
-install.packages("devtools")
-devtools::install_github("tidyverse/dplyr")
-
-## Install package using bioconductor
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("dplyr", force = TRUE, ask = FALSE)
 
 ## Load library
 library(dplyr)
@@ -326,6 +339,86 @@ if True:
     + `tuple`: ordered, immutable, allows duplicate elements
     + `set`: unordered, mutable, no duplicate elements
     + `dict`: unordered, mutable, key-value pairs
+
+#### Lists
+
+Python lists created using bare brackets `[]`, closer to R's `as.list` function.
+
+* The most important thing to know about Python lists is that they are mutable.
+
+```{python}
+#| eval: false
+x = [1, 2, 3]
+y = x    # `y` and `x` now refer to the same list!
+x.append(4)
+print("x is", x)
+#> x is [1, 2, 3, 4]
+print("y is", y)
+#> y is [1, 2, 3, 4]
+
+```
+
+* Some syntactic sugar around Python lists you might encounter is the usage of + and * with lists. 
+These are concatenation and replication operators, akin to R’s c() and rep().
+
+```{python}
+#| eval: false
+x = [1]
+x
+#> [1]
+x + x
+#> [1, 1]
+x * 3
+#> [1, 1, 1]
+```
+
+* Index into lists with integers using trailing `[]`, but note that indexing is 0-based
+
+```{python}
+#| eval: false
+x = [1, 2, 3]
+
+x[0]
+#> 1
+x[1]
+#> 2
+x[2]
+#> 3
+
+try:
+  x[3]
+except Exception as e:
+  print(e)
+#> list index out of range
+
+## Negative numbers count from the end of the list
+x[-1]
+#> 3
+x[-2]
+#> 2
+x[-3]
+#> 1
+```
+
+* Slice ranges of lists using `:` inside the trailing `[]`. Note that the end index is exclusive. We can optionally specify a stride using a second `:`.
+```{python}
+#| eval: false
+x = [1, 2, 3, 4, 5, 6]
+x[0:2] # get items at index positions 0, 1
+#> [1, 2]
+x[1:]  # get items from index position 1 to the end
+#> [2, 3, 4, 5, 6]
+x[:-2] # get items from beginning up to the 2nd to last.
+#> [1, 2, 3, 4]
+x[:]   # get all the items (idiom used to copy the list so as not to modify in place)
+#> [1, 2, 3, 4, 5, 6]
+x[::2] # get all the items, with a stride of 2
+#> [1, 3, 5]
+x[1::2] # get all the items from index 1 to the end, with a stride of 2
+#> [2, 4, 6]
+```
+
+#### Tuples
 
 ### Data frame
 
