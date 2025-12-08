@@ -335,10 +335,10 @@ if True:
 * in R, the `list` is a versatile container type that can hold elements of different types and structures. 
 * There is no single direct equivalent of R's `list` in Python that support all the same features.
 * Instead, there are (at least) 4 different Python container types we need to aware:
-    + `list`: ordered, mutable, allows duplicate elements
-    + `tuple`: ordered, immutable, allows duplicate elements
-    + `set`: unordered, mutable, no duplicate elements
-    + `dict`: unordered, mutable, key-value pairs
+    + `list`: ordered, mutable, allows duplicate elements, created using `[]`
+    + `tuple`: ordered, immutable, allows duplicate elements, created using `()`
+    + `set`: unordered, mutable, no duplicate elements, created using `{}`
+    + `dict`: unordered, mutable, key-value pairs, created using `{}`
 
 #### Lists
 
@@ -425,28 +425,70 @@ x[1::2] # get all the items from index 1 to the end, with a stride of 2
 
 ```{python}
 #| eval: true
-#| output: inline
+#| output: asis
 
-## Tuple of length 2
-x = (1, 2)
+x = (1, 2) # tuple of length 2
 type(x)
+#> <class 'tuple'>
 len(x)
-print(x)
+#> 2
+x
+#> (1, 2)
 
+x = (1,) # tuple of length 1
+type(x)
+#> <class 'tuple'>
+len(x)
+#> 1
+x
+#> (1,)
 
-## Tuple of length length 1
-y = (1,)
-type(y)
-len(y)
-print(y)
+x = () # tuple of length 0
+print(f"{type(x) = }; {len(x) = }; {x = }")
+#> type(x) = <class 'tuple'>; len(x) = 0; x = ()
+# example of an interpolated string literals
+
+x = 1, 2 # also a tuple
+type(x)
+#> <class 'tuple'>
+len(x)
+#> 2
+
+x = 1, # beware a single trailing comma! This is a tuple!
+type(x)
+#> <class 'tuple'>
+len(x)
+#> 1
 ```
+
+* Tuples are the container that powers the packing and unpacking semantics in Python.
+    + Packing and unpacking tuples is a common idiom in Python.
+    + Python provides the convenience of unpacking tuples into multiple variables in a single statement.
+
+```{python}
+#| eval: true
+
+x = (1, 2, 3)
+a, b, c = x
+a
+#> 1
+b
+#> 2
+c
+#> 3
+
+```
+
+
+
 ### Data frame
 
 ::: {.panel-tabset group="language"}
 
 #### R
 
-```{.r}
+```{r}
+#| eval: true
 ## R contains a native data frame
 r_df <- data.frame(
     Name = c("Alice", "Bob", "Charlie"),
@@ -457,7 +499,9 @@ print(r_df)
 ```
 #### Python
 
-```{.python}
+```{python}
+#| eval: true
+
 ## Python's dataframe comes form the pandas library
 import pandas as pd
 
