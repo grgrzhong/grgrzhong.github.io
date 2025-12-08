@@ -403,7 +403,7 @@ x[-3]
 * Slice ranges of lists using `:` inside the trailing `[]`. Note that the end index is exclusive. We can optionally specify a stride using a second `:`.
 ```{python}
 #| eval: false
-x = [1, 2, 3, 4, 5, 6]
+x = [1, 2, 3, 4, 5, 6] 
 x[0:2] # get items at index positions 0, 1
 #> [1, 2]
 x[1:]  # get items from index position 1 to the end
