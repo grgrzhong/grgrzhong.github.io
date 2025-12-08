@@ -420,6 +420,26 @@ x[1::2] # get all the items from index 1 to the end, with a stride of 2
 
 #### Tuples
 
+* Tuples behave like lists, but are immutable (cannot be changed after creation).
+* Created using bare parentheses `()`, but parentheses are not strictly required.
+
+```{python}
+#| eval: true
+#| output: inline
+
+## Tuple of length 2
+x = (1, 2)
+type(x)
+len(x)
+print(x)
+
+
+## Tuple of length length 1
+y = (1,)
+type(y)
+len(y)
+print(y)
+```
 ### Data frame
 
 ::: {.panel-tabset group="language"}
