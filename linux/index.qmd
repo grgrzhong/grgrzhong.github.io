@@ -111,6 +111,104 @@ chsh -s /bin/bash
 chsh -s /bin/zsh
 ```
 
+## Unzip files
+
+* Commone tar flags:
+    +  `-x` = extract
+    +  `-f` = file
+    +  `-v` = verbose
+    +  `-z` = gzip compression
+    +  `-j` = bzip2 compression
+    +  `-J` = xz compression
+    +  `-c` = change to directory
+    +  `-C` = specify directory
+    +  `-p` = preserve permissions
+    +  `--strip-components=N` = remove N leading path components
+    +  `--no-same-owner` = do not preserve ownership
+    +  `--no-same-permissions` = do not preserve permissions
+    +  `--wildcards` = enable wildcard matching
+    +  `--exclude='pattern'` = exclude files matching pattern
+    +  `--include='pattern'` = include only files matching pattern
+    +  `--transform='s/old/new/'` = rename files during extraction
+    +  `--skip-old-files` = skip files that already exist
+    +  `--overwrite` = overwrite existing files
+    +  `--keep-newer-files` = keep files that are newer than the archive
+    +  `--no-overwrite-dir` = do not overwrite existing directories
+    +  `--no-clobber` = do not overwrite existing files
+    +  `--remove-files` = remove files after adding them to the archive
+    +  `--no-recursion` = do not recurse into directories
+    +  `--no-auto-compress` = do not automatically detect compression
+    +  `--no-check-device` = do not check device numbers when extracting
+    +  `--no-same-time` = do not preserve modification times
+    +  `--no-same-permissions` = do not preserve permissions
+    +  `--no-same-owner` = do not preserve ownership
+    +  `--no-same-time` = do not preserve modification times 
+
+```bash
+## Extract .tar.gz file
+tar -xf fuke.tar
+tar -xzvf file.tar.gz
+tar -xzf file.tgz
+
+## Extract .tar.bz2 file
+tar -xjf file.tar.bz2
+
+## Extract .tar.xz file
+tar -xJf file.tar.xz
+
+## Extract to specific directory
+tar -xzf file.tar.gz -C /path/to/directory
+
+## List contents without extracting
+tar -tzf file.tar.gz
+tar -tf file.tar
+```
+
+```bash
+## Extract zip files
+unzip file.zip
+unzip file.zip -d /path/to/directory
+
+## List contents without extracting
+unzip -l file.zip
+
+## Extract .gz file
+gunzip file.gz
+gunzip -dk file.gz  # keep original file
+
+## Extract .bz2 file
+bunzip2 file.bz2
+
+## Extract .xz file
+unxz file.xz
+
+## Extract .7z file
+7z x file.7z
+
+## Extract .rar file
+unrar x file.rar
+```
+* Common tar flags for compression
+  * `-c` = create archive
+  * `-f` = file name
+  * `-z` = gzip compression (.tar.gz)
+  * `-j` = bzip2 compression (.tar.bz2)
+  * `-J` = xz compression (.tar.xz)
+  * `-v` = verbose output
+
+```bash
+tar -cf archive.tar file1 file2 directory/
+
+## gzip compressed
+tar -czf archive.tar.gz file1 file2 directory/
+
+## bzip2 compressed
+tar -cjf archive.tar.bz2 file1 file2 directory/
+
+## .tar.xz compressed
+tar -cJf archive.tar.xz file1 file2 directory/
+```
+
 ## Shortcut
 
 ::: {.callout-note}
