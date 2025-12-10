@@ -97,7 +97,7 @@ format:
     toc: true
     toc-depth: 3
     toc_float: true
-    toc-location: right
+    toc-location: left
     number-sections: false
     number-depth: 3
     code-link: true

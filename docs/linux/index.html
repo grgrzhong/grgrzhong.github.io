@@ -185,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">December 9, 2025</p>
+        <p class="date-modified">December 10, 2025</p>
       </div>
     </div>
       
@@ -199,8 +199,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#command" id="toc-command" class="nav-link active" data-scroll-target="#command">Command</a></li>
-  <li><a href="#unzip-files" id="toc-unzip-files" class="nav-link" data-scroll-target="#unzip-files">Unzip files</a></li>
+  <li><a href="#unix-shell-basics" id="toc-unix-shell-basics" class="nav-link active" data-scroll-target="#unix-shell-basics">UNIX Shell Basics</a></li>
+  <li><a href="#file-compression" id="toc-file-compression" class="nav-link" data-scroll-target="#file-compression">File Compression</a></li>
   <li><a href="#shortcut" id="toc-shortcut" class="nav-link" data-scroll-target="#shortcut">Shortcut</a>
   <ul class="collapse">
   <li><a href="#cursor-movement" id="toc-cursor-movement" class="nav-link" data-scroll-target="#cursor-movement">Cursor Movement</a></li>
@@ -210,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#auto-completion-misc" id="toc-auto-completion-misc" class="nav-link" data-scroll-target="#auto-completion-misc">Auto-Completion &amp; Misc</a></li>
   </ul></li>
   <li><a href="#permissions" id="toc-permissions" class="nav-link" data-scroll-target="#permissions">Permissions</a></li>
-  <li><a href="#sync" id="toc-sync" class="nav-link" data-scroll-target="#sync">Sync</a></li>
+  <li><a href="#data-transfer" id="toc-data-transfer" class="nav-link" data-scroll-target="#data-transfer">Data transfer</a></li>
   <li><a href="#vim" id="toc-vim" class="nav-link" data-scroll-target="#vim">Vim</a>
   <ul class="collapse">
   <li><a href="#modes" id="toc-modes" class="nav-link" data-scroll-target="#modes">Modes</a></li>
@@ -263,8 +263,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="command" class="level2">
-<h2 class="anchored" data-anchor-id="command">Command</h2>
+<section id="unix-shell-basics" class="level2">
+<h2 class="anchored" data-anchor-id="unix-shell-basics">UNIX Shell Basics</h2>
 <ul>
 <li><p><a href="https://explainshell.com/">explainshell.com</a> - Lean fancy shell commands by breaking them down into individual components and providing explanations for each part.</p></li>
 <li><p><a href="https://bioinformatics.mdc-berlin.de/intro2UnixandSGE/unix_for_beginners/README.html">Linux shell for beginners</a> - A comprehensive guide for beginners to learn Linux shell commands and concepts.</p></li>
@@ -346,8 +346,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chsh</span> <span class="at">-s</span> /bin/bash</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">chsh</span> <span class="at">-s</span> /bin/zsh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="unzip-files" class="level2">
-<h2 class="anchored" data-anchor-id="unzip-files">Unzip files</h2>
+<section id="file-compression" class="level2">
+<h2 class="anchored" data-anchor-id="file-compression">File Compression</h2>
 <ul>
 <li>Commone tar flags:
 <ul>
@@ -711,8 +711,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Change owner</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown username:groupname /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="sync" class="level2">
-<h2 class="anchored" data-anchor-id="sync">Sync</h2>
+<section id="data-transfer" class="level2">
+<h2 class="anchored" data-anchor-id="data-transfer">Data transfer</h2>
+<ul>
+<li>Transfering data efficiently between local and remote systems:
+<ul>
+<li><code>wget</code>: Download files directly from the internet to your local machine or server.</li>
+<li><code>scp</code>: Securely copy files between local and remote systems over SSH.</li>
+<li><code>rsync</code>: Synchronize files and directories efficiently, with options for selective copying and deletion.</li>
+</ul></li>
+</ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Basic command</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> /source/folder/ /destination/folder/</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2075,8 +2083,8 @@ Note
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="an">published-title:</span><span class="co"> Created</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> last-modified</span></span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> "#212529"</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="an">toc-location:</span><span class="co"> left</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># toc: true</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># toc-location: left</span></span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="an">toc-title:</span><span class="co"> "Contents"</span></span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">    eval: false</span></span>
@@ -2088,7 +2096,7 @@ Note
 <span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## UNIX Shell Basics</span></span>
 <span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="co">[</span><span class="ot">explainshell.com</span><span class="co">](https://explainshell.com/)</span> - Lean fancy shell commands by breaking them down into individual components and providing explanations for each part.</span>
 <span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -2182,7 +2190,7 @@ Note
 <span id="cb26-111"><a href="#cb26-111" aria-hidden="true" tabindex="-1"></a><span class="fu">chsh</span> <span class="at">-s</span> /bin/zsh</span>
 <span id="cb26-112"><a href="#cb26-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb26-113"><a href="#cb26-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-114"><a href="#cb26-114" aria-hidden="true" tabindex="-1"></a><span class="fu">## Unzip files</span></span>
+<span id="cb26-114"><a href="#cb26-114" aria-hidden="true" tabindex="-1"></a><span class="fu">## File Compression</span></span>
 <span id="cb26-115"><a href="#cb26-115" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-116"><a href="#cb26-116" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Commone tar flags:</span>
 <span id="cb26-117"><a href="#cb26-117" aria-hidden="true" tabindex="-1"></a><span class="ss">    +  </span><span class="in">`-x`</span> = extract</span>
@@ -2394,458 +2402,464 @@ Note
 <span id="cb26-323"><a href="#cb26-323" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown username:groupname /path/to/folder</span>
 <span id="cb26-324"><a href="#cb26-324" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb26-325"><a href="#cb26-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-326"><a href="#cb26-326" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sync</span></span>
-<span id="cb26-327"><a href="#cb26-327" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb26-328"><a href="#cb26-328" aria-hidden="true" tabindex="-1"></a><span class="co">## Basic command</span></span>
-<span id="cb26-329"><a href="#cb26-329" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> /source/folder/ /destination/folder/</span>
-<span id="cb26-330"><a href="#cb26-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-331"><a href="#cb26-331" aria-hidden="true" tabindex="-1"></a><span class="co">## Sync source to destination</span></span>
-<span id="cb26-332"><a href="#cb26-332" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--delete</span> /source/folder/ /destination/folder/</span>
-<span id="cb26-333"><a href="#cb26-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-334"><a href="#cb26-334" aria-hidden="true" tabindex="-1"></a><span class="co">## If you need two-way sync, run both directions</span></span>
-<span id="cb26-335"><a href="#cb26-335" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--delete</span> /folder1/ /folder2/</span>
-<span id="cb26-336"><a href="#cb26-336" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--delete</span> /folder2/ /folder1/</span>
-<span id="cb26-337"><a href="#cb26-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-338"><a href="#cb26-338" aria-hidden="true" tabindex="-1"></a><span class="co">## Network sync</span></span>
-<span id="cb26-339"><a href="#cb26-339" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--delete</span> /local/folder/ user@remote:/remote/folder/</span>
-<span id="cb26-340"><a href="#cb26-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-341"><a href="#cb26-341" aria-hidden="true" tabindex="-1"></a><span class="co">## Copy only new files (files that don't exist in the destination)</span></span>
-<span id="cb26-342"><a href="#cb26-342" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--ignore-existing</span> /source/folder/ /destination/folder/</span>
+<span id="cb26-326"><a href="#cb26-326" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data transfer</span></span>
+<span id="cb26-327"><a href="#cb26-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-328"><a href="#cb26-328" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Transfering data efficiently between local and remote systems:</span>
+<span id="cb26-329"><a href="#cb26-329" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`wget`</span>: Download files directly from the internet to your local machine or server.</span>
+<span id="cb26-330"><a href="#cb26-330" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`scp`</span>: Securely copy files between local and remote systems over SSH.</span>
+<span id="cb26-331"><a href="#cb26-331" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`rsync`</span>: Synchronize files and directories efficiently, with options for selective copying and deletion.</span>
+<span id="cb26-332"><a href="#cb26-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-333"><a href="#cb26-333" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb26-334"><a href="#cb26-334" aria-hidden="true" tabindex="-1"></a><span class="co">## Basic command</span></span>
+<span id="cb26-335"><a href="#cb26-335" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> /source/folder/ /destination/folder/</span>
+<span id="cb26-336"><a href="#cb26-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-337"><a href="#cb26-337" aria-hidden="true" tabindex="-1"></a><span class="co">## Sync source to destination</span></span>
+<span id="cb26-338"><a href="#cb26-338" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--delete</span> /source/folder/ /destination/folder/</span>
+<span id="cb26-339"><a href="#cb26-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-340"><a href="#cb26-340" aria-hidden="true" tabindex="-1"></a><span class="co">## If you need two-way sync, run both directions</span></span>
+<span id="cb26-341"><a href="#cb26-341" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--delete</span> /folder1/ /folder2/</span>
+<span id="cb26-342"><a href="#cb26-342" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--delete</span> /folder2/ /folder1/</span>
 <span id="cb26-343"><a href="#cb26-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-344"><a href="#cb26-344" aria-hidden="true" tabindex="-1"></a><span class="co">## Copy only if source is newer</span></span>
-<span id="cb26-345"><a href="#cb26-345" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--update</span> /source/folder/ /destination/folder/</span>
-<span id="cb26-346"><a href="#cb26-346" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-347"><a href="#cb26-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-348"><a href="#cb26-348" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
-<span id="cb26-349"><a href="#cb26-349" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--archive`</span>: Preserves permissions, timestamps, symbolic links, etc.</span>
-<span id="cb26-350"><a href="#cb26-350" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--verbose`</span>: Shows progress</span>
-<span id="cb26-351"><a href="#cb26-351" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--delete`</span>: Removes files in destination that don't exist in source</span>
-<span id="cb26-352"><a href="#cb26-352" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--dry-run`</span>: Preview changes without actually syncing</span>
-<span id="cb26-353"><a href="#cb26-353" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--update`</span>: Only copy newer file</span>
-<span id="cb26-354"><a href="#cb26-354" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--ignore-existing`</span>: Skips files that already exist in destination (regardless of age)</span>
-<span id="cb26-355"><a href="#cb26-355" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--update`</span>: Only copies if source file is newer than destination</span>
-<span id="cb26-356"><a href="#cb26-356" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--no-perms`</span>: Don't preserve Unix permissions</span>
-<span id="cb26-357"><a href="#cb26-357" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--no-times`</span>: Don't preserve modification times</span>
-<span id="cb26-358"><a href="#cb26-358" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--inplace`</span>: Write directly without temp files</span>
-<span id="cb26-359"><a href="#cb26-359" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb26-360"><a href="#cb26-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-361"><a href="#cb26-361" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sync remote server folders to local using rsync</span>
-<span id="cb26-362"><a href="#cb26-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-363"><a href="#cb26-363" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb26-364"><a href="#cb26-364" aria-hidden="true" tabindex="-1"></a><span class="co">## Remote server details</span></span>
-<span id="cb26-365"><a href="#cb26-365" aria-hidden="true" tabindex="-1"></a><span class="va">remote_user</span><span class="op">=</span><span class="st">"username"</span></span>
-<span id="cb26-366"><a href="#cb26-366" aria-hidden="true" tabindex="-1"></a><span class="va">remote_host</span><span class="op">=</span><span class="st">"hpcio2"</span> <span class="co"># hpc2021-io1.hku.hk,hpc2021-io2.hku.hk  </span></span>
-<span id="cb26-367"><a href="#cb26-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-368"><a href="#cb26-368" aria-hidden="true" tabindex="-1"></a><span class="co">## Define folders to sync (absolute paths)</span></span>
-<span id="cb26-369"><a href="#cb26-369" aria-hidden="true" tabindex="-1"></a><span class="co">## Format: "local_absolute_path:remote_absolute_path"</span></span>
-<span id="cb26-370"><a href="#cb26-370" aria-hidden="true" tabindex="-1"></a><span class="va">folders_to_sync</span><span class="op">=</span><span class="va">(</span></span>
-<span id="cb26-371"><a href="#cb26-371" aria-hidden="true" tabindex="-1"></a>    <span class="co"># "/mnt/m/Reference:/lustre1/g/path_my/Reference"</span></span>
-<span id="cb26-372"><a href="#cb26-372" aria-hidden="true" tabindex="-1"></a>    <span class="co"># "/mnt/m/WES/DFSP/Annovar:/lustre1/g/path_my/pipeline/somatic_variants_calling/data/DFSP/Annovar"</span></span>
-<span id="cb26-373"><a href="#cb26-373" aria-hidden="true" tabindex="-1"></a>    <span class="st">"/mnt/m/WES/SARC/BAM:/lustre1/g/path_my/pipeline/somatic_variants_calling/data/SARC/BAM"</span></span>
-<span id="cb26-374"><a href="#cb26-374" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add more folders as needed in the same format</span></span>
-<span id="cb26-375"><a href="#cb26-375" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span>
-<span id="cb26-376"><a href="#cb26-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-377"><a href="#cb26-377" aria-hidden="true" tabindex="-1"></a><span class="co">## Sync each folder</span></span>
-<span id="cb26-378"><a href="#cb26-378" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> folder_pair <span class="kw">in</span> <span class="st">"</span><span class="va">${folders_to_sync</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span><span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb26-379"><a href="#cb26-379" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Split the pair into local and remote paths</span></span>
-<span id="cb26-380"><a href="#cb26-380" aria-hidden="true" tabindex="-1"></a>    <span class="va">local_path</span><span class="op">=</span><span class="st">"</span><span class="va">${folder_pair</span><span class="op">%%</span>:<span class="pp">*</span><span class="va">}</span><span class="st">"</span></span>
-<span id="cb26-381"><a href="#cb26-381" aria-hidden="true" tabindex="-1"></a>    <span class="va">remote_path</span><span class="op">=</span><span class="st">"</span><span class="va">${folder_pair</span><span class="op">#</span><span class="pp">*</span>:<span class="va">}</span><span class="st">"</span></span>
-<span id="cb26-382"><a href="#cb26-382" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb26-383"><a href="#cb26-383" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Syncing </span><span class="va">${remote_user}</span><span class="st">@</span><span class="va">${remote_host}</span><span class="st">:</span><span class="va">${remote_path}</span><span class="st"> to </span><span class="va">${local_path}</span><span class="st">"</span></span>
-<span id="cb26-384"><a href="#cb26-384" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb26-385"><a href="#cb26-385" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create local directory structure</span></span>
-<span id="cb26-386"><a href="#cb26-386" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">${local_path}</span><span class="st">"</span></span>
-<span id="cb26-387"><a href="#cb26-387" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb26-388"><a href="#cb26-388" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sync the folder contents from remote to local (trailing slash on source copies contents)</span></span>
-<span id="cb26-389"><a href="#cb26-389" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--update</span> <span class="at">--progress</span> <span class="at">--inplace</span> <span class="at">--no-perms</span> <span class="at">--no-times</span> <span class="dt">\</span></span>
-<span id="cb26-390"><a href="#cb26-390" aria-hidden="true" tabindex="-1"></a>        <span class="st">"</span><span class="va">${remote_user}</span><span class="st">@</span><span class="va">${remote_host}</span><span class="st">:</span><span class="va">${remote_path}</span><span class="st">/"</span> <span class="dt">\</span></span>
-<span id="cb26-391"><a href="#cb26-391" aria-hidden="true" tabindex="-1"></a>        <span class="st">"</span><span class="va">${local_path}</span><span class="st">/"</span></span>
-<span id="cb26-392"><a href="#cb26-392" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb26-393"><a href="#cb26-393" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"-----------------------------------"</span></span>
-<span id="cb26-394"><a href="#cb26-394" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb26-395"><a href="#cb26-395" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-396"><a href="#cb26-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-397"><a href="#cb26-397" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sync local folders to remote server</span>
-<span id="cb26-398"><a href="#cb26-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-399"><a href="#cb26-399" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb26-400"><a href="#cb26-400" aria-hidden="true" tabindex="-1"></a><span class="co">## Remote server details</span></span>
-<span id="cb26-401"><a href="#cb26-401" aria-hidden="true" tabindex="-1"></a><span class="va">remote_user</span><span class="op">=</span><span class="st">"username"</span></span>
-<span id="cb26-402"><a href="#cb26-402" aria-hidden="true" tabindex="-1"></a><span class="va">remote_host</span><span class="op">=</span><span class="st">"hpcio1"</span> <span class="co"># hpc2021-io1.hku.hk </span></span>
-<span id="cb26-403"><a href="#cb26-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-404"><a href="#cb26-404" aria-hidden="true" tabindex="-1"></a><span class="co">## Define folders to sync (absolute paths)</span></span>
-<span id="cb26-405"><a href="#cb26-405" aria-hidden="true" tabindex="-1"></a><span class="co">## Format: "local_absolute_path:remote_absolute_path"</span></span>
-<span id="cb26-406"><a href="#cb26-406" aria-hidden="true" tabindex="-1"></a><span class="va">folders_to_sync</span><span class="op">=</span><span class="va">(</span></span>
-<span id="cb26-407"><a href="#cb26-407" aria-hidden="true" tabindex="-1"></a>    <span class="st">"/mnt/f/Reference:/lustre1/g/path_my/Reference"</span></span>
-<span id="cb26-408"><a href="#cb26-408" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add more folders as needed in the same format</span></span>
-<span id="cb26-409"><a href="#cb26-409" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span>
-<span id="cb26-410"><a href="#cb26-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-411"><a href="#cb26-411" aria-hidden="true" tabindex="-1"></a><span class="co">## Sync each folder</span></span>
-<span id="cb26-412"><a href="#cb26-412" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> folder_pair <span class="kw">in</span> <span class="st">"</span><span class="va">${folders_to_sync</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span><span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb26-413"><a href="#cb26-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-414"><a href="#cb26-414" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Split the pair into local and remote paths</span></span>
-<span id="cb26-415"><a href="#cb26-415" aria-hidden="true" tabindex="-1"></a>    <span class="va">local_path</span><span class="op">=</span><span class="st">"</span><span class="va">${folder_pair</span><span class="op">%%</span>:<span class="pp">*</span><span class="va">}</span><span class="st">"</span></span>
-<span id="cb26-416"><a href="#cb26-416" aria-hidden="true" tabindex="-1"></a>    <span class="va">remote_path</span><span class="op">=</span><span class="st">"</span><span class="va">${folder_pair</span><span class="op">#</span><span class="pp">*</span>:<span class="va">}</span><span class="st">"</span></span>
-<span id="cb26-417"><a href="#cb26-417" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb26-418"><a href="#cb26-418" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Syncing </span><span class="va">${local_path}</span><span class="st"> to </span><span class="va">${remote_user}</span><span class="st">@</span><span class="va">${remote_host}</span><span class="st">:</span><span class="va">${remote_path}</span><span class="st">"</span></span>
-<span id="cb26-419"><a href="#cb26-419" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb26-420"><a href="#cb26-420" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create remote directory structure</span></span>
-<span id="cb26-421"><a href="#cb26-421" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ssh</span> <span class="va">${remote_user}</span>@<span class="va">${remote_host}</span> <span class="st">"mkdir -p </span><span class="va">${remote_path}</span><span class="st">"</span></span>
-<span id="cb26-422"><a href="#cb26-422" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb26-423"><a href="#cb26-423" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sync the folder contents (trailing slash on source copies contents)</span></span>
-<span id="cb26-424"><a href="#cb26-424" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--update</span> <span class="at">--progress</span> <span class="dt">\</span></span>
-<span id="cb26-425"><a href="#cb26-425" aria-hidden="true" tabindex="-1"></a>        <span class="st">"</span><span class="va">${local_path}</span><span class="st">/"</span> <span class="dt">\</span></span>
-<span id="cb26-426"><a href="#cb26-426" aria-hidden="true" tabindex="-1"></a>        <span class="st">"</span><span class="va">${remote_user}</span><span class="st">@</span><span class="va">${remote_host}</span><span class="st">:</span><span class="va">${remote_path}</span><span class="st">/"</span></span>
-<span id="cb26-427"><a href="#cb26-427" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb26-428"><a href="#cb26-428" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"-----------------------------------"</span></span>
-<span id="cb26-429"><a href="#cb26-429" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb26-430"><a href="#cb26-430" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-431"><a href="#cb26-431" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vim</span></span>
-<span id="cb26-432"><a href="#cb26-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-433"><a href="#cb26-433" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
-<span id="cb26-434"><a href="#cb26-434" aria-hidden="true" tabindex="-1"></a><span class="fu">### ⚠️ Vim Modal Editor</span></span>
-<span id="cb26-435"><a href="#cb26-435" aria-hidden="true" tabindex="-1"></a>Vim is a modal editor. Remember to press <span class="in">`Esc`</span> to return to Normal mode before using most commands.</span>
-<span id="cb26-436"><a href="#cb26-436" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb26-437"><a href="#cb26-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-438"><a href="#cb26-438" aria-hidden="true" tabindex="-1"></a><span class="fu">### Modes</span></span>
-<span id="cb26-439"><a href="#cb26-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-440"><a href="#cb26-440" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb26-441"><a href="#cb26-441" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb26-442"><a href="#cb26-442" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert mode                    <span class="pp">|</span> <span class="in">`i`</span>            <span class="pp">|</span></span>
-<span id="cb26-443"><a href="#cb26-443" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert at beginning of line    <span class="pp">|</span> <span class="in">`I`</span>            <span class="pp">|</span></span>
-<span id="cb26-444"><a href="#cb26-444" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert new line below          <span class="pp">|</span> <span class="in">`o`</span>            <span class="pp">|</span></span>
-<span id="cb26-445"><a href="#cb26-445" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert new line above          <span class="pp">|</span> <span class="in">`O`</span>            <span class="pp">|</span></span>
-<span id="cb26-446"><a href="#cb26-446" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Append after cursor            <span class="pp">|</span> <span class="in">`a`</span>            <span class="pp">|</span></span>
-<span id="cb26-447"><a href="#cb26-447" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Append at end of line          <span class="pp">|</span> <span class="in">`A`</span>            <span class="pp">|</span></span>
-<span id="cb26-448"><a href="#cb26-448" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Command mode (normal)          <span class="pp">|</span> <span class="in">`Esc`</span>          <span class="pp">|</span></span>
-<span id="cb26-449"><a href="#cb26-449" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Visual mode (select text)      <span class="pp">|</span> <span class="in">`v`</span>            <span class="pp">|</span></span>
-<span id="cb26-450"><a href="#cb26-450" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Visual line mode               <span class="pp">|</span> <span class="in">`V`</span>            <span class="pp">|</span></span>
-<span id="cb26-451"><a href="#cb26-451" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Visual block mode              <span class="pp">|</span> <span class="in">`Ctrl + v`</span>     <span class="pp">|</span></span>
-<span id="cb26-452"><a href="#cb26-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-453"><a href="#cb26-453" aria-hidden="true" tabindex="-1"></a><span class="fu">### File Operations</span></span>
-<span id="cb26-454"><a href="#cb26-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-455"><a href="#cb26-455" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb26-456"><a href="#cb26-456" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb26-457"><a href="#cb26-457" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Save                           <span class="pp">|</span> <span class="in">`:w`</span>           <span class="pp">|</span></span>
-<span id="cb26-458"><a href="#cb26-458" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit                           <span class="pp">|</span> <span class="in">`:q`</span>           <span class="pp">|</span></span>
-<span id="cb26-459"><a href="#cb26-459" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Save and quit                  <span class="pp">|</span> <span class="in">`:wq`</span>          <span class="pp">|</span></span>
-<span id="cb26-460"><a href="#cb26-460" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit without saving            <span class="pp">|</span> <span class="in">`:q!`</span>          <span class="pp">|</span></span>
-<span id="cb26-461"><a href="#cb26-461" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Save and quit (shortcut)       <span class="pp">|</span> <span class="in">`ZZ`</span>           <span class="pp">|</span></span>
-<span id="cb26-462"><a href="#cb26-462" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit without saving (shortcut) <span class="pp">|</span> <span class="in">`ZQ`</span>           <span class="pp">|</span></span>
-<span id="cb26-463"><a href="#cb26-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-464"><a href="#cb26-464" aria-hidden="true" tabindex="-1"></a><span class="fu">### Navigation</span></span>
-<span id="cb26-465"><a href="#cb26-465" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Basic Movement**             | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb26-466"><a href="#cb26-466" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb26-467"><a href="#cb26-467" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move left                      <span class="pp">|</span> <span class="in">`h`</span>            <span class="pp">|</span></span>
-<span id="cb26-468"><a href="#cb26-468" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move down                      <span class="pp">|</span> <span class="in">`j`</span>            <span class="pp">|</span></span>
-<span id="cb26-469"><a href="#cb26-469" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move up                        <span class="pp">|</span> <span class="in">`k`</span>            <span class="pp">|</span></span>
-<span id="cb26-470"><a href="#cb26-470" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move right                     <span class="pp">|</span> <span class="in">`l`</span>            <span class="pp">|</span></span>
-<span id="cb26-471"><a href="#cb26-471" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Advanced Movement**          <span class="pp">|</span>                <span class="pp">|</span></span>
-<span id="cb26-472"><a href="#cb26-472" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Next word                      <span class="pp">|</span> <span class="in">`w`</span>            <span class="pp">|</span></span>
-<span id="cb26-473"><a href="#cb26-473" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Previous word                  <span class="pp">|</span> <span class="in">`b`</span>            <span class="pp">|</span></span>
-<span id="cb26-474"><a href="#cb26-474" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Beginning of line              <span class="pp">|</span> <span class="in">`0`</span>            <span class="pp">|</span></span>
-<span id="cb26-475"><a href="#cb26-475" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> First non-blank of line        <span class="pp">|</span> <span class="in">`^`</span>            <span class="pp">|</span></span>
-<span id="cb26-476"><a href="#cb26-476" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> End of line                    <span class="pp">|</span> <span class="in">`$`</span>            <span class="pp">|</span></span>
-<span id="cb26-477"><a href="#cb26-477" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> First line                     <span class="pp">|</span> <span class="in">`gg`</span>           <span class="pp">|</span></span>
-<span id="cb26-478"><a href="#cb26-478" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Last line                      <span class="pp">|</span> <span class="in">`G`</span>            <span class="pp">|</span></span>
-<span id="cb26-479"><a href="#cb26-479" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to line 33                  <span class="pp">|</span> <span class="in">`33G`</span>          <span class="pp">|</span></span>
-<span id="cb26-480"><a href="#cb26-480" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Up half a page                 <span class="pp">|</span> <span class="in">`Ctrl + u`</span>     <span class="pp">|</span></span>
-<span id="cb26-481"><a href="#cb26-481" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Down half a page               <span class="pp">|</span> <span class="in">`Ctrl + d`</span>     <span class="pp">|</span></span>
-<span id="cb26-482"><a href="#cb26-482" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-483"><a href="#cb26-483" aria-hidden="true" tabindex="-1"></a><span class="fu">### Search &amp; Replace</span></span>
-<span id="cb26-484"><a href="#cb26-484" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-485"><a href="#cb26-485" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Search &amp; Replace**           | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb26-486"><a href="#cb26-486" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb26-487"><a href="#cb26-487" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search text                    <span class="pp">|</span> <span class="in">`/text`</span>        <span class="pp">|</span></span>
-<span id="cb26-488"><a href="#cb26-488" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Next match                     <span class="pp">|</span> <span class="in">`n`</span>            <span class="pp">|</span></span>
-<span id="cb26-489"><a href="#cb26-489" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Previous match                 <span class="pp">|</span> <span class="in">`N`</span>            <span class="pp">|</span></span>
-<span id="cb26-490"><a href="#cb26-490" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search backward                <span class="pp">|</span> <span class="in">`?text`</span>        <span class="pp">|</span></span>
-<span id="cb26-491"><a href="#cb26-491" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search current word            <span class="pp">|</span> <span class="in">`*`</span>            <span class="pp">|</span></span>
-<span id="cb26-492"><a href="#cb26-492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-493"><a href="#cb26-493" aria-hidden="true" tabindex="-1"></a><span class="fu">### Editing</span></span>
-<span id="cb26-494"><a href="#cb26-494" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-495"><a href="#cb26-495" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Editing**                    | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb26-496"><a href="#cb26-496" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb26-497"><a href="#cb26-497" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete char                    <span class="pp">|</span> <span class="in">`x`</span>            <span class="pp">|</span></span>
-<span id="cb26-498"><a href="#cb26-498" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete line                    <span class="pp">|</span> <span class="in">`dd`</span>           <span class="pp">|</span></span>
-<span id="cb26-499"><a href="#cb26-499" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete word                    <span class="pp">|</span> <span class="in">`dw`</span>           <span class="pp">|</span></span>
-<span id="cb26-500"><a href="#cb26-500" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete to end of line          <span class="pp">|</span> <span class="in">`d$`</span>           <span class="pp">|</span></span>
-<span id="cb26-501"><a href="#cb26-501" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete to start of line        <span class="pp">|</span> <span class="in">`d0`</span>           <span class="pp">|</span></span>
-<span id="cb26-502"><a href="#cb26-502" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Copy line                      <span class="pp">|</span> <span class="in">`yy`</span>           <span class="pp">|</span></span>
-<span id="cb26-503"><a href="#cb26-503" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Copy word                      <span class="pp">|</span> <span class="in">`yw`</span>           <span class="pp">|</span></span>
-<span id="cb26-504"><a href="#cb26-504" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste after cursor             <span class="pp">|</span> <span class="in">`p`</span>            <span class="pp">|</span></span>
-<span id="cb26-505"><a href="#cb26-505" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste before cursor            <span class="pp">|</span> <span class="in">`P`</span>            <span class="pp">|</span></span>
-<span id="cb26-506"><a href="#cb26-506" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Undo                           <span class="pp">|</span> <span class="in">`u`</span>            <span class="pp">|</span></span>
-<span id="cb26-507"><a href="#cb26-507" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Redo                           <span class="pp">|</span> <span class="in">`Ctrl + r`</span>     <span class="pp">|</span></span>
-<span id="cb26-508"><a href="#cb26-508" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Change text                    <span class="pp">|</span> <span class="in">`c`</span>            <span class="pp">|</span></span>
-<span id="cb26-509"><a href="#cb26-509" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Replace char                   <span class="pp">|</span> <span class="in">`r`</span>            <span class="pp">|</span></span>
-<span id="cb26-510"><a href="#cb26-510" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Join line with next            <span class="pp">|</span> <span class="in">`J`</span>            <span class="pp">|</span></span>
-<span id="cb26-511"><a href="#cb26-511" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-512"><a href="#cb26-512" aria-hidden="true" tabindex="-1"></a><span class="fu">### Window Management</span></span>
-<span id="cb26-513"><a href="#cb26-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-514"><a href="#cb26-514" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Window Management**          | **Shortcut**   <span class="pp">|</span></span>
-<span id="cb26-515"><a href="#cb26-515" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
-<span id="cb26-516"><a href="#cb26-516" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split window horizontally      <span class="pp">|</span> <span class="in">`:split`</span>       <span class="pp">|</span></span>
-<span id="cb26-517"><a href="#cb26-517" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split window vertically        <span class="pp">|</span> <span class="in">`:vsplit`</span>      <span class="pp">|</span></span>
-<span id="cb26-518"><a href="#cb26-518" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move left split                <span class="pp">|</span> <span class="in">`Ctrl + w, h`</span>  <span class="pp">|</span></span>
-<span id="cb26-519"><a href="#cb26-519" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move down split                <span class="pp">|</span> <span class="in">`Ctrl + w, j`</span>  <span class="pp">|</span></span>
-<span id="cb26-520"><a href="#cb26-520" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move up split                  <span class="pp">|</span> <span class="in">`Ctrl + w, k`</span>  <span class="pp">|</span></span>
-<span id="cb26-521"><a href="#cb26-521" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move right split               <span class="pp">|</span> <span class="in">`Ctrl + w, l`</span>  <span class="pp">|</span></span>
-<span id="cb26-522"><a href="#cb26-522" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Increase window size           <span class="pp">|</span> <span class="in">`:resize +N`</span>   <span class="pp">|</span></span>
-<span id="cb26-523"><a href="#cb26-523" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Decrease window size           <span class="pp">|</span> <span class="in">`:resize -N`</span>   <span class="pp">|</span></span>
-<span id="cb26-524"><a href="#cb26-524" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Open new tab                   <span class="pp">|</span> <span class="in">`:tabnew`</span>      <span class="pp">|</span></span>
-<span id="cb26-525"><a href="#cb26-525" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Next tab                       <span class="pp">|</span> <span class="in">`:tabnext`</span>     <span class="pp">|</span></span>
-<span id="cb26-526"><a href="#cb26-526" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Previous tab                   <span class="pp">|</span> <span class="in">`:tabprev`</span>     <span class="pp">|</span></span>
-<span id="cb26-527"><a href="#cb26-527" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-528"><a href="#cb26-528" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb26-529"><a href="#cb26-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-530"><a href="#cb26-530" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tmux</span></span>
-<span id="cb26-531"><a href="#cb26-531" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-532"><a href="#cb26-532" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tmux Configuration</span></span>
-<span id="cb26-533"><a href="#cb26-533" aria-hidden="true" tabindex="-1"></a>Consider adding these aliases to your shell configuration for quick tmux access.</span>
-<span id="cb26-534"><a href="#cb26-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-535"><a href="#cb26-535" aria-hidden="true" tabindex="-1"></a>::: {.code-block}</span>
-<span id="cb26-536"><a href="#cb26-536" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb26-537"><a href="#cb26-537" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal aliases for tmux</span></span>
-<span id="cb26-538"><a href="#cb26-538" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> t=<span class="st">"tmux"</span></span>
-<span id="cb26-539"><a href="#cb26-539" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ta=<span class="st">"t a -t"</span></span>
-<span id="cb26-540"><a href="#cb26-540" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tls=<span class="st">"t ls"</span></span>
-<span id="cb26-541"><a href="#cb26-541" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tn=<span class="st">"t new -s"</span></span>
-<span id="cb26-542"><a href="#cb26-542" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tk=<span class="st">"t kill-session -t"</span></span>
-<span id="cb26-543"><a href="#cb26-543" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tks=<span class="st">"t kill-server"</span></span>
-<span id="cb26-544"><a href="#cb26-544" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-545"><a href="#cb26-545" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb26-546"><a href="#cb26-546" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-547"><a href="#cb26-547" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb26-548"><a href="#cb26-548" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🔧 Custom Prefix Key</span></span>
-<span id="cb26-549"><a href="#cb26-549" aria-hidden="true" tabindex="-1"></a>Change the default prefix in <span class="in">`.tmux.conf`</span>:</span>
-<span id="cb26-550"><a href="#cb26-550" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb26-551"><a href="#cb26-551" aria-hidden="true" tabindex="-1"></a><span class="ex">set-option</span> <span class="at">-g</span> prefix C-a</span>
-<span id="cb26-552"><a href="#cb26-552" aria-hidden="true" tabindex="-1"></a><span class="ex">bind-key</span> C-a send-prefix</span>
-<span id="cb26-553"><a href="#cb26-553" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-554"><a href="#cb26-554" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb26-555"><a href="#cb26-555" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-556"><a href="#cb26-556" aria-hidden="true" tabindex="-1"></a><span class="fu">### Session Management</span></span>
-<span id="cb26-557"><a href="#cb26-557" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-558"><a href="#cb26-558" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Command/Shortcut**       <span class="pp">|</span></span>
-<span id="cb26-559"><a href="#cb26-559" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb26-560"><a href="#cb26-560" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List sessions                  <span class="pp">|</span> <span class="in">`tmux list-sessions`</span>       <span class="pp">|</span></span>
-<span id="cb26-561"><a href="#cb26-561" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Attach to session              <span class="pp">|</span> <span class="in">`tmux attach-session -t target-session`</span> <span class="pp">|</span></span>
-<span id="cb26-562"><a href="#cb26-562" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch between sessions       <span class="pp">|</span> <span class="in">`Ctrl + A + s`</span>             <span class="pp">|</span></span>
-<span id="cb26-563"><a href="#cb26-563" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to latest session      <span class="pp">|</span> <span class="in">`Ctrl + A + l`</span>             <span class="pp">|</span></span>
-<span id="cb26-564"><a href="#cb26-564" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Detach from session           <span class="pp">|</span> <span class="in">`Ctrl + A + d`</span>             <span class="pp">|</span></span>
-<span id="cb26-565"><a href="#cb26-565" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-566"><a href="#cb26-566" aria-hidden="true" tabindex="-1"></a><span class="fu">### Window Management</span></span>
-<span id="cb26-567"><a href="#cb26-567" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-568"><a href="#cb26-568" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb26-569"><a href="#cb26-569" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb26-570"><a href="#cb26-570" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List all windows              <span class="pp">|</span> <span class="in">`Ctrl + A + w`</span>             <span class="pp">|</span></span>
-<span id="cb26-571"><a href="#cb26-571" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rename current window          <span class="pp">|</span> <span class="in">`Ctrl + A + ,`</span>             <span class="pp">|</span></span>
-<span id="cb26-572"><a href="#cb26-572" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to next window          <span class="pp">|</span> <span class="in">`Ctrl + A + →`</span>             <span class="pp">|</span></span>
-<span id="cb26-573"><a href="#cb26-573" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to previous window      <span class="pp">|</span> <span class="in">`Ctrl + A + ←`</span>             <span class="pp">|</span></span>
-<span id="cb26-574"><a href="#cb26-574" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Create new window              <span class="pp">|</span> <span class="in">`Ctrl + A + c`</span>             <span class="pp">|</span></span>
-<span id="cb26-575"><a href="#cb26-575" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kill current window            <span class="pp">|</span> <span class="in">`Ctrl + A + q`</span>             <span class="pp">|</span></span>
-<span id="cb26-576"><a href="#cb26-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-577"><a href="#cb26-577" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pane Management</span></span>
-<span id="cb26-578"><a href="#cb26-578" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-579"><a href="#cb26-579" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb26-580"><a href="#cb26-580" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb26-581"><a href="#cb26-581" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane above           <span class="pp">|</span> <span class="in">`Shift + ↑`</span>                <span class="pp">|</span></span>
-<span id="cb26-582"><a href="#cb26-582" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane below           <span class="pp">|</span> <span class="in">`Shift + ↓`</span>                <span class="pp">|</span></span>
-<span id="cb26-583"><a href="#cb26-583" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane left            <span class="pp">|</span> <span class="in">`Shift + ←`</span>                <span class="pp">|</span></span>
-<span id="cb26-584"><a href="#cb26-584" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane right           <span class="pp">|</span> <span class="in">`Shift + →`</span>                <span class="pp">|</span></span>
-<span id="cb26-585"><a href="#cb26-585" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kill current pane             <span class="pp">|</span> <span class="in">`Ctrl + A + x`</span>             <span class="pp">|</span></span>
-<span id="cb26-586"><a href="#cb26-586" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-587"><a href="#cb26-587" aria-hidden="true" tabindex="-1"></a><span class="fu">### Copy Mode</span></span>
-<span id="cb26-588"><a href="#cb26-588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-589"><a href="#cb26-589" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb26-590"><a href="#cb26-590" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb26-591"><a href="#cb26-591" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Enter copy mode               <span class="pp">|</span> Drag mouse to select text   <span class="pp">|</span></span>
-<span id="cb26-592"><a href="#cb26-592" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste copied text             <span class="pp">|</span> <span class="in">`Ctrl + A + ]`</span>             <span class="pp">|</span></span>
-<span id="cb26-593"><a href="#cb26-593" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-594"><a href="#cb26-594" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb26-595"><a href="#cb26-595" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-596"><a href="#cb26-596" aria-hidden="true" tabindex="-1"></a><span class="fu">## Screen</span></span>
-<span id="cb26-597"><a href="#cb26-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-598"><a href="#cb26-598" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb26-599"><a href="#cb26-599" aria-hidden="true" tabindex="-1"></a><span class="fu">### 💡 Screen Aliases</span></span>
-<span id="cb26-600"><a href="#cb26-600" aria-hidden="true" tabindex="-1"></a>Add these aliases to your shell configuration for easier screen management.</span>
-<span id="cb26-601"><a href="#cb26-601" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb26-602"><a href="#cb26-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-603"><a href="#cb26-603" aria-hidden="true" tabindex="-1"></a>::: {.code-block}</span>
-<span id="cb26-604"><a href="#cb26-604" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb26-605"><a href="#cb26-605" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal aliases for screen</span></span>
-<span id="cb26-606"><a href="#cb26-606" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> s=<span class="st">"screen"</span>       <span class="co"># start a screen session</span></span>
-<span id="cb26-607"><a href="#cb26-607" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ss=<span class="st">"s -S"</span>        <span class="co"># start a named screen session</span></span>
-<span id="cb26-608"><a href="#cb26-608" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sr=<span class="st">"s -r"</span>        <span class="co"># reattach to a screen session</span></span>
-<span id="cb26-609"><a href="#cb26-609" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sls=<span class="st">"s -ls"</span>      <span class="co"># list current running screen sessions</span></span>
-<span id="cb26-610"><a href="#cb26-610" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-611"><a href="#cb26-611" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb26-612"><a href="#cb26-612" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-613"><a href="#cb26-613" aria-hidden="true" tabindex="-1"></a><span class="fu">### Basic Commands</span></span>
-<span id="cb26-614"><a href="#cb26-614" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-615"><a href="#cb26-615" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Command**                    <span class="pp">|</span></span>
-<span id="cb26-616"><a href="#cb26-616" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|--------------------------------|</span></span>
-<span id="cb26-617"><a href="#cb26-617" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Start screen session          <span class="pp">|</span> <span class="in">`screen`</span>                       <span class="pp">|</span></span>
-<span id="cb26-618"><a href="#cb26-618" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Start named session           <span class="pp">|</span> <span class="in">`screen -S session_name`</span>       <span class="pp">|</span></span>
-<span id="cb26-619"><a href="#cb26-619" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reattach to session           <span class="pp">|</span> <span class="in">`screen -r`</span>                    <span class="pp">|</span></span>
-<span id="cb26-620"><a href="#cb26-620" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List running sessions         <span class="pp">|</span> <span class="in">`screen -ls`</span>                   <span class="pp">|</span></span>
-<span id="cb26-621"><a href="#cb26-621" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-622"><a href="#cb26-622" aria-hidden="true" tabindex="-1"></a><span class="fu">### Window Management</span></span>
-<span id="cb26-623"><a href="#cb26-623" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-624"><a href="#cb26-624" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb26-625"><a href="#cb26-625" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb26-626"><a href="#cb26-626" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Create new window              <span class="pp">|</span> <span class="in">`Ctrl + A + C`</span>             <span class="pp">|</span></span>
-<span id="cb26-627"><a href="#cb26-627" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kill current window            <span class="pp">|</span> <span class="in">`Ctrl + A + K`</span>             <span class="pp">|</span></span>
-<span id="cb26-628"><a href="#cb26-628" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List all windows              <span class="pp">|</span> <span class="in">`Ctrl + A + W`</span>             <span class="pp">|</span></span>
-<span id="cb26-629"><a href="#cb26-629" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to window 0-9               <span class="pp">|</span> <span class="in">`Ctrl + A + 0-9`</span>           <span class="pp">|</span></span>
-<span id="cb26-630"><a href="#cb26-630" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to next window              <span class="pp">|</span> <span class="in">`Ctrl + A + N`</span>             <span class="pp">|</span></span>
-<span id="cb26-631"><a href="#cb26-631" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Toggle between windows         <span class="pp">|</span> <span class="in">`Ctrl + A + Ctrl + A`</span>      <span class="pp">|</span></span>
-<span id="cb26-632"><a href="#cb26-632" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rename current window          <span class="pp">|</span> <span class="in">`Ctrl + A + A`</span>             <span class="pp">|</span></span>
-<span id="cb26-633"><a href="#cb26-633" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-634"><a href="#cb26-634" aria-hidden="true" tabindex="-1"></a><span class="fu">### Region Management</span></span>
-<span id="cb26-635"><a href="#cb26-635" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-636"><a href="#cb26-636" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb26-637"><a href="#cb26-637" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb26-638"><a href="#cb26-638" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split horizontally             <span class="pp">|</span> <span class="in">`Ctrl + A + S`</span>             <span class="pp">|</span></span>
-<span id="cb26-639"><a href="#cb26-639" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split vertically               <span class="pp">|</span> <span class="in">`Ctrl + A + \|`</span>            <span class="pp">|</span></span>
-<span id="cb26-640"><a href="#cb26-640" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch between regions         <span class="pp">|</span> <span class="in">`Ctrl + A + Tab`</span>           <span class="pp">|</span></span>
-<span id="cb26-641"><a href="#cb26-641" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Close all regions but current  <span class="pp">|</span> <span class="in">`Ctrl + A + Q`</span>             <span class="pp">|</span></span>
-<span id="cb26-642"><a href="#cb26-642" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Close current region           <span class="pp">|</span> <span class="in">`Ctrl + A + X`</span>             <span class="pp">|</span></span>
-<span id="cb26-643"><a href="#cb26-643" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-644"><a href="#cb26-644" aria-hidden="true" tabindex="-1"></a><span class="fu">### Session &amp; Copy Mode</span></span>
-<span id="cb26-645"><a href="#cb26-645" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-646"><a href="#cb26-646" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
-<span id="cb26-647"><a href="#cb26-647" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
-<span id="cb26-648"><a href="#cb26-648" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Detach from session           <span class="pp">|</span> <span class="in">`Ctrl + A + D`</span>             <span class="pp">|</span></span>
-<span id="cb26-649"><a href="#cb26-649" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Start copy mode               <span class="pp">|</span> <span class="in">`Ctrl + A + [`</span>             <span class="pp">|</span></span>
-<span id="cb26-650"><a href="#cb26-650" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste copied text             <span class="pp">|</span> <span class="in">`Ctrl + A + ]`</span>             <span class="pp">|</span></span>
-<span id="cb26-651"><a href="#cb26-651" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Show help                     <span class="pp">|</span> <span class="in">`Ctrl + A + ?`</span>             <span class="pp">|</span></span>
-<span id="cb26-652"><a href="#cb26-652" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit screen                   <span class="pp">|</span> <span class="in">`Ctrl + A + Ctrl + \`</span>      <span class="pp">|</span></span>
-<span id="cb26-653"><a href="#cb26-653" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-654"><a href="#cb26-654" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb26-655"><a href="#cb26-655" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-656"><a href="#cb26-656" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb26-657"><a href="#cb26-657" aria-hidden="true" tabindex="-1"></a><span class="fu">### Additional Resources</span></span>
-<span id="cb26-658"><a href="#cb26-658" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**VSCode**: <span class="co">[</span><span class="ot">Official Keyboard Shortcuts Reference</span><span class="co">](https://code.visualstudio.com/docs/getstarted/keybindings)</span></span>
-<span id="cb26-659"><a href="#cb26-659" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Vim**: <span class="co">[</span><span class="ot">Vim Cheat Sheet</span><span class="co">](https://vim.rtorr.com/)</span></span>
-<span id="cb26-660"><a href="#cb26-660" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Tmux**: <span class="co">[</span><span class="ot">Tmux Cheat Sheet</span><span class="co">](https://tmuxcheatsheet.com/)</span></span>
-<span id="cb26-661"><a href="#cb26-661" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Terminal**: <span class="co">[</span><span class="ot">Bash Reference Manual</span><span class="co">](https://www.gnu.org/software/bash/manual/)</span></span>
-<span id="cb26-662"><a href="#cb26-662" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb26-663"><a href="#cb26-663" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-664"><a href="#cb26-664" aria-hidden="true" tabindex="-1"></a><span class="fu">## WSL</span></span>
-<span id="cb26-665"><a href="#cb26-665" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-666"><a href="#cb26-666" aria-hidden="true" tabindex="-1"></a><span class="fu">### System info</span></span>
-<span id="cb26-667"><a href="#cb26-667" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb26-668"><a href="#cb26-668" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-669"><a href="#cb26-669" aria-hidden="true" tabindex="-1"></a><span class="co">## Install the neofetch package</span></span>
-<span id="cb26-670"><a href="#cb26-670" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install neofetch <span class="at">-y</span></span>
+<span id="cb26-344"><a href="#cb26-344" aria-hidden="true" tabindex="-1"></a><span class="co">## Network sync</span></span>
+<span id="cb26-345"><a href="#cb26-345" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--delete</span> /local/folder/ user@remote:/remote/folder/</span>
+<span id="cb26-346"><a href="#cb26-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-347"><a href="#cb26-347" aria-hidden="true" tabindex="-1"></a><span class="co">## Copy only new files (files that don't exist in the destination)</span></span>
+<span id="cb26-348"><a href="#cb26-348" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--ignore-existing</span> /source/folder/ /destination/folder/</span>
+<span id="cb26-349"><a href="#cb26-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-350"><a href="#cb26-350" aria-hidden="true" tabindex="-1"></a><span class="co">## Copy only if source is newer</span></span>
+<span id="cb26-351"><a href="#cb26-351" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--update</span> /source/folder/ /destination/folder/</span>
+<span id="cb26-352"><a href="#cb26-352" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-353"><a href="#cb26-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-354"><a href="#cb26-354" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
+<span id="cb26-355"><a href="#cb26-355" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--archive`</span>: Preserves permissions, timestamps, symbolic links, etc.</span>
+<span id="cb26-356"><a href="#cb26-356" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--verbose`</span>: Shows progress</span>
+<span id="cb26-357"><a href="#cb26-357" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--delete`</span>: Removes files in destination that don't exist in source</span>
+<span id="cb26-358"><a href="#cb26-358" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--dry-run`</span>: Preview changes without actually syncing</span>
+<span id="cb26-359"><a href="#cb26-359" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--update`</span>: Only copy newer file</span>
+<span id="cb26-360"><a href="#cb26-360" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--ignore-existing`</span>: Skips files that already exist in destination (regardless of age)</span>
+<span id="cb26-361"><a href="#cb26-361" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--update`</span>: Only copies if source file is newer than destination</span>
+<span id="cb26-362"><a href="#cb26-362" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--no-perms`</span>: Don't preserve Unix permissions</span>
+<span id="cb26-363"><a href="#cb26-363" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--no-times`</span>: Don't preserve modification times</span>
+<span id="cb26-364"><a href="#cb26-364" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`--inplace`</span>: Write directly without temp files</span>
+<span id="cb26-365"><a href="#cb26-365" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-366"><a href="#cb26-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-367"><a href="#cb26-367" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sync remote server folders to local using rsync</span>
+<span id="cb26-368"><a href="#cb26-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-369"><a href="#cb26-369" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb26-370"><a href="#cb26-370" aria-hidden="true" tabindex="-1"></a><span class="co">## Remote server details</span></span>
+<span id="cb26-371"><a href="#cb26-371" aria-hidden="true" tabindex="-1"></a><span class="va">remote_user</span><span class="op">=</span><span class="st">"username"</span></span>
+<span id="cb26-372"><a href="#cb26-372" aria-hidden="true" tabindex="-1"></a><span class="va">remote_host</span><span class="op">=</span><span class="st">"hpcio2"</span> <span class="co"># hpc2021-io1.hku.hk,hpc2021-io2.hku.hk  </span></span>
+<span id="cb26-373"><a href="#cb26-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-374"><a href="#cb26-374" aria-hidden="true" tabindex="-1"></a><span class="co">## Define folders to sync (absolute paths)</span></span>
+<span id="cb26-375"><a href="#cb26-375" aria-hidden="true" tabindex="-1"></a><span class="co">## Format: "local_absolute_path:remote_absolute_path"</span></span>
+<span id="cb26-376"><a href="#cb26-376" aria-hidden="true" tabindex="-1"></a><span class="va">folders_to_sync</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb26-377"><a href="#cb26-377" aria-hidden="true" tabindex="-1"></a>    <span class="co"># "/mnt/m/Reference:/lustre1/g/path_my/Reference"</span></span>
+<span id="cb26-378"><a href="#cb26-378" aria-hidden="true" tabindex="-1"></a>    <span class="co"># "/mnt/m/WES/DFSP/Annovar:/lustre1/g/path_my/pipeline/somatic_variants_calling/data/DFSP/Annovar"</span></span>
+<span id="cb26-379"><a href="#cb26-379" aria-hidden="true" tabindex="-1"></a>    <span class="st">"/mnt/m/WES/SARC/BAM:/lustre1/g/path_my/pipeline/somatic_variants_calling/data/SARC/BAM"</span></span>
+<span id="cb26-380"><a href="#cb26-380" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add more folders as needed in the same format</span></span>
+<span id="cb26-381"><a href="#cb26-381" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span>
+<span id="cb26-382"><a href="#cb26-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-383"><a href="#cb26-383" aria-hidden="true" tabindex="-1"></a><span class="co">## Sync each folder</span></span>
+<span id="cb26-384"><a href="#cb26-384" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> folder_pair <span class="kw">in</span> <span class="st">"</span><span class="va">${folders_to_sync</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb26-385"><a href="#cb26-385" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Split the pair into local and remote paths</span></span>
+<span id="cb26-386"><a href="#cb26-386" aria-hidden="true" tabindex="-1"></a>    <span class="va">local_path</span><span class="op">=</span><span class="st">"</span><span class="va">${folder_pair</span><span class="op">%%</span>:<span class="pp">*</span><span class="va">}</span><span class="st">"</span></span>
+<span id="cb26-387"><a href="#cb26-387" aria-hidden="true" tabindex="-1"></a>    <span class="va">remote_path</span><span class="op">=</span><span class="st">"</span><span class="va">${folder_pair</span><span class="op">#</span><span class="pp">*</span>:<span class="va">}</span><span class="st">"</span></span>
+<span id="cb26-388"><a href="#cb26-388" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-389"><a href="#cb26-389" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Syncing </span><span class="va">${remote_user}</span><span class="st">@</span><span class="va">${remote_host}</span><span class="st">:</span><span class="va">${remote_path}</span><span class="st"> to </span><span class="va">${local_path}</span><span class="st">"</span></span>
+<span id="cb26-390"><a href="#cb26-390" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-391"><a href="#cb26-391" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create local directory structure</span></span>
+<span id="cb26-392"><a href="#cb26-392" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">${local_path}</span><span class="st">"</span></span>
+<span id="cb26-393"><a href="#cb26-393" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-394"><a href="#cb26-394" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sync the folder contents from remote to local (trailing slash on source copies contents)</span></span>
+<span id="cb26-395"><a href="#cb26-395" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--update</span> <span class="at">--progress</span> <span class="at">--inplace</span> <span class="at">--no-perms</span> <span class="at">--no-times</span> <span class="dt">\</span></span>
+<span id="cb26-396"><a href="#cb26-396" aria-hidden="true" tabindex="-1"></a>        <span class="st">"</span><span class="va">${remote_user}</span><span class="st">@</span><span class="va">${remote_host}</span><span class="st">:</span><span class="va">${remote_path}</span><span class="st">/"</span> <span class="dt">\</span></span>
+<span id="cb26-397"><a href="#cb26-397" aria-hidden="true" tabindex="-1"></a>        <span class="st">"</span><span class="va">${local_path}</span><span class="st">/"</span></span>
+<span id="cb26-398"><a href="#cb26-398" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb26-399"><a href="#cb26-399" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"-----------------------------------"</span></span>
+<span id="cb26-400"><a href="#cb26-400" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb26-401"><a href="#cb26-401" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-402"><a href="#cb26-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-403"><a href="#cb26-403" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sync local folders to remote server</span>
+<span id="cb26-404"><a href="#cb26-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-405"><a href="#cb26-405" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb26-406"><a href="#cb26-406" aria-hidden="true" tabindex="-1"></a><span class="co">## Remote server details</span></span>
+<span id="cb26-407"><a href="#cb26-407" aria-hidden="true" tabindex="-1"></a><span class="va">remote_user</span><span class="op">=</span><span class="st">"username"</span></span>
+<span id="cb26-408"><a href="#cb26-408" aria-hidden="true" tabindex="-1"></a><span class="va">remote_host</span><span class="op">=</span><span class="st">"hpcio1"</span> <span class="co"># hpc2021-io1.hku.hk </span></span>
+<span id="cb26-409"><a href="#cb26-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-410"><a href="#cb26-410" aria-hidden="true" tabindex="-1"></a><span class="co">## Define folders to sync (absolute paths)</span></span>
+<span id="cb26-411"><a href="#cb26-411" aria-hidden="true" tabindex="-1"></a><span class="co">## Format: "local_absolute_path:remote_absolute_path"</span></span>
+<span id="cb26-412"><a href="#cb26-412" aria-hidden="true" tabindex="-1"></a><span class="va">folders_to_sync</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb26-413"><a href="#cb26-413" aria-hidden="true" tabindex="-1"></a>    <span class="st">"/mnt/f/Reference:/lustre1/g/path_my/Reference"</span></span>
+<span id="cb26-414"><a href="#cb26-414" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add more folders as needed in the same format</span></span>
+<span id="cb26-415"><a href="#cb26-415" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span>
+<span id="cb26-416"><a href="#cb26-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-417"><a href="#cb26-417" aria-hidden="true" tabindex="-1"></a><span class="co">## Sync each folder</span></span>
+<span id="cb26-418"><a href="#cb26-418" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> folder_pair <span class="kw">in</span> <span class="st">"</span><span class="va">${folders_to_sync</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb26-419"><a href="#cb26-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-420"><a href="#cb26-420" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Split the pair into local and remote paths</span></span>
+<span id="cb26-421"><a href="#cb26-421" aria-hidden="true" tabindex="-1"></a>    <span class="va">local_path</span><span class="op">=</span><span class="st">"</span><span class="va">${folder_pair</span><span class="op">%%</span>:<span class="pp">*</span><span class="va">}</span><span class="st">"</span></span>
+<span id="cb26-422"><a href="#cb26-422" aria-hidden="true" tabindex="-1"></a>    <span class="va">remote_path</span><span class="op">=</span><span class="st">"</span><span class="va">${folder_pair</span><span class="op">#</span><span class="pp">*</span>:<span class="va">}</span><span class="st">"</span></span>
+<span id="cb26-423"><a href="#cb26-423" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-424"><a href="#cb26-424" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Syncing </span><span class="va">${local_path}</span><span class="st"> to </span><span class="va">${remote_user}</span><span class="st">@</span><span class="va">${remote_host}</span><span class="st">:</span><span class="va">${remote_path}</span><span class="st">"</span></span>
+<span id="cb26-425"><a href="#cb26-425" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-426"><a href="#cb26-426" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create remote directory structure</span></span>
+<span id="cb26-427"><a href="#cb26-427" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ssh</span> <span class="va">${remote_user}</span>@<span class="va">${remote_host}</span> <span class="st">"mkdir -p </span><span class="va">${remote_path}</span><span class="st">"</span></span>
+<span id="cb26-428"><a href="#cb26-428" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-429"><a href="#cb26-429" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sync the folder contents (trailing slash on source copies contents)</span></span>
+<span id="cb26-430"><a href="#cb26-430" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--update</span> <span class="at">--progress</span> <span class="dt">\</span></span>
+<span id="cb26-431"><a href="#cb26-431" aria-hidden="true" tabindex="-1"></a>        <span class="st">"</span><span class="va">${local_path}</span><span class="st">/"</span> <span class="dt">\</span></span>
+<span id="cb26-432"><a href="#cb26-432" aria-hidden="true" tabindex="-1"></a>        <span class="st">"</span><span class="va">${remote_user}</span><span class="st">@</span><span class="va">${remote_host}</span><span class="st">:</span><span class="va">${remote_path}</span><span class="st">/"</span></span>
+<span id="cb26-433"><a href="#cb26-433" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb26-434"><a href="#cb26-434" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"-----------------------------------"</span></span>
+<span id="cb26-435"><a href="#cb26-435" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb26-436"><a href="#cb26-436" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-437"><a href="#cb26-437" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vim</span></span>
+<span id="cb26-438"><a href="#cb26-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-439"><a href="#cb26-439" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb26-440"><a href="#cb26-440" aria-hidden="true" tabindex="-1"></a><span class="fu">### ⚠️ Vim Modal Editor</span></span>
+<span id="cb26-441"><a href="#cb26-441" aria-hidden="true" tabindex="-1"></a>Vim is a modal editor. Remember to press <span class="in">`Esc`</span> to return to Normal mode before using most commands.</span>
+<span id="cb26-442"><a href="#cb26-442" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-443"><a href="#cb26-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-444"><a href="#cb26-444" aria-hidden="true" tabindex="-1"></a><span class="fu">### Modes</span></span>
+<span id="cb26-445"><a href="#cb26-445" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-446"><a href="#cb26-446" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**   <span class="pp">|</span></span>
+<span id="cb26-447"><a href="#cb26-447" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
+<span id="cb26-448"><a href="#cb26-448" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert mode                    <span class="pp">|</span> <span class="in">`i`</span>            <span class="pp">|</span></span>
+<span id="cb26-449"><a href="#cb26-449" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert at beginning of line    <span class="pp">|</span> <span class="in">`I`</span>            <span class="pp">|</span></span>
+<span id="cb26-450"><a href="#cb26-450" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert new line below          <span class="pp">|</span> <span class="in">`o`</span>            <span class="pp">|</span></span>
+<span id="cb26-451"><a href="#cb26-451" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Insert new line above          <span class="pp">|</span> <span class="in">`O`</span>            <span class="pp">|</span></span>
+<span id="cb26-452"><a href="#cb26-452" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Append after cursor            <span class="pp">|</span> <span class="in">`a`</span>            <span class="pp">|</span></span>
+<span id="cb26-453"><a href="#cb26-453" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Append at end of line          <span class="pp">|</span> <span class="in">`A`</span>            <span class="pp">|</span></span>
+<span id="cb26-454"><a href="#cb26-454" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Command mode (normal)          <span class="pp">|</span> <span class="in">`Esc`</span>          <span class="pp">|</span></span>
+<span id="cb26-455"><a href="#cb26-455" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Visual mode (select text)      <span class="pp">|</span> <span class="in">`v`</span>            <span class="pp">|</span></span>
+<span id="cb26-456"><a href="#cb26-456" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Visual line mode               <span class="pp">|</span> <span class="in">`V`</span>            <span class="pp">|</span></span>
+<span id="cb26-457"><a href="#cb26-457" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Visual block mode              <span class="pp">|</span> <span class="in">`Ctrl + v`</span>     <span class="pp">|</span></span>
+<span id="cb26-458"><a href="#cb26-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-459"><a href="#cb26-459" aria-hidden="true" tabindex="-1"></a><span class="fu">### File Operations</span></span>
+<span id="cb26-460"><a href="#cb26-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-461"><a href="#cb26-461" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**   <span class="pp">|</span></span>
+<span id="cb26-462"><a href="#cb26-462" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
+<span id="cb26-463"><a href="#cb26-463" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Save                           <span class="pp">|</span> <span class="in">`:w`</span>           <span class="pp">|</span></span>
+<span id="cb26-464"><a href="#cb26-464" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit                           <span class="pp">|</span> <span class="in">`:q`</span>           <span class="pp">|</span></span>
+<span id="cb26-465"><a href="#cb26-465" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Save and quit                  <span class="pp">|</span> <span class="in">`:wq`</span>          <span class="pp">|</span></span>
+<span id="cb26-466"><a href="#cb26-466" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit without saving            <span class="pp">|</span> <span class="in">`:q!`</span>          <span class="pp">|</span></span>
+<span id="cb26-467"><a href="#cb26-467" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Save and quit (shortcut)       <span class="pp">|</span> <span class="in">`ZZ`</span>           <span class="pp">|</span></span>
+<span id="cb26-468"><a href="#cb26-468" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit without saving (shortcut) <span class="pp">|</span> <span class="in">`ZQ`</span>           <span class="pp">|</span></span>
+<span id="cb26-469"><a href="#cb26-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-470"><a href="#cb26-470" aria-hidden="true" tabindex="-1"></a><span class="fu">### Navigation</span></span>
+<span id="cb26-471"><a href="#cb26-471" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Basic Movement**             | **Shortcut**   <span class="pp">|</span></span>
+<span id="cb26-472"><a href="#cb26-472" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
+<span id="cb26-473"><a href="#cb26-473" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move left                      <span class="pp">|</span> <span class="in">`h`</span>            <span class="pp">|</span></span>
+<span id="cb26-474"><a href="#cb26-474" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move down                      <span class="pp">|</span> <span class="in">`j`</span>            <span class="pp">|</span></span>
+<span id="cb26-475"><a href="#cb26-475" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move up                        <span class="pp">|</span> <span class="in">`k`</span>            <span class="pp">|</span></span>
+<span id="cb26-476"><a href="#cb26-476" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move right                     <span class="pp">|</span> <span class="in">`l`</span>            <span class="pp">|</span></span>
+<span id="cb26-477"><a href="#cb26-477" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Advanced Movement**          <span class="pp">|</span>                <span class="pp">|</span></span>
+<span id="cb26-478"><a href="#cb26-478" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Next word                      <span class="pp">|</span> <span class="in">`w`</span>            <span class="pp">|</span></span>
+<span id="cb26-479"><a href="#cb26-479" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Previous word                  <span class="pp">|</span> <span class="in">`b`</span>            <span class="pp">|</span></span>
+<span id="cb26-480"><a href="#cb26-480" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Beginning of line              <span class="pp">|</span> <span class="in">`0`</span>            <span class="pp">|</span></span>
+<span id="cb26-481"><a href="#cb26-481" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> First non-blank of line        <span class="pp">|</span> <span class="in">`^`</span>            <span class="pp">|</span></span>
+<span id="cb26-482"><a href="#cb26-482" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> End of line                    <span class="pp">|</span> <span class="in">`$`</span>            <span class="pp">|</span></span>
+<span id="cb26-483"><a href="#cb26-483" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> First line                     <span class="pp">|</span> <span class="in">`gg`</span>           <span class="pp">|</span></span>
+<span id="cb26-484"><a href="#cb26-484" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Last line                      <span class="pp">|</span> <span class="in">`G`</span>            <span class="pp">|</span></span>
+<span id="cb26-485"><a href="#cb26-485" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to line 33                  <span class="pp">|</span> <span class="in">`33G`</span>          <span class="pp">|</span></span>
+<span id="cb26-486"><a href="#cb26-486" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Up half a page                 <span class="pp">|</span> <span class="in">`Ctrl + u`</span>     <span class="pp">|</span></span>
+<span id="cb26-487"><a href="#cb26-487" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Down half a page               <span class="pp">|</span> <span class="in">`Ctrl + d`</span>     <span class="pp">|</span></span>
+<span id="cb26-488"><a href="#cb26-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-489"><a href="#cb26-489" aria-hidden="true" tabindex="-1"></a><span class="fu">### Search &amp; Replace</span></span>
+<span id="cb26-490"><a href="#cb26-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-491"><a href="#cb26-491" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Search &amp; Replace**           | **Shortcut**   <span class="pp">|</span></span>
+<span id="cb26-492"><a href="#cb26-492" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
+<span id="cb26-493"><a href="#cb26-493" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search text                    <span class="pp">|</span> <span class="in">`/text`</span>        <span class="pp">|</span></span>
+<span id="cb26-494"><a href="#cb26-494" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Next match                     <span class="pp">|</span> <span class="in">`n`</span>            <span class="pp">|</span></span>
+<span id="cb26-495"><a href="#cb26-495" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Previous match                 <span class="pp">|</span> <span class="in">`N`</span>            <span class="pp">|</span></span>
+<span id="cb26-496"><a href="#cb26-496" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search backward                <span class="pp">|</span> <span class="in">`?text`</span>        <span class="pp">|</span></span>
+<span id="cb26-497"><a href="#cb26-497" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Search current word            <span class="pp">|</span> <span class="in">`*`</span>            <span class="pp">|</span></span>
+<span id="cb26-498"><a href="#cb26-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-499"><a href="#cb26-499" aria-hidden="true" tabindex="-1"></a><span class="fu">### Editing</span></span>
+<span id="cb26-500"><a href="#cb26-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-501"><a href="#cb26-501" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Editing**                    | **Shortcut**   <span class="pp">|</span></span>
+<span id="cb26-502"><a href="#cb26-502" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
+<span id="cb26-503"><a href="#cb26-503" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete char                    <span class="pp">|</span> <span class="in">`x`</span>            <span class="pp">|</span></span>
+<span id="cb26-504"><a href="#cb26-504" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete line                    <span class="pp">|</span> <span class="in">`dd`</span>           <span class="pp">|</span></span>
+<span id="cb26-505"><a href="#cb26-505" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete word                    <span class="pp">|</span> <span class="in">`dw`</span>           <span class="pp">|</span></span>
+<span id="cb26-506"><a href="#cb26-506" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete to end of line          <span class="pp">|</span> <span class="in">`d$`</span>           <span class="pp">|</span></span>
+<span id="cb26-507"><a href="#cb26-507" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Delete to start of line        <span class="pp">|</span> <span class="in">`d0`</span>           <span class="pp">|</span></span>
+<span id="cb26-508"><a href="#cb26-508" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Copy line                      <span class="pp">|</span> <span class="in">`yy`</span>           <span class="pp">|</span></span>
+<span id="cb26-509"><a href="#cb26-509" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Copy word                      <span class="pp">|</span> <span class="in">`yw`</span>           <span class="pp">|</span></span>
+<span id="cb26-510"><a href="#cb26-510" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste after cursor             <span class="pp">|</span> <span class="in">`p`</span>            <span class="pp">|</span></span>
+<span id="cb26-511"><a href="#cb26-511" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste before cursor            <span class="pp">|</span> <span class="in">`P`</span>            <span class="pp">|</span></span>
+<span id="cb26-512"><a href="#cb26-512" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Undo                           <span class="pp">|</span> <span class="in">`u`</span>            <span class="pp">|</span></span>
+<span id="cb26-513"><a href="#cb26-513" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Redo                           <span class="pp">|</span> <span class="in">`Ctrl + r`</span>     <span class="pp">|</span></span>
+<span id="cb26-514"><a href="#cb26-514" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Change text                    <span class="pp">|</span> <span class="in">`c`</span>            <span class="pp">|</span></span>
+<span id="cb26-515"><a href="#cb26-515" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Replace char                   <span class="pp">|</span> <span class="in">`r`</span>            <span class="pp">|</span></span>
+<span id="cb26-516"><a href="#cb26-516" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Join line with next            <span class="pp">|</span> <span class="in">`J`</span>            <span class="pp">|</span></span>
+<span id="cb26-517"><a href="#cb26-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-518"><a href="#cb26-518" aria-hidden="true" tabindex="-1"></a><span class="fu">### Window Management</span></span>
+<span id="cb26-519"><a href="#cb26-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-520"><a href="#cb26-520" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Window Management**          | **Shortcut**   <span class="pp">|</span></span>
+<span id="cb26-521"><a href="#cb26-521" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------|</span></span>
+<span id="cb26-522"><a href="#cb26-522" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split window horizontally      <span class="pp">|</span> <span class="in">`:split`</span>       <span class="pp">|</span></span>
+<span id="cb26-523"><a href="#cb26-523" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split window vertically        <span class="pp">|</span> <span class="in">`:vsplit`</span>      <span class="pp">|</span></span>
+<span id="cb26-524"><a href="#cb26-524" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move left split                <span class="pp">|</span> <span class="in">`Ctrl + w, h`</span>  <span class="pp">|</span></span>
+<span id="cb26-525"><a href="#cb26-525" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move down split                <span class="pp">|</span> <span class="in">`Ctrl + w, j`</span>  <span class="pp">|</span></span>
+<span id="cb26-526"><a href="#cb26-526" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move up split                  <span class="pp">|</span> <span class="in">`Ctrl + w, k`</span>  <span class="pp">|</span></span>
+<span id="cb26-527"><a href="#cb26-527" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Move right split               <span class="pp">|</span> <span class="in">`Ctrl + w, l`</span>  <span class="pp">|</span></span>
+<span id="cb26-528"><a href="#cb26-528" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Increase window size           <span class="pp">|</span> <span class="in">`:resize +N`</span>   <span class="pp">|</span></span>
+<span id="cb26-529"><a href="#cb26-529" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Decrease window size           <span class="pp">|</span> <span class="in">`:resize -N`</span>   <span class="pp">|</span></span>
+<span id="cb26-530"><a href="#cb26-530" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Open new tab                   <span class="pp">|</span> <span class="in">`:tabnew`</span>      <span class="pp">|</span></span>
+<span id="cb26-531"><a href="#cb26-531" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Next tab                       <span class="pp">|</span> <span class="in">`:tabnext`</span>     <span class="pp">|</span></span>
+<span id="cb26-532"><a href="#cb26-532" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Previous tab                   <span class="pp">|</span> <span class="in">`:tabprev`</span>     <span class="pp">|</span></span>
+<span id="cb26-533"><a href="#cb26-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-534"><a href="#cb26-534" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb26-535"><a href="#cb26-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-536"><a href="#cb26-536" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tmux</span></span>
+<span id="cb26-537"><a href="#cb26-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-538"><a href="#cb26-538" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tmux Configuration</span></span>
+<span id="cb26-539"><a href="#cb26-539" aria-hidden="true" tabindex="-1"></a>Consider adding these aliases to your shell configuration for quick tmux access.</span>
+<span id="cb26-540"><a href="#cb26-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-541"><a href="#cb26-541" aria-hidden="true" tabindex="-1"></a>::: {.code-block}</span>
+<span id="cb26-542"><a href="#cb26-542" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb26-543"><a href="#cb26-543" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal aliases for tmux</span></span>
+<span id="cb26-544"><a href="#cb26-544" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> t=<span class="st">"tmux"</span></span>
+<span id="cb26-545"><a href="#cb26-545" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ta=<span class="st">"t a -t"</span></span>
+<span id="cb26-546"><a href="#cb26-546" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tls=<span class="st">"t ls"</span></span>
+<span id="cb26-547"><a href="#cb26-547" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tn=<span class="st">"t new -s"</span></span>
+<span id="cb26-548"><a href="#cb26-548" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tk=<span class="st">"t kill-session -t"</span></span>
+<span id="cb26-549"><a href="#cb26-549" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> tks=<span class="st">"t kill-server"</span></span>
+<span id="cb26-550"><a href="#cb26-550" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-551"><a href="#cb26-551" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-552"><a href="#cb26-552" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-553"><a href="#cb26-553" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb26-554"><a href="#cb26-554" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🔧 Custom Prefix Key</span></span>
+<span id="cb26-555"><a href="#cb26-555" aria-hidden="true" tabindex="-1"></a>Change the default prefix in <span class="in">`.tmux.conf`</span>:</span>
+<span id="cb26-556"><a href="#cb26-556" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb26-557"><a href="#cb26-557" aria-hidden="true" tabindex="-1"></a><span class="ex">set-option</span> <span class="at">-g</span> prefix C-a</span>
+<span id="cb26-558"><a href="#cb26-558" aria-hidden="true" tabindex="-1"></a><span class="ex">bind-key</span> C-a send-prefix</span>
+<span id="cb26-559"><a href="#cb26-559" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-560"><a href="#cb26-560" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-561"><a href="#cb26-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-562"><a href="#cb26-562" aria-hidden="true" tabindex="-1"></a><span class="fu">### Session Management</span></span>
+<span id="cb26-563"><a href="#cb26-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-564"><a href="#cb26-564" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Command/Shortcut**       <span class="pp">|</span></span>
+<span id="cb26-565"><a href="#cb26-565" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
+<span id="cb26-566"><a href="#cb26-566" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List sessions                  <span class="pp">|</span> <span class="in">`tmux list-sessions`</span>       <span class="pp">|</span></span>
+<span id="cb26-567"><a href="#cb26-567" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Attach to session              <span class="pp">|</span> <span class="in">`tmux attach-session -t target-session`</span> <span class="pp">|</span></span>
+<span id="cb26-568"><a href="#cb26-568" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch between sessions       <span class="pp">|</span> <span class="in">`Ctrl + A + s`</span>             <span class="pp">|</span></span>
+<span id="cb26-569"><a href="#cb26-569" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to latest session      <span class="pp">|</span> <span class="in">`Ctrl + A + l`</span>             <span class="pp">|</span></span>
+<span id="cb26-570"><a href="#cb26-570" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Detach from session           <span class="pp">|</span> <span class="in">`Ctrl + A + d`</span>             <span class="pp">|</span></span>
+<span id="cb26-571"><a href="#cb26-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-572"><a href="#cb26-572" aria-hidden="true" tabindex="-1"></a><span class="fu">### Window Management</span></span>
+<span id="cb26-573"><a href="#cb26-573" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-574"><a href="#cb26-574" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
+<span id="cb26-575"><a href="#cb26-575" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
+<span id="cb26-576"><a href="#cb26-576" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List all windows              <span class="pp">|</span> <span class="in">`Ctrl + A + w`</span>             <span class="pp">|</span></span>
+<span id="cb26-577"><a href="#cb26-577" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rename current window          <span class="pp">|</span> <span class="in">`Ctrl + A + ,`</span>             <span class="pp">|</span></span>
+<span id="cb26-578"><a href="#cb26-578" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to next window          <span class="pp">|</span> <span class="in">`Ctrl + A + →`</span>             <span class="pp">|</span></span>
+<span id="cb26-579"><a href="#cb26-579" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to previous window      <span class="pp">|</span> <span class="in">`Ctrl + A + ←`</span>             <span class="pp">|</span></span>
+<span id="cb26-580"><a href="#cb26-580" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Create new window              <span class="pp">|</span> <span class="in">`Ctrl + A + c`</span>             <span class="pp">|</span></span>
+<span id="cb26-581"><a href="#cb26-581" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kill current window            <span class="pp">|</span> <span class="in">`Ctrl + A + q`</span>             <span class="pp">|</span></span>
+<span id="cb26-582"><a href="#cb26-582" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-583"><a href="#cb26-583" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pane Management</span></span>
+<span id="cb26-584"><a href="#cb26-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-585"><a href="#cb26-585" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
+<span id="cb26-586"><a href="#cb26-586" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
+<span id="cb26-587"><a href="#cb26-587" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane above           <span class="pp">|</span> <span class="in">`Shift + ↑`</span>                <span class="pp">|</span></span>
+<span id="cb26-588"><a href="#cb26-588" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane below           <span class="pp">|</span> <span class="in">`Shift + ↓`</span>                <span class="pp">|</span></span>
+<span id="cb26-589"><a href="#cb26-589" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane left            <span class="pp">|</span> <span class="in">`Shift + ←`</span>                <span class="pp">|</span></span>
+<span id="cb26-590"><a href="#cb26-590" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch to pane right           <span class="pp">|</span> <span class="in">`Shift + →`</span>                <span class="pp">|</span></span>
+<span id="cb26-591"><a href="#cb26-591" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kill current pane             <span class="pp">|</span> <span class="in">`Ctrl + A + x`</span>             <span class="pp">|</span></span>
+<span id="cb26-592"><a href="#cb26-592" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-593"><a href="#cb26-593" aria-hidden="true" tabindex="-1"></a><span class="fu">### Copy Mode</span></span>
+<span id="cb26-594"><a href="#cb26-594" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-595"><a href="#cb26-595" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
+<span id="cb26-596"><a href="#cb26-596" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
+<span id="cb26-597"><a href="#cb26-597" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Enter copy mode               <span class="pp">|</span> Drag mouse to select text   <span class="pp">|</span></span>
+<span id="cb26-598"><a href="#cb26-598" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste copied text             <span class="pp">|</span> <span class="in">`Ctrl + A + ]`</span>             <span class="pp">|</span></span>
+<span id="cb26-599"><a href="#cb26-599" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-600"><a href="#cb26-600" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb26-601"><a href="#cb26-601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-602"><a href="#cb26-602" aria-hidden="true" tabindex="-1"></a><span class="fu">## Screen</span></span>
+<span id="cb26-603"><a href="#cb26-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-604"><a href="#cb26-604" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb26-605"><a href="#cb26-605" aria-hidden="true" tabindex="-1"></a><span class="fu">### 💡 Screen Aliases</span></span>
+<span id="cb26-606"><a href="#cb26-606" aria-hidden="true" tabindex="-1"></a>Add these aliases to your shell configuration for easier screen management.</span>
+<span id="cb26-607"><a href="#cb26-607" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-608"><a href="#cb26-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-609"><a href="#cb26-609" aria-hidden="true" tabindex="-1"></a>::: {.code-block}</span>
+<span id="cb26-610"><a href="#cb26-610" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb26-611"><a href="#cb26-611" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal aliases for screen</span></span>
+<span id="cb26-612"><a href="#cb26-612" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> s=<span class="st">"screen"</span>       <span class="co"># start a screen session</span></span>
+<span id="cb26-613"><a href="#cb26-613" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> ss=<span class="st">"s -S"</span>        <span class="co"># start a named screen session</span></span>
+<span id="cb26-614"><a href="#cb26-614" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sr=<span class="st">"s -r"</span>        <span class="co"># reattach to a screen session</span></span>
+<span id="cb26-615"><a href="#cb26-615" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sls=<span class="st">"s -ls"</span>      <span class="co"># list current running screen sessions</span></span>
+<span id="cb26-616"><a href="#cb26-616" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-617"><a href="#cb26-617" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-618"><a href="#cb26-618" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-619"><a href="#cb26-619" aria-hidden="true" tabindex="-1"></a><span class="fu">### Basic Commands</span></span>
+<span id="cb26-620"><a href="#cb26-620" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-621"><a href="#cb26-621" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Command**                    <span class="pp">|</span></span>
+<span id="cb26-622"><a href="#cb26-622" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|--------------------------------|</span></span>
+<span id="cb26-623"><a href="#cb26-623" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Start screen session          <span class="pp">|</span> <span class="in">`screen`</span>                       <span class="pp">|</span></span>
+<span id="cb26-624"><a href="#cb26-624" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Start named session           <span class="pp">|</span> <span class="in">`screen -S session_name`</span>       <span class="pp">|</span></span>
+<span id="cb26-625"><a href="#cb26-625" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reattach to session           <span class="pp">|</span> <span class="in">`screen -r`</span>                    <span class="pp">|</span></span>
+<span id="cb26-626"><a href="#cb26-626" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List running sessions         <span class="pp">|</span> <span class="in">`screen -ls`</span>                   <span class="pp">|</span></span>
+<span id="cb26-627"><a href="#cb26-627" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-628"><a href="#cb26-628" aria-hidden="true" tabindex="-1"></a><span class="fu">### Window Management</span></span>
+<span id="cb26-629"><a href="#cb26-629" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-630"><a href="#cb26-630" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
+<span id="cb26-631"><a href="#cb26-631" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
+<span id="cb26-632"><a href="#cb26-632" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Create new window              <span class="pp">|</span> <span class="in">`Ctrl + A + C`</span>             <span class="pp">|</span></span>
+<span id="cb26-633"><a href="#cb26-633" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kill current window            <span class="pp">|</span> <span class="in">`Ctrl + A + K`</span>             <span class="pp">|</span></span>
+<span id="cb26-634"><a href="#cb26-634" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> List all windows              <span class="pp">|</span> <span class="in">`Ctrl + A + W`</span>             <span class="pp">|</span></span>
+<span id="cb26-635"><a href="#cb26-635" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to window 0-9               <span class="pp">|</span> <span class="in">`Ctrl + A + 0-9`</span>           <span class="pp">|</span></span>
+<span id="cb26-636"><a href="#cb26-636" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Go to next window              <span class="pp">|</span> <span class="in">`Ctrl + A + N`</span>             <span class="pp">|</span></span>
+<span id="cb26-637"><a href="#cb26-637" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Toggle between windows         <span class="pp">|</span> <span class="in">`Ctrl + A + Ctrl + A`</span>      <span class="pp">|</span></span>
+<span id="cb26-638"><a href="#cb26-638" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rename current window          <span class="pp">|</span> <span class="in">`Ctrl + A + A`</span>             <span class="pp">|</span></span>
+<span id="cb26-639"><a href="#cb26-639" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-640"><a href="#cb26-640" aria-hidden="true" tabindex="-1"></a><span class="fu">### Region Management</span></span>
+<span id="cb26-641"><a href="#cb26-641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-642"><a href="#cb26-642" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
+<span id="cb26-643"><a href="#cb26-643" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
+<span id="cb26-644"><a href="#cb26-644" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split horizontally             <span class="pp">|</span> <span class="in">`Ctrl + A + S`</span>             <span class="pp">|</span></span>
+<span id="cb26-645"><a href="#cb26-645" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Split vertically               <span class="pp">|</span> <span class="in">`Ctrl + A + \|`</span>            <span class="pp">|</span></span>
+<span id="cb26-646"><a href="#cb26-646" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Switch between regions         <span class="pp">|</span> <span class="in">`Ctrl + A + Tab`</span>           <span class="pp">|</span></span>
+<span id="cb26-647"><a href="#cb26-647" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Close all regions but current  <span class="pp">|</span> <span class="in">`Ctrl + A + Q`</span>             <span class="pp">|</span></span>
+<span id="cb26-648"><a href="#cb26-648" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Close current region           <span class="pp">|</span> <span class="in">`Ctrl + A + X`</span>             <span class="pp">|</span></span>
+<span id="cb26-649"><a href="#cb26-649" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-650"><a href="#cb26-650" aria-hidden="true" tabindex="-1"></a><span class="fu">### Session &amp; Copy Mode</span></span>
+<span id="cb26-651"><a href="#cb26-651" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-652"><a href="#cb26-652" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Action**                     | **Shortcut**               <span class="pp">|</span></span>
+<span id="cb26-653"><a href="#cb26-653" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------------------|----------------------------|</span></span>
+<span id="cb26-654"><a href="#cb26-654" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Detach from session           <span class="pp">|</span> <span class="in">`Ctrl + A + D`</span>             <span class="pp">|</span></span>
+<span id="cb26-655"><a href="#cb26-655" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Start copy mode               <span class="pp">|</span> <span class="in">`Ctrl + A + [`</span>             <span class="pp">|</span></span>
+<span id="cb26-656"><a href="#cb26-656" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Paste copied text             <span class="pp">|</span> <span class="in">`Ctrl + A + ]`</span>             <span class="pp">|</span></span>
+<span id="cb26-657"><a href="#cb26-657" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Show help                     <span class="pp">|</span> <span class="in">`Ctrl + A + ?`</span>             <span class="pp">|</span></span>
+<span id="cb26-658"><a href="#cb26-658" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quit screen                   <span class="pp">|</span> <span class="in">`Ctrl + A + Ctrl + \`</span>      <span class="pp">|</span></span>
+<span id="cb26-659"><a href="#cb26-659" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-660"><a href="#cb26-660" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb26-661"><a href="#cb26-661" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-662"><a href="#cb26-662" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb26-663"><a href="#cb26-663" aria-hidden="true" tabindex="-1"></a><span class="fu">### Additional Resources</span></span>
+<span id="cb26-664"><a href="#cb26-664" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**VSCode**: <span class="co">[</span><span class="ot">Official Keyboard Shortcuts Reference</span><span class="co">](https://code.visualstudio.com/docs/getstarted/keybindings)</span></span>
+<span id="cb26-665"><a href="#cb26-665" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Vim**: <span class="co">[</span><span class="ot">Vim Cheat Sheet</span><span class="co">](https://vim.rtorr.com/)</span></span>
+<span id="cb26-666"><a href="#cb26-666" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Tmux**: <span class="co">[</span><span class="ot">Tmux Cheat Sheet</span><span class="co">](https://tmuxcheatsheet.com/)</span></span>
+<span id="cb26-667"><a href="#cb26-667" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Terminal**: <span class="co">[</span><span class="ot">Bash Reference Manual</span><span class="co">](https://www.gnu.org/software/bash/manual/)</span></span>
+<span id="cb26-668"><a href="#cb26-668" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-669"><a href="#cb26-669" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-670"><a href="#cb26-670" aria-hidden="true" tabindex="-1"></a><span class="fu">## WSL</span></span>
 <span id="cb26-671"><a href="#cb26-671" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-672"><a href="#cb26-672" aria-hidden="true" tabindex="-1"></a><span class="co">## Show system info</span></span>
-<span id="cb26-673"><a href="#cb26-673" aria-hidden="true" tabindex="-1"></a><span class="ex">neofetch</span> <span class="at">--memory_unit</span> gib</span>
-<span id="cb26-674"><a href="#cb26-674" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-675"><a href="#cb26-675" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-676"><a href="#cb26-676" aria-hidden="true" tabindex="-1"></a><span class="fu">### WSL Change sudo password</span></span>
+<span id="cb26-672"><a href="#cb26-672" aria-hidden="true" tabindex="-1"></a><span class="fu">### System info</span></span>
+<span id="cb26-673"><a href="#cb26-673" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb26-674"><a href="#cb26-674" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-675"><a href="#cb26-675" aria-hidden="true" tabindex="-1"></a><span class="co">## Install the neofetch package</span></span>
+<span id="cb26-676"><a href="#cb26-676" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install neofetch <span class="at">-y</span></span>
 <span id="cb26-677"><a href="#cb26-677" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-678"><a href="#cb26-678" aria-hidden="true" tabindex="-1"></a>In the windows terminal, run the following command to change the sudo password:</span>
-<span id="cb26-679"><a href="#cb26-679" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb26-680"><a href="#cb26-680" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-681"><a href="#cb26-681" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> <span class="at">-u</span> root</span>
-<span id="cb26-682"><a href="#cb26-682" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-683"><a href="#cb26-683" aria-hidden="true" tabindex="-1"></a><span class="co">## Input the new password</span></span>
-<span id="cb26-684"><a href="#cb26-684" aria-hidden="true" tabindex="-1"></a><span class="fu">passwd</span> <span class="op">&lt;</span>username<span class="op">&gt;</span></span>
-<span id="cb26-685"><a href="#cb26-685" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-678"><a href="#cb26-678" aria-hidden="true" tabindex="-1"></a><span class="co">## Show system info</span></span>
+<span id="cb26-679"><a href="#cb26-679" aria-hidden="true" tabindex="-1"></a><span class="ex">neofetch</span> <span class="at">--memory_unit</span> gib</span>
+<span id="cb26-680"><a href="#cb26-680" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-681"><a href="#cb26-681" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-682"><a href="#cb26-682" aria-hidden="true" tabindex="-1"></a><span class="fu">### WSL Change sudo password</span></span>
+<span id="cb26-683"><a href="#cb26-683" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-684"><a href="#cb26-684" aria-hidden="true" tabindex="-1"></a>In the windows terminal, run the following command to change the sudo password:</span>
+<span id="cb26-685"><a href="#cb26-685" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
 <span id="cb26-686"><a href="#cb26-686" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-687"><a href="#cb26-687" aria-hidden="true" tabindex="-1"></a><span class="fu">### WSL configuration</span></span>
-<span id="cb26-688"><a href="#cb26-688" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>WSL global config: <span class="in">`C:\Users\&lt;UserName&gt;\.wslconfig`</span></span>
-<span id="cb26-689"><a href="#cb26-689" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>WSL distro config: <span class="in">`\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`</span></span>
-<span id="cb26-690"><a href="#cb26-690" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-691"><a href="#cb26-691" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conda</span></span>
+<span id="cb26-687"><a href="#cb26-687" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> <span class="at">-u</span> root</span>
+<span id="cb26-688"><a href="#cb26-688" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-689"><a href="#cb26-689" aria-hidden="true" tabindex="-1"></a><span class="co">## Input the new password</span></span>
+<span id="cb26-690"><a href="#cb26-690" aria-hidden="true" tabindex="-1"></a><span class="fu">passwd</span> <span class="op">&lt;</span>username<span class="op">&gt;</span></span>
+<span id="cb26-691"><a href="#cb26-691" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb26-692"><a href="#cb26-692" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-693"><a href="#cb26-693" aria-hidden="true" tabindex="-1"></a><span class="fu">### Installation</span></span>
-<span id="cb26-694"><a href="#cb26-694" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb26-695"><a href="#cb26-695" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-696"><a href="#cb26-696" aria-hidden="true" tabindex="-1"></a><span class="co"># Miniforge linux</span></span>
-<span id="cb26-697"><a href="#cb26-697" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"</span></span>
+<span id="cb26-693"><a href="#cb26-693" aria-hidden="true" tabindex="-1"></a><span class="fu">### WSL configuration</span></span>
+<span id="cb26-694"><a href="#cb26-694" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>WSL global config: <span class="in">`C:\Users\&lt;UserName&gt;\.wslconfig`</span></span>
+<span id="cb26-695"><a href="#cb26-695" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>WSL distro config: <span class="in">`\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`</span></span>
+<span id="cb26-696"><a href="#cb26-696" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-697"><a href="#cb26-697" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conda</span></span>
 <span id="cb26-698"><a href="#cb26-698" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-699"><a href="#cb26-699" aria-hidden="true" tabindex="-1"></a><span class="co"># Miniforge Mac</span></span>
-<span id="cb26-700"><a href="#cb26-700" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh"</span></span>
+<span id="cb26-699"><a href="#cb26-699" aria-hidden="true" tabindex="-1"></a><span class="fu">### Installation</span></span>
+<span id="cb26-700"><a href="#cb26-700" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
 <span id="cb26-701"><a href="#cb26-701" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-702"><a href="#cb26-702" aria-hidden="true" tabindex="-1"></a><span class="co"># Install it</span></span>
-<span id="cb26-703"><a href="#cb26-703" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniforge3-<span class="va">$(</span><span class="fu">uname</span><span class="va">)</span>-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span>.sh</span>
+<span id="cb26-702"><a href="#cb26-702" aria-hidden="true" tabindex="-1"></a><span class="co"># Miniforge linux</span></span>
+<span id="cb26-703"><a href="#cb26-703" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"</span></span>
 <span id="cb26-704"><a href="#cb26-704" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-705"><a href="#cb26-705" aria-hidden="true" tabindex="-1"></a><span class="co"># Add conda to PATH if found</span></span>
-<span id="cb26-706"><a href="#cb26-706" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">/miniconda3/etc/profile.d/conda.sh"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb26-707"><a href="#cb26-707" aria-hidden="true" tabindex="-1"></a>    <span class="bu">.</span> <span class="va">$HOME</span>/miniconda3/etc/profile.d/conda.sh</span>
-<span id="cb26-708"><a href="#cb26-708" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
-<span id="cb26-709"><a href="#cb26-709" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-710"><a href="#cb26-710" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span></span>
-<span id="cb26-711"><a href="#cb26-711" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-712"><a href="#cb26-712" aria-hidden="true" tabindex="-1"></a><span class="co">### Configuration</span></span>
-<span id="cb26-713"><a href="#cb26-713" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-714"><a href="#cb26-714" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>bash</span>
+<span id="cb26-705"><a href="#cb26-705" aria-hidden="true" tabindex="-1"></a><span class="co"># Miniforge Mac</span></span>
+<span id="cb26-706"><a href="#cb26-706" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh"</span></span>
+<span id="cb26-707"><a href="#cb26-707" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-708"><a href="#cb26-708" aria-hidden="true" tabindex="-1"></a><span class="co"># Install it</span></span>
+<span id="cb26-709"><a href="#cb26-709" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniforge3-<span class="va">$(</span><span class="fu">uname</span><span class="va">)</span>-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span>.sh</span>
+<span id="cb26-710"><a href="#cb26-710" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-711"><a href="#cb26-711" aria-hidden="true" tabindex="-1"></a><span class="co"># Add conda to PATH if found</span></span>
+<span id="cb26-712"><a href="#cb26-712" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">/miniconda3/etc/profile.d/conda.sh"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb26-713"><a href="#cb26-713" aria-hidden="true" tabindex="-1"></a>    <span class="bu">.</span> <span class="va">$HOME</span>/miniconda3/etc/profile.d/conda.sh</span>
+<span id="cb26-714"><a href="#cb26-714" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
 <span id="cb26-715"><a href="#cb26-715" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-716"><a href="#cb26-716" aria-hidden="true" tabindex="-1"></a><span class="co"># Init</span></span>
-<span id="cb26-717"><a href="#cb26-717" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init <span class="at">--all</span></span>
-<span id="cb26-718"><a href="#cb26-718" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-719"><a href="#cb26-719" aria-hidden="true" tabindex="-1"></a><span class="co"># Use mamba for faster solving</span></span>
-<span id="cb26-720"><a href="#cb26-720" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update <span class="at">-n</span> base conda</span>
-<span id="cb26-721"><a href="#cb26-721" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-n</span> base conda-libmamba-solver</span>
-<span id="cb26-722"><a href="#cb26-722" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-723"><a href="#cb26-723" aria-hidden="true" tabindex="-1"></a><span class="co"># Config</span></span>
-<span id="cb26-724"><a href="#cb26-724" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> solver libmamba</span>
-<span id="cb26-725"><a href="#cb26-725" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> always_yes true</span>
-<span id="cb26-726"><a href="#cb26-726" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> auto_activate_base false</span>
-<span id="cb26-727"><a href="#cb26-727" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-728"><a href="#cb26-728" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup channels</span></span>
-<span id="cb26-729"><a href="#cb26-729" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--add</span> channels bioconda</span>
-<span id="cb26-730"><a href="#cb26-730" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--add</span> channels conda-forge</span>
-<span id="cb26-731"><a href="#cb26-731" aria-hidden="true" tabindex="-1"></a><span class="co">#conda config --set channel_priority strict</span></span>
-<span id="cb26-732"><a href="#cb26-732" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-733"><a href="#cb26-733" aria-hidden="true" tabindex="-1"></a><span class="co"># Install software from a specific channel</span></span>
-<span id="cb26-734"><a href="#cb26-734" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge numpy</span>
-<span id="cb26-735"><a href="#cb26-735" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span></span>
-<span id="cb26-736"><a href="#cb26-736" aria-hidden="true" tabindex="-1"></a><span class="co">### Environment</span></span>
-<span id="cb26-737"><a href="#cb26-737" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>bash</span>
-<span id="cb26-738"><a href="#cb26-738" aria-hidden="true" tabindex="-1"></a><span class="co"># Create R environment</span></span>
-<span id="cb26-739"><a href="#cb26-739" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> renv r-4.3 r-languageserver r-tidyverse r-irkernel r-httpgd</span>
-<span id="cb26-740"><a href="#cb26-740" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-741"><a href="#cb26-741" aria-hidden="true" tabindex="-1"></a><span class="co"># Install bioconductor packages, all package names are lower case</span></span>
-<span id="cb26-742"><a href="#cb26-742" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-n</span> renv bioconductor-deseq2 bioconductor-edger</span>
-<span id="cb26-743"><a href="#cb26-743" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-744"><a href="#cb26-744" aria-hidden="true" tabindex="-1"></a><span class="co"># Install repository packages</span></span>
-<span id="cb26-745"><a href="#cb26-745" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-n</span> renv r-qs r-fs r-tidyverse</span>
+<span id="cb26-716"><a href="#cb26-716" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span></span>
+<span id="cb26-717"><a href="#cb26-717" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-718"><a href="#cb26-718" aria-hidden="true" tabindex="-1"></a><span class="co">### Configuration</span></span>
+<span id="cb26-719"><a href="#cb26-719" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-720"><a href="#cb26-720" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>bash</span>
+<span id="cb26-721"><a href="#cb26-721" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-722"><a href="#cb26-722" aria-hidden="true" tabindex="-1"></a><span class="co"># Init</span></span>
+<span id="cb26-723"><a href="#cb26-723" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init <span class="at">--all</span></span>
+<span id="cb26-724"><a href="#cb26-724" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-725"><a href="#cb26-725" aria-hidden="true" tabindex="-1"></a><span class="co"># Use mamba for faster solving</span></span>
+<span id="cb26-726"><a href="#cb26-726" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update <span class="at">-n</span> base conda</span>
+<span id="cb26-727"><a href="#cb26-727" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-n</span> base conda-libmamba-solver</span>
+<span id="cb26-728"><a href="#cb26-728" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-729"><a href="#cb26-729" aria-hidden="true" tabindex="-1"></a><span class="co"># Config</span></span>
+<span id="cb26-730"><a href="#cb26-730" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> solver libmamba</span>
+<span id="cb26-731"><a href="#cb26-731" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> always_yes true</span>
+<span id="cb26-732"><a href="#cb26-732" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> auto_activate_base false</span>
+<span id="cb26-733"><a href="#cb26-733" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-734"><a href="#cb26-734" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup channels</span></span>
+<span id="cb26-735"><a href="#cb26-735" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--add</span> channels bioconda</span>
+<span id="cb26-736"><a href="#cb26-736" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--add</span> channels conda-forge</span>
+<span id="cb26-737"><a href="#cb26-737" aria-hidden="true" tabindex="-1"></a><span class="co">#conda config --set channel_priority strict</span></span>
+<span id="cb26-738"><a href="#cb26-738" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-739"><a href="#cb26-739" aria-hidden="true" tabindex="-1"></a><span class="co"># Install software from a specific channel</span></span>
+<span id="cb26-740"><a href="#cb26-740" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge numpy</span>
+<span id="cb26-741"><a href="#cb26-741" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span></span>
+<span id="cb26-742"><a href="#cb26-742" aria-hidden="true" tabindex="-1"></a><span class="co">### Environment</span></span>
+<span id="cb26-743"><a href="#cb26-743" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>bash</span>
+<span id="cb26-744"><a href="#cb26-744" aria-hidden="true" tabindex="-1"></a><span class="co"># Create R environment</span></span>
+<span id="cb26-745"><a href="#cb26-745" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> renv r-4.3 r-languageserver r-tidyverse r-irkernel r-httpgd</span>
 <span id="cb26-746"><a href="#cb26-746" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-747"><a href="#cb26-747" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a specific environment</span></span>
-<span id="cb26-748"><a href="#cb26-748" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">--name</span> renv <span class="at">--all</span></span>
+<span id="cb26-747"><a href="#cb26-747" aria-hidden="true" tabindex="-1"></a><span class="co"># Install bioconductor packages, all package names are lower case</span></span>
+<span id="cb26-748"><a href="#cb26-748" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-n</span> renv bioconductor-deseq2 bioconductor-edger</span>
 <span id="cb26-749"><a href="#cb26-749" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-750"><a href="#cb26-750" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a software in a environment</span></span>
-<span id="cb26-751"><a href="#cb26-751" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">--name</span> renv package_name</span>
+<span id="cb26-750"><a href="#cb26-750" aria-hidden="true" tabindex="-1"></a><span class="co"># Install repository packages</span></span>
+<span id="cb26-751"><a href="#cb26-751" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-n</span> renv r-qs r-fs r-tidyverse</span>
 <span id="cb26-752"><a href="#cb26-752" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-753"><a href="#cb26-753" aria-hidden="true" tabindex="-1"></a><span class="co"># Export and save the conda env file with all software information</span></span>
-<span id="cb26-754"><a href="#cb26-754" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">-n</span> renv <span class="op">&gt;</span> renv.yml</span>
+<span id="cb26-753"><a href="#cb26-753" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a specific environment</span></span>
+<span id="cb26-754"><a href="#cb26-754" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">--name</span> renv <span class="at">--all</span></span>
 <span id="cb26-755"><a href="#cb26-755" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-756"><a href="#cb26-756" aria-hidden="true" tabindex="-1"></a><span class="co"># Export and save the conda env file with all software information</span></span>
-<span id="cb26-757"><a href="#cb26-757" aria-hidden="true" tabindex="-1"></a><span class="co"># without the prefix and bundle information</span></span>
-<span id="cb26-758"><a href="#cb26-758" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">-n</span> renv <span class="at">--no-builds</span> <span class="op">&gt;</span> renv.yml</span>
-<span id="cb26-759"><a href="#cb26-759" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">-n</span> renv <span class="at">--no-builds</span> <span class="at">--file</span> renv.yml</span>
-<span id="cb26-760"><a href="#cb26-760" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-761"><a href="#cb26-761" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new environment with a environment file</span></span>
-<span id="cb26-762"><a href="#cb26-762" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">--file</span> renv.yml</span>
-<span id="cb26-763"><a href="#cb26-763" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-764"><a href="#cb26-764" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename an environment</span></span>
-<span id="cb26-765"><a href="#cb26-765" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> new_env_name <span class="at">--clone</span> old_env_name</span>
-<span id="cb26-766"><a href="#cb26-766" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate new_env_name</span>
-<span id="cb26-767"><a href="#cb26-767" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">--name</span> old_env_name <span class="at">--all</span></span>
-<span id="cb26-768"><a href="#cb26-768" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span></span>
+<span id="cb26-756"><a href="#cb26-756" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a software in a environment</span></span>
+<span id="cb26-757"><a href="#cb26-757" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">--name</span> renv package_name</span>
+<span id="cb26-758"><a href="#cb26-758" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-759"><a href="#cb26-759" aria-hidden="true" tabindex="-1"></a><span class="co"># Export and save the conda env file with all software information</span></span>
+<span id="cb26-760"><a href="#cb26-760" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">-n</span> renv <span class="op">&gt;</span> renv.yml</span>
+<span id="cb26-761"><a href="#cb26-761" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-762"><a href="#cb26-762" aria-hidden="true" tabindex="-1"></a><span class="co"># Export and save the conda env file with all software information</span></span>
+<span id="cb26-763"><a href="#cb26-763" aria-hidden="true" tabindex="-1"></a><span class="co"># without the prefix and bundle information</span></span>
+<span id="cb26-764"><a href="#cb26-764" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">-n</span> renv <span class="at">--no-builds</span> <span class="op">&gt;</span> renv.yml</span>
+<span id="cb26-765"><a href="#cb26-765" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">-n</span> renv <span class="at">--no-builds</span> <span class="at">--file</span> renv.yml</span>
+<span id="cb26-766"><a href="#cb26-766" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-767"><a href="#cb26-767" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new environment with a environment file</span></span>
+<span id="cb26-768"><a href="#cb26-768" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">--file</span> renv.yml</span>
 <span id="cb26-769"><a href="#cb26-769" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-770"><a href="#cb26-770" aria-hidden="true" tabindex="-1"></a><span class="co">## Pixi</span></span>
-<span id="cb26-771"><a href="#cb26-771" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-772"><a href="#cb26-772" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>bash</span>
-<span id="cb26-773"><a href="#cb26-773" aria-hidden="true" tabindex="-1"></a><span class="co">## Auto-activate pixi when entering project directory</span></span>
-<span id="cb26-774"><a href="#cb26-774" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="ex">pixi</span> completion <span class="at">--shell</span> bash<span class="va">)</span><span class="st">"</span>  <span class="co"># or zsh</span></span>
-<span id="cb26-775"><a href="#cb26-775" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span></span>
-<span id="cb26-776"><a href="#cb26-776" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-777"><a href="#cb26-777" aria-hidden="true" tabindex="-1"></a><span class="co">## Git</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb26-770"><a href="#cb26-770" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename an environment</span></span>
+<span id="cb26-771"><a href="#cb26-771" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> new_env_name <span class="at">--clone</span> old_env_name</span>
+<span id="cb26-772"><a href="#cb26-772" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate new_env_name</span>
+<span id="cb26-773"><a href="#cb26-773" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">--name</span> old_env_name <span class="at">--all</span></span>
+<span id="cb26-774"><a href="#cb26-774" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span></span>
+<span id="cb26-775"><a href="#cb26-775" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-776"><a href="#cb26-776" aria-hidden="true" tabindex="-1"></a><span class="co">## Pixi</span></span>
+<span id="cb26-777"><a href="#cb26-777" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-778"><a href="#cb26-778" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>bash</span>
+<span id="cb26-779"><a href="#cb26-779" aria-hidden="true" tabindex="-1"></a><span class="co">## Auto-activate pixi when entering project directory</span></span>
+<span id="cb26-780"><a href="#cb26-780" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="ex">pixi</span> completion <span class="at">--shell</span> bash<span class="va">)</span><span class="st">"</span>  <span class="co"># or zsh</span></span>
+<span id="cb26-781"><a href="#cb26-781" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span></span>
+<span id="cb26-782"><a href="#cb26-782" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-783"><a href="#cb26-783" aria-hidden="true" tabindex="-1"></a><span class="co">## Git</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

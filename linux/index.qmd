@@ -4,8 +4,8 @@ date: 2022-10-09
 published-title: Created
 date-modified: last-modified
 title-block-banner: "#212529"
-toc: true
-toc-location: left
+# toc: true
+# toc-location: left
 toc-title: "Contents"
 execute:
     eval: false
@@ -17,7 +17,7 @@ format:
 
 ---
 
-## Command
+## UNIX Shell Basics
 
 * [explainshell.com](https://explainshell.com/) - Lean fancy shell commands by breaking them down into individual components and providing explanations for each part.
 
@@ -111,7 +111,7 @@ chsh -s /bin/bash
 chsh -s /bin/zsh
 ```
 
-## Unzip files
+## File Compression
 
 * Commone tar flags:
     +  `-x` = extract
@@ -323,7 +323,13 @@ Change owner
 sudo chown username:groupname /path/to/folder
 ```
 
-## Sync
+## Data transfer
+
+* Transfering data efficiently between local and remote systems:
+  * `wget`: Download files directly from the internet to your local machine or server.
+  * `scp`: Securely copy files between local and remote systems over SSH.
+  * `rsync`: Synchronize files and directories efficiently, with options for selective copying and deletion.
+
 ```bash
 ## Basic command
 rsync -av /source/folder/ /destination/folder/
