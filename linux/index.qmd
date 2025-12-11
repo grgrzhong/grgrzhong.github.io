@@ -19,6 +19,7 @@ format:
 
 ## UNIX Shell Basics
 
+
 * [explainshell.com](https://explainshell.com/) - Lean fancy shell commands by breaking them down into individual components and providing explanations for each part.
 
 * [Linux shell for beginners](https://bioinformatics.mdc-berlin.de/intro2UnixandSGE/unix_for_beginners/README.html) - A comprehensive guide for beginners to learn Linux shell commands and concepts.
@@ -434,38 +435,74 @@ for folder_pair in "${folders_to_sync[@]}"; do
     echo "-----------------------------------"
 done
 ```
-## Vim
 
-::: {.callout-important}
-### ⚠️ Vim Modal Editor
-Vim is a modal editor. Remember to press `Esc` to return to Normal mode before using most commands.
-:::
+## Nano Text Editor
 
-### Modes
+1. Open a file with: `nano filename.txt`
+2. Use the arrow keys to navigate.
+3. Save the changes with `ctrl + o`, 
+4. Confirm the filename by pressing `Enter`.
+5. Exit nano with `ctrl + x`.
 
-| **Action**                     | **Shortcut**   |
+### Searching Text
+
+* To find words or phrases within a file:
+
+1. Initiate search with `ctrl + w`.
+2. Type the search term and press `Enter`.
+3. Exit search mode with `ctrl + c`.
+
+### Customizing Nano
+
+Enhance Nano's functionality:
+
+```bash
+nano -miA file.txt
+```
+
+* `-m`: Enable mouse support.
+* `-i`: Auto-indent new lines.
+* `-A`: Enable syntax highlighting.
+
+
+## Vim Text Editor
+
+* Vim text editor has three main modes: 
+  * Normal mode: `Esc`, input commands
+  * Insert mode: `i`, insert text
+  * Visual mode: `v`, select text
+
+### Working Modes
+
+`i`: Insert mode                
+`I`: Insert at beginning of line
+`o`: Insert new line below      
+`O`: Insert new line above      
+`a`: Append after cursor        
+`A`: Append at end of line      
+`Esc`: Command mode (normal)      
+`v`: Visual mode (select text)  
+`V`: Visual line mode           
+`Ctrl + v`: Visual block mode          
+
+### Text Editing
+
+| **Editing**                    | **Shortcut**   |
 |--------------------------------|----------------|
-| Insert mode                    | `i`            |
-| Insert at beginning of line    | `I`            |
-| Insert new line below          | `o`            |
-| Insert new line above          | `O`            |
-| Append after cursor            | `a`            |
-| Append at end of line          | `A`            |
-| Command mode (normal)          | `Esc`          |
-| Visual mode (select text)      | `v`            |
-| Visual line mode               | `V`            |
-| Visual block mode              | `Ctrl + v`     |
-
-### File Operations
-
-| **Action**                     | **Shortcut**   |
-|--------------------------------|----------------|
-| Save                           | `:w`           |
-| Quit                           | `:q`           |
-| Save and quit                  | `:wq`          |
-| Quit without saving            | `:q!`          |
-| Save and quit (shortcut)       | `ZZ`           |
-| Quit without saving (shortcut) | `ZQ`           |
+| Delete char                    | `x`            |
+| Delete line                    | `dd`           |
+| Delete word                    | `dw`           |
+| Delete to end of line          | `d$`           |
+| Delete to start of line        | `d0`           |
+| Copy line                      | `yy`           |
+| Copy word                      | `yw`           |
+| Paste after cursor             | `p`            |
+| Paste before cursor            | `P`            |
+| Undo                           | `u`            |
+| Redo                           | `Ctrl + r`     |
+| Change text                    | `c`            |
+| Replace char                   | `r`            |
+| Join line with next            | `J`            |
 
 ### Navigation
 | **Basic Movement**             | **Shortcut**   |
@@ -496,42 +533,16 @@ Vim is a modal editor. Remember to press `Esc` to return to Normal mode before u
 | Search backward                | `?text`        |
 | Search current word            | `*`            |
 
-### Editing
+### File Operations
 
-| **Editing**                    | **Shortcut**   |
+| **Action**                     | **Shortcut**   |
 |--------------------------------|----------------|
-| Delete char                    | `x`            |
-| Delete line                    | `dd`           |
-| Delete word                    | `dw`           |
-| Delete to end of line          | `d$`           |
-| Delete to start of line        | `d0`           |
-| Copy line                      | `yy`           |
-| Copy word                      | `yw`           |
-| Paste after cursor             | `p`            |
-| Paste before cursor            | `P`            |
-| Undo                           | `u`            |
-| Redo                           | `Ctrl + r`     |
-| Change text                    | `c`            |
-| Replace char                   | `r`            |
-| Join line with next            | `J`            |
-
-### Window Management
-
-| **Window Management**          | **Shortcut**   |
-|--------------------------------|----------------|
-| Split window horizontally      | `:split`       |
-| Split window vertically        | `:vsplit`      |
-| Move left split                | `Ctrl + w, h`  |
-| Move down split                | `Ctrl + w, j`  |
-| Move up split                  | `Ctrl + w, k`  |
-| Move right split               | `Ctrl + w, l`  |
-| Increase window size           | `:resize +N`   |
-| Decrease window size           | `:resize -N`   |
-| Open new tab                   | `:tabnew`      |
-| Next tab                       | `:tabnext`     |
-| Previous tab                   | `:tabprev`     |
-
----
+| Save                           | `:w`           |
+| Quit                           | `:q`           |
+| Save and quit                  | `:wq`          |
+| Quit without saving            | `:q!`          |
+| Save and quit (shortcut)       | `ZZ`           |
+| Quit without saving (shortcut) | `ZQ`           |
 
 ## Tmux
 
