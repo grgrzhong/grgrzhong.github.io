@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.26">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Guorui Zhong">
@@ -70,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-1b3db88def35042d172274863c1cdcf0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-73f67446a8635c361532e94f67b7efbe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-7240976d66d94fd6f6e2300715a3fab7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -255,9 +256,9 @@ Note
 <span></span>
 <span><span class="co">### statistical test to compare two independent groups</span></span>
 <span></span>
-<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu">add_significance</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span> </span>
+<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">add_significance</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>    <span class="fu">add_xy_position</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"supp"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">stat_test</span></span>
@@ -278,7 +279,7 @@ Note
 <span>        vjust <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, <span class="co">#vertically adjust the position of the p-values labels </span></span>
 <span>        bracket.nudge.y <span class="op">=</span> <span class="fl">1</span> <span class="co"># move up or to move down the brackets. </span></span>
 <span>        <span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.15</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu">scale_y_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu">expansion</span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.15</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -289,11 +290,11 @@ Note
 </div>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### grouped data</span></span>
-<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu">adjust_pvalue</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu">add_significance</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">dose</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">adjust_pvalue</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">add_significance</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>    <span class="fu">add_xy_position</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"supp"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">stat_test</span></span>
@@ -311,7 +312,7 @@ Note
 <span>    facet.by <span class="op">=</span> <span class="st">"dose"</span></span>
 <span>    <span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">stat_pvalue_manual</span><span class="op">(</span><span class="va">stat_test</span>, label <span class="op">=</span> <span class="st">"p.adj"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">scale_y_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu">expansion</span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -321,11 +322,11 @@ Note
 </div>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Show p-values if significant otherwise show ns</span></span>
-<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu">adjust_pvalue</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu">add_significance</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">dose</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">adjust_pvalue</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">add_significance</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">add_xy_position</span><span class="op">(</span><span class="st">"supp"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">stat_test</span><span class="op">$</span><span class="va">custom_label</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">stat_test</span><span class="op">$</span><span class="va">p.adj</span> <span class="op">&lt;=</span> <span class="fl">0.05</span>, <span class="va">stat_test</span><span class="op">$</span><span class="va">p.adj</span>, <span class="st">"ns"</span><span class="op">)</span></span>
@@ -345,7 +346,7 @@ Note
 <span>    facet.by <span class="op">=</span> <span class="st">"dose"</span></span>
 <span>    <span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">stat_pvalue_manual</span><span class="op">(</span><span class="va">stat_test</span>, label <span class="op">=</span> <span class="st">"custom_label"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">scale_y_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu">expansion</span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -356,16 +357,16 @@ Note
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Compare paired samples</span></span>
 <span><span class="co"># Statistical test</span></span>
-<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span>, paired <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">add_significance</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span>, paired <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">add_significance</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_xy_position</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"supp"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">### boxplot with pvalue</span></span>
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">ggpaired</span><span class="op">(</span><span class="va">df</span>, x <span class="op">=</span> <span class="st">"supp"</span>, y <span class="op">=</span> <span class="st">"len"</span>, fill <span class="op">=</span> <span class="st">"#E7B800"</span>,</span>
 <span>                 line.color <span class="op">=</span> <span class="st">"gray"</span>, line.size <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span><span class="op">+</span></span>
 <span>                 <span class="fu">stat_pvalue_manual</span><span class="op">(</span><span class="va">stat_test</span>, label <span class="op">=</span> <span class="st">"p.signif"</span><span class="op">)</span><span class="op">+</span></span>
-<span>                 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>                 <span class="fu">scale_y_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu">expansion</span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">### combined with significane level</span></span>
 <span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">ggpaired</span><span class="op">(</span><span class="va">df</span>,</span>
@@ -373,7 +374,7 @@ Note
 <span>    line.color <span class="op">=</span> <span class="st">"gray"</span>, line.size <span class="op">=</span> <span class="fl">0.4</span></span>
 <span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">stat_pvalue_manual</span><span class="op">(</span><span class="va">stat_test</span>, label <span class="op">=</span> <span class="st">"{p}{p.signif}"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu">scale_y_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu">expansion</span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
@@ -386,7 +387,7 @@ Note
 </section><section id="pairwise-comparisons" class="level3"><h3 class="anchored" data-anchor-id="pairwise-comparisons">Pairwise comparisons</h3>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### boxplot</span></span>
-<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span> <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>    <span class="fu">add_xy_position</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"dose"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">bxp</span> <span class="op">&lt;-</span> <span class="fu">ggboxplot</span><span class="op">(</span><span class="va">df</span>,</span>
@@ -407,8 +408,8 @@ Note
 <span>    <span class="op">)</span></span>
 <span></span>
 <span><span class="co">### Bar plot</span></span>
-<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  </span>
+<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span> </span>
+<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span><span class="op">)</span> <span class="op">%&gt;%</span>  </span>
 <span>    <span class="fu">add_xy_position</span><span class="op">(</span>fun <span class="op">=</span> <span class="st">"mean_sd"</span>, x <span class="op">=</span> <span class="st">"dose"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Bar plots showing mean +/- SD</span></span>
@@ -432,8 +433,8 @@ Note
 </div>
 </section><section id="comparsions-against-reference-groups" class="level3"><h3 class="anchored" data-anchor-id="comparsions-against-reference-groups">Comparsions against reference groups</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span>, ref.group <span class="op">=</span> <span class="st">"0.5"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span> </span>
+<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span>, ref.group <span class="op">=</span> <span class="st">"0.5"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>    <span class="fu">add_xy_position</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"dose"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">bxp</span> <span class="op">&lt;-</span> <span class="fu">ggboxplot</span><span class="op">(</span><span class="va">df</span>,</span>
@@ -466,8 +467,8 @@ Note
 </div>
 </section><section id="comparsions-against-all-basemean" class="level3"><h3 class="anchored" data-anchor-id="comparsions-against-all-basemean">Comparsions against all (basemean)</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span>, ref.group <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span> </span>
+<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span>, ref.group <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>    <span class="fu">add_xy_position</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"dose"</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="va">bxp</span> <span class="op">&lt;-</span> <span class="fu">ggboxplot</span><span class="op">(</span><span class="va">df</span>,</span>
@@ -480,8 +481,8 @@ Note
 <span>        y.position <span class="op">=</span> <span class="fl">35</span></span>
 <span>    <span class="op">)</span></span>
 <span></span>
-<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span>, ref.group <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span> </span>
+<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span>, ref.group <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>    <span class="fu">add_xy_position</span><span class="op">(</span>fun <span class="op">=</span> <span class="st">"mean_sd"</span>, x <span class="op">=</span> <span class="st">"dose"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">bp</span> <span class="op">&lt;-</span> <span class="fu">ggbarplot</span><span class="op">(</span><span class="va">df</span>,</span>
@@ -514,9 +515,9 @@ Note
 <span><span class="co">## 2 11.5   VC  0.5</span></span>
 <span><span class="co">## 3  7.3   VC  0.5</span></span>
 <span></span>
-<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu">add_significance</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span><span class="va">stat_test</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span> </span>
+<span>    <span class="fu">t_test</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">dose</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">add_significance</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>    <span class="fu">add_xy_position</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"dose"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">stat_test</span></span>
@@ -540,7 +541,7 @@ Note
 <span>        label <span class="op">=</span> <span class="st">"p.adj.signif"</span>, tip.length <span class="op">=</span> <span class="fl">0.01</span>,</span>
 <span>        coord.flip <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
@@ -558,7 +559,7 @@ Note
 <span>        label <span class="op">=</span> <span class="st">"p.adj"</span>, tip.length <span class="op">=</span> <span class="fl">0.01</span>,</span>
 <span>        coord.flip <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>

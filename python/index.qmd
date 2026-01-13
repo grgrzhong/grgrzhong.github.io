@@ -424,7 +424,7 @@ x[1::2] # get all the items from index 1 to the end, with a stride of 2
 * Created using bare parentheses `()`, but parentheses are not strictly required.
 
 ```{python}
-#| eval: true
+#| eval: false
 #| output: asis
 
 x = (1, 2) # tuple of length 2
@@ -466,7 +466,7 @@ len(x)
     + Python provides the convenience of unpacking tuples into multiple variables in a single statement.
 
 ```{python}
-#| eval: true
+#| eval: false
 
 x = (1, 2, 3)
 a, b, c = x
@@ -479,7 +479,96 @@ c
 
 ```
 
+Tuple unpacking can occur in a variety of contexts, such as iteration:
+```{python}
+#| eval: false
+xx = (("a", 1), ("b", 2))
 
+for x1, x2 in xx:
+    print("x1 = ", x1)
+    print("x2 = ", x2)
+#> x1 =  a
+#> x2 =  1
+#> x1 =  b
+#> x2 =  2
+```
+
+Python raises an error when attampt to unpack a container to the wrong number of symbols:
+```{python}
+#| eval: false
+x = (1, 2, 3)
+a, b, c, =x # success
+a, b = x    # error, x has too many values to unpack
+#> ValueError: too many values to unpack (expected 2)
+a, b, c, d = x # error, x has not enough values to unpack
+#> ValueError: not enough values to unpack (expected 4, got 3)
+```
+
+Unpack a variable number of values using the `*` operator:
+```{python}
+#| eval: false
+
+x = (1, 2, 3)
+a, *the_rest = x
+a
+#> 1
+the_rest
+#> [2, 3]
+```
+
+Unpack the nested structures:
+```{python}
+#| eval: false
+x = ((1, 2), (3, 4))
+(a, b), (c, d) = x
+```
+
+#### Dictionaries
+
+* Dictionaries can be created using syntax like {key: value, key: value, ...}.
+* Note that `r_to_py` converts R named lists to Python dictionaries.
+
+```{python}
+#| eval: false
+
+d = {
+        "key1": 1,
+        "key2": 2
+    }
+d2 = d
+d
+#> {'key1': 1, 'key2': 2}
+d["key1"]
+#> 1
+d["key3"] = 3
+d2 # modified in place!
+#> {'key1': 1, 'key2': 2, 'key3': 3}
+```
+
+* Cannot index into dictionaries using integer indices. Instead, use the keys.
+```{python}
+#| eval: false
+d = {"key1": 1, "key2": 2}
+d[1] # error
+#> KeyError: 1
+```
+
+#### Sets
+
+Sets are a container that can be used to efficiently track unique items or deduplicate lists. They are constructed using `{val1, val2}` (like a dictionary, but without `:`). Think of them as dictionary where you only use the keys. Sets have many efficient methods for membership operations, like `intersection()`, `issubset()`, `union()` and so on.
+```{python}
+#| eval: false
+
+s = {1, 2, 3}
+type(s)
+#> <class 'set'>
+s
+#> {1, 2, 3}
+
+s.add(1)
+s
+#> {1, 2, 3}
+```
 
 ### Data frame
 

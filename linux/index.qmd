@@ -210,81 +210,7 @@ tar -cjf archive.tar.bz2 file1 file2 directory/
 tar -cJf archive.tar.xz file1 file2 directory/
 ```
 
-## Shortcut
-
-::: {.callout-note}
-### About Terminal Shortcuts
-These shortcuts work in most Unix-like terminals including Terminal.app on macOS, GNOME Terminal, and Windows Terminal with WSL.
-:::
-
-### Cursor Movement
-
-| **Action**                       | **Shortcut**        |
-|---------------------------------|---------------------|
-| Move to the beginning of line   | `Ctrl + A`          |
-| Move to the end of line         | `Ctrl + E`          |
-| Move one word backward          | `Opt + ←`           |
-| Move one word forward           | `Opt + →`           |
-| Move one character backward     | `←`                 |
-| Move one character forward      | `→`                 |
-| Jump to the start of buffer     | `Alt + <`           |
-| Jump to the end of buffer       | `Alt + >`           |
-
-### Text Editing
-| **Text Editing**                | **Shortcut**        |
-|---------------------------------|---------------------|
-| Delete the current line         | `Ctrl + U`          |
-| Delete to end of the line       | `Ctrl + K`          |
-| Clear the screen                | `Ctrl + L`          |
-| Delete one word backward        | `Ctrl + W`          |
-| Delete one character forward    | `Ctrl + D`          |
-| Delete one character forward    | `Fn + Backspace`    |
-| Delete one character backward   | `Backspace`         |
-| Delete from cursor to start     | `Alt + Backspace`   |
-| Delete from cursor to word end  | `Alt + D`           |
-
-### Process Management
-
-| **Process Management**          | **Shortcut**        |
-|---------------------------------|---------------------|
-| Terminate a process             | `Ctrl + C`          |
-| Suspend a process               | `Ctrl + Z`          |
-| Exit the shell                  | `Ctrl + D`          |
-| Send process to background      | `Ctrl + Z` then `bg`|
-| Bring background process to fg  | `fg`                |
-
-### History & Commands
-
-| **History & Commands**          | **Shortcut**        |
-|---------------------------------|---------------------|
-| Undo the last change            | `Ctrl + _`          |
-| Recall previous command         | `↑`                 |
-| Recall next command             | `↓`                 |
-| Search command history          | `Ctrl + R`          |
-| Exit history search             | `Ctrl + G`          |
-| Show history                    | `history`           |
-| Run the last command            | `!!`                |
-| Run last `pw` command           | `!pw`               |
-| Run command # from history      | `!<number>`         |
-
-### Auto-Completion & Misc
-
-| **Auto-Completion & Misc**      | **Shortcut**        |
-|---------------------------------|---------------------|
-| Auto-complete command           | `TAB`               |
-| List matching commands          | `TAB TAB`           |
-| Cycle through matches           | `TAB TAB TAB...`    |
-| Open last edited command        | `Ctrl + X Ctrl + E` |
-| Transpose two characters        | `Ctrl + T`          |
-| Capitalize word at cursor       | `Alt + C`           |
-| Convert word to lowercase       | `Alt + L`           |
-| Convert word to uppercase       | `Alt + U`           |
-| Swap position with prev word    | `Ctrl + W` `Alt + T`|
-
----
-
-
-## Permissions
+## File Permissions
 
 Only the user can copy, execute, and change
 ```bash
@@ -544,9 +470,70 @@ nano -miA file.txt
 | Save and quit (shortcut)       | `ZZ`           |
 | Quit without saving (shortcut) | `ZQ`           |
 
-## Tmux
+## Job Schedule
 
-### Tmux Configuration
+### OpenPBS
+OpenPBS (Portable Batch System) is an open-source workload manager and job scheduler used in High-Performance Computing (HPC) environments to automate and optimize the execution of tasks across clusters and clouds.
+
+* PBS job script
+
+```bash
+#!/bin/bash
+#PBS -N job_name                  # Job name
+#PBS -l nodes=1:ppn=4             # Number of nodes and processors per node
+#PBS -l walltime=01:00:00         # Walltime (hh:mm:ss)
+#PBS -l mem=8gb                   # Memory per node
+#PBS -j oe                        # Combine stdout and stderr
+#PBS -M user@example.com          # Email address for notifications
+#PBS -m abe                       # Send email on (a) abort, (b) begin, (e) end
+#PBS -q batch                     # Queue named
+#PBS -V                           # Export all environment variables to the job
+
+## example
+cd $PBS_O_WORKDIR                 # Change to the directory where the job was submitted
+module load python/3.8.5          # Load necessary modules
+python my_script.py               # Command to run your program
+```
+
+* Key commands
+
+    + `qsub job_script.pbs` - Submit a job
+    + `qsub -v sample="$sample" -M "$EMAIL" pbs_1_cutadapt.pbs` - Submit a job with environment variables
+    + `qstat` - Check job status
+    + `qstat -u guorui -a` - Check all jobs for user guorui
+    + `qhist` - View job history
+    + `qdel job_id` - Delete a job  
+    + `qhold job_id` - Hold a job  
+    + `qrls job_id` - Release a held job  
+    + `qpeek job_id` - Peek at job output  
+    + `qmod -c job_id` - Clear job state
+    + `showq` - Show queue status 
+
+* Some variables
+```bash
+$PBS_O_WORKDIR     # The directory from which the job was submitted
+$PBS_O_HOME        # The home directory of the user who submitted the job
+$PBS_JOBDIR        # The working directory for the job on the compute node
+$TMPDIR            # The temporary directory for the job on the compute node
+$PBS_JOBID         # The unique identifier assigned to the job
+$PBS_NODEFILE      # The file containing the list of nodes allocated to the job
+$PBS_NUM_NODES     # The number of nodes allocated to the job
+$PBS_NUM_PPN       # The number of processors per node allocated to the job
+$PBS_QUEUE         # The name of the queue to which the job was submitted
+$PBS_JOBNAME       # The name of the job as specified in the job script
+```
+
+* Interactive job
+```bash
+## go to interactive job with 16 processors, 200GB memory, 168 hours walltime in cgs_queue
+qsub -I -q cgs_queue -l nodes=hpcf3-c01:ppn=16,walltime=168:00:00,mem=200gb
+
+```
+
+## Shell session
+### Tmux
+
+* Tmux Configuration
 Consider adding these aliases to your shell configuration for quick tmux access.
 
 ::: {.code-block}
@@ -570,7 +557,7 @@ bind-key C-a send-prefix
 ```
 :::
 
-### Session Management
+* Session Management
 
 | **Action**                     | **Command/Shortcut**       |
 |--------------------------------|----------------------------|
@@ -580,7 +567,7 @@ bind-key C-a send-prefix
 | Switch to latest session      | `Ctrl + A + l`             |
 | Detach from session           | `Ctrl + A + d`             |
 
-### Window Management
+* Window Management
 
 | **Action**                     | **Shortcut**               |
 |--------------------------------|----------------------------|
@@ -591,7 +578,7 @@ bind-key C-a send-prefix
 | Create new window              | `Ctrl + A + c`             |
 | Kill current window            | `Ctrl + A + q`             |
 
-### Pane Management
+* Pane Management
 
 | **Action**                     | **Shortcut**               |
 |--------------------------------|----------------------------|
@@ -601,7 +588,7 @@ bind-key C-a send-prefix
 | Switch to pane right           | `Shift + →`                |
 | Kill current pane             | `Ctrl + A + x`             |
 
-### Copy Mode
+* Copy Mode
 
 | **Action**                     | **Shortcut**               |
 |--------------------------------|----------------------------|
@@ -610,7 +597,7 @@ bind-key C-a send-prefix
 
 ---
 
-## Screen
+### Screen
 
 ::: {.callout-tip}
 ### 💡 Screen Aliases
@@ -627,7 +614,7 @@ alias sls="s -ls"      # list current running screen sessions
 ```
 :::
 
-### Basic Commands
+* Basic Commands
 
 | **Action**                     | **Command**                    |
 |--------------------------------|--------------------------------|
@@ -636,7 +623,7 @@ alias sls="s -ls"      # list current running screen sessions
 | Reattach to session           | `screen -r`                    |
 | List running sessions         | `screen -ls`                   |
 
-### Window Management
+* Window Management
 
 | **Action**                     | **Shortcut**               |
 |--------------------------------|----------------------------|
@@ -648,7 +635,7 @@ alias sls="s -ls"      # list current running screen sessions
 | Toggle between windows         | `Ctrl + A + Ctrl + A`      |
 | Rename current window          | `Ctrl + A + A`             |
 
-### Region Management
+* Region Management
 
 | **Action**                     | **Shortcut**               |
 |--------------------------------|----------------------------|
@@ -658,7 +645,7 @@ alias sls="s -ls"      # list current running screen sessions
 | Close all regions but current  | `Ctrl + A + Q`             |
 | Close current region           | `Ctrl + A + X`             |
 
-### Session & Copy Mode
+* Session & Copy Mode
 
 | **Action**                     | **Shortcut**               |
 |--------------------------------|----------------------------|
@@ -678,9 +665,9 @@ alias sls="s -ls"      # list current running screen sessions
 - **Terminal**: [Bash Reference Manual](https://www.gnu.org/software/bash/manual/)
 :::
 
-## WSL
+## Windows Subsystem Linux
 
-### System info
+* System info
 ```bash
 
 ## Install the neofetch package
@@ -690,7 +677,7 @@ sudo apt install neofetch -y
 neofetch --memory_unit gib
 ```
 
-### WSL Change sudo password
+* Change sudo password
 
 In the windows terminal, run the following command to change the sudo password:
 ```bash
@@ -701,13 +688,15 @@ wsl -u root
 passwd <username>
 ```
 
-### WSL configuration
-- WSL global config: `C:\Users\<UserName>\.wslconfig`
-- WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`
+* WSL configuration
+  - WSL global config: `C:\Users\<UserName>\.wslconfig`
+  - WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`
 
-## Conda
+## Environment Management
 
-### Installation
+### Conda
+
+* Installation
 ```bash
 
 # Miniforge linux
@@ -726,7 +715,7 @@ fi
 
 ```
 
-### Configuration
+* Configuration
 
 ```bash
 
@@ -750,10 +739,10 @@ conda config --add channels conda-forge
 # Install software from a specific channel
 conda install -c conda-forge numpy
 ```
-### Environment
+* Create Environment
 ```bash
-# Create R environment
-conda create -n renv r-4.3 r-languageserver r-tidyverse r-irkernel r-httpgd
+# Create R environment with specific R version and packages
+conda create -n renv r=4.5 r-languageserver r-tidyverse r-irkernel r-httpgd r-downlit r-xml2 r-markdown r-devtools radian
 
 # Install bioconductor packages, all package names are lower case
 conda install -n renv bioconductor-deseq2 bioconductor-edger
@@ -784,12 +773,76 @@ conda activate new_env_name
 conda remove --name old_env_name --all
 ```
 
-## Pixi
+### Pixi
 
 ```bash
 ## Auto-activate pixi when entering project directory
 eval "$(pixi completion --shell bash)"  # or zsh
 ```
 
-## Git
+## Version Control
 
+```bash
+## keep your original Git repository but provide a clean version to others, 
+git archive --format=zip --output=my-project-clean.zip main
+
+git init
+git add .
+git commit -m "first commit"
+git remote add origin
+git push -u origin main
+
+git config --global user.name "" # set an user name that will be associated with each history marker
+git config --global user.email "" # set an email address that will be associated with each history marker
+git config --global color.ui auto # set automatic command line coloring for Git for easy reviewing
+git init #
+
+
+# 1. Delete the local branch
+git branch -d branch-name     # Use -D to force delete
+
+# 2. Delete the remote branch
+git push origin --delete branch-name
+
+# 3. Verify branches are gone
+git branch -a                # List all branches
+
+echo "" # create file ""
+git status # check 
+git add # add a file as it looks now to your next commit (stage)
+git commit # commit your staged content as a new commit snapshot
+### if go to the viam editing mode, i to input, esc to quit, :wq to save and quit
+git log # show all commits in the current branch’s history, check versions, q to quit
+touch .gitignore
+git branch "" # create branch ""
+git branch # check branches
+git checkout "" # switch to another branch and check it out into your working directory ""
+git branch -D "" # delete branch ##
+git checkout -b temp # create temporary branch ##
+git merage # merge the specified branch’s history into the current one
+git clone # retrieve an entire repository from a hosted location via URL
+git remote -V # check remove repos information
+git push # Transmit local branch commits to the remote repository branch
+git fetch # fetch down all the branches from that Git remote
+git diff # diff of what is changed but not staged
+git pull # fetch and merge any commits from the tracking remote branch
+git reset # unstage a file while retaining the changes in working directory
+git rm -r --cached . # ignore already added files run
+
+## Go back to a specifi commit
+git reset --hard e4098a7
+
+## Pull remote updates and ignore local changes
+git fetch origin
+git reset --hard origin/your-branch-name
+
+## Change remote URL
+git remote -v # check current remote configuration
+git remote set-url origin <new-repository-url>
+git remote remove origin
+git remote add origin <new-repository-url>
+
+## Reset to match remote
+git fetch origin
+git reset --hard origin/main
+```
