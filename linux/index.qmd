@@ -19,13 +19,6 @@ format:
 
 ## UNIX Shell Basics
 
-
-* [explainshell.com](https://explainshell.com/) - Lean fancy shell commands by breaking them down into individual components and providing explanations for each part.
-
-* [Linux shell for beginners](https://bioinformatics.mdc-berlin.de/intro2UnixandSGE/unix_for_beginners/README.html) - A comprehensive guide for beginners to learn Linux shell commands and concepts.
-
-* [Useful Programs and Unix Basics](https://bioinformaticsworkbook.org/Appendix/programs.html#gsc.tab=0) - A collection of useful Unix commands and programs for bioinformatics.  
-
 ```bash
 ## Basic command
 pwd # Show current directory
@@ -52,6 +45,9 @@ less file_name # View file content with pagination
 zless file_name.gz # View compressed file content with pagination
 head -n 10 file_name # Show first 10 lines of a file
 tail -n 10 file_name # Show last 10 lines of a file
+```
+
+```bash
 wc -l file_name # Count number of lines in a file
 history # Show command history
 top # Display running processes
@@ -71,6 +67,7 @@ ip addr show # Show network interfaces (modern alternative to ifconfig)
 wget http://example.com/file # Download file from the internet
 curl -O http://example.com/file # Download file using curl
 ```
+
 ```bash
 ## Intermediate command
 grep "pattern" file_name # Search for a pattern in a file
@@ -112,6 +109,12 @@ chsh -s /bin/bash
 chsh -s /bin/zsh
 ```
 
+* [explainshell.com](https://explainshell.com/) - Lean fancy shell commands by breaking them down into individual components and providing explanations for each part.
+
+* [Linux shell for beginners](https://bioinformatics.mdc-berlin.de/intro2UnixandSGE/unix_for_beginners/README.html) - A comprehensive guide for beginners to learn Linux shell commands and concepts.
+
+* [Useful Programs and Unix Basics](https://bioinformaticsworkbook.org/Appendix/programs.html#gsc.tab=0) - A collection of useful Unix commands and programs for bioinformatics.  
+
 ## File Compression
 
 * Commone tar flags:
@@ -124,26 +127,6 @@ chsh -s /bin/zsh
     +  `-c` = change to directory
     +  `-C` = specify directory
     +  `-p` = preserve permissions
-    +  `--strip-components=N` = remove N leading path components
-    +  `--no-same-owner` = do not preserve ownership
-    +  `--no-same-permissions` = do not preserve permissions
-    +  `--wildcards` = enable wildcard matching
-    +  `--exclude='pattern'` = exclude files matching pattern
-    +  `--include='pattern'` = include only files matching pattern
-    +  `--transform='s/old/new/'` = rename files during extraction
-    +  `--skip-old-files` = skip files that already exist
-    +  `--overwrite` = overwrite existing files
-    +  `--keep-newer-files` = keep files that are newer than the archive
-    +  `--no-overwrite-dir` = do not overwrite existing directories
-    +  `--no-clobber` = do not overwrite existing files
-    +  `--remove-files` = remove files after adding them to the archive
-    +  `--no-recursion` = do not recurse into directories
-    +  `--no-auto-compress` = do not automatically detect compression
-    +  `--no-check-device` = do not check device numbers when extracting
-    +  `--no-same-time` = do not preserve modification times
-    +  `--no-same-permissions` = do not preserve permissions
-    +  `--no-same-owner` = do not preserve ownership
-    +  `--no-same-time` = do not preserve modification times 
 
 ```bash
 ## Extract .tar.gz file
