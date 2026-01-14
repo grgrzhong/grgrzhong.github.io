@@ -20,7 +20,6 @@ format:
 ## UNIX Shell Basics
 
 ```bash
-## Basic command
 pwd # Show current directory
 cd /path/to/directory # Change directory
 cd .. # Go up one level
@@ -39,16 +38,16 @@ cp source_file destination_file # Copy file
 cp -a /source/folder /destination/folder # Copy folder recursively with attributes
 scp user@remote:/path/to/remote/file /local/destination/ # Copy file from remote server
 scp /local/file user@remote:/path/to/remote/destination/ # Copy file to remote server
+```
+
+```bash
+wc -l file_name # Count number of lines in a file
 cat file_name # Display file content
 zcat file_name.gz # Display compressed file content
 less file_name # View file content with pagination
 zless file_name.gz # View compressed file content with pagination
 head -n 10 file_name # Show first 10 lines of a file
 tail -n 10 file_name # Show last 10 lines of a file
-```
-
-```bash
-wc -l file_name # Count number of lines in a file
 history # Show command history
 top # Display running processes
 htop # Interactive process viewer (may need installation)
@@ -69,7 +68,6 @@ curl -O http://example.com/file # Download file using curl
 ```
 
 ```bash
-## Intermediate command
 grep "pattern" file_name # Search for a pattern in a file
 grep -r "pattern" /path/to/directory # Recursively search for a pattern in a directory
 sort file_name # Sort lines in a file
@@ -93,14 +91,6 @@ rsync -auzP /source/folder/ user@remote:/destination/folder/ # Sync to remote se
 ```
 
 ```bash
-## Advanced command
-| # Pipe output of one command to another
-awk '{sum += $1} END {print sum}' file_name # Sum values in the first column
-sed -n '2,5p' file_name # Print lines 2 to 5 of a file
-xargs -n 1 rm < file_list.txt # Remove files listed in a file
-```
-
-```bash
 ## Show current shell
 echo $SHELL
 
@@ -109,11 +99,51 @@ chsh -s /bin/bash
 chsh -s /bin/zsh
 ```
 
-* [explainshell.com](https://explainshell.com/) - Lean fancy shell commands by breaking them down into individual components and providing explanations for each part.
+### sed
+`sed` is a stream editor used to perform basic text transformations:
+* substituction, deletion, insertion, and more
+* works line by line, applying patterns and edits
 
-* [Linux shell for beginners](https://bioinformatics.mdc-berlin.de/intro2UnixandSGE/unix_for_beginners/README.html) - A comprehensive guide for beginners to learn Linux shell commands and concepts.
+```bash
+## Remove all spaces from a string
+echo "a b c" | sed 's/ //g'
+#> "abc"
 
-* [Useful Programs and Unix Basics](https://bioinformaticsworkbook.org/Appendix/programs.html#gsc.tab=0) - A collection of useful Unix commands and programs for bioinformatics.  
+## Remove all occurences of "foo" with "bar"
+echo "foo baz foo" | sed 's/foo/bar/g'
+#> "bar baz bar"
+
+## Delete lines containing a "pattern" pattern from file.txt
+sed '/pattern/d' file.txt
+
+## Print only lines matching a "pattern" pattern from file.txt
+sed -n '/pattern/p' file.txt
+
+## Print lines 2 to 5 of a file
+sed -n '2,5p' file.txt
+```
+
+### awk
+`awk` used for pattern scanning and processing.
+* More powerful than `cut` for data extraction and reporting
+* Process text as fileds and records, support arithmetic and logic
+
+```bash
+## Print the first column of a file
+awk '{print $1}' file.txt
+
+## Sum values in the first column
+awk '{sum += $1} END {print sum}' file.txt 
+
+## Print lines where the third column is greater than 100
+awk '$3 > 100' file.txt
+
+## Print the lines that match a pattern "error"
+awk '/error/' file.txt
+
+## Print the number of lines in a file
+awk 'END {print NR}' file.txt
+```
 
 ## File Compression
 

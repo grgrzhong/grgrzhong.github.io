@@ -1,0 +1,59 @@
+---
+title: Commonly Used File Formats in Bioinformatics
+date: 2026-01-13
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc-title: "Contents"
+---
+
+## FASTA
+## FASTQ
+
+## SAM
+SAM: Sequence Alignment Map
+* Text tab-­delimited format
+* Exome:	>50Gb	
+* Whole genome: 800Gb-­‐1Tb
+
+## BAM
+BAM: Binary Alignment Map
+* Binary, compressed
+* Index for quick looking up regions
+* Exome: 2-­20Gb
+* Whole genome: 100-­‐300Gb
+
+## CRAM
+
+## VCF
+Variant Call Format (VCF) is a format for storing variations between a reference genome and sequences aligned to it, based on SAM/BAM alignments. VCF files begin with a header section: lines in the header section begin with ##. The last line in the header section begins with #; this line gives the headers of the columns used in the VCF file:
+
+* VCF Meta-information starts with ##
+and must be key=value pairs 
+* Header line starts with #CHROM
+* Data lines contain 8 mandatory columns:
+  1. CHROM: Reference 
+  2. POS
+  3. ID
+  4. REF
+  5. ALT
+  6. QUAL
+  7. FILTER
+  8. INFO
+
+## BCF
+
+## GTF
+Gene Transfer Format (GTF) is a file format used to hold information about gene structure. It is a tab-delimited text format that consists of 9 columns:
+1. `seqname`: Name of the chromosome or scaffold; chromosome names can be given with or without the 'chr' prefix.
+2. `source`: Name of the program that generated this feature, or the data source (database or project name).
+3. `feature`: Feature type name (e.g., Gene, Variation, Similarity).
+4. `start`: Start position of the feature, with sequence numbering starting at 1.
+5. `end`: End position of the feature, with sequence numbering starting at 1.
+6. `score`: A floating point value.
+7. `strand`: Defined as + (forward) or - (reverse).
+8. `frame`: One of '0', '1' or '2'. '0' indicates that the first base of the feature is the first base of a codon, '1' that the second base is the first base of a codon, and so on.
+9. `attribute`: A semicolon-separated list of tag-value pairs, providing additional information about each feature.
+
+
+## GFF3

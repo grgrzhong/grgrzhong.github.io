@@ -11,7 +11,73 @@
 <description>Guorui Zhong&#39;s blog</description>
 <language>en</language>
 <generator>quarto-1.8.26</generator>
-<lastBuildDate>Thu, 18 Sep 2025 16:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 12 Jan 2026 16:00:00 GMT</lastBuildDate>
+<item>
+  <title>Commonly Used File Formats in Bioinformatics</title>
+  <dc:creator>Guorui Zhong</dc:creator>
+  <link>https://grgrzhong.github.io/blog/2026/01/13/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="fasta" class="level2">
+<h2 class="anchored" data-anchor-id="fasta">FASTA</h2>
+</section>
+<section id="fastq" class="level2">
+<h2 class="anchored" data-anchor-id="fastq">FASTQ</h2>
+</section>
+<section id="sam" class="level2">
+<h2 class="anchored" data-anchor-id="sam">SAM</h2>
+<p>SAM: Sequence Alignment Map * Text tab-­delimited format * Exome: &gt;50Gb<br>
+* Whole genome: 800Gb-­‐1Tb</p>
+</section>
+<section id="bam" class="level2">
+<h2 class="anchored" data-anchor-id="bam">BAM</h2>
+<p>BAM: Binary Alignment Map * Binary, compressed * Index for quick looking up regions * Exome: 2-­20Gb * Whole genome: 100-­‐300Gb</p>
+</section>
+<section id="cram" class="level2">
+<h2 class="anchored" data-anchor-id="cram">CRAM</h2>
+</section>
+<section id="vcf" class="level2">
+<h2 class="anchored" data-anchor-id="vcf">VCF</h2>
+<p>Variant Call Format (VCF) is a format for storing variations between a reference genome and sequences aligned to it, based on SAM/BAM alignments. VCF files begin with a header section: lines in the header section begin with ##. The last line in the header section begins with #; this line gives the headers of the columns used in the VCF file:</p>
+<ul>
+<li>VCF Meta-information starts with ## and must be key=value pairs</li>
+<li>Header line starts with #CHROM</li>
+<li>Data lines contain 8 mandatory columns:
+<ol type="1">
+<li>CHROM: Reference</li>
+<li>POS</li>
+<li>ID</li>
+<li>REF</li>
+<li>ALT</li>
+<li>QUAL</li>
+<li>FILTER</li>
+<li>INFO</li>
+</ol></li>
+</ul>
+</section>
+<section id="bcf" class="level2">
+<h2 class="anchored" data-anchor-id="bcf">BCF</h2>
+</section>
+<section id="gtf" class="level2">
+<h2 class="anchored" data-anchor-id="gtf">GTF</h2>
+<p>Gene Transfer Format (GTF) is a file format used to hold information about gene structure. It is a tab-delimited text format that consists of 9 columns: 1. <code>seqname</code>: Name of the chromosome or scaffold; chromosome names can be given with or without the ‘chr’ prefix. 2. <code>source</code>: Name of the program that generated this feature, or the data source (database or project name). 3. <code>feature</code>: Feature type name (e.g., Gene, Variation, Similarity). 4. <code>start</code>: Start position of the feature, with sequence numbering starting at 1. 5. <code>end</code>: End position of the feature, with sequence numbering starting at 1. 6. <code>score</code>: A floating point value. 7. <code>strand</code>: Defined as + (forward) or - (reverse). 8. <code>frame</code>: One of ‘0’, ‘1’ or ‘2’. ‘0’ indicates that the first base of the feature is the first base of a codon, ‘1’ that the second base is the first base of a codon, and so on. 9. <code>attribute</code>: A semicolon-separated list of tag-value pairs, providing additional information about each feature.</p>
+</section>
+<section id="gff3" class="level2">
+<h2 class="anchored" data-anchor-id="gff3">GFF3</h2>
+
+
+<!-- -->
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <guid>https://grgrzhong.github.io/blog/2026/01/13/</guid>
+  <pubDate>Mon, 12 Jan 2026 16:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Workflow | Containers for Reproducible Bioinformatics Environments</title>
   <dc:creator>Guorui Zhong</dc:creator>
@@ -69577,635 +69643,6 @@ font-style: inherit;">)</span></span></code></pre></div></div>
   <guid>https://grgrzhong.github.io/blog/2023/03/11/</guid>
   <pubDate>Fri, 10 Mar 2023 16:00:00 GMT</pubDate>
   <media:content url="https://grgrzhong.github.io/blog/2023/03/11/plot.png" medium="image" type="image/png" height="103" width="144"/>
-</item>
-<item>
-  <title>Ridgeline plots in ggplot2</title>
-  <dc:creator>Guorui Zhong</dc:creator>
-  <link>https://grgrzhong.github.io/blog/2023/03/08/</link>
-  <description><![CDATA[ <p>Visualizing changes in distributions over time or space nicely usning ggrigges.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">pacman</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">p_load</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span></span>
-<span>    <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">tidyverse</span>,</span>
-<span>    <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">ggsci</span>,</span>
-<span>    <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">ggridges</span>,</span>
-<span>    <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">ggtext</span>,</span>
-<span>    <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">ggh4x</span>,</span>
-<span>    <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">gapminder</span>,</span>
-<span>    <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">here</span></span>
-<span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span></code></pre></div></div>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">### subset data</span></span>
-<span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">df</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">gapminder</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">continent</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Asia"</span>,<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Europe"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span>
-<span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">df</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">## # A tibble: 756 × 6</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">##    country     continent  year lifeExp      pop gdpPercap</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">##  1 Afghanistan Asia       1952    28.8  8425333      779.</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">##  2 Afghanistan Asia       1957    30.3  9240934      821.</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">##  3 Afghanistan Asia       1962    32.0 10267083      853.</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">##  4 Afghanistan Asia       1967    34.0 11537966      836.</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">##  5 Afghanistan Asia       1972    36.1 13079460      740.</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">##  6 Afghanistan Asia       1977    38.4 14880372      786.</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">##  7 Afghanistan Asia       1982    39.9 12881816      978.</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">##  8 Afghanistan Asia       1987    40.8 13867957      852.</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">## # ℹ 746 more rows</span></span></code></pre></div></div>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">ggplot</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">df</span>, <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">aes</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>y <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">country</span>, x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">lifeExp</span>, fill <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">continent</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">geom_density_ridges</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>size <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">.15</span>, color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_x_continuous</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span></span>
-<span>        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">### converse x axis</span></span>
-<span>        trans <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"log10"</span>, expand <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        labels <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scales</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">comma_format</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>suffix <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"k"</span>, scale <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1e-4</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span>
-<span>    <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_y_discrete</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>expand <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_fill_futurama</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>alpha <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">.95</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">### facet continent</span></span>
-<span>    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">facet_wrap</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">vars</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">continent</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>, scales <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"free_y"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">coord_cartesian</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>clip <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"off"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">theme_minimal</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">theme</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span></span>
-<span>        legend.position <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"bottom"</span>,</span>
-<span>        legend.justification <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"right"</span>,</span>
-<span>        axis.title.x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_text</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>margin <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">margin</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>t <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>, color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        axis.title.y <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_blank</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        axis.text.x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_text</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>size <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">8</span>, color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        axis.text.y <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_text</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>face <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"bold"</span>, color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        panel.grid.minor <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_blank</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        panel.grid.major.x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_line</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span></span>
-<span>            linewidth <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">.3</span>, linetype <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"dashed"</span>,</span>
-<span>            color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey75"</span></span>
-<span>        <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        panel.grid.major.y <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_blank</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        axis.ticks.x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_line</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>linewidth <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">.3</span>, color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        panel.spacing <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">unit</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"lines"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        strip.text <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_text</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span></span>
-<span>            face <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"bold"</span>, margin <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">margin</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>b <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>            color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span>, size <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">12</span></span>
-<span>        <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        plot.background <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_rect</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>fill <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"white"</span>, color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">NA</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        plot.margin <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">margin</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">20</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">20</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">20</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">20</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        legend.title <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_blank</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span>
-<span>    <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span>    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">guides</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>fill <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">guide_legend</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span></span>
-<span>        override.aes <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">NA</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>,</span>
-<span>        label.theme <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_text</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>color <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"white"</span>, size <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">8</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span>
-<span>    <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">## Picking joint bandwidth of 0.035</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">## Picking joint bandwidth of 0.0125</span></span></code></pre></div></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="https://grgrzhong.github.io/blog/2023/03/08/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># ggsave(</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#     here("blog", "2023", "03", "08", "plot.png")</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#     # width = 6,</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#     # height = 3.8</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#     # units = "in",</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#     # type = "cairo"</span></span>
-<span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># )</span></span></code></pre></div></div>
-</div>
-
-
-<!-- -->
-
-
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
-  <category>r</category>
-  <category>ggplot2</category>
-  <guid>https://grgrzhong.github.io/blog/2023/03/08/</guid>
-  <pubDate>Tue, 07 Mar 2023 16:00:00 GMT</pubDate>
-  <media:content url="https://grgrzhong.github.io/blog/2023/03/08/plot.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 </channel>
 </rss>
