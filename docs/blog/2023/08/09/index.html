@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.26">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Guorui Zhong">
+
 <meta name="description" content="Comat models batch effects as multiplicative and additive noise to the biological signal and uses a Bayesian framework to fit linear models that factor such noise out of the readouts.">
+
 <title>Combat to remove batch effects in high-throughput experiments – Guorui Zhong</title>
 <style>
 code{white-space: pre-wrap;}
@@ -56,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -74,7 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../../site_libs/bootstrap/bootstrap-7240976d66d94fd6f6e2300715a3fab7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -99,18 +103,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><style>html{ scroll-behavior: smooth; }</style>
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <style>
 
       .quarto-title-block .quarto-title-banner {
         background: #212529;
       }
 </style>
+
+
 </head>
+
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Guorui Zhong</span>
@@ -122,7 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -147,11 +157,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Keyboard</span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <div class="quarto-title-block"><div><h1 class="title">Combat to remove batch effects in high-throughput experiments</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
                   <div>
@@ -168,12 +182,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
   <div class="quarto-title-meta">
 
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p><a href="https://grgrzhong.github.io/">Guorui Zhong</a> <a href="https://orcid.org/0000-0002-1955-2847" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-            </div>
-    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
@@ -194,10 +202,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#what-is-batch-effect" id="toc-what-is-batch-effect" class="nav-link active" data-scroll-target="#what-is-batch-effect">What is batch effect?</a></li>
+  <li><a href="#what-is-batch-effect" id="toc-what-is-batch-effect" class="nav-link active" data-scroll-target="#what-is-batch-effect">What is batch effect?</a></li>
   <li><a href="#why-is-batch-effect-a-problem" id="toc-why-is-batch-effect-a-problem" class="nav-link" data-scroll-target="#why-is-batch-effect-a-problem">Why is batch effect a problem</a></li>
   <li><a href="#sva-package-for-removing-batch-effects" id="toc-sva-package-for-removing-batch-effects" class="nav-link" data-scroll-target="#sva-package-for-removing-batch-effects">SVA package for removing batch effects</a></li>
   <li><a href="#setting-up-the-data-from-an-expressionset" id="toc-setting-up-the-data-from-an-expressionset" class="nav-link" data-scroll-target="#setting-up-the-data-from-an-expressionset">Setting up the data from an ExpressionSet</a></li>
@@ -211,381 +221,421 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#variance-filtering-to-speed-computations" id="toc-variance-filtering-to-speed-computations" class="nav-link" data-scroll-target="#variance-filtering-to-speed-computations">Variance filtering to speed computations</a></li>
   <li><a href="#applying-the-fsva-function-to-remove-batch-effects-for-prediction" id="toc-applying-the-fsva-function-to-remove-batch-effects-for-prediction" class="nav-link" data-scroll-target="#applying-the-fsva-function-to-remove-batch-effects-for-prediction">Applying the fsva function to remove batch effects for prediction</a></li>
   <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
-  </ul></nav>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="what-is-batch-effect" class="level2"><h2 class="anchored" data-anchor-id="what-is-batch-effect">What is batch effect?</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="what-is-batch-effect" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-batch-effect">What is batch effect?</h2>
 <p>Batch effects are sub-groubs of measurements that have qualitatively different behaviour across conditions and unrelated to the biological or scientific variables in a study. - Experiments run on different time - Different technician - Differnt doing the sample preparation - Sequencing at a differnt institute - Prepare the sample at different timepoint - Different lots of reagents, chips or instruments …</p>
 <p>All of these factors are considered to be factors as batches</p>
-</section><section id="why-is-batch-effect-a-problem" class="level2"><h2 class="anchored" data-anchor-id="why-is-batch-effect-a-problem">Why is batch effect a problem</h2>
+</section>
+<section id="why-is-batch-effect-a-problem" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-batch-effect-a-problem">Why is batch effect a problem</h2>
 <ul>
 <li>Not biological difference</li>
 <li>Just the other factors are taking actions, and are showing differences</li>
 <li>Most of the time, batch effect deviate our finding from the real biological relevant information</li>
 </ul>
 <p>Try our best to eliminate batch effect to get a real difference between conditions!</p>
-</section><section id="sva-package-for-removing-batch-effects" class="level2"><h2 class="anchored" data-anchor-id="sva-package-for-removing-batch-effects">SVA package for removing batch effects</h2>
+</section>
+<section id="sva-package-for-removing-batch-effects" class="level2">
+<h2 class="anchored" data-anchor-id="sva-package-for-removing-batch-effects">SVA package for removing batch effects</h2>
 <p>The assumption is that you will be trying to analyze the association between the variables of interest and gene expression, adjusting for the adjustment variables</p>
-</section><section id="setting-up-the-data-from-an-expressionset" class="level2"><h2 class="anchored" data-anchor-id="setting-up-the-data-from-an-expressionset">Setting up the data from an ExpressionSet</h2>
+</section>
+<section id="setting-up-the-data-from-an-expressionset" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-the-data-from-an-expressionset">Setting up the data from an ExpressionSet</h2>
 <ul>
 <li>The data should be a matrix with features in the rows and samples in the columns.</li>
 <li>The data should be standardized before applying for correction.</li>
 </ul>
 <p><img src="sample.png" class="img-fluid"></p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Load packages</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">sva</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">bladderbatch</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pamr</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">limma</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sva)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bladderbatch)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pamr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(limma)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### load data</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">bladderdata</span><span class="op">)</span></span>
-<span><span class="co">### variable data</span></span>
-<span><span class="va">pheno</span> <span class="op">&lt;-</span> <span class="fu">pData</span><span class="op">(</span><span class="va">bladderEset</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">pheno</span><span class="op">)</span></span>
-<span><span class="co">## [1] "data.frame"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pheno</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">##              sample outcome batch cancer</span></span>
-<span><span class="co">## GSM71019.CEL      1  Normal     3 Normal</span></span>
-<span><span class="co">## GSM71020.CEL      2  Normal     2 Normal</span></span>
-<span><span class="co">## GSM71021.CEL      3  Normal     2 Normal</span></span>
-<span><span class="co">## GSM71022.CEL      4  Normal     3 Normal</span></span>
-<span><span class="co">## GSM71023.CEL      5  Normal     3 Normal</span></span>
-<span><span class="co">### expression data matrix</span></span>
-<span><span class="va">edata</span> <span class="op">&lt;-</span> <span class="fu">exprs</span><span class="op">(</span><span class="va">bladderEset</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">edata</span><span class="op">)</span></span>
-<span><span class="co">## [1] "matrix" "array"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">edata</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">##           GSM71019.CEL GSM71020.CEL GSM71021.CEL GSM71022.CEL GSM71023.CEL</span></span>
-<span><span class="co">## 1007_s_at    10.115170     8.628044     8.779235     9.248569    10.256841</span></span>
-<span><span class="co">## 1053_at       5.345168     5.063598     5.113116     5.179410     5.181383</span></span>
-<span><span class="co">## 117_at        6.348024     6.663625     6.465892     6.116422     5.980457</span></span>
-<span><span class="co">## 121_at        8.901739     9.439977     9.540738     9.254368     8.798086</span></span>
-<span><span class="co">## 1255_g_at     3.967672     4.466027     4.144885     4.189338     4.078509</span></span>
-<span><span class="co">## 1294_at       7.775183     7.110154     7.248430     7.017220     7.896419</span></span>
-<span><span class="co">### create full model matrix, including both the adjustment variables and the variable of interest (cancer status)</span></span>
-<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span></span>
-<span><span class="co">### Create null model matrix, ontains only the adjustment variables.</span></span>
-<span><span class="va">mod0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">### load data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(bladderdata)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">### variable data</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>pheno <span class="ot">&lt;-</span> <span class="fu">pData</span>(bladderEset)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(pheno)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "data.frame"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pheno, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="do">##              sample outcome batch cancer</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="do">## GSM71019.CEL      1  Normal     3 Normal</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="do">## GSM71020.CEL      2  Normal     2 Normal</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="do">## GSM71021.CEL      3  Normal     2 Normal</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="do">## GSM71022.CEL      4  Normal     3 Normal</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="do">## GSM71023.CEL      5  Normal     3 Normal</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="do">### expression data matrix</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>edata <span class="ot">&lt;-</span> <span class="fu">exprs</span>(bladderEset)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(edata)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "matrix" "array"</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(edata[, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="do">##           GSM71019.CEL GSM71020.CEL GSM71021.CEL GSM71022.CEL GSM71023.CEL</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 1007_s_at    10.115170     8.628044     8.779235     9.248569    10.256841</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 1053_at       5.345168     5.063598     5.113116     5.179410     5.181383</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="do">## 117_at        6.348024     6.663625     6.465892     6.116422     5.980457</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 121_at        8.901739     9.439977     9.540738     9.254368     8.798086</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="do">## 1255_g_at     3.967672     4.466027     4.144885     4.189338     4.078509</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="do">## 1294_at       7.775183     7.110154     7.248430     7.017220     7.896419</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="do">### create full model matrix, including both the adjustment variables and the variable of interest (cancer status)</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> <span class="fu">as.factor</span>(cancer), <span class="at">data =</span> pheno)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="do">### Create null model matrix, ontains only the adjustment variables.</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>mod0 <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> pheno) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="eestimate-batch-effect-and-other-artifacts-using-sva" class="level2"><h2 class="anchored" data-anchor-id="eestimate-batch-effect-and-other-artifacts-using-sva">Eestimate batch effect and other artifacts using sva</h2>
+</section>
+<section id="eestimate-batch-effect-and-other-artifacts-using-sva" class="level2">
+<h2 class="anchored" data-anchor-id="eestimate-batch-effect-and-other-artifacts-using-sva">Eestimate batch effect and other artifacts using sva</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### identify the number of latent factors that need to be estimated</span></span>
-<span><span class="va">n_sv</span> <span class="op">&lt;-</span> <span class="fu">num.sv</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, method <span class="op">=</span> <span class="st">"leek"</span><span class="op">)</span></span>
-<span><span class="va">n_sv</span></span>
-<span><span class="co">## [1] 2</span></span>
-<span><span class="co">## estimate the surrogate variables</span></span>
-<span><span class="va">svaobj</span> <span class="op">&lt;-</span> <span class="fu">sva</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, <span class="va">mod0</span>, n.sv <span class="op">=</span> <span class="va">n_sv</span><span class="op">)</span></span>
-<span><span class="co">## Number of significant surrogate variables is:  2 </span></span>
-<span><span class="co">## Iteration (out of 5 ):1  2  3  4  5</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">svaobj</span><span class="op">)</span></span>
-<span><span class="co">## List of 4</span></span>
-<span><span class="co">##  $ sv       : num [1:57, 1:2] -0.02717 -0.00618 0.07737 -0.00114 -0.02062 ...</span></span>
-<span><span class="co">##  $ pprob.gam: num [1:22283] 0.999 0.977 1 1 1 ...</span></span>
-<span><span class="co">##  $ pprob.b  : num [1:22283] 0.9956 0.9998 0.0702 0.9998 1 ...</span></span>
-<span><span class="co">##  $ n.sv     : num 2</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span> <span class="op">~</span> <span class="va">pheno</span><span class="op">$</span><span class="va">batch</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Response Y1 :</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Call:</span></span>
-<span><span class="co">## lm(formula = Y1 ~ pheno$batch)</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Residuals:</span></span>
-<span><span class="co">##      Min       1Q   Median       3Q      Max </span></span>
-<span><span class="co">## -0.26953 -0.11076  0.00787  0.10399  0.19069 </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Coefficients:</span></span>
-<span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)</span></span>
-<span><span class="co">## (Intercept) -0.018470   0.038694  -0.477    0.635</span></span>
-<span><span class="co">## pheno$batch  0.006051   0.011253   0.538    0.593</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Residual standard error: 0.1345 on 55 degrees of freedom</span></span>
-<span><span class="co">## Multiple R-squared:  0.00523,    Adjusted R-squared:  -0.01286 </span></span>
-<span><span class="co">## F-statistic: 0.2891 on 1 and 55 DF,  p-value: 0.5929</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Response Y2 :</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Call:</span></span>
-<span><span class="co">## lm(formula = Y2 ~ pheno$batch)</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Residuals:</span></span>
-<span><span class="co">##      Min       1Q   Median       3Q      Max </span></span>
-<span><span class="co">## -0.23973 -0.07467 -0.02157  0.08116  0.25629 </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Coefficients:</span></span>
-<span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  0.121112   0.034157   3.546 0.000808 ***</span></span>
-<span><span class="co">## pheno$batch -0.039675   0.009933  -3.994 0.000194 ***</span></span>
-<span><span class="co">## ---</span></span>
-<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Residual standard error: 0.1187 on 55 degrees of freedom</span></span>
-<span><span class="co">## Multiple R-squared:  0.2248, Adjusted R-squared:  0.2107 </span></span>
-<span><span class="co">## F-statistic: 15.95 on 1 and 55 DF,  p-value: 0.0001945</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">~</span> <span class="va">pheno</span><span class="op">$</span><span class="va">batch</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/jitter.html">jitter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">pheno</span><span class="op">$</span><span class="va">batch</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">pheno</span><span class="op">$</span><span class="va">batch</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">### identify the number of latent factors that need to be estimated</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n_sv <span class="ot">&lt;-</span> <span class="fu">num.sv</span>(edata, mod, <span class="at">method =</span> <span class="st">"leek"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>n_sv</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">## estimate the surrogate variables</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>svaobj <span class="ot">&lt;-</span> <span class="fu">sva</span>(edata, mod, mod0, <span class="at">n.sv =</span> n_sv)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of significant surrogate variables is:  2 </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Iteration (out of 5 ):1  2  3  4  5</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(svaobj)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## List of 4</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ sv       : num [1:57, 1:2] -0.02717 -0.00618 0.07737 -0.00114 -0.02062 ...</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ pprob.gam: num [1:22283] 0.999 0.977 1 1 1 ...</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ pprob.b  : num [1:22283] 0.9956 0.9998 0.0702 0.9998 1 ...</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ n.sv     : num 2</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(svaobj<span class="sc">$</span>sv <span class="sc">~</span> pheno<span class="sc">$</span>batch))</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Response Y1 :</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="do">## lm(formula = Y1 ~ pheno$batch)</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="do">##      Min       1Q   Median       3Q      Max </span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="do">## -0.26953 -0.11076  0.00787  0.10399  0.19069 </span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate Std. Error t value Pr(&gt;|t|)</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept) -0.018470   0.038694  -0.477    0.635</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="do">## pheno$batch  0.006051   0.011253   0.538    0.593</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 0.1345 on 55 degrees of freedom</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.00523,    Adjusted R-squared:  -0.01286 </span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="do">## F-statistic: 0.2891 on 1 and 55 DF,  p-value: 0.5929</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Response Y2 :</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="do">## lm(formula = Y2 ~ pheno$batch)</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="do">##      Min       1Q   Median       3Q      Max </span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="do">## -0.23973 -0.07467 -0.02157  0.08116  0.25629 </span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)  0.121112   0.034157   3.546 0.000808 ***</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="do">## pheno$batch -0.039675   0.009933  -3.994 0.000194 ***</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 0.1187 on 55 degrees of freedom</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.2248, Adjusted R-squared:  0.2107 </span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="do">## F-statistic: 15.95 on 1 and 55 DF,  p-value: 0.0001945</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(svaobj<span class="sc">$</span>sv[, <span class="dv">2</span>] <span class="sc">~</span> pheno<span class="sc">$</span>batch)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(svaobj<span class="sc">$</span>sv[, <span class="dv">2</span>] <span class="sc">~</span> <span class="fu">jitter</span>(<span class="fu">as.numeric</span>(pheno<span class="sc">$</span>batch)), <span class="at">col =</span> <span class="fu">as.numeric</span>(pheno<span class="sc">$</span>batch))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## null device </span></span>
-<span><span class="co">##           1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## null device </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">##           1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="adjusting-for-surrogate-variables-using-f.pvalue-function" class="level2"><h2 class="anchored" data-anchor-id="adjusting-for-surrogate-variables-using-f.pvalue-function">Adjusting for surrogate variables using f.pvalue function</h2>
+</section>
+<section id="adjusting-for-surrogate-variables-using-f.pvalue-function" class="level2">
+<h2 class="anchored" data-anchor-id="adjusting-for-surrogate-variables-using-f.pvalue-function">Adjusting for surrogate variables using f.pvalue function</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### calculate the parametric F-test p-values for each row of a data matrix</span></span>
-<span><span class="va">pvalues</span> <span class="op">&lt;-</span> <span class="fu">f.pvalue</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, <span class="va">mod0</span><span class="op">)</span></span>
-<span><span class="co">### adjust them for multiple teseting</span></span>
-<span><span class="va">qvalues</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">pvalues</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">### calculate the parametric F-test p-values for each row of a data matrix</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pvalues <span class="ot">&lt;-</span> <span class="fu">f.pvalue</span>(edata, mod, mod0)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">### adjust them for multiple teseting</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>qvalues <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(pvalues, <span class="at">method =</span> <span class="st">"BH"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Nearly 70% of the genes are strongly differentially expressed at an FDR of less than 5% between groups.<br>
 This number seems artifically high.</p>
 <p>Get the adjusted p-values and q-values accounting for surrogate variables.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### include the surrogate variables</span></span>
-<span><span class="va">modsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">mod</span>, <span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span><span class="op">)</span></span>
-<span><span class="va">mod0sv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">mod0</span>, <span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span><span class="op">)</span></span>
-<span><span class="va">pvalues_sv</span> <span class="op">&lt;-</span> <span class="fu">f.pvalue</span><span class="op">(</span><span class="va">edata</span>, <span class="va">modsv</span>, <span class="va">mod0sv</span><span class="op">)</span></span>
-<span><span class="va">qvalues_sv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">pvalues</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">### include the surrogate variables</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>modsv <span class="ot">&lt;-</span> <span class="fu">cbind</span>(mod, svaobj<span class="sc">$</span>sv)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>mod0sv <span class="ot">&lt;-</span> <span class="fu">cbind</span>(mod0, svaobj<span class="sc">$</span>sv)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>pvalues_sv <span class="ot">&lt;-</span> <span class="fu">f.pvalue</span>(edata, modsv, mod0sv)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>qvalues_sv <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(pvalues, <span class="at">method =</span> <span class="st">"BH"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="adjusting-for-surrogate-variables-using-the-limma" class="level2"><h2 class="anchored" data-anchor-id="adjusting-for-surrogate-variables-using-the-limma">Adjusting for surrogate variables using the limma</h2>
+</section>
+<section id="adjusting-for-surrogate-variables-using-the-limma" class="level2">
+<h2 class="anchored" data-anchor-id="adjusting-for-surrogate-variables-using-the-limma">Adjusting for surrogate variables using the limma</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### fit the linear model with the surrogate variabels</span></span>
-<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">lmFit</span><span class="op">(</span><span class="va">edata</span>, <span class="va">modsv</span><span class="op">)</span></span>
-<span><span class="co">### compute the contrasts between cancer/normal terms</span></span>
-<span><span class="va">contrast_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C1"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">svaobj</span><span class="op">$</span><span class="va">n.sv</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  <span class="st">"C2"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">svaobj</span><span class="op">$</span><span class="va">n.sv</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="va">fit_contrasts</span> <span class="op">&lt;-</span> <span class="fu">contrasts.fit</span><span class="op">(</span><span class="va">fit</span>, <span class="va">contrast_matrix</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">### calculate the test statistics</span></span>
-<span><span class="va">eb</span> <span class="op">&lt;-</span> <span class="fu">eBayes</span><span class="op">(</span><span class="va">fit_contrasts</span><span class="op">)</span></span>
-<span><span class="fu">topTableF</span><span class="op">(</span><span class="va">eb</span>, adjust <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span>
-<span><span class="co">## topTableF is obsolete and will be removed in a future version of limma. Please considering using topTable instead.</span></span>
-<span><span class="co">##                    C1          C2   AveExpr        F      P.Value    adj.P.Val</span></span>
-<span><span class="co">## 207783_x_at -13.45607  0.26592268 12.938786 8622.529 1.207531e-69 1.419929e-65</span></span>
-<span><span class="co">## 201492_s_at -13.27594  0.15357702 13.336090 8605.649 1.274450e-69 1.419929e-65</span></span>
-<span><span class="co">## 208834_x_at -12.76411  0.06134018 13.160201 6939.501 4.749368e-67 3.527673e-63</span></span>
-<span><span class="co">## 212869_x_at -13.77957  0.26008165 13.452076 6593.346 1.939773e-66 1.080599e-62</span></span>
-<span><span class="co">## 212284_x_at -13.59977  0.29135767 13.070844 5495.716 2.893287e-64 1.289423e-60</span></span>
-<span><span class="co">## 208825_x_at -12.70979  0.08250821 13.108072 5414.741 4.350100e-64 1.615555e-60</span></span>
-<span><span class="co">## 211445_x_at -10.15890 -0.06633356  9.853817 5256.114 9.845076e-64 3.133969e-60</span></span>
-<span><span class="co">## 213084_x_at -12.59345  0.03015520 13.046529 4790.107 1.260201e-62 3.510132e-59</span></span>
-<span><span class="co">## 201429_s_at -13.33686  0.28358293 12.941208 4464.995 8.675221e-62 2.147888e-58</span></span>
-<span><span class="co">## 214327_x_at -12.60146  0.20934783 11.832607 4312.087 2.257025e-61 5.029329e-58</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">### fit the linear model with the surrogate variabels</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(edata, modsv)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">### compute the contrasts between cancer/normal terms</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>contrast_matrix <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"C1"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fu">rep</span>(<span class="dv">0</span>, svaobj<span class="sc">$</span>n.sv)),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"C2"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="fu">rep</span>(<span class="dv">0</span>, svaobj<span class="sc">$</span>n.sv))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>fit_contrasts <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(fit, contrast_matrix)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">### calculate the test statistics</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>eb <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(fit_contrasts)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">topTableF</span>(eb, <span class="at">adjust =</span> <span class="st">"BH"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="do">## topTableF is obsolete and will be removed in a future version of limma. Please considering using topTable instead.</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="do">##                    C1          C2   AveExpr        F      P.Value    adj.P.Val</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 207783_x_at -13.45607  0.26592268 12.938786 8622.529 1.207531e-69 1.419929e-65</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 201492_s_at -13.27594  0.15357702 13.336090 8605.649 1.274450e-69 1.419929e-65</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 208834_x_at -12.76411  0.06134018 13.160201 6939.501 4.749368e-67 3.527673e-63</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 212869_x_at -13.77957  0.26008165 13.452076 6593.346 1.939773e-66 1.080599e-62</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 212284_x_at -13.59977  0.29135767 13.070844 5495.716 2.893287e-64 1.289423e-60</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 208825_x_at -12.70979  0.08250821 13.108072 5414.741 4.350100e-64 1.615555e-60</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 211445_x_at -10.15890 -0.06633356  9.853817 5256.114 9.845076e-64 3.133969e-60</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="do">## 213084_x_at -12.59345  0.03015520 13.046529 4790.107 1.260201e-62 3.510132e-59</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 201429_s_at -13.33686  0.28358293 12.941208 4464.995 8.675221e-62 2.147888e-58</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="do">## 214327_x_at -12.60146  0.20934783 11.832607 4312.087 2.257025e-61 5.029329e-58</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="adjusting-for-known-batches-using-combat" class="level2"><h2 class="anchored" data-anchor-id="adjusting-for-known-batches-using-combat">Adjusting for known batches using Combat</h2>
+</section>
+<section id="adjusting-for-known-batches-using-combat" class="level2">
+<h2 class="anchored" data-anchor-id="adjusting-for-known-batches-using-combat">Adjusting for known batches using Combat</h2>
 <p><code>ComBat</code> returns a “cleaned” data matrix after batch effects have been removed. Here we pass a model matrix with any known adjustment variables and a second parameter that is the batch variable.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### get known batch variable</span></span>
-<span><span class="va">batch</span> <span class="op">&lt;-</span> <span class="va">pheno</span><span class="op">$</span><span class="va">batch</span></span>
-<span><span class="co">### model matrix</span></span>
-<span><span class="va">modcombat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="fl">1</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span></span>
-<span><span class="va">modcancer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="va">cancer</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">### Using parametric empirical Bayesian adjustments.</span></span>
-<span><span class="va">combat_edata</span> <span class="op">&lt;-</span> <span class="fu">ComBat</span><span class="op">(</span></span>
-<span>    dat <span class="op">=</span> <span class="va">edata</span>,</span>
-<span>    batch <span class="op">=</span> <span class="va">batch</span>, </span>
-<span>    mod <span class="op">=</span> <span class="va">modcombat</span>,</span>
-<span>    par.prior <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># performs parametric empirical Bayesian adjustment</span></span>
-<span>    <span class="co"># par.prior = FALSE, # performs non-parametric empirical Bayesian adjustment</span></span>
-<span>    prior.plots <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>    mean.only <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># only adjust the mean of the batch effects across batches</span></span>
-<span>    ref.batch <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">### significance analysis</span></span>
-<span><span class="va">pvalue_combat</span> <span class="op">&lt;-</span> <span class="fu">f.pvalue</span><span class="op">(</span><span class="va">combat_edata</span>, <span class="va">mod</span>, <span class="va">mod0</span><span class="op">)</span></span>
-<span><span class="va">qvalue_combat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">pvalue_combat</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">combat_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lmfit.html">lm.fit</a></span><span class="op">(</span><span class="va">modcancer</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">combat_edata</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">combat_fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, col <span class="op">=</span> <span class="fl">4</span>, breaks <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">### get known batch variable</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>batch <span class="ot">&lt;-</span> pheno<span class="sc">$</span>batch</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">### model matrix</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>modcombat <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> pheno)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>modcancer <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>cancer, <span class="at">data =</span> pheno)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">### Using parametric empirical Bayesian adjustments.</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>combat_edata <span class="ot">&lt;-</span> <span class="fu">ComBat</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">dat =</span> edata,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">batch =</span> batch, </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">mod =</span> modcombat,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">par.prior =</span> <span class="cn">TRUE</span>, <span class="co"># performs parametric empirical Bayesian adjustment</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># par.prior = FALSE, # performs non-parametric empirical Bayesian adjustment</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior.plots =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean.only =</span> <span class="cn">FALSE</span>, <span class="co"># only adjust the mean of the batch effects across batches</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">ref.batch =</span> <span class="cn">NULL</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="do">### significance analysis</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>pvalue_combat <span class="ot">&lt;-</span> <span class="fu">f.pvalue</span>(combat_edata, mod, mod0)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>qvalue_combat <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(pvalue_combat, <span class="at">method =</span> <span class="st">"BH"</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>combat_fit <span class="ot">&lt;-</span> <span class="fu">lm.fit</span>(modcancer, <span class="fu">t</span>(combat_edata))</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(combat_fit<span class="sc">$</span>coefficients[<span class="dv">2</span>, ], <span class="at">col =</span> <span class="dv">4</span>, <span class="at">breaks =</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="removing-known-batch-effects-with-a-linear-model" class="level2"><h2 class="anchored" data-anchor-id="removing-known-batch-effects-with-a-linear-model">Removing known batch effects with a linear model</h2>
+</section>
+<section id="removing-known-batch-effects-with-a-linear-model" class="level2">
+<h2 class="anchored" data-anchor-id="removing-known-batch-effects-with-a-linear-model">Removing known batch effects with a linear model</h2>
 <p>In this case, we use two models. - One with the variable we care about - cancer status - the other is just the known adjustment variables, in this case, we assume none</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mod_batch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">batch</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span></span>
-<span><span class="va">mod0_batch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">batch</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">pheno</span><span class="op">)</span></span>
-<span><span class="va">pvalues_batch</span> <span class="op">&lt;-</span> <span class="fu">f.pvalue</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod_batch</span>, <span class="va">mod0_batch</span><span class="op">)</span></span>
-<span><span class="va">qvalues_batch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">pvalues_batch</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lmfit.html">lm.fit</a></span><span class="op">(</span><span class="va">mod_batch</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">edata</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, col <span class="op">=</span> <span class="fl">4</span>, breaks <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mod_batch <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="fu">as.factor</span>(cancer) <span class="sc">+</span> <span class="fu">as.factor</span>(batch), <span class="at">data =</span> pheno)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mod0_batch <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="fu">as.factor</span>(batch), <span class="at">data =</span> pheno)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>pvalues_batch <span class="ot">&lt;-</span> <span class="fu">f.pvalue</span>(edata, mod_batch, mod0_batch)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>qvalues_batch <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(pvalues_batch, <span class="at">method =</span> <span class="st">"BH"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm.fit</span>(mod_batch, <span class="fu">t</span>(edata))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(fit<span class="sc">$</span>coefficients[<span class="dv">2</span>, ], <span class="at">col =</span> <span class="dv">4</span>, <span class="at">breaks =</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="comparing-combat-and-linear-adjustment" class="level2"><h2 class="anchored" data-anchor-id="comparing-combat-and-linear-adjustment">Comparing ComBat and linear adjustment</h2>
+</section>
+<section id="comparing-combat-and-linear-adjustment" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-combat-and-linear-adjustment">Comparing ComBat and linear adjustment</h2>
 <p>We can compare the estimated coefficients from Combat and linear adjustment by looking at the right coefficients for each model.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
-<span>  <span class="va">fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, <span class="va">combat_fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, col <span class="op">=</span> <span class="fl">4</span>,</span>
-<span>  xlab <span class="op">=</span> <span class="st">"Linear Model"</span>, ylab <span class="op">=</span> <span class="st">"Combat"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  fit<span class="sc">$</span>coefficients[<span class="dv">2</span>, ], combat_fit<span class="sc">$</span>coefficients[<span class="dv">2</span>, ], <span class="at">col =</span> <span class="dv">4</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Linear Model"</span>, <span class="at">ylab =</span> <span class="st">"Combat"</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## null device </span></span>
-<span><span class="co">##           1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## null device </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">##           1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Add the surrogate variables to the model matrix and perform model fit</span></span>
-<span><span class="va">modsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">mod</span>, <span class="va">svaobj</span><span class="op">$</span><span class="va">sv</span><span class="op">)</span></span>
-<span><span class="va">fitsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lmfit.html">lm.fit</a></span><span class="op">(</span><span class="va">modsv</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">edata</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">### Compare the fit from surrogate variable analysis to the other two</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
-<span>  <span class="va">fitsv</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span>, <span class="va">combat_fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, </span>
-<span>  col <span class="op">=</span> <span class="fl">2</span>, xlab <span class="op">=</span> <span class="st">"SVA"</span>, ylab <span class="op">=</span> <span class="st">"Combat"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
-<span>  <span class="va">fitsv</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span>, <span class="va">fit</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>, </span>
-<span>  col <span class="op">=</span> <span class="fl">2</span>, xlab <span class="op">=</span> <span class="st">"SVA"</span>, ylab <span class="op">=</span> <span class="st">"Linear model"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Add the surrogate variables to the model matrix and perform model fit</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>modsv <span class="ot">&lt;-</span> <span class="fu">cbind</span>(mod, svaobj<span class="sc">$</span>sv)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>fitsv <span class="ot">&lt;-</span> <span class="fu">lm.fit</span>(modsv, <span class="fu">t</span>(edata))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">### Compare the fit from surrogate variable analysis to the other two</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  fitsv<span class="sc">$</span>coefficients[<span class="dv">2</span>,], combat_fit<span class="sc">$</span>coefficients[<span class="dv">2</span>, ], </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="dv">2</span>, <span class="at">xlab =</span> <span class="st">"SVA"</span>, <span class="at">ylab =</span> <span class="st">"Combat"</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  fitsv<span class="sc">$</span>coefficients[<span class="dv">2</span>,], fit<span class="sc">$</span>coefficients[<span class="dv">2</span>, ], </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="dv">2</span>, <span class="at">xlab =</span> <span class="st">"SVA"</span>, <span class="at">ylab =</span> <span class="st">"Linear model"</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## null device </span></span>
-<span><span class="co">##           1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">## null device </span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">##           1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="combat-seq-for-batch-adjustment-on-rna-seq-count-data" class="level2"><h2 class="anchored" data-anchor-id="combat-seq-for-batch-adjustment-on-rna-seq-count-data">Combat-seq for batch adjustment on RNA-seq count data</h2>
+</section>
+<section id="combat-seq-for-batch-adjustment-on-rna-seq-count-data" class="level2">
+<h2 class="anchored" data-anchor-id="combat-seq-for-batch-adjustment-on-rna-seq-count-data">Combat-seq for batch adjustment on RNA-seq count data</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### expression matrix</span></span>
-<span><span class="va">count_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/NegBinomial.html">rnbinom</a></span><span class="op">(</span><span class="fl">400</span>, size <span class="op">=</span> <span class="fl">10</span>, prob <span class="op">=</span>  <span class="fl">0.1</span><span class="op">)</span>,</span>
-<span>  nrow <span class="op">=</span> <span class="fl">50</span>, ncol <span class="op">=</span> <span class="fl">8</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">### batch</span></span>
-<span><span class="va">batch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">### adjust</span></span>
-<span><span class="va">adjusted</span> <span class="op">&lt;-</span> <span class="fu">ComBat_seq</span><span class="op">(</span></span>
-<span>  <span class="va">count_matrix</span>, </span>
-<span>  batch <span class="op">=</span> <span class="va">batch</span>, </span>
-<span>  group <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">## Found 2 batches</span></span>
-<span><span class="co">## Using null model in ComBat-seq.</span></span>
-<span><span class="co">## Adjusting for 0 covariate(s) or covariate level(s)</span></span>
-<span><span class="co">## Estimating dispersions</span></span>
-<span><span class="co">## Fitting the GLM model</span></span>
-<span><span class="co">## Shrinkage off - using GLM estimates for parameters</span></span>
-<span><span class="co">## Adjusting the data</span></span>
-<span></span>
-<span><span class="co">### specify one biological variable</span></span>
-<span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span><span class="va">adjusted_counts</span> <span class="op">&lt;-</span> <span class="fu">ComBat_seq</span><span class="op">(</span></span>
-<span>  <span class="va">count_matrix</span>, </span>
-<span>  batch <span class="op">=</span> <span class="va">batch</span>, </span>
-<span>  group <span class="op">=</span> <span class="va">group</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">## Found 2 batches</span></span>
-<span><span class="co">## Using full model in ComBat-seq.</span></span>
-<span><span class="co">## Adjusting for 1 covariate(s) or covariate level(s)</span></span>
-<span><span class="co">## Estimating dispersions</span></span>
-<span><span class="co">## Fitting the GLM model</span></span>
-<span><span class="co">## Shrinkage off - using GLM estimates for parameters</span></span>
-<span><span class="co">## Adjusting the data</span></span>
-<span></span>
-<span><span class="co">### multiple biological variabels</span></span>
-<span><span class="va">cov1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span><span class="va">cov2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">covar_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">cov1</span>, <span class="va">cov2</span><span class="op">)</span></span>
-<span><span class="va">adjusted_counts</span> <span class="op">&lt;-</span> <span class="fu">ComBat_seq</span><span class="op">(</span></span>
-<span>  <span class="va">count_matrix</span>, </span>
-<span>  batch <span class="op">=</span> <span class="va">batch</span>, </span>
-<span>  group <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span>  covar_mod <span class="op">=</span> <span class="va">covar_mat</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">## Found 2 batches</span></span>
-<span><span class="co">## Using null model in ComBat-seq.</span></span>
-<span><span class="co">## Adjusting for 2 covariate(s) or covariate level(s)</span></span>
-<span><span class="co">## Estimating dispersions</span></span>
-<span><span class="co">## Fitting the GLM model</span></span>
-<span><span class="co">## Shrinkage off - using GLM estimates for parameters</span></span>
-<span><span class="co">## Adjusting the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">### expression matrix</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>count_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnbinom</span>(<span class="dv">400</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span>  <span class="fl">0.1</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">50</span>, <span class="at">ncol =</span> <span class="dv">8</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="do">### batch</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>batch <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="do">### adjust</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>adjusted <span class="ot">&lt;-</span> <span class="fu">ComBat_seq</span>(</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  count_matrix, </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">batch =</span> batch, </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="cn">NULL</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Found 2 batches</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Using null model in ComBat-seq.</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Adjusting for 0 covariate(s) or covariate level(s)</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimating dispersions</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Fitting the GLM model</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="do">## Shrinkage off - using GLM estimates for parameters</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Adjusting the data</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="do">### specify one biological variable</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dv">4</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>adjusted_counts <span class="ot">&lt;-</span> <span class="fu">ComBat_seq</span>(</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  count_matrix, </span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">batch =</span> batch, </span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> group</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Found 2 batches</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Using full model in ComBat-seq.</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Adjusting for 1 covariate(s) or covariate level(s)</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimating dispersions</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Fitting the GLM model</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Shrinkage off - using GLM estimates for parameters</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Adjusting the data</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="do">### multiple biological variabels</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>cov1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dv">4</span>)</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>cov2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>covar_mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(cov1, cov2)</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>adjusted_counts <span class="ot">&lt;-</span> <span class="fu">ComBat_seq</span>(</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>  count_matrix, </span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">batch =</span> batch, </span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="cn">NULL</span>, </span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">covar_mod =</span> covar_mat</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="do">## Found 2 batches</span></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="do">## Using null model in ComBat-seq.</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="do">## Adjusting for 2 covariate(s) or covariate level(s)</span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimating dispersions</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Fitting the GLM model</span></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a><span class="do">## Shrinkage off - using GLM estimates for parameters</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Adjusting the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="variance-filtering-to-speed-computations" class="level2"><h2 class="anchored" data-anchor-id="variance-filtering-to-speed-computations">Variance filtering to speed computations</h2>
+</section>
+<section id="variance-filtering-to-speed-computations" class="level2">
+<h2 class="anchored" data-anchor-id="variance-filtering-to-speed-computations">Variance filtering to speed computations</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_sv</span> <span class="op">&lt;-</span> <span class="fu">num.sv</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, vfilter <span class="op">=</span> <span class="fl">2000</span>, method <span class="op">=</span> <span class="st">"leek"</span><span class="op">)</span></span>
-<span><span class="va">svaobj</span> <span class="op">&lt;-</span> <span class="fu">sva</span><span class="op">(</span><span class="va">edata</span>, <span class="va">mod</span>, <span class="va">mod0</span>, n.sv <span class="op">=</span> <span class="va">n_sv</span>, vfilter <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span>
-<span><span class="co">## Number of significant surrogate variables is:  46 </span></span>
-<span><span class="co">## Iteration (out of 5 ):1  2  3  4  5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>n_sv <span class="ot">&lt;-</span> <span class="fu">num.sv</span>(edata, mod, <span class="at">vfilter =</span> <span class="dv">2000</span>, <span class="at">method =</span> <span class="st">"leek"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>svaobj <span class="ot">&lt;-</span> <span class="fu">sva</span>(edata, mod, mod0, <span class="at">n.sv =</span> n_sv, <span class="at">vfilter =</span> <span class="dv">2000</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of significant surrogate variables is:  46 </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Iteration (out of 5 ):1  2  3  4  5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="applying-the-fsva-function-to-remove-batch-effects-for-prediction" class="level2"><h2 class="anchored" data-anchor-id="applying-the-fsva-function-to-remove-batch-effects-for-prediction">Applying the fsva function to remove batch effects for prediction</h2>
+</section>
+<section id="applying-the-fsva-function-to-remove-batch-effects-for-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="applying-the-fsva-function-to-remove-batch-effects-for-prediction">Applying the fsva function to remove batch effects for prediction</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### seprate data to traning and test set</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12354</span><span class="op">)</span></span>
-<span><span class="va">train_indicator</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">57</span>, size <span class="op">=</span> <span class="fl">30</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="va">test_indicator</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">57</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="va">train_indicator</span><span class="op">]</span></span>
-<span><span class="va">train_data</span> <span class="op">&lt;-</span> <span class="va">edata</span><span class="op">[</span>, <span class="va">train_indicator</span><span class="op">]</span></span>
-<span><span class="va">test_data</span> <span class="op">&lt;-</span> <span class="va">edata</span><span class="op">[</span>, <span class="va">test_indicator</span><span class="op">]</span></span>
-<span><span class="va">train_pheno</span> <span class="op">&lt;-</span> <span class="va">pheno</span><span class="op">[</span><span class="va">train_indicator</span>, <span class="op">]</span></span>
-<span><span class="va">test_pheno</span> <span class="op">&lt;-</span> <span class="va">pheno</span><span class="op">[</span><span class="va">test_indicator</span>, <span class="op">]</span></span>
-<span></span>
-<span><span class="co">### pamr package can be used to train a predictive model and test that prediction</span></span>
-<span><span class="va">mydata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">train_data</span>, y <span class="op">=</span> <span class="va">train_pheno</span><span class="op">$</span><span class="va">cancer</span><span class="op">)</span></span>
-<span><span class="va">mytrain</span> <span class="op">&lt;-</span> <span class="fu">pamr.train</span><span class="op">(</span><span class="va">mydata</span><span class="op">)</span></span>
-<span><span class="co">## 123456789101112131415161718192021222324252627282930</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span></span>
-<span>  <span class="fu">pamr.predict</span><span class="op">(</span><span class="va">mytrain</span>, <span class="va">test_data</span>, threshold <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
-<span>  <span class="va">test_pheno</span><span class="op">$</span><span class="va">cancer</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">##         </span></span>
-<span><span class="co">##          Biopsy Cancer Normal</span></span>
-<span><span class="co">##   Biopsy      4      0      0</span></span>
-<span><span class="co">##   Cancer      0     15      0</span></span>
-<span><span class="co">##   Normal      1      4      3</span></span>
-<span></span>
-<span><span class="co">### calculate surrogate variables for training set</span></span>
-<span><span class="va">train_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="va">cancer</span>, data <span class="op">=</span> <span class="va">train_pheno</span><span class="op">)</span></span>
-<span><span class="va">train_mod0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span><span class="fl">1</span>, data <span class="op">=</span> <span class="va">train_pheno</span><span class="op">)</span></span>
-<span><span class="va">train_sv</span> <span class="op">&lt;-</span> <span class="fu">sva</span><span class="op">(</span><span class="va">train_data</span>, <span class="va">train_mod</span>, <span class="va">train_mod0</span><span class="op">)</span></span>
-<span><span class="co">## Number of significant surrogate variables is:  5 </span></span>
-<span><span class="co">## Iteration (out of 5 ):1  2  3  4  5</span></span>
-<span></span>
-<span><span class="co">### adjust both the training data and the test data</span></span>
-<span><span class="va">fsvaobj</span> <span class="op">&lt;-</span> <span class="fu">fsva</span><span class="op">(</span><span class="va">train_data</span>, <span class="va">train_mod</span>, <span class="va">train_sv</span>, <span class="va">test_data</span><span class="op">)</span></span>
-<span><span class="va">mydata_sv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">fsvaobj</span><span class="op">$</span><span class="va">db</span>, y <span class="op">=</span> <span class="va">train_pheno</span><span class="op">$</span><span class="va">cancer</span><span class="op">)</span></span>
-<span><span class="va">mytrain_sv</span> <span class="op">&lt;-</span> <span class="fu">pamr.train</span><span class="op">(</span><span class="va">mydata_sv</span><span class="op">)</span></span>
-<span><span class="co">## 123456789101112131415161718192021222324252627282930</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">### seprate data to traning and test set</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12354</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>train_indicator <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">57</span>, <span class="at">size =</span> <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>test_indicator <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">57</span>)[<span class="sc">-</span>train_indicator]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> edata[, train_indicator]</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> edata[, test_indicator]</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>train_pheno <span class="ot">&lt;-</span> pheno[train_indicator, ]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>test_pheno <span class="ot">&lt;-</span> pheno[test_indicator, ]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="do">### pamr package can be used to train a predictive model and test that prediction</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> train_data, <span class="at">y =</span> train_pheno<span class="sc">$</span>cancer)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>mytrain <span class="ot">&lt;-</span> <span class="fu">pamr.train</span>(mydata)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 123456789101112131415161718192021222324252627282930</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pamr.predict</span>(mytrain, test_data, <span class="at">threshold =</span> <span class="dv">2</span>),</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  test_pheno<span class="sc">$</span>cancer</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="do">##         </span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="do">##          Biopsy Cancer Normal</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="do">##   Biopsy      4      0      0</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="do">##   Cancer      0     15      0</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="do">##   Normal      1      4      3</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="do">### calculate surrogate variables for training set</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>train_mod <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>cancer, <span class="at">data =</span> train_pheno)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>train_mod0 <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> train_pheno)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>train_sv <span class="ot">&lt;-</span> <span class="fu">sva</span>(train_data, train_mod, train_mod0)</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of significant surrogate variables is:  5 </span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Iteration (out of 5 ):1  2  3  4  5</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="do">### adjust both the training data and the test data</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>fsvaobj <span class="ot">&lt;-</span> <span class="fu">fsva</span>(train_data, train_mod, train_sv, test_data)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>mydata_sv <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> fsvaobj<span class="sc">$</span>db, <span class="at">y =</span> train_pheno<span class="sc">$</span>cancer)</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>mytrain_sv <span class="ot">&lt;-</span> <span class="fu">pamr.train</span>(mydata_sv)</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="do">## 123456789101112131415161718192021222324252627282930</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <ul>
 <li><a href="http://jtleek.com/genstats/inst/doc/02_13_batch-effects.html">Batch effects and confounders</a></li>
 <li><a href="https://www.bioconductor.org/packages/release/bioc/vignettes/sva/inst/doc/sva.pdf">The SVA package for removing batch effects and other unwanted variation in high-throughput experiments</a></li>
@@ -595,7 +645,10 @@ This number seems artifically high.</p>
 
 <!-- -->
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1345,7 +1398,8 @@ This number seems artifically high.</p>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -1357,6 +1411,8 @@ This number seems artifically high.</p>
     </div>
   </div>
 </footer>
+
+
 
 
 <script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
