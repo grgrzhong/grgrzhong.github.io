@@ -19,6 +19,7 @@ format:
 
 ## UNIX Shell Basics
 
+### Basic
 ```bash
 pwd # Show current directory
 cd /path/to/directory # Change directory
@@ -68,16 +69,9 @@ curl -O http://example.com/file # Download file using curl
 ```
 
 ```bash
-grep "pattern" file_name # Search for a pattern in a file
-grep -r "pattern" /path/to/directory # Recursively search for a pattern in a directory
 sort file_name # Sort lines in a file
 sort -u file_name # Sort and remove duplicate lines
 uniq file_name # Remove duplicate lines (requires sorted input)
-find /path/to/search -name "pattern" # Find files/folders by name
-find /path/to/search -type f -size +100M # Find files larger than 100MB
-cut -f1,3 file_name # Extract specific columns from a file (tab-delimited)
-awk '{print $1, $3}' file_name # Extract specific columns using awk
-sed 's/old/new/g' file_name # Replace text in a file
 diff file1 file2 # Compare two files line by line
 diff -r dir1 dir2 # Compare two directories recursively
 ln -s /path/to/target /path/to/symlink # Create a symbolic link
@@ -85,6 +79,7 @@ tree /path/to/directory # Display directory structure as a tree (may need instal
 tree -L 2 /path/to/directory # Display directory structure up to level 2
 du -h /path/to/directory # Show disk usage of a directory
 du -sh /path/to/directory # Show total disk usage of a directory
+du -sh /path/to/directory/*/ # Show disk usage of all subdirectories
 du -h --max-depth=1 /path/to/directory | sort -h # Show disk usage of subdirectories sorted by size
 rsync -av /source/folder/ /destination/folder/ # Sync folders
 rsync -auzP /source/folder/ user@remote:/destination/folder/ # Sync to remote server with compression and progress
@@ -99,6 +94,51 @@ chsh -s /bin/bash
 chsh -s /bin/zsh
 ```
 
+### grep
+`grep` Globally  search  a Regular Expression and Print: is a command-line utility for searching plain-text data sets for lines that match a specified pattern:
+* Search files or input for specific patterns
+* Supports regular expressions for complex pattern matching
+* Options for case sensitivity, whole word matching, line numbers, etc.
+
+
+### find
+`find` is a powerful command to search for files and directories based on various criteria:
+* Search by name, type, size, modification time, permissions, etc.
+* Execute actions on found items (delete, move, etc.)
+* Supports complex expressions with logical operators
+
+```bash
+## Find all .txt files in current directory and subdirectories
+find . -name "*.txt"
+
+## Find files/folders by name
+find /path/to/search -name "pattern" 
+
+## Find files larger than 100MB
+find /path/to/search -type f -size +100M
+
+## Find files in pattern and list details
+find ./Clean -name "*Clean.fastq.gz" -type f -exec ls -lh {} \;
+```
+
+### cut
+`cut` is used to extract sections from each line of input:
+* Extract columns or fields from text files
+* Specify delimiter for fields
+* Useful for processing structured data like CSV or TSV files
+* Works line by line
+
+```bash
+## Extract first column from a tab-delimited file
+cut -f1 file.txt 
+
+## Extract first and third columns from a comma-separated file
+cut -d',' -f1,3 file.csv
+
+## Extract characters from position 1 to 5
+cut -c1-5 file.txt
+```
+
 ### sed
 `sed` is a stream editor used to perform basic text transformations:
 * substituction, deletion, insertion, and more
@@ -108,7 +148,6 @@ chsh -s /bin/zsh
 ## Remove all spaces from a string
 echo "a b c" | sed 's/ //g'
 #> "abc"
-
 ## Remove all occurences of "foo" with "bar"
 echo "foo baz foo" | sed 's/foo/bar/g'
 #> "bar baz bar"
@@ -221,6 +260,12 @@ tar -cjf archive.tar.bz2 file1 file2 directory/
 
 ## .tar.xz compressed
 tar -cJf archive.tar.xz file1 file2 directory/
+```
+
+```bash
+## Backup and Restore a Folder
+tar -czvf mybackup.tar.gz myfolder
+tar -xzvf mybackup.tar.gz
 ```
 
 ## File Permissions
@@ -375,6 +420,81 @@ for folder_pair in "${folders_to_sync[@]}"; do
 done
 ```
 
+## Vim Text Editor
+
+### Modes
+
+* Vim text editor has three main modes: 
+  * `Esc`, back to normal mode
+  * `i`, insert mode
+  * `v`, select mode
+
+| Command   | What it does                | Most common follow-up |
+|-----------|----------------------------|----------------------|
+| i         | Insert before cursor        | typing text          |
+| a         | Append after cursor         | typing text          |
+| I         | Insert at beginning of line | —                    |
+| A         | Append at end of line       | —                    |
+| o         | Open new line below         | typing               |
+| O         | Open new line above         | typing               |
+| Esc       | Back to Normal mode         | —                    |
+| v         | Visual mode                 | move + operator      |
+| V         | Visual Line mode            | —                    |
+| Ctrl-v    | Visual Block mode           | —                    |
+
+
+### Navigation
+
+| Command            | Movement                        | Common combos          |
+|--------------------|---------------------------------|------------------------|
+| h j k l            | ← ↓ ↑ →                         | —                      |
+| w / b              | forward/backward by word start  | ciw, daw               |
+| e / ge             | forward/backward to word end    | —                      |
+| W / B              | forward/backward by big word    | (ignores punctuation)  |
+| 0                  | Start of line                   | —                      |
+| ^                  | First non-blank character       | —                      |
+| $                  | End of line                     | —                      |
+| gg                 | Top of file                     | —                      |
+| G                  | Bottom of file                  | 50G → line 50          |
+| Ctrl-u / Ctrl-d    | Half page up/down               | —                      |
+| Ctrl-f / Ctrl-b    | Full page down/up               | —                      |
+
+### Editing
+
+| Command            | Meaning                                     | examples                         |
+|--------------------|---------------------------------------------|----------------------------------|
+| x                  | Delete character under cursor               | —                                |
+| dd                 | Delete current line                         | 5dd = delete 5 lines             |
+| yy                 | Yank (copy) current line                    | p to paste                       |
+| p / P              | Paste after/before cursor                   | —                                |
+| u                  | Undo                                        | (most used command after Esc)    |
+| Ctrl-r             | Redo                                        | —                                |
+| .                  | Repeat last change/command                  | (extremely powerful)             |
+| dw / d$            | Delete to end of word / end of line         | diw, daw                         |
+| ciw / caw          | Change (delete + insert) inside/around word | most common text object usage    |
+| "ci"" / ci( / ci{" | Change inside quotes/parentheses/braces     | extremely common in code         |
+
+### Search & Replace
+
+| Command             | Meaning                                      |
+|---------------------|----------------------------------------------|
+| /pattern            | Search forward                               |
+| ?pattern            | Search backward                              |
+| n / N               | Next / previous match                        |
+| * / #               | Search forward/backward for word under cursor|
+| :%s/old/new/g       | Replace all occurrences (whole file)         |
+| :%s/old/new/gc      | Replace with confirmation                    |
+
+### Saving & Exiting
+
+| Command            | Meaning                                             |
+|--------------------|----------------------------------------------------|
+| :w                 | Save (write)                                       |
+| :q                 | Quit (only if no changes)                          |
+| :q!                | Quit without saving                                |
+| :wq or :x or ZZ    | Save and quit                                      |
+| :w !sudo tee %     | Save file needing root (very common workaround)    |
+
 ## Nano Text Editor
 
 1. Open a file with: `nano filename.txt`
@@ -403,86 +523,6 @@ nano -miA file.txt
 * `-i`: Auto-indent new lines.
 * `-A`: Enable syntax highlighting.
 
-
-## Vim Text Editor
-
-* Vim text editor has three main modes: 
-  * Normal mode: `Esc`, input commands
-  * Insert mode: `i`, insert text
-  * Visual mode: `v`, select text
-
-### Working Modes
-
-`i`: Insert mode                
-`I`: Insert at beginning of line
-`o`: Insert new line below      
-`O`: Insert new line above      
-`a`: Append after cursor        
-`A`: Append at end of line      
-`Esc`: Command mode (normal)      
-`v`: Visual mode (select text)  
-`V`: Visual line mode           
-`Ctrl + v`: Visual block mode          
-
-### Text Editing
-
-| **Editing**                    | **Shortcut**   |
-|--------------------------------|----------------|
-| Delete char                    | `x`            |
-| Delete line                    | `dd`           |
-| Delete word                    | `dw`           |
-| Delete to end of line          | `d$`           |
-| Delete to start of line        | `d0`           |
-| Copy line                      | `yy`           |
-| Copy word                      | `yw`           |
-| Paste after cursor             | `p`            |
-| Paste before cursor            | `P`            |
-| Undo                           | `u`            |
-| Redo                           | `Ctrl + r`     |
-| Change text                    | `c`            |
-| Replace char                   | `r`            |
-| Join line with next            | `J`            |
-
-### Navigation
-| **Basic Movement**             | **Shortcut**   |
-|--------------------------------|----------------|
-| Move left                      | `h`            |
-| Move down                      | `j`            |
-| Move up                        | `k`            |
-| Move right                     | `l`            |
-| **Advanced Movement**          |                |
-| Next word                      | `w`            |
-| Previous word                  | `b`            |
-| Beginning of line              | `0`            |
-| First non-blank of line        | `^`            |
-| End of line                    | `$`            |
-| First line                     | `gg`           |
-| Last line                      | `G`            |
-| Go to line 33                  | `33G`          |
-| Up half a page                 | `Ctrl + u`     |
-| Down half a page               | `Ctrl + d`     |
-
-### Search & Replace
-
-| **Search & Replace**           | **Shortcut**   |
-|--------------------------------|----------------|
-| Search text                    | `/text`        |
-| Next match                     | `n`            |
-| Previous match                 | `N`            |
-| Search backward                | `?text`        |
-| Search current word            | `*`            |
-
-### File Operations
-
-| **Action**                     | **Shortcut**   |
-|--------------------------------|----------------|
-| Save                           | `:w`           |
-| Quit                           | `:q`           |
-| Save and quit                  | `:wq`          |
-| Quit without saving            | `:q!`          |
-| Save and quit (shortcut)       | `ZZ`           |
-| Quit without saving (shortcut) | `ZQ`           |
-
 ## Job Schedule
 
 ### OpenPBS
@@ -508,22 +548,8 @@ module load python/3.8.5          # Load necessary modules
 python my_script.py               # Command to run your program
 ```
 
-* Key commands
-
-    + `qsub job_script.pbs` - Submit a job
-    + `qsub -v sample="$sample" -M "$EMAIL" pbs_1_cutadapt.pbs` - Submit a job with environment variables
-    + `qstat` - Check job status
-    + `qstat -u guorui -a` - Check all jobs for user guorui
-    + `qhist` - View job history
-    + `qdel job_id` - Delete a job  
-    + `qhold job_id` - Hold a job  
-    + `qrls job_id` - Release a held job  
-    + `qpeek job_id` - Peek at job output  
-    + `qmod -c job_id` - Clear job state
-    + `showq` - Show queue status 
-
-* Some variables
 ```bash
+## Some variables
 $PBS_O_WORKDIR     # The directory from which the job was submitted
 $PBS_O_HOME        # The home directory of the user who submitted the job
 $PBS_JOBDIR        # The working directory for the job on the compute node
@@ -536,11 +562,34 @@ $PBS_QUEUE         # The name of the queue to which the job was submitted
 $PBS_JOBNAME       # The name of the job as specified in the job script
 ```
 
-* Interactive job
-```bash
-## go to interactive job with 16 processors, 200GB memory, 168 hours walltime in cgs_queue
-qsub -I -q cgs_queue -l nodes=hpcf3-c01:ppn=16,walltime=168:00:00,mem=200gb
+The `qstat` command is used to request the status of jobs, queues, or a batch server:
+* `qsub job_script.pbs` - Submit a job
+* `qsub -v sample="$sample" -M "$EMAIL" pbs_1_cutadapt.pbs` - Submit a job with environment variables
+* `qstat` - Check job status
+* `qstat -u guorui -a` - Check all jobs for user guorui
+* `qdel job_id` - Delete a job  
+* `qhold job_id` - Hold a job  
+* `qrls job_id` - Release a held job  
 
+
+```bash
+## List finished job details in summary
+qstat -x job_id
+
+## List finished job details in full details
+qstat -H job_id
+qstat -x -f job_id
+qstat -x -f job_id | grepl "exec_host"
+
+## Find out all compute nodes allocated to a job
+for job_id in $(find . -name "log.*.e*" -printf "%f\n" | sed 's/.*\.e\([0-9]*\)$/\1/' | sort -n | uniq); do
+    echo -n "Job ID: $job_id: "; qstat -x -f $job_id | grep exec_host
+done
+
+## Start and interactive job with 16 processors, 64GB memory, 24 hours walltime in cgs_queue
+qsub -I -q cgs_queue -l nodes=hpcf3-c01:ppn=16,walltime=12:00:00,mem=64gb
+qsub -I -q cgs_queue -l nodes=hpcf3-c02:ppn=16,walltime=12:00:00,mem=64gb
+qsub -I -q cgs_queue -l nodes=hpcf3-c03:ppn=16,walltime=12:00:00,mem=64gb
 ```
 
 ## Shell session
@@ -678,34 +727,8 @@ alias sls="s -ls"      # list current running screen sessions
 - **Terminal**: [Bash Reference Manual](https://www.gnu.org/software/bash/manual/)
 :::
 
-## Windows Subsystem Linux
 
-* System info
-```bash
-
-## Install the neofetch package
-sudo apt install neofetch -y
-
-## Show system info
-neofetch --memory_unit gib
-```
-
-* Change sudo password
-
-In the windows terminal, run the following command to change the sudo password:
-```bash
-
-wsl -u root
-
-## Input the new password
-passwd <username>
-```
-
-* WSL configuration
-  - WSL global config: `C:\Users\<UserName>\.wslconfig`
-  - WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`
-
-## Environment Management
+## Software Environment
 
 ### Conda
 
@@ -793,7 +816,7 @@ conda remove --name old_env_name --all
 eval "$(pixi completion --shell bash)"  # or zsh
 ```
 
-## Version Control
+## Git Version Control
 
 ```bash
 ## keep your original Git repository but provide a clean version to others, 
@@ -859,3 +882,29 @@ git remote add origin <new-repository-url>
 git fetch origin
 git reset --hard origin/main
 ```
+## WSL
+
+* System info
+```bash
+
+## Install the neofetch package
+sudo apt install neofetch -y
+
+## Show system info
+neofetch --memory_unit gib
+```
+
+* Change sudo password
+
+In the windows terminal, run the following command to change the sudo password:
+```bash
+
+wsl -u root
+
+## Input the new password
+passwd <username>
+```
+
+* WSL configuration
+  - WSL global config: `C:\Users\<UserName>\.wslconfig`
+  - WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`

@@ -19,8 +19,8 @@ while data structures allow you to organize and manage that data efficiently.
 - Strings: Represent sequences of characters, used for text manipulation.
 - Booleans: Represent truth values, either True or False.
 - Lists: Ordered collections of items, allowing for duplicate values and mutable operations.
-- Tuples: Ordered collections of items, similar to lists but immutable.
 - Dictionaries: Unordered, Key-value pairs that allow for efficient data retrieval based on unique keys.
+- Tuples: Ordered collections of items, similar to lists but immutable.
 - Sets: Unordered collections of unique items, useful for membership testing and eliminating duplicates.
 
 ```{python}
@@ -609,14 +609,3 @@ print(py_df)
 
 
 
-## Reference
-
-- https://www.py4e.com/
-- https://omgenomics.com/
-- https://www.coursera.org/learn/bioinformatics
-- http://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.pdf
-- https://www.py4e.com/html3
-- http://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.epub
-- [Primer on Python for R Users](https://cran.r-project.org/web/packages/reticulate/vignettes/python_primer.html)
-- [An introduction to Python for R Users](https://rebeccabarter.com/blog/2023-09-11-from_r_to_python)
-- [Datanovia: Master Data Science, Machine Learning and Data Visualization with Python and R.](https://www.datanovia.com/)
