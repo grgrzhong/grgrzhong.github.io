@@ -16,3 +16,10 @@ format:
             toggle: true
 
 ---
+
+## Illumina 5-base
+
+1. Map: Align reads to the reference.
+2. Call: Decide if a "T" is a 5th base (5mC) or a mutation.
+3. Overlay: Compare those sites to a database of known genes and CpG islands.
+4. Compare: Look for differences between samples to find "Biological Hits."

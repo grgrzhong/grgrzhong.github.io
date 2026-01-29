@@ -2384,49 +2384,42 @@
     "href": "omics/illumina/index.html",
     "title": "Illumina",
     "section": "",
-    "text": "Back to top"
+    "text": "Map: Align reads to the reference.\nCall: Decide if a “T” is a 5th base (5mC) or a mutation.\nOverlay: Compare those sites to a database of known genes and CpG islands.\nCompare: Look for differences between samples to find “Biological Hits.”"
   },
   {
-    "objectID": "r/index.html#data-structure",
-    "href": "r/index.html#data-structure",
-    "title": "R",
-    "section": "Data structure",
-    "text": "Data structure"
+    "objectID": "omics/illumina/index.html#illumina-5-base",
+    "href": "omics/illumina/index.html#illumina-5-base",
+    "title": "Illumina",
+    "section": "",
+    "text": "Map: Align reads to the reference.\nCall: Decide if a “T” is a 5th base (5mC) or a mutation.\nOverlay: Compare those sites to a database of known genes and CpG islands.\nCompare: Look for differences between samples to find “Biological Hits.”"
   },
   {
     "objectID": "r/index.html#general-functions",
     "href": "r/index.html#general-functions",
     "title": "R",
-    "section": "General functions",
-    "text": "General functions\n.libPaths()                      # Show library paths\ndir()                            # Show the directory\ngetwd()                          # Check working directory\nsetwd()                          # Change working directory\ndata()                           # Load built-in dataset\nview()                           # View the entire dataset\ntail()                           # Just show the last 6 rows\nclass()                          # Check the class of an R object\nstr()                            # Display internal structure of an R object\nlength()                         # Give length of a vector\ndim()                            # View the number of rows and columns of a matrix or a data frame\nnames()                          # List names of variables in a data frame\nset.seed()                       # Generate random number seed to make sure the results do not change.\nls()                             # list the variables in the workspace\nrm()                             # remove the variable from workspace\nrm(list = ls())                  # remove all the variables from the workspace\nlist.files()                     # List the filename under specific directory\n.libPaths()                      # R installation site\nhelp(package=\"\")                 # Check the functions of R library\nsystem.file(package=“dagdata”)   # Extract the location of package\ncolnames(installed.packages())   # list the installed packages"
+    "section": "General Functions",
+    "text": "General Functions\n.libPaths()                      # Show library paths\ndir()                            # Show the directory\ngetwd()                          # Check working directory\nsetwd()                          # Change working directory\ndata()                           # Load built-in dataset\nview()                           # View the entire dataset\ntail()                           # Just show the last 6 rows\nclass()                          # Check the class of an R object\nstr()                            # Display internal structure of an R object\nlength()                         # Give length of a vector\ndim()                            # View the number of rows and columns of a matrix or a data frame\nnames()                          # List names of variables in a data frame\nset.seed()                       # Generate random number seed to make sure the results do not change.\nls()                             # list the variables in the workspace\nrm()                             # remove the variable from workspace\nrm(list = ls())                  # remove all the variables from the workspace\nlist.files()                     # List the filename under specific directory\n.libPaths()                      # R installation site\nhelp(package=\"\")                 # Check the functions of R library\nsystem.file(package=“dagdata”)   # Extract the location of package\ncolnames(installed.packages())   # list the installed packages"
   },
   {
-    "objectID": "r/index.html#best-practise-for-r-coding",
-    "href": "r/index.html#best-practise-for-r-coding",
+    "objectID": "r/index.html#coding-practice",
+    "href": "r/index.html#coding-practice",
     "title": "R",
-    "section": "Best practise for R coding",
-    "text": "Best practise for R coding\n\nVariables = my_variable\nFunctions = RunThisStuffs()\nConstants = CONSTANTS\nUse 4 spaces (and not tab) for indentations\nAlways writing documentation above function definition\nA function should not be longer than one screen\nAvoid using for loop, learn lapply and vector operations\nNever ever use hard-coded variables in functions\n\n### ====== to divide function blocks\n\n### ------ to divide parts in a function\nName and style code consistently\n\nrm(list =ls()) and gc() to tidy up its memory\nDon’t save a session history\nKeep track of sessionInfo() in project folder\nUse version control"
+    "section": "Coding Practice",
+    "text": "Coding Practice\n\nVariables = my_variable or myVariable\nFunctions = RunThisStuffs() or run_this_stuffs()\nA function should not be longer than one screen\nConstants = CONSTANTS\nUse 4 spaces (and not tab) for indentations\nAlways writing documentation above function definition\nAvoid using for loop, learn lapply and vector operations\nNever ever use hard-coded variables in functions\n\n### ====== to divide function blocks\n\n### ------ to divide parts in a function\nName and style code consistently\n\nrm(list =ls()) and gc() to tidy up its memory\nDon’t save a session history\nKeep track of sessionInfo() in project folder\nUse version control"
   },
   {
-    "objectID": "r/index.html#ggplot2-variable-repacement",
-    "href": "r/index.html#ggplot2-variable-repacement",
+    "objectID": "r/index.html#variable-repacement",
+    "href": "r/index.html#variable-repacement",
     "title": "R",
-    "section": "ggplot2 Variable repacement",
-    "text": "ggplot2 Variable repacement\n!!as.name(), get(), !!sym(), .data[[]]\n\nlibrary(ggplot2)\ndata &lt;- data.frame(\n  x = c(1, 2, 3, 4),\n  y = c(10, 20, 30, 40),\n  group = c(\"A\", \"A\", \"B\", \"B\")\n)\n\ncolor_var &lt;- \"group\"\nggplot(data, aes(x = x, y = y, color = !!as.name(color_var))) +\n  geom_point()\n  \nggplot(data, aes(x = x, y = y, color = get(color_var))) +\n  geom_point()\n\n\nggplot(data, aes(x = x, y = y, color = !!sym(color_var))) +\n  geom_point()\n\nggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +\n  geom_point()"
+    "section": "Variable Repacement",
+    "text": "Variable Repacement\nCommon method to do the variable replacement in ggplot2:\n\n!!as.name()\nget()\n!!sym()\n.data[[]]\n\n\nlibrary(ggplot2)\ndata &lt;- data.frame(\n  x = c(1, 2, 3, 4),\n  y = c(10, 20, 30, 40),\n  group = c(\"A\", \"A\", \"B\", \"B\")\n)\n\ncolor_var &lt;- \"group\"\nggplot(data, aes(x = x, y = y, color = !!as.name(color_var))) +\n  geom_point()\n  \nggplot(data, aes(x = x, y = y, color = get(color_var))) +\n  geom_point()\n\n\nggplot(data, aes(x = x, y = y, color = !!sym(color_var))) +\n  geom_point()\n\nggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +\n  geom_point()"
   },
   {
-    "objectID": "r/index.html#using-r-in-vscode-with-conda-environment",
-    "href": "r/index.html#using-r-in-vscode-with-conda-environment",
+    "objectID": "r/index.html#vscode-setup",
+    "href": "r/index.html#vscode-setup",
     "title": "R",
-    "section": "Using R in vscode with Conda environment",
-    "text": "Using R in vscode with Conda environment\n// Add these to the remove settings\n\n{\n    \"r.alwaysUseActiveTerminal\": true,\n    \"r.bracketedPaste\": true,\n    \"r.helpPanel.cacheIndexFiles\": \"Global\",\n    \"r.plot.useHttpgd\": true,\n    \"r.rmarkdown.chunkBackgroundColor\": \"\",\n    \"r.rterm.option\": [\n        \"--no-save\",\n        \"--no-restore\",\n        \"--r-binary=/home/zhonggr/miniforge3/envs/renv/bin/R\"\n    ],\n    \"r.rpath.linux\": \"/home/zhonggr/miniforge3/envs/renv/bin/R\",\n    \"r.rterm.linux\": \"/home/zhonggr/miniforge3/envs/renv/bin/radian\"\n}"
-  },
-  {
-    "objectID": "r/index.html#reference",
-    "href": "r/index.html#reference",
-    "title": "R",
-    "section": "Reference",
-    "text": "Reference\n\nProgramming with R\nBest Practice for R - Cheat Sheet\nAn Introduction to Statistical Learning\nR for Data Science (2e)\nR Graphics Cookbook, 2nd edition\nAdvanced R\nggplot2: Elegant Graphics for Data Analysis\nFunctional Programming\nThe Epidemiologist R Handbook\nModern Statistics for Modern Biology\nData Analysis and Prediction Algorithms with R\nBioinformatics Training & Education Program\nSaving R Graphics across OSs\nTutorial on Advanced Stats and Machine Learning with R\nPublication ready plots using ggpubr\ndatanovia\nData Analysis in Genome Biology\nData Viz with Python and R\nPH525x series - Biomedical Data Science\nAn Introduction to Statistical Learning\nThe Epidemiologist R Handbook\nData Analysis in Genome Biology\nPH525x series - Biomedical Data Science"
+    "section": "VSCode Setup",
+    "text": "VSCode Setup\n// Add these to the remove settings\n\n{\n    \"r.alwaysUseActiveTerminal\": true,\n    \"r.bracketedPaste\": true,\n    \"r.helpPanel.cacheIndexFiles\": \"Global\",\n    \"r.plot.useHttpgd\": true,\n    \"r.rmarkdown.chunkBackgroundColor\": \"\",\n    \"r.rterm.option\": [\n        \"--no-save\",\n        \"--no-restore\",\n        \"--r-binary=/home/zhonggr/miniforge3/envs/renv/bin/R\"\n    ],\n    \"r.rpath.linux\": \"/home/zhonggr/miniforge3/envs/renv/bin/R\",\n    \"r.rterm.linux\": \"/home/zhonggr/miniforge3/envs/renv/bin/radian\"\n}"
   },
   {
     "objectID": "wiki/index.html",

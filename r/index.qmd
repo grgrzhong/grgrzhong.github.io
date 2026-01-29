@@ -1,5 +1,5 @@
 ---
-title: R
+title: R Programming
 date: 2020-09-09
 published-title: Created
 date-modified: last-modified
@@ -9,20 +9,11 @@ execute:
     eval: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-    # evaluate = FALSE, # fig.width = 6, # fig.height = 3.8, # fig.retina = 3,
-    fig.align = "center", out.width = "100%", warning = FALSE, collapse = TRUE
-)
-```
-
-## Basic concepts
-
-## Data structure
+## Data Structure
 
 ![](R_data_structure.png){width=600px}
 
-## General functions
+## General Functions
 
 ```r
 .libPaths()                      # Show library paths
@@ -48,14 +39,14 @@ system.file(package=“dagdata”)   # Extract the location of package
 colnames(installed.packages())   # list the installed packages
 ```
 
-## Best practise for R coding
+## Coding Practice
 
-- Variables = my_variable
-- Functions = RunThisStuffs()
+- Variables = my_variable or myVariable
+- Functions = RunThisStuffs() or run_this_stuffs()
+- A function should not be longer than one screen
 - Constants = CONSTANTS
 - Use 4 spaces (and not tab) for indentations
 - Always writing documentation above function definition
-- A function should not be longer than one screen
 - Avoid using for loop, learn lapply and vector operations
 - Never ever use hard-coded variables in functions
 - `### ======` to divide function blocks
@@ -66,9 +57,14 @@ colnames(installed.packages())   # list the installed packages
 - Keep track of `sessionInfo()` in project folder
 - Use version control
 
-## ggplot2 Variable repacement
+## Variable Repacement
 
-`!!as.name()`, `get()`, `!!sym()`, `.data[[]]`
+Common method to do the variable replacement in ggplot2:
+
+- `!!as.name()`
+- `get()`
+- `!!sym()`
+- `.data[[]]`
 
 ```{r}
 #| eval: false
@@ -95,7 +91,7 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
   geom_point()
 
 ```
-## Using R in vscode with Conda environment
+## VSCode Setup
 
 ```json
 // Add these to the remove settings
@@ -115,28 +111,4 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
     "r.rterm.linux": "/home/zhonggr/miniforge3/envs/renv/bin/radian"
 }
 ```
-## Reference
 
-- [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R.html)
-- [Best Practice for R - Cheat Sheet](https://github.com/wurli/r-best-practice)
-- [An Introduction to Statistical Learning](https://www.statlearning.com/)
-- [R for Data Science (2e)](https://r4ds.hadley.nz/)
-- [R Graphics Cookbook, 2nd edition](https://r-graphics.org/)
-- [Advanced R](https://adv-r.hadley.nz/)
-- [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)
-- [Functional Programming](https://dcl-prog.stanford.edu/)
-- [The Epidemiologist R Handbook](https://epirhandbook.com/en/)
-- [Modern Statistics for Modern Biology](https://web.stanford.edu/class/bios221/book/)
-- [Data Analysis and Prediction Algorithms with R](http://rafalab.dfci.harvard.edu/dsbook/)
-- [Bioinformatics Training & Education Program](https://bioinformatics.ccr.cancer.gov/btep/)
-- [Saving R Graphics across OSs](https://www.jumpingrivers.com/blog/r-graphics-cairo-png-pdf-saving/)
-- [Tutorial on Advanced Stats and Machine Learning with R](http://r-statistics.co/)
-- [Publication ready plots using ggpubr](https://jeweljohnsonj.github.io/jeweljohnson.github.io/project7.html)
-- [datanovia](https://www.datanovia.com/en/)
-- [Data Analysis in Genome Biology](https://girke.bioinformatics.ucr.edu/GEN242/)
-- [Data Viz with Python and R](https://datavizpyr.com/category/r/)
-- [PH525x series - Biomedical Data Science](http://genomicsclass.github.io/book/)
-- [An Introduction to Statistical Learning](https://www.statlearning.com/)
-- [The Epidemiologist R Handbook](https://epirhandbook.com/en/index.html)
-- [Data Analysis in Genome Biology](https://girke.bioinformatics.ucr.edu/GEN242/)
-- [PH525x series - Biomedical Data Science](http://genomicsclass.github.io/book/)
