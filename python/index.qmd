@@ -7,9 +7,9 @@ title-block-banner: "#212529"
 toc-title: "Contents"
 ---
 
-## Python basics
+![](r_vs_python.png){width=600px}
 
-### Data type
+## Data type
 
 in Python, understanding data types and structures is essential for writting
 effective code. Data types determine the kind of data a variable can hold,
@@ -50,7 +50,7 @@ print("Dictionary of person:", person)
 print("Set of unique numbers:", unique_numbers)
 
 ```
-### Variable
+## Variable
 
 - `Number`
 - `String`
@@ -65,7 +65,7 @@ tuple = (1, 2, 3)
 list = [1, 2, 3]
 dict = {"ele1":1, "ele2":2, "ele3":3}
 ```
-### Operator
+## Operator
 
 Numerical Operators:
 - `< ` : less than
@@ -84,7 +84,7 @@ Logical Operators:
 - or
 - not
 
-### Control flow
+## Control flow
 Control flow in Python allows you to make decisions and execute different blocks of code based on conditions. 
 Loops enable you to repeat a block of code multiple times.
 
@@ -108,7 +108,7 @@ else:
     print("x is less than 5")
 
 ```
-### Iteration
+## Iteration
 ```{python}
 #| eval: false
 
@@ -145,7 +145,7 @@ else:
     print("I am really number")
 ```
 
-### Iteration/Lopps
+## Loops
 
 Two looping constructs in Python
 
@@ -199,7 +199,7 @@ for customer in ["John", "Mary", "Jane"]:
 		continue
 	giveGoods()
 ```
-### Exceptions
+## Exceptions
 - Exceptions are errors that are found during execution of the Python program.
 - They typically cause the program to fail.
 - However we can handle them using the ‘try/except’ construct.
@@ -213,7 +213,6 @@ try:
 except:
 	print("You did not enter a valid number")
 ```
-### General functions
 
 ```{python}
 #| eval: false
@@ -226,10 +225,9 @@ tuple()
 dict()
 ```
 
-## Python for R users
+## Library
 
-### Install library
-
+* Install library
 ::: {.panel-tabset group="language"}
 
 #### Python
@@ -266,7 +264,7 @@ conda install -n renv r-dplyr bioconductor-dplyr
 
 :::
 
-### Load library
+* Load library
 
 ::: {.panel-tabset group="language"}
 
@@ -302,7 +300,7 @@ suppressPackageStartupMessages(
 ```
 :::
 
-### Whitespace
+## Whitespace
 
 - Whitespace matters in Python.
 - in R, code blocks are defined by curly braces `{}`.
@@ -330,7 +328,7 @@ if True:
 
 :::
 
-### Container types
+## Containers
 
 * in R, the `list` is a versatile container type that can hold elements of different types and structures. 
 * There is no single direct equivalent of R's `list` in Python that support all the same features.
@@ -355,7 +353,6 @@ print("x is", x)
 #> x is [1, 2, 3, 4]
 print("y is", y)
 #> y is [1, 2, 3, 4]
-
 ```
 
 * Some syntactic sugar around Python lists you might encounter is the usage of + and * with lists. 
@@ -570,7 +567,7 @@ s
 #> {1, 2, 3}
 ```
 
-### Data frame
+## Dataframe
 
 ::: {.panel-tabset group="language"}
 
@@ -606,6 +603,3 @@ py_df = pd.DataFrame(
 print(py_df)
 ```
 :::
-
-
-
