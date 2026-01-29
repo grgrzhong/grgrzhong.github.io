@@ -55,6 +55,12 @@ website:
         file: "r/index.qmd"
       - text: "Keyboard"
         file: "keyboard/index.qmd"
+      - text: "Omics"
+        menu:
+          - text: "Illumina"
+            file: "omics/illumina/index.qmd"
+          - text: "10X Genomics"
+            file: "omics/10xgenomics/index.qmd"
       # - text: "Stats"
       #   file: "stat/index.qmd"
       # - text: "Programming"
