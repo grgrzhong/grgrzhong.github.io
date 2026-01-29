@@ -9,7 +9,9 @@ toc-title: "Contents"
 
 ![](r_vs_python.png){width=600px}
 
-## Data type
+## Data Stuctures
+
+![](python_data_structure.png){width=600px}
 
 in Python, understanding data types and structures is essential for writting
 effective code. Data types determine the kind of data a variable can hold,

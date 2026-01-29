@@ -71,31 +71,30 @@ Common method to do the variable replacement in ggplot2:
 
 library(ggplot2)
 data <- data.frame(
-  x = c(1, 2, 3, 4),
-  y = c(10, 20, 30, 40),
-  group = c("A", "A", "B", "B")
+    x = c(1, 2, 3, 4),
+    y = c(10, 20, 30, 40),
+    group = c("A", "A", "B", "B")
 )
 
 color_var <- "group"
 ggplot(data, aes(x = x, y = y, color = !!as.name(color_var))) +
-  geom_point()
-  
+    geom_point()
+
 ggplot(data, aes(x = x, y = y, color = get(color_var))) +
-  geom_point()
+    geom_point()
 
 
 ggplot(data, aes(x = x, y = y, color = !!sym(color_var))) +
-  geom_point()
+    geom_point()
 
 ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
-  geom_point()
+    geom_point()
 
 ```
 ## VSCode Setup
 
 ```json
-// Add these to the remove settings
-
+// Add these settings to the remote server
 {
     "r.alwaysUseActiveTerminal": true,
     "r.bracketedPaste": true,
