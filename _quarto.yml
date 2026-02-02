@@ -40,7 +40,7 @@ website:
   page-navigation: true
   navbar:
     pinned: true
-    right:
+    left:
       # - text: "About"
       #   file: "index.qmd"
       - text: "Wiki"
