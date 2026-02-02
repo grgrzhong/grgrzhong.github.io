@@ -8,7 +8,27 @@ toc-title: "Contents"
 ---
 
 ## FASTA
+
+FASTA is text-based format for representing nucleotide or peptide sequences, where each sequence is preceded by a single-line description starting with a ">" character.
+
+![](fasta.png){width=600px}
+
+* `.fna` can be used for nucleotide sequences
+* `.faa` can be used for amino acid sequences
+* `.frn` can be used for RNA sequences
+* `.fa` can be used for either nucleotide or amino acid sequences
+
 ## FASTQ
+
+FASTQ format is a text-based format for storing both nucleotide sequences and their corresponding quality scores. Each sequence entry consists of four lines: 
+* a sequence identifier starting with "@"
+* the raw sequence letters
+* a "+" separator line
+* and a line with quality scores encoded as ASCII characters
+
+![](fastq.png){width=600px}
+![](fastq_sequence_ID.png){width=600px}
+
 
 ## SAM
 SAM: Sequence Alignment Map
@@ -32,14 +52,14 @@ Variant Call Format (VCF) is a format for storing variations between a reference
 and must be key=value pairs 
 * Header line starts with #CHROM
 * Data lines contain 8 mandatory columns:
-  1. CHROM: Reference 
-  2. POS
-  3. ID
-  4. REF
-  5. ALT
-  6. QUAL
-  7. FILTER
-  8. INFO
+    1. CHROM: Reference 
+    2. POS
+    3. ID
+    4. REF
+    5. ALT
+    6. QUAL
+    7. FILTER
+    8. INFO
 
 ## BCF
 

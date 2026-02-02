@@ -1,0 +1,29 @@
+---
+title: Nanoporetech
+date: 2026-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc-title: "Contents"
+execute:
+    eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+
+---
+
+## [Oxford Nanopore](https://nanoporetech.com/platform/technology)
+
+- Offers real-time analysis (for rapid insights)
+- Scalable formats from pocket to population scale
+- Can analyse native DNA or RNA and sequence
+- Any length of fragment to achieve short to ultra-long read lengths.
+- Without amplification or chemical modification
+- Can span entire repetitive regions, resolve structural variants, and differentiate between different isoforms.
+
+## Nanopore workflow
+
+- basecalling: Convert raw signal data into nucleotide sequences.
