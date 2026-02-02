@@ -27,7 +27,7 @@ project:
     - "pgp_ath.asc.txt"
 
 website:
-  title: "Guorui Zhong"
+  title: ""
   # image: "/files/profiles/avatar.png"
   # favicon: "/files/profiles/avatar.png"
   description: ""
@@ -41,8 +41,8 @@ website:
   navbar:
     pinned: true
     left:
-      - text: "About"
-        file: "index.qmd"
+      # - text: "About"
+      #   file: "index.qmd"
       - text: "Wiki"
         file: "blog/index.qmd"
       # - text: "Wiki"
