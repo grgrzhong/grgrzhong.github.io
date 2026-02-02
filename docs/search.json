@@ -350,11 +350,18 @@
     "text": "Illumina 5-base\n\nMap: Align reads to the reference.\nCall: Decide if a “T” is a 5th base (5mC) or a mutation.\nOverlay: Compare those sites to a database of known genes and CpG islands.\nCompare: Look for differences between samples to find “Biological Hits.”"
   },
   {
-    "objectID": "omics/10xgenomics/index.html",
-    "href": "omics/10xgenomics/index.html",
+    "objectID": "omics/10xgenomics/index.html#visium",
+    "href": "omics/10xgenomics/index.html#visium",
     "title": "10X Genomics",
-    "section": "",
-    "text": "Back to top"
+    "section": "Visium",
+    "text": "Visium"
+  },
+  {
+    "objectID": "omics/10xgenomics/index.html#xenium",
+    "href": "omics/10xgenomics/index.html#xenium",
+    "title": "10X Genomics",
+    "section": "Xenium",
+    "text": "Xenium"
   },
   {
     "objectID": "keyboard/index.html#shortcut",
@@ -364,39 +371,18 @@
     "text": "Shortcut\n\nGeneral Commands\n\n\n\n\n\n\n\n\nAction\nMac\nWindows\n\n\n\n\nCommand Palette\nCmd + Shift + P\nCtrl + Shift + P\n\n\nOpen Settings\nCmd + ,\nCtrl + ,\n\n\nKeyboard Shortcuts\nCmd + K Cmd + S\nCtrl + K Ctrl + S\n\n\nToggle Sidebar\nCmd + B\nCtrl + B\n\n\nFull Screen\nCmd + Ctrl + F\nF11\n\n\nOpen File\nCmd + P\nCtrl + P\n\n\nNew Window\nCmd + Shift + N\nCtrl + Shift + N\n\n\nClose Window\nCmd + Shift + W\nCtrl + Shift + W\n\n\n\n\n\nTerminal Management\n\n\n\n\n\n\n\n\nTerminal Management\n\n\n\n\n\n\nToggle Terminal\nCmd + `\nCtrl + `\n\n\nCreate New Terminal\nCmd + Shift + `\nCtrl + Shift + `\n\n\nNavigate Between Terminals\nCmd + Shift + [ / ]\nCtrl + PgUp / PgDn\n\n\nSplit Terminal\nCmd + \\\nCtrl + \\\n\n\nNavigate Between Split Terminal\nCmd + Option + ← / →\nAlt + ↑ / ↓\n\n\n\n\n\nEditor Management\n\n\n\n\n\n\n\n\nEditor Management\n\n\n\n\n\n\nClose Tab\nCmd + W\nCtrl + W\n\n\nSplit Editor\nCmd + \\\nCtrl + \\\n\n\nNavigate Tabs\nCmd + Shift + Tab\nCtrl + Shift + Tab\n\n\nNavigate Tab Groups\nCmd + 1 / 2 / 3\nCtrl + 1 / 2 / 3\n\n\n\n\n\nText Manipulation\n\n\n\n\n\n\n\n\nText Manipulation\n\n\n\n\n\n\nAdd Multiple Cursors\nCmd + Option + ↑ / ↓\nCtrl + Alt + ↑ / ↓\n\n\nScroll horizontal\nShift + Mouse wheel\nShift + Mouse wheel\n\n\nSelect Text\nCmd + Shift + ↑ / ↓\nCtrl + Shift + ↑ / ↓\n\n\nMove Line Up/Down\nOption + ↑ / ↓\nAlt + ↑ / ↓\n\n\nCopy Line Up/Down\nShift + Option + ↑ / ↓\nShift + Alt + ↑ / ↓\n\n\nSelect Word\nCmd + D\nCtrl + D\n\n\nSelect Current Line\nCmd + L\nCtrl + L\n\n\nSelect All Occurrences\nCmd + Shift + L\nCtrl + Shift + L\n\n\nDelete Current Line\nCmd + Shift + K\nCtrl + Shift + K\n\n\nDelete Word Backward\nOption + Backspace\nCtrl + Backspace\n\n\nComment/Uncomment Lines\nCmd + /\nCtrl + /\n\n\n\n\n\nNavigation & Search\n\n\n\n\n\n\n\n\nNavigation & Search\n\n\n\n\n\n\nGo to Line\nCmd + G\nCtrl + G\n\n\nGo to last cursor position\nCtrl + -\nAlt + ←\n\n\nGo to next cursor position\nCtrl + Shift + -\nAlt + →\n\n\nGo to Word Start/End\nOption + ← / →\nCtrl + ← / →\n\n\nGo to Line Start/End\nCmd + ← / →\nHome / End\n\n\nGo to File Start/End\nCmd + ↑ / ↓\nCtrl + Home / End\n\n\nSearch Files\nCmd + Shift + F\nCtrl + Shift + F\n\n\nFind Text\nCmd + F\nCtrl + F\n\n\nReplace Text\nCmd + Option + F\nCtrl + H\n\n\n\n\n\nCode Formatting\n\n\n\n\n\n\n\n\nCode Formatting\n\n\n\n\n\n\nCode Folding\nCmd + Option + [ / ]\nCtrl + Shift + [ / ]\n\n\nIndent/Outdent Lines\nCmd + [ / ]\nCtrl + [ / ]\n\n\nFormat Selected Code\nCmd + K Cmd + F\nCtrl + K Ctrl + F\n\n\nFormat Document\nShift + Option + F\nShift + Alt + F"
   },
   {
-    "objectID": "imaging/index.html",
-    "href": "imaging/index.html",
-    "title": "Spatial",
+    "objectID": "data/index.html",
+    "href": "data/index.html",
+    "title": "",
     "section": "",
-    "text": "Enabling technologies from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x.\n\n\n\nBaSISS, base-specific ISS;\nCODEX, co-detection by indexing;\ncorrFISH, correlation FISH;\nDBiT-seq, deterministic barcoding in tissue for spatial omics sequencing;\nepiMERFISH, epigenetic MERFISH; FISSEQ, fluorescent ISS; HDST, high-definition spatial transcriptomics;\nhybISS, hybridization-based ISS;\nImmunoSABER, immunostaining with signal amplification by exchange reaction;\nMIBI-TOF, MIBI by time of flight;\nosmFISH, ouroboros smFISH, pciSeq, probabilistic cell typing by ISS;\nsmFISH, single-molecule FISH; ST, spatial transcriptomics;\nSTARmap, spatially resolved transcript amplicon readout mapping;\nStereo-seq, spatial enhanced resolution omics sequencing;\nTSCS, topographic single-cell sequencing; Visium HD, Visium high definition.\n\n\n\n\nSpatial omic analysis from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x."
+    "text": "👋 Hi, This is Guorui Zhong. Something about my stuff:"
   },
   {
-    "objectID": "imaging/index.html#latest-review",
-    "href": "imaging/index.html#latest-review",
-    "title": "Spatial",
-    "section": "",
-    "text": "Enabling technologies from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x.\n\n\n\nBaSISS, base-specific ISS;\nCODEX, co-detection by indexing;\ncorrFISH, correlation FISH;\nDBiT-seq, deterministic barcoding in tissue for spatial omics sequencing;\nepiMERFISH, epigenetic MERFISH; FISSEQ, fluorescent ISS; HDST, high-definition spatial transcriptomics;\nhybISS, hybridization-based ISS;\nImmunoSABER, immunostaining with signal amplification by exchange reaction;\nMIBI-TOF, MIBI by time of flight;\nosmFISH, ouroboros smFISH, pciSeq, probabilistic cell typing by ISS;\nsmFISH, single-molecule FISH; ST, spatial transcriptomics;\nSTARmap, spatially resolved transcript amplicon readout mapping;\nStereo-seq, spatial enhanced resolution omics sequencing;\nTSCS, topographic single-cell sequencing; Visium HD, Visium high definition.\n\n\n\n\nSpatial omic analysis from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x."
-  },
-  {
-    "objectID": "imaging/index.html#motivation",
-    "href": "imaging/index.html#motivation",
-    "title": "Spatial",
-    "section": "Motivation",
-    "text": "Motivation\n\nImaging-based phenotypic profiling enables systematic quantification of complex cellular phenotypes and tissue organizations under different treatment and disease conditions.\nCompare the morphology of cells from patients with and without disease, if we can find a difference in their profiles, this can serve as a diagnostic tool.\nEven better, we can test thousands of drugs to find any that are able to reverse the disease profile and make cells looks healthy again."
-  },
-  {
-    "objectID": "imaging/index.html#typical-analysis-workflow",
-    "href": "imaging/index.html#typical-analysis-workflow",
-    "title": "Spatial",
-    "section": "Typical Analysis workflow",
-    "text": "Typical Analysis workflow\n\nStep1: Image analysis\nStep2: Image quality control\nStep3: Preprocessing extracted features\nStep4: Dimensionality reduction\nStep5: Single-cell data aggregation\nStep6: Measuring profile similarity\nStep7: Assay quality assessment\nStep8: Downstream analysis"
-  },
-  {
-    "objectID": "imaging/index.html#reference",
-    "href": "imaging/index.html#reference",
-    "title": "Spatial",
-    "section": "Reference",
-    "text": "Reference\n\nAnne Carpenter - CellProfiler software- Image-Based Cell Profiling\nImage-Based Cell Profiling and Data Analysis\nAnalysis workflow for IMC data"
+    "objectID": "data/index.html#research-interests",
+    "href": "data/index.html#research-interests",
+    "title": "",
+    "section": "Research Interests",
+    "text": "Research Interests\n\nGenome edition technologies (e.g., CRISPR/Cas9) to dissect gene functions in cancer and immune cells.\nHigh-throughput imaging and computational analysis to study cell behaviors.\nSingle-cell omics to study cellular heterogeneity and dynamics.\nDevelop and use quantitative in vitro/image assays and machine learning models to predict the biological effects of genetic mutations, drugs and/or environmental agents."
   },
   {
     "objectID": "blog/2025/09/19/index.html",
@@ -2254,18 +2240,39 @@
     "text": "2021\n\n\n    \n    \n                  \n            June 1, 2021\n        \n        \n            Using greek unicode in Inkscape\n\n            \n            \n                \n                \n                    inkscape\n                \n                \n            \n            \n\n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n                  \n            March 16, 2021\n        \n        \n            Crop image and add scale bar with ImageJ/Fiji\n\n            \n            \n                \n                \n                    imagej\n                \n                \n            \n            \n\n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n                  \n            February 1, 2021\n        \n        \n            Punctuation marks words\n\n            \n            \n                \n                \n                    punctuation\n                \n                \n            \n            \n\n            I don't know why i can not remember this English punctuation marks\n        \n        \n        \n            \n        \n        \n    \n    \n    \n                  \n            January 2, 2021\n        \n        \n            Markdown input greek letters\n\n            \n            \n                \n                \n                    markdown\n                \n                \n            \n            \n\n            Commonly used greek letters when using markdown\n        \n        \n        \n            \n        \n        \n    \n    \n\nNo matching items"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "",
+    "objectID": "imaging/index.html",
+    "href": "imaging/index.html",
+    "title": "Spatial",
     "section": "",
-    "text": "👋 Hi, This is Guorui Zhong. Something about my stuff:"
+    "text": "Enabling technologies from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x.\n\n\n\nBaSISS, base-specific ISS;\nCODEX, co-detection by indexing;\ncorrFISH, correlation FISH;\nDBiT-seq, deterministic barcoding in tissue for spatial omics sequencing;\nepiMERFISH, epigenetic MERFISH; FISSEQ, fluorescent ISS; HDST, high-definition spatial transcriptomics;\nhybISS, hybridization-based ISS;\nImmunoSABER, immunostaining with signal amplification by exchange reaction;\nMIBI-TOF, MIBI by time of flight;\nosmFISH, ouroboros smFISH, pciSeq, probabilistic cell typing by ISS;\nsmFISH, single-molecule FISH; ST, spatial transcriptomics;\nSTARmap, spatially resolved transcript amplicon readout mapping;\nStereo-seq, spatial enhanced resolution omics sequencing;\nTSCS, topographic single-cell sequencing; Visium HD, Visium high definition.\n\n\n\n\nSpatial omic analysis from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x."
   },
   {
-    "objectID": "index.html#research-interests",
-    "href": "index.html#research-interests",
-    "title": "",
-    "section": "Research Interests",
-    "text": "Research Interests\n\nGenome edition technologies (e.g., CRISPR/Cas9) to dissect gene functions in cancer and immune cells.\nHigh-throughput imaging and computational analysis to study cell behaviors.\nSingle-cell omics to study cellular heterogeneity and dynamics.\nDevelop and use quantitative in vitro/image assays and machine learning models to predict the biological effects of genetic mutations, drugs and/or environmental agents."
+    "objectID": "imaging/index.html#latest-review",
+    "href": "imaging/index.html#latest-review",
+    "title": "Spatial",
+    "section": "",
+    "text": "Enabling technologies from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x.\n\n\n\nBaSISS, base-specific ISS;\nCODEX, co-detection by indexing;\ncorrFISH, correlation FISH;\nDBiT-seq, deterministic barcoding in tissue for spatial omics sequencing;\nepiMERFISH, epigenetic MERFISH; FISSEQ, fluorescent ISS; HDST, high-definition spatial transcriptomics;\nhybISS, hybridization-based ISS;\nImmunoSABER, immunostaining with signal amplification by exchange reaction;\nMIBI-TOF, MIBI by time of flight;\nosmFISH, ouroboros smFISH, pciSeq, probabilistic cell typing by ISS;\nsmFISH, single-molecule FISH; ST, spatial transcriptomics;\nSTARmap, spatially resolved transcript amplicon readout mapping;\nStereo-seq, spatial enhanced resolution omics sequencing;\nTSCS, topographic single-cell sequencing; Visium HD, Visium high definition.\n\n\n\n\nSpatial omic analysis from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x."
+  },
+  {
+    "objectID": "imaging/index.html#motivation",
+    "href": "imaging/index.html#motivation",
+    "title": "Spatial",
+    "section": "Motivation",
+    "text": "Motivation\n\nImaging-based phenotypic profiling enables systematic quantification of complex cellular phenotypes and tissue organizations under different treatment and disease conditions.\nCompare the morphology of cells from patients with and without disease, if we can find a difference in their profiles, this can serve as a diagnostic tool.\nEven better, we can test thousands of drugs to find any that are able to reverse the disease profile and make cells looks healthy again."
+  },
+  {
+    "objectID": "imaging/index.html#typical-analysis-workflow",
+    "href": "imaging/index.html#typical-analysis-workflow",
+    "title": "Spatial",
+    "section": "Typical Analysis workflow",
+    "text": "Typical Analysis workflow\n\nStep1: Image analysis\nStep2: Image quality control\nStep3: Preprocessing extracted features\nStep4: Dimensionality reduction\nStep5: Single-cell data aggregation\nStep6: Measuring profile similarity\nStep7: Assay quality assessment\nStep8: Downstream analysis"
+  },
+  {
+    "objectID": "imaging/index.html#reference",
+    "href": "imaging/index.html#reference",
+    "title": "Spatial",
+    "section": "Reference",
+    "text": "Reference\n\nAnne Carpenter - CellProfiler software- Image-Based Cell Profiling\nImage-Based Cell Profiling and Data Analysis\nAnalysis workflow for IMC data"
   },
   {
     "objectID": "linux/index.html",

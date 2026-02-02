@@ -40,7 +40,7 @@ website:
   page-navigation: true
   navbar:
     pinned: true
-    left:
+    right:
       # - text: "About"
       #   file: "index.qmd"
       - text: "Wiki"
@@ -125,7 +125,7 @@ format:
       toggle: true
     # highlight-style: github-dark
     # highlight-style: dracula
-    highlight-style: monokai
+    highlight-style: atom-one-dark
 
 # bibliography: files/bib/references.bib
 # csl: files/bib/chicago-author-date.csl
