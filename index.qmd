@@ -1,0 +1,51 @@
+---
+title: ""
+about:
+  template: trestles
+  image-width: 20em
+  image-shape: round
+#   image: /files/profiles/IMG_6045.jpg
+  links:
+    - icon: journal-check
+      # text: Google
+      aria-label: linkedin
+      href: https://scholar.google.com/citations?user=g0MfTPMAAAAJ&hl=en
+    - icon: github
+      # text: Github
+      aria-label: linkedin
+      href: https://guoruizhong.github.io/
+    - icon: linkedin
+      aria-label: linkedin
+      href: https://www.linkedin.com/in/guorui-zhong-754761185/
+
+format:
+  html:
+    toc: false
+    code-tools:
+      source: false
+---
+
+<!-- 👋 Hi, This is Guorui Zhong. Something about my stuff:
+
+- Cell biologist with applied skills in bioinformatics and computational biology.
+
+- Wet‑lab expertise in developing genome-editing cell models with CRISPR/Cas9.
+
+- Experienced in analyzing Multi-Omics dataset, including WGS, WES, RNA‑seq, scRNA-seq, methylation arrays, and proteomics datasets.
+
+- Experienced in imaging-based phenotypic profiling with machine learning application.
+
+- Skilled in R (tidyverse, Bioconductor, ggplot2) and expanding my Python toolkit. -->
+
+
+<!-- ## Research Interests
+
+
+* Genome edition technologies (e.g., CRISPR/Cas9) to dissect gene functions in cancer and immune cells.
+
+* High-throughput imaging and computational analysis to study cell behaviors.
+
+* Single-cell omics to study cellular heterogeneity and dynamics.
+
+* Develop and use quantitative in vitro/image assays and machine learning models to predict the biological effects of genetic mutations, drugs and/or environmental agents. -->
+
