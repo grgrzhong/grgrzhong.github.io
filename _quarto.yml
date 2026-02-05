@@ -123,9 +123,7 @@ format:
     code-tools:
       source: true
       toggle: true
-    # highlight-style: github-dark
-    # highlight-style: dracula
-    highlight-style: atom-one-dark
+    highlight-style: dracula
 
 # bibliography: files/bib/references.bib
 # csl: files/bib/chicago-author-date.csl

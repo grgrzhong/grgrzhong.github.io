@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5fa770aa67c23ef3364642465cd873db.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fc8d3d93f0a84b7619e1f8ff6eb63d42.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e51eca1863585e92b7208229328be413.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2f2396c06a81d93d55d53282a51878d1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="floating nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -199,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">February 2, 2026</p>
+        <p class="date-modified">February 5, 2026</p>
       </div>
     </div>
       
@@ -213,9 +213,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#chromium" id="toc-chromium" class="nav-link active" data-scroll-target="#chromium">Chromium</a></li>
-  <li><a href="#visium" id="toc-visium" class="nav-link" data-scroll-target="#visium">Visium</a></li>
-  <li><a href="#xenium" id="toc-xenium" class="nav-link" data-scroll-target="#xenium">Xenium</a></li>
+  <li><a href="#techniques" id="toc-techniques" class="nav-link active" data-scroll-target="#techniques">Techniques</a>
+  <ul class="collapse">
+  <li><a href="#scatac-gene-expression" id="toc-scatac-gene-expression" class="nav-link" data-scroll-target="#scatac-gene-expression">scATAC + Gene Expression</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -224,24 +225,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
-<section id="chromium" class="level2">
-<h2 class="anchored" data-anchor-id="chromium">Chromium</h2>
-</section>
-<section id="visium" class="level2">
-<h2 class="anchored" data-anchor-id="visium">Visium</h2>
-</section>
-<section id="xenium" class="level2">
-<h2 class="anchored" data-anchor-id="xenium">Xenium</h2>
+<section id="techniques" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="techniques">Techniques</h2>
+<ul>
+<li><p>Chromium</p></li>
+<li><p>Visium</p></li>
+<li><p>Xenium</p></li>
+</ul>
+<section id="scatac-gene-expression" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="scatac-gene-expression">scATAC + Gene Expression</h3>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="10x-Multiome-Workflow.png" class="img-fluid figure-img" alt="10x Multiome Workflow" width="800"></p>
+<figcaption class="margin-caption">10x Multiome workflow</figcaption>
+</figure>
+</div>
+<ul>
+<li>Unique benefits of 10x Multiome:
+<ul>
+<li>Cross-validate gene expression and chromatin accessibility data from the same cell</li>
+<li>Identify activate regulatory elements and map out high resolution gene regulatory networks</li>
+</ul></li>
+</ul>
 
 
 <!-- -->
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -715,11 +731,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Chromium</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Techniques</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visium</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chromium</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Xenium</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Visium</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Xenium</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">### scATAC + Gene Expression</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="al">![10x Multiome workflow](10x-Multiome-Workflow.png)</span>{fig-alt="10x Multiome Workflow" fig-align="center" width="800"}</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Unique benefits of 10x Multiome:</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Cross-validate gene expression and chromatin accessibility data from the same cell</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Identify activate regulatory elements and map out high resolution gene regulatory networks</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

@@ -93,6 +93,7 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
 ```
 ## VSCode Setup
 
+Remote Server Settings:
 ```json
 // Add these settings to the remote server
 {
@@ -102,9 +103,9 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
     "r.plot.useHttpgd": true,
     "r.rmarkdown.chunkBackgroundColor": "",
     "r.rterm.option": [
+        // "--r-binary=/home/zhonggr/miniforge3/envs/renv/bin/R",
         "--no-save",
-        "--no-restore",
-        "--r-binary=/home/zhonggr/miniforge3/envs/renv/bin/R"
+        "--no-restore"
     ],
     "r.rpath.linux": "/home/zhonggr/miniforge3/envs/renv/bin/R",
     "r.rterm.linux": "/home/zhonggr/miniforge3/envs/renv/bin/radian"
