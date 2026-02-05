@@ -25,9 +25,9 @@ format:
 
 * Xenium
 
-### scATAC + Gene Expression
+## scATAC + Gene Expression
 
-![10x Multiome workflow](10x-Multiome-Workflow.png){fig-alt="10x Multiome Workflow" fig-align="center" width="800"}
+![10x Multiome workflow](10x-Multiome-Workflow.png){fig-align="center" width="800"}
 
 * Unique benefits of 10x Multiome:
   * Cross-validate gene expression and chromatin accessibility data from the same cell

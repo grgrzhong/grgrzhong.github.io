@@ -354,14 +354,21 @@
     "href": "omics/10xgenomics/index.html",
     "title": "10X Genomics",
     "section": "",
-    "text": "Chromium\nVisium\nXenium\n\n\n\n\n\n\n10x Multiome workflow\n\n\n\nUnique benefits of 10x Multiome:\n\nCross-validate gene expression and chromatin accessibility data from the same cell\nIdentify activate regulatory elements and map out high resolution gene regulatory networks"
+    "text": "Chromium\nVisium\nXenium"
   },
   {
     "objectID": "omics/10xgenomics/index.html#techniques",
     "href": "omics/10xgenomics/index.html#techniques",
     "title": "10X Genomics",
     "section": "",
-    "text": "Chromium\nVisium\nXenium\n\n\n\n\n\n\n10x Multiome workflow\n\n\n\nUnique benefits of 10x Multiome:\n\nCross-validate gene expression and chromatin accessibility data from the same cell\nIdentify activate regulatory elements and map out high resolution gene regulatory networks"
+    "text": "Chromium\nVisium\nXenium"
+  },
+  {
+    "objectID": "omics/10xgenomics/index.html#scatac-gene-expression",
+    "href": "omics/10xgenomics/index.html#scatac-gene-expression",
+    "title": "10X Genomics",
+    "section": "scATAC + Gene Expression",
+    "text": "scATAC + Gene Expression\n\n\n\n10x Multiome workflow\n\n\n\nUnique benefits of 10x Multiome:\n\nCross-validate gene expression and chromatin accessibility data from the same cell\nIdentify activate regulatory elements and map out high resolution gene regulatory networks"
   },
   {
     "objectID": "keyboard/index.html#shortcut",
