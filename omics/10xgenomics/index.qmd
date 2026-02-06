@@ -23,11 +23,9 @@ format:
 
 ![](barcoding_process_in_Universal_3_assay.png){fig-align="center" width="800"}
 
-
-
 ![](barcoding_process_in_Universal_5_assay.png){fig-align="center" width="800"}
 
-![](barcoding_process_in_Universal_Flex_assay.png){fig-align="center" width="800"}
+![](barcoding_process_in_Flex_assay.png){fig-align="center" width="800"}
 
 
 

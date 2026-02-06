@@ -378,18 +378,39 @@
     "text": "Shortcut\n\nGeneral Commands\n\n\n\n\n\n\n\n\nAction\nMac\nWindows\n\n\n\n\nCommand Palette\nCmd + Shift + P\nCtrl + Shift + P\n\n\nOpen Settings\nCmd + ,\nCtrl + ,\n\n\nKeyboard Shortcuts\nCmd + K Cmd + S\nCtrl + K Ctrl + S\n\n\nToggle Sidebar\nCmd + B\nCtrl + B\n\n\nFull Screen\nCmd + Ctrl + F\nF11\n\n\nOpen File\nCmd + P\nCtrl + P\n\n\nNew Window\nCmd + Shift + N\nCtrl + Shift + N\n\n\nClose Window\nCmd + Shift + W\nCtrl + Shift + W\n\n\n\n\n\nTerminal Management\n\n\n\n\n\n\n\n\nTerminal Management\n\n\n\n\n\n\nToggle Terminal\nCmd + `\nCtrl + `\n\n\nCreate New Terminal\nCmd + Shift + `\nCtrl + Shift + `\n\n\nNavigate Between Terminals\nCmd + Shift + [ / ]\nCtrl + PgUp / PgDn\n\n\nSplit Terminal\nCmd + \\\nCtrl + \\\n\n\nNavigate Between Split Terminal\nCmd + Option + ← / →\nAlt + ↑ / ↓\n\n\n\n\n\nEditor Management\n\n\n\n\n\n\n\n\nEditor Management\n\n\n\n\n\n\nClose Tab\nCmd + W\nCtrl + W\n\n\nSplit Editor\nCmd + \\\nCtrl + \\\n\n\nNavigate Tabs\nCmd + Shift + Tab\nCtrl + Shift + Tab\n\n\nNavigate Tab Groups\nCmd + 1 / 2 / 3\nCtrl + 1 / 2 / 3\n\n\n\n\n\nText Manipulation\n\n\n\n\n\n\n\n\nText Manipulation\n\n\n\n\n\n\nAdd Multiple Cursors\nCmd + Option + ↑ / ↓\nCtrl + Alt + ↑ / ↓\n\n\nScroll horizontal\nShift + Mouse wheel\nShift + Mouse wheel\n\n\nSelect Text\nCmd + Shift + ↑ / ↓\nCtrl + Shift + ↑ / ↓\n\n\nMove Line Up/Down\nOption + ↑ / ↓\nAlt + ↑ / ↓\n\n\nCopy Line Up/Down\nShift + Option + ↑ / ↓\nShift + Alt + ↑ / ↓\n\n\nSelect Word\nCmd + D\nCtrl + D\n\n\nSelect Current Line\nCmd + L\nCtrl + L\n\n\nSelect All Occurrences\nCmd + Shift + L\nCtrl + Shift + L\n\n\nDelete Current Line\nCmd + Shift + K\nCtrl + Shift + K\n\n\nDelete Word Backward\nOption + Backspace\nCtrl + Backspace\n\n\nComment/Uncomment Lines\nCmd + /\nCtrl + /\n\n\n\n\n\nNavigation & Search\n\n\n\n\n\n\n\n\nNavigation & Search\n\n\n\n\n\n\nGo to Line\nCmd + G\nCtrl + G\n\n\nGo to last cursor position\nCtrl + -\nAlt + ←\n\n\nGo to next cursor position\nCtrl + Shift + -\nAlt + →\n\n\nGo to Word Start/End\nOption + ← / →\nCtrl + ← / →\n\n\nGo to Line Start/End\nCmd + ← / →\nHome / End\n\n\nGo to File Start/End\nCmd + ↑ / ↓\nCtrl + Home / End\n\n\nSearch Files\nCmd + Shift + F\nCtrl + Shift + F\n\n\nFind Text\nCmd + F\nCtrl + F\n\n\nReplace Text\nCmd + Option + F\nCtrl + H\n\n\n\n\n\nCode Formatting\n\n\n\n\n\n\n\n\nCode Formatting\n\n\n\n\n\n\nCode Folding\nCmd + Option + [ / ]\nCtrl + Shift + [ / ]\n\n\nIndent/Outdent Lines\nCmd + [ / ]\nCtrl + [ / ]\n\n\nFormat Selected Code\nCmd + K Cmd + F\nCtrl + K Ctrl + F\n\n\nFormat Document\nShift + Option + F\nShift + Alt + F"
   },
   {
-    "objectID": "data/index.html",
-    "href": "data/index.html",
-    "title": "",
+    "objectID": "imaging/index.html",
+    "href": "imaging/index.html",
+    "title": "Spatial",
     "section": "",
-    "text": "Back to top"
+    "text": "Enabling technologies from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x.\n\n\n\nBaSISS, base-specific ISS;\nCODEX, co-detection by indexing;\ncorrFISH, correlation FISH;\nDBiT-seq, deterministic barcoding in tissue for spatial omics sequencing;\nepiMERFISH, epigenetic MERFISH; FISSEQ, fluorescent ISS; HDST, high-definition spatial transcriptomics;\nhybISS, hybridization-based ISS;\nImmunoSABER, immunostaining with signal amplification by exchange reaction;\nMIBI-TOF, MIBI by time of flight;\nosmFISH, ouroboros smFISH, pciSeq, probabilistic cell typing by ISS;\nsmFISH, single-molecule FISH; ST, spatial transcriptomics;\nSTARmap, spatially resolved transcript amplicon readout mapping;\nStereo-seq, spatial enhanced resolution omics sequencing;\nTSCS, topographic single-cell sequencing; Visium HD, Visium high definition.\n\n\n\n\nSpatial omic analysis from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x."
   },
   {
-    "objectID": "data/404.html",
-    "href": "data/404.html",
-    "title": "Page not found!",
+    "objectID": "imaging/index.html#latest-review",
+    "href": "imaging/index.html#latest-review",
+    "title": "Spatial",
     "section": "",
-    "text": "oh noes! :(\nThe page or item that you’re looking for isn’t here!\n\n\n\n\n\n\n Back to top"
+    "text": "Enabling technologies from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x.\n\n\n\nBaSISS, base-specific ISS;\nCODEX, co-detection by indexing;\ncorrFISH, correlation FISH;\nDBiT-seq, deterministic barcoding in tissue for spatial omics sequencing;\nepiMERFISH, epigenetic MERFISH; FISSEQ, fluorescent ISS; HDST, high-definition spatial transcriptomics;\nhybISS, hybridization-based ISS;\nImmunoSABER, immunostaining with signal amplification by exchange reaction;\nMIBI-TOF, MIBI by time of flight;\nosmFISH, ouroboros smFISH, pciSeq, probabilistic cell typing by ISS;\nsmFISH, single-molecule FISH; ST, spatial transcriptomics;\nSTARmap, spatially resolved transcript amplicon readout mapping;\nStereo-seq, spatial enhanced resolution omics sequencing;\nTSCS, topographic single-cell sequencing; Visium HD, Visium high definition.\n\n\n\n\nSpatial omic analysis from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x."
+  },
+  {
+    "objectID": "imaging/index.html#motivation",
+    "href": "imaging/index.html#motivation",
+    "title": "Spatial",
+    "section": "Motivation",
+    "text": "Motivation\n\nImaging-based phenotypic profiling enables systematic quantification of complex cellular phenotypes and tissue organizations under different treatment and disease conditions.\nCompare the morphology of cells from patients with and without disease, if we can find a difference in their profiles, this can serve as a diagnostic tool.\nEven better, we can test thousands of drugs to find any that are able to reverse the disease profile and make cells looks healthy again."
+  },
+  {
+    "objectID": "imaging/index.html#typical-analysis-workflow",
+    "href": "imaging/index.html#typical-analysis-workflow",
+    "title": "Spatial",
+    "section": "Typical Analysis workflow",
+    "text": "Typical Analysis workflow\n\nStep1: Image analysis\nStep2: Image quality control\nStep3: Preprocessing extracted features\nStep4: Dimensionality reduction\nStep5: Single-cell data aggregation\nStep6: Measuring profile similarity\nStep7: Assay quality assessment\nStep8: Downstream analysis"
+  },
+  {
+    "objectID": "imaging/index.html#reference",
+    "href": "imaging/index.html#reference",
+    "title": "Spatial",
+    "section": "Reference",
+    "text": "Reference\n\nAnne Carpenter - CellProfiler software- Image-Based Cell Profiling\nImage-Based Cell Profiling and Data Analysis\nAnalysis workflow for IMC data"
   },
   {
     "objectID": "blog/2025/09/19/index.html",
@@ -1054,7 +1075,7 @@
     "href": "blog/2023/08/09/index.html#eestimate-batch-effect-and-other-artifacts-using-sva",
     "title": "Combat to remove batch effects in high-throughput experiments",
     "section": "Eestimate batch effect and other artifacts using sva",
-    "text": "Eestimate batch effect and other artifacts using sva\n\n### identify the number of latent factors that need to be estimated\nn_sv &lt;- num.sv(edata, mod, method = \"leek\")\nn_sv\n## [1] 2\n## estimate the surrogate variables\nsvaobj &lt;- sva(edata, mod, mod0, n.sv = n_sv)\n## Number of significant surrogate variables is:  2 \n## Iteration (out of 5 ):1  2  3  4  5\nstr(svaobj)\n## List of 4\n##  $ sv       : num [1:57, 1:2] -0.02717 -0.00618 0.07737 -0.00114 -0.02062 ...\n##  $ pprob.gam: num [1:22283] 0.999 0.977 1 1 1 ...\n##  $ pprob.b  : num [1:22283] 0.9956 0.9998 0.0702 0.9998 1 ...\n##  $ n.sv     : num 2\nsummary(lm(svaobj$sv ~ pheno$batch))\n## Response Y1 :\n## \n## Call:\n## lm(formula = Y1 ~ pheno$batch)\n## \n## Residuals:\n##      Min       1Q   Median       3Q      Max \n## -0.26953 -0.11076  0.00787  0.10399  0.19069 \n## \n## Coefficients:\n##              Estimate Std. Error t value Pr(&gt;|t|)\n## (Intercept) -0.018470   0.038694  -0.477    0.635\n## pheno$batch  0.006051   0.011253   0.538    0.593\n## \n## Residual standard error: 0.1345 on 55 degrees of freedom\n## Multiple R-squared:  0.00523,    Adjusted R-squared:  -0.01286 \n## F-statistic: 0.2891 on 1 and 55 DF,  p-value: 0.5929\n## \n## \n## Response Y2 :\n## \n## Call:\n## lm(formula = Y2 ~ pheno$batch)\n## \n## Residuals:\n##      Min       1Q   Median       3Q      Max \n## -0.23973 -0.07467 -0.02157  0.08116  0.25629 \n## \n## Coefficients:\n##              Estimate Std. Error t value Pr(&gt;|t|)    \n## (Intercept)  0.121112   0.034157   3.546 0.000808 ***\n## pheno$batch -0.039675   0.009933  -3.994 0.000194 ***\n## ---\n## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n## \n## Residual standard error: 0.1187 on 55 degrees of freedom\n## Multiple R-squared:  0.2248, Adjusted R-squared:  0.2107 \n## F-statistic: 15.95 on 1 and 55 DF,  p-value: 0.0001945\nboxplot(svaobj$sv[, 2] ~ pheno$batch)\npoints(svaobj$sv[, 2] ~ jitter(as.numeric(pheno$batch)), col = as.numeric(pheno$batch))\n\n\n\n\n\n\ndev.off()\n## null device \n##           1"
+    "text": "Eestimate batch effect and other artifacts using sva\n\n### identify the number of latent factors that need to be estimated\nn_sv &lt;- num.sv(edata, mod, method = \"leek\")\nn_sv\n## [1] 2\n## estimate the surrogate variables\nsvaobj &lt;- sva(edata, mod, mod0, n.sv = n_sv)\n## Number of significant surrogate variables is:  2 \n## Iteration (out of 5 ):1  2  3  4  5\nstr(svaobj)\n## List of 4\n##  $ sv       : num [1:57, 1:2] -0.02717 -0.00618 0.07737 -0.00114 -0.02062 ...\n##  $ pprob.gam: num [1:22283] 0.999 0.977 1 1 1 ...\n##  $ pprob.b  : num [1:22283] 0.9956 0.9998 0.0702 0.9998 1 ...\n##  $ n.sv     : num 2\nsummary(lm(svaobj$sv ~ pheno$batch))\n## Response Y1 :\n## \n## Call:\n## lm(formula = Y1 ~ pheno$batch)\n## \n## Residuals:\n##      Min       1Q   Median       3Q      Max \n## -0.26953 -0.11076  0.00787  0.10399  0.19069 \n## \n## Coefficients:\n##              Estimate Std. Error t value Pr(&gt;|t|)\n## (Intercept) -0.018470   0.038694  -0.477    0.635\n## pheno$batch  0.006051   0.011253   0.538    0.593\n## \n## Residual standard error: 0.1345 on 55 degrees of freedom\n## Multiple R-squared:  0.00523,    Adjusted R-squared:  -0.01286 \n## F-statistic: 0.2891 on 1 and 55 DF,  p-value: 0.5929\n## \n## \n## Response Y2 :\n## \n## Call:\n## lm(formula = Y2 ~ pheno$batch)\n## \n## Residuals:\n##      Min       1Q   Median       3Q      Max \n## -0.23973 -0.07467 -0.02157  0.08116  0.25629 \n## \n## Coefficients:\n##              Estimate Std. Error t value Pr(&gt;|t|)    \n## (Intercept)  0.121112   0.034157   3.546 0.000808 ***\n## pheno$batch -0.039675   0.009933  -3.994 0.000194 ***\n## ---\n## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n## \n## Residual standard error: 0.1187 on 55 degrees of freedom\n## Multiple R-squared:  0.2248, Adjusted R-squared:  0.2107 \n## F-statistic: 15.95 on 1 and 55 DF,  p-value: 0.0001945\nboxplot(svaobj$sv[, 2] ~ pheno$batch)\npoints(svaobj$sv[, 2] ~ jitter(as.numeric(pheno$batch)), col = as.numeric(pheno$batch))\n\n\n\n\n\n\n\ndev.off()\n## null device \n##           1"
   },
   {
     "objectID": "blog/2023/08/09/index.html#adjusting-for-surrogate-variables-using-f.pvalue-function",
@@ -1089,7 +1110,7 @@
     "href": "blog/2023/08/09/index.html#comparing-combat-and-linear-adjustment",
     "title": "Combat to remove batch effects in high-throughput experiments",
     "section": "Comparing ComBat and linear adjustment",
-    "text": "Comparing ComBat and linear adjustment\nWe can compare the estimated coefficients from Combat and linear adjustment by looking at the right coefficients for each model.\n\nplot(\n  fit$coefficients[2, ], combat_fit$coefficients[2, ], col = 4,\n  xlab = \"Linear Model\", ylab = \"Combat\", xlim = c(-5, 5), ylim = c(-5, 5)\n)\nabline(c(0, 1), col = 2, lwd = 3)\n\n\n\n\n\n\ndev.off()\n## null device \n##           1\n\n\n### Add the surrogate variables to the model matrix and perform model fit\nmodsv &lt;- cbind(mod, svaobj$sv)\nfitsv &lt;- lm.fit(modsv, t(edata))\n\n### Compare the fit from surrogate variable analysis to the other two\npar(mfrow = c(1, 2))\nplot(\n  fitsv$coefficients[2,], combat_fit$coefficients[2, ], \n  col = 2, xlab = \"SVA\", ylab = \"Combat\", xlim = c(-5, 5), ylim = c(-5, 5)\n)\nabline(c(0, 1), col = 1, lwd = 3)\nplot(\n  fitsv$coefficients[2,], fit$coefficients[2, ], \n  col = 2, xlab = \"SVA\", ylab = \"Linear model\", xlim = c(-5, 5), ylim = c(-5, 5)\n)\nabline(c(0, 1), col = 1, lwd = 3)\n\n\n\n\n\n\ndev.off()\n## null device \n##           1"
+    "text": "Comparing ComBat and linear adjustment\nWe can compare the estimated coefficients from Combat and linear adjustment by looking at the right coefficients for each model.\n\nplot(\n  fit$coefficients[2, ], combat_fit$coefficients[2, ], col = 4,\n  xlab = \"Linear Model\", ylab = \"Combat\", xlim = c(-5, 5), ylim = c(-5, 5)\n)\nabline(c(0, 1), col = 2, lwd = 3)\n\n\n\n\n\n\n\ndev.off()\n## null device \n##           1\n\n\n### Add the surrogate variables to the model matrix and perform model fit\nmodsv &lt;- cbind(mod, svaobj$sv)\nfitsv &lt;- lm.fit(modsv, t(edata))\n\n### Compare the fit from surrogate variable analysis to the other two\npar(mfrow = c(1, 2))\nplot(\n  fitsv$coefficients[2,], combat_fit$coefficients[2, ], \n  col = 2, xlab = \"SVA\", ylab = \"Combat\", xlim = c(-5, 5), ylim = c(-5, 5)\n)\nabline(c(0, 1), col = 1, lwd = 3)\nplot(\n  fitsv$coefficients[2,], fit$coefficients[2, ], \n  col = 2, xlab = \"SVA\", ylab = \"Linear model\", xlim = c(-5, 5), ylim = c(-5, 5)\n)\nabline(c(0, 1), col = 1, lwd = 3)\n\n\n\n\n\n\n\ndev.off()\n## null device \n##           1"
   },
   {
     "objectID": "blog/2023/08/09/index.html#combat-seq-for-batch-adjustment-on-rna-seq-count-data",
@@ -2247,39 +2268,11 @@
     "text": "2021\n\n\n    \n    \n                  \n            June 1, 2021\n        \n        \n            Using greek unicode in Inkscape\n\n            \n            \n                \n                \n                    inkscape\n                \n                \n            \n            \n\n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n                  \n            March 16, 2021\n        \n        \n            Crop image and add scale bar with ImageJ/Fiji\n\n            \n            \n                \n                \n                    imagej\n                \n                \n            \n            \n\n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n                  \n            February 1, 2021\n        \n        \n            Punctuation marks words\n\n            \n            \n                \n                \n                    punctuation\n                \n                \n            \n            \n\n            I don't know why i can not remember this English punctuation marks\n        \n        \n        \n            \n        \n        \n    \n    \n    \n                  \n            January 2, 2021\n        \n        \n            Markdown input greek letters\n\n            \n            \n                \n                \n                    markdown\n                \n                \n            \n            \n\n            Commonly used greek letters when using markdown\n        \n        \n        \n            \n        \n        \n    \n    \n\nNo matching items"
   },
   {
-    "objectID": "imaging/index.html",
-    "href": "imaging/index.html",
-    "title": "Spatial",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "",
     "section": "",
-    "text": "Enabling technologies from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x.\n\n\n\nBaSISS, base-specific ISS;\nCODEX, co-detection by indexing;\ncorrFISH, correlation FISH;\nDBiT-seq, deterministic barcoding in tissue for spatial omics sequencing;\nepiMERFISH, epigenetic MERFISH; FISSEQ, fluorescent ISS; HDST, high-definition spatial transcriptomics;\nhybISS, hybridization-based ISS;\nImmunoSABER, immunostaining with signal amplification by exchange reaction;\nMIBI-TOF, MIBI by time of flight;\nosmFISH, ouroboros smFISH, pciSeq, probabilistic cell typing by ISS;\nsmFISH, single-molecule FISH; ST, spatial transcriptomics;\nSTARmap, spatially resolved transcript amplicon readout mapping;\nStereo-seq, spatial enhanced resolution omics sequencing;\nTSCS, topographic single-cell sequencing; Visium HD, Visium high definition.\n\n\n\n\nSpatial omic analysis from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x."
-  },
-  {
-    "objectID": "imaging/index.html#latest-review",
-    "href": "imaging/index.html#latest-review",
-    "title": "Spatial",
-    "section": "",
-    "text": "Enabling technologies from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x.\n\n\n\nBaSISS, base-specific ISS;\nCODEX, co-detection by indexing;\ncorrFISH, correlation FISH;\nDBiT-seq, deterministic barcoding in tissue for spatial omics sequencing;\nepiMERFISH, epigenetic MERFISH; FISSEQ, fluorescent ISS; HDST, high-definition spatial transcriptomics;\nhybISS, hybridization-based ISS;\nImmunoSABER, immunostaining with signal amplification by exchange reaction;\nMIBI-TOF, MIBI by time of flight;\nosmFISH, ouroboros smFISH, pciSeq, probabilistic cell typing by ISS;\nsmFISH, single-molecule FISH; ST, spatial transcriptomics;\nSTARmap, spatially resolved transcript amplicon readout mapping;\nStereo-seq, spatial enhanced resolution omics sequencing;\nTSCS, topographic single-cell sequencing; Visium HD, Visium high definition.\n\n\n\n\nSpatial omic analysis from : Seferbekova, Zaira, Artem Lomakin, Lucy R. Yates, and Moritz Gerstung. “Spatial Biology of Cancer Evolution.” Nature Reviews Genetics 24, no. 5 (May 2023): 295–313. https://doi.org/10.1038/s41576-022-00553-x."
-  },
-  {
-    "objectID": "imaging/index.html#motivation",
-    "href": "imaging/index.html#motivation",
-    "title": "Spatial",
-    "section": "Motivation",
-    "text": "Motivation\n\nImaging-based phenotypic profiling enables systematic quantification of complex cellular phenotypes and tissue organizations under different treatment and disease conditions.\nCompare the morphology of cells from patients with and without disease, if we can find a difference in their profiles, this can serve as a diagnostic tool.\nEven better, we can test thousands of drugs to find any that are able to reverse the disease profile and make cells looks healthy again."
-  },
-  {
-    "objectID": "imaging/index.html#typical-analysis-workflow",
-    "href": "imaging/index.html#typical-analysis-workflow",
-    "title": "Spatial",
-    "section": "Typical Analysis workflow",
-    "text": "Typical Analysis workflow\n\nStep1: Image analysis\nStep2: Image quality control\nStep3: Preprocessing extracted features\nStep4: Dimensionality reduction\nStep5: Single-cell data aggregation\nStep6: Measuring profile similarity\nStep7: Assay quality assessment\nStep8: Downstream analysis"
-  },
-  {
-    "objectID": "imaging/index.html#reference",
-    "href": "imaging/index.html#reference",
-    "title": "Spatial",
-    "section": "Reference",
-    "text": "Reference\n\nAnne Carpenter - CellProfiler software- Image-Based Cell Profiling\nImage-Based Cell Profiling and Data Analysis\nAnalysis workflow for IMC data"
+    "text": "Back to top"
   },
   {
     "objectID": "linux/index.html",
