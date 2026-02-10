@@ -635,9 +635,9 @@ qstat -Q cgs -f
 #     started = True
 ```
 
-`-Q` - Show queue information (not job information).
-`-cgs` - The specific queue name to query.
-`-f` - Full/detailed output showing all queue attributes.
+* `-Q`: Show queue information (not job information)
+* `-cgs`: The specific queue name to query
+* `-f`: Full/detailed output showing all queue attributes
 
 
 ## Shell session
