@@ -35,8 +35,7 @@ pre.seq {
     border-radius: 4px;
     line-height: 1.6;
     overflow-x: auto;
-    
-    /* width: 120%;  Wider than default container */
+    width: 200%;  /* Wider than default container */
     /* max-width: 1400px;  Set maximum width */
     /* margin-left: -10%;  Center the wider box */
 }
