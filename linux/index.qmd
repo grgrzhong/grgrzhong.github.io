@@ -523,12 +523,12 @@ nano -miA file.txt
 * `-i`: Auto-indent new lines.
 * `-A`: Enable syntax highlighting.
 
-## Job Schedule
+## Cluster Job Scheduler
 
 ### OpenPBS
 OpenPBS (Portable Batch System) is an open-source workload manager and job scheduler used in High-Performance Computing (HPC) environments to automate and optimize the execution of tasks across clusters and clouds.
 
-* PBS job script
+**PBS job script**
 
 ```bash
 #!/bin/bash
@@ -548,8 +548,9 @@ module load python/3.8.5          # Load necessary modules
 python my_script.py               # Command to run your program
 ```
 
+**PBS environment variables**
+
 ```bash
-## Some variables
 $PBS_O_WORKDIR     # The directory from which the job was submitted
 $PBS_O_HOME        # The home directory of the user who submitted the job
 $PBS_JOBDIR        # The working directory for the job on the compute node
@@ -562,16 +563,16 @@ $PBS_QUEUE         # The name of the queue to which the job was submitted
 $PBS_JOBNAME       # The name of the job as specified in the job script
 ```
 
-The `qstat` command is used to request the status of jobs, queues, or a batch server:
-* `qsub job_script.pbs` - Submit a job
-* `qsub -v sample="$sample" -M "$EMAIL" pbs_1_cutadapt.pbs` - Submit a job with environment variables
-* `qstat` - Check job status
-* `qstat -u guorui -a` - Check all jobs for user guorui
-* `qdel job_id` - Delete a job  
-* `qhold job_id` - Hold a job  
-* `qrls job_id` - Release a held job  
+**Submit job scripts**
+```bash
+## Submit a job
+qsub job_script.pbs
 
+## Submit a job with environment variables.
+qsub -v sample="$sample" -M "$EMAIL" pbs_1_cutadapt.pbs
+```
 
+**Check job status**
 ```bash
 ## List finished job details in summary
 qstat -x job_id
@@ -581,16 +582,63 @@ qstat -H job_id
 qstat -x -f job_id
 qstat -x -f job_id | grepl "exec_host"
 
+## List all jobs for user guorui
+qstat -u guorui -a
+
 ## Find out all compute nodes allocated to a job
 for job_id in $(find . -name "log.*.e*" -printf "%f\n" | sed 's/.*\.e\([0-9]*\)$/\1/' | sort -n | uniq); do
     echo -n "Job ID: $job_id: "; qstat -x -f $job_id | grep exec_host
 done
 
+## Delete a job
+qdel job_id
+
+## Hold a job
+qhold job_id
+
+## Release a held job
+qrls job_id
+```
+
+**Stat interactive job**
+```bash
 ## Start and interactive job with 16 processors, 64GB memory, 24 hours walltime in cgs_queue
 qsub -I -q cgs_queue -l nodes=hpcf3-c01:ppn=16,walltime=12:00:00,mem=64gb
 qsub -I -q cgs_queue -l nodes=hpcf3-c02:ppn=16,walltime=12:00:00,mem=64gb
 qsub -I -q cgs_queue -l nodes=hpcf3-c03:ppn=16,walltime=12:00:00,mem=64gb
 ```
+
+**Check the permission of queue**
+```bash
+qstat -Q cgs -f
+
+# Queue: cgs
+#     queue_type = Execution
+#     total_jobs = 16
+#     state_count = Transit:0 Queued:10 Held:0 Waiting:0 Running:6 Exiting:0 Begu
+#         n:0 
+#     acl_user_enable = True
+#     acl_users = bioinfo,emiklin,irisxu,itsupport,julia,junyanzhong,manzhai,nicklin,
+#         rubyzhou,totochu
+#     resources_max.mem = 1024gb
+#     resources_max.ncpus = 64
+#     resources_max.nodect = 1
+#     resources_max.walltime = 1440:00:00
+#     resources_default.mem = 1gb
+#     resources_default.walltime = 24:00:00
+#     default_chunk.Qlist = cgs
+#     resources_assigned.mem = 3019898880kb
+#     resources_assigned.mpiprocs = 168
+#     resources_assigned.ncpus = 253
+#     resources_assigned.nodect = 6
+#     enabled = True
+#     started = True
+```
+
+`-Q` - Show queue information (not job information).
+`-cgs` - The specific queue name to query.
+`-f` - Full/detailed output showing all queue attributes.
+
 
 ## Shell session
 ### Tmux

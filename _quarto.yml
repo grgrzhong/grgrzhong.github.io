@@ -41,12 +41,10 @@ website:
   navbar:
     pinned: true
     left:
-      # - text: "About"
-      #   file: "index.qmd"
+      - text: "About"
+        file: "index.qmd"
       - text: "Wiki"
         file: "blog/index.qmd"
-      # - text: "Wiki"
-      #   file: "wiki/index.qmd"
       - text: "Linux"
         file: "linux/index.qmd"
       - text: "Python"
@@ -61,10 +59,10 @@ website:
             file: "omics/10xgenomics/index.qmd"
           - text: "Nanoporetech"
             file: "omics/nanoporetech/index.qmd"
-          - text: "File formats"
-            file: "omics/fileformats/index.qmd"
           - text: "Illumina"
             file: "omics/illumina/index.qmd"
+          - text: "File formats"
+            file: "omics/fileformats/index.qmd"
       # - text: "Stats"
       #   file: "stat/index.qmd"
       # - text: "Programming"

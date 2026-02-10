@@ -1,0 +1,48 @@
+/* Illumina library structure color scheme */
+/* Based on https://teichlab.github.io/scg_lib_structs/ */
+
+seq {
+    font-family: 'Courier New', 'Fira Mono', monospace;
+    font-size: 0.9em;
+}
+
+/* DNA sequence element colors */
+p5 {color: #08519c;}      /* Illumina P5 adaptor - dark blue */
+p7 {color: #a50f15;}      /* Illumina P7 adaptor - dark red */
+s5 {color: #6baed6;}      /* Truseq Read 1 / i5 related - light blue */
+s7 {color: #fc9272;}      /* Truseq Read 2 / i7 related - light salmon */
+r1 {color: #4a1486;}      /* Nextera Read 1 - dark purple */
+r2 {color: #6a51a3;}      /* Nextera Read 2 - purple */
+t7 {color: blue;}         /* i7 index (NNNN) - blue */
+cbc {color: #f768a1;}     /* Cell barcode - pink */
+umi {color: #807dba;}     /* UMI - light purple */
+me {color: #969696;}      /* Insert/methylation - gray */
+tso {color: #2ca25f;}     /* TSO - green */
+
+/* Sequencing primers */
+pe1 {color: #bcbddc;}
+pe2 {color: #9ebcda;}
+
+/* Additional elements */
+w1 {color: #f03b20;}      /* Warning/highlight - orange-red */
+nexus {color: #f0b7a6;}
+bulge {color: #f3b44e;}
+
+/* Custom formatting for code blocks with seq class */
+pre.seq {
+    background-color: #f8f9fa;
+    padding: 1em;
+    border-radius: 4px;
+    line-height: 1.6;
+    overflow-x: auto;
+    
+    /* width: 120%;  Wider than default container */
+    /* max-width: 1400px;  Set maximum width */
+    /* margin-left: -10%;  Center the wider box */
+}
+
+/* Make sure custom tags display as inline */
+p5, p7, s5, s7, r1, r2, t7, cbc, umi, me, tso, pe1, pe2, w1, nexus, bulge {
+    display: inline;
+    font-weight: normal;
+}
