@@ -17,82 +17,7 @@ format:
 
 ---
 
-## UNIX Shell Basics
-
-### Basic
-```bash
-pwd # Show current directory
-cd /path/to/directory # Change directory
-cd .. # Go up one level
-cd - # Go to previous directory
-cd ~ # Go to home directory
-ls # List files and folders
-ls -lhrt # List files with details, human-readable sizes, sorted by time, reverse order
-mkdir folder_name # Create a new folder
-mkdir -p /path/to/folder # Create nested folders
-mv old_name new_name # Rename or move file/folder
-rm file_name # Remove file
-rm -r folder_name # Remove folder recursively
-rm -f file_name # Force remove file without prompt
-rm -rf folder_name # Force remove folder recursively without prompt
-cp source_file destination_file # Copy file
-cp -a /source/folder /destination/folder # Copy folder recursively with attributes
-scp user@remote:/path/to/remote/file /local/destination/ # Copy file from remote server
-scp /local/file user@remote:/path/to/remote/destination/ # Copy file to remote server
-```
-
-```bash
-wc -l file_name # Count number of lines in a file
-cat file_name # Display file content
-zcat file_name.gz # Display compressed file content
-less file_name # View file content with pagination
-zless file_name.gz # View compressed file content with pagination
-head -n 10 file_name # Show first 10 lines of a file
-tail -n 10 file_name # Show last 10 lines of a file
-history # Show command history
-top # Display running processes
-htop # Interactive process viewer (may need installation)
-chmod 755 file_name # Change file permissions
-chmod +x file_name # Make file executable
-chown user:group file_name # Change file owner and group
-tar xzvf archive.tar.gz # Extract tar.gz archive
-tar czvf archive.tar.gz /path/to/folder # Create tar.gz archive
-tar xjvf archive.tar.bz2 # Extract tar.bz2 archive
-tar cjvf archive.tar.bz2 /path/to/folder # Create tar.bz2 archive
-unzip archive.zip # Extract zip archive
-zip -r archive.zip /path/to/folder # Create zip archive
-ping google.com # Check network connectivity
-ifconfig # Show network interfaces (may need installation)
-ip addr show # Show network interfaces (modern alternative to ifconfig)
-wget http://example.com/file # Download file from the internet
-curl -O http://example.com/file # Download file using curl
-```
-
-```bash
-sort file_name # Sort lines in a file
-sort -u file_name # Sort and remove duplicate lines
-uniq file_name # Remove duplicate lines (requires sorted input)
-diff file1 file2 # Compare two files line by line
-diff -r dir1 dir2 # Compare two directories recursively
-ln -s /path/to/target /path/to/symlink # Create a symbolic link
-tree /path/to/directory # Display directory structure as a tree (may need installation)
-tree -L 2 /path/to/directory # Display directory structure up to level 2
-du -h /path/to/directory # Show disk usage of a directory
-du -sh /path/to/directory # Show total disk usage of a directory
-du -sh /path/to/directory/*/ # Show disk usage of all subdirectories
-du -h --max-depth=1 /path/to/directory | sort -h # Show disk usage of subdirectories sorted by size
-rsync -av /source/folder/ /destination/folder/ # Sync folders
-rsync -auzP /source/folder/ user@remote:/destination/folder/ # Sync to remote server with compression and progress
-```
-
-```bash
-## Show current shell
-echo $SHELL
-
-## Change default shell to bash
-chsh -s /bin/bash
-chsh -s /bin/zsh
-```
+## Shell Basics
 
 ### grep
 `grep` Globally  search  a Regular Expression and Print: is a command-line utility for searching plain-text data sets for lines that match a specified pattern:
@@ -308,7 +233,7 @@ Change owner
 sudo chown username:groupname /path/to/folder
 ```
 
-## Data transfer
+## File transfer
 
 * Transfering data efficiently between local and remote systems:
   * `wget`: Download files directly from the internet to your local machine or server.
@@ -325,6 +250,9 @@ rsync -av --delete /source/folder/ /destination/folder/
 ## If you need two-way sync, run both directions
 rsync -av --delete /folder1/ /folder2/
 rsync -av --delete /folder2/ /folder1/
+
+## sync multiple folders at once
+rsync -avP /source/{folder1,folder2,folder3} /destination/
 
 ## Network sync
 rsync -av --delete /local/folder/ user@remote:/remote/folder/
@@ -523,10 +451,10 @@ nano -miA file.txt
 * `-i`: Auto-indent new lines.
 * `-A`: Enable syntax highlighting.
 
-## Cluster Job Scheduler
+## Job Scheduler
 
 ### OpenPBS
-OpenPBS (Portable Batch System) is an open-source workload manager and job scheduler used in High-Performance Computing (HPC) environments to automate and optimize the execution of tasks across clusters and clouds.
+OpenPBS (Portable Batch System) is an open-source workload manager and job scheduler used in High-Performance Computing (HPC) environments to automate and optimize the execution of tasks across  and clouds.
 
 **PBS job script**
 
@@ -776,7 +704,7 @@ alias sls="s -ls"      # list current running screen sessions
 :::
 
 
-## Software Environment
+## Software Manager
 
 ### Conda
 
@@ -864,6 +792,29 @@ conda remove --name old_env_name --all
 eval "$(pixi completion --shell bash)"  # or zsh
 ```
 
+```bash
+## Create a global pixi environment with specific R version and packages
+pixi global install -e renv \
+    r-base=4.5 \
+    r-languageserver \
+    r-tidyverse \
+    r-irkernel \
+    r-httpgd \
+    r-downlit \
+    r-xml2 \
+    r-markdown \
+    r-devtools \
+    radian
+
+## Print out  global pixi environments
+pixi global list
+
+## Add Bioconda Permanently
+pixi config append default-channels bioconda --global
+pixi config set default-channels '["conda-forge", "bioconda"]' --global
+
+```
+
 ## Git Version Control
 
 ```bash
@@ -930,7 +881,8 @@ git remote add origin <new-repository-url>
 git fetch origin
 git reset --hard origin/main
 ```
-## WSL
+
+## WSL Subsystem
 
 * System info
 ```bash

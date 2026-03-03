@@ -93,9 +93,8 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
 ```
 ## VSCode Setup
 
-Remote Server Settings:
+**Remote Server Settings:**
 ```json
-// Add these settings to the remote server
 {
     "r.alwaysUseActiveTerminal": true,
     "r.bracketedPaste": true,
@@ -109,6 +108,34 @@ Remote Server Settings:
     ],
     "r.rpath.linux": "/home/zhonggr/miniforge3/envs/renv/bin/R",
     "r.rterm.linux": "/home/zhonggr/miniforge3/envs/renv/bin/radian"
+}
+```
+
+```json
+{
+    "r.bracketedPaste": true,
+    "r.alwaysUseActiveTerminal": true,
+    "r.plot.useHttpgd": true,
+    "r.rterm.linux": "${userHome}/miniforge3/envs/renv/bin/radian",
+    "r.rpath.linux": "${userHome}/miniforge3/envs/renv/bin/R",
+    "r.rterm.mac": "${userHome}/miniforge3/envs/renv/bin/radian",
+    "r.rpath.mac": "${userHome}/miniforge3/envs/renv/bin/R",
+    "r.rterm.option": [
+        "--no-save", // Optional: Prevent saving workspace
+        "--no-restore", // Optional: Prevent restore workspace
+        "--no-site-file", // Optional: Avoid loading site-wide R profile
+        "--r-binary=${userHome}/miniforge3/envs/renv/bin/R"
+    ],
+    "r.libPaths": [
+        "${userHome}/miniforge3/envs/renv/lib/R/library"
+    ],
+    "r.plot.useHttpgd": true,
+    "[r]": {
+        "editor.defaultFormatter": "REditorSupport.r"
+    },
+    "files.associations": {
+        "*.rmd": "rmd"
+    },
 }
 ```
 
