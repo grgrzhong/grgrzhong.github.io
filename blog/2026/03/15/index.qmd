@@ -1,0 +1,748 @@
+---
+title: "Methods for Differential Expression Analysis"
+date: "2025-07-28"
+published-title: Created
+date-modified: last-modified
+categories: [RNA-seq, DESeq2, EdgeR, EBSeq]
+toc-title: "Contents"
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+execute:
+    eval: false
+---
+
+## DESeq2
+
+* Normalization method: median of ratios
+* Model: Generalized Linear Model (GLM) with negative binomial distribution
+* Statistical test: Wald test or Likelihood Ratio Test (LRT)
+* Multiple testing correction: Benjamini-Hochberg (BH) method to control the false discovery rate (FDR)
+* Output: log2 fold change, p-value, adjusted p-value
+* Application: datasets with small to moderate number of replicates (e.g., 3-5 replicates per condition); robust to outliers and low counts; can handle complex experimental designs
+
+### Running Example Dataset
+
+**Experimental design:** 2 groups × 3 biological replicates = 6 samples total, 5 genes.
+
+- **sampleA** (control): A1, A2, A3  
+- **sampleB** (treatment): B1, B2, B3
+
+| Gene | A1 | A2 | A3 | B1 | B2 | B3 | Expected |
+|:----:|:--:|:--:|:--:|:--:|:--:|:--:|:--------:|
+| ACTB | 95 | 100 | 105 | 140 | 150 | 160 | non-DE (housekeeping) |
+| GAPDH | 190 | 200 | 210 | 280 | 300 | 320 | non-DE (housekeeping) |
+| EEF2 | 76 | 80 | 84 | 112 | 120 | 128 | non-DE (housekeeping) |
+| MYC | 48 | 50 | 52 | 280 | 300 | 320 | **4× upregulated** in B |
+| TP53 | 152 | 160 | 168 | 56 | 60 | 64 | **4× downregulated** in B |
+
+::: {.callout-note}
+The B group has ~1.3–1.5× more total reads than the A group — a **sequencing depth difference**, not a biological difference. Normalization must correct for this before comparing expression levels.
+:::
+
+
+### Normalization
+
+**Goal:** Account for differences in sequencing depth and RNA composition between samples so that counts are comparable. DESeq2 uses the **median of ratios** method.
+
+**Step 1 — Geometric mean per gene (pseudo-reference)**
+
+For each gene, compute the geometric mean across all 6 samples. This serves as the reference baseline.
+
+$$\text{geo\_mean}_i = \left(\prod_{j=1}^{6} y_{ij}\right)^{1/6} = \exp\!\left(\frac{1}{6}\sum_{j=1}^{6} \ln y_{ij}\right)$$
+
+where $i$ = gene index, $j$ = sample index ($j = 1,\ldots,6$), $y_{ij}$ = raw count of gene $i$ in sample $j$, $n = 6$ = total number of samples.
+
+| Gene | Calculation | Geo Mean |
+|:----:|:----:|:----:|
+| ACTB | $(95 \times 100 \times 105 \times 140 \times 150 \times 160)^{1/6}$ | **122** |
+| GAPDH | $(190 \times 200 \times 210 \times 280 \times 300 \times 320)^{1/6}$ | **244** |
+| EEF2 | $(76 \times 80 \times 84 \times 112 \times 120 \times 128)^{1/6}$ | **98** |
+| MYC | $(48 \times 50 \times 52 \times 280 \times 300 \times 320)^{1/6}$ | **122** |
+| TP53 | $(152 \times 160 \times 168 \times 56 \times 60 \times 64)^{1/6}$ | **98** |
+
+::: {.callout-note}
+MYC and ACTB share the same geometric mean (~122) even though MYC is DE. This is because the geometric mean averages across both groups, reflecting the overall pool of counts — it is not an estimate of true expression.
+:::
+
+**Step 2 — Ratio of each sample count to the gene's geometric mean**
+
+For every sample $j$ and gene $i$: $r_{ij} = y_{ij} / \text{geo\_mean}_i$
+
+where $r_{ij}$ = ratio of the raw count to the pseudo-reference, $y_{ij}$ = raw count of gene $i$ in sample $j$, $\text{geo\_mean}_i$ = geometric mean of gene $i$ across all samples.
+
+| Gene | Geo Mean | A1 | A2 | A3 | B1 | B2 | B3 |
+|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
+| ACTB | 122 | 0.78 | 0.82 | 0.86 | 1.15 | 1.23 | 1.31 |
+| GAPDH | 244 | 0.78 | 0.82 | 0.86 | 1.15 | 1.23 | 1.31 |
+| EEF2 | 98 | 0.78 | 0.82 | 0.86 | 1.14 | 1.22 | 1.31 |
+| MYC | 122 | 0.39 | 0.41 | 0.43 | 2.30 | 2.46 | 2.62 |
+| TP53 | 98 | 1.55 | 1.63 | 1.71 | 0.57 | 0.61 | 0.65 |
+
+Notice: ACTB, GAPDH, EEF2 all have near-identical ratios within each sample (they track the sequencing depth). MYC and TP53 deviate because they are truly differentially expressed.
+
+**Step 3 — Size factor = median of ratios per sample**
+
+The **median** is taken column-wise across all 5 genes for each sample. Because the DE genes (MYC, TP53) go in *opposite* directions, their extreme ratios cancel out and the median reflects only sequencing depth.
+
+```r
+# Column-wise median of ratios
+size_factor_A1 <- median(c(0.78, 0.78, 0.78, 0.39, 1.55))  # = 0.78
+size_factor_A2 <- median(c(0.82, 0.82, 0.82, 0.41, 1.63))  # = 0.82
+size_factor_A3 <- median(c(0.86, 0.86, 0.86, 0.43, 1.71))  # = 0.86
+size_factor_B1 <- median(c(1.15, 1.15, 1.14, 2.30, 0.57))  # = 1.15
+size_factor_B2 <- median(c(1.23, 1.23, 1.22, 2.46, 0.61))  # = 1.23
+size_factor_B3 <- median(c(1.31, 1.31, 1.31, 2.62, 0.65))  # = 1.31
+```
+
+| Sample | A1 | A2 | A3 | B1 | B2 | B3 |
+|:------:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Size factor** | **0.78** | **0.82** | **0.86** | **1.15** | **1.23** | **1.31** |
+
+The A samples have size factors < 1 (lower depth) and B samples > 1 (higher depth), exactly reflecting the sequencing depth difference.
+
+**Step 4 — Normalized counts = raw count ÷ size factor**
+
+| Gene | A1 | A2 | A3 | B1 | B2 | B3 | Group A mean | Group B mean |
+|:----:|:--:|:--:|:--:|:--:|:--:|:--:|:----:|:----:|
+| ACTB | 122 | 122 | 122 | 122 | 122 | 122 | **122** | **122** |
+| GAPDH | 244 | 244 | 244 | 243 | 244 | 244 | **244** | **244** |
+| EEF2 | 97 | 98 | 98 | 97 | 98 | 98 | **98** | **98** |
+| MYC | 62 | 61 | 60 | 243 | 244 | 244 | **61** | **244** |
+| TP53 | 195 | 195 | 195 | 49 | 49 | 49 | **195** | **49** |
+
+After normalization: ACTB, GAPDH, and EEF2 have identical levels across both groups (as expected). MYC shows ~4× higher expression in B, and TP53 shows ~4× lower expression in B.
+
+::: {.callout-important}
+DESeq2 does **not** actually use normalized counts as input to the GLM. Instead, it passes the **raw counts** plus the size factors as an **offset** in the model. The normalized counts shown here are useful for visualization only.
+:::
+
+---
+
+### Dispersion estimation
+
+**Goal:** Estimate how much the counts for each gene vary across replicates beyond what Poisson noise alone would predict. This is the **dispersion parameter** $\alpha$ in the Negative Binomial model:
+
+$$\text{Var}(Y_{ij}) = \mu_{ij} + \alpha_i\,\mu_{ij}^2$$
+
+where $Y_{ij}$ = observed count for gene $i$ in sample $j$, $\mu_{ij}$ = expected (mean) count, $\alpha_i$ = gene-specific dispersion parameter (always $\geq 0$).
+
+When $\alpha_i = 0$, this reduces to Poisson. A larger $\alpha$ means more variability between replicates.
+
+**Why not just use Poisson?**
+
+RNA-seq counts are *overdispersed*: biological variation between replicates makes the variance larger than the mean. Ignoring this (using Poisson) leads to anti-conservative p-values and many false positives. The NB model explicitly accounts for this extra variability.
+
+**The three-step shrinkage procedure:**
+
+DESeq2 does not estimate dispersion independently per gene (unreliable with only 3 replicates). Instead it borrows information across all genes:
+1. **Gene-wise estimation:** Compute a raw dispersion estimate for each gene using the method of moments or MLE.
+2. **Trend fitting:** Fit a smooth curve of dispersion vs mean expression across all genes to capture the overall relationship.
+3. **Shrinkage:** For each gene, shrink its raw dispersion estimate towards the fitted trend value, with the amount of shrinkage depending on the gene's mean expression and the variability of the raw estimates.
+
+The final (shrunken) dispersion estimates for our example genes:
+
+| Gene | Mean expression | Estimated $\alpha$ | Interpretation |
+|:----:|:---------------:|:------------------:|:--------------|
+| ACTB | 122 | 0.00 | Perfectly uniform replicates (ideal) |
+| GAPDH | 244 | 0.00 | Perfectly uniform replicates (ideal) |
+| EEF2 | 98 | 0.00 | Perfectly uniform replicates (ideal) |
+| MYC | 61 (A) / 244 (B) | **0.04** | Low dispersion, high counts |
+| TP53 | 195 (A) / 49 (B) | **0.05** | Slightly higher dispersion, lower counts in B |
+
+::: {.callout-note}
+In real data, even housekeeping genes have some dispersion (e.g., α ≈ 0.01–0.05). The perfectly uniform values above are for illustration only.
+:::
+
+---
+
+### GLM fitting
+
+**Goal:** For each gene, fit a Negative Binomial Generalized Linear Model to estimate the **log2 fold change** ($\hat\beta_1$) between conditions.
+
+**The model for one gene, one sample:**
+
+$$\log(\mu_j) = \beta_0 + \beta_1 x_j + \log(s_j)$$
+
+| Term | Meaning |
+|:---|:---|
+| $\mu_j$ | Expected raw count in sample $j$ |
+| $\beta_0$ | Log mean expression in Group A (intercept) |
+| $\beta_1$ | **Log fold change** (B vs A) — the key parameter |
+| $x_j$ | Group indicator: 0 = sampleA, 1 = sampleB |
+| $s_j$ | Size factor (offset — normalization built into the model) |
+
+The term $\log(s_j)$ is a fixed offset, so the model estimates the *biological* differences only.
+
+**Estimating $\hat\beta_1$ for MYC (via MLE)**
+
+From the MLE score equations, the fitted group means satisfy:
+
+$$e^{\hat\beta_0} = \frac{\text{sum of raw counts}_A}{\text{sum of size factors}_A} = \frac{48+50+52}{0.78+0.82+0.86} = \frac{150}{2.46} = 61.0$$
+
+$$e^{\hat\beta_0+\hat\beta_1} = \frac{\text{sum of raw counts}_B}{\text{sum of size factors}_B} = \frac{280+300+320}{1.15+1.23+1.31} = \frac{900}{3.69} = 243.9$$
+
+$$\hat\beta_1 = \ln\!\left(\frac{243.9}{61.0}\right) = \ln(4.0) = 1.386 \text{ (natural log)}$$
+
+$$\boxed{\text{log2FC} = \frac{\hat\beta_1}{\ln 2} = \frac{1.386}{0.693} = 2.0}$$
+
+A log2FC of 2.0 means MYC is $2^2 = 4\times$ higher in sampleB. ✓
+
+**Estimating $\hat\beta_1$ for TP53**
+
+$$e^{\hat\beta_0} = \frac{152+160+168}{0.78+0.82+0.86} = \frac{480}{2.46} = 195.1$$
+
+$$e^{\hat\beta_0+\hat\beta_1} = \frac{56+60+64}{1.15+1.23+1.31} = \frac{180}{3.69} = 48.8$$
+
+$$\hat\beta_1 = \ln\!\left(\frac{48.8}{195.1}\right) = -1.385 \qquad \text{log2FC} = -2.0$$
+
+A log2FC of −2.0 means TP53 is $2^2 = 4\times$ lower in sampleB. ✓
+
+**Computing SE($\hat\beta_1$) via Fisher Information**
+
+The variance of $\hat\beta_1$ comes from the weighted Fisher information matrix $(\mathbf{X}^\top\mathbf{W}\mathbf{X})^{-1}$, where the NB weight for each sample is:
+
+$$w_j = \frac{\mu_j}{1 + \alpha\,\mu_j}$$
+
+where $w_j$ = NB weight for sample $j$ in the Fisher information matrix, $\mu_j$ = fitted count for sample $j$ under the estimated model, $\alpha$ = gene-specific dispersion parameter.
+
+For **MYC** ($\alpha = 0.04$), fitted counts $\mu_j = s_j \times e^{\hat\beta_0 + \hat\beta_1 x_j}$:
+
+| Sample | Group | $\mu_j$ | $w_j = \mu_j/(1+0.04\mu_j)$ |
+|:------:|:-----:|:-------:|:---------------------------:|
+| A1 | A | 0.78 × 61 = **48** | 48/(1+1.92) = **16.4** |
+| A2 | A | 0.82 × 61 = **50** | 50/(1+2.00) = **16.6** |
+| A3 | A | 0.86 × 61 = **52** | 52/(1+2.08) = **16.9** |
+| B1 | B | 1.15 × 244 = **281** | 281/(1+11.24) = **22.9** |
+| B2 | B | 1.23 × 244 = **300** | 300/(1+12.00) = **23.1** |
+| B3 | B | 1.31 × 244 = **320** | 320/(1+12.80) = **23.2** |
+| | | $\Sigma w$ = **119.1** | $\Sigma_{B} w$ = **69.2** |
+
+$$\text{Var}(\hat\beta_1) = \frac{\Sigma w}{\Sigma w \cdot \Sigma_B w - (\Sigma_B w)^2} = \frac{119.1}{119.1 \times 69.2 - 69.2^2} = \frac{119.1}{69.2 \times 50.0} = 0.034$$
+
+where $\Sigma w$ = sum of weights across all 6 samples, $\Sigma_B w$ = sum of weights for Group B samples only ($\Sigma_A w = \Sigma w - \Sigma_B w$).
+
+$$\text{SE}(\hat\beta_1) = \sqrt{\text{Var}(\hat\beta_1)} = \sqrt{0.034} = 0.186$$
+
+---
+
+### Statistical testing
+
+**Goal:** Test whether $\hat\beta_1 \neq 0$ for each gene — i.e., is the fold change statistically significant?
+
+**Wald Test (default)**
+
+$$W = \frac{\hat\beta_1}{\text{SE}(\hat\beta_1)} \sim \mathcal{N}(0,1) \text{ under } H_0$$
+
+$$p = 2 \times \Phi(-|W|)$$
+
+where $W$ = Wald statistic, $\hat\beta_1$ = estimated log fold change (natural log scale), $\text{SE}(\hat\beta_1)$ = standard error of the estimate, $\mathcal{N}(0,1)$ = standard normal distribution, $H_0: \beta_1 = 0$ (no difference between groups), $\Phi(\cdot)$ = standard normal CDF, $p$ = two-sided p-value.
+
+**For MYC:**
+
+$$W_{MYC} = \frac{1.386}{0.186} = 7.45$$
+
+$$p_{MYC} = 2 \times \Phi(-7.45) \approx 9.4 \times 10^{-14}$$
+
+**For TP53** (with SE = 0.202 from similar calculation with $\alpha=0.05$):
+
+$$W_{TP53} = \frac{-1.385}{0.202} = -6.85$$
+
+$$p_{TP53} = 2 \times \Phi(-6.85) \approx 7.5 \times 10^{-12}$$
+
+**For non-DE genes** (ACTB, GAPDH, EEF2): $\hat\beta_1 \approx 0$, so $W \approx 0$ and $p \approx 1$.
+
+**Results (before multiple testing correction):**
+
+| Gene | $\hat\beta_1$ | log2FC | SE | Wald stat | p-value |
+|:----:|:-----:|:------:|:---:|:---------:|:-------:|
+| MYC | 1.386 | **2.00** | 0.186 | 7.45 | $9.4 \times 10^{-14}$ |
+| TP53 | −1.385 | **−2.00** | 0.202 | −6.85 | $7.5 \times 10^{-12}$ |
+| ACTB | ≈0 | **0.00** | — | ≈0 | ≈0.90 |
+| GAPDH | ≈0 | **0.00** | — | ≈0 | ≈0.95 |
+| EEF2 | ≈0 | **0.00** | — | ≈0 | ≈0.99 |
+
+::: {.callout-note}
+**When to use LRT instead?** The Wald test is used for pairwise comparisons (A vs B). The **Likelihood Ratio Test (LRT)** is better for complex designs, e.g., testing whether a factor explains variance across ≥3 groups, or for comparing nested models (full vs reduced design formula).
+:::
+
+---
+
+### Multiple testing correction
+
+**Problem:** When testing thousands of genes simultaneously, even a threshold of $p < 0.05$ produces many false positives by chance. With 20,000 genes tested, ~1,000 would appear significant purely by chance.
+
+**Solution:** Benjamini-Hochberg (BH) procedure controls the **False Discovery Rate (FDR)** — the expected proportion of significant results that are false positives.
+
+**BH procedure (illustrated with our 5 genes):**
+
+**Step 1 — Sort genes by p-value (ascending):**
+
+| Rank $k$ | Gene | p-value | BH threshold $\frac{k}{m} \times \text{FDR}$ | Significant? |
+|:--------:|:----:|:-------:|:-------------------------------------------:|:------------:|
+| 1 | MYC | $9.4 \times 10^{-14}$ | $\frac{1}{5} \times 0.05 = 0.010$ | ✅ $p < 0.010$ |
+| 2 | TP53 | $7.5 \times 10^{-12}$ | $\frac{2}{5} \times 0.05 = 0.020$ | ✅ $p < 0.020$ |
+| 3 | ACTB | 0.90 | $\frac{3}{5} \times 0.05 = 0.030$ | ❌ $p > 0.030$ |
+| 4 | GAPDH | 0.95 | $\frac{4}{5} \times 0.05 = 0.040$ | ❌ $p > 0.040$ |
+| 5 | EEF2 | 0.99 | $\frac{5}{5} \times 0.05 = 0.050$ | ❌ $p > 0.050$ |
+
+**Step 2 — Compute adjusted p-values (padj):**
+
+$$\text{padj}_k = \min\!\left(1,\; \frac{m}{k} \times p_k\right) \text{ (enforced non-decreasing from the bottom)}$$
+
+where $k$ = rank of the gene when all genes are sorted by p-value ascending (1 = smallest p-value), $m$ = total number of genes tested, $p_k$ = raw p-value of the gene at rank $k$.
+
+| Gene | p-value | padj | DEG? |
+|:----:|:-------:|:----:|:----:|
+| MYC | $9.4 \times 10^{-14}$ | $\mathbf{4.7 \times 10^{-13}}$ | ✅ |
+| TP53 | $7.5 \times 10^{-12}$ | $\mathbf{1.9 \times 10^{-11}}$ | ✅ |
+| ACTB | 0.90 | **1.00** | ❌ |
+| GAPDH | 0.95 | **1.00** | ❌ |
+| EEF2 | 0.99 | **1.00** | ❌ |
+
+::: {.callout-tip}
+In practice with thousands of genes, many non-DE genes will have padj between 0 and 1. Genes are typically called DEGs when **padj < 0.05** AND **|log2FC| ≥ 1** (2-fold change).
+:::
+
+**Final DESeq2 output table (`results()`):**
+
+| Gene | baseMean | log2FC | lfcSE | stat | pvalue | padj |
+|:----:|:--------:|:------:|:-----:|:----:|:------:|:----:|
+| MYC | 191.7 | **2.00** | 0.186 | 7.45 | $9.4 \times 10^{-14}$ | $4.7 \times 10^{-13}$ |
+| TP53 | 116.0 | **−2.00** | 0.202 | −6.85 | $7.5 \times 10^{-12}$ | $1.9 \times 10^{-11}$ |
+| ACTB | 122.0 | 0.00 | — | ≈0 | 0.90 | 1.00 |
+| GAPDH | 244.0 | 0.00 | — | ≈0 | 0.95 | 1.00 |
+| EEF2 | 98.0 | 0.00 | — | ≈0 | 0.99 | 1.00 |
+
+### Command
+
+```r
+library(DESeq2)
+
+# ── 1. Build DESeqDataSet ────────────────────────────────────────────────────
+# count_matrix : genes × samples matrix of raw integer counts
+# metadata     : data.frame with rows = samples, columns = covariates
+dds <- DESeqDataSetFromMatrix(
+    countData = count_matrix,
+    colData   = metadata,
+    design    = ~ condition      # 'condition' column contains "sampleA"/"sampleB"
+)
+
+# ── 2. Pre-filtering: drop genes with sum of counts < 10 ────────────────────
+dds <- dds[rowSums(counts(dds)) >= 10, ]
+
+# ── 3. Set reference level (control group first) ────────────────────────────
+dds$condition <- relevel(dds$condition, ref = "sampleA")
+
+# ── 4. Run full DESeq2 pipeline in one call ─────────────────────────────────
+#   Internally: estimateSizeFactors → estimateDispersions → nbinomWaldTest
+dds <- DESeq(dds)
+
+# ── 5. QC: inspect size factors and dispersion ──────────────────────────────
+sizeFactors(dds)
+plotDispEsts(dds)
+
+# ── 6. Extract results (sampleB vs sampleA) ─────────────────────────────────
+res <- results(
+    dds,
+    contrast = c("condition", "sampleB", "sampleA"),
+    alpha    = 0.05          # used for independent filtering threshold
+)
+summary(res)
+# Columns: baseMean | log2FoldChange | lfcSE | stat | pvalue | padj
+
+# ── 7. LFC shrinkage (recommended for visualisation and ranking) ─────────────
+#   apeglm shrinkage reduces noise for low-count genes
+res_shrunk <- lfcShrink(
+    dds,
+    coef = "condition_sampleB_vs_sampleA",
+    type = "apeglm"
+)
+
+# ── 8. Filter significant DEGs ───────────────────────────────────────────────
+degs <- subset(res_shrunk, padj < 0.05 & abs(log2FoldChange) >= 1)
+degs <- degs[order(degs$padj), ]
+nrow(degs)       # number of DEGs
+
+# ── 9. Exploratory plots ─────────────────────────────────────────────────────
+# Variance-stabilising transformation for PCA / heatmap
+vsd <- vst(dds, blind = TRUE)
+plotPCA(vsd, intgroup = "condition")
+
+# MA plot: log2FC vs mean expression; red = significant
+plotMA(res_shrunk, ylim = c(-5, 5))
+
+# ── 10. Save results ─────────────────────────────────────────────────────────
+write.csv(as.data.frame(res_shrunk), "DESeq2_results.csv", row.names = TRUE)
+write.csv(as.data.frame(degs),       "DESeq2_DEGs.csv",     row.names = TRUE)
+```
+
+---
+
+## EdgeR
+
+* Normalization method: Trimmed Mean of M-values (TMM)
+* Model: Negative Binomial GLM or Exact Test
+* Dispersion: common → trended → tagwise (empirical Bayes shrinkage)
+* Statistical test: Quasi-likelihood F-test (`glmQLFTest`) or Likelihood Ratio Test (`glmLRT`)
+* Multiple testing correction: Benjamini-Hochberg (BH)
+* Output: log2 fold change, p-value, FDR
+* Application: best for small sample sizes (n ≥ 2); supports complex multi-factor designs; slightly more powerful than DESeq2 when dispersion is low
+
+### Running Example Dataset
+
+Same 5-gene × 6-sample dataset used for DESeq2 (see above).
+
+| Gene | A1 | A2 | A3 | B1 | B2 | B3 | Expected |
+|:----:|:--:|:--:|:--:|:--:|:--:|:--:|:--------:|
+| ACTB | 95 | 100 | 105 | 140 | 150 | 160 | non-DE |
+| GAPDH | 190 | 200 | 210 | 280 | 300 | 320 | non-DE |
+| EEF2 | 76 | 80 | 84 | 112 | 120 | 128 | non-DE |
+| MYC | 48 | 50 | 52 | 280 | 300 | 320 | **4× up** in B |
+| TP53 | 152 | 160 | 168 | 56 | 60 | 64 | **4× down** in B |
+
+---
+
+### Normalization
+
+**Goal:** Correct for sequencing depth and RNA composition. EdgeR uses **TMM (Trimmed Mean of M-values)**, which corrects for the compositional bias that occurs when a few highly expressed genes dominate the library.
+
+**Key idea:** Two summary statistics are computed for each gene in each sample (relative to a reference sample):
+
+$$M_g = \log_2\!\left(\frac{y_{gk}/N_k}{y_{gR}/N_R}\right), \qquad A_g = \frac{1}{2}\log_2\!\left(\frac{y_{gk}}{N_k} \cdot \frac{y_{gR}}{N_R}\right)$$
+
+where $g$ = gene index, $k$ = sample being normalized, $R$ = reference sample (chosen as the sample whose 75th percentile count is closest to the mean 75th percentile), $y_{gk}$ = raw count of gene $g$ in sample $k$, $y_{gR}$ = raw count of gene $g$ in the reference sample, $N_k$ = total library size of sample $k$, $N_R$ = total library size of reference sample, $M_g$ = log-ratio (M-value) of expression between sample $k$ and reference, $A_g$ = average log-expression (A-value).
+
+**TMM trims** the top/bottom 30% of M-values and top/bottom 5% of A-values, then computes a **weighted mean** of the remaining M-values:
+
+$$\log_2(\text{TMM}_k) = \frac{\sum_{g \notin \text{trimmed}} w_g^* M_g}{\sum_{g \notin \text{trimmed}} w_g^*}$$
+
+where $\text{TMM}_k$ = TMM scaling factor for sample $k$, and $w_g^*$ = precision weight for gene $g$:
+
+$$w_g^* = \frac{N_k - y_{gk}}{N_k \cdot y_{gk}} + \frac{N_R - y_{gR}}{N_R \cdot y_{gR}}$$
+
+**Effective library sizes** then replace raw library sizes in all downstream calculations:
+
+$$\tilde{N}_k = N_k \times \text{TMM}_k$$
+
+where $\tilde{N}_k$ = effective library size for sample $k$, used in place of raw $N_k$ when computing CPM or fitting the model.
+
+**For our example:**
+
+| Sample | Raw library size $N_k$ | TMM factor | Effective size $\tilde{N}_k$ |
+|:------:|:----------------------:|:----------:|:----------------------------:|
+| A1 | 561 | 0.79 | 443 |
+| A2 | 590 | 0.82 | 484 |
+| A3 | 619 | 0.86 | 532 |
+| B1 | 868 | 1.16 | 1007 |
+| B2 | 930 | 1.23 | 1144 |
+| B3 | 992 | 1.30 | 1290 |
+
+::: {.callout-note}
+**TMM vs median-of-ratios (DESeq2):** Both methods account for sequencing depth and RNA composition. TMM trims extreme fold-change genes before computing the normalization factor; DESeq2 uses the median across all genes. In practice they produce very similar results. TMM is slightly more aggressive at removing outlier genes.
+:::
+
+---
+
+### Dispersion estimation
+
+EdgeR estimates dispersion in three steps, borrowing information across genes:
+
+**Step 1 — Common dispersion:** A single dispersion value $\phi_c$ is estimated for all genes jointly using Cox-Reid adjusted profile likelihood. This gives a stable starting estimate:
+
+$$\phi_c = \arg\max_\phi \; \text{CRAPL}(\phi \mid \text{all genes})$$
+
+where $\phi_c$ = common dispersion (one value for all genes), $\text{CRAPL}$ = Cox-Reid adjusted profile log-likelihood (accounts for the degrees of freedom used in estimating the mean).
+
+**Step 2 — Trended dispersion:** A smooth curve is fit relating dispersion to mean expression (higher-expressed genes tend to have lower dispersion):
+
+$$\log\hat\phi_g^{\text{trend}} = f(\log\bar\mu_g)$$
+
+where $\hat\phi_g^{\text{trend}}$ = trended dispersion estimate for gene $g$, $\bar\mu_g$ = mean normalized count of gene $g$ across samples, $f(\cdot)$ = locally weighted regression (loess) smooth fit.
+
+**Step 3 — Tagwise dispersion:** Each gene's dispersion is shrunk toward the trended value using empirical Bayes, weighted by the number of replicates and the variability of raw estimates:
+
+$$\hat\phi_g^{\text{tag}} = \lambda_g \hat\phi_g^{\text{raw}} + (1-\lambda_g)\hat\phi_g^{\text{trend}}$$
+
+where $\hat\phi_g^{\text{tag}}$ = final tagwise (per-gene) dispersion, $\hat\phi_g^{\text{raw}}$ = gene-wise dispersion from its own data only, $\lambda_g \in [0,1]$ = shrinkage weight (smaller with fewer replicates → more shrinkage toward trend), $\hat\phi_g^{\text{trend}}$ = trended dispersion at gene $g$'s mean expression.
+
+**For our example genes:**
+
+| Gene | Common $\phi_c$ | Trended $\hat\phi^{\text{trend}}$ | Tagwise $\hat\phi^{\text{tag}}$ |
+|:----:|:---------------:|:---------------------------------:|:-------------------------------:|
+| ACTB | 0.04 | 0.030 | 0.030 |
+| GAPDH | 0.04 | 0.025 | 0.025 |
+| EEF2 | 0.04 | 0.032 | 0.032 |
+| MYC | 0.04 | 0.030 | **0.040** |
+| TP53 | 0.04 | 0.032 | **0.048** |
+
+---
+
+### GLM fitting
+
+EdgeR fits the same **Negative Binomial GLM** as DESeq2, but uses effective library sizes instead of size factors:
+
+$$\log(\mu_{gj}) = \beta_{g0} + \beta_{g1} x_j + \log(\tilde{N}_j)$$
+
+where $\mu_{gj}$ = expected count for gene $g$ in sample $j$, $\beta_{g0}$ = log baseline expression in Group A, $\beta_{g1}$ = log fold change (B vs A) for gene $g$, $x_j$ = group indicator (0 = A, 1 = B), $\tilde{N}_j$ = effective library size (TMM-adjusted), used as an offset.
+
+The $\hat\beta_{g1}$ estimate and its SE follow the same MLE derivation as shown for DESeq2. For MYC using effective library sizes, the result is again $\text{log2FC} \approx 2.0$.
+
+::: {.callout-note}
+**EdgeR offers two GLM approaches:**
+
+- **`glmQLFit` + `glmQLFTest`** (recommended): Estimates a quasi-likelihood dispersion at the gene level using a squeeze toward a global value. More robust for small sample sizes — uses an F-test rather than a chi-squared test, giving better control of type I error.
+- **`glmFit` + `glmLRT`**: Classic likelihood ratio test. Slightly more powerful when the NB model assumptions hold perfectly.
+:::
+
+---
+
+### Statistical testing
+
+**Quasi-likelihood F-test (recommended)**
+
+$$F_g = \frac{(D_g^{\text{full}} - D_g^{\text{reduced}}) / df_1}{s_g^2} \sim F(df_1, df_2)$$
+
+where $F_g$ = quasi-likelihood F-statistic for gene $g$, $D_g^{\text{full}}$ = deviance under the full model (with group effect), $D_g^{\text{reduced}}$ = deviance under the reduced model (intercept only), $df_1$ = difference in model parameters (= 1 for a two-group comparison), $s_g^2$ = squeezed quasi-likelihood dispersion for gene $g$, $df_2$ = residual degrees of freedom after squeezing.
+
+For our example (sampleB vs sampleA), the F-statistic for MYC gives a p-value comparable to DESeq2's Wald test.
+
+**Results (before multiple testing correction):**
+
+| Gene | log2FC | logFC (natural) | F-stat | p-value | Expected |
+|:----:|:------:|:---------------:|:------:|:-------:|:--------:|
+| MYC | **2.00** | 1.386 | 52.1 | $1.1 \times 10^{-12}$ | ✅ DE |
+| TP53 | **−2.00** | −1.385 | 44.7 | $8.2 \times 10^{-11}$ | ✅ DE |
+| ACTB | 0.00 | ≈0 | ≈0 | ≈0.92 | ❌ non-DE |
+| GAPDH | 0.00 | ≈0 | ≈0 | ≈0.96 | ❌ non-DE |
+| EEF2 | 0.00 | ≈0 | ≈0 | ≈0.98 | ❌ non-DE |
+
+**Final EdgeR output table (`topTags()`):**
+
+| Gene | logFC | logCPM | F | PValue | FDR |
+|:----:|:-----:|:------:|:-:|:------:|:---:|
+| MYC | **2.00** | 7.4 | 52.1 | $1.1 \times 10^{-12}$ | $5.5 \times 10^{-12}$ |
+| TP53 | **−2.00** | 7.0 | 44.7 | $8.2 \times 10^{-11}$ | $2.1 \times 10^{-10}$ |
+| ACTB | 0.00 | 6.9 | ≈0 | 0.92 | 1.00 |
+| GAPDH | 0.00 | 7.9 | ≈0 | 0.96 | 1.00 |
+| EEF2 | 0.00 | 6.6 | ≈0 | 0.98 | 1.00 |
+
+where `logFC` = log2 fold change, `logCPM` = average log2 counts per million (measure of expression level), `F` = quasi-likelihood F-statistic, `PValue` = raw p-value, `FDR` = Benjamini-Hochberg adjusted p-value.
+
+---
+
+### Command
+
+```r
+library(edgeR)
+
+# ── 1. Create DGEList object ─────────────────────────────────────────────────
+# counts   : raw count matrix (genes × samples)
+# group    : factor vector of sample groups e.g. c("A","A","A","B","B","B")
+dge <- DGEList(counts = count_matrix, group = group)
+
+# ── 2. Filter lowly expressed genes ─────────────────────────────────────────
+#   Keep genes with CPM > 1 in at least (min) replicates per group
+keep <- filterByExpr(dge)
+dge  <- dge[keep, , keep.lib.sizes = FALSE]
+
+# ── 3. Normalise with TMM ────────────────────────────────────────────────────
+dge <- calcNormFactors(dge, method = "TMM")
+dge$samples   # inspect: norm.factors should be close to 1
+
+# ── 4. Define design matrix ──────────────────────────────────────────────────
+design <- model.matrix(~ 0 + group)            # no-intercept (one coef per group)
+colnames(design) <- levels(group)
+contrast_mat <- makeContrasts(sampleB - sampleA, levels = design)
+
+# ── 5. Estimate dispersion ───────────────────────────────────────────────────
+dge <- estimateDisp(dge, design)               # common → trended → tagwise
+plotBCV(dge)                                   # biological coefficient of variation
+
+# ── 6. Fit QL GLM ────────────────────────────────────────────────────────────
+fit <- glmQLFit(dge, design)
+plotQLDisp(fit)
+
+# ── 7. Test for DE (QL F-test) ───────────────────────────────────────────────
+qlf <- glmQLFTest(fit, contrast = contrast_mat)
+summary(decideTests(qlf))
+
+# ── 8. Extract top results ───────────────────────────────────────────────────
+res <- topTags(qlf, n = Inf, sort.by = "FDR")$table
+# Columns: logFC | logCPM | F | PValue | FDR
+
+# ── 9. Filter DEGs ───────────────────────────────────────────────────────────
+degs <- subset(res, FDR < 0.05 & abs(logFC) >= 1)
+
+# ── 10. Save results ─────────────────────────────────────────────────────────
+write.csv(res,  "EdgeR_results.csv", row.names = TRUE)
+write.csv(degs, "EdgeR_DEGs.csv",    row.names = TRUE)
+```
+
+---
+
+## EBSeq
+
+* Normalization method: median normalization (similar to DESeq2 median-of-ratios)
+* Model: Empirical Bayes mixture model — each gene is modeled as coming from a DE or non-DE component
+* Framework: **Bayesian** — outputs posterior probability rather than frequentist p-values
+* Output: PPDE (posterior probability of differential expression), fold change
+* Multiple testing: controlled via PPDE threshold (PPDE > 0.95 → FDR ≈ 5%)
+* Application: particularly useful when wanting probability-based inference; handles multi-group comparisons natively; robust when few replicates are available
+
+### Running Example Dataset
+
+Same 5-gene × 6-sample dataset as above.
+
+---
+
+### Normalization
+
+EBSeq uses **median normalization** — conceptually the same as DESeq2's median-of-ratios but computed more directly:
+
+$$s_j = \text{median}_{g}\!\left(\frac{y_{gj}}{\bar{y}_g}\right), \qquad \bar{y}_g = \frac{1}{n}\sum_{j=1}^n y_{gj}$$
+
+where $s_j$ = size factor for sample $j$, $y_{gj}$ = raw count of gene $g$ in sample $j$, $\bar{y}_g$ = arithmetic mean count of gene $g$ across all $n$ samples, $\text{median}_g$ = median taken across all genes $g$ for a fixed sample $j$.
+
+::: {.callout-note}
+EBSeq uses the **arithmetic mean** (not geometric mean) as the per-gene reference, whereas DESeq2 uses the geometric mean. For most datasets the resulting size factors are nearly identical. EBSeq's normalization is equivalent to `MedianNorm()` in the package.
+:::
+
+**For our example:**
+
+| Sample | A1 | A2 | A3 | B1 | B2 | B3 |
+|:------:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Size factor** | **0.77** | **0.81** | **0.85** | **1.14** | **1.22** | **1.30** |
+
+---
+
+### Empirical Bayes Mixture Model
+
+**Core idea:** Instead of asking "is the p-value small enough?", EBSeq asks "what is the probability that this gene is differentially expressed, given the data?"
+
+For each gene $g$, EBSeq fits a **two-component mixture** of Negative Binomial distributions:
+
+$$P(y_{gj} \mid \text{model}) = \pi_1 \cdot \text{NB}(\mu_{g}^{(1)}, \alpha^{(1)}) + \pi_0 \cdot \text{NB}(\mu_{gj}^{(0)}, \alpha^{(0)})$$
+
+where $\pi_1$ = prior probability that a gene is DE (mixture weight, estimated from all genes), $\pi_0 = 1 - \pi_1$ = prior probability of non-DE, $\text{NB}(\mu, \alpha)$ = Negative Binomial distribution with mean $\mu$ and dispersion $\alpha$, $\mu_g^{(1)}$ = group-specific means under the DE component (different in A vs B), $\mu_{gj}^{(0)}$ = single mean for all samples under the non-DE component.
+
+**Parameters are estimated by the EM algorithm:**
+
+| Step | What it does |
+|:-----|:-------------|
+| **E-step** | Compute posterior probability of DE for each gene given current parameters |
+| **M-step** | Update mixture weights $\pi_1, \pi_0$ and NB parameters to maximize expected log-likelihood |
+| **Repeat** | Until convergence (change in parameters < tolerance) |
+
+---
+
+### PPDE — Posterior Probability of Differential Expression
+
+After convergence, the key output for each gene is:
+
+$$\text{PPDE}_g = P(\text{gene } g \text{ is DE} \mid \mathbf{y}_g) = \frac{\pi_1 \cdot L_g^{(1)}}{\pi_1 \cdot L_g^{(1)} + \pi_0 \cdot L_g^{(0)}}$$
+
+where $\text{PPDE}_g$ = posterior probability that gene $g$ is DE, $L_g^{(1)}$ = likelihood of gene $g$'s counts under the DE component, $L_g^{(0)}$ = likelihood under the non-DE component, $\pi_1, \pi_0$ = estimated mixture weights (prior DE/non-DE probabilities).
+
+**Decision rule:** A gene is called DE when $\text{PPDE}_g > \delta$ for some threshold $\delta$. The expected FDR among all called genes is:
+
+$$\widehat{\text{FDR}} = \frac{\sum_{g: \text{PPDE}_g > \delta} (1 - \text{PPDE}_g)}{|\{g: \text{PPDE}_g > \delta\}|}$$
+
+where the numerator = expected number of false positives (sum of non-DE probabilities among called genes), the denominator = total number of genes called DE.
+
+Setting $\delta = 0.95$ controls FDR at approximately 5%.
+
+**For our example:**
+
+| Gene | $L_g^{(1)}$ (DE) | $L_g^{(0)}$ (non-DE) | PPDE | Called DE? |
+|:----:|:----------------:|:--------------------:|:----:|:----------:|
+| MYC | very high | very low | **0.9999** | ✅ |
+| TP53 | very high | very low | **0.9997** | ✅ |
+| ACTB | low | high | **0.0022** | ❌ |
+| GAPDH | low | high | **0.0018** | ❌ |
+| EEF2 | low | high | **0.0031** | ❌ |
+
+$\widehat{\text{FDR}} = \frac{(1-0.9999)+(1-0.9997)}{2} = \frac{0.0004}{2} = 0.0002$ — well below 5%.
+
+::: {.callout-note}
+**PPDE vs p-value:** PPDE directly answers "how likely is this gene to be DE?" — a probability statement. A raw p-value only answers "how unlikely is this data if the gene were not DE?" — a statement about the null hypothesis. High PPDE does not map directly to a specific p-value cutoff, but PPDE > 0.95 is roughly equivalent to FDR < 5%.
+:::
+
+**Final EBSeq output:**
+
+| Gene | PPDE | PostFC (B/A) | log2FC | Status |
+|:----:|:----:|:------------:|:------:|:------:|
+| MYC | 0.9999 | **4.00** | **2.00** | DE |
+| TP53 | 0.9997 | **0.25** | **−2.00** | DE |
+| ACTB | 0.0022 | 1.00 | 0.00 | non-DE |
+| GAPDH | 0.0018 | 1.00 | 0.00 | non-DE |
+| EEF2 | 0.0031 | 1.00 | 0.00 | non-DE |
+
+where `PostFC` = posterior fold change (B/A), computed as the ratio of posterior mean expression under the DE component; `log2FC` = $\log_2(\text{PostFC})$.
+
+---
+
+### Command
+
+```r
+library(EBSeq)
+
+# ── 1. Normalise counts ──────────────────────────────────────────────────────
+# count_matrix : genes × samples raw count matrix
+sizes <- MedianNorm(count_matrix)     # returns a vector of size factors
+sizes
+
+# ── 2. Define condition vector ───────────────────────────────────────────────
+# Must be a factor; order matters — first level = reference (Group A)
+conditions <- factor(c("A", "A", "A", "B", "B", "B"))
+
+# ── 3. Run EBSeq ─────────────────────────────────────────────────────────────
+#   ng     : number of EM iterations (default = 5, increase for stability)
+#   sizeFactors : normalization factors from MedianNorm
+eb_out <- EBTest(
+    Data        = count_matrix,
+    Conditions  = conditions,
+    sizeFactors = sizes,
+    maxround    = 5
+)
+
+# ── 4. Convergence check ─────────────────────────────────────────────────────
+eb_out$Alpha          # dispersion estimates
+eb_out$AllZero        # genes excluded due to all-zero counts
+
+# ── 5. Get posterior probabilities ───────────────────────────────────────────
+pp <- GetPPMat(eb_out)
+# Columns: PPEE (non-DE probability) | PPDE (DE probability)
+head(pp)
+
+# ── 6. Call DEGs at FDR ≤ 5% ─────────────────────────────────────────────────
+degs_list <- GetDEResults(eb_out, FDR = 0.05)
+# $DEgenes   : character vector of DE gene names
+# $PPMat     : full posterior probability matrix
+# $Status    : "DE" / "EE" (equally expressed) / "uncertain"
+
+length(degs_list$DEgenes)
+
+# ── 7. Compute posterior fold changes ───────────────────────────────────────
+fc_res <- PostFC(eb_out)
+# $PostFC   : posterior fold change (condition2 / condition1)
+# $RealFC   : simple ratio of group means
+# $Direction: "Up" or "Down" relative to condition1
+
+fold_changes <- fc_res$PostFC[degs_list$DEgenes]
+log2fc       <- log2(fold_changes)
+
+# ── 8. Combine into a results table ─────────────────────────────────────────
+results_df <- data.frame(
+    PPDE    = pp[, "PPDE"],
+    PostFC  = fc_res$PostFC,
+    log2FC  = log2(fc_res$PostFC),
+    Status  = degs_list$Status
+)
+results_df <- results_df[order(-results_df$PPDE), ]
+
+# ── 9. Save results ──────────────────────────────────────────────────────────
+write.csv(results_df, "EBSeq_results.csv", row.names = TRUE)
+```

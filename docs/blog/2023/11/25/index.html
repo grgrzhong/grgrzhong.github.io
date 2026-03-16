@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="description" content="The package that must to learn for scRNA-seq data analysis.">
+
 <title>Learning Seruat for scRNA-seq data analysis</title>
 <style>
 code{white-space: pre-wrap;}
@@ -55,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,12 +72,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-fc8d3d93f0a84b7619e1f8ff6eb63d42.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-2ff81c2e5dfd9e56c4f590b9591e1eb8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-2f2396c06a81d93d55d53282a51878d1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-9c2aaab9790670b45fa45e06564dade8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -98,25 +103,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><style>html{ scroll-behavior: smooth; }</style>
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <style>
 
       .quarto-title-block .quarto-title-banner {
         background: #212529;
       }
 </style>
+
+
 </head>
+
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -144,8 +155,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Omics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-omics">
-<li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-omics">    
+        <li>
     <a class="dropdown-item" href="../../../../omics/10xgenomics/index.html">
  <span class="dropdown-text">10X Genomics</span></a>
   </li>  
@@ -162,13 +173,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">File formats</span></a>
   </li>  
     </ul>
-</li>
+  </li>
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <div class="quarto-title-block"><div><h1 class="title">Learning Seruat for scRNA-seq data analysis</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
                   <div>
@@ -207,672 +222,735 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#load-packages-and-data" id="toc-load-packages-and-data" class="nav-link active" data-scroll-target="#load-packages-and-data">Load packages and data</a></li>
-  <li>
-<a href="#preprocess-data" id="toc-preprocess-data" class="nav-link" data-scroll-target="#preprocess-data">Preprocess data</a>
+  <li><a href="#load-packages-and-data" id="toc-load-packages-and-data" class="nav-link active" data-scroll-target="#load-packages-and-data">Load packages and data</a></li>
+  <li><a href="#preprocess-data" id="toc-preprocess-data" class="nav-link" data-scroll-target="#preprocess-data">Preprocess data</a>
   <ul>
-<li><a href="#qc" id="toc-qc" class="nav-link" data-scroll-target="#qc">QC</a></li>
+  <li><a href="#qc" id="toc-qc" class="nav-link" data-scroll-target="#qc">QC</a></li>
   <li><a href="#normalizing-the-data" id="toc-normalizing-the-data" class="nav-link" data-scroll-target="#normalizing-the-data">Normalizing the data</a></li>
   <li><a href="#highly-variable-features" id="toc-highly-variable-features" class="nav-link" data-scroll-target="#highly-variable-features">Highly variable features</a></li>
   <li><a href="#scaling-the-data" id="toc-scaling-the-data" class="nav-link" data-scroll-target="#scaling-the-data">Scaling the data</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#perform-linear-dimensional-reduction" id="toc-perform-linear-dimensional-reduction" class="nav-link" data-scroll-target="#perform-linear-dimensional-reduction">Perform linear dimensional reduction</a>
+  </ul></li>
+  <li><a href="#perform-linear-dimensional-reduction" id="toc-perform-linear-dimensional-reduction" class="nav-link" data-scroll-target="#perform-linear-dimensional-reduction">Perform linear dimensional reduction</a>
   <ul>
-<li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca">PCA</a></li>
+  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca">PCA</a></li>
   <li><a href="#visualize-it" id="toc-visualize-it" class="nav-link" data-scroll-target="#visualize-it">Visualize it</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#determine-the-dimensionality-of-the-dataset" id="toc-determine-the-dimensionality-of-the-dataset" class="nav-link" data-scroll-target="#determine-the-dimensionality-of-the-dataset">Determine the dimensionality of the dataset</a>
+  </ul></li>
+  <li><a href="#determine-the-dimensionality-of-the-dataset" id="toc-determine-the-dimensionality-of-the-dataset" class="nav-link" data-scroll-target="#determine-the-dimensionality-of-the-dataset">Determine the dimensionality of the dataset</a>
   <ul>
-<li><a href="#jackstrawplot" id="toc-jackstrawplot" class="nav-link" data-scroll-target="#jackstrawplot">JackStrawPlot</a></li>
+  <li><a href="#jackstrawplot" id="toc-jackstrawplot" class="nav-link" data-scroll-target="#jackstrawplot">JackStrawPlot</a></li>
   <li><a href="#elbow-plot" id="toc-elbow-plot" class="nav-link" data-scroll-target="#elbow-plot">Elbow plot</a></li>
   <li><a href="#significant-related-genes" id="toc-significant-related-genes" class="nav-link" data-scroll-target="#significant-related-genes">Significant related genes</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#cluster-the-cells" id="toc-cluster-the-cells" class="nav-link" data-scroll-target="#cluster-the-cells">Cluster the cells</a></li>
-  <li>
-<a href="#run-non-linear-dimensional-reduction" id="toc-run-non-linear-dimensional-reduction" class="nav-link" data-scroll-target="#run-non-linear-dimensional-reduction">Run non-linear dimensional reduction</a>
+  <li><a href="#run-non-linear-dimensional-reduction" id="toc-run-non-linear-dimensional-reduction" class="nav-link" data-scroll-target="#run-non-linear-dimensional-reduction">Run non-linear dimensional reduction</a>
   <ul>
-<li><a href="#umap" id="toc-umap" class="nav-link" data-scroll-target="#umap">UMAP</a></li>
+  <li><a href="#umap" id="toc-umap" class="nav-link" data-scroll-target="#umap">UMAP</a></li>
   <li><a href="#tsne" id="toc-tsne" class="nav-link" data-scroll-target="#tsne">tSNE</a></li>
   <li><a href="#compare" id="toc-compare" class="nav-link" data-scroll-target="#compare">Compare</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#finding-cluster-biomarkers" id="toc-finding-cluster-biomarkers" class="nav-link" data-scroll-target="#finding-cluster-biomarkers">Finding cluster biomarkers</a>
+  </ul></li>
+  <li><a href="#finding-cluster-biomarkers" id="toc-finding-cluster-biomarkers" class="nav-link" data-scroll-target="#finding-cluster-biomarkers">Finding cluster biomarkers</a>
   <ul>
-<li><a href="#find-clusters" id="toc-find-clusters" class="nav-link" data-scroll-target="#find-clusters">Find clusters</a></li>
+  <li><a href="#find-clusters" id="toc-find-clusters" class="nav-link" data-scroll-target="#find-clusters">Find clusters</a></li>
   <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#assign-cell-type-identity-to-clusters" id="toc-assign-cell-type-identity-to-clusters" class="nav-link" data-scroll-target="#assign-cell-type-identity-to-clusters">Assign cell type identity to clusters</a></li>
-  </ul></nav>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="load-packages-and-data" class="level2"><h2 class="anchored" data-anchor-id="load-packages-and-data">Load packages and data</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="load-packages-and-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-packages-and-data">Load packages and data</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Library packages</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://satijalab.org/seurat">Seurat</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">SingleR</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggrepel.slowkow.com/">ggrepel</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Load PBMC dataset</span></span>
-<span><span class="va">pbmc_data</span> <span class="op">&lt;-</span> <span class="fu">Read10X</span><span class="op">(</span>data.dir <span class="op">=</span> <span class="st">"./learn/2023_scRNA_Seurat/pbmc3k/hg19/"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Initialize the seurat boject witht raw (non-normalized data)</span></span>
-<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">CreateSeuratObject</span><span class="op">(</span></span>
-<span>    counts <span class="op">=</span> <span class="va">pbmc_data</span>, project <span class="op">=</span> <span class="st">"pbmc3k"</span>, min.cells <span class="op">=</span> <span class="fl">3</span>, min.features <span class="op">=</span> <span class="fl">200</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co"># View the data</span></span>
-<span><span class="va">pbmc</span></span>
-<span><span class="co">## An object of class Seurat </span></span>
-<span><span class="co">## 13714 features across 2700 samples within 1 assay </span></span>
-<span><span class="co">## Active assay: RNA (13714 features, 0 variable features)</span></span>
-<span><span class="co">##  1 layer present: counts</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">pbmc_data</span><span class="op">)</span></span>
-<span><span class="co">## [1] 32738  2700</span></span>
-<span></span>
-<span><span class="co"># Example a few genes in the first thirty cells</span></span>
-<span><span class="va">pbmc_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"CD3D"</span>, <span class="st">"TCL1A"</span>, <span class="st">"MS4A1"</span><span class="op">)</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">30</span><span class="op">]</span></span>
-<span><span class="co">## 3 x 30 sparse Matrix of class "dgCMatrix"</span></span>
-<span><span class="co">##                                                                    </span></span>
-<span><span class="co">## CD3D  4 . 10 . . 1 2 3 1 . . 2 7 1 . . 1 3 . 2  3 . . . . . 3 4 1 5</span></span>
-<span><span class="co">## TCL1A . .  . . . . . . 1 . . . . . . . . . . .  . 1 . . . . . . . .</span></span>
-<span><span class="co">## MS4A1 . 6  . . . . . . 1 1 1 . . . . . . . . . 36 1 2 . . 2 . . . .</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SingleR)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load PBMC dataset</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>pbmc_data <span class="ot">&lt;-</span> <span class="fu">Read10X</span>(<span class="at">data.dir =</span> <span class="st">"./learn/2023_scRNA_Seurat/pbmc3k/hg19/"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the seurat boject witht raw (non-normalized data)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">counts =</span> pbmc_data, <span class="at">project =</span> <span class="st">"pbmc3k"</span>, <span class="at">min.cells =</span> <span class="dv">3</span>, <span class="at">min.features =</span> <span class="dv">200</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># View the data</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>pbmc</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="do">## An object of class Seurat </span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 13714 features across 2700 samples within 1 assay </span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="do">## Active assay: RNA (13714 features, 0 variable features)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 layer present: counts</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pbmc_data)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 32738  2700</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Example a few genes in the first thirty cells</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>pbmc_data[<span class="fu">c</span>(<span class="st">"CD3D"</span>, <span class="st">"TCL1A"</span>, <span class="st">"MS4A1"</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 x 30 sparse Matrix of class "dgCMatrix"</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                    </span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="do">## CD3D  4 . 10 . . 1 2 3 1 . . 2 7 1 . . 1 3 . 2  3 . . . . . 3 4 1 5</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="do">## TCL1A . .  . . . . . . 1 . . . . . . . . . . .  . 1 . . . . . . . .</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="do">## MS4A1 . 6  . . . . . . 1 1 1 . . . . . . . . . 36 1 2 . . 2 . . . .</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="preprocess-data" class="level2"><h2 class="anchored" data-anchor-id="preprocess-data">Preprocess data</h2>
-<section id="qc" class="level3"><h3 class="anchored" data-anchor-id="qc">QC</h3>
+</section>
+<section id="preprocess-data" class="level2">
+<h2 class="anchored" data-anchor-id="preprocess-data">Preprocess data</h2>
+<section id="qc" class="level3">
+<h3 class="anchored" data-anchor-id="qc">QC</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># The [[ operator can add columns to object metadata. This is a great place to stash QC stats</span></span>
-<span><span class="va">pbmc</span><span class="op">[[</span><span class="st">"percent.mt"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">PercentageFeatureSet</span><span class="op">(</span><span class="va">pbmc</span>, pattern <span class="op">=</span> <span class="st">"^MT-"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Show QC metrics for the first 5 cells</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">@</span><span class="va">meta.data</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">##                  orig.ident nCount_RNA nFeature_RNA percent.mt</span></span>
-<span><span class="co">## AAACATACAACCAC-1     pbmc3k       2419          779  3.0177759</span></span>
-<span><span class="co">## AAACATTGAGCTAC-1     pbmc3k       4903         1352  3.7935958</span></span>
-<span><span class="co">## AAACATTGATCAGC-1     pbmc3k       3147         1129  0.8897363</span></span>
-<span><span class="co">## AAACCGTGCTTCCG-1     pbmc3k       2639          960  1.7430845</span></span>
-<span><span class="co">## AAACCGTGTATGCG-1     pbmc3k        980          521  1.2244898</span></span>
-<span></span>
-<span><span class="co"># Visualize QC metrics as a violin plot</span></span>
-<span><span class="fu">VlnPlot</span><span class="op">(</span><span class="va">pbmc</span>, features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nFeature_RNA"</span>, <span class="st">"nCount_RNA"</span>, <span class="st">"percent.mt"</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The [[ operator can add columns to object metadata. This is a great place to stash QC stats</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pbmc[[<span class="st">"percent.mt"</span>]] <span class="ot">&lt;-</span> <span class="fu">PercentageFeatureSet</span>(pbmc, <span class="at">pattern =</span> <span class="st">"^MT-"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show QC metrics for the first 5 cells</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pbmc<span class="sc">@</span>meta.data, <span class="dv">5</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">##                  orig.ident nCount_RNA nFeature_RNA percent.mt</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACATACAACCAC-1     pbmc3k       2419          779  3.0177759</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACATTGAGCTAC-1     pbmc3k       4903         1352  3.7935958</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACATTGATCAGC-1     pbmc3k       3147         1129  0.8897363</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACCGTGCTTCCG-1     pbmc3k       2639          960  1.7430845</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACCGTGTATGCG-1     pbmc3k        980          521  1.2244898</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize QC metrics as a violin plot</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">VlnPlot</span>(pbmc, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"nFeature_RNA"</span>, <span class="st">"nCount_RNA"</span>, <span class="st">"percent.mt"</span>), <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="co"># FeatureScatter is typically used to visualize feature-feature relationships, but can be used</span></span>
-<span><span class="co"># for anything calculated by the object, i.e. columns in object metadata, PC scores etc.</span></span>
-<span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">FeatureScatter</span><span class="op">(</span><span class="va">pbmc</span>, feature1 <span class="op">=</span> <span class="st">"nCount_RNA"</span>, feature2 <span class="op">=</span> <span class="st">"percent.mt"</span><span class="op">)</span></span>
-<span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">FeatureScatter</span><span class="op">(</span><span class="va">pbmc</span>, feature1 <span class="op">=</span> <span class="st">"nCount_RNA"</span>, feature2 <span class="op">=</span> <span class="st">"nFeature_RNA"</span><span class="op">)</span></span>
-<span><span class="va">plot1</span> <span class="op">+</span> <span class="va">plot2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># FeatureScatter is typically used to visualize feature-feature relationships, but can be used</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for anything calculated by the object, i.e. columns in object metadata, PC scores etc.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(pbmc, <span class="at">feature1 =</span> <span class="st">"nCount_RNA"</span>, <span class="at">feature2 =</span> <span class="st">"percent.mt"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(pbmc, <span class="at">feature1 =</span> <span class="st">"nCount_RNA"</span>, <span class="at">feature2 =</span> <span class="st">"nFeature_RNA"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">pbmc</span>, subset <span class="op">=</span> <span class="va">nFeature_RNA</span> <span class="op">&gt;</span> <span class="fl">200</span> <span class="op">&amp;</span> <span class="va">nFeature_RNA</span> <span class="op">&lt;</span> <span class="fl">2500</span> <span class="op">&amp;</span> <span class="va">percent.mt</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">subset</span>(pbmc, <span class="at">subset =</span> nFeature_RNA <span class="sc">&gt;</span> <span class="dv">200</span> <span class="sc">&amp;</span> nFeature_RNA <span class="sc">&lt;</span> <span class="dv">2500</span> <span class="sc">&amp;</span> percent.mt <span class="sc">&lt;</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="normalizing-the-data" class="level3"><h3 class="anchored" data-anchor-id="normalizing-the-data">Normalizing the data</h3>
+</section>
+<section id="normalizing-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="normalizing-the-data">Normalizing the data</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">NormalizeData</span><span class="op">(</span><span class="va">pbmc</span>, normalization.method <span class="op">=</span> <span class="st">"LogNormalize"</span>, scale.factor <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></span>
-<span><span class="co"># pbmc &lt;- NormalizeData(pbmc)</span></span>
-<span><span class="co"># pbmc@assays$RNA@counts is the raw count data</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span></span>
-<span><span class="co">## Formal class 'Seurat' [package "SeuratObject"] with 13 slots</span></span>
-<span><span class="co">##   ..@ assays      :List of 1</span></span>
-<span><span class="co">##   .. ..$ RNA:Formal class 'Assay5' [package "SeuratObject"] with 8 slots</span></span>
-<span><span class="co">##   .. .. .. ..@ layers    :List of 2</span></span>
-<span><span class="co">##   .. .. .. .. ..$ counts:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ i       : int [1:2238732] 29 73 80 148 163 184 186 227 229 230 ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ p       : int [1:2639] 0 779 2131 3260 4220 4741 5522 6304 7094 7626 ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ Dim     : int [1:2] 13714 2638</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ Dimnames:List of 2</span></span>
-<span><span class="co">##   .. .. .. .. .. .. .. ..$ : NULL</span></span>
-<span><span class="co">##   .. .. .. .. .. .. .. ..$ : NULL</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ x       : num [1:2238732] 1 1 2 1 1 1 1 41 1 1 ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ factors : list()</span></span>
-<span><span class="co">##   .. .. .. .. ..$ data  :Formal class 'dgCMatrix' [package "Matrix"] with 6 slots</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ i       : int [1:2238732] 29 73 80 148 163 184 186 227 229 230 ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ p       : int [1:2639] 0 779 2131 3260 4220 4741 5522 6304 7094 7626 ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ Dim     : int [1:2] 13714 2638</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ Dimnames:List of 2</span></span>
-<span><span class="co">##   .. .. .. .. .. .. .. ..$ : NULL</span></span>
-<span><span class="co">##   .. .. .. .. .. .. .. ..$ : NULL</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ x       : num [1:2238732] 1.64 1.64 2.23 1.64 1.64 ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..@ factors : list()</span></span>
-<span><span class="co">##   .. .. .. ..@ cells     :Formal class 'LogMap' [package "SeuratObject"] with 1 slot</span></span>
-<span><span class="co">##   .. .. .. .. .. ..@ .Data: logi [1:2638, 1:2] TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..- attr(*, "dimnames")=List of 2</span></span>
-<span><span class="co">##   .. .. .. .. .. .. .. ..$ : chr [1:2638] "AAACATACAACCAC-1" "AAACATTGAGCTAC-1" "AAACATTGATCAGC-1" "AAACCGTGCTTCCG-1" ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. .. ..$ : chr [1:2] "counts" "data"</span></span>
-<span><span class="co">##   .. .. .. .. .. ..$ dim     : int [1:2] 2638 2</span></span>
-<span><span class="co">##   .. .. .. .. .. ..$ dimnames:List of 2</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..$ : chr [1:2638] "AAACATACAACCAC-1" "AAACATTGAGCTAC-1" "AAACATTGATCAGC-1" "AAACCGTGCTTCCG-1" ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..$ : chr [1:2] "counts" "data"</span></span>
-<span><span class="co">##   .. .. .. ..@ features  :Formal class 'LogMap' [package "SeuratObject"] with 1 slot</span></span>
-<span><span class="co">##   .. .. .. .. .. ..@ .Data: logi [1:13714, 1:2] TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..- attr(*, "dimnames")=List of 2</span></span>
-<span><span class="co">##   .. .. .. .. .. .. .. ..$ : chr [1:13714] "AL627309.1" "AP006222.2" "RP11-206L10.2" "RP11-206L10.9" ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. .. ..$ : chr [1:2] "counts" "data"</span></span>
-<span><span class="co">##   .. .. .. .. .. ..$ dim     : int [1:2] 13714 2</span></span>
-<span><span class="co">##   .. .. .. .. .. ..$ dimnames:List of 2</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..$ : chr [1:13714] "AL627309.1" "AP006222.2" "RP11-206L10.2" "RP11-206L10.9" ...</span></span>
-<span><span class="co">##   .. .. .. .. .. .. ..$ : chr [1:2] "counts" "data"</span></span>
-<span><span class="co">##   .. .. .. ..@ default   : int 1</span></span>
-<span><span class="co">##   .. .. .. ..@ assay.orig: chr(0) </span></span>
-<span><span class="co">##   .. .. .. ..@ meta.data :'data.frame':  13714 obs. of  0 variables</span></span>
-<span><span class="co">##   .. .. .. ..@ misc      : Named list()</span></span>
-<span><span class="co">##   .. .. .. ..@ key       : chr "rna_"</span></span>
-<span><span class="co">##   ..@ meta.data   :'data.frame': 2638 obs. of  4 variables:</span></span>
-<span><span class="co">##   .. ..$ orig.ident  : Factor w/ 1 level "pbmc3k": 1 1 1 1 1 1 1 1 1 1 ...</span></span>
-<span><span class="co">##   .. ..$ nCount_RNA  : num [1:2638] 2419 4903 3147 2639 980 ...</span></span>
-<span><span class="co">##   .. ..$ nFeature_RNA: int [1:2638] 779 1352 1129 960 521 781 782 790 532 550 ...</span></span>
-<span><span class="co">##   .. ..$ percent.mt  : num [1:2638] 3.02 3.79 0.89 1.74 1.22 ...</span></span>
-<span><span class="co">##   ..@ active.assay: chr "RNA"</span></span>
-<span><span class="co">##   ..@ active.ident: Factor w/ 1 level "pbmc3k": 1 1 1 1 1 1 1 1 1 1 ...</span></span>
-<span><span class="co">##   .. ..- attr(*, "names")= chr [1:2638] "AAACATACAACCAC-1" "AAACATTGAGCTAC-1" "AAACATTGATCAGC-1" "AAACCGTGCTTCCG-1" ...</span></span>
-<span><span class="co">##   ..@ graphs      : list()</span></span>
-<span><span class="co">##   ..@ neighbors   : list()</span></span>
-<span><span class="co">##   ..@ reductions  : list()</span></span>
-<span><span class="co">##   ..@ images      : list()</span></span>
-<span><span class="co">##   ..@ project.name: chr "pbmc3k"</span></span>
-<span><span class="co">##   ..@ misc        : list()</span></span>
-<span><span class="co">##   ..@ version     :Classes 'package_version', 'numeric_version'  hidden list of 1</span></span>
-<span><span class="co">##   .. ..$ : int [1:3] 5 0 1</span></span>
-<span><span class="co">##   ..@ commands    :List of 1</span></span>
-<span><span class="co">##   .. ..$ NormalizeData.RNA:Formal class 'SeuratCommand' [package "SeuratObject"] with 5 slots</span></span>
-<span><span class="co">##   .. .. .. ..@ name       : chr "NormalizeData.RNA"</span></span>
-<span><span class="co">##   .. .. .. ..@ time.stamp : POSIXct[1:1], format: "2023-12-16 20:46:32"</span></span>
-<span><span class="co">##   .. .. .. ..@ assay.used : chr "RNA"</span></span>
-<span><span class="co">##   .. .. .. ..@ call.string: chr [1:2] "NormalizeData(pbmc, normalization.method = \"LogNormalize\", " "    scale.factor = 10000)"</span></span>
-<span><span class="co">##   .. .. .. ..@ params     :List of 5</span></span>
-<span><span class="co">##   .. .. .. .. ..$ assay               : chr "RNA"</span></span>
-<span><span class="co">##   .. .. .. .. ..$ normalization.method: chr "LogNormalize"</span></span>
-<span><span class="co">##   .. .. .. .. ..$ scale.factor        : num 10000</span></span>
-<span><span class="co">##   .. .. .. .. ..$ margin              : num 1</span></span>
-<span><span class="co">##   .. .. .. .. ..$ verbose             : logi TRUE</span></span>
-<span><span class="co">##   ..@ tools       : list()</span></span>
-<span></span>
-<span><span class="co"># Simply look at the data after normalization</span></span>
-<span><span class="co"># par(mfrow = c(1,2))</span></span>
-<span><span class="co"># hist(colSums(pbmc$RNA@counts@i),breaks = 50)</span></span>
-<span><span class="co"># hist(colSums(pbmc$RNA@data@i),breaks = 50)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(pbmc, <span class="at">normalization.method =</span> <span class="st">"LogNormalize"</span>, <span class="at">scale.factor =</span> <span class="dv">10000</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pbmc &lt;- NormalizeData(pbmc)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># pbmc@assays$RNA@counts is the raw count data</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pbmc)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Formal class 'Seurat' [package "SeuratObject"] with 13 slots</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ assays      :List of 1</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..$ RNA:Formal class 'Assay5' [package "SeuratObject"] with 8 slots</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ layers    :List of 2</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. ..$ counts:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ i       : int [1:2238732] 29 73 80 148 163 184 186 227 229 230 ...</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ p       : int [1:2639] 0 779 2131 3260 4220 4741 5522 6304 7094 7626 ...</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ Dim     : int [1:2] 13714 2638</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ Dimnames:List of 2</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. .. ..$ : NULL</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. .. ..$ : NULL</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ x       : num [1:2238732] 1 1 2 1 1 1 1 41 1 1 ...</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ factors : list()</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. ..$ data  :Formal class 'dgCMatrix' [package "Matrix"] with 6 slots</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ i       : int [1:2238732] 29 73 80 148 163 184 186 227 229 230 ...</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ p       : int [1:2639] 0 779 2131 3260 4220 4741 5522 6304 7094 7626 ...</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ Dim     : int [1:2] 13714 2638</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ Dimnames:List of 2</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. .. ..$ : NULL</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. .. ..$ : NULL</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ x       : num [1:2238732] 1.64 1.64 2.23 1.64 1.64 ...</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..@ factors : list()</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ cells     :Formal class 'LogMap' [package "SeuratObject"] with 1 slot</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. ..@ .Data: logi [1:2638, 1:2] TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..- attr(*, "dimnames")=List of 2</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. .. ..$ : chr [1:2638] "AAACATACAACCAC-1" "AAACATTGAGCTAC-1" "AAACATTGATCAGC-1" "AAACCGTGCTTCCG-1" ...</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. .. ..$ : chr [1:2] "counts" "data"</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. ..$ dim     : int [1:2] 2638 2</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. ..$ dimnames:List of 2</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..$ : chr [1:2638] "AAACATACAACCAC-1" "AAACATTGAGCTAC-1" "AAACATTGATCAGC-1" "AAACCGTGCTTCCG-1" ...</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..$ : chr [1:2] "counts" "data"</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ features  :Formal class 'LogMap' [package "SeuratObject"] with 1 slot</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. ..@ .Data: logi [1:13714, 1:2] TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..- attr(*, "dimnames")=List of 2</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. .. ..$ : chr [1:13714] "AL627309.1" "AP006222.2" "RP11-206L10.2" "RP11-206L10.9" ...</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. .. ..$ : chr [1:2] "counts" "data"</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. ..$ dim     : int [1:2] 13714 2</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. ..$ dimnames:List of 2</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..$ : chr [1:13714] "AL627309.1" "AP006222.2" "RP11-206L10.2" "RP11-206L10.9" ...</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. .. .. ..$ : chr [1:2] "counts" "data"</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ default   : int 1</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ assay.orig: chr(0) </span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ meta.data :'data.frame':  13714 obs. of  0 variables</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ misc      : Named list()</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ key       : chr "rna_"</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ meta.data   :'data.frame': 2638 obs. of  4 variables:</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..$ orig.ident  : Factor w/ 1 level "pbmc3k": 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..$ nCount_RNA  : num [1:2638] 2419 4903 3147 2639 980 ...</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..$ nFeature_RNA: int [1:2638] 779 1352 1129 960 521 781 782 790 532 550 ...</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..$ percent.mt  : num [1:2638] 3.02 3.79 0.89 1.74 1.22 ...</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ active.assay: chr "RNA"</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ active.ident: Factor w/ 1 level "pbmc3k": 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, "names")= chr [1:2638] "AAACATACAACCAC-1" "AAACATTGAGCTAC-1" "AAACATTGATCAGC-1" "AAACCGTGCTTCCG-1" ...</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ graphs      : list()</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ neighbors   : list()</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ reductions  : list()</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ images      : list()</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ project.name: chr "pbmc3k"</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ misc        : list()</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ version     :Classes 'package_version', 'numeric_version'  hidden list of 1</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..$ : int [1:3] 5 0 1</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ commands    :List of 1</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..$ NormalizeData.RNA:Formal class 'SeuratCommand' [package "SeuratObject"] with 5 slots</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ name       : chr "NormalizeData.RNA"</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ time.stamp : POSIXct[1:1], format: "2023-12-16 20:46:32"</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ assay.used : chr "RNA"</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ call.string: chr [1:2] "NormalizeData(pbmc, normalization.method = \"LogNormalize\", " "    scale.factor = 10000)"</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..@ params     :List of 5</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. ..$ assay               : chr "RNA"</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. ..$ normalization.method: chr "LogNormalize"</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. ..$ scale.factor        : num 10000</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. ..$ margin              : num 1</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. ..$ verbose             : logi TRUE</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..@ tools       : list()</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Simply look at the data after normalization</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="co"># par(mfrow = c(1,2))</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co"># hist(colSums(pbmc$RNA@counts@i),breaks = 50)</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="co"># hist(colSums(pbmc$RNA@data@i),breaks = 50)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="highly-variable-features" class="level3"><h3 class="anchored" data-anchor-id="highly-variable-features">Highly variable features</h3>
+</section>
+<section id="highly-variable-features" class="level3">
+<h3 class="anchored" data-anchor-id="highly-variable-features">Highly variable features</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">FindVariableFeatures</span><span class="op">(</span><span class="va">pbmc</span>, selection.method <span class="op">=</span> <span class="st">"vst"</span>, nfeatures <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Identify the 10 most highly variable genes</span></span>
-<span><span class="va">top10</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">VariableFeatures</span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span>, <span class="fl">10</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Plot variable features with and without labels</span></span>
-<span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">VariableFeaturePlot</span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span></span>
-<span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">LabelPoints</span><span class="op">(</span>plot <span class="op">=</span> <span class="va">plot1</span>, points <span class="op">=</span> <span class="va">top10</span>, repel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">plot1</span> <span class="op">+</span> <span class="va">plot2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(pbmc, <span class="at">selection.method =</span> <span class="st">"vst"</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the 10 most highly variable genes</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">VariableFeatures</span>(pbmc), <span class="dv">10</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot variable features with and without labels</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">VariableFeaturePlot</span>(pbmc)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">LabelPoints</span>(<span class="at">plot =</span> plot1, <span class="at">points =</span> top10, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="scaling-the-data" class="level3"><h3 class="anchored" data-anchor-id="scaling-the-data">Scaling the data</h3>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">all_genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span></span>
-<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">ScaleData</span><span class="op">(</span><span class="va">pbmc</span>, features <span class="op">=</span> <span class="va">all_genes</span><span class="op">)</span></span>
-<span><span class="co"># Remove unwanted sources of variation</span></span>
-<span><span class="co"># pbmc &lt;- ScaleData(pbmc, vars.to.regress = "percent.mt")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section></section><section id="perform-linear-dimensional-reduction" class="level2"><h2 class="anchored" data-anchor-id="perform-linear-dimensional-reduction">Perform linear dimensional reduction</h2>
-<section id="pca" class="level3"><h3 class="anchored" data-anchor-id="pca">PCA</h3>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">RunPCA</span><span class="op">(</span><span class="va">pbmc</span>, features <span class="op">=</span> <span class="fu">VariableFeatures</span><span class="op">(</span>object <span class="op">=</span> <span class="va">pbmc</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># Examine and visualize PCA results a few different ways</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">[[</span><span class="st">"pca"</span><span class="op">]</span><span class="op">]</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, nfeatures <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">## PC_ 1 </span></span>
-<span><span class="co">## Positive:  CST3, TYROBP, LST1, AIF1, FTL </span></span>
-<span><span class="co">## Negative:  MALAT1, LTB, IL32, IL7R, CD2 </span></span>
-<span><span class="co">## PC_ 2 </span></span>
-<span><span class="co">## Positive:  CD79A, MS4A1, TCL1A, HLA-DQA1, HLA-DQB1 </span></span>
-<span><span class="co">## Negative:  NKG7, PRF1, CST7, GZMB, GZMA </span></span>
-<span><span class="co">## PC_ 3 </span></span>
-<span><span class="co">## Positive:  HLA-DQA1, CD79A, CD79B, HLA-DQB1, HLA-DPB1 </span></span>
-<span><span class="co">## Negative:  PPBP, PF4, SDPR, SPARC, GNG11 </span></span>
-<span><span class="co">## PC_ 4 </span></span>
-<span><span class="co">## Positive:  HLA-DQA1, CD79B, CD79A, MS4A1, HLA-DQB1 </span></span>
-<span><span class="co">## Negative:  VIM, IL7R, S100A6, IL32, S100A8 </span></span>
-<span><span class="co">## PC_ 5 </span></span>
-<span><span class="co">## Positive:  GZMB, NKG7, S100A8, FGFBP2, GNLY </span></span>
-<span><span class="co">## Negative:  LTB, IL7R, CKB, VIM, MS4A7</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section><section id="visualize-it" class="level3"><h3 class="anchored" data-anchor-id="visualize-it">Visualize it</h3>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">VizDimLoadings</span><span class="op">(</span></span>
-<span>    <span class="va">pbmc</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, </span>
-<span>    nfeatures <span class="op">=</span> <span class="fl">20</span>,</span>
-<span>    reduction <span class="op">=</span> <span class="st">"pca"</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># PCA dotplot</span></span>
-<span><span class="fu">DimPlot</span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"pca"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">NoLegend</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="co"># PCA heatmap</span></span>
-<span><span class="fu">DimHeatmap</span><span class="op">(</span><span class="va">pbmc</span>, dims <span class="op">=</span> <span class="fl">1</span>, cells <span class="op">=</span> <span class="fl">500</span>, balanced <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">DimHeatmap</span><span class="op">(</span><span class="va">pbmc</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, cells <span class="op">=</span> <span class="fl">500</span>, balanced <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section></section><section id="determine-the-dimensionality-of-the-dataset" class="level2"><h2 class="anchored" data-anchor-id="determine-the-dimensionality-of-the-dataset">Determine the dimensionality of the dataset</h2>
-<section id="jackstrawplot" class="level3"><h3 class="anchored" data-anchor-id="jackstrawplot">JackStrawPlot</h3>
+</section>
+<section id="scaling-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="scaling-the-data">Scaling the data</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># NOTE: This process can take a long time for big datasets, comment out for expediency. More</span></span>
-<span><span class="co"># approximate techniques such as those implemented in ElbowPlot() can be used to reduce</span></span>
-<span></span>
-<span><span class="co"># Computation time</span></span>
-<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">JackStraw</span><span class="op">(</span><span class="va">pbmc</span>, num.replicate <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
-<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">ScoreJackStraw</span><span class="op">(</span><span class="va">pbmc</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">JackStrawPlot</span><span class="op">(</span><span class="va">pbmc</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>all_genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(pbmc)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(pbmc, <span class="at">features =</span> all_genes)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove unwanted sources of variation</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pbmc &lt;- ScaleData(pbmc, vars.to.regress = "percent.mt")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="perform-linear-dimensional-reduction" class="level2">
+<h2 class="anchored" data-anchor-id="perform-linear-dimensional-reduction">Perform linear dimensional reduction</h2>
+<section id="pca" class="level3">
+<h3 class="anchored" data-anchor-id="pca">PCA</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(pbmc, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(<span class="at">object =</span> pbmc))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine and visualize PCA results a few different ways</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pbmc[[<span class="st">"pca"</span>]], <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">nfeatures =</span> <span class="dv">5</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">## PC_ 1 </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Positive:  CST3, TYROBP, LST1, AIF1, FTL </span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Negative:  MALAT1, LTB, IL32, IL7R, CD2 </span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">## PC_ 2 </span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Positive:  CD79A, MS4A1, TCL1A, HLA-DQA1, HLA-DQB1 </span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Negative:  NKG7, PRF1, CST7, GZMB, GZMA </span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="do">## PC_ 3 </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Positive:  HLA-DQA1, CD79A, CD79B, HLA-DQB1, HLA-DPB1 </span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Negative:  PPBP, PF4, SDPR, SPARC, GNG11 </span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="do">## PC_ 4 </span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Positive:  HLA-DQA1, CD79B, CD79A, MS4A1, HLA-DQB1 </span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Negative:  VIM, IL7R, S100A6, IL32, S100A8 </span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="do">## PC_ 5 </span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Positive:  GZMB, NKG7, S100A8, FGFBP2, GNLY </span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Negative:  LTB, IL7R, CKB, VIM, MS4A7</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="visualize-it" class="level3">
+<h3 class="anchored" data-anchor-id="visualize-it">Visualize it</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VizDimLoadings</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    pbmc, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">nfeatures =</span> <span class="dv">20</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">reduction =</span> <span class="st">"pca"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA dotplot</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot</span>(pbmc, <span class="at">reduction =</span> <span class="st">"pca"</span>) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA heatmap</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">DimHeatmap</span>(pbmc, <span class="at">dims =</span> <span class="dv">1</span>, <span class="at">cells =</span> <span class="dv">500</span>, <span class="at">balanced =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DimHeatmap</span>(pbmc, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">cells =</span> <span class="dv">500</span>, <span class="at">balanced =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="elbow-plot" class="level3"><h3 class="anchored" data-anchor-id="elbow-plot">Elbow plot</h3>
+</section>
+</section>
+<section id="determine-the-dimensionality-of-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="determine-the-dimensionality-of-the-dataset">Determine the dimensionality of the dataset</h2>
+<section id="jackstrawplot" class="level3">
+<h3 class="anchored" data-anchor-id="jackstrawplot">JackStrawPlot</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ElbowPlot</span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process can take a long time for big datasets, comment out for expediency. More</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># approximate techniques such as those implemented in ElbowPlot() can be used to reduce</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Computation time</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">JackStraw</span>(pbmc, <span class="at">num.replicate =</span> <span class="dv">100</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">ScoreJackStraw</span>(pbmc, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">JackStrawPlot</span>(pbmc, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="significant-related-genes" class="level3"><h3 class="anchored" data-anchor-id="significant-related-genes">Significant related genes</h3>
+</section>
+<section id="elbow-plot" class="level3">
+<h3 class="anchored" data-anchor-id="elbow-plot">Elbow plot</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Returns a set of genes, based on the JackStraw analysis, that have statistically significant associations with a set of PCs.</span></span>
-<span><span class="co"># ?PCASigGenes</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">PCASigGenes</span><span class="op">(</span><span class="va">pbmc</span>,pcs.use<span class="op">=</span><span class="fl">2</span>,pval.cut <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## [1] "PPBP"   "LYZ"    "S100A9" "IGLL5"  "GNLY"   "FTL"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section></section><section id="cluster-the-cells" class="level2"><h2 class="anchored" data-anchor-id="cluster-the-cells">Cluster the cells</h2>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">FindNeighbors</span><span class="op">(</span><span class="va">pbmc</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">FindClusters</span><span class="op">(</span><span class="va">pbmc</span>, resolution <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
-<span><span class="co">## Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Number of nodes: 2638</span></span>
-<span><span class="co">## Number of edges: 95927</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Running Louvain algorithm...</span></span>
-<span><span class="co">## Maximum modularity in 10 random starts: 0.8728</span></span>
-<span><span class="co">## Number of communities: 9</span></span>
-<span><span class="co">## Elapsed time: 0 seconds</span></span>
-<span></span>
-<span><span class="co"># Look at cluster IDs of the first 5 cells</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">Idents</span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">## AAACATACAACCAC-1 AAACATTGAGCTAC-1 AAACATTGATCAGC-1 AAACCGTGCTTCCG-1 </span></span>
-<span><span class="co">##                2                3                2                1 </span></span>
-<span><span class="co">## AAACCGTGTATGCG-1 </span></span>
-<span><span class="co">##                6 </span></span>
-<span><span class="co">## Levels: 0 1 2 3 4 5 6 7 8</span></span>
-<span></span>
-<span><span class="co"># Look at the cells of specific cluster</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">@</span><span class="va">active.ident</span><span class="op">)</span>,<span class="va">pbmc</span><span class="op">@</span><span class="va">active.ident</span><span class="op">==</span><span class="st">"2"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">##                  pbmc@active.ident</span></span>
-<span><span class="co">## AAACATACAACCAC-1                 2</span></span>
-<span><span class="co">## AAACATTGATCAGC-1                 2</span></span>
-<span><span class="co">## AAACGCACTGGTAC-1                 2</span></span>
-<span><span class="co">## AAAGAGACGAGATA-1                 2</span></span>
-<span><span class="co">## AAAGCCTGTATGCG-1                 2</span></span>
-<span><span class="co">## AAATCAACTCGCAA-1                 2</span></span>
-<span></span>
-<span><span class="co"># Retrieve the cells of a cluster</span></span>
-<span><span class="va">subpbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">pbmc</span>,idents<span class="op">=</span><span class="st">"2"</span><span class="op">)</span></span>
-<span><span class="va">subpbmc</span></span>
-<span><span class="co">## An object of class Seurat </span></span>
-<span><span class="co">## 13714 features across 476 samples within 1 assay </span></span>
-<span><span class="co">## Active assay: RNA (13714 features, 2000 variable features)</span></span>
-<span><span class="co">##  3 layers present: counts, data, scale.data</span></span>
-<span><span class="co">##  1 dimensional reduction calculated: pca</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">subpbmc</span><span class="op">@</span><span class="va">active.ident</span>,<span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">## AAACATACAACCAC-1 AAACATTGATCAGC-1 AAACGCACTGGTAC-1 AAAGAGACGAGATA-1 </span></span>
-<span><span class="co">##                2                2                2                2 </span></span>
-<span><span class="co">## AAAGCCTGTATGCG-1 </span></span>
-<span><span class="co">##                2 </span></span>
-<span><span class="co">## Levels: 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section><section id="run-non-linear-dimensional-reduction" class="level2"><h2 class="anchored" data-anchor-id="run-non-linear-dimensional-reduction">Run non-linear dimensional reduction</h2>
-<section id="umap" class="level3"><h3 class="anchored" data-anchor-id="umap">UMAP</h3>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># If you haven't installed UMAP, you can do so via </span></span>
-<span><span class="co"># reticulate::py_install(packages = "umap-learn")</span></span>
-<span></span>
-<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">RunUMAP</span><span class="op">(</span><span class="va">pbmc</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Note that you can set `label = TRUE` or use the LabelClusters function to help label</span></span>
-<span><span class="co"># Individual clusters</span></span>
-<span><span class="fu">DimPlot</span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"umap"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ElbowPlot</span>(pbmc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="tsne" class="level3"><h3 class="anchored" data-anchor-id="tsne">tSNE</h3>
+</section>
+<section id="significant-related-genes" class="level3">
+<h3 class="anchored" data-anchor-id="significant-related-genes">Significant related genes</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">RunTSNE</span><span class="op">(</span><span class="va">pbmc</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">@</span><span class="va">reductions</span><span class="op">$</span><span class="va">tsne</span><span class="op">@</span><span class="va">cell.embeddings</span><span class="op">)</span></span>
-<span><span class="co">##                      tSNE_1     tSNE_2</span></span>
-<span><span class="co">## AAACATACAACCAC-1 -12.721811   6.420117</span></span>
-<span><span class="co">## AAACATTGAGCTAC-1 -20.682526 -22.307703</span></span>
-<span><span class="co">## AAACATTGATCAGC-1  -3.067779  23.686369</span></span>
-<span><span class="co">## AAACCGTGCTTCCG-1  30.350720  -9.899162</span></span>
-<span><span class="co">## AAACCGTGTATGCG-1 -35.994115   9.507508</span></span>
-<span><span class="co">## AAACGCACTGGTAC-1  -3.124182  12.680105</span></span>
-<span></span>
-<span><span class="fu">DimPlot</span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"tsne"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns a set of genes, based on the JackStraw analysis, that have statistically significant associations with a set of PCs.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?PCASigGenes</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">PCASigGenes</span>(pbmc,<span class="at">pcs.use=</span><span class="dv">2</span>,<span class="at">pval.cut =</span> <span class="fl">0.7</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "PPBP"   "LYZ"    "S100A9" "IGLL5"  "GNLY"   "FTL"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</div>
-</section><section id="compare" class="level3"><h3 class="anchored" data-anchor-id="compare">Compare</h3>
+</section>
+</section>
+<section id="cluster-the-cells" class="level2">
+<h2 class="anchored" data-anchor-id="cluster-the-cells">Cluster the cells</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Note that you can set `label = TRUE` or use the LabelClusters function to help label</span></span>
-<span><span class="co"># Individual clusters</span></span>
-<span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">DimPlot</span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"umap"</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">DimPlot</span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"tsne"</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">plot1</span> <span class="op">+</span> <span class="va">plot2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(pbmc, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(pbmc, <span class="at">resolution =</span> <span class="fl">0.5</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of nodes: 2638</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of edges: 95927</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Running Louvain algorithm...</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Maximum modularity in 10 random starts: 0.8728</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of communities: 9</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Elapsed time: 0 seconds</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at cluster IDs of the first 5 cells</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">Idents</span>(pbmc), <span class="dv">5</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACATACAACCAC-1 AAACATTGAGCTAC-1 AAACATTGATCAGC-1 AAACCGTGCTTCCG-1 </span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="do">##                2                3                2                1 </span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACCGTGTATGCG-1 </span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="do">##                6 </span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Levels: 0 1 2 3 4 5 6 7 8</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the cells of specific cluster</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">subset</span>(<span class="fu">as.data.frame</span>(pbmc<span class="sc">@</span>active.ident),pbmc<span class="sc">@</span>active.ident<span class="sc">==</span><span class="st">"2"</span>))</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="do">##                  pbmc@active.ident</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACATACAACCAC-1                 2</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACATTGATCAGC-1                 2</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACGCACTGGTAC-1                 2</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="do">## AAAGAGACGAGATA-1                 2</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="do">## AAAGCCTGTATGCG-1                 2</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="do">## AAATCAACTCGCAA-1                 2</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the cells of a cluster</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>subpbmc <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="at">x =</span> pbmc,<span class="at">idents=</span><span class="st">"2"</span>)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>subpbmc</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="do">## An object of class Seurat </span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="do">## 13714 features across 476 samples within 1 assay </span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Active assay: RNA (13714 features, 2000 variable features)</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 layers present: counts, data, scale.data</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 dimensional reduction calculated: pca</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(subpbmc<span class="sc">@</span>active.ident,<span class="dv">5</span>)</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACATACAACCAC-1 AAACATTGATCAGC-1 AAACGCACTGGTAC-1 AAAGAGACGAGATA-1 </span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="do">##                2                2                2                2 </span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="do">## AAAGCCTGTATGCG-1 </span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="do">##                2 </span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Levels: 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</div>
-</section></section><section id="finding-cluster-biomarkers" class="level2"><h2 class="anchored" data-anchor-id="finding-cluster-biomarkers">Finding cluster biomarkers</h2>
-<section id="find-clusters" class="level3"><h3 class="anchored" data-anchor-id="find-clusters">Find clusters</h3>
+</section>
+<section id="run-non-linear-dimensional-reduction" class="level2">
+<h2 class="anchored" data-anchor-id="run-non-linear-dimensional-reduction">Run non-linear dimensional reduction</h2>
+<section id="umap" class="level3">
+<h3 class="anchored" data-anchor-id="umap">UMAP</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Find all markers of cluster 2</span></span>
-<span><span class="va">cluster2_markers</span> <span class="op">&lt;-</span> <span class="fu">FindMarkers</span><span class="op">(</span><span class="va">pbmc</span>, ident.1 <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cluster2_markers</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">##             p_val avg_log2FC pct.1 pct.2    p_val_adj</span></span>
-<span><span class="co">## IL32 2.892340e-90  1.3070772 0.947 0.465 3.966555e-86</span></span>
-<span><span class="co">## LTB  1.060121e-86  1.3312674 0.981 0.643 1.453850e-82</span></span>
-<span><span class="co">## CD3D 8.794641e-71  1.0597620 0.922 0.432 1.206097e-66</span></span>
-<span><span class="co">## IL7R 3.516098e-68  1.4377848 0.750 0.326 4.821977e-64</span></span>
-<span><span class="co">## LDHB 1.642480e-67  0.9911924 0.954 0.614 2.252497e-63</span></span>
-<span></span>
-<span><span class="co"># Find all markers distinguishing cluster 5 from clusters 0 and 3</span></span>
-<span><span class="va">cluster5_markers</span> <span class="op">&lt;-</span> <span class="fu">FindMarkers</span><span class="op">(</span><span class="va">pbmc</span>, ident.1 <span class="op">=</span> <span class="fl">5</span>, ident.2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cluster5_markers</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">##                       p_val avg_log2FC pct.1 pct.2     p_val_adj</span></span>
-<span><span class="co">## FCGR3A        8.246578e-205   6.794969 0.975 0.040 1.130936e-200</span></span>
-<span><span class="co">## IFITM3        1.677613e-195   6.192558 0.975 0.049 2.300678e-191</span></span>
-<span><span class="co">## CFD           2.401156e-193   6.015172 0.938 0.038 3.292945e-189</span></span>
-<span><span class="co">## CD68          2.900384e-191   5.530330 0.926 0.035 3.977587e-187</span></span>
-<span><span class="co">## RP11-290F20.3 2.513244e-186   6.297999 0.840 0.017 3.446663e-182</span></span>
-<span></span>
-<span><span class="co"># Find markers for every cluster compared to all remaining cells, report only the positive ones</span></span>
-<span><span class="va">pbmc_markers</span> <span class="op">&lt;-</span> <span class="fu">FindAllMarkers</span><span class="op">(</span><span class="va">pbmc</span>, only.pos <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">pbmc_markers</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">cluster</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">filter</span><span class="op">(</span><span class="va">avg_log2FC</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 7,019 × 7</span></span>
-<span><span class="co">## # Groups:   cluster [9]</span></span>
-<span><span class="co">##        p_val avg_log2FC pct.1 pct.2 p_val_adj cluster gene     </span></span>
-<span><span class="co">##        &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;   &lt;chr&gt;    </span></span>
-<span><span class="co">##  1 3.75e-112       1.21 0.912 0.592 5.14e-108 0       LDHB     </span></span>
-<span><span class="co">##  2 9.57e- 88       2.40 0.447 0.108 1.31e- 83 0       CCR7     </span></span>
-<span><span class="co">##  3 1.15e- 76       1.06 0.845 0.406 1.58e- 72 0       CD3D     </span></span>
-<span><span class="co">##  4 1.12e- 54       1.04 0.731 0.4   1.54e- 50 0       CD3E     </span></span>
-<span><span class="co">##  5 1.35e- 51       2.14 0.342 0.103 1.86e- 47 0       LEF1     </span></span>
-<span><span class="co">##  6 1.94e- 47       1.20 0.629 0.359 2.66e- 43 0       NOSIP    </span></span>
-<span><span class="co">##  7 2.81e- 44       1.53 0.443 0.185 3.85e- 40 0       PIK3IP1  </span></span>
-<span><span class="co">##  8 6.27e- 43       1.99 0.33  0.112 8.60e- 39 0       PRKCQ-AS1</span></span>
-<span><span class="co">##  9 1.16e- 40       2.70 0.2   0.04  1.59e- 36 0       FHIT     </span></span>
-<span><span class="co">## 10 1.34e- 34       1.96 0.268 0.087 1.84e- 30 0       MAL      </span></span>
-<span><span class="co">## # ℹ 7,009 more rows</span></span>
-<span><span class="co"># ?FindAllMarkers</span></span>
-<span></span>
-<span><span class="va">cluster0_markers</span> <span class="op">&lt;-</span> <span class="fu">FindMarkers</span><span class="op">(</span></span>
-<span>    <span class="va">pbmc</span>, ident.1 <span class="op">=</span> <span class="fl">0</span>, logfc.threshold <span class="op">=</span> <span class="fl">0.25</span>, test.use <span class="op">=</span> <span class="st">"roc"</span>, </span>
-<span>    only.pos <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you haven't installed UMAP, you can do so via </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># reticulate::py_install(packages = "umap-learn")</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(pbmc, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that you can set `label = TRUE` or use the LabelClusters function to help label</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Individual clusters</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot</span>(pbmc, <span class="at">reduction =</span> <span class="st">"umap"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
 </div>
-</section><section id="visualization" class="level3"><h3 class="anchored" data-anchor-id="visualization">Visualization</h3>
+</div>
+</div>
+</section>
+<section id="tsne" class="level3">
+<h3 class="anchored" data-anchor-id="tsne">tSNE</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Show expression probability distributions across clusters</span></span>
-<span><span class="fu">VlnPlot</span><span class="op">(</span><span class="va">pbmc</span>, features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"MS4A1"</span>, <span class="st">"CD79A"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">RunTSNE</span>(pbmc, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pbmc<span class="sc">@</span>reductions<span class="sc">$</span>tsne<span class="sc">@</span>cell.embeddings)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="do">##                      tSNE_1     tSNE_2</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACATACAACCAC-1 -12.721811   6.420117</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACATTGAGCTAC-1 -20.682526 -22.307703</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACATTGATCAGC-1  -3.067779  23.686369</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACCGTGCTTCCG-1  30.350720  -9.899162</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACCGTGTATGCG-1 -35.994115   9.507508</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="do">## AAACGCACTGGTAC-1  -3.124182  12.680105</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot</span>(pbmc, <span class="at">reduction =</span> <span class="st">"tsne"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># You can plot raw counts as well</span></span>
-<span><span class="fu">VlnPlot</span><span class="op">(</span><span class="va">pbmc</span>, features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NKG7"</span>, <span class="st">"PF4"</span><span class="op">)</span>, layer <span class="op">=</span> <span class="st">"counts"</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="co"># Visualizes feature expression on a tSNE or PCA plot</span></span>
-<span><span class="fu">FeaturePlot</span><span class="op">(</span></span>
-<span>    <span class="va">pbmc</span>, features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>        <span class="st">"MS4A1"</span>, <span class="st">"GNLY"</span>, <span class="st">"CD3E"</span>, <span class="st">"CD14"</span>, <span class="st">"FCER1A"</span>, <span class="st">"FCGR3A"</span>, </span>
-<span>        <span class="st">"LYZ"</span>, <span class="st">"PPBP"</span>,<span class="st">"CD8A"</span></span>
-<span>    <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="co"># Expression heatmap for given cells and features</span></span>
-<span><span class="va">top10</span> <span class="op">&lt;-</span> <span class="va">pbmc_markers</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">cluster</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">top_n</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, wt <span class="op">=</span> <span class="va">avg_log2FC</span><span class="op">)</span></span>
-<span><span class="fu">DoHeatmap</span><span class="op">(</span><span class="va">pbmc</span>, features <span class="op">=</span> <span class="va">top10</span><span class="op">$</span><span class="va">gene</span><span class="op">)</span> <span class="op">+</span> <span class="fu">NoLegend</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-16-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section></section><section id="assign-cell-type-identity-to-clusters" class="level2"><h2 class="anchored" data-anchor-id="assign-cell-type-identity-to-clusters">Assign cell type identity to clusters</h2>
+</section>
+<section id="compare" class="level3">
+<h3 class="anchored" data-anchor-id="compare">Compare</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that you can set `label = TRUE` or use the LabelClusters function to help label</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Individual clusters</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(pbmc, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(pbmc, <span class="at">reduction =</span> <span class="st">"tsne"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="finding-cluster-biomarkers" class="level2">
+<h2 class="anchored" data-anchor-id="finding-cluster-biomarkers">Finding cluster biomarkers</h2>
+<section id="find-clusters" class="level3">
+<h3 class="anchored" data-anchor-id="find-clusters">Find clusters</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all markers of cluster 2</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>cluster2_markers <span class="ot">&lt;-</span> <span class="fu">FindMarkers</span>(pbmc, <span class="at">ident.1 =</span> <span class="dv">2</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cluster2_markers, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="do">##             p_val avg_log2FC pct.1 pct.2    p_val_adj</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="do">## IL32 2.892340e-90  1.3070772 0.947 0.465 3.966555e-86</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="do">## LTB  1.060121e-86  1.3312674 0.981 0.643 1.453850e-82</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="do">## CD3D 8.794641e-71  1.0597620 0.922 0.432 1.206097e-66</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="do">## IL7R 3.516098e-68  1.4377848 0.750 0.326 4.821977e-64</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="do">## LDHB 1.642480e-67  0.9911924 0.954 0.614 2.252497e-63</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all markers distinguishing cluster 5 from clusters 0 and 3</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>cluster5_markers <span class="ot">&lt;-</span> <span class="fu">FindMarkers</span>(pbmc, <span class="at">ident.1 =</span> <span class="dv">5</span>, <span class="at">ident.2 =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cluster5_markers, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="do">##                       p_val avg_log2FC pct.1 pct.2     p_val_adj</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="do">## FCGR3A        8.246578e-205   6.794969 0.975 0.040 1.130936e-200</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="do">## IFITM3        1.677613e-195   6.192558 0.975 0.049 2.300678e-191</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="do">## CFD           2.401156e-193   6.015172 0.938 0.038 3.292945e-189</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="do">## CD68          2.900384e-191   5.530330 0.926 0.035 3.977587e-187</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="do">## RP11-290F20.3 2.513244e-186   6.297999 0.840 0.017 3.446663e-182</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Find markers for every cluster compared to all remaining cells, report only the positive ones</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>pbmc_markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(pbmc, <span class="at">only.pos =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>pbmc_markers <span class="sc">%&gt;%</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(avg_log2FC <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 7,019 × 7</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   cluster [9]</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="do">##        p_val avg_log2FC pct.1 pct.2 p_val_adj cluster gene     </span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="do">##        &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;   &lt;chr&gt;    </span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 3.75e-112       1.21 0.912 0.592 5.14e-108 0       LDHB     </span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 9.57e- 88       2.40 0.447 0.108 1.31e- 83 0       CCR7     </span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 1.15e- 76       1.06 0.845 0.406 1.58e- 72 0       CD3D     </span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 1.12e- 54       1.04 0.731 0.4   1.54e- 50 0       CD3E     </span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 1.35e- 51       2.14 0.342 0.103 1.86e- 47 0       LEF1     </span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 1.94e- 47       1.20 0.629 0.359 2.66e- 43 0       NOSIP    </span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 2.81e- 44       1.53 0.443 0.185 3.85e- 40 0       PIK3IP1  </span></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 6.27e- 43       1.99 0.33  0.112 8.60e- 39 0       PRKCQ-AS1</span></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 1.16e- 40       2.70 0.2   0.04  1.59e- 36 0       FHIT     </span></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 1.34e- 34       1.96 0.268 0.087 1.84e- 30 0       MAL      </span></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a><span class="do">## # ℹ 7,009 more rows</span></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a><span class="co"># ?FindAllMarkers</span></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>cluster0_markers <span class="ot">&lt;-</span> <span class="fu">FindMarkers</span>(</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>    pbmc, <span class="at">ident.1 =</span> <span class="dv">0</span>, <span class="at">logfc.threshold =</span> <span class="fl">0.25</span>, <span class="at">test.use =</span> <span class="st">"roc"</span>, </span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">only.pos =</span> <span class="cn">TRUE</span></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="visualization" class="level3">
+<h3 class="anchored" data-anchor-id="visualization">Visualization</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Show expression probability distributions across clusters</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">VlnPlot</span>(pbmc, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"MS4A1"</span>, <span class="st">"CD79A"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can plot raw counts as well</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">VlnPlot</span>(pbmc, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"NKG7"</span>, <span class="st">"PF4"</span>), <span class="at">layer =</span> <span class="st">"counts"</span>, <span class="at">log =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizes feature expression on a tSNE or PCA plot</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">FeaturePlot</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    pbmc, <span class="at">features =</span> <span class="fu">c</span>(</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"MS4A1"</span>, <span class="st">"GNLY"</span>, <span class="st">"CD3E"</span>, <span class="st">"CD14"</span>, <span class="st">"FCER1A"</span>, <span class="st">"FCGR3A"</span>, </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"LYZ"</span>, <span class="st">"PPBP"</span>,<span class="st">"CD8A"</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Expression heatmap for given cells and features</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> pbmc_markers <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">wt =</span> avg_log2FC)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">DoHeatmap</span>(pbmc, <span class="at">features =</span> top10<span class="sc">$</span>gene) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-16-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="assign-cell-type-identity-to-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="assign-cell-type-identity-to-clusters">Assign cell type identity to clusters</h2>
 <p>Fortunately in the case of this dataset, we can use canonical markers to easily match the unbiased clustering to known cell types:</p>
 <p>Cluster ID Markers Cell Type 0 IL7R, CCR7 Naive CD4+ T 1 CD14, LYZ CD14+ Mono 2 IL7R, S100A4 Memory CD4+ 3 MS4A1 B 4 CD8A CD8+ T 5 FCGR3A, MS4A7 FCGR3A+ Mono 6 GNLY, NKG7 NK 7 FCER1A, CST3 DC 8 PPBP Platelet</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_cluster_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="st">"Naive CD4 T"</span>, <span class="st">"CD14+ Mono"</span>, <span class="st">"Memory CD4 T"</span>, <span class="st">"B"</span>, <span class="st">"CD8 T"</span>, <span class="st">"FCGR3A+ Mono"</span>,<span class="st">"NK"</span>, <span class="st">"DC"</span>, <span class="st">"Platelet"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">new_cluster_ids</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span></span>
-<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">RenameIdents</span><span class="op">(</span><span class="va">pbmc</span>, <span class="va">new_cluster_ids</span><span class="op">)</span></span>
-<span><span class="fu">DimPlot</span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"umap"</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, pt.size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">NoLegend</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>new_cluster_ids <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Naive CD4 T"</span>, <span class="st">"CD14+ Mono"</span>, <span class="st">"Memory CD4 T"</span>, <span class="st">"B"</span>, <span class="st">"CD8 T"</span>, <span class="st">"FCGR3A+ Mono"</span>,<span class="st">"NK"</span>, <span class="st">"DC"</span>, <span class="st">"Platelet"</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(new_cluster_ids) <span class="ot">&lt;-</span> <span class="fu">levels</span>(pbmc)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">RenameIdents</span>(pbmc, new_cluster_ids)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot</span>(pbmc, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NoLegend</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># p &lt;- DimPlot(pbmc, reduction = "umap", label = TRUE, label.size = 4.5) + </span></span>
-<span><span class="co">#     xlab("UMAP 1") + ylab("UMAP 2") +</span></span>
-<span><span class="co">#     theme(</span></span>
-<span><span class="co">#         axis.title = element_text(size = 18), </span></span>
-<span><span class="co">#         legend.text = element_text(size = 18)) + </span></span>
-<span><span class="co">#         guides(colour = guide_legend(override.aes = list(size = 10))</span></span>
-<span><span class="co">#     )</span></span>
-<span><span class="co"># Save plot</span></span>
-<span><span class="co"># ggsave(</span></span>
-<span><span class="co">#     filename = "../output/images/pbmc3k_umap.jpg", </span></span>
-<span><span class="co">#     height = 7, width = 12, plot = p, quality = 50</span></span>
-<span><span class="co"># )</span></span>
-<span><span class="co"># Save data</span></span>
-<span><span class="co"># saveRDS(pbmc, file = "./learn/pbmc3k/pbmc3k_final.rds")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p &lt;- DimPlot(pbmc, reduction = "umap", label = TRUE, label.size = 4.5) + </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     xlab("UMAP 1") + ylab("UMAP 2") +</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     theme(</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#         axis.title = element_text(size = 18), </span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#         legend.text = element_text(size = 18)) + </span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#         guides(colour = guide_legend(override.aes = list(size = 10))</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Save plot</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave(</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     filename = "../output/images/pbmc3k_umap.jpg", </span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     height = 7, width = 12, plot = p, quality = 50</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Save data</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(pbmc, file = "./learn/pbmc3k/pbmc3k_final.rds")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## R version 4.3.1 (2023-06-16)</span></span>
-<span><span class="co">## Platform: aarch64-apple-darwin20 (64-bit)</span></span>
-<span><span class="co">## Running under: macOS Sonoma 14.2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Matrix products: default</span></span>
-<span><span class="co">## BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib </span></span>
-<span><span class="co">## LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## locale:</span></span>
-<span><span class="co">## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## time zone: Asia/Singapore</span></span>
-<span><span class="co">## tzcode source: internal</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## attached base packages:</span></span>
-<span><span class="co">## [1] stats4    stats     graphics  grDevices utils     datasets  methods  </span></span>
-<span><span class="co">## [8] base     </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## other attached packages:</span></span>
-<span><span class="co">##  [1] patchwork_1.1.3             ggrepel_0.9.4              </span></span>
-<span><span class="co">##  [3] SingleR_2.2.0               SummarizedExperiment_1.30.2</span></span>
-<span><span class="co">##  [5] Biobase_2.62.0              GenomicRanges_1.52.1       </span></span>
-<span><span class="co">##  [7] GenomeInfoDb_1.38.0         IRanges_2.36.0             </span></span>
-<span><span class="co">##  [9] S4Vectors_0.40.2            BiocGenerics_0.48.1        </span></span>
-<span><span class="co">## [11] MatrixGenerics_1.14.0       matrixStats_1.1.0          </span></span>
-<span><span class="co">## [13] Seurat_5.0.1                SeuratObject_5.0.1         </span></span>
-<span><span class="co">## [15] sp_2.1-2                    lubridate_1.9.3            </span></span>
-<span><span class="co">## [17] forcats_1.0.0               stringr_1.5.1              </span></span>
-<span><span class="co">## [19] dplyr_1.1.4                 purrr_1.0.2                </span></span>
-<span><span class="co">## [21] readr_2.1.4                 tidyr_1.3.0                </span></span>
-<span><span class="co">## [23] tibble_3.2.1                ggplot2_3.4.4              </span></span>
-<span><span class="co">## [25] tidyverse_2.0.0             here_1.0.1                 </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##   [1] RcppAnnoy_0.0.21          splines_4.3.1            </span></span>
-<span><span class="co">##   [3] later_1.3.1               bitops_1.0-7             </span></span>
-<span><span class="co">##   [5] R.oo_1.25.0               polyclip_1.10-6          </span></span>
-<span><span class="co">##   [7] fastDummies_1.7.3         lifecycle_1.0.4          </span></span>
-<span><span class="co">##   [9] rprojroot_2.0.4           globals_0.16.2           </span></span>
-<span><span class="co">##  [11] lattice_0.22-5            MASS_7.3-60              </span></span>
-<span><span class="co">##  [13] magrittr_2.0.3            limma_3.58.1             </span></span>
-<span><span class="co">##  [15] plotly_4.10.3             rmarkdown_2.25           </span></span>
-<span><span class="co">##  [17] yaml_2.3.7                httpuv_1.6.12            </span></span>
-<span><span class="co">##  [19] sctransform_0.4.1         spam_2.10-0              </span></span>
-<span><span class="co">##  [21] spatstat.sparse_3.0-3     reticulate_1.34.0        </span></span>
-<span><span class="co">##  [23] cowplot_1.1.1             pbapply_1.7-2            </span></span>
-<span><span class="co">##  [25] RColorBrewer_1.1-3        abind_1.4-5              </span></span>
-<span><span class="co">##  [27] zlibbioc_1.48.0           Rtsne_0.16               </span></span>
-<span><span class="co">##  [29] R.utils_2.12.3            RCurl_1.98-1.13          </span></span>
-<span><span class="co">##  [31] GenomeInfoDbData_1.2.11   irlba_2.3.5.1            </span></span>
-<span><span class="co">##  [33] listenv_0.9.0             spatstat.utils_3.0-4     </span></span>
-<span><span class="co">##  [35] goftest_1.2-3             RSpectra_0.16-1          </span></span>
-<span><span class="co">##  [37] spatstat.random_3.2-2     fitdistrplus_1.1-11      </span></span>
-<span><span class="co">##  [39] parallelly_1.36.0         DelayedMatrixStats_1.22.6</span></span>
-<span><span class="co">##  [41] leiden_0.4.3.1            codetools_0.2-19         </span></span>
-<span><span class="co">##  [43] DelayedArray_0.26.7       tidyselect_1.2.0         </span></span>
-<span><span class="co">##  [45] farver_2.1.1              ScaledMatrix_1.8.1       </span></span>
-<span><span class="co">##  [47] spatstat.explore_3.2-5    jsonlite_1.8.7           </span></span>
-<span><span class="co">##  [49] ellipsis_0.3.2            progressr_0.14.0         </span></span>
-<span><span class="co">##  [51] ggridges_0.5.4            survival_3.5-7           </span></span>
-<span><span class="co">##  [53] tools_4.3.1               ica_1.0-3                </span></span>
-<span><span class="co">##  [55] Rcpp_1.0.11               glue_1.6.2               </span></span>
-<span><span class="co">##  [57] gridExtra_2.3             xfun_0.41                </span></span>
-<span><span class="co">##  [59] withr_2.5.2               fastmap_1.1.1            </span></span>
-<span><span class="co">##  [61] fansi_1.0.5               digest_0.6.33            </span></span>
-<span><span class="co">##  [63] rsvd_1.0.5                timechange_0.2.0         </span></span>
-<span><span class="co">##  [65] R6_2.5.1                  mime_0.12                </span></span>
-<span><span class="co">##  [67] colorspace_2.1-0          scattermore_1.2          </span></span>
-<span><span class="co">##  [69] tensor_1.5                spatstat.data_3.0-3      </span></span>
-<span><span class="co">##  [71] R.methodsS3_1.8.2         utf8_1.2.4               </span></span>
-<span><span class="co">##  [73] generics_0.1.3            data.table_1.14.8        </span></span>
-<span><span class="co">##  [75] httr_1.4.7                htmlwidgets_1.6.3        </span></span>
-<span><span class="co">##  [77] S4Arrays_1.0.6            uwot_0.1.16              </span></span>
-<span><span class="co">##  [79] pkgconfig_2.0.3           gtable_0.3.4             </span></span>
-<span><span class="co">##  [81] lmtest_0.9-40             XVector_0.42.0           </span></span>
-<span><span class="co">##  [83] htmltools_0.5.7           dotCall64_1.1-1          </span></span>
-<span><span class="co">##  [85] scales_1.3.0              png_0.1-8                </span></span>
-<span><span class="co">##  [87] knitr_1.45                tzdb_0.4.0               </span></span>
-<span><span class="co">##  [89] reshape2_1.4.4            nlme_3.1-163             </span></span>
-<span><span class="co">##  [91] zoo_1.8-12                KernSmooth_2.23-22       </span></span>
-<span><span class="co">##  [93] parallel_4.3.1            miniUI_0.1.1.1           </span></span>
-<span><span class="co">##  [95] vipor_0.4.5               ggrastr_1.0.2            </span></span>
-<span><span class="co">##  [97] pillar_1.9.0              grid_4.3.1               </span></span>
-<span><span class="co">##  [99] vctrs_0.6.5               RANN_2.6.1               </span></span>
-<span><span class="co">## [101] promises_1.2.1            BiocSingular_1.16.0      </span></span>
-<span><span class="co">## [103] beachmat_2.16.0           xtable_1.8-4             </span></span>
-<span><span class="co">## [105] cluster_2.1.4             beeswarm_0.4.0           </span></span>
-<span><span class="co">## [107] evaluate_0.23             cli_3.6.1                </span></span>
-<span><span class="co">## [109] compiler_4.3.1            rlang_1.1.2              </span></span>
-<span><span class="co">## [111] crayon_1.5.2              future.apply_1.11.0      </span></span>
-<span><span class="co">## [113] labeling_0.4.3            plyr_1.8.9               </span></span>
-<span><span class="co">## [115] ggbeeswarm_0.7.2          stringi_1.8.2            </span></span>
-<span><span class="co">## [117] viridisLite_0.4.2         deldir_2.0-2             </span></span>
-<span><span class="co">## [119] BiocParallel_1.36.0       munsell_0.5.0            </span></span>
-<span><span class="co">## [121] lazyeval_0.2.2            spatstat.geom_3.2-7      </span></span>
-<span><span class="co">## [123] Matrix_1.6-3              RcppHNSW_0.5.0           </span></span>
-<span><span class="co">## [125] hms_1.1.3                 sparseMatrixStats_1.12.2 </span></span>
-<span><span class="co">## [127] future_1.33.0             statmod_1.5.0            </span></span>
-<span><span class="co">## [129] shiny_1.8.0               ROCR_1.0-11              </span></span>
-<span><span class="co">## [131] igraph_1.5.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="do">## R version 4.3.1 (2023-06-16)</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Platform: aarch64-apple-darwin20 (64-bit)</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Running under: macOS Sonoma 14.2</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Matrix products: default</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="do">## BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib </span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="do">## LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="do">## locale:</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="do">## time zone: Asia/Singapore</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="do">## tzcode source: internal</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="do">## attached base packages:</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] stats4    stats     graphics  grDevices utils     datasets  methods  </span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="do">## [8] base     </span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="do">## other attached packages:</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] patchwork_1.1.3             ggrepel_0.9.4              </span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] SingleR_2.2.0               SummarizedExperiment_1.30.2</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] Biobase_2.62.0              GenomicRanges_1.52.1       </span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] GenomeInfoDb_1.38.0         IRanges_2.36.0             </span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] S4Vectors_0.40.2            BiocGenerics_0.48.1        </span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] MatrixGenerics_1.14.0       matrixStats_1.1.0          </span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] Seurat_5.0.1                SeuratObject_5.0.1         </span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="do">## [15] sp_2.1-2                    lubridate_1.9.3            </span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] forcats_1.0.0               stringr_1.5.1              </span></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [19] dplyr_1.1.4                 purrr_1.0.2                </span></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="do">## [21] readr_2.1.4                 tidyr_1.3.0                </span></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [23] tibble_3.2.1                ggplot2_3.4.4              </span></span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [25] tidyverse_2.0.0             here_1.0.1                 </span></span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="do">## loaded via a namespace (and not attached):</span></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a><span class="do">##   [1] RcppAnnoy_0.0.21          splines_4.3.1            </span></span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a><span class="do">##   [3] later_1.3.1               bitops_1.0-7             </span></span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a><span class="do">##   [5] R.oo_1.25.0               polyclip_1.10-6          </span></span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a><span class="do">##   [7] fastDummies_1.7.3         lifecycle_1.0.4          </span></span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a><span class="do">##   [9] rprojroot_2.0.4           globals_0.16.2           </span></span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a><span class="do">##  [11] lattice_0.22-5            MASS_7.3-60              </span></span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a><span class="do">##  [13] magrittr_2.0.3            limma_3.58.1             </span></span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a><span class="do">##  [15] plotly_4.10.3             rmarkdown_2.25           </span></span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a><span class="do">##  [17] yaml_2.3.7                httpuv_1.6.12            </span></span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a><span class="do">##  [19] sctransform_0.4.1         spam_2.10-0              </span></span>
+<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a><span class="do">##  [21] spatstat.sparse_3.0-3     reticulate_1.34.0        </span></span>
+<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a><span class="do">##  [23] cowplot_1.1.1             pbapply_1.7-2            </span></span>
+<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a><span class="do">##  [25] RColorBrewer_1.1-3        abind_1.4-5              </span></span>
+<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a><span class="do">##  [27] zlibbioc_1.48.0           Rtsne_0.16               </span></span>
+<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a><span class="do">##  [29] R.utils_2.12.3            RCurl_1.98-1.13          </span></span>
+<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a><span class="do">##  [31] GenomeInfoDbData_1.2.11   irlba_2.3.5.1            </span></span>
+<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a><span class="do">##  [33] listenv_0.9.0             spatstat.utils_3.0-4     </span></span>
+<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a><span class="do">##  [35] goftest_1.2-3             RSpectra_0.16-1          </span></span>
+<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a><span class="do">##  [37] spatstat.random_3.2-2     fitdistrplus_1.1-11      </span></span>
+<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a><span class="do">##  [39] parallelly_1.36.0         DelayedMatrixStats_1.22.6</span></span>
+<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a><span class="do">##  [41] leiden_0.4.3.1            codetools_0.2-19         </span></span>
+<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a><span class="do">##  [43] DelayedArray_0.26.7       tidyselect_1.2.0         </span></span>
+<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a><span class="do">##  [45] farver_2.1.1              ScaledMatrix_1.8.1       </span></span>
+<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a><span class="do">##  [47] spatstat.explore_3.2-5    jsonlite_1.8.7           </span></span>
+<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a><span class="do">##  [49] ellipsis_0.3.2            progressr_0.14.0         </span></span>
+<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a><span class="do">##  [51] ggridges_0.5.4            survival_3.5-7           </span></span>
+<span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a><span class="do">##  [53] tools_4.3.1               ica_1.0-3                </span></span>
+<span id="cb27-63"><a href="#cb27-63" aria-hidden="true" tabindex="-1"></a><span class="do">##  [55] Rcpp_1.0.11               glue_1.6.2               </span></span>
+<span id="cb27-64"><a href="#cb27-64" aria-hidden="true" tabindex="-1"></a><span class="do">##  [57] gridExtra_2.3             xfun_0.41                </span></span>
+<span id="cb27-65"><a href="#cb27-65" aria-hidden="true" tabindex="-1"></a><span class="do">##  [59] withr_2.5.2               fastmap_1.1.1            </span></span>
+<span id="cb27-66"><a href="#cb27-66" aria-hidden="true" tabindex="-1"></a><span class="do">##  [61] fansi_1.0.5               digest_0.6.33            </span></span>
+<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a><span class="do">##  [63] rsvd_1.0.5                timechange_0.2.0         </span></span>
+<span id="cb27-68"><a href="#cb27-68" aria-hidden="true" tabindex="-1"></a><span class="do">##  [65] R6_2.5.1                  mime_0.12                </span></span>
+<span id="cb27-69"><a href="#cb27-69" aria-hidden="true" tabindex="-1"></a><span class="do">##  [67] colorspace_2.1-0          scattermore_1.2          </span></span>
+<span id="cb27-70"><a href="#cb27-70" aria-hidden="true" tabindex="-1"></a><span class="do">##  [69] tensor_1.5                spatstat.data_3.0-3      </span></span>
+<span id="cb27-71"><a href="#cb27-71" aria-hidden="true" tabindex="-1"></a><span class="do">##  [71] R.methodsS3_1.8.2         utf8_1.2.4               </span></span>
+<span id="cb27-72"><a href="#cb27-72" aria-hidden="true" tabindex="-1"></a><span class="do">##  [73] generics_0.1.3            data.table_1.14.8        </span></span>
+<span id="cb27-73"><a href="#cb27-73" aria-hidden="true" tabindex="-1"></a><span class="do">##  [75] httr_1.4.7                htmlwidgets_1.6.3        </span></span>
+<span id="cb27-74"><a href="#cb27-74" aria-hidden="true" tabindex="-1"></a><span class="do">##  [77] S4Arrays_1.0.6            uwot_0.1.16              </span></span>
+<span id="cb27-75"><a href="#cb27-75" aria-hidden="true" tabindex="-1"></a><span class="do">##  [79] pkgconfig_2.0.3           gtable_0.3.4             </span></span>
+<span id="cb27-76"><a href="#cb27-76" aria-hidden="true" tabindex="-1"></a><span class="do">##  [81] lmtest_0.9-40             XVector_0.42.0           </span></span>
+<span id="cb27-77"><a href="#cb27-77" aria-hidden="true" tabindex="-1"></a><span class="do">##  [83] htmltools_0.5.7           dotCall64_1.1-1          </span></span>
+<span id="cb27-78"><a href="#cb27-78" aria-hidden="true" tabindex="-1"></a><span class="do">##  [85] scales_1.3.0              png_0.1-8                </span></span>
+<span id="cb27-79"><a href="#cb27-79" aria-hidden="true" tabindex="-1"></a><span class="do">##  [87] knitr_1.45                tzdb_0.4.0               </span></span>
+<span id="cb27-80"><a href="#cb27-80" aria-hidden="true" tabindex="-1"></a><span class="do">##  [89] reshape2_1.4.4            nlme_3.1-163             </span></span>
+<span id="cb27-81"><a href="#cb27-81" aria-hidden="true" tabindex="-1"></a><span class="do">##  [91] zoo_1.8-12                KernSmooth_2.23-22       </span></span>
+<span id="cb27-82"><a href="#cb27-82" aria-hidden="true" tabindex="-1"></a><span class="do">##  [93] parallel_4.3.1            miniUI_0.1.1.1           </span></span>
+<span id="cb27-83"><a href="#cb27-83" aria-hidden="true" tabindex="-1"></a><span class="do">##  [95] vipor_0.4.5               ggrastr_1.0.2            </span></span>
+<span id="cb27-84"><a href="#cb27-84" aria-hidden="true" tabindex="-1"></a><span class="do">##  [97] pillar_1.9.0              grid_4.3.1               </span></span>
+<span id="cb27-85"><a href="#cb27-85" aria-hidden="true" tabindex="-1"></a><span class="do">##  [99] vctrs_0.6.5               RANN_2.6.1               </span></span>
+<span id="cb27-86"><a href="#cb27-86" aria-hidden="true" tabindex="-1"></a><span class="do">## [101] promises_1.2.1            BiocSingular_1.16.0      </span></span>
+<span id="cb27-87"><a href="#cb27-87" aria-hidden="true" tabindex="-1"></a><span class="do">## [103] beachmat_2.16.0           xtable_1.8-4             </span></span>
+<span id="cb27-88"><a href="#cb27-88" aria-hidden="true" tabindex="-1"></a><span class="do">## [105] cluster_2.1.4             beeswarm_0.4.0           </span></span>
+<span id="cb27-89"><a href="#cb27-89" aria-hidden="true" tabindex="-1"></a><span class="do">## [107] evaluate_0.23             cli_3.6.1                </span></span>
+<span id="cb27-90"><a href="#cb27-90" aria-hidden="true" tabindex="-1"></a><span class="do">## [109] compiler_4.3.1            rlang_1.1.2              </span></span>
+<span id="cb27-91"><a href="#cb27-91" aria-hidden="true" tabindex="-1"></a><span class="do">## [111] crayon_1.5.2              future.apply_1.11.0      </span></span>
+<span id="cb27-92"><a href="#cb27-92" aria-hidden="true" tabindex="-1"></a><span class="do">## [113] labeling_0.4.3            plyr_1.8.9               </span></span>
+<span id="cb27-93"><a href="#cb27-93" aria-hidden="true" tabindex="-1"></a><span class="do">## [115] ggbeeswarm_0.7.2          stringi_1.8.2            </span></span>
+<span id="cb27-94"><a href="#cb27-94" aria-hidden="true" tabindex="-1"></a><span class="do">## [117] viridisLite_0.4.2         deldir_2.0-2             </span></span>
+<span id="cb27-95"><a href="#cb27-95" aria-hidden="true" tabindex="-1"></a><span class="do">## [119] BiocParallel_1.36.0       munsell_0.5.0            </span></span>
+<span id="cb27-96"><a href="#cb27-96" aria-hidden="true" tabindex="-1"></a><span class="do">## [121] lazyeval_0.2.2            spatstat.geom_3.2-7      </span></span>
+<span id="cb27-97"><a href="#cb27-97" aria-hidden="true" tabindex="-1"></a><span class="do">## [123] Matrix_1.6-3              RcppHNSW_0.5.0           </span></span>
+<span id="cb27-98"><a href="#cb27-98" aria-hidden="true" tabindex="-1"></a><span class="do">## [125] hms_1.1.3                 sparseMatrixStats_1.12.2 </span></span>
+<span id="cb27-99"><a href="#cb27-99" aria-hidden="true" tabindex="-1"></a><span class="do">## [127] future_1.33.0             statmod_1.5.0            </span></span>
+<span id="cb27-100"><a href="#cb27-100" aria-hidden="true" tabindex="-1"></a><span class="do">## [129] shiny_1.8.0               ROCR_1.0-11              </span></span>
+<span id="cb27-101"><a href="#cb27-101" aria-hidden="true" tabindex="-1"></a><span class="do">## [131] igraph_1.5.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
 <!-- -->
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1637,7 +1715,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -1649,6 +1728,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </div>
 </footer>
+
+
 
 
 <script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>

@@ -7,7 +7,7 @@ execute:
     eval: false
 ---
 
-## Overall Workflow
+## Bulk RNA-seq Workflow
 
 - Sequencing depth: total number of reads sequenced for a sample
 - Read length: number of base pairs in each read

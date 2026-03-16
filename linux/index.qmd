@@ -253,6 +253,7 @@ rsync -av --delete /folder2/ /folder1/
 
 ## sync multiple folders at once
 rsync -avP /source/{folder1,folder2,folder3} /destination/
+rsync -avP --include='v*/' --include='Scripts/' --exclude='*' /groups/fcoi/guorui/analysis/ /path/to/destination/
 
 ## Network sync
 rsync -av --delete /local/folder/ user@remote:/remote/folder/
