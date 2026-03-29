@@ -193,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">February 2, 2026</p>
+        <p class="date-modified">March 29, 2026</p>
       </div>
     </div>
       
@@ -209,13 +209,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#fasta" id="toc-fasta" class="nav-link active" data-scroll-target="#fasta">FASTA</a></li>
   <li><a href="#fastq" id="toc-fastq" class="nav-link" data-scroll-target="#fastq">FASTQ</a></li>
-  <li><a href="#sam" id="toc-sam" class="nav-link" data-scroll-target="#sam">SAM</a></li>
-  <li><a href="#bam" id="toc-bam" class="nav-link" data-scroll-target="#bam">BAM</a></li>
-  <li><a href="#cram" id="toc-cram" class="nav-link" data-scroll-target="#cram">CRAM</a></li>
-  <li><a href="#vcf" id="toc-vcf" class="nav-link" data-scroll-target="#vcf">VCF</a></li>
-  <li><a href="#bcf" id="toc-bcf" class="nav-link" data-scroll-target="#bcf">BCF</a></li>
+  <li><a href="#sam" id="toc-sam" class="nav-link" data-scroll-target="#sam">SAM</a>
+  <ul class="collapse">
+  <li><a href="#header-section" id="toc-header-section" class="nav-link" data-scroll-target="#header-section">Header Section</a></li>
+  <li><a href="#alignment-section" id="toc-alignment-section" class="nav-link" data-scroll-target="#alignment-section">Alignment Section</a></li>
+  <li><a href="#flag-values" id="toc-flag-values" class="nav-link" data-scroll-target="#flag-values">FLAG Values</a></li>
+  <li><a href="#cigar-string" id="toc-cigar-string" class="nav-link" data-scroll-target="#cigar-string">CIGAR String</a></li>
+  <li><a href="#file-size" id="toc-file-size" class="nav-link" data-scroll-target="#file-size">File Size</a></li>
+  </ul></li>
+  <li><a href="#bam" id="toc-bam" class="nav-link" data-scroll-target="#bam">BAM</a>
+  <ul class="collapse">
+  <li><a href="#key-characteristics" id="toc-key-characteristics" class="nav-link" data-scroll-target="#key-characteristics">Key Characteristics</a></li>
+  <li><a href="#common-operations" id="toc-common-operations" class="nav-link" data-scroll-target="#common-operations">Common Operations</a></li>
+  <li><a href="#file-size-1" id="toc-file-size-1" class="nav-link" data-scroll-target="#file-size-1">File Size</a></li>
+  </ul></li>
+  <li><a href="#cram" id="toc-cram" class="nav-link" data-scroll-target="#cram">CRAM</a>
+  <ul class="collapse">
+  <li><a href="#key-characteristics-1" id="toc-key-characteristics-1" class="nav-link" data-scroll-target="#key-characteristics-1">Key Characteristics</a></li>
+  <li><a href="#cram-vs-bam-vs-sam" id="toc-cram-vs-bam-vs-sam" class="nav-link" data-scroll-target="#cram-vs-bam-vs-sam">CRAM vs BAM vs SAM</a></li>
+  <li><a href="#common-operations-1" id="toc-common-operations-1" class="nav-link" data-scroll-target="#common-operations-1">Common Operations</a></li>
+  </ul></li>
+  <li><a href="#vcf" id="toc-vcf" class="nav-link" data-scroll-target="#vcf">VCF</a>
+  <ul class="collapse">
+  <li><a href="#structure" id="toc-structure" class="nav-link" data-scroll-target="#structure">Structure</a></li>
+  <li><a href="#header-lines" id="toc-header-lines" class="nav-link" data-scroll-target="#header-lines">Header Lines</a></li>
+  <li><a href="#mandatory-columns" id="toc-mandatory-columns" class="nav-link" data-scroll-target="#mandatory-columns">8 Mandatory Columns</a></li>
+  <li><a href="#optional-columns" id="toc-optional-columns" class="nav-link" data-scroll-target="#optional-columns">Optional Columns</a></li>
+  <li><a href="#common-info-fields" id="toc-common-info-fields" class="nav-link" data-scroll-target="#common-info-fields">Common INFO Fields</a></li>
+  <li><a href="#genotype-gt-field" id="toc-genotype-gt-field" class="nav-link" data-scroll-target="#genotype-gt-field">Genotype (GT) Field</a></li>
+  <li><a href="#key-characteristics-2" id="toc-key-characteristics-2" class="nav-link" data-scroll-target="#key-characteristics-2">Key Characteristics</a></li>
+  <li><a href="#common-operations-2" id="toc-common-operations-2" class="nav-link" data-scroll-target="#common-operations-2">Common Operations</a></li>
+  </ul></li>
   <li><a href="#gtf" id="toc-gtf" class="nav-link" data-scroll-target="#gtf">GTF</a></li>
-  <li><a href="#gff3" id="toc-gff3" class="nav-link" data-scroll-target="#gff3">GFF3</a></li>
+  <li><a href="#gff3" id="toc-gff3" class="nav-link" data-scroll-target="#gff3">GFF3</a>
+  <ul class="collapse">
+  <li><a href="#mandatory-columns-tab-delimited" id="toc-mandatory-columns-tab-delimited" class="nav-link" data-scroll-target="#mandatory-columns-tab-delimited">9 Mandatory Columns (tab-delimited)</a></li>
+  <li><a href="#key-attributes" id="toc-key-attributes" class="nav-link" data-scroll-target="#key-attributes">Key Attributes</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#gff3-vs-gtf" id="toc-gff3-vs-gtf" class="nav-link" data-scroll-target="#gff3-vs-gtf">GFF3 vs GTF</a></li>
+  </ul></li>
+  <li><a href="#bed" id="toc-bed" class="nav-link" data-scroll-target="#bed">BED</a>
+  <ul class="collapse">
+  <li><a href="#coordinates" id="toc-coordinates" class="nav-link" data-scroll-target="#coordinates">Coordinates</a></li>
+  <li><a href="#fields" id="toc-fields" class="nav-link" data-scroll-target="#fields">Fields</a></li>
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a></li>
+  </ul></li>
+  <li><a href="#bedgraph" id="toc-bedgraph" class="nav-link" data-scroll-target="#bedgraph">bedGraph</a>
+  <ul class="collapse">
+  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
+  </ul></li>
+  <li><a href="#bigwig-bigbed" id="toc-bigwig-bigbed" class="nav-link" data-scroll-target="#bigwig-bigbed">BigWig / BigBed</a>
+  <ul class="collapse">
+  <li><a href="#key-advantages" id="toc-key-advantages" class="nav-link" data-scroll-target="#key-advantages">Key Advantages</a></li>
+  <li><a href="#common-operations-3" id="toc-common-operations-3" class="nav-link" data-scroll-target="#common-operations-3">Common Operations</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -248,37 +295,528 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sam" class="level2">
 <h2 class="anchored" data-anchor-id="sam">SAM</h2>
-<p>SAM: Sequence Alignment Map * Text tab-­delimited format * Exome: &gt;50Gb<br>
-* Whole genome: 800Gb-­‐1Tb</p>
+<p>SAM (Sequence Alignment Map) is a tab-delimited text format for storing biological sequence alignment data. A SAM file consists of two parts: an optional <strong>header section</strong> and an <strong>alignment section</strong>.</p>
+<section id="header-section" class="level3">
+<h3 class="anchored" data-anchor-id="header-section">Header Section</h3>
+<p>Header lines begin with <code>@</code> and are optional but recommended:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>@HD</code></td>
+<td>File-level metadata: format version and sort order</td>
+</tr>
+<tr class="even">
+<td><code>@SQ</code></td>
+<td>Reference sequence dictionary (name, length)</td>
+</tr>
+<tr class="odd">
+<td><code>@RG</code></td>
+<td>Read group (sample, library, platform)</td>
+</tr>
+<tr class="even">
+<td><code>@PG</code></td>
+<td>Program used to generate or process the file</td>
+</tr>
+<tr class="odd">
+<td><code>@CO</code></td>
+<td>One-line free-text comment</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="alignment-section" class="level3">
+<h3 class="anchored" data-anchor-id="alignment-section">Alignment Section</h3>
+<p>Each alignment record has <strong>11 mandatory fields</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 28%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Col</th>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>QNAME</code></td>
+<td>Query template name (read name)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>FLAG</code></td>
+<td>Bitwise flag describing alignment properties</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>RNAME</code></td>
+<td>Reference sequence name</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>POS</code></td>
+<td>1-based leftmost mapping position</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>MAPQ</code></td>
+<td>Mapping quality (-10 log₁₀ probability of wrong mapping)</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>CIGAR</code></td>
+<td>CIGAR string describing read alignment</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><code>RNEXT</code></td>
+<td>Reference name of the mate/next read</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><code>PNEXT</code></td>
+<td>Position of the mate/next read</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><code>TLEN</code></td>
+<td>Template length (insert size)</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><code>SEQ</code></td>
+<td>Segment sequence</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td><code>QUAL</code></td>
+<td>Phred-scaled base quality scores (ASCII, offset +33)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="flag-values" class="level3">
+<h3 class="anchored" data-anchor-id="flag-values">FLAG Values</h3>
+<p>Each FLAG is a sum of any of the following bitwise values:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Bit</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0x1</td>
+<td>1</td>
+<td>Read paired</td>
+</tr>
+<tr class="even">
+<td>0x2</td>
+<td>2</td>
+<td>Read mapped in proper pair</td>
+</tr>
+<tr class="odd">
+<td>0x4</td>
+<td>4</td>
+<td>Read unmapped</td>
+</tr>
+<tr class="even">
+<td>0x8</td>
+<td>8</td>
+<td>Mate unmapped</td>
+</tr>
+<tr class="odd">
+<td>0x10</td>
+<td>16</td>
+<td>Read on reverse strand</td>
+</tr>
+<tr class="even">
+<td>0x20</td>
+<td>32</td>
+<td>Mate on reverse strand</td>
+</tr>
+<tr class="odd">
+<td>0x40</td>
+<td>64</td>
+<td>First in pair (read 1)</td>
+</tr>
+<tr class="even">
+<td>0x80</td>
+<td>128</td>
+<td>Second in pair (read 2)</td>
+</tr>
+<tr class="odd">
+<td>0x100</td>
+<td>256</td>
+<td>Secondary alignment</td>
+</tr>
+<tr class="even">
+<td>0x200</td>
+<td>512</td>
+<td>Read fails platform/vendor quality checks</td>
+</tr>
+<tr class="odd">
+<td>0x400</td>
+<td>1024</td>
+<td>PCR or optical duplicate</td>
+</tr>
+<tr class="even">
+<td>0x800</td>
+<td>2048</td>
+<td>Supplementary alignment</td>
+</tr>
+</tbody>
+</table>
+<p>For example, FLAG <code>99</code> = 1+2+32+64 means the read is paired, properly paired, the mate is on the reverse strand, and this is read 1.</p>
+</section>
+<section id="cigar-string" class="level3">
+<h3 class="anchored" data-anchor-id="cigar-string">CIGAR String</h3>
+<p>The CIGAR string describes how the read aligns to the reference:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Op</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>M</code></td>
+<td>Alignment match (match or mismatch)</td>
+</tr>
+<tr class="even">
+<td><code>I</code></td>
+<td>Insertion to the reference</td>
+</tr>
+<tr class="odd">
+<td><code>D</code></td>
+<td>Deletion from the reference</td>
+</tr>
+<tr class="even">
+<td><code>N</code></td>
+<td>Skipped region from reference (e.g., intron)</td>
+</tr>
+<tr class="odd">
+<td><code>S</code></td>
+<td>Soft clipping (clipped bases in SEQ)</td>
+</tr>
+<tr class="even">
+<td><code>H</code></td>
+<td>Hard clipping (clipped bases not in SEQ)</td>
+</tr>
+<tr class="odd">
+<td><code>P</code></td>
+<td>Padding (silent deletion from padded reference)</td>
+</tr>
+<tr class="even">
+<td><code>=</code></td>
+<td>Sequence match</td>
+</tr>
+<tr class="odd">
+<td><code>X</code></td>
+<td>Sequence mismatch</td>
+</tr>
+</tbody>
+</table>
+<p>For example, <code>50M2I30M</code> means 50 bases match, 2 inserted bases, then 30 more matching bases.</p>
+</section>
+<section id="file-size" class="level3">
+<h3 class="anchored" data-anchor-id="file-size">File Size</h3>
+<ul>
+<li>Exome: &gt;50 GB</li>
+<li>Whole genome: 800 GB – 1 TB</li>
+</ul>
+</section>
 </section>
 <section id="bam" class="level2">
 <h2 class="anchored" data-anchor-id="bam">BAM</h2>
-<p>BAM: Binary Alignment Map * Binary, compressed * Index for quick looking up regions * Exome: 2-­20Gb * Whole genome: 100-­‐300Gb</p>
+<p>BAM (Binary Alignment Map) is the binary, compressed equivalent of SAM. It stores identical information but in a more space-efficient binary format.</p>
+<section id="key-characteristics" class="level3">
+<h3 class="anchored" data-anchor-id="key-characteristics">Key Characteristics</h3>
+<ul>
+<li>Binary, BGZF-compressed (Blocked GNU Zip Format) version of SAM</li>
+<li>Requires an index file (<code>.bai</code> or <code>.csi</code>) for rapid random access to specific genomic regions</li>
+<li>Indexing is done with <code>samtools index</code></li>
+<li>Must be coordinate-sorted before indexing</li>
+</ul>
+</section>
+<section id="common-operations" class="level3">
+<h3 class="anchored" data-anchor-id="common-operations">Common Operations</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert SAM to BAM</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-bS</span> input.sam <span class="at">-o</span> output.bam</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort BAM by coordinate</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort output.bam <span class="at">-o</span> output.sorted.bam</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Index sorted BAM</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index output.sorted.bam</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># View BAM as text</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view output.sorted.bam</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># View specific region</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view output.sorted.bam chr1:1000000-2000000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="file-size-1" class="level3">
+<h3 class="anchored" data-anchor-id="file-size-1">File Size</h3>
+<ul>
+<li>Exome: 2 – 20 GB</li>
+<li>Whole genome: 100 – 300 GB</li>
+</ul>
+</section>
 </section>
 <section id="cram" class="level2">
 <h2 class="anchored" data-anchor-id="cram">CRAM</h2>
+<p>CRAM is a highly space-efficient, reference-based compression format for storing sequence alignment data. It was developed by the European Bioinformatics Institute (EBI) and is supported by SAMtools and most modern NGS pipelines.</p>
+<section id="key-characteristics-1" class="level3">
+<h3 class="anchored" data-anchor-id="key-characteristics-1">Key Characteristics</h3>
+<ul>
+<li>Stores reads as differences from a reference genome, yielding much smaller files than BAM</li>
+<li>Lossless or lossy compression options (lossy discards low-utility quality scores)</li>
+<li>Requires access to the reference genome used during alignment for decoding</li>
+<li>Supported by a <code>.crai</code> index file</li>
+<li>Typical compression: <strong>~30–50% smaller than BAM</strong> for the same data</li>
+</ul>
+</section>
+<section id="cram-vs-bam-vs-sam" class="level3">
+<h3 class="anchored" data-anchor-id="cram-vs-bam-vs-sam">CRAM vs BAM vs SAM</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>SAM</th>
+<th>BAM</th>
+<th>CRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Encoding</td>
+<td>Plain text</td>
+<td>Binary</td>
+<td>Binary</td>
+</tr>
+<tr class="even">
+<td>Compression</td>
+<td>None</td>
+<td>BGZF (gzip)</td>
+<td>Reference-based</td>
+</tr>
+<tr class="odd">
+<td>Typical WGS size</td>
+<td>~800 GB</td>
+<td>~100–300 GB</td>
+<td>~30–150 GB</td>
+</tr>
+<tr class="even">
+<td>Requires reference</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>Random access</td>
+<td>No</td>
+<td>Yes (with .bai)</td>
+<td>Yes (with .crai)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-operations-1" class="level3">
+<h3 class="anchored" data-anchor-id="common-operations-1">Common Operations</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert BAM to CRAM</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-C</span> <span class="at">-T</span> reference.fa <span class="at">-o</span> output.cram input.bam</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Index CRAM</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index output.cram</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert CRAM back to BAM</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-T</span> reference.fa <span class="at">-o</span> output.bam input.cram</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 </section>
 <section id="vcf" class="level2">
 <h2 class="anchored" data-anchor-id="vcf">VCF</h2>
-<p>Variant Call Format (VCF) is a format for storing variations between a reference genome and sequences aligned to it, based on SAM/BAM alignments. VCF files begin with a header section: lines in the header section begin with ##. The last line in the header section begins with #; this line gives the headers of the columns used in the VCF file:</p>
+<p>Variant Call Format (VCF) is a standard text-based format for storing gene sequence variations such as SNPs, indels, and structural variants. It is based on alignments in SAM/BAM format.</p>
+<section id="structure" class="level3">
+<h3 class="anchored" data-anchor-id="structure">Structure</h3>
+<p>VCF files consist of a <strong>meta-information header</strong>, a <strong>header line</strong>, and <strong>data lines</strong>.</p>
+<pre><code>##fileformat=VCFv4.2
+##FILTER=&lt;ID=PASS,Description="All filters passed"&gt;
+##INFO=&lt;ID=DP,Number=1,Type=Integer,Description="Total Depth"&gt;
+##FORMAT=&lt;ID=GT,Number=1,Type=String,Description="Genotype"&gt;
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO            FORMAT  SAMPLE1
+chr1    925952  rs123   C       T       50      PASS    DP=100;AF=0.5   GT:DP   0/1:100</code></pre>
+</section>
+<section id="header-lines" class="level3">
+<h3 class="anchored" data-anchor-id="header-lines">Header Lines</h3>
 <ul>
-<li>VCF Meta-information starts with ## and must be key=value pairs</li>
-<li>Header line starts with #CHROM</li>
-<li>Data lines contain 8 mandatory columns:
-<ol type="1">
-<li>CHROM: Reference</li>
-<li>POS</li>
-<li>ID</li>
-<li>REF</li>
-<li>ALT</li>
-<li>QUAL</li>
-<li>FILTER</li>
-<li>INFO</li>
-</ol></li>
+<li>Lines starting with <code>##</code> are meta-information lines (key=value pairs)</li>
+<li>The last header line starts with <code>#CHROM</code> and defines the column names</li>
 </ul>
 </section>
-<section id="bcf" class="level2">
-<h2 class="anchored" data-anchor-id="bcf">BCF</h2>
+<section id="mandatory-columns" class="level3">
+<h3 class="anchored" data-anchor-id="mandatory-columns">8 Mandatory Columns</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 28%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Col</th>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>CHROM</code></td>
+<td>Chromosome name</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>POS</code></td>
+<td>1-based position of the variant</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>ID</code></td>
+<td>Variant identifier (e.g., dbSNP rs ID, or <code>.</code> if unknown)</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>REF</code></td>
+<td>Reference allele at this position</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>ALT</code></td>
+<td>Alternate allele(s), comma-separated</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>QUAL</code></td>
+<td>Phred-scaled quality score for the variant call</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><code>FILTER</code></td>
+<td>Filter status: <code>PASS</code> or reason for filtering</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><code>INFO</code></td>
+<td>Semicolon-separated key=value pairs of variant annotations</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="optional-columns" class="level3">
+<h3 class="anchored" data-anchor-id="optional-columns">Optional Columns</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Col</th>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>9</td>
+<td><code>FORMAT</code></td>
+<td>Colon-separated list of per-sample field keys</td>
+</tr>
+<tr class="even">
+<td>10+</td>
+<td><code>SAMPLE</code></td>
+<td>Per-sample data matching the FORMAT field</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-info-fields" class="level3">
+<h3 class="anchored" data-anchor-id="common-info-fields">Common INFO Fields</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>DP</code></td>
+<td>Total read depth at the site</td>
+</tr>
+<tr class="even">
+<td><code>AF</code></td>
+<td>Allele frequency</td>
+</tr>
+<tr class="odd">
+<td><code>AN</code></td>
+<td>Total number of alleles in called genotypes</td>
+</tr>
+<tr class="even">
+<td><code>AC</code></td>
+<td>Allele count</td>
+</tr>
+<tr class="odd">
+<td><code>MQ</code></td>
+<td>RMS Mapping Quality</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="genotype-gt-field" class="level3">
+<h3 class="anchored" data-anchor-id="genotype-gt-field">Genotype (GT) Field</h3>
+<p>The <code>GT</code> field in FORMAT encodes the genotype as allele indices separated by <code>/</code> (unphased) or <code>|</code> (phased):</p>
+<ul>
+<li><code>0/0</code> — homozygous reference</li>
+<li><code>0/1</code> — heterozygous</li>
+<li><code>1/1</code> — homozygous alternate</li>
+<li><code>1/2</code> — heterozygous with two non-reference alleles</li>
+<li><code>./.</code> — missing genotype ## BCF</li>
+</ul>
+<p>BCF (Binary Call Format) is the binary, compressed equivalent of VCF — analogous to the BAM/SAM relationship. It stores identical variant call information in a more efficient binary format.</p>
+</section>
+<section id="key-characteristics-2" class="level3">
+<h3 class="anchored" data-anchor-id="key-characteristics-2">Key Characteristics</h3>
+<ul>
+<li>Much faster to read/write and smaller than VCF for large datasets</li>
+<li>Can be indexed with <code>.csi</code> index files for random access</li>
+<li>Fully inter-convertible with VCF using <code>bcftools</code></li>
+</ul>
+</section>
+<section id="common-operations-2" class="level3">
+<h3 class="anchored" data-anchor-id="common-operations-2">Common Operations</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert VCF to BCF</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view <span class="at">-O</span> b <span class="at">-o</span> output.bcf input.vcf.gz</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Index BCF</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> index output.bcf</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert BCF back to VCF</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view <span class="at">-O</span> v <span class="at">-o</span> output.vcf input.bcf</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter BCF/VCF</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> filter <span class="at">-e</span> <span class="st">'QUAL&lt;30 || DP&lt;10'</span> <span class="at">-o</span> filtered.bcf input.bcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 </section>
 <section id="gtf" class="level2">
 <h2 class="anchored" data-anchor-id="gtf">GTF</h2>
@@ -286,10 +824,346 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="gff3" class="level2">
 <h2 class="anchored" data-anchor-id="gff3">GFF3</h2>
+<p>GFF3 (General Feature Format version 3) is the current standard for describing genomic features. It is an improvement over GFF2/GTF with better support for complex gene structures and hierarchical relationships between features.</p>
+<section id="mandatory-columns-tab-delimited" class="level3">
+<h3 class="anchored" data-anchor-id="mandatory-columns-tab-delimited">9 Mandatory Columns (tab-delimited)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 28%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Col</th>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>seqid</code></td>
+<td>Chromosome or scaffold name</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>source</code></td>
+<td>Program that generated the feature, or database name</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>type</code></td>
+<td>Feature type using Sequence Ontology terms (e.g., <code>gene</code>, <code>mRNA</code>, <code>exon</code>, <code>CDS</code>)</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>start</code></td>
+<td>1-based start position</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>end</code></td>
+<td>1-based end position (inclusive)</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>score</code></td>
+<td>Floating point score, or <code>.</code> if not applicable</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><code>strand</code></td>
+<td><code>+</code> (forward), <code>-</code> (reverse), <code>.</code> (unstranded), or <code>?</code> (unknown)</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><code>phase</code></td>
+<td>For CDS features: <code>0</code>, <code>1</code>, or <code>2</code> (reading frame offset); <code>.</code> otherwise</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><code>attributes</code></td>
+<td>Semicolon-separated <code>tag=value</code> pairs</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-attributes" class="level3">
+<h3 class="anchored" data-anchor-id="key-attributes">Key Attributes</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ID</code></td>
+<td>Unique identifier for the feature within the file</td>
+</tr>
+<tr class="even">
+<td><code>Name</code></td>
+<td>Display name for the feature</td>
+</tr>
+<tr class="odd">
+<td><code>Parent</code></td>
+<td>Establishes parent–child relationships (e.g., exon’s parent is an mRNA)</td>
+</tr>
+<tr class="even">
+<td><code>Dbxref</code></td>
+<td>Database cross-reference</td>
+</tr>
+<tr class="odd">
+<td><code>Note</code></td>
+<td>Free-text note</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<pre><code>##gff-version 3
+chr1  Ensembl  gene    11869  14409  .  +  .  ID=ENSG00000223972;Name=DDX11L1;biotype=transcribed_unprocessed_pseudogene
+chr1  Ensembl  mRNA    11869  14409  .  +  .  ID=ENST00000456328;Parent=ENSG00000223972;Name=DDX11L1-202
+chr1  Ensembl  exon    11869  12227  .  +  .  Parent=ENST00000456328
+chr1  Ensembl  exon    12613  12721  .  +  .  Parent=ENST00000456328
+chr1  Ensembl  exon    13221  14409  .  +  .  Parent=ENST00000456328</code></pre>
+</section>
+<section id="gff3-vs-gtf" class="level3">
+<h3 class="anchored" data-anchor-id="gff3-vs-gtf">GFF3 vs GTF</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 25%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>GTF</th>
+<th>GFF3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hierarchy</td>
+<td>Implicit (by gene_id/transcript_id)</td>
+<td>Explicit via <code>Parent=</code> attribute</td>
+</tr>
+<tr class="even">
+<td>Feature types</td>
+<td>Restricted (gene, transcript, exon, CDS)</td>
+<td>Any Sequence Ontology term</td>
+</tr>
+<tr class="odd">
+<td>Multiple parents</td>
+<td>Not supported</td>
+<td>Supported</td>
+</tr>
+<tr class="even">
+<td>UCSC/Ensembl</td>
+<td>Common for downloads</td>
+<td>Increasingly adopted</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="bed" class="level2">
+<h2 class="anchored" data-anchor-id="bed">BED</h2>
+<p>BED (Browser Extensible Data) is a flexible tab-delimited format for describing genomic regions. It is widely used for representing peaks, intervals, annotations, and other positional data in genome browsers (UCSC, IGV).</p>
+<section id="coordinates" class="level3">
+<h3 class="anchored" data-anchor-id="coordinates">Coordinates</h3>
+<p>BED uses <strong>0-based, half-open</strong> coordinates: the start position is 0-indexed and the end is exclusive. For example, <code>chr1  0  100</code> spans the first 100 bases.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This differs from SAM/VCF/GFF3 which use <strong>1-based</strong> coordinates.</p>
+</div>
+</div>
+</section>
+<section id="fields" class="level3">
+<h3 class="anchored" data-anchor-id="fields">Fields</h3>
+<p>BED has 3 required fields and up to 12 fields total:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 20%">
+<col style="width: 28%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Col</th>
+<th>Field</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>chrom</code></td>
+<td>Yes</td>
+<td>Chromosome name</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>chromStart</code></td>
+<td>Yes</td>
+<td>0-based start position</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>chromEnd</code></td>
+<td>Yes</td>
+<td>End position (exclusive)</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>name</code></td>
+<td>No</td>
+<td>Name of the feature</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>score</code></td>
+<td>No</td>
+<td>Score (0–1000)</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>strand</code></td>
+<td>No</td>
+<td><code>+</code> or <code>-</code></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><code>thickStart</code></td>
+<td>No</td>
+<td>Start position for thick drawing</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><code>thickEnd</code></td>
+<td>No</td>
+<td>End position for thick drawing</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><code>itemRgb</code></td>
+<td>No</td>
+<td>Display color (R,G,B)</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><code>blockCount</code></td>
+<td>No</td>
+<td>Number of blocks (exons)</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td><code>blockSizes</code></td>
+<td>No</td>
+<td>Comma-separated list of block sizes</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td><code>blockStarts</code></td>
+<td>No</td>
+<td>Comma-separated block start positions (relative to <code>chromStart</code>)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-1" class="level3">
+<h3 class="anchored" data-anchor-id="example-1">Example</h3>
+<pre><code>chr7   127471196  127472363  Pos1   0  +  127471196  127472363  255,0,0
+chr7   127472363  127473530  Pos2   0  +  127472363  127473530  255,0,0</code></pre>
+</section>
+</section>
+<section id="bedgraph" class="level2">
+<h2 class="anchored" data-anchor-id="bedgraph">bedGraph</h2>
+<p>bedGraph is a variant of the BED format for displaying continuous-valued data (e.g., sequencing coverage, ChIP-seq signal) across genomic coordinates. Each line defines a region and an associated data value.</p>
+<section id="format" class="level3">
+<h3 class="anchored" data-anchor-id="format">Format</h3>
+<pre><code>track type=bedGraph name="Coverage" description="Read depth"
+chr1  0      1000   5.0
+chr1  1000   2000   12.3
+chr1  2000   2500   0.0</code></pre>
+<ul>
+<li>Uses 0-based half-open coordinates (same as BED)</li>
+<li>Only 4 columns: <code>chrom</code>, <code>start</code>, <code>end</code>, <code>value</code></li>
+<li>Regions must be sorted and non-overlapping within a chromosome</li>
+<li>The optional <code>track</code> header line provides display metadata</li>
+</ul>
+</section>
+</section>
+<section id="bigwig-bigbed" class="level2">
+<h2 class="anchored" data-anchor-id="bigwig-bigbed">BigWig / BigBed</h2>
+<p>BigWig and BigBed are binary, indexed versions of WIG/bedGraph and BED files respectively. They are designed for efficient remote access and visualization in genome browsers.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 47%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Format</th>
+<th>Text equivalent</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BigWig (<code>.bw</code>)</td>
+<td>WIG / bedGraph</td>
+<td>Continuous signal (coverage, scores)</td>
+</tr>
+<tr class="even">
+<td>BigBed (<code>.bb</code>)</td>
+<td>BED</td>
+<td>Discrete features/annotations</td>
+</tr>
+</tbody>
+</table>
+<section id="key-advantages" class="level3">
+<h3 class="anchored" data-anchor-id="key-advantages">Key Advantages</h3>
+<ul>
+<li><strong>Indexed</strong>: supports fast random access to any genomic region</li>
+<li><strong>Remote access</strong>: genome browsers (UCSC, IGV) can stream only the required region</li>
+<li>Much smaller than equivalent text files</li>
+</ul>
+</section>
+<section id="common-operations-3" class="level3">
+<h3 class="anchored" data-anchor-id="common-operations-3">Common Operations</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert bedGraph to BigWig</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bedGraphToBigWig</span> input.bedGraph chrom.sizes output.bw</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert BED to BigBed</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bedToBigBed</span> input.bed chrom.sizes output.bb</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract a region from BigWig to bedGraph</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">bigWigToBedGraph</span> <span class="at">-chrom</span><span class="op">=</span>chr1 <span class="at">-start</span><span class="op">=</span>0 <span class="at">-end</span><span class="op">=</span>1000000 input.bw output.bedGraph</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 <!-- -->
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -744,85 +1618,418 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Commonly Used File Formats in Bioinformatics</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2026-01-13</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">published-title:</span><span class="co"> Created</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> last-modified</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> "#212529"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc-title:</span><span class="co"> "Contents"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## FASTA</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>FASTA is text-based format for representing nucleotide or peptide sequences, where each sequence is preceded by a single-line description starting with a "&gt;" character.</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="al">![](fasta.png)</span>{width=600px}</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`.fna`</span> can be used for nucleotide sequences</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`.faa`</span> can be used for amino acid sequences</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`.frn`</span> can be used for RNA sequences</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`.fa`</span> can be used for either nucleotide or amino acid sequences</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## FASTQ</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>FASTQ format is a text-based format for storing both nucleotide sequences and their corresponding quality scores. Each sequence entry consists of four lines: </span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>a sequence identifier starting with "@"</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>the raw sequence letters</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>a "+" separator line</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>and a line with quality scores encoded as ASCII characters</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="al">![](fastq.png)</span>{width=600px}</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="al">![](fastq_sequence_ID.png)</span>{width=600px}</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## SAM</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>SAM: Sequence Alignment Map</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Text tab-­delimited format</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Exome:    &gt;50Gb   </span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Whole genome: 800Gb-­‐1Tb</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## BAM</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>BAM: Binary Alignment Map</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Binary, compressed</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Index for quick looking up regions</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Exome: 2-­20Gb</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Whole genome: 100-­‐300Gb</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## CRAM</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## VCF</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>Variant Call Format (VCF) is a format for storing variations between a reference genome and sequences aligned to it, based on SAM/BAM alignments. VCF files begin with a header section: lines in the header section begin with ##. The last line in the header section begins with #; this line gives the headers of the columns used in the VCF file:</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>VCF Meta-information starts with ##</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>and must be key=value pairs </span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Header line starts with #CHROM</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Data lines contain 8 mandatory columns:</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">    1. </span>CHROM: Reference </span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">    2. </span>POS</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">    3. </span>ID</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">    4. </span>REF</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">    5. </span>ALT</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">    6. </span>QUAL</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">    7. </span>FILTER</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">    8. </span>INFO</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## BCF</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## GTF</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>Gene Transfer Format (GTF) is a file format used to hold information about gene structure. It is a tab-delimited text format that consists of 9 columns:</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="in">`seqname`</span>: Name of the chromosome or scaffold; chromosome names can be given with or without the 'chr' prefix.</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="in">`source`</span>: Name of the program that generated this feature, or the data source (database or project name).</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span><span class="in">`feature`</span>: Feature type name (e.g., Gene, Variation, Similarity).</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span><span class="in">`start`</span>: Start position of the feature, with sequence numbering starting at 1.</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span><span class="in">`end`</span>: End position of the feature, with sequence numbering starting at 1.</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span><span class="in">`score`</span>: A floating point value.</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span><span class="in">`strand`</span>: Defined as + (forward) or - (reverse).</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span><span class="in">`frame`</span>: One of '0', '1' or '2'. '0' indicates that the first base of the feature is the first base of a codon, '1' that the second base is the first base of a codon, and so on.</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ss">9. </span><span class="in">`attribute`</span>: A semicolon-separated list of tag-value pairs, providing additional information about each feature.</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="fu">## GFF3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Commonly Used File Formats in Bioinformatics</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2026-01-13</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">published-title:</span><span class="co"> Created</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> last-modified</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> "#212529"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc-title:</span><span class="co"> "Contents"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## FASTA</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>FASTA is text-based format for representing nucleotide or peptide sequences, where each sequence is preceded by a single-line description starting with a "&gt;" character.</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="al">![](fasta.png)</span>{width=600px}</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`.fna`</span> can be used for nucleotide sequences</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`.faa`</span> can be used for amino acid sequences</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`.frn`</span> can be used for RNA sequences</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`.fa`</span> can be used for either nucleotide or amino acid sequences</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## FASTQ</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>FASTQ format is a text-based format for storing both nucleotide sequences and their corresponding quality scores. Each sequence entry consists of four lines:</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>a sequence identifier starting with "@"</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>the raw sequence letters</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>a "+" separator line</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>and a line with quality scores encoded as ASCII characters</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="al">![](fastq.png)</span>{width=600px}</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="al">![](fastq_sequence_ID.png)</span>{width=600px}</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## SAM</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>SAM (Sequence Alignment Map) is a tab-delimited text format for storing biological sequence alignment data. A SAM file consists of two parts: an optional **header section** and an **alignment section**.</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### Header Section</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>Header lines begin with <span class="in">`@`</span> and are optional but recommended:</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tag <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----|-------------|</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`@HD`</span> <span class="pp">|</span> File-level metadata: format version and sort order <span class="pp">|</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`@SQ`</span> <span class="pp">|</span> Reference sequence dictionary (name, length) <span class="pp">|</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`@RG`</span> <span class="pp">|</span> Read group (sample, library, platform) <span class="pp">|</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`@PG`</span> <span class="pp">|</span> Program used to generate or process the file <span class="pp">|</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`@CO`</span> <span class="pp">|</span> One-line free-text comment <span class="pp">|</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Alignment Section</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>Each alignment record has **11 mandatory fields**:</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Col <span class="pp">|</span> Field <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----|-------|-------------|</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> <span class="in">`QNAME`</span> <span class="pp">|</span> Query template name (read name) <span class="pp">|</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> <span class="in">`FLAG`</span> <span class="pp">|</span> Bitwise flag describing alignment properties <span class="pp">|</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> <span class="in">`RNAME`</span> <span class="pp">|</span> Reference sequence name <span class="pp">|</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4 <span class="pp">|</span> <span class="in">`POS`</span> <span class="pp">|</span> 1-based leftmost mapping position <span class="pp">|</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5 <span class="pp">|</span> <span class="in">`MAPQ`</span> <span class="pp">|</span> Mapping quality (-10 log₁₀ probability of wrong mapping) <span class="pp">|</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 6 <span class="pp">|</span> <span class="in">`CIGAR`</span> <span class="pp">|</span> CIGAR string describing read alignment <span class="pp">|</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 7 <span class="pp">|</span> <span class="in">`RNEXT`</span> <span class="pp">|</span> Reference name of the mate/next read <span class="pp">|</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 8 <span class="pp">|</span> <span class="in">`PNEXT`</span> <span class="pp">|</span> Position of the mate/next read <span class="pp">|</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 9 <span class="pp">|</span> <span class="in">`TLEN`</span> <span class="pp">|</span> Template length (insert size) <span class="pp">|</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 10 <span class="pp">|</span> <span class="in">`SEQ`</span> <span class="pp">|</span> Segment sequence <span class="pp">|</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 11 <span class="pp">|</span> <span class="in">`QUAL`</span> <span class="pp">|</span> Phred-scaled base quality scores (ASCII, offset +33) <span class="pp">|</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="fu">### FLAG Values</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>Each FLAG is a sum of any of the following bitwise values:</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bit <span class="pp">|</span> Value <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----|-------|-------------|</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x1 <span class="pp">|</span> 1 <span class="pp">|</span> Read paired <span class="pp">|</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x2 <span class="pp">|</span> 2 <span class="pp">|</span> Read mapped in proper pair <span class="pp">|</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x4 <span class="pp">|</span> 4 <span class="pp">|</span> Read unmapped <span class="pp">|</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x8 <span class="pp">|</span> 8 <span class="pp">|</span> Mate unmapped <span class="pp">|</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x10 <span class="pp">|</span> 16 <span class="pp">|</span> Read on reverse strand <span class="pp">|</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x20 <span class="pp">|</span> 32 <span class="pp">|</span> Mate on reverse strand <span class="pp">|</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x40 <span class="pp">|</span> 64 <span class="pp">|</span> First in pair (read 1) <span class="pp">|</span></span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x80 <span class="pp">|</span> 128 <span class="pp">|</span> Second in pair (read 2) <span class="pp">|</span></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x100 <span class="pp">|</span> 256 <span class="pp">|</span> Secondary alignment <span class="pp">|</span></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x200 <span class="pp">|</span> 512 <span class="pp">|</span> Read fails platform/vendor quality checks <span class="pp">|</span></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x400 <span class="pp">|</span> 1024 <span class="pp">|</span> PCR or optical duplicate <span class="pp">|</span></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0x800 <span class="pp">|</span> 2048 <span class="pp">|</span> Supplementary alignment <span class="pp">|</span></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>For example, FLAG <span class="in">`99`</span> = 1+2+32+64 means the read is paired, properly paired, the mate is on the reverse strand, and this is read 1.</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a><span class="fu">### CIGAR String</span></span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>The CIGAR string describes how the read aligns to the reference:</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Op <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|-------------|</span></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`M`</span> <span class="pp">|</span> Alignment match (match or mismatch) <span class="pp">|</span></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`I`</span> <span class="pp">|</span> Insertion to the reference <span class="pp">|</span></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`D`</span> <span class="pp">|</span> Deletion from the reference <span class="pp">|</span></span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`N`</span> <span class="pp">|</span> Skipped region from reference (e.g., intron) <span class="pp">|</span></span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`S`</span> <span class="pp">|</span> Soft clipping (clipped bases in SEQ) <span class="pp">|</span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`H`</span> <span class="pp">|</span> Hard clipping (clipped bases not in SEQ) <span class="pp">|</span></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`P`</span> <span class="pp">|</span> Padding (silent deletion from padded reference) <span class="pp">|</span></span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`=`</span> <span class="pp">|</span> Sequence match <span class="pp">|</span></span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`X`</span> <span class="pp">|</span> Sequence mismatch <span class="pp">|</span></span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>For example, <span class="in">`50M2I30M`</span> means 50 bases match, 2 inserted bases, then 30 more matching bases.</span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a><span class="fu">### File Size</span></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Exome: &gt;50 GB</span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Whole genome: 800 GB – 1 TB</span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## BAM</span></span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a>BAM (Binary Alignment Map) is the binary, compressed equivalent of SAM. It stores identical information but in a more space-efficient binary format.</span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key Characteristics</span></span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Binary, BGZF-compressed (Blocked GNU Zip Format) version of SAM</span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Requires an index file (<span class="in">`.bai`</span> or <span class="in">`.csi`</span>) for rapid random access to specific genomic regions</span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Indexing is done with <span class="in">`samtools index`</span></span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Must be coordinate-sorted before indexing</span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a><span class="fu">### Common Operations</span></span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert SAM to BAM</span></span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-bS</span> input.sam <span class="at">-o</span> output.bam</span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort BAM by coordinate</span></span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort output.bam <span class="at">-o</span> output.sorted.bam</span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a><span class="co"># Index sorted BAM</span></span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index output.sorted.bam</span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a><span class="co"># View BAM as text</span></span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view output.sorted.bam</span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a><span class="co"># View specific region</span></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view output.sorted.bam chr1:1000000-2000000</span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a><span class="fu">### File Size</span></span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Exome: 2 – 20 GB</span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Whole genome: 100 – 300 GB</span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a><span class="fu">## CRAM</span></span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a>CRAM is a highly space-efficient, reference-based compression format for storing sequence alignment data. It was developed by the European Bioinformatics Institute (EBI) and is supported by SAMtools and most modern NGS pipelines.</span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key Characteristics</span></span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Stores reads as differences from a reference genome, yielding much smaller files than BAM</span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Lossless or lossy compression options (lossy discards low-utility quality scores)</span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Requires access to the reference genome used during alignment for decoding</span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Supported by a <span class="in">`.crai`</span> index file</span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Typical compression: **~30–50% smaller than BAM** for the same data</span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### CRAM vs BAM vs SAM</span></span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Feature <span class="pp">|</span> SAM <span class="pp">|</span> BAM <span class="pp">|</span> CRAM <span class="pp">|</span></span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|-----|-----|------|</span></span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Encoding <span class="pp">|</span> Plain text <span class="pp">|</span> Binary <span class="pp">|</span> Binary <span class="pp">|</span></span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Compression <span class="pp">|</span> None <span class="pp">|</span> BGZF (gzip) <span class="pp">|</span> Reference-based <span class="pp">|</span></span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Typical WGS size <span class="pp">|</span> ~800 GB <span class="pp">|</span> ~100–300 GB <span class="pp">|</span> ~30–150 GB <span class="pp">|</span></span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Requires reference <span class="pp">|</span> No <span class="pp">|</span> No <span class="pp">|</span> Yes <span class="pp">|</span></span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Random access <span class="pp">|</span> No <span class="pp">|</span> Yes (with .bai) <span class="pp">|</span> Yes (with .crai) <span class="pp">|</span></span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a><span class="fu">### Common Operations</span></span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert BAM to CRAM</span></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-C</span> <span class="at">-T</span> reference.fa <span class="at">-o</span> output.cram input.bam</span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a><span class="co"># Index CRAM</span></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index output.cram</span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert CRAM back to BAM</span></span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-T</span> reference.fa <span class="at">-o</span> output.bam input.cram</span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a><span class="fu">## VCF</span></span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a>Variant Call Format (VCF) is a standard text-based format for storing gene sequence variations such as SNPs, indels, and structural variants. It is based on alignments in SAM/BAM format.</span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a><span class="fu">### Structure</span></span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a>VCF files consist of a **meta-information header**, a **header line**, and **data lines**.</span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a><span class="in">##fileformat=VCFv4.2</span></span>
+<span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a><span class="in">##FILTER=&lt;ID=PASS,Description="All filters passed"&gt;</span></span>
+<span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a><span class="in">##INFO=&lt;ID=DP,Number=1,Type=Integer,Description="Total Depth"&gt;</span></span>
+<span id="cb9-191"><a href="#cb9-191" aria-hidden="true" tabindex="-1"></a><span class="in">##FORMAT=&lt;ID=GT,Number=1,Type=String,Description="Genotype"&gt;</span></span>
+<span id="cb9-192"><a href="#cb9-192" aria-hidden="true" tabindex="-1"></a><span class="in">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO            FORMAT  SAMPLE1</span></span>
+<span id="cb9-193"><a href="#cb9-193" aria-hidden="true" tabindex="-1"></a><span class="in">chr1    925952  rs123   C       T       50      PASS    DP=100;AF=0.5   GT:DP   0/1:100</span></span>
+<span id="cb9-194"><a href="#cb9-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a><span class="fu">### Header Lines</span></span>
+<span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Lines starting with <span class="in">`##`</span> are meta-information lines (key=value pairs)</span>
+<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The last header line starts with <span class="in">`#CHROM`</span> and defines the column names</span>
+<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-201"><a href="#cb9-201" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8 Mandatory Columns</span></span>
+<span id="cb9-202"><a href="#cb9-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Col <span class="pp">|</span> Field <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----|-------|-------------|</span></span>
+<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> <span class="in">`CHROM`</span> <span class="pp">|</span> Chromosome name <span class="pp">|</span></span>
+<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> <span class="in">`POS`</span> <span class="pp">|</span> 1-based position of the variant <span class="pp">|</span></span>
+<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> <span class="in">`ID`</span> <span class="pp">|</span> Variant identifier (e.g., dbSNP rs ID, or <span class="in">`.`</span> if unknown) <span class="pp">|</span></span>
+<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4 <span class="pp">|</span> <span class="in">`REF`</span> <span class="pp">|</span> Reference allele at this position <span class="pp">|</span></span>
+<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5 <span class="pp">|</span> <span class="in">`ALT`</span> <span class="pp">|</span> Alternate allele(s), comma-separated <span class="pp">|</span></span>
+<span id="cb9-210"><a href="#cb9-210" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 6 <span class="pp">|</span> <span class="in">`QUAL`</span> <span class="pp">|</span> Phred-scaled quality score for the variant call <span class="pp">|</span></span>
+<span id="cb9-211"><a href="#cb9-211" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 7 <span class="pp">|</span> <span class="in">`FILTER`</span> <span class="pp">|</span> Filter status: <span class="in">`PASS`</span> or reason for filtering <span class="pp">|</span></span>
+<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 8 <span class="pp">|</span> <span class="in">`INFO`</span> <span class="pp">|</span> Semicolon-separated key=value pairs of variant annotations <span class="pp">|</span></span>
+<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a><span class="fu">### Optional Columns</span></span>
+<span id="cb9-215"><a href="#cb9-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-216"><a href="#cb9-216" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Col <span class="pp">|</span> Field <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb9-217"><a href="#cb9-217" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----|-------|-------------|</span></span>
+<span id="cb9-218"><a href="#cb9-218" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 9 <span class="pp">|</span> <span class="in">`FORMAT`</span> <span class="pp">|</span> Colon-separated list of per-sample field keys <span class="pp">|</span></span>
+<span id="cb9-219"><a href="#cb9-219" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 10+ <span class="pp">|</span> <span class="in">`SAMPLE`</span> <span class="pp">|</span> Per-sample data matching the FORMAT field <span class="pp">|</span></span>
+<span id="cb9-220"><a href="#cb9-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-221"><a href="#cb9-221" aria-hidden="true" tabindex="-1"></a><span class="fu">### Common INFO Fields</span></span>
+<span id="cb9-222"><a href="#cb9-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-223"><a href="#cb9-223" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tag <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb9-224"><a href="#cb9-224" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----|-------------|</span></span>
+<span id="cb9-225"><a href="#cb9-225" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`DP`</span> <span class="pp">|</span> Total read depth at the site <span class="pp">|</span></span>
+<span id="cb9-226"><a href="#cb9-226" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`AF`</span> <span class="pp">|</span> Allele frequency <span class="pp">|</span></span>
+<span id="cb9-227"><a href="#cb9-227" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`AN`</span> <span class="pp">|</span> Total number of alleles in called genotypes <span class="pp">|</span></span>
+<span id="cb9-228"><a href="#cb9-228" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`AC`</span> <span class="pp">|</span> Allele count <span class="pp">|</span></span>
+<span id="cb9-229"><a href="#cb9-229" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`MQ`</span> <span class="pp">|</span> RMS Mapping Quality <span class="pp">|</span></span>
+<span id="cb9-230"><a href="#cb9-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-231"><a href="#cb9-231" aria-hidden="true" tabindex="-1"></a><span class="fu">### Genotype (GT) Field</span></span>
+<span id="cb9-232"><a href="#cb9-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-233"><a href="#cb9-233" aria-hidden="true" tabindex="-1"></a>The <span class="in">`GT`</span> field in FORMAT encodes the genotype as allele indices separated by <span class="in">`/`</span> (unphased) or <span class="in">`|`</span> (phased):</span>
+<span id="cb9-234"><a href="#cb9-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-235"><a href="#cb9-235" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`0/0`</span> — homozygous reference</span>
+<span id="cb9-236"><a href="#cb9-236" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`0/1`</span> — heterozygous</span>
+<span id="cb9-237"><a href="#cb9-237" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`1/1`</span> — homozygous alternate</span>
+<span id="cb9-238"><a href="#cb9-238" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`1/2`</span> — heterozygous with two non-reference alleles</span>
+<span id="cb9-239"><a href="#cb9-239" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`./.`</span> — missing genotype</span>
+<span id="cb9-240"><a href="#cb9-240" aria-hidden="true" tabindex="-1"></a><span class="fu">## BCF</span></span>
+<span id="cb9-241"><a href="#cb9-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-242"><a href="#cb9-242" aria-hidden="true" tabindex="-1"></a>BCF (Binary Call Format) is the binary, compressed equivalent of VCF — analogous to the BAM/SAM relationship. It stores identical variant call information in a more efficient binary format.</span>
+<span id="cb9-243"><a href="#cb9-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-244"><a href="#cb9-244" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key Characteristics</span></span>
+<span id="cb9-245"><a href="#cb9-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-246"><a href="#cb9-246" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Much faster to read/write and smaller than VCF for large datasets</span>
+<span id="cb9-247"><a href="#cb9-247" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Can be indexed with <span class="in">`.csi`</span> index files for random access</span>
+<span id="cb9-248"><a href="#cb9-248" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Fully inter-convertible with VCF using <span class="in">`bcftools`</span></span>
+<span id="cb9-249"><a href="#cb9-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-250"><a href="#cb9-250" aria-hidden="true" tabindex="-1"></a><span class="fu">### Common Operations</span></span>
+<span id="cb9-251"><a href="#cb9-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-252"><a href="#cb9-252" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb9-253"><a href="#cb9-253" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert VCF to BCF</span></span>
+<span id="cb9-254"><a href="#cb9-254" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view <span class="at">-O</span> b <span class="at">-o</span> output.bcf input.vcf.gz</span>
+<span id="cb9-255"><a href="#cb9-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-256"><a href="#cb9-256" aria-hidden="true" tabindex="-1"></a><span class="co"># Index BCF</span></span>
+<span id="cb9-257"><a href="#cb9-257" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> index output.bcf</span>
+<span id="cb9-258"><a href="#cb9-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-259"><a href="#cb9-259" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert BCF back to VCF</span></span>
+<span id="cb9-260"><a href="#cb9-260" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view <span class="at">-O</span> v <span class="at">-o</span> output.vcf input.bcf</span>
+<span id="cb9-261"><a href="#cb9-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-262"><a href="#cb9-262" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter BCF/VCF</span></span>
+<span id="cb9-263"><a href="#cb9-263" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> filter <span class="at">-e</span> <span class="st">'QUAL&lt;30 || DP&lt;10'</span> <span class="at">-o</span> filtered.bcf input.bcf</span>
+<span id="cb9-264"><a href="#cb9-264" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-265"><a href="#cb9-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-266"><a href="#cb9-266" aria-hidden="true" tabindex="-1"></a><span class="fu">## GTF</span></span>
+<span id="cb9-267"><a href="#cb9-267" aria-hidden="true" tabindex="-1"></a>Gene Transfer Format (GTF) is a file format used to hold information about gene structure. It is a tab-delimited text format that consists of 9 columns:</span>
+<span id="cb9-268"><a href="#cb9-268" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="in">`seqname`</span>: Name of the chromosome or scaffold; chromosome names can be given with or without the 'chr' prefix.</span>
+<span id="cb9-269"><a href="#cb9-269" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="in">`source`</span>: Name of the program that generated this feature, or the data source (database or project name).</span>
+<span id="cb9-270"><a href="#cb9-270" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span><span class="in">`feature`</span>: Feature type name (e.g., Gene, Variation, Similarity).</span>
+<span id="cb9-271"><a href="#cb9-271" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span><span class="in">`start`</span>: Start position of the feature, with sequence numbering starting at 1.</span>
+<span id="cb9-272"><a href="#cb9-272" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span><span class="in">`end`</span>: End position of the feature, with sequence numbering starting at 1.</span>
+<span id="cb9-273"><a href="#cb9-273" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span><span class="in">`score`</span>: A floating point value.</span>
+<span id="cb9-274"><a href="#cb9-274" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span><span class="in">`strand`</span>: Defined as + (forward) or - (reverse).</span>
+<span id="cb9-275"><a href="#cb9-275" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span><span class="in">`frame`</span>: One of '0', '1' or '2'. '0' indicates that the first base of the feature is the first base of a codon, '1' that the second base is the first base of a codon, and so on.</span>
+<span id="cb9-276"><a href="#cb9-276" aria-hidden="true" tabindex="-1"></a><span class="ss">9. </span><span class="in">`attribute`</span>: A semicolon-separated list of tag-value pairs, providing additional information about each feature.</span>
+<span id="cb9-277"><a href="#cb9-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-278"><a href="#cb9-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-279"><a href="#cb9-279" aria-hidden="true" tabindex="-1"></a><span class="fu">## GFF3</span></span>
+<span id="cb9-280"><a href="#cb9-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-281"><a href="#cb9-281" aria-hidden="true" tabindex="-1"></a>GFF3 (General Feature Format version 3) is the current standard for describing genomic features. It is an improvement over GFF2/GTF with better support for complex gene structures and hierarchical relationships between features.</span>
+<span id="cb9-282"><a href="#cb9-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-283"><a href="#cb9-283" aria-hidden="true" tabindex="-1"></a><span class="fu">### 9 Mandatory Columns (tab-delimited)</span></span>
+<span id="cb9-284"><a href="#cb9-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-285"><a href="#cb9-285" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Col <span class="pp">|</span> Field <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb9-286"><a href="#cb9-286" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----|-------|-------------|</span></span>
+<span id="cb9-287"><a href="#cb9-287" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> <span class="in">`seqid`</span> <span class="pp">|</span> Chromosome or scaffold name <span class="pp">|</span></span>
+<span id="cb9-288"><a href="#cb9-288" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> <span class="in">`source`</span> <span class="pp">|</span> Program that generated the feature, or database name <span class="pp">|</span></span>
+<span id="cb9-289"><a href="#cb9-289" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> <span class="in">`type`</span> <span class="pp">|</span> Feature type using Sequence Ontology terms (e.g., <span class="in">`gene`</span>, <span class="in">`mRNA`</span>, <span class="in">`exon`</span>, <span class="in">`CDS`</span>) <span class="pp">|</span></span>
+<span id="cb9-290"><a href="#cb9-290" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4 <span class="pp">|</span> <span class="in">`start`</span> <span class="pp">|</span> 1-based start position <span class="pp">|</span></span>
+<span id="cb9-291"><a href="#cb9-291" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5 <span class="pp">|</span> <span class="in">`end`</span> <span class="pp">|</span> 1-based end position (inclusive) <span class="pp">|</span></span>
+<span id="cb9-292"><a href="#cb9-292" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 6 <span class="pp">|</span> <span class="in">`score`</span> <span class="pp">|</span> Floating point score, or <span class="in">`.`</span> if not applicable <span class="pp">|</span></span>
+<span id="cb9-293"><a href="#cb9-293" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 7 <span class="pp">|</span> <span class="in">`strand`</span> <span class="pp">|</span> <span class="in">`+`</span> (forward), <span class="in">`-`</span> (reverse), <span class="in">`.`</span> (unstranded), or <span class="in">`?`</span> (unknown) <span class="pp">|</span></span>
+<span id="cb9-294"><a href="#cb9-294" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 8 <span class="pp">|</span> <span class="in">`phase`</span> <span class="pp">|</span> For CDS features: <span class="in">`0`</span>, <span class="in">`1`</span>, or <span class="in">`2`</span> (reading frame offset); <span class="in">`.`</span> otherwise <span class="pp">|</span></span>
+<span id="cb9-295"><a href="#cb9-295" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 9 <span class="pp">|</span> <span class="in">`attributes`</span> <span class="pp">|</span> Semicolon-separated <span class="in">`tag=value`</span> pairs <span class="pp">|</span></span>
+<span id="cb9-296"><a href="#cb9-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-297"><a href="#cb9-297" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key Attributes</span></span>
+<span id="cb9-298"><a href="#cb9-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-299"><a href="#cb9-299" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Attribute <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb9-300"><a href="#cb9-300" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------|-------------|</span></span>
+<span id="cb9-301"><a href="#cb9-301" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ID`</span> <span class="pp">|</span> Unique identifier for the feature within the file <span class="pp">|</span></span>
+<span id="cb9-302"><a href="#cb9-302" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Name`</span> <span class="pp">|</span> Display name for the feature <span class="pp">|</span></span>
+<span id="cb9-303"><a href="#cb9-303" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Parent`</span> <span class="pp">|</span> Establishes parent–child relationships (e.g., exon's parent is an mRNA) <span class="pp">|</span></span>
+<span id="cb9-304"><a href="#cb9-304" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Dbxref`</span> <span class="pp">|</span> Database cross-reference <span class="pp">|</span></span>
+<span id="cb9-305"><a href="#cb9-305" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`Note`</span> <span class="pp">|</span> Free-text note <span class="pp">|</span></span>
+<span id="cb9-306"><a href="#cb9-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-307"><a href="#cb9-307" aria-hidden="true" tabindex="-1"></a><span class="fu">### Example</span></span>
+<span id="cb9-308"><a href="#cb9-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-309"><a href="#cb9-309" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-310"><a href="#cb9-310" aria-hidden="true" tabindex="-1"></a><span class="in">##gff-version 3</span></span>
+<span id="cb9-311"><a href="#cb9-311" aria-hidden="true" tabindex="-1"></a><span class="in">chr1  Ensembl  gene    11869  14409  .  +  .  ID=ENSG00000223972;Name=DDX11L1;biotype=transcribed_unprocessed_pseudogene</span></span>
+<span id="cb9-312"><a href="#cb9-312" aria-hidden="true" tabindex="-1"></a><span class="in">chr1  Ensembl  mRNA    11869  14409  .  +  .  ID=ENST00000456328;Parent=ENSG00000223972;Name=DDX11L1-202</span></span>
+<span id="cb9-313"><a href="#cb9-313" aria-hidden="true" tabindex="-1"></a><span class="in">chr1  Ensembl  exon    11869  12227  .  +  .  Parent=ENST00000456328</span></span>
+<span id="cb9-314"><a href="#cb9-314" aria-hidden="true" tabindex="-1"></a><span class="in">chr1  Ensembl  exon    12613  12721  .  +  .  Parent=ENST00000456328</span></span>
+<span id="cb9-315"><a href="#cb9-315" aria-hidden="true" tabindex="-1"></a><span class="in">chr1  Ensembl  exon    13221  14409  .  +  .  Parent=ENST00000456328</span></span>
+<span id="cb9-316"><a href="#cb9-316" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-317"><a href="#cb9-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-318"><a href="#cb9-318" aria-hidden="true" tabindex="-1"></a><span class="fu">### GFF3 vs GTF</span></span>
+<span id="cb9-319"><a href="#cb9-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-320"><a href="#cb9-320" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Feature <span class="pp">|</span> GTF <span class="pp">|</span> GFF3 <span class="pp">|</span></span>
+<span id="cb9-321"><a href="#cb9-321" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|-----|------|</span></span>
+<span id="cb9-322"><a href="#cb9-322" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Hierarchy <span class="pp">|</span> Implicit (by gene_id/transcript_id) <span class="pp">|</span> Explicit via <span class="in">`Parent=`</span> attribute <span class="pp">|</span></span>
+<span id="cb9-323"><a href="#cb9-323" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Feature types <span class="pp">|</span> Restricted (gene, transcript, exon, CDS) <span class="pp">|</span> Any Sequence Ontology term <span class="pp">|</span></span>
+<span id="cb9-324"><a href="#cb9-324" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Multiple parents <span class="pp">|</span> Not supported <span class="pp">|</span> Supported <span class="pp">|</span></span>
+<span id="cb9-325"><a href="#cb9-325" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> UCSC/Ensembl <span class="pp">|</span> Common for downloads <span class="pp">|</span> Increasingly adopted <span class="pp">|</span></span>
+<span id="cb9-326"><a href="#cb9-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-327"><a href="#cb9-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-328"><a href="#cb9-328" aria-hidden="true" tabindex="-1"></a><span class="fu">## BED</span></span>
+<span id="cb9-329"><a href="#cb9-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-330"><a href="#cb9-330" aria-hidden="true" tabindex="-1"></a>BED (Browser Extensible Data) is a flexible tab-delimited format for describing genomic regions. It is widely used for representing peaks, intervals, annotations, and other positional data in genome browsers (UCSC, IGV).</span>
+<span id="cb9-331"><a href="#cb9-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-332"><a href="#cb9-332" aria-hidden="true" tabindex="-1"></a><span class="fu">### Coordinates</span></span>
+<span id="cb9-333"><a href="#cb9-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-334"><a href="#cb9-334" aria-hidden="true" tabindex="-1"></a>BED uses **0-based, half-open** coordinates: the start position is 0-indexed and the end is exclusive. For example, <span class="in">`chr1  0  100`</span> spans the first 100 bases.</span>
+<span id="cb9-335"><a href="#cb9-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-336"><a href="#cb9-336" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb9-337"><a href="#cb9-337" aria-hidden="true" tabindex="-1"></a>This differs from SAM/VCF/GFF3 which use **1-based** coordinates.</span>
+<span id="cb9-338"><a href="#cb9-338" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-339"><a href="#cb9-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-340"><a href="#cb9-340" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fields</span></span>
+<span id="cb9-341"><a href="#cb9-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-342"><a href="#cb9-342" aria-hidden="true" tabindex="-1"></a>BED has 3 required fields and up to 12 fields total:</span>
+<span id="cb9-343"><a href="#cb9-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-344"><a href="#cb9-344" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Col <span class="pp">|</span> Field <span class="pp">|</span> Required <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb9-345"><a href="#cb9-345" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----|-------|----------|-------------|</span></span>
+<span id="cb9-346"><a href="#cb9-346" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> <span class="in">`chrom`</span> <span class="pp">|</span> Yes <span class="pp">|</span> Chromosome name <span class="pp">|</span></span>
+<span id="cb9-347"><a href="#cb9-347" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> <span class="in">`chromStart`</span> <span class="pp">|</span> Yes <span class="pp">|</span> 0-based start position <span class="pp">|</span></span>
+<span id="cb9-348"><a href="#cb9-348" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> <span class="in">`chromEnd`</span> <span class="pp">|</span> Yes <span class="pp">|</span> End position (exclusive) <span class="pp">|</span></span>
+<span id="cb9-349"><a href="#cb9-349" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4 <span class="pp">|</span> <span class="in">`name`</span> <span class="pp">|</span> No <span class="pp">|</span> Name of the feature <span class="pp">|</span></span>
+<span id="cb9-350"><a href="#cb9-350" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5 <span class="pp">|</span> <span class="in">`score`</span> <span class="pp">|</span> No <span class="pp">|</span> Score (0–1000) <span class="pp">|</span></span>
+<span id="cb9-351"><a href="#cb9-351" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 6 <span class="pp">|</span> <span class="in">`strand`</span> <span class="pp">|</span> No <span class="pp">|</span> <span class="in">`+`</span> or <span class="in">`-`</span> <span class="pp">|</span></span>
+<span id="cb9-352"><a href="#cb9-352" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 7 <span class="pp">|</span> <span class="in">`thickStart`</span> <span class="pp">|</span> No <span class="pp">|</span> Start position for thick drawing <span class="pp">|</span></span>
+<span id="cb9-353"><a href="#cb9-353" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 8 <span class="pp">|</span> <span class="in">`thickEnd`</span> <span class="pp">|</span> No <span class="pp">|</span> End position for thick drawing <span class="pp">|</span></span>
+<span id="cb9-354"><a href="#cb9-354" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 9 <span class="pp">|</span> <span class="in">`itemRgb`</span> <span class="pp">|</span> No <span class="pp">|</span> Display color (R,G,B) <span class="pp">|</span></span>
+<span id="cb9-355"><a href="#cb9-355" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 10 <span class="pp">|</span> <span class="in">`blockCount`</span> <span class="pp">|</span> No <span class="pp">|</span> Number of blocks (exons) <span class="pp">|</span></span>
+<span id="cb9-356"><a href="#cb9-356" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 11 <span class="pp">|</span> <span class="in">`blockSizes`</span> <span class="pp">|</span> No <span class="pp">|</span> Comma-separated list of block sizes <span class="pp">|</span></span>
+<span id="cb9-357"><a href="#cb9-357" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 12 <span class="pp">|</span> <span class="in">`blockStarts`</span> <span class="pp">|</span> No <span class="pp">|</span> Comma-separated block start positions (relative to <span class="in">`chromStart`</span>) <span class="pp">|</span></span>
+<span id="cb9-358"><a href="#cb9-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-359"><a href="#cb9-359" aria-hidden="true" tabindex="-1"></a><span class="fu">### Example</span></span>
+<span id="cb9-360"><a href="#cb9-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-361"><a href="#cb9-361" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-362"><a href="#cb9-362" aria-hidden="true" tabindex="-1"></a><span class="in">chr7   127471196  127472363  Pos1   0  +  127471196  127472363  255,0,0</span></span>
+<span id="cb9-363"><a href="#cb9-363" aria-hidden="true" tabindex="-1"></a><span class="in">chr7   127472363  127473530  Pos2   0  +  127472363  127473530  255,0,0</span></span>
+<span id="cb9-364"><a href="#cb9-364" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-365"><a href="#cb9-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-366"><a href="#cb9-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-367"><a href="#cb9-367" aria-hidden="true" tabindex="-1"></a><span class="fu">## bedGraph</span></span>
+<span id="cb9-368"><a href="#cb9-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-369"><a href="#cb9-369" aria-hidden="true" tabindex="-1"></a>bedGraph is a variant of the BED format for displaying continuous-valued data (e.g., sequencing coverage, ChIP-seq signal) across genomic coordinates. Each line defines a region and an associated data value.</span>
+<span id="cb9-370"><a href="#cb9-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-371"><a href="#cb9-371" aria-hidden="true" tabindex="-1"></a><span class="fu">### Format</span></span>
+<span id="cb9-372"><a href="#cb9-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-373"><a href="#cb9-373" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-374"><a href="#cb9-374" aria-hidden="true" tabindex="-1"></a><span class="in">track type=bedGraph name="Coverage" description="Read depth"</span></span>
+<span id="cb9-375"><a href="#cb9-375" aria-hidden="true" tabindex="-1"></a><span class="in">chr1  0      1000   5.0</span></span>
+<span id="cb9-376"><a href="#cb9-376" aria-hidden="true" tabindex="-1"></a><span class="in">chr1  1000   2000   12.3</span></span>
+<span id="cb9-377"><a href="#cb9-377" aria-hidden="true" tabindex="-1"></a><span class="in">chr1  2000   2500   0.0</span></span>
+<span id="cb9-378"><a href="#cb9-378" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-379"><a href="#cb9-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-380"><a href="#cb9-380" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Uses 0-based half-open coordinates (same as BED)</span>
+<span id="cb9-381"><a href="#cb9-381" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Only 4 columns: <span class="in">`chrom`</span>, <span class="in">`start`</span>, <span class="in">`end`</span>, <span class="in">`value`</span></span>
+<span id="cb9-382"><a href="#cb9-382" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Regions must be sorted and non-overlapping within a chromosome</span>
+<span id="cb9-383"><a href="#cb9-383" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The optional <span class="in">`track`</span> header line provides display metadata</span>
+<span id="cb9-384"><a href="#cb9-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-385"><a href="#cb9-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-386"><a href="#cb9-386" aria-hidden="true" tabindex="-1"></a><span class="fu">## BigWig / BigBed</span></span>
+<span id="cb9-387"><a href="#cb9-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-388"><a href="#cb9-388" aria-hidden="true" tabindex="-1"></a>BigWig and BigBed are binary, indexed versions of WIG/bedGraph and BED files respectively. They are designed for efficient remote access and visualization in genome browsers.</span>
+<span id="cb9-389"><a href="#cb9-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-390"><a href="#cb9-390" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Format <span class="pp">|</span> Text equivalent <span class="pp">|</span> Use case <span class="pp">|</span></span>
+<span id="cb9-391"><a href="#cb9-391" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|----------------|----------|</span></span>
+<span id="cb9-392"><a href="#cb9-392" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> BigWig (<span class="in">`.bw`</span>) <span class="pp">|</span> WIG / bedGraph <span class="pp">|</span> Continuous signal (coverage, scores) <span class="pp">|</span></span>
+<span id="cb9-393"><a href="#cb9-393" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> BigBed (<span class="in">`.bb`</span>) <span class="pp">|</span> BED <span class="pp">|</span> Discrete features/annotations <span class="pp">|</span></span>
+<span id="cb9-394"><a href="#cb9-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-395"><a href="#cb9-395" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key Advantages</span></span>
+<span id="cb9-396"><a href="#cb9-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-397"><a href="#cb9-397" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Indexed**: supports fast random access to any genomic region</span>
+<span id="cb9-398"><a href="#cb9-398" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Remote access**: genome browsers (UCSC, IGV) can stream only the required region</span>
+<span id="cb9-399"><a href="#cb9-399" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Much smaller than equivalent text files</span>
+<span id="cb9-400"><a href="#cb9-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-401"><a href="#cb9-401" aria-hidden="true" tabindex="-1"></a><span class="fu">### Common Operations</span></span>
+<span id="cb9-402"><a href="#cb9-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-403"><a href="#cb9-403" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb9-404"><a href="#cb9-404" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert bedGraph to BigWig</span></span>
+<span id="cb9-405"><a href="#cb9-405" aria-hidden="true" tabindex="-1"></a><span class="ex">bedGraphToBigWig</span> input.bedGraph chrom.sizes output.bw</span>
+<span id="cb9-406"><a href="#cb9-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-407"><a href="#cb9-407" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert BED to BigBed</span></span>
+<span id="cb9-408"><a href="#cb9-408" aria-hidden="true" tabindex="-1"></a><span class="ex">bedToBigBed</span> input.bed chrom.sizes output.bb</span>
+<span id="cb9-409"><a href="#cb9-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-410"><a href="#cb9-410" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract a region from BigWig to bedGraph</span></span>
+<span id="cb9-411"><a href="#cb9-411" aria-hidden="true" tabindex="-1"></a><span class="ex">bigWigToBedGraph</span> <span class="at">-chrom</span><span class="op">=</span>chr1 <span class="at">-start</span><span class="op">=</span>0 <span class="at">-end</span><span class="op">=</span>1000000 input.bw output.bedGraph</span>
+<span id="cb9-412"><a href="#cb9-412" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

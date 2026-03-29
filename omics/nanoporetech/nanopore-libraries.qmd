@@ -1,0 +1,122 @@
+---
+title: "Nanopore Sequencing Libraries"
+date: 2026-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc: true
+toc-location: left
+---
+
+All ONT library preparations achieve the same end goal: attach the correct **sequencing adapter** to each end of your DNA or RNA molecule so the motor protein (helicase) can thread it through the nanopore. ONT kits differ in *how* they attach the adapter:
+
+## Library Adapter Structure
+
+A standard ligation sequencing library consists of:
+
+| Region | Function |
+|---|---|
+| **Leader sequence** | Single-stranded overhang that inserts into the pore first; sets up strand capture. |
+| **Motor protein binding site** | Helicase docks here and threads the strand through the pore at a controlled speed. |
+| **DNA / RNA insert** | Your fragment of interest. Any length — from <1 kb to >2 Mb. |
+| **Trailing adapter** | Marks the end of the molecule; optional hairpin for 2D/duplex sequencing. |
+
+## Ligation Sequencing Kit (SQK-LSK114 / SQK-LSK110)
+
+The standard, highest-yield approach. Molecules ≥ 1 kb benefit most; ultra-long reads (>100 kb) require careful high-molecular-weight DNA extraction.
+
+**Workflow steps:**
+
+1. **End repair & dA-tailing** — NEBNext FFPE DNA Repair + Ultra II End-prep blunt-end the fragments and add a single 3′ A-overhang.
+2. **Adapter ligation** — ONT's pre-loaded adapter (AMII) is ligated cleanly using T4 DNA Ligase or the supplied quick ligase.
+3. **SPRI bead clean-up** — Short fragments and unligated adapter are removed; use low-ratio SPRI (e.g., 0.4×) for long-read enrichment.
+4. **Load onto flowcell** — Priming mix + library is loaded into the priming port; sequencing begins within minutes.
+
+**Key considerations:**
+
+- Avoid vortex mixing with ultra-long DNA; use wide-bore pipette tips.
+- Input DNA quality is critical — degraded DNA gives short reads and low output.
+- Recommended input: 1 µg for standard, 5–50 µg for ultra-long.
+
+## Rapid Sequencing Kit (SQK-RAD114 / SQK-RBK114)
+
+Uses a transposase-based fragmentation and tagging step instead of end repair + ligation. Fastest prep time (~10 min bench time).
+
+**Workflow steps:**
+
+1. **FRA mix** — A transposase ("fragmentation and tagging" enzyme) simultaneously fragments DNA and attaches short transposon tags at both cut ends.
+2. **Rapid adapter ligation** — The rapid adapter (RAP) anneals directly to the transposon tag without a ligase. No incubation required.
+3. **Load** — Add sequencing buffer and load immediately.
+
+**Trade-offs vs. ligation:**
+
+- Maximum read length is limited by transposase fragmentation (~30–50 kb).
+- Lower yield than ligation kits.
+- Ideal for rapid clinical or field applications.
+
+## PCR-Based Sequencing (SQK-PBK114 / LongAmp PCR)
+
+When input DNA is limiting or degraded (FFPE, ancient DNA, low-biomass samples), PCR amplification is performed before adapter ligation or during library prep.
+
+**Workflow steps:**
+
+1. **PCR amplification** — Long-range PCR or whole-genome amplification using a high-fidelity, long-range polymerase (e.g., LongAmp Taq, Q5).
+2. **SPRI clean-up** — Remove primers and short products.
+3. **End repair + ligation** — As per ligation kit workflow.
+
+**Considerations:**
+
+- PCR introduces GC bias and amplification errors.
+- Removes base modifications — not suitable for methylation analysis.
+- Read length is capped by the PCR amplicon length.
+
+## Barcoding and Multiplexing
+
+Multiple samples can be pooled in a single flowcell run using **barcodes** — short sequences incorporated into adapters to identify each sample.
+
+### Native Barcoding (SQK-NBD114-24 / NBD114-96)
+
+Barcodes are ligated onto the ends of DNA fragments before the sequencing adapter is added. Compatible with the ligation workflow; preserves base modifications (methylation).
+
+### Rapid Barcoding (SQK-RBK114-24 / RBK114-96)
+
+Barcodes are incorporated into the rapid transposase adapter itself, enabling barcoded library prep in ~15 minutes.
+
+### Demultiplexing
+
+Barcode identification is performed computationally after sequencing by Dorado (`dorado demux`) or MinKNOW in real time. ONT barcodes are available in 12, 24, and 96-plex configurations.
+
+## Direct RNA Sequencing (SQK-RNA004)
+
+ONT is currently the only platform capable of sequencing native RNA molecules without cDNA conversion, preserving:
+
+- **Poly-A tail length** — quantified per transcript.
+- **RNA base modifications** — m6A, pseudouridine (Ψ), and others.
+- **Full-length isoforms** — no read length bias.
+
+**Workflow steps:**
+
+1. **Poly-A adapter ligation** — A custom RNA adapter is ligated to the 3′ poly-A tail.
+2. **Reverse transcriptase tethering** (optional) — Improves loading efficiency; does not synthesise cDNA.
+3. **Load onto RNA flowcell** — Uses the same R10.4.1 flow cell but different motor protein speed settings.
+
+Because RNA is intrinsically single-stranded, the library is simpler than DNA; however, RNA basecalling models are trained separately.
+
+## Amplicon Sequencing
+
+For targeted deep sequencing (e.g., 16S rRNA, amplicon panels):
+
+1. Design primers spanning the target region.
+2. PCR-amplify with ONT-compatible ends or ligate barcoded adapters post-PCR.
+3. Pool amplicons from multiple samples and sequence.
+
+Long amplicons (>10 kb) enable phasing and full-gene coverage — an advantage over short-read amplicon sequencing.
+
+## Adaptive Sampling (Read Until)
+
+Unique to ONT: the sequencer can **reject reads in real time** by reversing the voltage before the molecule finishes translocating.
+
+- Designed enrichment — reject off-target regions, concentrate sequencing depth on loci of interest.
+- No wet-lab enrichment step needed.
+- Requires a reference genome and a GPU connected to the MinKNOW software.
+- Practical enrichment factors vary from 3× to >50× depending on target fraction.

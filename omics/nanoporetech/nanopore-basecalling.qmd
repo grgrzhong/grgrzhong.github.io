@@ -1,0 +1,160 @@
+---
+title: "Basecalling"
+date: 2026-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc: true
+toc-location: left
+---
+
+## What is Basecalling?
+
+The raw output of a nanopore sequencer is not a sequence of A, T, C, G — it is a time-series of **ionic current measurements** (picoamperes), recorded as the DNA or RNA strand translocates through the pore. This signal trace is called a **squiggle**.
+
+**Basecalling** is the computational process of converting each squiggle into a nucleotide sequence. It is carried out by a neural network (typically a transformer or recurrent model) trained to recognise the current patterns created by each k-mer of bases occupying the pore at any given moment.
+
+Because basecalling is computationally intensive and accuracy-critical, it is performed either:
+
+- **Live** (during sequencing) — on the sequencing device's GPU or a connected local GPU via MinKNOW.
+- **Offline** (post-run) — by running Dorado on stored POD5/FAST5 files on a GPU workstation or cluster.
+
+## Dorado
+
+**Dorado** is ONT's current production basecaller (replacing the older Guppy). It is open-source and GPU-accelerated.
+
+```bash
+# Basic simplex basecalling
+dorado basecaller sup /path/to/pod5s/ > calls.bam
+
+# Basecalling with modified base detection (5mCG + 5hmCG)
+dorado basecaller sup,5mCG_5hmCG /path/to/pod5s/ > calls.bam
+
+# Convert to FASTQ
+samtools fastq calls.bam > calls.fastq
+```
+
+Dorado outputs **unaligned BAM** by default, which preserves all read metadata tags including move tables and modification probabilities.
+
+### Key Dorado subcommands
+
+| Command | Purpose |
+|---|---|
+| `dorado basecaller` | Main basecalling from POD5/FAST5 |
+| `dorado demux` | Demultiplex barcoded libraries |
+| `dorado trim` | Trim adapters and barcodes from reads |
+| `dorado aligner` | Align basecalled BAM to a reference (wraps minimap2) |
+| `dorado summary` | Generate per-read sequencing summary TSV |
+| `dorado correct` | Error-correct long reads using neural approach |
+
+## Accuracy Models
+
+Dorado ships with multiple models per flowcell chemistry, representing a speed/accuracy trade-off. The chemistry version is encoded in the model name (e.g., `dna_r10.4.1_e8.2_400bps`).
+
+| Model | Alias | Speed | Accuracy | Typical use |
+|---|---|---|---|---|
+| **fast** | `fast` | Fastest | ~98% modal | Real-time, quick checks |
+| **high accuracy** | `hac` | Moderate | ~99.5% modal | Standard analysis |
+| **super accuracy** | `sup` | Slowest | >99.9% modal | Variant calling, methylation |
+
+- `sup` requires ~5–10× more GPU compute than `fast`.
+- On an NVIDIA A100, `sup` processes ~3–5 million reads per hour per GPU.
+- Model selection strongly impacts SNV calling sensitivity; **always use `sup`** for clinical or variant-calling workflows.
+
+## Quality Scores
+
+After basecalling, each base in the FASTQ/BAM output is assigned a **Phred quality score** (Q score):
+
+$$Q = -10 \log_{10} P$$
+
+where $P$ is the per-base error probability estimated by the basecaller neural network.
+
+| Q score | Accuracy | Mean errors per 10,000 bases |
+|---|---|---|
+| Q10 | 90% | 1,000 |
+| Q20 | 99% | 100 |
+| Q25 | 99.68% | 32 |
+| Q30 | 99.9% | 10 |
+
+With R10.4.1 + SUP:
+
+- **Modal Q score** of a run is typically Q20–Q25.
+- Reads below **Q8** are filtered by default in MinKNOW (stored in a fail output folder).
+- Consensus polishing with Medaka can yield draft assemblies exceeding **Q50**.
+
+### Read filtering by quality
+
+```bash
+# Keep only reads with average Q ≥ 10
+seqkit seq -Q 10 calls.fastq > calls_filtered.fastq
+
+# NanoFilt (legacy; still widely used)
+NanoFilt -q 10 -l 500 calls.fastq > calls_filtered.fastq
+```
+
+## Modified Base Detection
+
+One of ONT's major advantages is simultaneous detection of **base modifications** without chemical treatment. The basecaller neural network estimates, for each cytosine or adenine, the probability that it carries a modification tag stored in the BAM `MM`/`ML` tags.
+
+### Supported modifications
+
+| Modification | Code | Description |
+|---|---|---|
+| 5-methylcytosine | `5mC` | CpG methylation (mammals) |
+| 5-hydroxymethylcytosine | `5hmC` | Oxidised form of 5mC |
+| Combined CpG model | `5mCG_5hmCG` | Distinguishes 5mC from 5hmC at CpG sites |
+| N6-methyladenine | `6mA` | Common in bacteria, present in mammals |
+| 4-methylcytosine | `4mC` | Bacterial modification |
+
+```bash
+# Call 5mC and 5hmC together (recommended for mammalian genomes)
+dorado basecaller sup,5mCG_5hmCG /pod5s/ > calls_with_mods.bam
+
+# Align and sort
+dorado aligner hg38.fasta calls_with_mods.bam | samtools sort -o aligned.bam
+samtools index aligned.bam
+
+# Extract per-site methylation with modkit
+modkit pileup aligned.bam methylation.bed --ref hg38.fasta --preset traditional
+```
+
+### Downstream methylation analysis tools
+
+| Tool | Purpose |
+|---|---|
+| **modkit** (ONT) | Pileup, summarise, and manipulate modification tags |
+| **Megalodon** (legacy) | All-in-one signal-level methylation and variant calling |
+| **Modbam2bed** | Convert BAM modification tags to bedMethyl |
+| **DSS / edgeR** | Differential methylation analysis from bedMethyl counts |
+
+## Alignment
+
+After basecalling, reads are aligned to a reference genome using **minimap2** with the `map-ont` preset:
+
+```bash
+# Align with minimap2 directly
+minimap2 -ax map-ont -t 16 reference.fasta calls.fastq | \
+    samtools sort -o aligned.bam && samtools index aligned.bam
+
+# Or via Dorado aligner (preserves modification tags)
+dorado aligner reference.fasta calls.bam | samtools sort -o aligned.bam
+samtools index aligned.bam
+```
+
+`map-ont` preset key settings: `-k 15 -w 10`; tolerates the higher per-read error rate of ONT reads.
+
+## Guppy (Legacy)
+
+Guppy was ONT's previous basecaller and is now **deprecated** in favour of Dorado. It is still encountered in older pipelines.
+
+```bash
+# Legacy Guppy command (for reference)
+guppy_basecaller -i /fast5s/ -s /output/ \
+    --config dna_r9.4.1_450bps_sup.cfg --device cuda:0
+```
+
+Key differences from Dorado:
+
+- Outputs FASTQ files directly (not BAM).
+- Modification calling required a separate tool (Remora).
+- No longer updated; use Dorado for all new projects.

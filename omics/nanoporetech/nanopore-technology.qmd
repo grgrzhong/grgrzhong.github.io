@@ -1,0 +1,87 @@
+---
+title: "Nanopore Technology"
+date: 2026-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc: true
+toc-location: left
+---
+
+## How Nanopore Sequencing Works
+
+Oxford Nanopore Technology (ONT) is fundamentally different from Illumina sequencing. Rather than sequencing by synthesis with fluorescent signals, nanopore sequencing detects changes in ionic current as a DNA or RNA strand passes through a protein pore embedded in a synthetic membrane.
+
+- A **protein nanopore** (typically CsgG or R10.4.1) is inserted into an electrically resistant polymer membrane.
+- An ionic buffer is applied across the membrane and a constant voltage drives ions through the pore, generating a measurable **baseline current**.
+- When a DNA or RNA strand is threaded through the pore by a **motor protein** (helicase), the nucleotides occlude the pore and alter the ionic current.
+- The pattern of current disruptions — called a **squiggle** — is recorded over time and subsequently decoded into a nucleotide sequence by a basecaller.
+
+Because the raw molecule itself is read, nanopore sequencing can:
+
+- Produce reads of any length — from hundreds of bases to **millions of bases** (ultra-long reads).
+- Detect **native base modifications** (e.g., 5mC, 5hmC, 6mA) directly from the current signal, without bisulfite conversion.
+- Sequence **RNA directly**, without reverse transcription.
+
+## Devices
+
+| Device | Flowcells | Max output | Use case |
+|---|---|---|---|
+| **Flongle** | 1 (126 channels) | ~2 Gb | Rapid, low-volume runs |
+| **MinION / MinION Mk1C** | 1 (512 channels) | ~50 Gb | Portable field sequencing |
+| **GridION** | Up to 5 simultaneously | ~250 Gb | Lab-scale flexible runs |
+| **P2 Solo / P2i** | 2 (2,048 channels each) | ~200 Gb | High-throughput desktop |
+| **PromethION 24 / 48** | Up to 24 or 48 | ~14.5 Tb | Population-scale projects |
+
+All devices are compatible with the same library preparations; output scales with the number and type of flowcells used.
+
+## Flowcell Chemistry
+
+ONT continuously improves pore chemistry. The most current production chemistry is **R10.4.1**, which features a dual-reader head that improves per-read accuracy and homopolymer resolution compared to the previous R9.4.1 chemistry.
+
+- **R9.4.1** — widely used, mature bioinformatics tooling, ~98% modal accuracy.
+- **R10.4.1** — improved accuracy (>99% modal, Q20+), better for SNV and methylation calling.
+
+## Output File Formats
+
+| Format | Description |
+|---|---|
+| **FAST5** | Legacy HDF5-based format storing raw signal (will be deprecated). |
+| **POD5** | Current signal format; smaller, faster I/O than FAST5. |
+| **FASTQ** | Standard nucleotide sequences with Phred quality scores, produced after basecalling. |
+| **BAM/UBAM** | Alignment or unaligned BAM; Dorado outputs unaligned BAM natively, carrying move tables and modification tags. |
+| **Summary TSV** | Per-read sequencing summary produced by Dorado/MinKNOW with metadata (read ID, length, quality, channel, etc.). |
+
+## Advantages and Limitations
+
+### Advantages
+
+- **Ultra-long reads**: Resolve structural variants, repetitive regions, phasing across entire haplotypes, and full-length transcript isoforms.
+- **Real-time sequencing**: Data streams during the run; adaptive sampling can reject off-target reads on-the-fly.
+- **Portability**: MinION connects via USB — enables field sequencing, clinical point-of-care, and space missions.
+- **Native methylation detection**: No chemical conversion required; 5mC, 5hmC, and 6mA called simultaneously with sequence.
+- **Direct RNA**: Sequence RNA without converting to cDNA, preserving poly-A tail length and base modifications.
+
+### Limitations
+
+- **Per-read error rate**: Although Q20+ is now achievable with R10.4.1 + SUP basecalling, raw error rates are higher than Illumina for equivalent cost.
+- **Homopolymers**: Long runs of the same base remain challenging, though R10.4.1 improves this significantly.
+- **Cost per base**: At low throughput, cost per base is higher than short-read sequencing.
+- **Computational requirements**: SUP basecalling is GPU-intensive.
+
+## Quality Scores
+
+ONT uses the same Phred/Q score convention as Illumina:
+
+$$Q = -10 \log_{10} P$$
+
+where $P$ is the probability of an incorrect base call.
+
+| Q score | Accuracy | Error rate |
+|---|---|---|
+| Q10 | 90% | 1 in 10 |
+| Q20 | 99% | 1 in 100 |
+| Q30 | 99.9% | 1 in 1,000 |
+| Q40 | 99.99% | 1 in 10,000 |
+
+With R10.4.1 flowcells and Dorado SUP model, modal read accuracy is typically **Q20–Q25**. Consensus accuracy (e.g., Medaka polishing) can exceed **Q50**.

@@ -1,29 +1,19 @@
 ---
-title: Nanoporetech
+title: Oxford Nanopore Technology
 date: 2026-01-01
 published-title: Created
 date-modified: last-modified
 title-block-banner: "#212529"
-toc-title: "Contents"
-execute:
-    eval: false
-format:
-    html:
-        code-tools:
-            source: true
-            toggle: true
-
 ---
 
-## [Oxford Nanopore](https://nanoporetech.com/platform/technology)
+## [Nanopore Technology](nanopore-technology.qmd)
 
-- Offers real-time analysis (for rapid insights)
-- Scalable formats from pocket to population scale
-- Can analyse native DNA or RNA and sequence
-- Any length of fragment to achieve short to ultra-long read lengths.
-- Without amplification or chemical modification
-- Can span entire repetitive regions, resolve structural variants, and differentiate between different isoforms.
+An overview of how Oxford Nanopore sequencing works, including the ionic current sensing mechanism, available devices (MinION, GridION, PromethION), and output file formats.
 
-## Nanopore workflow
+## [Nanopore Sequencing Libraries](nanopore-libraries.qmd)
 
-- basecalling: Convert raw signal data into nucleotide sequences.
+Library preparation strategies for ONT sequencing, covering ligation, rapid, and PCR-based kits, barcoding and multiplexing, direct RNA sequencing, and adaptive sampling.
+
+## [Basecalling](nanopore-basecalling.qmd)
+
+Converting raw nanopore signal (squiggles) into nucleotide sequences using Dorado, including accuracy models, quality scores, and modified base detection.
