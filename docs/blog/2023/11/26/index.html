@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="generator" content="quarto-1.8.27">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="description" content="Harmony allow integrating data across several variables (for example, by experimental batch and by condition), and significant gain in speed and lower memory requirements for integration of large datasets.">
-
 <title>Learning Harmony to integrate single cell RNA-seq data for batch borrection and meta analysis</title>
 <style>
 code{white-space: pre-wrap;}
@@ -58,7 +54,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -77,8 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../../site_libs/bootstrap/bootstrap-9c2aaab9790670b45fa45e06564dade8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -103,37 +97,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<style>html{ scroll-behavior: smooth; }</style>
+}</script><style>html{ scroll-behavior: smooth; }</style>
 <style>
 
       .quarto-title-block .quarto-title-banner {
         background: #212529;
       }
 </style>
-
-
 </head>
-
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../../blog/index.html"> 
-<span class="menu-text">Wiki</span></a>
+<span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../../linux/index.html"> 
@@ -155,8 +143,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Omics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-omics">    
-        <li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-omics">
+<li>
     <a class="dropdown-item" href="../../../../omics/10xgenomics/index.html">
  <span class="dropdown-text">10X Genomics</span></a>
   </li>  
@@ -173,17 +161,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">File formats</span></a>
   </li>  
     </ul>
-  </li>
+</li>
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <div class="quarto-title-block"><div><h1 class="title">Learning Harmony to integrate single cell RNA-seq data for batch borrection and meta analysis</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
                   <div>
@@ -221,455 +205,421 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#harmony-to-integrating-cell-line-datasets-from-10x" id="toc-harmony-to-integrating-cell-line-datasets-from-10x" class="nav-link active" data-scroll-target="#harmony-to-integrating-cell-line-datasets-from-10x">Harmony to integrating cell line datasets from 10X</a></li>
+<li><a href="#harmony-to-integrating-cell-line-datasets-from-10x" id="toc-harmony-to-integrating-cell-line-datasets-from-10x" class="nav-link active" data-scroll-target="#harmony-to-integrating-cell-line-datasets-from-10x">Harmony to integrating cell line datasets from 10X</a></li>
   <li><a href="#mudan" id="toc-mudan" class="nav-link" data-scroll-target="#mudan">MUDAN</a></li>
-  <li><a href="#using-harmony-with-seurat" id="toc-using-harmony-with-seurat" class="nav-link" data-scroll-target="#using-harmony-with-seurat">Using Harmony with Seurat</a>
+  <li>
+<a href="#using-harmony-with-seurat" id="toc-using-harmony-with-seurat" class="nav-link" data-scroll-target="#using-harmony-with-seurat">Using Harmony with Seurat</a>
   <ul>
-  <li><a href="#run-harmony" id="toc-run-harmony" class="nav-link" data-scroll-target="#run-harmony">Run Harmony</a></li>
+<li><a href="#run-harmony" id="toc-run-harmony" class="nav-link" data-scroll-target="#run-harmony">Run Harmony</a></li>
   <li><a href="#down-stream-analysis" id="toc-down-stream-analysis" class="nav-link" data-scroll-target="#down-stream-analysis">Down stream analysis</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
   <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info">Session info</a></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
-
-
-
-
-
-<section id="harmony-to-integrating-cell-line-datasets-from-10x" class="level2">
-<h2 class="anchored" data-anchor-id="harmony-to-integrating-cell-line-datasets-from-10x">Harmony to integrating cell line datasets from 10X</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="harmony-to-integrating-cell-line-datasets-from-10x" class="level2"><h2 class="anchored" data-anchor-id="harmony-to-integrating-cell-line-datasets-from-10x">Harmony to integrating cell line datasets from 10X</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cell_lines)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>scaled_pcs <span class="ot">&lt;-</span> cell_lines<span class="sc">$</span>scaled_pcs</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>meta_data <span class="ot">&lt;-</span> cell_lines<span class="sc">$</span>meta_data</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">### cells cluster by dataset initially</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">do_scatter</span>(scaled_pcs, meta_data, <span class="st">"dataset"</span>) <span class="sc">+</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Colored by dataset"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">do_scatter</span>(scaled_pcs, meta_data, <span class="st">"cell_type"</span>) <span class="sc">+</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Colored by cell type"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="do">### combine plot</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(p1, p2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">cell_lines</span><span class="op">)</span></span>
+<span><span class="va">scaled_pcs</span> <span class="op">&lt;-</span> <span class="va">cell_lines</span><span class="op">$</span><span class="va">scaled_pcs</span></span>
+<span><span class="va">meta_data</span> <span class="op">&lt;-</span> <span class="va">cell_lines</span><span class="op">$</span><span class="va">meta_data</span></span>
+<span><span class="co">### cells cluster by dataset initially</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">do_scatter</span><span class="op">(</span><span class="va">scaled_pcs</span>, <span class="va">meta_data</span>, <span class="st">"dataset"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Colored by dataset"</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">do_scatter</span><span class="op">(</span><span class="va">scaled_pcs</span>, <span class="va">meta_data</span>, <span class="st">"cell_type"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Colored by cell type"</span><span class="op">)</span></span>
+<span><span class="co">### combine plot</span></span>
+<span><span class="fu">cowplot</span><span class="fu">::</span><span class="fu">plot_grid</span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Run harmonoy to remove the influence of dataset-of origin from ceel embeddings. After Harmony, the datasets are now mixed and the cell types are still separate.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>harmony_embeddings <span class="ot">&lt;-</span> harmony<span class="sc">::</span><span class="fu">RunHarmony</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    scaled_pcs, meta_data, <span class="st">"dataset"</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">do_scatter</span>(harmony_embeddings, meta_data, <span class="st">"dataset"</span>) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Colored by dataset"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">do_scatter</span>(harmony_embeddings, meta_data, <span class="st">"cell_type"</span>) <span class="sc">+</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Colored by cell type"</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="do">### combine plot</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">harmony_embeddings</span> <span class="op">&lt;-</span> <span class="fu">harmony</span><span class="fu">::</span><span class="fu">RunHarmony</span><span class="op">(</span></span>
+<span>    <span class="va">scaled_pcs</span>, <span class="va">meta_data</span>, <span class="st">"dataset"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">do_scatter</span><span class="op">(</span><span class="va">harmony_embeddings</span>, <span class="va">meta_data</span>, <span class="st">"dataset"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Colored by dataset"</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">do_scatter</span><span class="op">(</span><span class="va">harmony_embeddings</span>, <span class="va">meta_data</span>, <span class="st">"cell_type"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Colored by cell type"</span><span class="op">)</span></span>
+<span><span class="co">### combine plot</span></span>
+<span><span class="fu">cowplot</span><span class="fu">::</span><span class="fu">plot_grid</span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="mudan" class="level2">
-<h2 class="anchored" data-anchor-id="mudan">MUDAN</h2>
+</section><section id="mudan" class="level2"><h2 class="anchored" data-anchor-id="mudan">MUDAN</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">### get data</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"pbmcA"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"pbmcB"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pbmcA)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pbmcB)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">### downsize the number of cells in each PBMC dataset</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>pbmcA <span class="ot">&lt;-</span> pbmcA[, <span class="dv">500</span>] <span class="co"># take 500 cells</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>pbmcB <span class="ot">&lt;-</span> pbmcB[, <span class="dv">2000</span>] <span class="co"># take 500 cells</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### get data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"pbmcA"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"pbmcB"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">pbmcA</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">pbmcB</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### downsize the number of cells in each PBMC dataset</span></span>
+<span><span class="va">pbmcA</span> <span class="op">&lt;-</span> <span class="va">pbmcA</span><span class="op">[</span>, <span class="fl">500</span><span class="op">]</span> <span class="co"># take 500 cells</span></span>
+<span><span class="va">pbmcB</span> <span class="op">&lt;-</span> <span class="va">pbmcB</span><span class="op">[</span>, <span class="fl">2000</span><span class="op">]</span> <span class="co"># take 500 cells</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Combine the two datasets into one cell by gene counts matrix and use a meta vector to keep track of which cell belongs to which sample</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">### combine into one coutns matrix</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>genes_int <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">rownames</span>(pbmcA), <span class="fu">rownames</span>(pbmcB))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cd <span class="ot">&lt;-</span> <span class="fu">cbind</span>(pbmcA[genes_int, ], pbmcB[genes_int, ])</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">### meta data</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"pbmcA"</span>, <span class="fu">ncol</span>(pbmcA)), <span class="fu">rep</span>(<span class="st">"pbmcB"</span>, <span class="fu">ncol</span>(pbmcB)))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(meta) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">colnames</span>(pbmcA), <span class="fu">colnames</span>(pbmcB))</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">factor</span>(meta)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>cd[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>meta[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### combine into one coutns matrix</span></span>
+<span><span class="va">genes_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">pbmcA</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">pbmcB</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">pbmcA</span><span class="op">[</span><span class="va">genes_int</span>, <span class="op">]</span>, <span class="va">pbmcB</span><span class="op">[</span><span class="va">genes_int</span>, <span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### meta data</span></span>
+<span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"pbmcA"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">pbmcA</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"pbmcB"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">pbmcB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">pbmcA</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">pbmcB</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cd</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">meta</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Given this counts matrix, we can normalize our data, derive principal components, and perform dimensionality reduction using tSNE. However, we see prominent separation by sample due to batch effects.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">### CPM normalization</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> MUDAN<span class="sc">::</span><span class="fu">normalizeCounts</span>(cd, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">### variance normalize, identify overdispersed genes</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>matnorm_info <span class="ot">&lt;-</span> MUDAN<span class="sc">::</span><span class="fu">normalizeVariance</span>(mat, <span class="at">details =</span> <span class="cn">TRUE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">### log transform</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>matnorm <span class="ot">&lt;-</span> <span class="fu">log10</span>(matnorm_info<span class="sc">$</span>mat <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">### 30 PCs on over dispersed genes</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>pcs <span class="ot">&lt;-</span> MUDAN<span class="sc">::</span><span class="fu">getPcs</span>(</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    matnorm[matnorm_info<span class="sc">$</span>ods, ],</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">nGenes =</span> <span class="fu">length</span>(matnorm_info<span class="sc">$</span>ods),</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">nPcs =</span> <span class="dv">30</span>, </span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="do">### TSNE embedding with regular PCS</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>emb <span class="ot">&lt;-</span> Rtsne<span class="sc">::</span><span class="fu">Rtsne</span>(</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    pcs,</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">is_distance =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">perplexity =</span> <span class="dv">30</span>, </span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_threads =</span> <span class="dv">1</span>,</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>)<span class="sc">$</span>Y</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(emb) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(pcs)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="do">### plot</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="at">mar =</span> <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>MUDAN<span class="sc">::</span><span class="fu">plotEmbedding</span>(</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    emb, <span class="at">groups =</span> meta, <span class="at">show.legend =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="cn">NA</span>, <span class="at">ylab =</span> <span class="cn">NA</span>,</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"Regular tSNE Embedding"</span>,</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### CPM normalization</span></span>
+<span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu">MUDAN</span><span class="fu">::</span><span class="fu">normalizeCounts</span><span class="op">(</span><span class="va">cd</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### variance normalize, identify overdispersed genes</span></span>
+<span><span class="va">matnorm_info</span> <span class="op">&lt;-</span> <span class="fu">MUDAN</span><span class="fu">::</span><span class="fu">normalizeVariance</span><span class="op">(</span><span class="va">mat</span>, details <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### log transform</span></span>
+<span><span class="va">matnorm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">matnorm_info</span><span class="op">$</span><span class="va">mat</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### 30 PCs on over dispersed genes</span></span>
+<span><span class="va">pcs</span> <span class="op">&lt;-</span> <span class="fu">MUDAN</span><span class="fu">::</span><span class="fu">getPcs</span><span class="op">(</span></span>
+<span>    <span class="va">matnorm</span><span class="op">[</span><span class="va">matnorm_info</span><span class="op">$</span><span class="va">ods</span>, <span class="op">]</span>,</span>
+<span>    nGenes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">matnorm_info</span><span class="op">$</span><span class="va">ods</span><span class="op">)</span>,</span>
+<span>    nPcs <span class="op">=</span> <span class="fl">30</span>, </span>
+<span>    verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">### TSNE embedding with regular PCS</span></span>
+<span><span class="va">emb</span> <span class="op">&lt;-</span> <span class="fu">Rtsne</span><span class="fu">::</span><span class="fu">Rtsne</span><span class="op">(</span></span>
+<span>    <span class="va">pcs</span>,</span>
+<span>    is_distance <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    perplexity <span class="op">=</span> <span class="fl">30</span>, </span>
+<span>    num_threads <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span><span class="op">$</span><span class="va">Y</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">emb</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">pcs</span><span class="op">)</span></span>
+<span><span class="co">### plot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">MUDAN</span><span class="fu">::</span><span class="fu">plotEmbedding</span><span class="op">(</span></span>
+<span>    <span class="va">emb</span>, groups <span class="op">=</span> <span class="va">meta</span>, show.legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    xlab <span class="op">=</span> <span class="cn">NA</span>, ylab <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>    main <span class="op">=</span> <span class="st">"Regular tSNE Embedding"</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Indeed, when we inspect certain cell-type specific marker genes (MS4A1/CD20 for B-cells, CD3E for T-cells, FCGR3A/CD16 for NK cells, macrophages, and monocytes, CD14 for dendritic cells, macrophages, and monocytes), we see that cells are separating by batch rather than by their expected cell-types.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lapply</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="st">"MS4A1"</span>, <span class="st">"CD3E"</span>, <span class="st">"FCGR3A"</span>, <span class="st">"CD14"</span>),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">function</span>(x) {</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            gexp <span class="ot">&lt;-</span> <span class="fu">log10</span>(mat[x, ] <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">plotEmbedding</span>(</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                emb, <span class="at">col =</span> gexp, <span class="at">xlab =</span> <span class="st">"NA"</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">ylab =</span> <span class="cn">NA</span>, <span class="at">main =</span> x,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"MS4A1"</span>, <span class="st">"CD3E"</span>, <span class="st">"FCGR3A"</span>, <span class="st">"CD14"</span><span class="op">)</span>,</span>
+<span>        <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>            <span class="va">gexp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">mat</span><span class="op">[</span><span class="va">x</span>, <span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>            <span class="fu">plotEmbedding</span><span class="op">(</span></span>
+<span>                <span class="va">emb</span>, col <span class="op">=</span> <span class="va">gexp</span>, xlab <span class="op">=</span> <span class="st">"NA"</span>,</span>
+<span>                ylab <span class="op">=</span> <span class="cn">NA</span>, main <span class="op">=</span> <span class="va">x</span>,</span>
+<span>                verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>            <span class="op">)</span></span>
+<span>        <span class="op">}</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If we were attempt to identify cell-types using clustering analysis at this step, we would identify a number of sample-specific clusters driven by batch effects.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>annot_bad <span class="ot">&lt;-</span> <span class="fu">getComMembership</span>(pcs, <span class="at">k =</span> <span class="dv">30</span>, <span class="at">method =</span> igraph<span class="sc">::</span>cluster_louvain)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="at">mar =</span> <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotEmbedding</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    emb, <span class="at">groups =</span> annot_bad, <span class="at">show.legend =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="cn">NA</span>, <span class="at">ylab =</span> <span class="cn">NA</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"Jointly-indentified cell clusters"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">annot_bad</span> <span class="op">&lt;-</span> <span class="fu">getComMembership</span><span class="op">(</span><span class="va">pcs</span>, k <span class="op">=</span> <span class="fl">30</span>, method <span class="op">=</span> <span class="fu">igraph</span><span class="fu">::</span><span class="va">cluster_louvain</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">plotEmbedding</span><span class="op">(</span></span>
+<span>    <span class="va">emb</span>, groups <span class="op">=</span> <span class="va">annot_bad</span>, show.legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    xlab <span class="op">=</span> <span class="cn">NA</span>, ylab <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>    main <span class="op">=</span> <span class="st">"Jointly-indentified cell clusters"</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">### look at cell-type proportion per sample</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">table</span>(annot_bad, meta))<span class="sc">/</span><span class="fu">as.numeric</span>(<span class="fu">table</span>(meta))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at cell-type proportions per sample</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print(t(table(annot_bad, meta))/as.numeric(table(meta)))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### look at cell-type proportion per sample</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">annot_bad</span>, <span class="va">meta</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Look at cell-type proportions per sample</span></span>
+<span><span class="co"># print(t(table(annot_bad, meta))/as.numeric(table(meta)))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="using-harmony-with-seurat" class="level2">
-<h2 class="anchored" data-anchor-id="using-harmony-with-seurat">Using Harmony with Seurat</h2>
+</section><section id="using-harmony-with-seurat" class="level2"><h2 class="anchored" data-anchor-id="using-harmony-with-seurat">Using Harmony with Seurat</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">### load required data</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"pbmc_stim"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">### generate seurat object</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">counts =</span> <span class="fu">cbind</span>(pbmc.stim, pbmc.ctrl),</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">project =</span> <span class="st">"PBMC"</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">min.cells =</span> <span class="dv">5</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>) </span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="do">### separete conditions</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>pbmc<span class="sc">@</span>meta.data<span class="sc">$</span>stim <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">"STIM"</span>, <span class="fu">ncol</span>(pbmc.stim)),</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">"CTRL"</span>, <span class="fu">ncol</span>(pbmc.ctrl))</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="do">### generate a union of highly variable genes</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> pbmc <span class="sc">|&gt;</span> Seurat<span class="sc">::</span><span class="fu">NormalizeData</span>(<span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">VariableFeatures</span>(pbmc) <span class="ot">&lt;-</span> <span class="fu">split</span>(<span class="fu">row.names</span>(pbmc<span class="sc">@</span>meta.data), pbmc<span class="sc">@</span>meta.data<span class="sc">$</span>stim) <span class="sc">%&gt;%</span> <span class="fu">lapply</span>(<span class="cf">function</span>(cells_use) {</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    pbmc[,cells_use] <span class="sc">%&gt;%</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">FindVariableFeatures</span>(<span class="at">selection.method =</span> <span class="st">"vst"</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">VariableFeatures</span>()</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> unlist <span class="sc">%&gt;%</span> unique</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="do">## Finding variable features for layer counts</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Finding variable features for layer counts</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> pbmc <span class="sc">|&gt;</span> </span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ScaleData</span>(<span class="at">verbose =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">RunPCA</span>(<span class="at">features =</span> <span class="fu">VariableFeatures</span>(pbmc), <span class="at">npcs =</span> <span class="dv">20</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### load required data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"pbmc_stim"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### generate seurat object</span></span>
+<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">CreateSeuratObject</span><span class="op">(</span></span>
+<span>    counts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">pbmc.stim</span>, <span class="va">pbmc.ctrl</span><span class="op">)</span>,</span>
+<span>    project <span class="op">=</span> <span class="st">"PBMC"</span>,</span>
+<span>    min.cells <span class="op">=</span> <span class="fl">5</span></span>
+<span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co">### separete conditions</span></span>
+<span><span class="va">pbmc</span><span class="op">@</span><span class="va">meta.data</span><span class="op">$</span><span class="va">stim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"STIM"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">pbmc.stim</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"CTRL"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">pbmc.ctrl</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### generate a union of highly variable genes</span></span>
+<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="va">pbmc</span> <span class="op">|&gt;</span> <span class="fu">Seurat</span><span class="fu">::</span><span class="fu">NormalizeData</span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">VariableFeatures</span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">@</span><span class="va">meta.data</span><span class="op">)</span>, <span class="va">pbmc</span><span class="op">@</span><span class="va">meta.data</span><span class="op">$</span><span class="va">stim</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">cells_use</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">pbmc</span><span class="op">[</span>,<span class="va">cells_use</span><span class="op">]</span> <span class="op">%&gt;%</span></span>
+<span>        <span class="fu">FindVariableFeatures</span><span class="op">(</span>selection.method <span class="op">=</span> <span class="st">"vst"</span>, nfeatures <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>        <span class="fu">VariableFeatures</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="va">unlist</span> <span class="op">%&gt;%</span> <span class="va">unique</span></span>
+<span><span class="co">## Finding variable features for layer counts</span></span>
+<span><span class="co">## Finding variable features for layer counts</span></span>
+<span></span>
+<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="va">pbmc</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">ScaleData</span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">RunPCA</span><span class="op">(</span>features <span class="op">=</span> <span class="fu">VariableFeatures</span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span>, npcs <span class="op">=</span> <span class="fl">20</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Clear difference between the datasets in the uncorrected PCs</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(<span class="at">object =</span> pbmc, <span class="at">reduction =</span> <span class="st">"pca"</span>, <span class="at">pt.size =</span> .<span class="dv">1</span>, <span class="at">group.by =</span> <span class="st">"stim"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(<span class="at">object =</span> pbmc, <span class="at">features =</span> <span class="st">"PC_1"</span>, <span class="at">group.by =</span> <span class="st">"stim"</span>, <span class="at">pt.size =</span> .<span class="dv">1</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(p1,p2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">DimPlot</span><span class="op">(</span>object <span class="op">=</span> <span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"pca"</span>, pt.size <span class="op">=</span> <span class="fl">.1</span>, group.by <span class="op">=</span> <span class="st">"stim"</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">VlnPlot</span><span class="op">(</span>object <span class="op">=</span> <span class="va">pbmc</span>, features <span class="op">=</span> <span class="st">"PC_1"</span>, group.by <span class="op">=</span> <span class="st">"stim"</span>, pt.size <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span></span>
+<span><span class="fu">cowplot</span><span class="fu">::</span><span class="fu">plot_grid</span><span class="op">(</span><span class="va">p1</span>,<span class="va">p2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="run-harmony" class="level3">
-<h3 class="anchored" data-anchor-id="run-harmony">Run Harmony</h3>
+<section id="run-harmony" class="level3"><h3 class="anchored" data-anchor-id="run-harmony">Run Harmony</h3>
 <p>Harmony works on an existing matrix with cell embeddings and outputs its transformed version with the datasets aligned according to some user-defined experimental conditions.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">### run harmony to perform integrated analysis</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">RunHarmony</span>(pbmc, <span class="st">"stim"</span>, <span class="at">plot_convergence =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Transposing data matrix</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Initializing state using k-means centroids initialization</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Harmony 1/10</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Harmony 2/10</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Harmony 3/10</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Harmony 4/10</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Harmony 5/10</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Harmony 6/10</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Harmony 7/10</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Harmony 8/10</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Harmony 9/10</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Harmony converged after 9 iterations</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### run harmony to perform integrated analysis</span></span>
+<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu">RunHarmony</span><span class="op">(</span><span class="va">pbmc</span>, <span class="st">"stim"</span>, plot_convergence <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">## Transposing data matrix</span></span>
+<span><span class="co">## Initializing state using k-means centroids initialization</span></span>
+<span><span class="co">## Harmony 1/10</span></span>
+<span><span class="co">## Harmony 2/10</span></span>
+<span><span class="co">## Harmony 3/10</span></span>
+<span><span class="co">## Harmony 4/10</span></span>
+<span><span class="co">## Harmony 5/10</span></span>
+<span><span class="co">## Harmony 6/10</span></span>
+<span><span class="co">## Harmony 7/10</span></span>
+<span><span class="co">## Harmony 8/10</span></span>
+<span><span class="co">## Harmony 9/10</span></span>
+<span><span class="co">## Harmony converged after 9 iterations</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">### directly access the new harmony embeddings</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>harmony_embeddings <span class="ot">&lt;-</span> <span class="fu">Embeddings</span>(pbmc, <span class="st">"harmony"</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>harmony_embeddings[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">##                  harmony_1   harmony_2   harmony_3 harmony_4    harmony_5</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="do">## ATCACTTGCTCGAA-1 -6.472885 -0.03395769 -3.37113988  4.104260  0.001600968</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="do">## CCGGAGACTGTGAC-1 -6.901013  1.59104949 -6.36127179  4.635761 -5.605371816</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">## CAAGCCCTGTTAGC-1 -6.774086 -1.21811545 -6.49162911 -9.135284 -0.197759676</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="do">## GAGGTACTAACGGG-1 -7.435499 -0.23169621  0.07052885  2.031633 -2.190562901</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="do">## CGCGGATGCCACAA-1 14.686943  4.38600212 -4.49637985  1.595446 -1.448223157</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="do">### inspection of the modalities</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(<span class="at">object =</span> pbmc, <span class="at">reduction =</span> <span class="st">"harmony"</span>, <span class="at">pt.size =</span> .<span class="dv">1</span>, <span class="at">group.by =</span> <span class="st">"stim"</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(<span class="at">object =</span> pbmc, <span class="at">features =</span> <span class="st">"harmony_1"</span>, <span class="at">group.by =</span> <span class="st">"stim"</span>, <span class="at">pt.size =</span> .<span class="dv">1</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1,p2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<span><span class="co">### directly access the new harmony embeddings</span></span>
+<span><span class="va">harmony_embeddings</span> <span class="op">&lt;-</span> <span class="fu">Embeddings</span><span class="op">(</span><span class="va">pbmc</span>, <span class="st">"harmony"</span><span class="op">)</span></span>
+<span><span class="va">harmony_embeddings</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span><span class="co">##                  harmony_1   harmony_2   harmony_3 harmony_4    harmony_5</span></span>
+<span><span class="co">## ATCACTTGCTCGAA-1 -6.472885 -0.03395769 -3.37113988  4.104260  0.001600968</span></span>
+<span><span class="co">## CCGGAGACTGTGAC-1 -6.901013  1.59104949 -6.36127179  4.635761 -5.605371816</span></span>
+<span><span class="co">## CAAGCCCTGTTAGC-1 -6.774086 -1.21811545 -6.49162911 -9.135284 -0.197759676</span></span>
+<span><span class="co">## GAGGTACTAACGGG-1 -7.435499 -0.23169621  0.07052885  2.031633 -2.190562901</span></span>
+<span><span class="co">## CGCGGATGCCACAA-1 14.686943  4.38600212 -4.49637985  1.595446 -1.448223157</span></span>
+<span></span>
+<span><span class="co">### inspection of the modalities</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">DimPlot</span><span class="op">(</span>object <span class="op">=</span> <span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"harmony"</span>, pt.size <span class="op">=</span> <span class="fl">.1</span>, group.by <span class="op">=</span> <span class="st">"stim"</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">VlnPlot</span><span class="op">(</span>object <span class="op">=</span> <span class="va">pbmc</span>, features <span class="op">=</span> <span class="st">"harmony_1"</span>, group.by <span class="op">=</span> <span class="st">"stim"</span>, pt.size <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span></span>
+<span><span class="fu">plot_grid</span><span class="op">(</span><span class="va">p1</span>,<span class="va">p2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Plot genes correlated with the harmonized PCs</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DimHeatmap</span>(<span class="at">object =</span> pbmc, <span class="at">reduction =</span> <span class="st">"harmony"</span>, <span class="at">cells =</span> <span class="dv">500</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">DimHeatmap</span><span class="op">(</span>object <span class="op">=</span> <span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"harmony"</span>, cells <span class="op">=</span> <span class="fl">500</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="down-stream-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="down-stream-analysis">Down stream analysis</h3>
+</section><section id="down-stream-analysis" class="level3"><h3 class="anchored" data-anchor-id="down-stream-analysis">Down stream analysis</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> pbmc <span class="sc">|&gt;</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="do">### perform clustering using the harmonized vectors of cells</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">FindNeighbors</span>(<span class="at">reduction =</span> <span class="st">"harmony"</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">FindClusters</span>(<span class="at">resolution =</span> <span class="fl">0.5</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">identity</span>()</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Computing nearest neighbor graph</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Computing SNN</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of nodes: 2000</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of edges: 85805</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Running Louvain algorithm...</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Maximum modularity in 10 random starts: 0.8883</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of communities: 10</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Elapsed time: 0 seconds</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="do">### TSNE</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> pbmc <span class="sc">%&gt;%</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">RunTSNE</span>(<span class="at">reduction =</span> <span class="st">"harmony"</span>)</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(pbmc, <span class="at">reduction =</span> <span class="st">"tsne"</span>, <span class="at">group.by =</span> <span class="st">"stim"</span>, <span class="at">pt.size =</span> .<span class="dv">1</span>)</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(pbmc, <span class="at">reduction =</span> <span class="st">"tsne"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">pt.size =</span> .<span class="dv">1</span>)</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="va">pbmc</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="co">### perform clustering using the harmonized vectors of cells</span></span>
+<span>    <span class="fu">FindNeighbors</span><span class="op">(</span>reduction <span class="op">=</span> <span class="st">"harmony"</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">FindClusters</span><span class="op">(</span>resolution <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/identity.html">identity</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## Computing nearest neighbor graph</span></span>
+<span><span class="co">## Computing SNN</span></span>
+<span><span class="co">## Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Number of nodes: 2000</span></span>
+<span><span class="co">## Number of edges: 85805</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Running Louvain algorithm...</span></span>
+<span><span class="co">## Maximum modularity in 10 random starts: 0.8883</span></span>
+<span><span class="co">## Number of communities: 10</span></span>
+<span><span class="co">## Elapsed time: 0 seconds</span></span>
+<span><span class="co">### TSNE</span></span>
+<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="va">pbmc</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">RunTSNE</span><span class="op">(</span>reduction <span class="op">=</span> <span class="st">"harmony"</span><span class="op">)</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">DimPlot</span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"tsne"</span>, group.by <span class="op">=</span> <span class="st">"stim"</span>, pt.size <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">DimPlot</span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"tsne"</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, pt.size <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span></span>
+<span><span class="fu">plot_grid</span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>One important observation is to assess that the harmonized data contain biological states of the cells. Therefore by checking the following genes we can see that biological cell states are preserved after harmonization.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">FeaturePlot</span>(<span class="at">object =</span> pbmc, <span class="at">features=</span> <span class="fu">c</span>(<span class="st">"CD3D"</span>, <span class="st">"SELL"</span>, <span class="st">"CREM"</span>, <span class="st">"CD8A"</span>, <span class="st">"GNLY"</span>, <span class="st">"CD79A"</span>, <span class="st">"FCGR3A"</span>, <span class="st">"CCL2"</span>, <span class="st">"PPBP"</span>), </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">min.cutoff =</span> <span class="st">"q9"</span>, <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"lightgrey"</span>, <span class="st">"blue"</span>), <span class="at">pt.size =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">FeaturePlot</span><span class="op">(</span>object <span class="op">=</span> <span class="va">pbmc</span>, features<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"CD3D"</span>, <span class="st">"SELL"</span>, <span class="st">"CREM"</span>, <span class="st">"CD8A"</span>, <span class="st">"GNLY"</span>, <span class="st">"CD79A"</span>, <span class="st">"FCGR3A"</span>, <span class="st">"CCL2"</span>, <span class="st">"PPBP"</span><span class="op">)</span>, </span>
+<span>            min.cutoff <span class="op">=</span> <span class="st">"q9"</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"lightgrey"</span>, <span class="st">"blue"</span><span class="op">)</span>, pt.size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">### UMAP</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> pbmc <span class="sc">|&gt;</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">RunUMAP</span>(<span class="at">reduction =</span> <span class="st">"harmony"</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 20:34:54 UMAP embedding parameters a = 0.9922 b = 1.112</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Also defined by 'spam'</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 20:34:54 Read 2000 rows and found 20 numeric columns</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 20:34:54 Using Annoy for neighbor search, n_neighbors = 30</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Also defined by 'spam'</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 20:34:54 Building Annoy index with metric = cosine, n_trees = 50</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 0%   10   20   30   40   50   60   70   80   90   100%</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [----|----|----|----|----|----|----|----|----|----|</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="do">## **************************************************|</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 20:34:54 Writing NN index file to temp file /var/folders/2c/9q3pg2295195bp3gnrgbzrg40000gn/T//RtmpBhrb7C/file51ff59f4665b</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 20:34:54 Searching Annoy index using 1 thread, search_k = 3000</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 20:34:54 Annoy recall = 100%</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 20:34:54 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 20:34:55 Initializing from normalized Laplacian + noise (using RSpectra)</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 20:34:55 Commencing optimization for 500 epochs, with 83254 positive edges</span></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 20:34:57 Optimization finished</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(pbmc, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">group.by =</span> <span class="st">"stim"</span>, <span class="at">pt.size =</span> .<span class="dv">1</span>, <span class="at">split.by =</span> <span class="st">'stim'</span>)</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="do">### identify shared cell types with clustering analysis</span></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(pbmc, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">pt.size =</span> .<span class="dv">1</span>)</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### UMAP</span></span>
+<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="va">pbmc</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">RunUMAP</span><span class="op">(</span>reduction <span class="op">=</span> <span class="st">"harmony"</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></span>
+<span><span class="co">## 20:34:54 UMAP embedding parameters a = 0.9922 b = 1.112</span></span>
+<span><span class="co">## Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'</span></span>
+<span><span class="co">## Also defined by 'spam'</span></span>
+<span><span class="co">## 20:34:54 Read 2000 rows and found 20 numeric columns</span></span>
+<span><span class="co">## 20:34:54 Using Annoy for neighbor search, n_neighbors = 30</span></span>
+<span><span class="co">## Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'</span></span>
+<span><span class="co">## Also defined by 'spam'</span></span>
+<span><span class="co">## 20:34:54 Building Annoy index with metric = cosine, n_trees = 50</span></span>
+<span><span class="co">## 0%   10   20   30   40   50   60   70   80   90   100%</span></span>
+<span><span class="co">## [----|----|----|----|----|----|----|----|----|----|</span></span>
+<span><span class="co">## **************************************************|</span></span>
+<span><span class="co">## 20:34:54 Writing NN index file to temp file /var/folders/2c/9q3pg2295195bp3gnrgbzrg40000gn/T//RtmpBhrb7C/file51ff59f4665b</span></span>
+<span><span class="co">## 20:34:54 Searching Annoy index using 1 thread, search_k = 3000</span></span>
+<span><span class="co">## 20:34:54 Annoy recall = 100%</span></span>
+<span><span class="co">## 20:34:54 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30</span></span>
+<span><span class="co">## 20:34:55 Initializing from normalized Laplacian + noise (using RSpectra)</span></span>
+<span><span class="co">## 20:34:55 Commencing optimization for 500 epochs, with 83254 positive edges</span></span>
+<span><span class="co">## 20:34:57 Optimization finished</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">DimPlot</span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"umap"</span>, group.by <span class="op">=</span> <span class="st">"stim"</span>, pt.size <span class="op">=</span> <span class="fl">.1</span>, split.by <span class="op">=</span> <span class="st">'stim'</span><span class="op">)</span></span>
+<span><span class="co">### identify shared cell types with clustering analysis</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">DimPlot</span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"umap"</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, pt.size <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span></span>
+<span><span class="fu">plot_grid</span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="reference" class="level2">
-<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+</section></section><section id="reference" class="level2"><h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <ul>
 <li><a href="https://portals.broadinstitute.org/harmony/index.html" class="uri">https://portals.broadinstitute.org/harmony/index.html</a></li>
 <li><a href="https://hbctraining.github.io/scRNA-seq_online/lessons/06a_integration_harmony.html">Single-cell RNA-seq: Integration with Harmony</a></li>
-</ul>
-</section>
-<section id="session-info" class="level2">
-<h2 class="anchored" data-anchor-id="session-info">Session info</h2>
+</ul></section><section id="session-info" class="level2"><h2 class="anchored" data-anchor-id="session-info">Session info</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">## R version 4.3.1 (2023-06-16)</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Platform: aarch64-apple-darwin20 (64-bit)</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Running under: macOS Sonoma 14.2</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Matrix products: default</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="do">## BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib </span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="do">## LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="do">## locale:</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="do">## time zone: Asia/Singapore</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="do">## tzcode source: internal</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="do">## attached base packages:</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="do">## other attached packages:</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] cowplot_1.1.1      here_1.0.1         lubridate_1.9.3    forcats_1.0.0     </span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2        readr_2.1.4       </span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] tidyr_1.3.0        tibble_3.2.1       ggplot2_3.4.4      tidyverse_2.0.0   </span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] Seurat_5.0.1       SeuratObject_5.0.1 sp_2.1-2           MUDAN_0.1.0       </span></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] Matrix_1.6-3       harmony_1.1.0      Rcpp_1.0.11       </span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="do">## loaded via a namespace (and not attached):</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="do">##   [1] RcppAnnoy_0.0.21        splines_4.3.1           later_1.3.1            </span></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="do">##   [4] bitops_1.0-7            polyclip_1.10-6         XML_3.99-0.15          </span></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="do">##   [7] fastDummies_1.7.3       lifecycle_1.0.4         rprojroot_2.0.4        </span></span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="do">##  [10] edgeR_4.0.1             globals_0.16.2          lattice_0.22-5         </span></span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="do">##  [13] MASS_7.3-60             magrittr_2.0.3          limma_3.58.1           </span></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="do">##  [16] plotly_4.10.3           rmarkdown_2.25          yaml_2.3.7             </span></span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="do">##  [19] httpuv_1.6.12           sctransform_0.4.1       spam_2.10-0            </span></span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="do">##  [22] spatstat.sparse_3.0-3   reticulate_1.34.0       pbapply_1.7-2          </span></span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="do">##  [25] DBI_1.1.3               RColorBrewer_1.1-3      abind_1.4-5            </span></span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="do">##  [28] zlibbioc_1.48.0         Rtsne_0.16              BiocGenerics_0.48.1    </span></span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="do">##  [31] RCurl_1.98-1.13         sva_3.50.0              GenomeInfoDbData_1.2.11</span></span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="do">##  [34] IRanges_2.36.0          S4Vectors_0.40.2        ggrepel_0.9.4          </span></span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="do">##  [37] irlba_2.3.5.1           listenv_0.9.0           spatstat.utils_3.0-4   </span></span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="do">##  [40] genefilter_1.84.0       goftest_1.2-3           RSpectra_0.16-1        </span></span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="do">##  [43] spatstat.random_3.2-2   annotate_1.80.0         fitdistrplus_1.1-11    </span></span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="do">##  [46] parallelly_1.36.0       leiden_0.4.3.1          codetools_0.2-19       </span></span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="do">##  [49] tidyselect_1.2.0        farver_2.1.1            matrixStats_1.1.0      </span></span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="do">##  [52] stats4_4.3.1            spatstat.explore_3.2-5  jsonlite_1.8.7         </span></span>
-<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="do">##  [55] ellipsis_0.3.2          progressr_0.14.0        ggridges_0.5.4         </span></span>
-<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="do">##  [58] survival_3.5-7          tools_4.3.1             ica_1.0-3              </span></span>
-<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="do">##  [61] glue_1.6.2              gridExtra_2.3           xfun_0.41              </span></span>
-<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="do">##  [64] mgcv_1.9-0              MatrixGenerics_1.14.0   GenomeInfoDb_1.38.0    </span></span>
-<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="do">##  [67] withr_2.5.2             fastmap_1.1.1           fansi_1.0.5            </span></span>
-<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a><span class="do">##  [70] digest_0.6.33           timechange_0.2.0        R6_2.5.1               </span></span>
-<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a><span class="do">##  [73] mime_0.12               colorspace_2.1-0        scattermore_1.2        </span></span>
-<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a><span class="do">##  [76] tensor_1.5              spatstat.data_3.0-3     RSQLite_2.3.3          </span></span>
-<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a><span class="do">##  [79] RhpcBLASctl_0.23-42     utf8_1.2.4              generics_0.1.3         </span></span>
-<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a><span class="do">##  [82] data.table_1.14.8       httr_1.4.7              htmlwidgets_1.6.3      </span></span>
-<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a><span class="do">##  [85] uwot_0.1.16             pkgconfig_2.0.3         gtable_0.3.4           </span></span>
-<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a><span class="do">##  [88] blob_1.2.4              lmtest_0.9-40           XVector_0.42.0         </span></span>
-<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a><span class="do">##  [91] htmltools_0.5.7         dotCall64_1.1-1         scales_1.3.0           </span></span>
-<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a><span class="do">##  [94] Biobase_2.62.0          png_0.1-8               knitr_1.45             </span></span>
-<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="do">##  [97] tzdb_0.4.0              reshape2_1.4.4          nlme_3.1-163           </span></span>
-<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="do">## [100] cachem_1.0.8            zoo_1.8-12              KernSmooth_2.23-22     </span></span>
-<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="do">## [103] vipor_0.4.5             parallel_4.3.1          miniUI_0.1.1.1         </span></span>
-<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a><span class="do">## [106] AnnotationDbi_1.64.1    ggrastr_1.0.2           pillar_1.9.0           </span></span>
-<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a><span class="do">## [109] grid_4.3.1              vctrs_0.6.5             RANN_2.6.1             </span></span>
-<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a><span class="do">## [112] promises_1.2.1          xtable_1.8-4            cluster_2.1.4          </span></span>
-<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a><span class="do">## [115] beeswarm_0.4.0          evaluate_0.23           cli_3.6.1              </span></span>
-<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="do">## [118] locfit_1.5-9.8          compiler_4.3.1          rlang_1.1.2            </span></span>
-<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="do">## [121] crayon_1.5.2            future.apply_1.11.0     labeling_0.4.3         </span></span>
-<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="do">## [124] ggbeeswarm_0.7.2        plyr_1.8.9              stringi_1.8.2          </span></span>
-<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a><span class="do">## [127] viridisLite_0.4.2       deldir_2.0-2            BiocParallel_1.36.0    </span></span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a><span class="do">## [130] munsell_0.5.0           Biostrings_2.70.1       lazyeval_0.2.2         </span></span>
-<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a><span class="do">## [133] spatstat.geom_3.2-7     RcppHNSW_0.5.0          hms_1.1.3              </span></span>
-<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a><span class="do">## [136] patchwork_1.1.3         bit64_4.0.5             future_1.33.0          </span></span>
-<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a><span class="do">## [139] KEGGREST_1.42.0         statmod_1.5.0           shiny_1.8.0            </span></span>
-<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a><span class="do">## [142] ROCR_1.0-11             igraph_1.5.1            memoise_2.0.1          </span></span>
-<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a><span class="do">## [145] bit_4.0.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## R version 4.3.1 (2023-06-16)</span></span>
+<span><span class="co">## Platform: aarch64-apple-darwin20 (64-bit)</span></span>
+<span><span class="co">## Running under: macOS Sonoma 14.2</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Matrix products: default</span></span>
+<span><span class="co">## BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib </span></span>
+<span><span class="co">## LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## locale:</span></span>
+<span><span class="co">## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## time zone: Asia/Singapore</span></span>
+<span><span class="co">## tzcode source: internal</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attached base packages:</span></span>
+<span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## other attached packages:</span></span>
+<span><span class="co">##  [1] cowplot_1.1.1      here_1.0.1         lubridate_1.9.3    forcats_1.0.0     </span></span>
+<span><span class="co">##  [5] stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2        readr_2.1.4       </span></span>
+<span><span class="co">##  [9] tidyr_1.3.0        tibble_3.2.1       ggplot2_3.4.4      tidyverse_2.0.0   </span></span>
+<span><span class="co">## [13] Seurat_5.0.1       SeuratObject_5.0.1 sp_2.1-2           MUDAN_0.1.0       </span></span>
+<span><span class="co">## [17] Matrix_1.6-3       harmony_1.1.0      Rcpp_1.0.11       </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## loaded via a namespace (and not attached):</span></span>
+<span><span class="co">##   [1] RcppAnnoy_0.0.21        splines_4.3.1           later_1.3.1            </span></span>
+<span><span class="co">##   [4] bitops_1.0-7            polyclip_1.10-6         XML_3.99-0.15          </span></span>
+<span><span class="co">##   [7] fastDummies_1.7.3       lifecycle_1.0.4         rprojroot_2.0.4        </span></span>
+<span><span class="co">##  [10] edgeR_4.0.1             globals_0.16.2          lattice_0.22-5         </span></span>
+<span><span class="co">##  [13] MASS_7.3-60             magrittr_2.0.3          limma_3.58.1           </span></span>
+<span><span class="co">##  [16] plotly_4.10.3           rmarkdown_2.25          yaml_2.3.7             </span></span>
+<span><span class="co">##  [19] httpuv_1.6.12           sctransform_0.4.1       spam_2.10-0            </span></span>
+<span><span class="co">##  [22] spatstat.sparse_3.0-3   reticulate_1.34.0       pbapply_1.7-2          </span></span>
+<span><span class="co">##  [25] DBI_1.1.3               RColorBrewer_1.1-3      abind_1.4-5            </span></span>
+<span><span class="co">##  [28] zlibbioc_1.48.0         Rtsne_0.16              BiocGenerics_0.48.1    </span></span>
+<span><span class="co">##  [31] RCurl_1.98-1.13         sva_3.50.0              GenomeInfoDbData_1.2.11</span></span>
+<span><span class="co">##  [34] IRanges_2.36.0          S4Vectors_0.40.2        ggrepel_0.9.4          </span></span>
+<span><span class="co">##  [37] irlba_2.3.5.1           listenv_0.9.0           spatstat.utils_3.0-4   </span></span>
+<span><span class="co">##  [40] genefilter_1.84.0       goftest_1.2-3           RSpectra_0.16-1        </span></span>
+<span><span class="co">##  [43] spatstat.random_3.2-2   annotate_1.80.0         fitdistrplus_1.1-11    </span></span>
+<span><span class="co">##  [46] parallelly_1.36.0       leiden_0.4.3.1          codetools_0.2-19       </span></span>
+<span><span class="co">##  [49] tidyselect_1.2.0        farver_2.1.1            matrixStats_1.1.0      </span></span>
+<span><span class="co">##  [52] stats4_4.3.1            spatstat.explore_3.2-5  jsonlite_1.8.7         </span></span>
+<span><span class="co">##  [55] ellipsis_0.3.2          progressr_0.14.0        ggridges_0.5.4         </span></span>
+<span><span class="co">##  [58] survival_3.5-7          tools_4.3.1             ica_1.0-3              </span></span>
+<span><span class="co">##  [61] glue_1.6.2              gridExtra_2.3           xfun_0.41              </span></span>
+<span><span class="co">##  [64] mgcv_1.9-0              MatrixGenerics_1.14.0   GenomeInfoDb_1.38.0    </span></span>
+<span><span class="co">##  [67] withr_2.5.2             fastmap_1.1.1           fansi_1.0.5            </span></span>
+<span><span class="co">##  [70] digest_0.6.33           timechange_0.2.0        R6_2.5.1               </span></span>
+<span><span class="co">##  [73] mime_0.12               colorspace_2.1-0        scattermore_1.2        </span></span>
+<span><span class="co">##  [76] tensor_1.5              spatstat.data_3.0-3     RSQLite_2.3.3          </span></span>
+<span><span class="co">##  [79] RhpcBLASctl_0.23-42     utf8_1.2.4              generics_0.1.3         </span></span>
+<span><span class="co">##  [82] data.table_1.14.8       httr_1.4.7              htmlwidgets_1.6.3      </span></span>
+<span><span class="co">##  [85] uwot_0.1.16             pkgconfig_2.0.3         gtable_0.3.4           </span></span>
+<span><span class="co">##  [88] blob_1.2.4              lmtest_0.9-40           XVector_0.42.0         </span></span>
+<span><span class="co">##  [91] htmltools_0.5.7         dotCall64_1.1-1         scales_1.3.0           </span></span>
+<span><span class="co">##  [94] Biobase_2.62.0          png_0.1-8               knitr_1.45             </span></span>
+<span><span class="co">##  [97] tzdb_0.4.0              reshape2_1.4.4          nlme_3.1-163           </span></span>
+<span><span class="co">## [100] cachem_1.0.8            zoo_1.8-12              KernSmooth_2.23-22     </span></span>
+<span><span class="co">## [103] vipor_0.4.5             parallel_4.3.1          miniUI_0.1.1.1         </span></span>
+<span><span class="co">## [106] AnnotationDbi_1.64.1    ggrastr_1.0.2           pillar_1.9.0           </span></span>
+<span><span class="co">## [109] grid_4.3.1              vctrs_0.6.5             RANN_2.6.1             </span></span>
+<span><span class="co">## [112] promises_1.2.1          xtable_1.8-4            cluster_2.1.4          </span></span>
+<span><span class="co">## [115] beeswarm_0.4.0          evaluate_0.23           cli_3.6.1              </span></span>
+<span><span class="co">## [118] locfit_1.5-9.8          compiler_4.3.1          rlang_1.1.2            </span></span>
+<span><span class="co">## [121] crayon_1.5.2            future.apply_1.11.0     labeling_0.4.3         </span></span>
+<span><span class="co">## [124] ggbeeswarm_0.7.2        plyr_1.8.9              stringi_1.8.2          </span></span>
+<span><span class="co">## [127] viridisLite_0.4.2       deldir_2.0-2            BiocParallel_1.36.0    </span></span>
+<span><span class="co">## [130] munsell_0.5.0           Biostrings_2.70.1       lazyeval_0.2.2         </span></span>
+<span><span class="co">## [133] spatstat.geom_3.2-7     RcppHNSW_0.5.0          hms_1.1.3              </span></span>
+<span><span class="co">## [136] patchwork_1.1.3         bit64_4.0.5             future_1.33.0          </span></span>
+<span><span class="co">## [139] KEGGREST_1.42.0         statmod_1.5.0           shiny_1.8.0            </span></span>
+<span><span class="co">## [142] ROCR_1.0-11             igraph_1.5.1            memoise_2.0.1          </span></span>
+<span><span class="co">## [145] bit_4.0.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
 <!-- -->
 
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1473,8 +1423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -1486,8 +1435,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </div>
 </footer>
-
-
 
 
 <script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>

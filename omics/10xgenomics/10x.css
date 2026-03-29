@@ -1,0 +1,100 @@
+/* 10x Genomics library structure color scheme */
+/* Shared elements use identical colors to illumina.css */
+/* Based on https://teichlab.github.io/scg_lib_structs/ and 10x Genomics user guides */
+
+/* ── Shared with Illumina (same sequence = same color) ──────────────────── */
+p5   { color: #08519c; }   /* Illumina P5 adaptor - dark blue */
+p7   { color: #a50f15; }   /* Illumina P7 adaptor - dark red */
+s5   { color: #6baed6; }   /* TruSeq Read 1 / i5 related - light blue */
+s7   { color: #fc9272; }   /* TruSeq Read 2 / i7 related - light salmon */
+r1   { color: #4a1486; }   /* Nextera Read 1 - dark purple */
+r2   { color: #6a51a3; }   /* Nextera Read 2 - purple */
+t7   { color: blue;    }   /* Sample index (NNNN) - blue */
+cbc  { color: #f768a1; }   /* Cell barcode - pink */
+umi  { color: #807dba; }   /* UMI - light purple */
+tso  { color: #2ca25f; }   /* TSO - green */
+
+/* ── 10x-specific elements ──────────────────────────────────────────────── */
+sbc   { color: #00838f; }   /* Spatial barcode (Visium spot / HD bin) - teal */
+probe { color: #e65100; }   /* Probe barcode (Flex / Visium v2 FFPE) - deep orange */
+lh    { color: #827717; }   /* Ligation handle - olive */
+linker{ color: #558b2f; }   /* Linker sequence - light green */
+
+/* ── Ensure all custom tags render inline ───────────────────────────────── */
+p5, p7, s5, s7, r1, r2, t7, cbc, umi, tso,
+sbc, probe, lh, linker {
+    display: inline;
+    font-weight: normal;
+}
+
+/* ── Sequence block ─────────────────────────────────────────────────────── */
+pre.seq {
+    background-color: #f8f9fa;
+    border-left: 3px solid #dee2e6;
+    padding: 1em 1.2em;
+    border-radius: 4px;
+    font-family: 'Courier New', 'Fira Mono', monospace;
+    font-size: 0.85em;
+    line-height: 1.7;
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* ── Assay card grid (used on index.qmd) ───────────────────────────────── */
+.assay-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+.assay-card {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    background: #ffffff;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.assay-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+    border-color: #6baed6;
+    text-decoration: none;
+    color: inherit;
+}
+
+.assay-card h4 {
+    margin: 0 0 0.4rem 0;
+    font-size: 1.05rem;
+    color: #212529;
+}
+
+.assay-card p {
+    margin: 0 0 0.6rem 0;
+    font-size: 0.88rem;
+    color: #495057;
+    line-height: 1.5;
+}
+
+.assay-card .assay-meta {
+    font-size: 0.80rem;
+    color: #6c757d;
+    font-family: 'Courier New', monospace;
+}
+
+.assay-card .assay-badge {
+    display: inline-block;
+    padding: 0.15em 0.55em;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.badge-scrna   { background: #dbeafe; color: #1e40af; }
+.badge-spatial { background: #dcfce7; color: #166534; }
+.badge-fixed   { background: #fef3c7; color: #92400e; }

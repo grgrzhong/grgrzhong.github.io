@@ -1,0 +1,189 @@
+---
+title: "Chromium Fixed RNA Profiling (Flex)"
+date: 2026-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc: true
+toc-location: left
+toc-title: "Contents"
+execute:
+    eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+        css: 10x.css
+---
+
+Chromium Fixed RNA Profiling (Flex) is a **probe-based** gene expression assay designed for fixed samples including FFPE, methanol-fixed, and paraformaldehyde-fixed material. Rather than relying on poly-A capture, it uses pairs of **probe-ligation** oligos that hybridise to specific transcript sequences. This approach tolerates the RNA degradation typical of fixed tissue and enables multiplexing of up to 16 samples per GEM well using on-bead **Fractionation Index (FRI)** barcodes embedded in the probes.
+
+The core library structure differs fundamentally from the 3′/5′ kits:
+
+- No reverse transcription in solution — hybridisation and ligation occur on fixed cells
+- Cell barcode (CBC) and UMI are introduced during GEM barcoding of probe-ligated products
+- A short **probe barcode** (within the probe sequence) identifies the probe pair / gene target
+
+---
+
+## Assay Principle
+
+1. Fixed cells are permeabilised and target mRNA hybridises to matched probe pairs (Left Probe + Right Probe).
+2. The two probes anneal adjacently on the transcript; a ligase joins them to form a full-length probe-ligation product (PLP).
+3. PLPs are released, captured in GEMs on barcoded gel beads, and extended to incorporate cell barcode + UMI.
+4. Final TruSeq-based library is constructed by PCR.
+
+---
+
+## Adapter and Primer Sequences
+
+**Left Probe (LP):** `5'- [target-specific sequence]AGATCGGAAGAGCGTCGT -3'`
+*(3′ ligation handle; sequence is probe-pair specific)*
+
+**Right Probe (RP):** `5'- [ligation handle]NNNNN[target-specific sequence] -3'`
+*(5′ end carries a phosphate for ligation)*
+
+**Bead capture oligo:**
+
+```
+|--5'- CTACACGACGCTCTTCCGATCT[16-bp CBC][12-bp UMI][partial read-through handle] -3'
+```
+
+**Partial read-through / ligation handle annealing region:**
+
+```
+5'- CTTGCGGGCGGAGAT -3'   (anneals to 3' end of probe-ligation product)
+```
+
+**TruSeq Read 1 primer:** `5'- ACACTCTTTCCCTACACGACGCTCTTCCGATCT -3'`
+
+**TruSeq Read 2 primer:** `5'- GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT -3'`
+
+**TruSeq adapter (dsDNA, T overhang):**
+
+```
+5'-  GATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3'
+3'- TCTAGCCTTCTCG -5'
+```
+
+**Library PCR primer 1:** `5'- AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTC -3'`
+
+**Library PCR primer 2:** `5'- CAAGCAGAAGACGGCATACGAGAT[8-bp sample index]GTGACTGGAGTTCAGACGTGT -3'`
+
+**Illumina P5:** `5'- AATGATACGGCGACCACCGAGATCTACAC -3'`
+
+**Illumina P7:** `5'- CAAGCAGAAGACGGCATACGAGAT -3'`
+
+---
+
+## Step-by-Step Library Generation
+
+### Step 1 — Probe hybridisation in fixed, permeabilised cells
+
+Left Probe and Right Probe hybridise adjacently to target mRNA.
+
+<pre class="seq">
+mRNA  5'--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX--3'
+              ||||||||||||||||||     ||||||||||||||||||
+         <lh>LP: [target-specific]-[ligation handle]</lh>  <probe>RP: [ligation handle]-[target-specific]</probe>
+</pre>
+
+### Step 2 — Probe ligation
+
+Ligase joins the Left and Right Probe ends, creating a contiguous Probe-Ligation Product (PLP). Unligated probes are washed away.
+
+<pre class="seq">
+5'- <lh>[LP target-specific]</lh><probe>[probe barcode]</probe><lh>[RP target-specific]</lh> -3'   (PLP, released after wash)
+</pre>
+
+The probe barcode (4–8 bp) embedded in the probe pair identifies the gene/transcript target.
+
+### Step 3 — GEM barcoding: capture and extension of PLPs
+
+Cells are loaded into GEMs. PLPs enter the GEM droplet and are captured by the gel bead oligo via the ligation handle at the 3′ end of the PLP. The bead oligo is extended through the PLP, incorporating CBC and UMI.
+
+<pre class="seq">
+|--5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[16-bp CBC]</cbc><umi>[12-bp UMI]</umi><lh>[capture handle]</lh>------>
+                                                           <------<lh>[ligation handle]</lh><probe>[probe BC]</probe><lh>[LP target]</lh> -5'
+</pre>
+
+Extended product (first strand):
+
+<pre class="seq">
+|--5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><lh>[handle]</lh><lh>[LP target]</lh><probe>[probe BC]</probe><lh>[RP target]</lh> -3'
+   3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><lh>[handle]</lh><lh>[LP target]</lh><probe>[probe BC]</probe><lh>[RP target]</lh> -5'
+</pre>
+
+### Step 4 — PCR amplification of barcoded product
+
+After GEM breakage, the barcoded product is PCR amplified using the cDNA Forward primer and a probe-specific reverse primer.
+
+<pre class="seq">
+5'- <s5>CTACACGACGCTCTTCCGATCT</s5>-------->
+|--5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><lh>[handle]</lh>-PLP-<s7>[partial TruSeq R2 complement]</s7> -3'
+   3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><lh>[handle]</lh>-PLP-<s7>[partial TruSeq R2 complement]</s7> -5'
+                                                                   <--------<s7>TCTAGCCTTCTCGTGTGCAGACTTGG</s7> -5'
+</pre>
+
+### Step 5 — TruSeq adapter ligation and library PCR
+
+TruSeq adapter is ligated; library is amplified with PCR Primers 1 & 2 carrying the Illumina P5/P7 and sample index.
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTC</s5>-------->
+          5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><lh>[handle]</lh>-PLP-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+          3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><lh>[handle]</lh>-PLP-<s7>TCTAGCCTTCTCG</s7>                         -5'
+                                                       <---------<s7>TGTGCAGACTTGAGGTCAGTG</s7><t7>[8-bp idx]</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+---
+
+## Final Library Structure
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNNNN</umi><lh>[handle]</lh><lh>[LP target]</lh><probe>[probe BC]</probe><lh>[RP target]</lh><s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNNNN</umi><lh>[handle]</lh><lh>[LP target]</lh><probe>[probe BC]</probe><lh>[RP target]</lh><s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+          <p5>Illumina P5</p5>                    <s5>TruSeq Read 1</s5>               <cbc>16 bp CBC</cbc>    <umi>12 bp UMI</umi>           <lh>+ probe target sequences</lh>               <s7>TruSeq Read 2</s7>              <t7>8 bp idx</t7>       <p7>Illumina P7</p7>
+</pre>
+
+---
+
+## Library Sequencing
+
+### Step 1 — Read 1: cell barcode + UMI (bottom strand as template)
+
+<pre class="seq">
+                         5'- <s5>ACACTCTTTCCCTACACGACGCTCTTCCGATCT</s5>------------------------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNNNN</umi><lh>[handle]</lh>-PLP-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+28 cycles (16 bp CBC + 12 bp UMI).
+
+### Step 2 — Index 1 (i7): sample index (bottom strand as template)
+
+<pre class="seq">
+                                                                                5'- <s7>GATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7>------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNNNN</umi><lh>[handle]</lh>-PLP-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+8 cycles.
+
+### Step 3 — Read 2: probe and target sequence (top strand as template)
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNNNN</umi><lh>[handle]</lh>-PLP-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+                                                                           <------<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7> -5'
+</pre>
+
+Read 2 sequences through the probe target sequence, probe barcode, and partial PLP. Cell Ranger Flex uses the probe barcode to assign gene identity.
+
+---
+
+## Key Points
+
+- **Read 1** (28 cycles): 16 bp CBC + 12 bp UMI. No transcript sequence.
+- **Read 2** (50+ cycles): probe-ligation product sequence, including probe barcode for gene assignment.
+- Sample multiplexing (up to 16 samples per GEM well) is achieved via Fractionation Index (FRI) barcodes in the probe design.
+- Cell Ranger Flex demultiplexes samples and assigns gene counts based on the probe barcode in Read 2.
+- Compatible with FFPE, methanol-fixed, and paraformaldehyde-fixed samples.

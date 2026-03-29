@@ -1,0 +1,217 @@
+---
+title: "Visium HD WT Panel"
+date: 2026-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc: true
+toc-location: left
+toc-title: "Contents"
+execute:
+    eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+        css: 10x.css
+---
+
+Visium HD WT Panel is the high-definition spatial gene expression assay from 10x Genomics. It achieves **2 µm bin resolution** — approximately single-cell scale — by using a new slide architecture with a continuous lawn of capture oligonucleotides instead of discrete 55 µm spots. Bins are computationally defined during analysis at 2 µm, 8 µm, or 16 µm resolution.
+
+Like Visium v2, the HD WT Panel uses **probe-based hybridisation** and requires the **CytAssist** instrument. This makes it compatible with FFPE, fresh-frozen, and fixed-frozen tissues.
+
+| Feature | Visium v2 (WT Panel) | Visium HD WT Panel |
+|---------|---------------------|-------------------|
+| Resolution | 55 µm spots | 2 µm bins |
+| Capture architecture | 5,000 discrete spots | Continuous lawn |
+| Probe chemistry | WT Panel probes | WT Panel probes |
+| CytAssist | Required | Required |
+| Slide size | Standard | 6.5 × 6.5 mm or 11 × 11 mm |
+| Sample compatibility | FFPE, FF, Fixed-frozen | FFPE, FF, Fixed-frozen |
+
+The spatial barcode in Visium HD encodes a 2D position within the continuous lawn. Each 2 µm × 2 µm bin contains oligos with the same spatial barcode, and the barcode coordinate maps to a precise tissue location.
+
+---
+
+## Assay Principle
+
+1. Tissue is prepared on a standard glass slide (H&E, IF staining, or unstained FFPE).
+2. WT Panel probe pairs (Left Probe + Right Probe) hybridise to target transcripts in situ.
+3. Probes are ligated to form Probe-Ligation Products (PLPs).
+4. **CytAssist** transfers PLPs to the Visium HD slide capture area.
+5. PLPs are captured by the surface-bound oligos (spatial barcode + UMI + poly-T) at their corresponding 2 µm bin.
+6. Extension through the PLP incorporates the spatial barcode and UMI.
+7. Library is prepared using standard TruSeq-based PCR workflow.
+
+---
+
+## Capture Bin Oligonucleotide
+
+<pre class="seq">
+5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[16-bp spatial BC]</sbc><umi>[12-bp UMI]</umi>(T)30VN -3'    (surface-bound, 2 µm bin)
+</pre>
+
+The spatial barcode is a 16 bp sequence that uniquely identifies each 2 µm bin position on the capture area. Visium HD uses a new barcode design with higher density than the v1/v2 spot layout.
+
+---
+
+## Adapter and Primer Sequences
+
+**WT Panel Left Probe (LP):**
+
+```
+5'- [~25 bp target-specific][ligation handle] -3'
+    3' end is the ligation junction
+```
+
+**WT Panel Right Probe (RP):**
+
+```
+5'- [5'-phosphate][~25 bp target-specific][poly-A / capture handle] -3'
+    5' end is the ligation junction
+```
+
+**Capture bin oligo:**
+
+```
+5'- CTACACGACGCTCTTCCGATCT[16-bp spatial BC][12-bp UMI](T)30VN -3'
+```
+
+**cDNA amplification primer:** `5'- CTACACGACGCTCTTCCGATCT -3'`
+
+**TruSeq Read 1 primer:** `5'- ACACTCTTTCCCTACACGACGCTCTTCCGATCT -3'`
+
+**TruSeq Read 2 primer:** `5'- GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT -3'`
+
+**TruSeq adapter (dsDNA, T overhang):**
+
+```
+5'-  GATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3'
+3'- TCTAGCCTTCTCG -5'
+```
+
+**Library PCR primer 1:** `5'- AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTC -3'`
+
+**Library PCR primer 2:** `5'- CAAGCAGAAGACGGCATACGAGAT[8-bp sample index]GTGACTGGAGTTCAGACGTGT -3'`
+
+**Illumina P5:** `5'- AATGATACGGCGACCACCGAGATCTACAC -3'`
+
+**Illumina P7:** `5'- CAAGCAGAAGACGGCATACGAGAT -3'`
+
+---
+
+## Step-by-Step Library Generation
+
+### Step 1 — Tissue section preparation and probe hybridisation
+
+FFPE or fresh-frozen tissue section (5–10 µm) is placed on a standard glass slide and prepared histologically. WT Panel probe pairs hybridise to target mRNAs (hybridisation buffer, 37°C overnight).
+
+<pre class="seq">
+mRNA  5'--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX--3'
+                 |||||||||||||||||||   |||||||||||||||||||
+            <lh>[LP target-specific]</lh>  <probe>[probe BC]</probe><lh>[RP target-specific]</lh>
+                           ↑ ligation junction ↑
+</pre>
+
+### Step 2 — Probe ligation
+
+Ligase joins LP and RP at the ligation junction on the mRNA template. Unhybridised and unligated probes are washed away.
+
+<pre class="seq">
+5'- <lh>[LP target]</lh><probe>[probe BC]</probe><lh>[RP target]</lh><lh>[capture poly-A handle]</lh> -3'   (PLP, released)
+</pre>
+
+### Step 3 — CytAssist transfer to Visium HD slide
+
+CytAssist instrument transfers PLPs from the glass slide surface to the continuous capture lawn of the Visium HD slide.
+
+### Step 4 — PLP capture and spatial barcode incorporation
+
+PLPs are captured at their corresponding 2 µm bin via poly-T/poly-A annealing. The bin oligo is extended through the full PLP.
+
+<pre class="seq">
+slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(T)30VN -3'
+                                                            |||||||||||||||
+                                 3'- <lh>[capture handle(pA)]</lh><lh>[RP target]</lh><probe>[probe BC]</probe><lh>[LP target]</lh> -5'  (PLP)
+</pre>
+
+Extension product:
+
+<pre class="seq">
+slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN<lh>[RP target]</lh><probe>[probe BC]</probe><lh>[LP target]</lh><lh>[LP adaptor complement]</lh> -3'
+</pre>
+
+### Step 5 — cDNA release and PCR amplification
+
+Extended product is released and amplified:
+
+<pre class="seq">
+   5'- <s5>CTACACGACGCTCTTCCGATCT</s5>-------->
+5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>-<probe>PLP</probe>-<lh>[LP adaptor]</lh> -3'
+3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>-<probe>PLP</probe>-<lh>[LP adaptor]</lh> -5'
+                                              <---------<lh>[LP adaptor complement]</lh> -5'
+</pre>
+
+### Step 6 — Fragmentase, A-tailing, TruSeq adapter ligation, library PCR
+
+The amplifiable fragment (TruSeq Read 1 + spatial BC + UMI + partial PLP) is processed with TruSeq adapters:
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTC</s5>-------->
+          5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>-<probe>PLP</probe>-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+          3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>-<probe>PLP</probe>-<s7>TCTAGCCTTCTCG</s7>                         -5'
+                                                  <--------<s7>TGTGCAGACTTGAGGTCAGTG</s7><t7>[8-bp idx]</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+---
+
+## Final Library Structure
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+          <p5>Illumina P5</p5>                   <s5>TruSeq Read 1</s5>              <sbc>16 bp spatial BC</sbc>  <umi>12 bp UMI</umi>   <probe>probe-ligation product</probe>     <s7>TruSeq Read 2</s7>           <t7>8 bp idx</t7>       <p7>Illumina P7</p7>
+</pre>
+
+---
+
+## Library Sequencing
+
+### Step 1 — Read 1: spatial barcode + UMI (bottom strand as template)
+
+<pre class="seq">
+                         5'- <s5>ACACTCTTTCCCTACACGACGCTCTTCCGATCT</s5>------------------------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+28 cycles (16 bp spatial BC + 12 bp UMI).
+
+### Step 2 — Index 1 (i7): sample index (bottom strand as template)
+
+<pre class="seq">
+                                                                               5'- <s7>GATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7>------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+8 cycles.
+
+### Step 3 — Read 2: PLP sequence (top strand as template)
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+                                                                        <------<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7> -5'
+</pre>
+
+50+ cycles. Read 2 sequences the PLP, with the probe barcode used by Space Ranger HD to assign gene identity.
+
+---
+
+## Key Points
+
+- **Read 1** (28 cycles): 16 bp spatial barcode (2 µm bin ID) + 12 bp UMI.
+- **Read 2** (50+ cycles): PLP sequence, probe barcode for gene identification.
+- 2 µm bin architecture enables near-single-cell spatial resolution; bins can be aggregated to 8 µm or 16 µm computationally.
+- WT Panel protocol 2.0 improves sensitivity — recommended over protocol 1.0 for new experiments.
+- Space Ranger HD processes the data: bins reads by spatial barcode, assigns gene identity from probe barcodes, and generates the multi-resolution spatial expression matrix.
+- Compatible with **FFPE**, **fresh-frozen**, and **fixed-frozen** tissues; CytAssist is **required**.

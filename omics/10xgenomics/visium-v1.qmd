@@ -1,0 +1,220 @@
+---
+title: "Visium Spatial Gene Expression v1"
+date: 2026-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc: true
+toc-location: left
+toc-title: "Contents"
+execute:
+    eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+        css: 10x.css
+---
+
+Visium v1 is 10x Genomics' first-generation spatial gene expression technology. It captures polyadenylated mRNA directly from a fresh-frozen (FF) tissue section placed on a patterned slide. Each slide contains **4 capture areas**, each with ~**5,000 barcoded capture spots** arranged in a hexagonal array. Spots are 55 µm in diameter with 100 µm centre-to-centre spacing.
+
+Each capture spot contains millions of poly-T oligonucleotides covalently attached to the slide surface. Each oligo consists of:
+
+- A partial TruSeq Read 1 sequence (for library construction)
+- A **16-bp spatial barcode** (`sbc`) uniquely encoding the X-Y position of the spot
+- A **12-bp UMI**
+- A poly-T tail (VN anchor + 30 Ts) for mRNA capture
+
+The library is then constructed and sequenced using standard TruSeq chemistry.
+
+---
+
+## Capture Spot Oligonucleotide
+
+<pre class="seq">
+5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[16-bp spatial BC]</sbc><umi>[12-bp UMI]</umi>(T)30VN -3'    (surface-bound)
+</pre>
+
+The spatial barcode encodes the row and column identity of each spot. A whitelist of all valid 16 bp spatial barcodes is used by Space Ranger for spot assignment.
+
+---
+
+## Adapter and Primer Sequences
+
+**Capture spot oligo on slide:**
+
+```
+5'- CTACACGACGCTCTTCCGATCT[16-bp spatial BC][12-bp UMI](T)30VN -3'
+```
+
+**Template Switching Oligo (TSO)**:
+
+```
+5'- AAGCAGTGGTATCAACGCAGAGTACATGGGRGG -3'
+    (rG = riboguanosine)
+```
+
+**cDNA amplification primer:** `5'- CTACACGACGCTCTTCCGATCT -3'`
+
+**cDNA Reverse primer:** `5'- AAGCAGTGGTATCAACGCAGAGTACAT -3'`
+
+**TruSeq Read 1 primer:** `5'- ACACTCTTTCCCTACACGACGCTCTTCCGATCT -3'`
+
+**TruSeq Read 2 primer:** `5'- GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT -3'`
+
+**TruSeq adapter (dsDNA, T overhang):**
+
+```
+5'-  GATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3'
+3'- TCTAGCCTTCTCG -5'
+```
+
+**Library PCR primer 1:** `5'- AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTC -3'`
+
+**Library PCR primer 2:** `5'- CAAGCAGAAGACGGCATACGAGAT[8-bp sample index]GTGACTGGAGTTCAGACGTGT -3'`
+
+**Illumina P5:** `5'- AATGATACGGCGACCACCGAGATCTACAC -3'`
+
+**Illumina P7:** `5'- CAAGCAGAAGACGGCATACGAGAT -3'`
+
+---
+
+## Step-by-Step Library Generation
+
+### Step 1 — Tissue placement and mRNA capture
+
+Fresh-frozen tissue section (10 µm) is placed on the Visium capture area. After H&E staining and imaging, the section is permeabilised. Released mRNA diffuses down and is captured by the poly-T oligos at the spots beneath the tissue.
+
+<pre class="seq">
+(tissue above slide)
+      mRNA  5'--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(A)n -3'
+                                                   |||
+slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[16-bp spatial BC]</sbc><umi>[12-bp UMI]</umi>(T)30VN -3'  (surface-bound)
+</pre>
+
+### Step 2 — In situ reverse transcription
+
+Reverse transcriptase (MMLV) extends the captured mRNA using the surface-bound oligo as primer:
+
+<pre class="seq">
+slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA-CCC -3'
+                                                          (pA)-mRNA-5'
+</pre>
+
+MMLV adds non-templated Cs at the 3′ end of the cDNA.
+
+### Step 3 — TSO template switching
+
+The TSO riboguanosines anneal to the non-templated Cs; MMLV extends through the TSO sequence:
+
+<pre class="seq">
+slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA-<tso>CCATGTACTCTGCGTTGATACCACTGCTT</tso> -3'
+      3'-                                                              <tso>GGTACATGAGACGCAACTATGGTGACGAA</tso> -5'  (TSO)
+</pre>
+
+### Step 4 — cDNA release and amplification
+
+cDNA is released from the slide and amplified by PCR using the cDNA amplification primer (anneals to TruSeq Read 1 portion) and cDNA Reverse primer (anneals to TSO portion).
+
+<pre class="seq">
+   5'- <s5>CTACACGACGCTCTTCCGATCT</s5>-------->
+5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA-<tso>CCATGTACTCTGCGTTGATACCACTGCTT</tso> -3'
+3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(pA)B-cDNA-<tso>GGTACATGAGACGCAACTATGGTGACGAA</tso> -5'
+                                                                <-------<tso>TACATGAGACGCAACTATGGTGACGAA</tso> -5'
+</pre>
+
+### Step 5 — Fragmentase fragmentation and A-tailing
+
+Amplified cDNA is enzymatically fragmented and A-tailed:
+
+**Product 1** (TSO 5′ fragment — not amplifiable):
+
+<pre class="seq">
+5'-   <tso>AAGCAGTGGTATCAACGCAGAGTACATGGG</tso>-cDNA*A -3'
+3'- A*<tso>TTCGTCACCATAGTTGCGTCTCATGTACCC</tso>-cDNA    -5'
+</pre>
+
+**Product 2** (internal — not amplifiable):
+
+<pre class="seq">
+5'-   cDNA*A -3'
+3'- A* cDNA  -5'
+</pre>
+
+**Product 3** (TruSeq Read 1 + spatial BC + UMI + 3′ cDNA — **only amplifiable product**):
+
+<pre class="seq">
+5'-   <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA*A -3'
+3'- A*<s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(pA)B-cDNA    -5'
+</pre>
+
+### Step 6 — TruSeq adapter ligation
+
+TruSeq adapter ligated to Product 3:
+
+<pre class="seq">
+5'-   <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+3'- A*<s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCG</s7> -5'
+</pre>
+
+### Step 7 — Library PCR amplification
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTC</s5>-------->
+          5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+          3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCG</s7>                         -5'
+                                                     <---------<s7>TGTGCAGACTTGAGGTCAGTG</s7><t7>[8-bp idx]</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+---
+
+## Final Library Structure
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+          <p5>Illumina P5</p5>                   <s5>TruSeq Read 1</s5>              <sbc>16 bp spatial BC</sbc>  <umi>12 bp UMI</umi>       cDNA              <s7>TruSeq Read 2</s7>              <t7>8 bp idx</t7>       <p7>Illumina P7</p7>
+</pre>
+
+---
+
+## Library Sequencing
+
+### Step 1 — Read 1: spatial barcode + UMI (bottom strand as template)
+
+<pre class="seq">
+                         5'- <s5>ACACTCTTTCCCTACACGACGCTCTTCCGATCT</s5>------------------------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+28 cycles (16 bp spatial BC + 12 bp UMI).
+
+### Step 2 — Index 1 (i7): sample index (bottom strand as template)
+
+<pre class="seq">
+                                                                               5'- <s7>GATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7>------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+8 cycles.
+
+### Step 3 — Read 2: cDNA sequence (top strand as template, cluster regeneration)
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+                                                                        <------<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7> -5'
+</pre>
+
+98 cycles (cDNA).
+
+---
+
+## Key Points
+
+- **Read 1** (28 cycles): 16 bp spatial barcode + 12 bp UMI. No cDNA content.
+- **Read 2** (98 cycles): cDNA fragment — used for transcript alignment.
+- The spatial barcode whitelist maps each 16 bp sequence to a known X-Y coordinate on the capture area.
+- Space Ranger processes the FASTQ files, aligns transcripts, and generates a spatial gene expression matrix.
+- Tissue placement and permeabilisation are critical steps — poor permeabilisation reduces RNA capture efficiency.
+- Compatible with **fresh-frozen tissue only**. For FFPE, use Visium v2 (WT Panel) chemistry.

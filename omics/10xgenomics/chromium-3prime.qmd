@@ -1,0 +1,237 @@
+---
+title: "Chromium Single Cell 3′ Gene Expression"
+date: 2026-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc: true
+toc-location: left
+toc-title: "Contents"
+execute:
+    eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+        css: 10x.css
+---
+
+The 10x Chromium Single Cell 3′ Gene Expression kit captures polyadenylated mRNA at the 3′ end inside nano-litre droplets (GEMs). Each GEM contains a single cell and one gel bead. The gel bead carries tens of thousands of barcoded oligo-dT primers, one unique 16-bp **cell barcode (CBC)** and many unique **UMI** tags.
+
+Multiple chemistry versions exist:
+
+| Version | Cell Barcode | UMI | Status |
+|---------|-------------|-----|--------|
+| V2 | 16 bp | 10 bp | Discontinued |
+| V3 / V3.1 | 16 bp | 12 bp | Current |
+| V4 (GEM-X) | 16 bp | 12 bp | Current |
+
+Library structure is identical between V3, V3.1, and V4; V2 differs only in UMI length. Unless noted, V2 steps are drawn below.
+
+---
+
+## Adapter and Primer Sequences
+
+**Bead oligo-dT (V2):**
+
+```
+|--5'- CTACACGACGCTCTTCCGATCT[16-bp CBC][10-bp UMI](T)30VN -3'
+```
+
+**Bead oligo-dT (V3 / V3.1 / V4):**
+
+```
+|--5'- CTACACGACGCTCTTCCGATCT[16-bp CBC][12-bp UMI](T)30VN -3'
+```
+
+**Template Switching Oligo (TSO):**
+
+```
+5'- AAGCAGTGGTATCAACGCAGAGTACATGGGRGG -3'
+    (rG = riboguanosine)
+```
+
+**cDNA Forward primer:** `5'- CTACACGACGCTCTTCCGATCT -3'`
+
+**cDNA Reverse primer:**
+
+```
+V2:       5'- AAGCAGTGGTATCAACGCAGAGTACAT -3'
+V3/V3.1/V4: 5'- AAGCAGTGGTATCAACGCAGAG -3'
+```
+
+**TruSeq Read 1 primer:** `5'- ACACTCTTTCCCTACACGACGCTCTTCCGATCT -3'`
+
+**TruSeq Read 2 primer:** `5'- GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT -3'`
+
+**TruSeq adapter (dsDNA, T overhang):**
+
+```
+5'-  GATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3'
+3'- TCTAGCCTTCTCG -5'
+```
+
+**Library PCR primer 1:** `5'- AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTC -3'`
+
+**Library PCR primer 2:** `5'- CAAGCAGAAGACGGCATACGAGAT[8-bp sample index]GTGACTGGAGTTCAGACGTGT -3'`
+
+**Sample index sequencing primer:** `5'- GATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3'`
+
+**Illumina P5:** `5'- AATGATACGGCGACCACCGAGATCTACAC -3'`
+
+**Illumina P7:** `5'- CAAGCAGAAGACGGCATACGAGAT -3'`
+
+---
+
+## Step-by-Step Library Generation
+
+### Step 1 — mRNA capture and reverse transcription inside GEMs
+
+Poly-A mRNA is captured by the oligo-dT bead primer inside the droplet. MMLV reverse transcriptase extends using the mRNA as template.
+
+<pre class="seq">
+|--5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[16-bp CBC]</cbc><umi>[10-bp UMI]</umi>(T)30VN-------->
+                                                              (A)30B-mRNA-5'
+</pre>
+
+### Step 2 — Terminal transferase adds extra Cs (non-templated)
+
+MMLV's terminal transferase activity appends 2–3 extra cytosines to the 3′ end of the cDNA.
+
+<pre class="seq">
+|--5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[16-bp CBC]</cbc><umi>[10-bp UMI]</umi>(dT)VN-cDNA-CCC -3'
+                              (pA)B-mRNA-5'
+</pre>
+
+### Step 3 — TSO template switching for second strand synthesis
+
+The TSO's 3′ riboguanosines anneal to the non-templated Cs, and MMLV switches template to extend through the TSO.
+
+<pre class="seq">
+|--5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[16-bp CBC]</cbc><umi>[10-bp UMI]</umi>(dT)VN-cDNA-CCC---------->
+                                        <---------GGGrGrGrGATGTACTCTGCGTTGATACCACTGCTT -5'  (TSO)
+</pre>
+
+Full-length first-strand cDNA:
+
+<pre class="seq">
+|--5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi>(dT)VN-cDNA-<tso>CCATGTACTCTGCGTTGATACCACTGCTT</tso> -3'
+   3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi>(pA)B-cDNA-<tso>GGTACATGAGACGCAACTATGGTGACGAA</tso> -5'
+</pre>
+
+### Step 4 — cDNA amplification with Forward and Reverse primers
+
+PCR amplifies full-length cDNA using the cDNA Forward primer (anneals to TruSeq Read 1 portion) and cDNA Reverse primer (anneals to TSO portion).
+
+<pre class="seq">
+   5'- <s5>CTACACGACGCTCTTCCGATCT</s5>-------->
+|--5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi>(dT)VN-cDNA-<tso>CCATGTACTCTGCGTTGATACCACTGCTT</tso> -3'
+   3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi>(pA)B-cDNA-<tso>GGTACATGAGACGCAACTATGGTGACGAA</tso> -5'
+                                                             <--------<tso>TACATGAGACGCAACTATGGTGACGAA</tso> -5'
+</pre>
+
+### Step 5 — Fragmentase fragmentation and A-tailing
+
+The amplified cDNA is enzymatically fragmented and A-tailed, producing three fragment classes:
+
+**Product 1** (TSO-containing 5′ fragment — not amplifiable in next step):
+
+<pre class="seq">
+5'-   <tso>AAGCAGTGGTATCAACGCAGAGTACATGGG</tso>-cDNA-*A -3'
+3'- A*<tso>TTCGTCACCATAGTTGCGTCTCATGTACCC</tso>-cDNA    -5'
+</pre>
+
+**Product 2** (internal fragment — semi-suppressive PCR, not amplifiable):
+
+<pre class="seq">
+5'-   cDNA ...*A -3'
+3'- A* cDNA      -5'
+</pre>
+
+**Product 3** (Read 1 + CBC + UMI + 3′ cDNA — the **only amplifiable fragment**):
+
+<pre class="seq">
+5'-   <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi>(dT)VN-cDNA*A -3'
+3'- A*<s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi>(pA)B-cDNA    -5'
+</pre>
+
+### Step 6 — TruSeq adapter ligation
+
+Double-stranded TruSeq adapter (T overhang) is ligated to the A-tailed Product 3:
+
+<pre class="seq">
+5'-   <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+3'- A*<s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCG</s7> -5'
+</pre>
+
+### Step 7 — Library PCR amplification
+
+Library PCR Primer 1 (extends from P5 through TruSeq Read 1) and Library PCR Primer 2 (carries sample index and P7) amplify the final library.
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTC</s5>-------->
+                      5'-   <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+                      3'- A*<s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCG</s7>                         -5'
+                                                               <---------<s7>TGTGCAGACTTGAGGTCAGTG</s7><t7>[8-bp idx]</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+---
+
+## Final Library Structure
+
+### V2 (16 bp CBC + 10 bp UMI)
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNN</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNN</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+          <p5>Illumina P5</p5>                   <s5>TruSeq Read 1</s5>                <cbc>16 bp CBC</cbc>     <umi>10 bp UMI</umi>          cDNA              <s7>TruSeq Read 2</s7>              <t7>8 bp idx</t7>       <p7>Illumina P7</p7>
+</pre>
+
+### V3 / V3.1 / V4 (16 bp CBC + 12 bp UMI)
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNNNN</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNNNN</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+          <p5>Illumina P5</p5>                   <s5>TruSeq Read 1</s5>                <cbc>16 bp CBC</cbc>     <umi>12 bp UMI</umi>          cDNA              <s7>TruSeq Read 2</s7>              <t7>8 bp idx</t7>       <p7>Illumina P7</p7>
+</pre>
+
+---
+
+## Library Sequencing
+
+### Step 1 — Read 1: cell barcode + UMI (bottom strand as template)
+
+<pre class="seq">
+                         5'- <s5>ACACTCTTTCCCTACACGACGCTCTTCCGATCT</s5>------------------------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNN</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+Sequence 26 cycles (V2: 16 bp CBC + 10 bp UMI) or 28 cycles (V3+: 16 bp CBC + 12 bp UMI).
+
+### Step 2 — Index 1 (i7): sample index (bottom strand as template)
+
+<pre class="seq">
+                                                                               5'- <s7>GATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7>------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNN</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+8 cycles.
+
+### Step 3 — Read 2: cDNA (top strand as template, cluster regeneration)
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNN</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+                                                                          <------<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7> -5'
+</pre>
+
+98 cycles (cDNA).
+
+---
+
+## Key Points
+
+- **Read 1** carries the cell barcode and UMI — it does **not** contain cDNA sequence.
+- **Read 2** carries the cDNA fragment — used for gene alignment.
+- Only one sample index (i7) is used; i5 is not used in this assay.
+- Cell Ranger uses the whitelist for CBC correction during demultiplexing.

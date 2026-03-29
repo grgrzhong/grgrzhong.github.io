@@ -1,42 +1,80 @@
 ---
-title: 10X Genomics
+title: 10x Genomics
 date: 2026-01-01
 published-title: Created
 date-modified: last-modified
 title-block-banner: "#212529"
-# toc: true
-# toc-location: left
+toc: false
 toc-title: "Contents"
 execute:
     eval: false
 format:
     html:
         code-tools:
-            source: true
-            toggle: true
-
+            source: false
+            toggle: false
+        css: 10x.css
 ---
 
-## Techniques
+10x Genomics produces a family of sequencing-based assays for single-cell and spatial transcriptomics. All libraries are built on standard Illumina adapter chemistry (P5/P7, TruSeq primers), but differ in how cell or spatial barcodes and UMIs are introduced. The pages below document adapter sequences, step-by-step library generation, and sequencing workflows for each assay.
 
-### Chromium
+## Chromium Single Cell
 
-![](barcoding_process_in_Universal_3_assay.png){fig-align="center" width="800"}
+<div class="assay-grid">
 
-![](barcoding_process_in_Universal_5_assay.png){fig-align="center" width="800"}
+<a class="assay-card" href="chromium-3prime.qmd">
+<span class="assay-badge badge-scrna">scRNA-seq · 3′</span>
+<h4>Chromium Single Cell 3′ GE</h4>
+<p>Droplet-based 3′ gene expression. Barcoded oligo-dT beads capture polyadenylated mRNA inside GEMs.</p>
+<div class="assay-meta">V2: 16 bp CBC + 10 bp UMI &nbsp;|&nbsp; V3/V3.1/V4: 16 bp CBC + 12 bp UMI</div>
+</a>
 
-![](barcoding_process_in_Flex_assay.png){fig-align="center" width="800"}
+<a class="assay-card" href="chromium-5prime.qmd">
+<span class="assay-badge badge-scrna">scRNA-seq · 5′</span>
+<h4>Chromium Single Cell 5′ GE</h4>
+<p>Droplet-based 5′ gene expression and V(D)J profiling. Barcoded TSO on gel beads captures the 5′ end of transcripts.</p>
+<div class="assay-meta">V1/V2: 16 bp CBC + 10 bp UMI &nbsp;|&nbsp; V3: 16 bp CBC + 12 bp UMI</div>
+</a>
 
+<a class="assay-card" href="chromium-flex.qmd">
+<span class="assay-badge badge-fixed">Fixed RNA · Probe</span>
+<h4>Chromium Fixed RNA Profiling (Flex)</h4>
+<p>Probe-based gene expression for fixed (FFPE/methanol) samples. Probe pairs hybridise to mRNA; ligation creates the sequencing template.</p>
+<div class="assay-meta">16 bp CBC + 12 bp UMI + 4 bp probe barcode</div>
+</a>
 
+</div>
 
-* Visium
+## Visium Spatial Gene Expression
 
-* Xenium
+<div class="assay-grid">
 
-## scATAC + Gene Expression
+<a class="assay-card" href="visium-v1.qmd">
+<span class="assay-badge badge-spatial">Spatial · 3′ FF</span>
+<h4>Visium v1</h4>
+<p>First-generation Visium. 55 µm capture spots on a slide capture polyadenylated mRNA via poly-T probes. Fresh-frozen tissue only.</p>
+<div class="assay-meta">16 bp spatial BC + 12 bp UMI &nbsp;|&nbsp; 5,000 spots</div>
+</a>
 
-![10x Multiome workflow](10x-Multiome-Workflow.png){fig-align="center" width="800"}
+<a class="assay-card" href="visium-v2.qmd">
+<span class="assay-badge badge-spatial">Spatial · Probe</span>
+<h4>Visium v2 (WT Panel)</h4>
+<p>CytAssist-enabled probe-based Visium. Compatible with FFPE, fresh-frozen, and fixed-frozen tissues. Requires CytAssist instrument.</p>
+<div class="assay-meta">16 bp spatial BC + 12 bp UMI + probe barcode &nbsp;|&nbsp; 5,000 spots</div>
+</a>
 
-* Unique benefits of 10x Multiome:
-  * Cross-validate gene expression and chromatin accessibility data from the same cell
-  * Identify activate regulatory elements and map out high resolution gene regulatory networks
+<a class="assay-card" href="visium-hd-wt.qmd">
+<span class="assay-badge badge-spatial">Spatial HD · Probe</span>
+<h4>Visium HD WT Panel</h4>
+<p>High-definition spatial at 2 µm bin resolution. Whole-transcriptome panel (probe-based). Requires CytAssist. FFPE, FF, fixed-frozen.</p>
+<div class="assay-meta">16 bp spatial BC + 12 bp UMI + probe barcode &nbsp;|&nbsp; 2 µm bins</div>
+</a>
+
+<a class="assay-card" href="visium-hd-3prime.qmd">
+<span class="assay-badge badge-spatial">Spatial HD · 3′</span>
+<h4>Visium HD 3′</h4>
+<p>High-definition spatial at 2 µm bin resolution. Whole-transcriptome 3′ poly-T capture (no probes). Expanded species compatibility.</p>
+<div class="assay-meta">16 bp spatial BC + 12 bp UMI &nbsp;|&nbsp; 2 µm bins</div>
+</a>
+
+</div>

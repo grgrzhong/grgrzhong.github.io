@@ -1,0 +1,229 @@
+---
+title: "Chromium Single Cell 5′ Gene Expression"
+date: 2026-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc: true
+toc-location: left
+toc-title: "Contents"
+execute:
+    eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+        css: 10x.css
+---
+
+The 10x Chromium Single Cell 5′ Gene Expression kit captures the 5′ end of transcripts inside GEMs. Instead of barcoded oligo-dT primers on the beads (as in the 3′ kit), the 5′ kit uses a **universal poly-dT RT primer** for reverse transcription and places the **barcoded TSO** on the gel bead. The TSO anneals to non-templated Cs added by MMLV and carries the cell barcode and UMI. This 5′ orientation makes it ideal for paired V(D)J immune repertoire profiling.
+
+| Version | Cell Barcode | UMI | Status |
+|---------|-------------|-----|--------|
+| V1 (PN-220112) | 16 bp | 10 bp | Discontinued |
+| V2 (PN-1000264) | 16 bp | 10 bp | Current |
+| V3 (PN-2001129, GEM-X) | 16 bp | 12 bp | Current |
+
+Library structure is identical between V1 and V2; V3 differs only in UMI length. The V1/V2 structure is shown below unless noted.
+
+---
+
+## Adapter and Primer Sequences
+
+**Bead-TSO (V1 & V2):**
+
+```
+|--5'- CTACACGACGCTCTTCCGATCT[16-bp CBC][10-bp UMI]TTTCTTATATrGrGrG -3'
+       (rG = riboguanosine)
+```
+
+**Bead-TSO (V3):**
+
+```
+|--5'- CTACACGACGCTCTTCCGATCT[16-bp CBC][12-bp UMI]TTTCTTATATrGrGrG -3'
+```
+
+**Poly-dT RT primer (PN-2000007):**
+
+```
+5'- AAGCAGTGGTATCAACGCAGAGTACTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTVN -3'
+```
+
+**cDNA Forward primer:** `5'- CTACACGACGCTCTTCCGATCT -3'`
+
+**cDNA Reverse primer:** `5'- AAGCAGTGGTATCAACGCAG -3'`
+
+**TruSeq Read 1 primer:** `5'- ACACTCTTTCCCTACACGACGCTCTTCCGATCT -3'`
+
+**TruSeq Read 2 primer:** `5'- GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT -3'`
+
+**TruSeq adapter (dsDNA, T overhang, PN-220026):**
+
+```
+5'-  GATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3'
+3'- TCTAGCCTTCTCG -5'
+```
+
+**Library PCR primer 1 (PN-220111):** `5'- AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTC -3'`
+
+**Library PCR primer 2 (PN-220103):** `5'- CAAGCAGAAGACGGCATACGAGAT[8-bp sample index]GTGACTGGAGTTCAGACGTGT -3'`
+
+**Sample index sequencing primer:** `5'- GATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3'`
+
+**Illumina P5:** `5'- AATGATACGGCGACCACCGAGATCTACAC -3'`
+
+**Illumina P7:** `5'- CAAGCAGAAGACGGCATACGAGAT -3'`
+
+---
+
+## Step-by-Step Library Generation
+
+### Step 1 — Reverse transcription with poly-dT RT primer
+
+The poly-dT RT primer anneals to the poly-A tail of mRNA in solution. MMLV extends from the poly-A tail toward the 5′ cap.
+
+<pre class="seq">
+                   <--------NV(T)30<tso>CATGAGACGCAACTATGGTGACGAA</tso> -5'  (poly-dT RT primer)
+5'- mRNA-B(A)30
+</pre>
+
+### Step 2 — Terminal transferase adds non-templated Cs
+
+MMLV's terminal transferase activity adds 2–3 cytosines to the 3′ end of the nascent cDNA (which corresponds to the mRNA 5′ cap region).
+
+<pre class="seq">
+    CCC-cDNA-NV(T)30<tso>CATGAGACGCAACTATGGTGACGAA</tso> -5'
+5'- mRNA-B(A)30
+</pre>
+
+### Step 3 — cDNA capture by bead-TSO template switching
+
+The non-templated Cs anneal to the riboG residues at the 3′ end of the bead-bound TSO. MMLV switches template and extends through the TSO, incorporating the CBC and UMI.
+
+<pre class="seq">
+                                          <---------CCC-cDNA-NV(T)30<tso>CATGAGACGCAACTATGGTGACGAA</tso> -5'
+|--5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><tso>TTTCTTATATGGG</tso>-cDNA-(pA)B-mRNA -3'
+</pre>
+
+After extension:
+
+<pre class="seq">
+|--5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><tso>TTTCTTATATGGG</tso>-cDNA-(pA)B<tso>GTACTCTGCGTTGATACCACTGCTT</tso> -3'
+   3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><tso>AAAGAATATACCC</tso>-cDNA-(dT)VN<tso>CATGAGACGCAACTATGGTGACGAA</tso> -5'
+</pre>
+
+### Step 4 — cDNA amplification
+
+Full-length cDNA is amplified using the cDNA Forward primer (TruSeq Read 1 portion) and cDNA Reverse primer (poly-dT RT primer portion).
+
+<pre class="seq">
+   5'- <s5>CTACACGACGCTCTTCCGATCT</s5>-------->
+|--5'- <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><tso>TTTCTTATATGGG</tso>-cDNA-(pA)B<tso>GTACTCTGCGTTGATACCACTGCTT</tso> -3'
+   3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><tso>AAAGAATATACCC</tso>-cDNA-(dT)VN<tso>CATGAGACGCAACTATGGTGACGAA</tso> -5'
+                                                            <--------<tso>GACGCAACTATGGTGACGAA</tso> -5'
+</pre>
+
+### Step 5 — Fragmentase fragmentation and A-tailing
+
+Amplified cDNA is enzymatically fragmented and A-tailed, generating three fragment classes:
+
+**Product 1** (TSO + CBC + UMI + 5′ cDNA — the **only amplifiable fragment**):
+
+<pre class="seq">
+5'-   <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><tso>TTTCTTATATGGG</tso>-cDNA*A -3'
+3'- A*<s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><tso>AAAGAATATACCC</tso>-cDNA    -5'
+</pre>
+
+**Product 2** (internal — semi-suppressive PCR, not amplifiable):
+
+<pre class="seq">
+5'-   cDNA*A -3'
+3'- A* cDNA  -5'
+</pre>
+
+**Product 3** (3′ poly-dT RT primer end — 5′ end blocked, not amplifiable):
+
+<pre class="seq">
+5'-   <tso>AAGCAGTGGTATCAACGCAGAGTAC</tso>(dT)VN-cDNA*A -3'
+3'- A*<tso>TTCGTCACCATAGTTGCGTCTCATG</tso>(pA)B-cDNA    -5'
+</pre>
+
+### Step 6 — TruSeq adapter ligation
+
+TruSeq adapter is ligated to the A-tailed Product 1:
+
+<pre class="seq">
+5'-   <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><tso>TTTCTTATATGGG</tso>-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+3'- A*<s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><tso>AAAGAATATACCC</tso>-cDNA-<s7>TCTAGCCTTCTCG</s7> -5'
+</pre>
+
+### Step 7 — Library PCR amplification
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTC</s5>-------->
+                      5'-   <s5>CTACACGACGCTCTTCCGATCT</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><tso>TTTCTTATATGGG</tso>-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+                      3'- A*<s5>GATGTGCTGCGAGAAGGCTAGA</s5><cbc>[CBC]</cbc><umi>[UMI]</umi><tso>AAAGAATATACCC</tso>-cDNA-<s7>TCTAGCCTTCTCG</s7>                         -5'
+                                                                      <---------<s7>TGTGCAGACTTGAGGTCAGTG</s7><t7>[8-bp idx]</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+---
+
+## Final Library Structure
+
+### V1 and V2 (16 bp CBC + 10 bp UMI)
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNN</umi><tso>TTTCTTATATGGG</tso>-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNN</umi><tso>AAAGAATATACCC</tso>-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+          <p5>Illumina P5</p5>                   <s5>TruSeq Read 1</s5>                <cbc>16 bp CBC</cbc>     <umi>10 bp UMI</umi>    <tso>TSO</tso>        cDNA              <s7>TruSeq Read 2</s7>              <t7>8 bp idx</t7>       <p7>Illumina P7</p7>
+</pre>
+
+### V3 (16 bp CBC + 12 bp UMI)
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNNNN</umi><tso>TTTCTTATATGGG</tso>-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNNNN</umi><tso>AAAGAATATACCC</tso>-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+          <p5>Illumina P5</p5>                   <s5>TruSeq Read 1</s5>                <cbc>16 bp CBC</cbc>     <umi>12 bp UMI</umi>    <tso>TSO</tso>        cDNA              <s7>TruSeq Read 2</s7>              <t7>8 bp idx</t7>       <p7>Illumina P7</p7>
+</pre>
+
+---
+
+## Library Sequencing
+
+### Step 1 — Read 1: cell barcode + UMI (bottom strand as template)
+
+<pre class="seq">
+                         5'- <s5>ACACTCTTTCCCTACACGACGCTCTTCCGATCT</s5>------------------------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNN</umi><tso>AAAGAATATACCC</tso>-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+26 cycles (V1/V2) or 28 cycles (V3).
+
+### Step 2 — Index 1 (i7): sample index (bottom strand as template)
+
+<pre class="seq">
+                                                                                           5'- <s7>GATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7>------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNN</umi><tso>AAAGAATATACCC</tso>-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+8 cycles.
+
+### Step 3 — Read 2: cDNA (top strand as template, cluster regeneration)
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><cbc>NNNNNNNNNNNNNNNN</cbc><umi>NNNNNNNNNN</umi><tso>TTTCTTATATGGG</tso>-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+                                                                              <------<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7> -5'
+</pre>
+
+98 cycles (cDNA).
+
+---
+
+## Key Points
+
+- **Read 1** sequences the cell barcode and UMI — no cDNA content.
+- **Read 2** sequences cDNA from the 5′ end of transcripts — used for gene alignment.
+- The TSO sequence (`TTTCTTATATGGG`) appears at the junction between the UMI and cDNA; Cell Ranger trims this during preprocessing.
+- Only i7 sample index is used.
+- This assay is often run with V(D)J enrichment primers to simultaneously profile TCR/BCR sequences.

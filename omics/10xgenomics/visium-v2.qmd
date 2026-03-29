@@ -1,0 +1,208 @@
+---
+title: "Visium v2 (WT Panel, CytAssist)"
+date: 2026-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc: true
+toc-location: left
+toc-title: "Contents"
+execute:
+    eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+        css: 10x.css
+---
+
+Visium v2 introduces **probe-based Whole Transcriptome (WT) Panel** chemistry and requires the **CytAssist** instrument. Unlike the v1 poly-T capture approach, v2 uses pre-designed probe pairs that hybridise to specific transcripts. This makes it compatible with **FFPE**, **fresh-frozen**, and **fixed-frozen** tissues — including degraded RNA samples where the v1 poly-T capture would fail.
+
+Key differences from v1:
+
+| Feature | Visium v1 | Visium v2 (WT Panel) |
+|---------|-----------|----------------------|
+| RNA capture | poly-T (whole transcriptome) | probe pairs (WT Panel ~18,000 genes) |
+| Sample compatibility | Fresh-frozen only | FFPE, FF, Fixed-frozen |
+| CytAssist required | No | Yes |
+| Slide architecture | Direct tissue permeabilisation | Standard glass → CytAssist transfer |
+| Spots | 5,000 (55 µm) | 5,000 (55 µm) |
+
+The CytAssist instrument transfers the hybridised probe-ligation products from a standard glass slide onto the Visium capture area, enabling a standard histological workflow for tissue preparation.
+
+---
+
+## Assay Principle
+
+1. Tissue section is placed on a standard glass slide and processed histologically (H&E or IF staining).
+2. Probe pairs hybridise to target mRNAs in the tissue; ligase joins LP + RP to form Probe-Ligation Products (PLPs).
+3. The **CytAssist** instrument transfers PLPs from the glass slide to the Visium capture area.
+4. On the capture area, PLPs are captured by surface-bound poly-T oligos containing the spatial barcode + UMI.
+5. Template switching synthesis through the PLP creates the spatial-barcoded cDNA.
+6. Library preparation follows the standard TruSeq workflow.
+
+---
+
+## Capture Spot Oligonucleotide
+
+<pre class="seq">
+5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[16-bp spatial BC]</sbc><umi>[12-bp UMI]</umi>(T)30VN -3'    (surface-bound on Visium slide)
+</pre>
+
+---
+
+## Adapter and Primer Sequences
+
+**Left Probe (LP) ligation handle:** `5'- [target-specific]AGATCGGAAGAGCGTCGT -3'`
+
+**Right Probe (RP) 5′ end:** `5'- [probe-specific linker][target-specific] -3'`
+*(5′ phosphorylated for ligation)*
+
+**Capture spot oligo:**
+
+```
+5'- CTACACGACGCTCTTCCGATCT[16-bp spatial BC][12-bp UMI](T)30VN -3'
+```
+
+**TSO:**
+
+```
+5'- AAGCAGTGGTATCAACGCAGAGTACATGGGRGG -3'
+```
+
+**TruSeq Read 1 primer:** `5'- ACACTCTTTCCCTACACGACGCTCTTCCGATCT -3'`
+
+**TruSeq Read 2 primer:** `5'- GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT -3'`
+
+**TruSeq adapter (dsDNA, T overhang):**
+
+```
+5'-  GATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3'
+3'- TCTAGCCTTCTCG -5'
+```
+
+**Library PCR primer 1:** `5'- AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTC -3'`
+
+**Library PCR primer 2:** `5'- CAAGCAGAAGACGGCATACGAGAT[8-bp sample index]GTGACTGGAGTTCAGACGTGT -3'`
+
+**Illumina P5:** `5'- AATGATACGGCGACCACCGAGATCTACAC -3'`
+
+**Illumina P7:** `5'- CAAGCAGAAGACGGCATACGAGAT -3'`
+
+---
+
+## Step-by-Step Library Generation
+
+### Step 1 — Tissue section preparation and probe hybridisation
+
+Tissue section is placed on a standard glass slide. After staining and imaging, the section is permeabilised and WT Panel probe pairs hybridise to target mRNAs in situ.
+
+<pre class="seq">
+mRNA  5'--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX--3'
+                 |||||||||||||||||||   |||||||||||||||||||
+            <lh>[LP target-specific]</lh>  <probe>[probe BC]</probe><lh>[RP target-specific]</lh>
+</pre>
+
+### Step 2 — Probe ligation
+
+Ligase joins LP and RP at their adjacent ends on the mRNA template, forming full-length PLPs. Unligated probes are removed.
+
+<pre class="seq">
+5'- <lh>[LP adaptor]</lh><lh>[LP target]</lh><probe>[probe BC]</probe><lh>[RP target]</lh><lh>[RP capture handle]</lh> -3'   (PLP)
+</pre>
+
+### Step 3 — CytAssist transfer to Visium slide
+
+The CytAssist instrument uses fluorescence to locate and transfer PLPs from the glass slide to the capture area of the Visium v2 slide.
+
+### Step 4 — PLP capture on spatial barcoded spot
+
+The 3′ capture handle on the PLP (poly-A / complementary to poly-T) anneals to the poly-T portion of the capture spot oligo.
+
+<pre class="seq">
+slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(T)30VN -3'
+                                                          |||||||||||
+                                      3'- <lh>[RP target]</lh><probe>[probe BC]</probe><lh>[LP target]</lh><lh>[LP adaptor]</lh> -5'  (PLP)
+</pre>
+
+### Step 5 — Extension through PLP (spatial barcode incorporation)
+
+The spot oligo is extended through the full PLP using the PLP as template. This incorporates the spatial barcode and UMI into a cDNA representing the probe-ligated transcript.
+
+<pre class="seq">
+slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN<lh>[RP target]</lh><probe>[probe BC]</probe><lh>[LP target]</lh><lh>[LP adaptor complement]</lh> -3'
+</pre>
+
+### Step 6 — cDNA release and amplification
+
+Extended product is released from the slide and PCR amplified:
+
+<pre class="seq">
+   5'- <s5>CTACACGACGCTCTTCCGATCT</s5>-------->
+5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-<probe>PLP</probe>-<lh>[LP adaptor]</lh> -3'
+3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(pA)B-<probe>PLP</probe>-<lh>[LP adaptor]</lh> -5'
+                                              <---------<lh>[LP adaptor complement]</lh> -5'
+</pre>
+
+### Step 7 — Fragmentase, A-tailing, TruSeq adapter ligation, library PCR
+
+Same as Visium v1 (Steps 5–7). The amplifiable product contains TruSeq Read 1 + spatial BC + UMI + PLP sequence, then TruSeq adapter + sample index + P7.
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTC</s5>-------->
+          5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>-PLP-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+          3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>-PLP-<s7>TCTAGCCTTCTCG</s7>                         -5'
+                                                  <--------<s7>TGTGCAGACTTGAGGTCAGTG</s7><t7>[8-bp idx]</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+---
+
+## Final Library Structure
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+          <p5>Illumina P5</p5>                   <s5>TruSeq Read 1</s5>              <sbc>16 bp spatial BC</sbc>  <umi>12 bp UMI</umi>   <probe>probe-ligation product</probe>      <s7>TruSeq Read 2</s7>          <t7>8 bp idx</t7>       <p7>Illumina P7</p7>
+</pre>
+
+---
+
+## Library Sequencing
+
+### Step 1 — Read 1: spatial barcode + UMI (bottom strand as template)
+
+<pre class="seq">
+                         5'- <s5>ACACTCTTTCCCTACACGACGCTCTTCCGATCT</s5>------------------------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+28 cycles (16 bp spatial BC + 12 bp UMI).
+
+### Step 2 — Index 1 (i7): sample index (bottom strand as template)
+
+<pre class="seq">
+                                                                               5'- <s7>GATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7>------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+8 cycles.
+
+### Step 3 — Read 2: PLP / transcript sequence (top strand as template)
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+                                                                        <------<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7> -5'
+</pre>
+
+50+ cycles (PLP sequence contains probe barcode used for gene identification).
+
+---
+
+## Key Points
+
+- **Read 1** (28 cycles): 16 bp spatial barcode + 12 bp UMI.
+- **Read 2** (50+ cycles): PLP including probe barcode — Space Ranger matches this to the WT Panel probe list.
+- The WT Panel covers ~18,000 human or mouse protein-coding genes.
+- CytAssist enables standard glass-slide histology before Visium capture — tissue sections can be H&E or IF stained and imaged before probe capture.
+- Compatible with **FFPE**, **fresh-frozen**, and **fixed-frozen** tissues.

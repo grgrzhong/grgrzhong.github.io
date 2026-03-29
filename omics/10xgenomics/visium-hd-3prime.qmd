@@ -1,0 +1,225 @@
+---
+title: "Visium HD 3′ Gene Expression"
+date: 2026-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc: true
+toc-location: left
+toc-title: "Contents"
+execute:
+    eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+        css: 10x.css
+---
+
+Visium HD 3′ is the whole-transcriptome, **probe-free** counterpart to the Visium HD WT Panel. It uses the same **2 µm bin** continuous-lawn slide architecture but captures polyadenylated mRNA directly via **poly-T oligonucleotides** — no probe pairs or ligation step required. This enables **de novo discovery** across the entire transcriptome, including non-coding RNAs, and extends compatibility to **non-human species** beyond those covered by the WT Panel probe design.
+
+| Feature | Visium HD WT Panel | Visium HD 3′ |
+|---------|--------------------|--------------|
+| Capture method | Probe pairs (WT Panel) | poly-T (whole transcriptome) |
+| Gene coverage | ~18,000 genes (curated panel) | Whole transcriptome (de novo) |
+| Non-human species | Human / mouse panels only | Broad species compatibility |
+| CytAssist | Required | Required |
+| Resolution | 2 µm bins | 2 µm bins |
+| Sample compatibility | FFPE, FF, Fixed-frozen | FFPE, FF, Fixed-frozen |
+
+Like Visium v1, the 3′ assay uses a **TSO-based template switching** mechanism; unlike v1 it operates at 2 µm resolution and requires CytAssist for tissue transfer.
+
+---
+
+## Capture Bin Oligonucleotide
+
+<pre class="seq">
+5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[16-bp spatial BC]</sbc><umi>[12-bp UMI]</umi>(T)30VN -3'    (surface-bound, 2 µm bin)
+</pre>
+
+---
+
+## Adapter and Primer Sequences
+
+**Capture bin oligo:**
+
+```
+5'- CTACACGACGCTCTTCCGATCT[16-bp spatial BC][12-bp UMI](T)30VN -3'
+```
+
+**Template Switching Oligo (TSO):**
+
+```
+5'- AAGCAGTGGTATCAACGCAGAGTACATGGGRGG -3'
+    (rG = riboguanosine)
+```
+
+**cDNA amplification primer:** `5'- CTACACGACGCTCTTCCGATCT -3'`
+
+**cDNA Reverse primer:** `5'- AAGCAGTGGTATCAACGCAGAGTACAT -3'`
+
+**TruSeq Read 1 primer:** `5'- ACACTCTTTCCCTACACGACGCTCTTCCGATCT -3'`
+
+**TruSeq Read 2 primer:** `5'- GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT -3'`
+
+**TruSeq adapter (dsDNA, T overhang):**
+
+```
+5'-  GATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3'
+3'- TCTAGCCTTCTCG -5'
+```
+
+**Library PCR primer 1:** `5'- AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTC -3'`
+
+**Library PCR primer 2:** `5'- CAAGCAGAAGACGGCATACGAGAT[8-bp sample index]GTGACTGGAGTTCAGACGTGT -3'`
+
+**Illumina P5:** `5'- AATGATACGGCGACCACCGAGATCTACAC -3'`
+
+**Illumina P7:** `5'- CAAGCAGAAGACGGCATACGAGAT -3'`
+
+---
+
+## Step-by-Step Library Generation
+
+### Step 1 — Tissue preparation and CytAssist transfer
+
+Tissue section (5–10 µm) is placed on a standard glass slide, fixed (if FFPE), and prepared histologically. After staining and imaging, the section is **permeabilised** to release mRNA. The CytAssist instrument transfers released mRNA from the glass slide to the Visium HD 3′ capture area.
+
+### Step 2 — mRNA capture by poly-T bin oligos
+
+Poly-A mRNA binds to the poly-T capture oligos on the 2 µm bin surface:
+
+<pre class="seq">
+(tissue section)
+      mRNA  5'--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(A)n -3'
+                                                   |||
+slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[16-bp spatial BC]</sbc><umi>[12-bp UMI]</umi>(T)30VN -3'  (2 µm bin oligo)
+</pre>
+
+### Step 3 — In situ reverse transcription on capture area
+
+MMLV reverse transcriptase extends from the capture oligo primer through the mRNA template:
+
+<pre class="seq">
+slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA-CCC -3'
+                                                          (pA)-mRNA-5'
+</pre>
+
+MMLV's terminal transferase activity adds non-templated CCC at the 3′ end.
+
+### Step 4 — TSO template switching
+
+The TSO riboguanosines (rGrGrG) anneal to the non-templated CCC; MMLV switches template and extends through the TSO:
+
+<pre class="seq">
+slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA-<tso>CCATGTACTCTGCGTTGATACCACTGCTT</tso> -3'
+      3'-                                                              <tso>GGGrGrGrGATGTACTCTGCGTTGATACCACTGCTT</tso> -5'  (TSO)
+</pre>
+
+### Step 5 — cDNA release and amplification
+
+Spatial barcoded cDNA is released from the slide and PCR amplified:
+
+<pre class="seq">
+   5'- <s5>CTACACGACGCTCTTCCGATCT</s5>-------->
+5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA-<tso>CCATGTACTCTGCGTTGATACCACTGCTT</tso> -3'
+3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(pA)B-cDNA-<tso>GGTACATGAGACGCAACTATGGTGACGAA</tso> -5'
+                                                               <-------<tso>TACATGAGACGCAACTATGGTGACGAA</tso> -5'
+</pre>
+
+### Step 6 — Fragmentase fragmentation and A-tailing
+
+Three fragment classes are generated:
+
+**Product 1** (TSO 5′ end — not amplifiable):
+
+<pre class="seq">
+5'-   <tso>AAGCAGTGGTATCAACGCAGAGTACATGGG</tso>-cDNA*A -3'
+3'- A*<tso>TTCGTCACCATAGTTGCGTCTCATGTACCC</tso>-cDNA    -5'
+</pre>
+
+**Product 2** (internal — semi-suppressive, not amplifiable):
+
+<pre class="seq">
+5'-   cDNA*A -3'
+3'- A* cDNA  -5'
+</pre>
+
+**Product 3** (TruSeq Read 1 + spatial BC + UMI + 3′ cDNA — **the amplifiable product**):
+
+<pre class="seq">
+5'-   <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA*A -3'
+3'- A*<s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(pA)B-cDNA    -5'
+</pre>
+
+### Step 7 — TruSeq adapter ligation
+
+TruSeq adapter is ligated to Product 3:
+
+<pre class="seq">
+5'-   <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+3'- A*<s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCG</s7> -5'
+</pre>
+
+### Step 8 — Library PCR amplification
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTC</s5>-------->
+          5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+          3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCG</s7>                         -5'
+                                                   <---------<s7>TGTGCAGACTTGAGGTCAGTG</s7><t7>[8-bp idx]</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+---
+
+## Final Library Structure
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+          <p5>Illumina P5</p5>                   <s5>TruSeq Read 1</s5>              <sbc>16 bp spatial BC</sbc>  <umi>12 bp UMI</umi>       cDNA              <s7>TruSeq Read 2</s7>              <t7>8 bp idx</t7>       <p7>Illumina P7</p7>
+</pre>
+
+---
+
+## Library Sequencing
+
+### Step 1 — Read 1: spatial barcode + UMI (bottom strand as template)
+
+<pre class="seq">
+                         5'- <s5>ACACTCTTTCCCTACACGACGCTCTTCCGATCT</s5>------------------------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+28 cycles (16 bp spatial BC + 12 bp UMI).
+
+### Step 2 — Index 1 (i7): sample index (bottom strand as template)
+
+<pre class="seq">
+                                                                               5'- <s7>GATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7>------->
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>(pA)B-cDNA-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+
+8 cycles.
+
+### Step 3 — Read 2: cDNA (top strand as template, cluster regeneration)
+
+<pre class="seq">
+5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>(dT)VN-cDNA-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+                                                                        <------<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7> -5'
+</pre>
+
+98 cycles (cDNA).
+
+---
+
+## Key Points
+
+- **Read 1** (28 cycles): 16 bp spatial barcode (2 µm bin) + 12 bp UMI. No cDNA content.
+- **Read 2** (98 cycles): cDNA sequence — aligned to the genome/transcriptome for gene quantification.
+- Unlike the HD WT Panel, there is **no probe barcode** in Read 2; gene identity comes from genome alignment (like bulk 3′ RNA-seq).
+- CytAssist is required to transfer captured mRNA from the glass slide permeabilisation surface to the Visium HD slide.
+- Space Ranger HD processes the data: maps Read 2 to the genome, bins reads by spatial barcode, and builds the multi-resolution matrix.
+- Expanded species compatibility compared to the WT Panel, since no species-specific probes are required.
+- Compatible with **FFPE**, **fresh-frozen**, and **fixed-frozen** tissues when used with the appropriate tissue preparation protocol.

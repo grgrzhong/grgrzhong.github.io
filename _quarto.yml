@@ -1,7 +1,7 @@
 project:
   type: website
-  
-  preview: 
+
+  preview:
     port: 5555
     browser: true
     watch-inputs: true
@@ -31,7 +31,7 @@ website:
   # image: "/files/profiles/avatar.png"
   # favicon: "/files/profiles/avatar.png"
   description: ""
-  search: 
+  search:
     location: navbar
     type: overlay
   site-url: "https://grgrzhong.github.io/"
@@ -43,7 +43,7 @@ website:
     left:
       - text: "About"
         file: "index.qmd"
-      - text: "Wiki"
+      - text: "Blog"
         file: "blog/index.qmd"
       - text: "Linux"
         file: "linux/index.qmd"
@@ -72,7 +72,7 @@ website:
         #   - file: "programming/conda/index.qmd"
         #   - file: "programming/linux/index.qmd"
 
-    # right: 
+    # right:
     #   - icon: journal-check
     #     aria-label: journal-check
     #     href: https://scholar.google.com/citations?user=g0MfTPMAAAAJ&hl=en
@@ -82,7 +82,7 @@ website:
     #   - icon: github
     #     aria-label: github
     #     href: https://github.com/guoruizhong
-  
+
   page-footer:
     center: |
       <span class="faux-block">{{< fa brands creative-commons >}} 2021-2026 Guorui Zhong ~ Made with [{{< fa brands r-project >}}](https://www.r-project.org/), [{{< fa brands python >}}](https://www.python.org/) and [Quarto](https://quarto.org/)</span>
@@ -110,7 +110,7 @@ format:
     number-depth: 3
     code-link: true
     code-fold: false # true to enable code folding
-    code-overflow: wrap # scroll/wrap 
+    code-overflow: wrap # scroll/wrap
     code-line-numbers: false
     df-print: default # default/kable/tibble/paged for data frame printing
     anchor-sections: true

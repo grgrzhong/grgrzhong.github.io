@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-01-01">
+
+<title>Visium v2 (WT Panel, CytAssist)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2ff81c2e5dfd9e56c4f590b9591e1eb8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9c2aaab9790670b45fa45e06564dade8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #212529;
+      }
+</style>
+
+
+<link rel="stylesheet" href="10x.css">
+</head>
+
+<body class="floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../linux/index.html"> 
+<span class="menu-text">Linux</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../python/index.html"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../r/index.html"> 
+<span class="menu-text">R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../keyboard/index.html"> 
+<span class="menu-text">Keyboard</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Omics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-omics">    
+        <li>
+    <a class="dropdown-item" href="../../omics/10xgenomics/index.html">
+ <span class="dropdown-text">10X Genomics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../omics/nanoporetech/index.html">
+ <span class="dropdown-text">Nanoporetech</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../omics/illumina/index.html">
+ <span class="dropdown-text">Illumina</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../omics/fileformats/index.html">
+ <span class="dropdown-text">File formats</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">Visium v2 (WT Panel, CytAssist)</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Created</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 1, 2026</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">March 28, 2026</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#assay-principle" id="toc-assay-principle" class="nav-link active" data-scroll-target="#assay-principle">Assay Principle</a></li>
+  <li><a href="#capture-spot-oligonucleotide" id="toc-capture-spot-oligonucleotide" class="nav-link" data-scroll-target="#capture-spot-oligonucleotide">Capture Spot Oligonucleotide</a></li>
+  <li><a href="#adapter-and-primer-sequences" id="toc-adapter-and-primer-sequences" class="nav-link" data-scroll-target="#adapter-and-primer-sequences">Adapter and Primer Sequences</a></li>
+  <li><a href="#step-by-step-library-generation" id="toc-step-by-step-library-generation" class="nav-link" data-scroll-target="#step-by-step-library-generation">Step-by-Step Library Generation</a>
+  <ul class="collapse">
+  <li><a href="#step-1-tissue-section-preparation-and-probe-hybridisation" id="toc-step-1-tissue-section-preparation-and-probe-hybridisation" class="nav-link" data-scroll-target="#step-1-tissue-section-preparation-and-probe-hybridisation">Step 1 — Tissue section preparation and probe hybridisation</a></li>
+  <li><a href="#step-2-probe-ligation" id="toc-step-2-probe-ligation" class="nav-link" data-scroll-target="#step-2-probe-ligation">Step 2 — Probe ligation</a></li>
+  <li><a href="#step-3-cytassist-transfer-to-visium-slide" id="toc-step-3-cytassist-transfer-to-visium-slide" class="nav-link" data-scroll-target="#step-3-cytassist-transfer-to-visium-slide">Step 3 — CytAssist transfer to Visium slide</a></li>
+  <li><a href="#step-4-plp-capture-on-spatial-barcoded-spot" id="toc-step-4-plp-capture-on-spatial-barcoded-spot" class="nav-link" data-scroll-target="#step-4-plp-capture-on-spatial-barcoded-spot">Step 4 — PLP capture on spatial barcoded spot</a></li>
+  <li><a href="#step-5-extension-through-plp-spatial-barcode-incorporation" id="toc-step-5-extension-through-plp-spatial-barcode-incorporation" class="nav-link" data-scroll-target="#step-5-extension-through-plp-spatial-barcode-incorporation">Step 5 — Extension through PLP (spatial barcode incorporation)</a></li>
+  <li><a href="#step-6-cdna-release-and-amplification" id="toc-step-6-cdna-release-and-amplification" class="nav-link" data-scroll-target="#step-6-cdna-release-and-amplification">Step 6 — cDNA release and amplification</a></li>
+  <li><a href="#step-7-fragmentase-a-tailing-truseq-adapter-ligation-library-pcr" id="toc-step-7-fragmentase-a-tailing-truseq-adapter-ligation-library-pcr" class="nav-link" data-scroll-target="#step-7-fragmentase-a-tailing-truseq-adapter-ligation-library-pcr">Step 7 — Fragmentase, A-tailing, TruSeq adapter ligation, library PCR</a></li>
+  </ul></li>
+  <li><a href="#final-library-structure" id="toc-final-library-structure" class="nav-link" data-scroll-target="#final-library-structure">Final Library Structure</a></li>
+  <li><a href="#library-sequencing" id="toc-library-sequencing" class="nav-link" data-scroll-target="#library-sequencing">Library Sequencing</a>
+  <ul class="collapse">
+  <li><a href="#step-1-read-1-spatial-barcode-umi-bottom-strand-as-template" id="toc-step-1-read-1-spatial-barcode-umi-bottom-strand-as-template" class="nav-link" data-scroll-target="#step-1-read-1-spatial-barcode-umi-bottom-strand-as-template">Step 1 — Read 1: spatial barcode + UMI (bottom strand as template)</a></li>
+  <li><a href="#step-2-index-1-i7-sample-index-bottom-strand-as-template" id="toc-step-2-index-1-i7-sample-index-bottom-strand-as-template" class="nav-link" data-scroll-target="#step-2-index-1-i7-sample-index-bottom-strand-as-template">Step 2 — Index 1 (i7): sample index (bottom strand as template)</a></li>
+  <li><a href="#step-3-read-2-plp-transcript-sequence-top-strand-as-template" id="toc-step-3-read-2-plp-transcript-sequence-top-strand-as-template" class="nav-link" data-scroll-target="#step-3-read-2-plp-transcript-sequence-top-strand-as-template">Step 3 — Read 2: PLP / transcript sequence (top strand as template)</a></li>
+  </ul></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key Points</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>Visium v2 introduces <strong>probe-based Whole Transcriptome (WT) Panel</strong> chemistry and requires the <strong>CytAssist</strong> instrument. Unlike the v1 poly-T capture approach, v2 uses pre-designed probe pairs that hybridise to specific transcripts. This makes it compatible with <strong>FFPE</strong>, <strong>fresh-frozen</strong>, and <strong>fixed-frozen</strong> tissues — including degraded RNA samples where the v1 poly-T capture would fail.</p>
+<p>Key differences from v1:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 26%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Visium v1</th>
+<th>Visium v2 (WT Panel)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RNA capture</td>
+<td>poly-T (whole transcriptome)</td>
+<td>probe pairs (WT Panel ~18,000 genes)</td>
+</tr>
+<tr class="even">
+<td>Sample compatibility</td>
+<td>Fresh-frozen only</td>
+<td>FFPE, FF, Fixed-frozen</td>
+</tr>
+<tr class="odd">
+<td>CytAssist required</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>Slide architecture</td>
+<td>Direct tissue permeabilisation</td>
+<td>Standard glass → CytAssist transfer</td>
+</tr>
+<tr class="odd">
+<td>Spots</td>
+<td>5,000 (55 µm)</td>
+<td>5,000 (55 µm)</td>
+</tr>
+</tbody>
+</table>
+<p>The CytAssist instrument transfers the hybridised probe-ligation products from a standard glass slide onto the Visium capture area, enabling a standard histological workflow for tissue preparation.</p>
+<hr>
+<section id="assay-principle" class="level2">
+<h2 class="anchored" data-anchor-id="assay-principle">Assay Principle</h2>
+<ol type="1">
+<li>Tissue section is placed on a standard glass slide and processed histologically (H&amp;E or IF staining).</li>
+<li>Probe pairs hybridise to target mRNAs in the tissue; ligase joins LP + RP to form Probe-Ligation Products (PLPs).</li>
+<li>The <strong>CytAssist</strong> instrument transfers PLPs from the glass slide to the Visium capture area.</li>
+<li>On the capture area, PLPs are captured by surface-bound poly-T oligos containing the spatial barcode + UMI.</li>
+<li>Template switching synthesis through the PLP creates the spatial-barcoded cDNA.</li>
+<li>Library preparation follows the standard TruSeq workflow.</li>
+</ol>
+<hr>
+</section>
+<section id="capture-spot-oligonucleotide" class="level2">
+<h2 class="anchored" data-anchor-id="capture-spot-oligonucleotide">Capture Spot Oligonucleotide</h2>
+<pre class="seq">5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[16-bp spatial BC]</sbc><umi>[12-bp UMI]</umi>(T)30VN -3'    (surface-bound on Visium slide)
+</pre>
+<hr>
+</section>
+<section id="adapter-and-primer-sequences" class="level2">
+<h2 class="anchored" data-anchor-id="adapter-and-primer-sequences">Adapter and Primer Sequences</h2>
+<p><strong>Left Probe (LP) ligation handle:</strong> <code>5'- [target-specific]AGATCGGAAGAGCGTCGT -3'</code></p>
+<p><strong>Right Probe (RP) 5′ end:</strong> <code>5'- [probe-specific linker][target-specific] -3'</code> <em>(5′ phosphorylated for ligation)</em></p>
+<p><strong>Capture spot oligo:</strong></p>
+<pre><code>5'- CTACACGACGCTCTTCCGATCT[16-bp spatial BC][12-bp UMI](T)30VN -3'</code></pre>
+<p><strong>TSO:</strong></p>
+<pre><code>5'- AAGCAGTGGTATCAACGCAGAGTACATGGGRGG -3'</code></pre>
+<p><strong>TruSeq Read 1 primer:</strong> <code>5'- ACACTCTTTCCCTACACGACGCTCTTCCGATCT -3'</code></p>
+<p><strong>TruSeq Read 2 primer:</strong> <code>5'- GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT -3'</code></p>
+<p><strong>TruSeq adapter (dsDNA, T overhang):</strong></p>
+<pre><code>5'-  GATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3'
+3'- TCTAGCCTTCTCG -5'</code></pre>
+<p><strong>Library PCR primer 1:</strong> <code>5'- AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTC -3'</code></p>
+<p><strong>Library PCR primer 2:</strong> <code>5'- CAAGCAGAAGACGGCATACGAGAT[8-bp sample index]GTGACTGGAGTTCAGACGTGT -3'</code></p>
+<p><strong>Illumina P5:</strong> <code>5'- AATGATACGGCGACCACCGAGATCTACAC -3'</code></p>
+<p><strong>Illumina P7:</strong> <code>5'- CAAGCAGAAGACGGCATACGAGAT -3'</code></p>
+<hr>
+</section>
+<section id="step-by-step-library-generation" class="level2">
+<h2 class="anchored" data-anchor-id="step-by-step-library-generation">Step-by-Step Library Generation</h2>
+<section id="step-1-tissue-section-preparation-and-probe-hybridisation" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-tissue-section-preparation-and-probe-hybridisation">Step 1 — Tissue section preparation and probe hybridisation</h3>
+<p>Tissue section is placed on a standard glass slide. After staining and imaging, the section is permeabilised and WT Panel probe pairs hybridise to target mRNAs in situ.</p>
+<pre class="seq">mRNA  5'--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX--3'
+                 |||||||||||||||||||   |||||||||||||||||||
+            <lh>[LP target-specific]</lh>  <probe>[probe BC]</probe><lh>[RP target-specific]</lh>
+</pre>
+</section>
+<section id="step-2-probe-ligation" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-probe-ligation">Step 2 — Probe ligation</h3>
+<p>Ligase joins LP and RP at their adjacent ends on the mRNA template, forming full-length PLPs. Unligated probes are removed.</p>
+<pre class="seq">5'- <lh>[LP adaptor]</lh><lh>[LP target]</lh><probe>[probe BC]</probe><lh>[RP target]</lh><lh>[RP capture handle]</lh> -3'   (PLP)
+</pre>
+</section>
+<section id="step-3-cytassist-transfer-to-visium-slide" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-cytassist-transfer-to-visium-slide">Step 3 — CytAssist transfer to Visium slide</h3>
+<p>The CytAssist instrument uses fluorescence to locate and transfer PLPs from the glass slide to the capture area of the Visium v2 slide.</p>
+</section>
+<section id="step-4-plp-capture-on-spatial-barcoded-spot" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-plp-capture-on-spatial-barcoded-spot">Step 4 — PLP capture on spatial barcoded spot</h3>
+<p>The 3′ capture handle on the PLP (poly-A / complementary to poly-T) anneals to the poly-T portion of the capture spot oligo.</p>
+<pre class="seq">slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(T)30VN -3'
+                                                          |||||||||||
+                                      3'- <lh>[RP target]</lh><probe>[probe BC]</probe><lh>[LP target]</lh><lh>[LP adaptor]</lh> -5'  (PLP)
+</pre>
+</section>
+<section id="step-5-extension-through-plp-spatial-barcode-incorporation" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-extension-through-plp-spatial-barcode-incorporation">Step 5 — Extension through PLP (spatial barcode incorporation)</h3>
+<p>The spot oligo is extended through the full PLP using the PLP as template. This incorporates the spatial barcode and UMI into a cDNA representing the probe-ligated transcript.</p>
+<pre class="seq">slide 5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN<lh>[RP target]</lh><probe>[probe BC]</probe><lh>[LP target]</lh><lh>[LP adaptor complement]</lh> -3'
+</pre>
+</section>
+<section id="step-6-cdna-release-and-amplification" class="level3">
+<h3 class="anchored" data-anchor-id="step-6-cdna-release-and-amplification">Step 6 — cDNA release and amplification</h3>
+<p>Extended product is released from the slide and PCR amplified:</p>
+<pre class="seq">   5'- <s5>CTACACGACGCTCTTCCGATCT</s5>--------&gt;
+5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(dT)VN-<probe>PLP</probe>-<lh>[LP adaptor]</lh> -3'
+3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>(pA)B-<probe>PLP</probe>-<lh>[LP adaptor]</lh> -5'
+                                              &lt;---------<lh>[LP adaptor complement]</lh> -5'
+</pre>
+</section>
+<section id="step-7-fragmentase-a-tailing-truseq-adapter-ligation-library-pcr" class="level3">
+<h3 class="anchored" data-anchor-id="step-7-fragmentase-a-tailing-truseq-adapter-ligation-library-pcr">Step 7 — Fragmentase, A-tailing, TruSeq adapter ligation, library PCR</h3>
+<p>Same as Visium v1 (Steps 5–7). The amplifiable product contains TruSeq Read 1 + spatial BC + UMI + PLP sequence, then TruSeq adapter + sample index + P7.</p>
+<pre class="seq">5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTC</s5>--------&gt;
+          5'- <s5>CTACACGACGCTCTTCCGATCT</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>-PLP-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7> -3'
+          3'- <s5>GATGTGCTGCGAGAAGGCTAGA</s5><sbc>[spatial BC]</sbc><umi>[UMI]</umi>-PLP-<s7>TCTAGCCTTCTCG</s7>                         -5'
+                                                  &lt;--------<s7>TGTGCAGACTTGAGGTCAGTG</s7><t7>[8-bp idx]</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+<hr>
+</section>
+</section>
+<section id="final-library-structure" class="level2">
+<h2 class="anchored" data-anchor-id="final-library-structure">Final Library Structure</h2>
+<pre class="seq">5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+          <p5>Illumina P5</p5>                   <s5>TruSeq Read 1</s5>              <sbc>16 bp spatial BC</sbc>  <umi>12 bp UMI</umi>   <probe>probe-ligation product</probe>      <s7>TruSeq Read 2</s7>          <t7>8 bp idx</t7>       <p7>Illumina P7</p7>
+</pre>
+<hr>
+</section>
+<section id="library-sequencing" class="level2">
+<h2 class="anchored" data-anchor-id="library-sequencing">Library Sequencing</h2>
+<section id="step-1-read-1-spatial-barcode-umi-bottom-strand-as-template" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-read-1-spatial-barcode-umi-bottom-strand-as-template">Step 1 — Read 1: spatial barcode + UMI (bottom strand as template)</h3>
+<pre class="seq">                         5'- <s5>ACACTCTTTCCCTACACGACGCTCTTCCGATCT</s5>-------------------------&gt;
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+<p>28 cycles (16 bp spatial BC + 12 bp UMI).</p>
+</section>
+<section id="step-2-index-1-i7-sample-index-bottom-strand-as-template" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-index-1-i7-sample-index-bottom-strand-as-template">Step 2 — Index 1 (i7): sample index (bottom strand as template)</h3>
+<pre class="seq">                                                                               5'- <s7>GATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7>-------&gt;
+3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
+</pre>
+<p>8 cycles.</p>
+</section>
+<section id="step-3-read-2-plp-transcript-sequence-top-strand-as-template" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-read-2-plp-transcript-sequence-top-strand-as-template">Step 3 — Read 2: PLP / transcript sequence (top strand as template)</h3>
+<pre class="seq">5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5><sbc>NNNNNNNNNNNNNNNN</sbc><umi>NNNNNNNNNNNN</umi>-<probe>PLP</probe>-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
+                                                                        &lt;------<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7> -5'
+</pre>
+<p>50+ cycles (PLP sequence contains probe barcode used for gene identification).</p>
+<hr>
+</section>
+</section>
+<section id="key-points" class="level2">
+<h2 class="anchored" data-anchor-id="key-points">Key Points</h2>
+<ul>
+<li><strong>Read 1</strong> (28 cycles): 16 bp spatial barcode + 12 bp UMI.</li>
+<li><strong>Read 2</strong> (50+ cycles): PLP including probe barcode — Space Ranger matches this to the WT Panel probe list.</li>
+<li>The WT Panel covers ~18,000 human or mouse protein-coding genes.</li>
+<li>CytAssist enables standard glass-slide histology before Visium capture — tissue sections can be H&amp;E or IF stained and imaged before probe capture.</li>
+<li>Compatible with <strong>FFPE</strong>, <strong>fresh-frozen</strong>, and <strong>fixed-frozen</strong> tissues.</li>
+</ul>
+
+
+<!-- -->
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/grgrzhong\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visium v2 (WT Panel, CytAssist)"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2026-01-01</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">published-title:</span><span class="co"> Created</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> last-modified</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> "#212529"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="an">toc-location:</span><span class="co"> left</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="an">toc-title:</span><span class="co"> "Contents"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">    eval: false</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    html:</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">        code-tools:</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">            source: true</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">            toggle: true</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">        css: 10x.css</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>Visium v2 introduces **probe-based Whole Transcriptome (WT) Panel** chemistry and requires the **CytAssist** instrument. Unlike the v1 poly-T capture approach, v2 uses pre-designed probe pairs that hybridise to specific transcripts. This makes it compatible with **FFPE**, **fresh-frozen**, and **fixed-frozen** tissues — including degraded RNA samples where the v1 poly-T capture would fail.</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>Key differences from v1:</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Feature <span class="pp">|</span> Visium v1 <span class="pp">|</span> Visium v2 (WT Panel) <span class="pp">|</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|-----------|----------------------|</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> RNA capture <span class="pp">|</span> poly-T (whole transcriptome) <span class="pp">|</span> probe pairs (WT Panel ~18,000 genes) <span class="pp">|</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sample compatibility <span class="pp">|</span> Fresh-frozen only <span class="pp">|</span> FFPE, FF, Fixed-frozen <span class="pp">|</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> CytAssist required <span class="pp">|</span> No <span class="pp">|</span> Yes <span class="pp">|</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Slide architecture <span class="pp">|</span> Direct tissue permeabilisation <span class="pp">|</span> Standard glass → CytAssist transfer <span class="pp">|</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Spots <span class="pp">|</span> 5,000 (55 µm) <span class="pp">|</span> 5,000 (55 µm) <span class="pp">|</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>The CytAssist instrument transfers the hybridised probe-ligation products from a standard glass slide onto the Visium capture area, enabling a standard histological workflow for tissue preparation.</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Assay Principle</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Tissue section is placed on a standard glass slide and processed histologically (H&amp;E or IF staining).</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Probe pairs hybridise to target mRNAs in the tissue; ligase joins LP + RP to form Probe-Ligation Products (PLPs).</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>The **CytAssist** instrument transfers PLPs from the glass slide to the Visium capture area.</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>On the capture area, PLPs are captured by surface-bound poly-T oligos containing the spatial barcode + UMI.</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Template switching synthesis through the PLP creates the spatial-barcoded cDNA.</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Library preparation follows the standard TruSeq workflow.</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Capture Spot Oligonucleotide</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">pre</span><span class="ot"> class</span><span class="op">=</span><span class="st">"seq"</span><span class="dt">&gt;</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>5'- <span class="dt">&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>CTACACGACGCTCTTCCGATCT<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">16-bp spatial BC</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">12-bp UMI</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>(T)30VN -3'    (surface-bound on Visium slide)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">pre</span><span class="dt">&gt;</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Adapter and Primer Sequences</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>**Left Probe (LP) ligation handle:** <span class="in">`5'- [target-specific]AGATCGGAAGAGCGTCGT -3'`</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>**Right Probe (RP) 5′ end:** <span class="in">`5'- [probe-specific linker][target-specific] -3'`</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>*(5′ phosphorylated for ligation)*</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>**Capture spot oligo:**</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="in">5'- CTACACGACGCTCTTCCGATCT[16-bp spatial BC][12-bp UMI](T)30VN -3'</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>**TSO:**</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="in">5'- AAGCAGTGGTATCAACGCAGAGTACATGGGRGG -3'</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>**TruSeq Read 1 primer:** <span class="in">`5'- ACACTCTTTCCCTACACGACGCTCTTCCGATCT -3'`</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>**TruSeq Read 2 primer:** <span class="in">`5'- GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT -3'`</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>**TruSeq adapter (dsDNA, T overhang):**</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="in">5'-  GATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3'</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="in">3'- TCTAGCCTTCTCG -5'</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>**Library PCR primer 1:** <span class="in">`5'- AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTC -3'`</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>**Library PCR primer 2:** <span class="in">`5'- CAAGCAGAAGACGGCATACGAGAT[8-bp sample index]GTGACTGGAGTTCAGACGTGT -3'`</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>**Illumina P5:** <span class="in">`5'- AATGATACGGCGACCACCGAGATCTACAC -3'`</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>**Illumina P7:** <span class="in">`5'- CAAGCAGAAGACGGCATACGAGAT -3'`</span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step-by-Step Library Generation</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1 — Tissue section preparation and probe hybridisation</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>Tissue section is placed on a standard glass slide. After staining and imaging, the section is permeabilised and WT Panel probe pairs hybridise to target mRNAs in situ.</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">pre</span><span class="ot"> class</span><span class="op">=</span><span class="st">"seq"</span><span class="dt">&gt;</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>mRNA  5'--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX--3'</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>                 <span class="pp">|||||||||||||||||||</span>   <span class="pp">|||||||||||||||||||</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">LP target-specific</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;</span>  <span class="dt">&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">probe BC</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">RP target-specific</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">pre</span><span class="dt">&gt;</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2 — Probe ligation</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>Ligase joins LP and RP at their adjacent ends on the mRNA template, forming full-length PLPs. Unligated probes are removed.</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">pre</span><span class="ot"> class</span><span class="op">=</span><span class="st">"seq"</span><span class="dt">&gt;</span></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>5'- <span class="dt">&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">LP adaptor</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">LP target</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">probe BC</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">RP target</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">RP capture handle</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;</span> -3'   (PLP)</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">pre</span><span class="dt">&gt;</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3 — CytAssist transfer to Visium slide</span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>The CytAssist instrument uses fluorescence to locate and transfer PLPs from the glass slide to the capture area of the Visium v2 slide.</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4 — PLP capture on spatial barcoded spot</span></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>The 3′ capture handle on the PLP (poly-A / complementary to poly-T) anneals to the poly-T portion of the capture spot oligo.</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">pre</span><span class="ot"> class</span><span class="op">=</span><span class="st">"seq"</span><span class="dt">&gt;</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>slide 5'- <span class="dt">&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>CTACACGACGCTCTTCCGATCT<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">spatial BC</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">UMI</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>(T)30VN -3'</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>                                                          <span class="pp">|||||||||||</span></span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>                                      3'- <span class="dt">&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">RP target</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">probe BC</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">LP target</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">LP adaptor</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;</span> -5'  (PLP)</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">pre</span><span class="dt">&gt;</span></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 5 — Extension through PLP (spatial barcode incorporation)</span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>The spot oligo is extended through the full PLP using the PLP as template. This incorporates the spatial barcode and UMI into a cDNA representing the probe-ligated transcript.</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">pre</span><span class="ot"> class</span><span class="op">=</span><span class="st">"seq"</span><span class="dt">&gt;</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>slide 5'- <span class="dt">&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>CTACACGACGCTCTTCCGATCT<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">spatial BC</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">UMI</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>(dT)VN<span class="dt">&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">RP target</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">probe BC</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">LP target</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">LP adaptor complement</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;</span> -3'</span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">pre</span><span class="dt">&gt;</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 6 — cDNA release and amplification</span></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>Extended product is released from the slide and PCR amplified:</span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">pre</span><span class="ot"> class</span><span class="op">=</span><span class="st">"seq"</span><span class="dt">&gt;</span></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>   5'- <span class="dt">&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>CTACACGACGCTCTTCCGATCT<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;</span>--------&gt;</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>5'- <span class="dt">&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>CTACACGACGCTCTTCCGATCT<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">spatial BC</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">UMI</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>(dT)VN-<span class="dt">&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span>PLP<span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">LP adaptor</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;</span> -3'</span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>3'- <span class="dt">&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>GATGTGCTGCGAGAAGGCTAGA<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">spatial BC</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">UMI</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>(pA)B-<span class="dt">&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span>PLP<span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">LP adaptor</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;</span> -5'</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>                                              &lt;---------<span class="dt">&lt;</span><span class="kw">lh</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">LP adaptor complement</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">lh</span><span class="dt">&gt;</span> -5'</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">pre</span><span class="dt">&gt;</span></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 7 — Fragmentase, A-tailing, TruSeq adapter ligation, library PCR</span></span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>Same as Visium v1 (Steps 5–7). The amplifiable product contains TruSeq Read 1 + spatial BC + UMI + PLP sequence, then TruSeq adapter + sample index + P7.</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">pre</span><span class="ot"> class</span><span class="op">=</span><span class="st">"seq"</span><span class="dt">&gt;</span></span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>5'- <span class="dt">&lt;</span><span class="kw">p5</span><span class="dt">&gt;</span>AATGATACGGCGACCACCGAGATCTACAC<span class="dt">&lt;/</span><span class="kw">p5</span><span class="dt">&gt;&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>TCTTTCCCTACACGACGCTC<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;</span>--------&gt;</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>          5'- <span class="dt">&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>CTACACGACGCTCTTCCGATCT<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">spatial BC</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">UMI</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>-PLP-<span class="dt">&lt;</span><span class="kw">s7</span><span class="dt">&gt;</span>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC<span class="dt">&lt;/</span><span class="kw">s7</span><span class="dt">&gt;</span> -3'</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>          3'- <span class="dt">&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>GATGTGCTGCGAGAAGGCTAGA<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">spatial BC</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">UMI</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>-PLP-<span class="dt">&lt;</span><span class="kw">s7</span><span class="dt">&gt;</span>TCTAGCCTTCTCG<span class="dt">&lt;/</span><span class="kw">s7</span><span class="dt">&gt;</span>                         -5'</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>                                                  &lt;--------<span class="dt">&lt;</span><span class="kw">s7</span><span class="dt">&gt;</span>TGTGCAGACTTGAGGTCAGTG<span class="dt">&lt;/</span><span class="kw">s7</span><span class="dt">&gt;&lt;</span><span class="kw">t7</span><span class="dt">&gt;</span><span class="co">[</span><span class="ot">8-bp idx</span><span class="co">]</span><span class="dt">&lt;/</span><span class="kw">t7</span><span class="dt">&gt;&lt;</span><span class="kw">p7</span><span class="dt">&gt;</span>TAGAGCATACGGCAGAAGACGAAC<span class="dt">&lt;/</span><span class="kw">p7</span><span class="dt">&gt;</span> -5'</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">pre</span><span class="dt">&gt;</span></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="fu">## Final Library Structure</span></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">pre</span><span class="ot"> class</span><span class="op">=</span><span class="st">"seq"</span><span class="dt">&gt;</span></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>5'- <span class="dt">&lt;</span><span class="kw">p5</span><span class="dt">&gt;</span>AATGATACGGCGACCACCGAGATCTACAC<span class="dt">&lt;/</span><span class="kw">p5</span><span class="dt">&gt;&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>TCTTTCCCTACACGACGCTCTTCCGATCT<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span>NNNNNNNNNNNNNNNN<span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span>NNNNNNNNNNNN<span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span>PLP<span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">s7</span><span class="dt">&gt;</span>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC<span class="dt">&lt;/</span><span class="kw">s7</span><span class="dt">&gt;&lt;</span><span class="kw">t7</span><span class="dt">&gt;</span>NNNNNNNN<span class="dt">&lt;/</span><span class="kw">t7</span><span class="dt">&gt;&lt;</span><span class="kw">p7</span><span class="dt">&gt;</span>ATCTCGTATGCCGTCTTCTGCTTG<span class="dt">&lt;/</span><span class="kw">p7</span><span class="dt">&gt;</span> -3'</span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>3'- <span class="dt">&lt;</span><span class="kw">p5</span><span class="dt">&gt;</span>TTACTATGCCGCTGGTGGCTCTAGATGTG<span class="dt">&lt;/</span><span class="kw">p5</span><span class="dt">&gt;&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>AGAAAGGGATGTGCTGCGAGAAGGCTAGA<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span>NNNNNNNNNNNNNNNN<span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span>NNNNNNNNNNNN<span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span>PLP<span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">s7</span><span class="dt">&gt;</span>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG<span class="dt">&lt;/</span><span class="kw">s7</span><span class="dt">&gt;&lt;</span><span class="kw">t7</span><span class="dt">&gt;</span>NNNNNNNN<span class="dt">&lt;/</span><span class="kw">t7</span><span class="dt">&gt;&lt;</span><span class="kw">p7</span><span class="dt">&gt;</span>TAGAGCATACGGCAGAAGACGAAC<span class="dt">&lt;/</span><span class="kw">p7</span><span class="dt">&gt;</span> -5'</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&lt;</span><span class="kw">p5</span><span class="dt">&gt;</span>Illumina P5<span class="dt">&lt;/</span><span class="kw">p5</span><span class="dt">&gt;</span>                   <span class="dt">&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>TruSeq Read 1<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;</span>              <span class="dt">&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span>16 bp spatial BC<span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;</span>  <span class="dt">&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span>12 bp UMI<span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>   <span class="dt">&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span>probe-ligation product<span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;</span>      <span class="dt">&lt;</span><span class="kw">s7</span><span class="dt">&gt;</span>TruSeq Read 2<span class="dt">&lt;/</span><span class="kw">s7</span><span class="dt">&gt;</span>          <span class="dt">&lt;</span><span class="kw">t7</span><span class="dt">&gt;</span>8 bp idx<span class="dt">&lt;/</span><span class="kw">t7</span><span class="dt">&gt;</span>       <span class="dt">&lt;</span><span class="kw">p7</span><span class="dt">&gt;</span>Illumina P7<span class="dt">&lt;/</span><span class="kw">p7</span><span class="dt">&gt;</span></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">pre</span><span class="dt">&gt;</span></span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a><span class="fu">## Library Sequencing</span></span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1 — Read 1: spatial barcode + UMI (bottom strand as template)</span></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">pre</span><span class="ot"> class</span><span class="op">=</span><span class="st">"seq"</span><span class="dt">&gt;</span></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>                         5'- <span class="dt">&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>ACACTCTTTCCCTACACGACGCTCTTCCGATCT<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;</span>-------------------------&gt;</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>3'- <span class="dt">&lt;</span><span class="kw">p5</span><span class="dt">&gt;</span>TTACTATGCCGCTGGTGGCTCTAGATGTG<span class="dt">&lt;/</span><span class="kw">p5</span><span class="dt">&gt;&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>AGAAAGGGATGTGCTGCGAGAAGGCTAGA<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span>NNNNNNNNNNNNNNNN<span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span>NNNNNNNNNNNN<span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span>PLP<span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">s7</span><span class="dt">&gt;</span>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG<span class="dt">&lt;/</span><span class="kw">s7</span><span class="dt">&gt;&lt;</span><span class="kw">t7</span><span class="dt">&gt;</span>NNNNNNNN<span class="dt">&lt;/</span><span class="kw">t7</span><span class="dt">&gt;&lt;</span><span class="kw">p7</span><span class="dt">&gt;</span>TAGAGCATACGGCAGAAGACGAAC<span class="dt">&lt;/</span><span class="kw">p7</span><span class="dt">&gt;</span> -5'</span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">pre</span><span class="dt">&gt;</span></span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>28 cycles (16 bp spatial BC + 12 bp UMI).</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2 — Index 1 (i7): sample index (bottom strand as template)</span></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">pre</span><span class="ot"> class</span><span class="op">=</span><span class="st">"seq"</span><span class="dt">&gt;</span></span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>                                                                               5'- <span class="dt">&lt;</span><span class="kw">s7</span><span class="dt">&gt;</span>GATCGGAAGAGCACACGTCTGAACTCCAGTCAC<span class="dt">&lt;/</span><span class="kw">s7</span><span class="dt">&gt;</span>-------&gt;</span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>3'- <span class="dt">&lt;</span><span class="kw">p5</span><span class="dt">&gt;</span>TTACTATGCCGCTGGTGGCTCTAGATGTG<span class="dt">&lt;/</span><span class="kw">p5</span><span class="dt">&gt;&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>AGAAAGGGATGTGCTGCGAGAAGGCTAGA<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span>NNNNNNNNNNNNNNNN<span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span>NNNNNNNNNNNN<span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span>PLP<span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">s7</span><span class="dt">&gt;</span>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG<span class="dt">&lt;/</span><span class="kw">s7</span><span class="dt">&gt;&lt;</span><span class="kw">t7</span><span class="dt">&gt;</span>NNNNNNNN<span class="dt">&lt;/</span><span class="kw">t7</span><span class="dt">&gt;&lt;</span><span class="kw">p7</span><span class="dt">&gt;</span>TAGAGCATACGGCAGAAGACGAAC<span class="dt">&lt;/</span><span class="kw">p7</span><span class="dt">&gt;</span> -5'</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">pre</span><span class="dt">&gt;</span></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>8 cycles.</span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3 — Read 2: PLP / transcript sequence (top strand as template)</span></span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">pre</span><span class="ot"> class</span><span class="op">=</span><span class="st">"seq"</span><span class="dt">&gt;</span></span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>5'- <span class="dt">&lt;</span><span class="kw">p5</span><span class="dt">&gt;</span>AATGATACGGCGACCACCGAGATCTACAC<span class="dt">&lt;/</span><span class="kw">p5</span><span class="dt">&gt;&lt;</span><span class="kw">s5</span><span class="dt">&gt;</span>TCTTTCCCTACACGACGCTCTTCCGATCT<span class="dt">&lt;/</span><span class="kw">s5</span><span class="dt">&gt;&lt;</span><span class="kw">sbc</span><span class="dt">&gt;</span>NNNNNNNNNNNNNNNN<span class="dt">&lt;/</span><span class="kw">sbc</span><span class="dt">&gt;&lt;</span><span class="kw">umi</span><span class="dt">&gt;</span>NNNNNNNNNNNN<span class="dt">&lt;/</span><span class="kw">umi</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">probe</span><span class="dt">&gt;</span>PLP<span class="dt">&lt;/</span><span class="kw">probe</span><span class="dt">&gt;</span>-<span class="dt">&lt;</span><span class="kw">s7</span><span class="dt">&gt;</span>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC<span class="dt">&lt;/</span><span class="kw">s7</span><span class="dt">&gt;&lt;</span><span class="kw">t7</span><span class="dt">&gt;</span>NNNNNNNN<span class="dt">&lt;/</span><span class="kw">t7</span><span class="dt">&gt;&lt;</span><span class="kw">p7</span><span class="dt">&gt;</span>ATCTCGTATGCCGTCTTCTGCTTG<span class="dt">&lt;/</span><span class="kw">p7</span><span class="dt">&gt;</span> -3'</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>                                                                        &lt;------<span class="dt">&lt;</span><span class="kw">s7</span><span class="dt">&gt;</span>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG<span class="dt">&lt;/</span><span class="kw">s7</span><span class="dt">&gt;</span> -5'</span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">pre</span><span class="dt">&gt;</span></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>50+ cycles (PLP sequence contains probe barcode used for gene identification).</span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Points</span></span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Read 1** (28 cycles): 16 bp spatial barcode + 12 bp UMI.</span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Read 2** (50+ cycles): PLP including probe barcode — Space Ranger matches this to the WT Panel probe list.</span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The WT Panel covers ~18,000 human or mouse protein-coding genes.</span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>CytAssist enables standard glass-slide histology before Visium capture — tissue sections can be H&amp;E or IF stained and imaged before probe capture.</span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compatible with **FFPE**, **fresh-frozen**, and **fixed-frozen** tissues.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2021-2026 Guorui Zhong ~ Made with <a href="https://www.r-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a>, <a href="https://www.python.org/"><i class="fa-brands fa-python" aria-label="python"></i></a> and <a href="https://quarto.org/">Quarto</a></span></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
