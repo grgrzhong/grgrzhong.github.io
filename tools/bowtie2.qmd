@@ -1,0 +1,73 @@
+---
+title: "Bowtie2"
+---
+
+Bowtie2 is an ultrafast and memory-efficient aligner for short DNA sequences to a reference genome. It is particularly well-suited for aligning reads that do not contain large gaps (e.g., ChIP-seq, ATAC-seq, DNA-seq) and is optimized for reads from 50 bp to several hundred bp.
+
+- https://bowtie-bio.sourceforge.net/bowtie2/
+- https://github.com/BenLangmead/bowtie2
+
+**Key Features:**
+* Very fast alignment with low memory footprint
+* Supports gapped alignment (insertions/deletions)
+* Handles paired-end and single-end data
+* Provides multiple alignment modes (end-to-end, local)
+* Efficient for small genomes (bacteria, viruses) to mammalian genomes
+* Outputs SAM format compatible with downstream tools
+* Highly sensitive alignment with tunable parameters
+
+**Alignment Modes:**
+* **End-to-end mode (default)**: Requires the entire read to align, trimming is not allowed. Best for high-quality reads where the full read is expected to match the reference.
+* **Local mode (`--local`)**: Allows soft-clipping of read ends that don't match well. Better for reads with adapters or low-quality ends that weren't properly trimmed.
+
+**Typical Workflow:**
+
+**Step 1: Build index (one-time setup):**
+```bash
+bowtie2-build reference.fasta ref_index
+```
+This creates index files (.1.bt2, .2.bt2, .3.bt2, .4.bt2, .rev.1.bt2, .rev.2.bt2).
+
+**Step 2: Align paired-end reads (end-to-end mode):**
+```bash
+bowtie2 \
+    -p 8 \                          # use 8 threads
+    -x ref_index \                  # index prefix
+    -1 sample_R1.fastq.gz \         # forward reads
+    -2 sample_R2.fastq.gz \         # reverse reads
+    --very-sensitive \              # preset: slower but more accurate
+    --rg-id sample1 \               # read group ID
+    --rg SM:sample1 \               # sample name
+    -S sample.sam                   # output SAM file
+```
+
+**Step 3: Convert to sorted BAM:**
+```bash
+samtools view -bS sample.sam | samtools sort -@ 4 -o sample.sorted.bam -
+samtools index sample.sorted.bam
+```
+
+**Alignment presets:**
+Bowtie2 provides convenient presets that adjust multiple parameters simultaneously:
+- `--very-fast`: Fastest, least sensitive
+- `--fast`: Fast, moderately sensitive
+- `--sensitive` (default): Balanced speed and sensitivity
+- `--very-sensitive`: Slower but more thorough search
+- `--very-sensitive-local`: For local alignment mode
+
+**When to use Bowtie2 vs BWA-MEM:**
+- **Bowtie2**: Best for DNA sequencing without long insertions/deletions (ChIP-seq, ATAC-seq, small genomes, metagenomics). Faster and uses less memory than BWA-MEM.
+- **BWA-MEM**: Better for WGS/WES with structural variants, longer reads (>100 bp), and when you need split-read support. More robust to sequencing errors.
+
+**Reporting options:**
+- `-k N`: Report up to N alignments per read (default: search for 1)
+- `--no-unal`: Suppress unaligned reads in output
+- `--no-mixed`: For paired-end, only align when both reads align
+- `--no-discordant`: Only report concordant paired-end alignments
+
+**Fragment length constraints for paired-end:**
+The `-I` and `-X` parameters set the minimum and maximum fragment length (insert size):
+```bash
+bowtie2 -x ref -1 R1.fq -2 R2.fq -I 100 -X 500  # expect 100-500 bp fragments
+```
+This prevents spurious alignments where reads map too close or too far apart.

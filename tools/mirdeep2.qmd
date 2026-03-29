@@ -1,0 +1,13 @@
+---
+title: "miRDeep2"
+---
+
+miRDeep2 is a specialized, open-access command-line software package for analyzing miRNA-seq data. It identifies and quantifies known and novel microRNAs (miRNAs) from deep sequencing (e.g., Illumina) data, maps reads to a reference genome, analyzes secondary structures, and generates expression profiles for miRNA study in animals and plants.
+
+**Key Capabilities of miRDeep2:**
+
+- **Map Reads to Reference Genome**: The mapper.pl module processes raw Illumina FASTQ files, trims adapters, removes low-quality reads, and maps them to a reference genome.
+- **Identify Known and Novel miRNAs**: The miRDeep2.pl core module identifies canonical and non-canonical miRNAs by analyzing their signature signatures and precursor structures.
+- **Quantify Known miRNAs**: The quantifier.pl module efficiently counts reads mapping to known miRNA precursors from databases like miRBase.
+- **Analyze Structural Characteristics**: It checks if a miRNA precursor has a suitable RNA secondary structure and signature for miRNA processing.
+- **Output Results and Visualization**: It generates detailed tabular results and reports (e.g., PDF files showing the predicted secondary structures) for comprehensive analysis of expression levels across different samples.

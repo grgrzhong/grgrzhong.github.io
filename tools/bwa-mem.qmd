@@ -1,0 +1,56 @@
+---
+title: "BWA-MEM"
+---
+
+BWA-MEM (Burrows-Wheeler Aligner - Maximal Exact Match) is a fast and accurate alignment algorithm for mapping sequencing reads (70 bp to 1 Mbp) to a reference genome. It is the recommended algorithm from the BWA suite for most applications, particularly for Illumina reads ≥70 bp.
+
+- http://bio-bwa.sourceforge.net/
+- https://github.com/lh3/bwa
+
+**Key Features:**
+* Fast alignment using BWT (Burrows-Wheeler Transform) indexing
+* Handles reads from 70 bp to several Mbp (long reads, PacBio, Nanopore)
+* Supports split alignments (chimeric reads, structural variants)
+* Efficiently handles sequencing errors and polymorphisms
+* Compatible with paired-end and single-end data
+* Generates SAM/BAM output with alignment quality scores
+
+**Typical Workflow:**
+
+**Step 1: Index the reference genome (one-time setup):**
+```bash
+bwa index -p ref_index reference.fasta
+```
+This creates index files (.amb, .ann, .bwt, .pac, .sa) that enable fast searching. The index only needs to be built once per reference genome.
+
+**Step 2: Align paired-end reads:**
+```bash
+bwa mem \
+    -t 8 \                          # use 8 threads
+    -M \                            # mark shorter split hits as secondary (for Picard compatibility)
+    -R '@RG\tID:sample1\tSM:sample1\tPL:ILLUMINA\tLB:lib1' \  # read group info
+    ref_index \                     # reference index prefix
+    sample_R1.fastq.gz \            # forward reads
+    sample_R2.fastq.gz \            # reverse reads
+| samtools view -bS - \             # convert SAM to BAM
+| samtools sort -@ 4 -o sample.sorted.bam -  # sort by coordinate
+```
+
+**Step 3: Index the BAM file:**
+```bash
+samtools index sample.sorted.bam
+```
+
+**Why use BWA-MEM over BWA-ALN?**
+BWA-MEM is faster and more accurate than the older BWA-ALN algorithm, especially for reads ≥70 bp. It uses a different seeding strategy based on maximal exact matches (MEMs) that allows it to handle longer reads and tolerate more sequencing errors. BWA-MEM also natively supports split alignments (chimeric reads), making it suitable for detecting structural variants and mapping RNA-seq reads that span exon junctions (though dedicated spliced aligners like STAR are preferred for RNA-seq).
+
+**Read Group (@RG) Tags:**
+The `-R` parameter adds read group information to the BAM file, which is essential for downstream analysis with tools like GATK. The read group tags include:
+- `ID`: Unique identifier for the read group (often flowcell.lane)
+- `SM`: Sample name (biological sample identifier)
+- `PL`: Platform (e.g., ILLUMINA, PACBIO)
+- `LB`: Library identifier (useful when multiple libraries from the same sample)
+This metadata enables multi-sample variant calling and helps track data provenance.
+
+**Alignment Quality and MAPQ Scores:**
+BWA-MEM assigns a mapping quality (MAPQ) score to each alignment, indicating the probability that the alignment is incorrect. MAPQ = 60 means the alignment has a 1/1,000,000 chance of being wrong (P = 10^(-60/10)). A MAPQ ≥ 30 is generally considered high-quality. Reads with multiple equally good alignments receive MAPQ = 0, indicating ambiguous mapping.

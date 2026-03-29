@@ -1,0 +1,48 @@
+---
+title: "Cutadapt"
+---
+
+Cutadapt is a command-line tool for removing adapter sequences, primers, poly-A tails, and other unwanted sequences from high-throughput sequencing reads. It is essential for preprocessing raw sequencing data before alignment and downstream analysis, as untrimmed adapters can cause misalignments and reduce mapping rates.
+
+- https://cutadapt.readthedocs.io/
+
+**Key Features:**
+* Removes adapter sequences from the 3' and 5' ends of reads
+* Trims low-quality bases using quality scores
+* Filters reads by length, quality, or content
+* Handles paired-end data while maintaining read pairing
+* Supports multiple adapter sequences simultaneously
+* Can trim poly-A/poly-T tails common in RNA-seq
+* Discards reads that are too short after trimming
+
+**Common Use Cases:**
+
+**Single-end adapter trimming:**
+```bash
+cutadapt \
+    -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \  # 3' adapter (Illumina TruSeq)
+    -q 20 \                                   # trim low-quality ends (Q < 20)
+    -m 25 \                                   # discard reads shorter than 25 bp
+    -o trimmed.fastq.gz \                     # output file
+    input.fastq.gz                            # input file
+```
+
+**Paired-end adapter trimming:**
+```bash
+cutadapt \
+    -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \  # R1 3' adapter
+    -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \  # R2 3' adapter
+    -q 20,20 \                                # quality trim both ends
+    -m 25 \                                   # minimum length after trimming
+    --pair-filter=any \                       # discard pair if either read is too short
+    -o trimmed_R1.fastq.gz \                  # R1 output
+    -p trimmed_R2.fastq.gz \                  # R2 output
+    input_R1.fastq.gz \                       # R1 input
+    input_R2.fastq.gz                         # R2 input
+```
+
+**Why trim adapters?**
+Sequencing reads can extend beyond the insert DNA into the adapter sequences, especially for short fragments. If not removed, these adapter sequences will not align to the reference genome and will reduce mapping rates. Adapter contamination is particularly common in RNA-seq (small RNAs) and ChIP-seq data where fragments may be shorter than the read length. Trimming adapters ensures that only biological sequences are used for alignment, improving mapping quality and downstream analysis accuracy.
+
+**Quality trimming strategy:**
+The `-q` parameter uses a modified Mott algorithm that starts from the 3' end and finds the position where the average quality falls below the threshold. This is more effective than simple base-by-base trimming because it accounts for quality trends across the read. A quality threshold of 20 (Q20 = 99% base call accuracy) is a common choice that balances data retention with accuracy.

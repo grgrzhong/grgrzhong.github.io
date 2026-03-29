@@ -10,6 +10,11 @@
 <atom:link href="https://grgrzhong.github.io/atom.xml" rel="self" type="application/rss+xml"/>
 <description>Guorui Zhong&#39;s blog</description>
 <language>en</language>
+<image>
+<url>https://grgrzhong.github.io/files/profiles/bottts-1774764655644.png</url>
+<title>Guorui Zhong&#39;s blog</title>
+<link>https://grgrzhong.github.io/atom.html</link>
+</image>
 <generator>quarto-1.8.27</generator>
 <lastBuildDate>Thu, 18 Sep 2025 16:00:00 GMT</lastBuildDate>
 <item>

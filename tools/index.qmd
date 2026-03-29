@@ -1,0 +1,18 @@
+
+---
+title: "Bioinformatics Tools"
+---
+
+A collection of commonly used bioinformatics tools for sequencing data analysis.
+
+- [**Cutadapt**](cutadapt.qmd) - Remove adapter sequences and trim low-quality bases from sequencing reads
+
+- [**BWA-MEM**](bwa-mem.qmd) - Fast DNA sequence aligner for Illumina reads using Burrows-Wheeler Transform
+
+- [**Bowtie2**](bowtie2.qmd) - Ultrafast memory-efficient aligner for short DNA sequences, ideal for ChIP-seq and ATAC-seq
+
+- [**STAR**](star.qmd) - Spliced RNA-seq aligner for detecting splice junctions and gene fusions
+
+- [**iVar**](ivar.qmd) - Primer trimming and variant calling for amplicon-based viral sequencing data
+
+- [**miRDeep2**](mirdeep2.qmd) - Identify and quantify known and novel microRNAs from small RNA-seq data

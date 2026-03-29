@@ -1,0 +1,110 @@
+---
+title: "STAR"
+---
+
+STAR (Spliced Transcripts Alignment to a Reference) is an ultrafast RNA-seq aligner designed specifically for mapping spliced reads across splice junctions. It is the gold standard for aligning RNA-seq data and is widely used for gene expression quantification, transcript discovery, and fusion gene detection.
+
+- https://github.com/alexdobin/STAR
+- STAR manual: https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf
+
+**Key Features:**
+* Extremely fast: can align millions of reads per minute
+* Accurately maps reads spanning splice junctions (exon-exon boundaries)
+* Handles reads from 50 bp to several hundred bp
+* Detects novel splice junctions (unannotated transcripts)
+* Identifies gene fusions and chimeric transcripts
+* Generates read counts per gene for differential expression analysis
+* Compatible with downstream tools (Cufflinks, StringTie, DESeq2)
+* Outputs in SAM/BAM format with junction information
+
+**Index Building Considerations:**
+STAR requires significant RAM for indexing and alignment (~30 GB for human genome). The index size depends on genome size and read length. For optimal performance, the index should match the read length used in sequencing.
+
+**Typical Workflow:**
+
+**Step 1: Generate genome index (one-time setup):**
+```bash
+STAR \
+    --runMode genomeGenerate \
+    --genomeDir /path/to/genome_index \       # output directory for index
+    --genomeFastaFiles reference.fasta \      # reference genome FASTA
+    --sjdbGTFfile annotation.gtf \            # gene annotation (GTF/GFF)
+    --sjdbOverhang 99 \                       # read length - 1 (for 100 bp reads)
+    --runThreadN 8                            # number of threads
+```
+
+**Why sjdbOverhang = read length - 1?**
+The `--sjdbOverhang` parameter tells STAR the maximum possible overhang for splice junctions. For reads of length L, the maximum overhang is L-1 (when only 1 bp aligns on one side of the junction). Setting this correctly allows STAR to accurately detect junctions near read ends. For variable read lengths, use a representative value (e.g., 100 for most Illumina data) or rebuild the index for different read lengths.
+
+**Step 2: Align RNA-seq reads:**
+```bash
+STAR \
+    --runMode alignReads \
+    --genomeDir /path/to/genome_index \       # genome index directory
+    --readFilesIn sample_R1.fastq.gz sample_R2.fastq.gz \  # input FASTQ files
+    --readFilesCommand zcat \                 # command to uncompress files (for .gz)
+    --outFileNamePrefix sample_ \             # output file prefix
+    --outSAMtype BAM SortedByCoordinate \     # output sorted BAM directly
+    --quantMode GeneCounts \                  # count reads per gene
+    --outSAMattributes NH HI AS nM NM \       # include useful SAM tags
+    --runThreadN 8 \                          # number of threads
+    --limitBAMsortRAM 20000000000             # RAM for BAM sorting (20 GB)
+```
+
+**Key Output Files:**
+- `sample_Aligned.sortedByCoord.out.bam`: Aligned reads sorted by coordinate (ready for downstream analysis)
+- `sample_Log.final.out`: Summary statistics (mapping rate, junction counts)
+- `sample_SJ.out.tab`: Detected splice junctions with read support
+- `sample_ReadsPerGene.out.tab`: Gene-level read counts (for DESeq2, edgeR)
+
+**Understanding STAR Alignment Modes:**
+STAR has different alignment strategies controlled by `--alignIntronMin` and `--alignIntronMax`:
+- Default (spliced alignment): Allows junctions from 21 bp to 0 bp (no max)
+- For close organisms with different intron sizes, adjust these parameters
+- `--alignIntronMin 20 --alignIntronMax 1000000` is typical for mammalian genomes
+
+**Multi-mapping reads:**
+STAR can report multiple alignments for reads that map to multiple locations (e.g., gene families, repetitive regions):
+- `--outFilterMultimapNmax 1`: Report only uniquely mapped reads (stringent)
+- `--outFilterMultimapNmax 20`: Report up to 20 alignments per read (permissive)
+- Multi-mappers are useful for detecting gene family expression but may complicate quantification
+
+**Gene Counting with --quantMode GeneCounts:**
+STAR can directly count reads per gene during alignment, saving time compared to running a separate counting tool (e.g., featureCounts). The output file `ReadsPerGene.out.tab` contains four columns:
+1. Gene ID
+2. Counts (unstranded)
+3. Counts (1st read strand aligned with RNA, strand-specific protocol)
+4. Counts (2nd read strand aligned with RNA, strand-specific protocol)
+
+Choose the appropriate column based on your library preparation protocol (most RNA-seq is now strand-specific).
+
+**Two-pass mapping for novel junction detection:**
+For samples with many novel splice junctions (e.g., de novo transcriptome, non-model organisms), use two-pass mode:
+```bash
+STAR \
+    --runMode alignReads \
+    --genomeDir /path/to/genome_index \
+    --readFilesIn sample_R1.fastq.gz sample_R2.fastq.gz \
+    --readFilesCommand zcat \
+    --outFileNamePrefix sample_ \
+    --outSAMtype BAM SortedByCoordinate \
+    --twopassMode Basic \                     # enables two-pass mode
+    --runThreadN 8
+```
+In two-pass mode, STAR first maps reads to detect novel junctions, then re-builds the index including these junctions for a second mapping pass. This improves alignment accuracy for unannotated transcripts.
+
+**Chimeric/Fusion Detection:**
+STAR can detect gene fusions and chimeric transcripts (common in cancer):
+```bash
+STAR \
+    --runMode alignReads \
+    --genomeDir /path/to/genome_index \
+    --readFilesIn sample_R1.fastq.gz sample_R2.fastq.gz \
+    --readFilesCommand zcat \
+    --outFileNamePrefix sample_ \
+    --outSAMtype BAM SortedByCoordinate \
+    --chimSegmentMin 20 \                     # minimum chimeric segment length
+    --chimOutType Junctions \                 # output chimeric junctions
+    --runThreadN 8
+```
+The `sample_Chimeric.out.junction` file contains candidate fusion events that can be further validated with tools like STAR-Fusion.

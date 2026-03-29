@@ -28,8 +28,8 @@ project:
 
 website:
   title: ""
-  # image: "/files/profiles/avatar.png"
-  # favicon: "/files/profiles/avatar.png"
+  image: "/files/profiles/bottts-1774764655644.png"
+  favicon: "/files/profiles/bottts-1774764655644.png"
   description: ""
   search:
     location: navbar
@@ -51,38 +51,14 @@ website:
         file: "python/index.qmd"
       - text: "R"
         file: "r/index.qmd"
-      - text: "Keyboard"
-        file: "keyboard/index.qmd"
-      - text: "Omics"
-        menu:
-          - text: "10X Genomics"
-            file: "omics/10xgenomics/index.qmd"
-          - text: "Nanoporetech"
-            file: "omics/nanoporetech/index.qmd"
-          - text: "Illumina"
-            file: "omics/illumina/index.qmd"
-          - text: "File formats"
-            file: "omics/fileformats/index.qmd"
-      # - text: "Stats"
-      #   file: "stat/index.qmd"
-      # - text: "Programming"
-        # menu:
-        #   - file: "programming/python/index.qmd"
-        #   - file: "programming/r/index.qmd"
-        #   - file: "programming/conda/index.qmd"
-        #   - file: "programming/linux/index.qmd"
-
-    # right:
-    #   - icon: journal-check
-    #     aria-label: journal-check
-    #     href: https://scholar.google.com/citations?user=g0MfTPMAAAAJ&hl=en
-    #   - icon: linkedin
-    #     aria-label: linkedin
-    #     href: https://www.linkedin.com/in/guorui-zhong-754761185/
-    #   - icon: github
-    #     aria-label: github
-    #     href: https://github.com/guoruizhong
-
+      - text: "Keymap"
+        file: "keymap/index.qmd"
+      - text: "Tools"
+        file: "tools/index.qmd"
+      - text: "10xGenomics"
+        file: "omics/10xgenomics/index.qmd"
+      - text: "Illumina"
+        file: "omics/illumina/index.qmd"
   page-footer:
     center: |
       <span class="faux-block">{{< fa brands creative-commons >}} 2021-2026 Guorui Zhong ~ Made with [{{< fa brands r-project >}}](https://www.r-project.org/), [{{< fa brands python >}}](https://www.python.org/) and [Quarto](https://quarto.org/)</span>
@@ -122,11 +98,3 @@ format:
       source: true
       toggle: true
     highlight-style: dracula
-
-# bibliography: files/bib/references.bib
-# csl: files/bib/chicago-author-date.csl
-
-# Metadata stuff
-# pagetitle: "{{< meta title >}} | {{< meta website.title >}}"
-# description-meta: "{{< meta description >}}"
-# author-meta: "Guorui Zhong"

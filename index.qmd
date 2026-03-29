@@ -2,7 +2,7 @@
 title: "Guorui Zhong"
 about:
   template: trestles
-  image: /files/profiles/IMG_6045.jpg
+  image: /files/profiles/bottts-1774764655644.png
   image-width: 14em
   image-shape: round
   links:

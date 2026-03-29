@@ -15,10 +15,10 @@ umi  { color: #807dba; }   /* UMI - light purple */
 tso  { color: #2ca25f; }   /* TSO - green */
 
 /* ── 10x-specific elements ──────────────────────────────────────────────── */
-sbc   { color: #00838f; }   /* Spatial barcode (Visium spot / HD bin) - teal */
-probe { color: #e65100; }   /* Probe barcode (Flex / Visium v2 FFPE) - deep orange */
-lh    { color: #827717; }   /* Ligation handle - olive */
-linker{ color: #558b2f; }   /* Linker sequence - light green */
+sbc   { color: #00acc1; }   /* Spatial barcode (Visium spot / HD bin) - bright teal */
+probe { color: #ff6f00; }   /* Probe barcode (Flex / Visium v2 FFPE) - bright orange */
+lh    { color: #c0ca33; }   /* Ligation handle - bright lime */
+linker{ color: #7cb342; }   /* Linker sequence - bright green */
 
 /* ── Ensure all custom tags render inline ───────────────────────────────── */
 p5, p7, s5, s7, r1, r2, t7, cbc, umi, tso,
@@ -47,6 +47,19 @@ pre.seq {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.2rem;
     margin: 1.5rem 0;
+}
+
+/* Responsive breakpoints for smaller screens */
+@media (max-width: 992px) {
+    .assay-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .assay-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .assay-card {

@@ -21,60 +21,51 @@ format:
 ## Chromium Single Cell
 
 <div class="assay-grid">
-
-<a class="assay-card" href="chromium-3prime.qmd">
-<span class="assay-badge badge-scrna">scRNA-seq · 3′</span>
-<h4>Chromium Single Cell 3′ GE</h4>
-<p>Droplet-based 3′ gene expression. Barcoded oligo-dT beads capture polyadenylated mRNA inside GEMs.</p>
-<div class="assay-meta">V2: 16 bp CBC + 10 bp UMI &nbsp;|&nbsp; V3/V3.1/V4: 16 bp CBC + 12 bp UMI</div>
-</a>
-
-<a class="assay-card" href="chromium-5prime.qmd">
-<span class="assay-badge badge-scrna">scRNA-seq · 5′</span>
-<h4>Chromium Single Cell 5′ GE</h4>
-<p>Droplet-based 5′ gene expression and V(D)J profiling. Barcoded TSO on gel beads captures the 5′ end of transcripts.</p>
-<div class="assay-meta">V1/V2: 16 bp CBC + 10 bp UMI &nbsp;|&nbsp; V3: 16 bp CBC + 12 bp UMI</div>
-</a>
-
 <a class="assay-card" href="chromium-flex.qmd">
 <span class="assay-badge badge-fixed">Fixed RNA · Probe</span>
 <h4>Chromium Fixed RNA Profiling (Flex)</h4>
 <p>Probe-based gene expression for fixed (FFPE/methanol) samples. Probe pairs hybridise to mRNA; ligation creates the sequencing template.</p>
 <div class="assay-meta">16 bp CBC + 12 bp UMI + 4 bp probe barcode</div>
 </a>
-
+<a class="assay-card" href="chromium-5prime.qmd">
+<span class="assay-badge badge-scrna">scRNA-seq · 5′</span>
+<h4>Chromium Single Cell 5′ GE</h4>
+<p>Droplet-based 5′ gene expression and V(D)J profiling. Barcoded TSO on gel beads captures the 5′ end of transcripts.</p>
+<div class="assay-meta">V1/V2: 16 bp CBC + 10 bp UMI &nbsp;|&nbsp; V3: 16 bp CBC + 12 bp UMI</div>
+</a>
+<a class="assay-card" href="chromium-3prime.qmd">
+<span class="assay-badge badge-scrna">scRNA-seq · 3′</span>
+<h4>Chromium Single Cell 3′ GE</h4>
+<p>Droplet-based 3′ gene expression. Barcoded oligo-dT beads capture polyadenylated mRNA inside GEMs.</p>
+<div class="assay-meta">V2: 16 bp CBC + 10 bp UMI &nbsp;|&nbsp; V3/V3.1/V4: 16 bp CBC + 12 bp UMI</div>
+</a>
 </div>
 
 ## Visium Spatial Gene Expression
 
 <div class="assay-grid">
-
-<a class="assay-card" href="visium-v1.qmd">
-<span class="assay-badge badge-spatial">Spatial · 3′ FF</span>
-<h4>Visium v1</h4>
-<p>First-generation Visium. 55 µm capture spots on a slide capture polyadenylated mRNA via poly-T probes. Fresh-frozen tissue only.</p>
-<div class="assay-meta">16 bp spatial BC + 12 bp UMI &nbsp;|&nbsp; 5,000 spots</div>
-</a>
-
-<a class="assay-card" href="visium-v2.qmd">
-<span class="assay-badge badge-spatial">Spatial · Probe</span>
-<h4>Visium v2 (WT Panel)</h4>
-<p>CytAssist-enabled probe-based Visium. Compatible with FFPE, fresh-frozen, and fixed-frozen tissues. Requires CytAssist instrument.</p>
-<div class="assay-meta">16 bp spatial BC + 12 bp UMI + probe barcode &nbsp;|&nbsp; 5,000 spots</div>
-</a>
-
-<a class="assay-card" href="visium-hd-wt.qmd">
-<span class="assay-badge badge-spatial">Spatial HD · Probe</span>
-<h4>Visium HD WT Panel</h4>
-<p>High-definition spatial at 2 µm bin resolution. Whole-transcriptome panel (probe-based). Requires CytAssist. FFPE, FF, fixed-frozen.</p>
-<div class="assay-meta">16 bp spatial BC + 12 bp UMI + probe barcode &nbsp;|&nbsp; 2 µm bins</div>
-</a>
-
 <a class="assay-card" href="visium-hd-3prime.qmd">
 <span class="assay-badge badge-spatial">Spatial HD · 3′</span>
 <h4>Visium HD 3′</h4>
 <p>High-definition spatial at 2 µm bin resolution. Whole-transcriptome 3′ poly-T capture (no probes). Expanded species compatibility.</p>
 <div class="assay-meta">16 bp spatial BC + 12 bp UMI &nbsp;|&nbsp; 2 µm bins</div>
 </a>
-
+<a class="assay-card" href="visium-hd-wt.qmd">
+<span class="assay-badge badge-spatial">Spatial HD · Probe</span>
+<h4>Visium HD WT Panel</h4>
+<p>High-definition spatial at 2 µm bin resolution. Whole-transcriptome panel (probe-based). Requires CytAssist. FFPE, FF, fixed-frozen.</p>
+<div class="assay-meta">16 bp spatial BC + 12 bp UMI + probe barcode &nbsp;|&nbsp; 2 µm bins</div>
+</a>
+<a class="assay-card" href="visium-v2.qmd">
+<span class="assay-badge badge-spatial">Spatial · Probe</span>
+<h4>Visium v2 (WT Panel)</h4>
+<p>CytAssist-enabled probe-based Visium. Compatible with FFPE, fresh-frozen, and fixed-frozen tissues. Requires CytAssist instrument.</p>
+<div class="assay-meta">16 bp spatial BC + 12 bp UMI + probe barcode &nbsp;|&nbsp; 5,000 spots</div>
+</a>
+<a class="assay-card" href="visium-v1.qmd">
+<span class="assay-badge badge-spatial">Spatial · 3′ FF</span>
+<h4>Visium v1</h4>
+<p>First-generation Visium. 55 µm capture spots on a slide capture polyadenylated mRNA via poly-T probes. Fresh-frozen tissue only.</p>
+<div class="assay-meta">16 bp spatial BC + 12 bp UMI &nbsp;|&nbsp; 5,000 spots</div>
+</a>
 </div>

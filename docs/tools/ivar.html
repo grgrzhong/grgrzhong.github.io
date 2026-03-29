@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index</title>
+<title>iVar</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="..//files/profiles/bottts-1774764655644.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -141,32 +142,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../keyboard/index.html"> 
-<span class="menu-text">Keyboard</span></a>
+    <a class="nav-link" href="../keymap/index.html"> 
+<span class="menu-text">Keymap</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Omics</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-omics">    
-        <li>
-    <a class="dropdown-item" href="../omics/10xgenomics/index.html">
- <span class="dropdown-text">10X Genomics</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../tools/index.html"> 
+<span class="menu-text">Tools</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../omics/nanoporetech/index.html">
- <span class="dropdown-text">Nanoporetech</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../omics/10xgenomics/index.html"> 
+<span class="menu-text">10xGenomics</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../omics/illumina/index.html">
- <span class="dropdown-text">Illumina</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../omics/illumina/index.html"> 
+<span class="menu-text">Illumina</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../omics/fileformats/index.html">
- <span class="dropdown-text">File formats</span></a>
-  </li>  
-    </ul>
-  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -178,27 +168,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#ivar" id="toc-ivar" class="nav-link active" data-scroll-target="#ivar">iVar</a></li>
-  <li><a href="#mirdeep2" id="toc-mirdeep2" class="nav-link" data-scroll-target="#mirdeep2">miRDeep2</a></li>
-  </ul>
-</nav>
+    
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">iVar</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="ivar" class="level2">
-<h2 class="anchored" data-anchor-id="ivar">iVar</h2>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>iVar is a computational tool designed for the analysis of viral sequencing data, particularly in the context of identifying and quantifying variants within viral populations. It is commonly used in the field of virology and genomics to process high-throughput sequencing data, allowing researchers to detect mutations, track viral evolution, and understand the dynamics of viral infections.</p>
 <ul>
 <li>https://andersen-lab.github.io/ivar/html/</li>
@@ -257,20 +254,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If you use a lower depth for consensus (e.g., -d 20000) than for variants (e.g., -d 0), you risk a “silent bug” where a variant is statistically significant in your variant file but is absent or replaced by an “N” in your consensus because the consensus caller was denied access to the reads supporting that variant</li>
 <li></li>
 </ul>
-</section>
-<section id="mirdeep2" class="level2">
-<h2 class="anchored" data-anchor-id="mirdeep2">miRDeep2</h2>
-<p>is a specialized, open-access command-line software package for analyzing miRNA-seq data. It identifies and quantifies known and novel microRNAs (miRNAs) from deep sequencing (e.g., Illumina) data, maps reads to a reference genome, analyzes secondary structures, and generates expression profiles for miRNA study in animals and plants. Key Capabilities of miRDeep2:</p>
-<pre><code>Map Reads to Reference Genome: The mapper.pl module processes raw Illumina FASTQ files, trims adapters, removes low-quality reads, and maps them to a reference genome.
-Identify Known and Novel miRNAs: The miRDeep2.pl core module identifies canonical and non-canonical miRNAs by analyzing their signature signatures and precursor structures.
-Quantify Known miRNAs: The quantifier.pl module efficiently counts reads mapping to known miRNA precursors from databases like miRBase.
-Analyze Structural Characteristics: It checks if a miRNA precursor has a suitable RNA secondary structure and signature for miRNA processing.
-Output Results and Visualization: It generates detailed tabular results and reports (e.g., PDF files showing the predicted secondary structures) for comprehensive analysis of expression levels across different samples.</code></pre>
 
 
 <!-- -->
 
-</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -724,106 +711,97 @@ Output Results and Visualization: It generates detailed tabular results and repo
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## iVar</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>iVar is a computational tool designed for the analysis of viral sequencing data, particularly in the context of identifying and quantifying variants within viral populations. It is commonly used in the field of virology and genomics to process high-throughput sequencing data, allowing researchers to detect mutations, track viral evolution, and understand the dynamics of viral infections.</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>https://andersen-lab.github.io/ivar/html/</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>**iVar primer trimming**</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>it is essential to remove artefactual sequences that can bias variant calling and consensus generation.</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>reads that truly overlap the primer regions are trimmed, while reads that do not align to primer sites are left intact. </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>iVar uses the BED file to locate the primer sequences at the start and end of the aligned reads and replaces those bases with 'S' (soft-clip) in the BAM file.</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The resulting BAM file contains reads with the primers soft-clipped, preventing the primer sequence itself from introducing false variants.</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>**iVar Quality trimming**</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>iVar uses a sliding window approach (Default: 4) to do quality trimming. The windows slides from the 5' end to the 3' end and if at any point the average base quality in the window falls below the threshold (Default: 20), the remaining read is soft clipped. </span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>If after trimming, the length of the read is greater than the minimum length specified (Default: 30), the read is written to the new trimmed BAM file.</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Index the sorted BAM before trimming</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index Align/sample.sorted.bam</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Trim primers</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="ex">ivar</span> trim <span class="dt">\</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">-i</span> Align/sample.sorted.bam <span class="dt">\ </span> <span class="co"># input sorted BAM</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-b</span> primers.bed <span class="dt">\ </span>             <span class="co"># primer coordinates BED file (generated in step 0.1)</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-e</span> <span class="dt">\ </span>                         <span class="co"># include reads that extend beyond the primer region</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-p</span> Align/sample_trimmed       <span class="co"># output prefix (produces sample_trimmed.bam)</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>why include reads that extend beyond the primer region?</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>Including reads that extend beyond the primer region allows iVar to trim only the portion of the read that overlaps the primer, while retaining the rest of the read sequence for downstream analysis. This is important because many reads may partially overlap the primer sites, and excluding them entirely would result in loss of valuable data. By allowing reads that extend beyond the primer region, we can maximize the amount of usable data while still effectively removing primer sequences that could bias variant calling.</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>iVar uses a sliding window approach (Default: 4) to do quality trimming. The windows slides from the 5' end to the 3' end and if at any point the average base quality in the window falls below the threshold (Default: 20), the remaining read is soft clipped. </span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>If after trimming, the length of the read is greater than the minimum length specified (Default: 30), the read is written to the new trimmed BAM file.</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>By using a sliding window rather than a single-base check, iVar avoids being "fooled" by a single bad base in the middle of a high-quality stretch. It ensures that trimming only happens when there is a consistent trend of poor data.</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>Call nucleotide variants from the primer-trimmed BAM using samtools mpileup piped into iVar.</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> mpileup <span class="dt">\</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">-aa</span> <span class="dt">\ </span>                           <span class="co"># output ALL positions, including zero-coverage sites</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-B</span> <span class="dt">\ </span>                            <span class="co"># disable BAQ (per-base alignment quality) computation</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-A</span> <span class="dt">\ </span>                            <span class="co"># include anomalous read pairs, which can be informative for variant calling in amplicon data</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-d</span> 20000 <span class="dt">\ </span>                      <span class="co"># max per-position read depth cap (20,000×), raised from default 8,000× to avoid truncating high-coverage amplicon data</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="ex">--reference</span> KT992094.1.fasta <span class="dt">\ </span>  <span class="co"># reference FASTA (required when using -aa)</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-Q</span> 0 <span class="dt">\ </span>                          <span class="co"># include bases of any quality (iVar does its own filtering), to maximize data retained for variant calling</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Align/sample.bam</span> <span class="dt">\</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">ivar</span> variants <span class="dt">\</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">-p</span> iVAR_Variant/sample <span class="dt">\ </span>        <span class="co"># output prefix (.tsv)</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-r</span> KT992094.1.fasta <span class="dt">\ </span>           <span class="co"># reference FASTA (for amino-acid annotation)</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-g</span> KT992094.1.gff3               <span class="co"># GFF3 annotation (for codon/amino-acid annotation)</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>samtools mpileup</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>samtools mpileup processes reads in the order they appear in your BAM file. Because mpileup requires a coordinate-sorted BAM file, it encounters reads based on their starting genomic position</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>As soon as it reaches the 20,000th read for that specific position, it stops accepting any further reads for that coordinate</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Passing zero for this option sets it to the highest possible value, effectively removing the depth limit. <span class="co">[</span><span class="ot">8000</span><span class="co">]</span> </span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Why disable BAQ with <span class="in">`-B`</span> for amplicon data?</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>BAQ (per-base alignment quality) is designed to adjust base quality scores near indels to account for potential misalignments. However, in amplicon sequencing data, which often has very high coverage and may contain many reads that partially overlap primer sites, BAQ can be overly aggressive in down-weighting bases near indels, leading to loss of true variant signals. Disabling BAQ with <span class="in">`-B`</span> allows iVar to apply its own variant calling filters without the influence of BAQ adjustments, which can improve sensitivity for detecting variants in amplicon data where indels may be common and coverage is high enough to support confident variant calls without BAQ's adjustments.</span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Why setup the read depth cap to 20,000× with <span class="in">`-d`</span>?</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>Setting the read depth cap to 20,000× allows for the retention of high-coverage data that is common in amplicon sequencing, while still preventing excessive memory usage and computational time during variant calling. The default depth cap of 8,000× in samtools mpileup may truncate data in high-coverage amplicon datasets, leading to loss of variant information. By raising the cap to 20,000×, we can ensure that we capture the full depth of coverage available for variant calling, which can improve sensitivity for detecting low-frequency variants. However, setting the cap too high (e.g., 1,000,000×) could lead to excessive computational overhead without providing additional benefit for variant detection, as the accuracy of variant frequency estimation may not improve significantly beyond a certain coverage level due to diminishing returns and increased noise at very high coverage levels.</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Why not use higher read depth cap (e.g., 1,000,000×) for variant calling?</span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>While a higher read depth cap (e.g., 1,000,000×) could be used to ensure that no data is truncated, it may lead to excessive memory usage and computational time during variant calling, especially for high-coverage amplicon data. Setting a cap of 20,000× strikes a balance between retaining sufficient data for accurate variant calling while avoiding the computational overhead associated with processing extremely high coverage, which may not provide additional benefit for variant detection beyond a certain point due to diminishing returns in variant frequency estimation and increased noise at very high coverage levels.</span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>Generate a consensus FASTA sequence from the primer-trimmed BAM. </span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>This step is optional but can be useful for downstream analyses that require a consensus sequence (e.g., lineage assignment, phylogenetics).</span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The consensus is generated using samtools mpileup piped into iVar consensus, which applies a minimum allele frequency threshold to call bases and masks low-coverage positions. </span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The parameters are set to retain as much data as possible while still producing a reliable consensus sequence. For example, the minimum allele frequency threshold is set to 60 % to call a base, which allows for some within-host diversity while still calling a clear consensus. The minimum depth threshold is set to 10×, and positions below this are masked with 'N' to indicate uncertainty. The quality 20 means that bases with a quality score below 20 will be ignored in the consensus calling, which helps to reduce the impact of sequencing errors on the consensus sequence. The -aa flag ensures that all positions are included in the output, even those with zero coverage, which is important for generating a full-length consensus sequence that can be used for downstream analyses.</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The resulting consensus FASTA can be used for lineage assignment (e.g., with Pangolin) and phylogenetic analysis, while the accompanying quality file provides information on coverage and allele frequencies at each position.</span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> mpileup <span class="dt">\</span></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">-aa</span> <span class="dt">\ </span>          <span class="co"># output all positions (ensures full-length consensus)</span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-A</span> <span class="dt">\ </span>           <span class="co"># include anomalous read pairs</span></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-d</span> 1000000 <span class="dt">\ </span>   <span class="co"># raise depth cap to 1,000,000× (default 8,000× would truncate high-coverage data)</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-Q</span> 0 <span class="dt">\ </span>         <span class="co"># include all bases regardless of quality</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Align/sample.bam</span> <span class="dt">\</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">ivar</span> consensus <span class="dt">\</span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">-p</span> Consensus/sample <span class="dt">\ </span>  <span class="co"># output prefix (.fa and .qual.txt)</span></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-t</span> 0.6 <span class="dt">\ </span>               <span class="co"># minimum allele frequency to call a base (60 %)</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-m</span> 10 <span class="dt">\ </span>                <span class="co"># minimum depth; positions below this are masked with -n character</span></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-n</span> N                    <span class="co"># character used to mask low-coverage positions</span></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>high-depth viral sequencing is that the -d parameter (maximum depth) in samtools mpileup should generally be the same—and set very high—for both ivar variants and ivar consensus.</span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="ss">*  </span>If you use a lower depth for consensus (e.g., -d 20000) than for variants (e.g., -d 0), you risk a "silent bug" where a variant is statistically significant in your variant file but is absent or replaced by an "N" in your consensus because the consensus caller was denied access to the reads supporting that variant</span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="ss">*  </span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="fu">## miRDeep2</span></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>is a specialized, open-access command-line software package for analyzing miRNA-seq data. It identifies and quantifies known and novel microRNAs (miRNAs) from deep sequencing (e.g., Illumina) data, maps reads to a reference genome, analyzes secondary structures, and generates expression profiles for miRNA study in animals and plants. </span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>Key Capabilities of miRDeep2:</span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="in">    Map Reads to Reference Genome: The mapper.pl module processes raw Illumina FASTQ files, trims adapters, removes low-quality reads, and maps them to a reference genome.</span></span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="in">    Identify Known and Novel miRNAs: The miRDeep2.pl core module identifies canonical and non-canonical miRNAs by analyzing their signature signatures and precursor structures.</span></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="in">    Quantify Known miRNAs: The quantifier.pl module efficiently counts reads mapping to known miRNA precursors from databases like miRBase.</span></span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="in">    Analyze Structural Characteristics: It checks if a miRNA precursor has a suitable RNA secondary structure and signature for miRNA processing.</span></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="in">    Output Results and Visualization: It generates detailed tabular results and reports (e.g., PDF files showing the predicted secondary structures) for comprehensive analysis of expression levels across different samples.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "iVar"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>iVar is a computational tool designed for the analysis of viral sequencing data, particularly in the context of identifying and quantifying variants within viral populations. It is commonly used in the field of virology and genomics to process high-throughput sequencing data, allowing researchers to detect mutations, track viral evolution, and understand the dynamics of viral infections.</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>https://andersen-lab.github.io/ivar/html/</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>**iVar primer trimming**</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>it is essential to remove artefactual sequences that can bias variant calling and consensus generation.</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>reads that truly overlap the primer regions are trimmed, while reads that do not align to primer sites are left intact.</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>iVar uses the BED file to locate the primer sequences at the start and end of the aligned reads and replaces those bases with 'S' (soft-clip) in the BAM file.</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The resulting BAM file contains reads with the primers soft-clipped, preventing the primer sequence itself from introducing false variants.</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>**iVar Quality trimming**</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>iVar uses a sliding window approach (Default: 4) to do quality trimming. The windows slides from the 5' end to the 3' end and if at any point the average base quality in the window falls below the threshold (Default: 20), the remaining read is soft clipped.</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>If after trimming, the length of the read is greater than the minimum length specified (Default: 30), the read is written to the new trimmed BAM file.</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Index the sorted BAM before trimming</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index Align/sample.sorted.bam</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Trim primers</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="ex">ivar</span> trim <span class="dt">\</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">-i</span> Align/sample.sorted.bam <span class="dt">\ </span> <span class="co"># input sorted BAM</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-b</span> primers.bed <span class="dt">\ </span>             <span class="co"># primer coordinates BED file (generated in step 0.1)</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-e</span> <span class="dt">\ </span>                         <span class="co"># include reads that extend beyond the primer region</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-p</span> Align/sample_trimmed       <span class="co"># output prefix (produces sample_trimmed.bam)</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>why include reads that extend beyond the primer region?</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>Including reads that extend beyond the primer region allows iVar to trim only the portion of the read that overlaps the primer, while retaining the rest of the read sequence for downstream analysis. This is important because many reads may partially overlap the primer sites, and excluding them entirely would result in loss of valuable data. By allowing reads that extend beyond the primer region, we can maximize the amount of usable data while still effectively removing primer sequences that could bias variant calling.</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>iVar uses a sliding window approach (Default: 4) to do quality trimming. The windows slides from the 5' end to the 3' end and if at any point the average base quality in the window falls below the threshold (Default: 20), the remaining read is soft clipped.</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>If after trimming, the length of the read is greater than the minimum length specified (Default: 30), the read is written to the new trimmed BAM file.</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>By using a sliding window rather than a single-base check, iVar avoids being "fooled" by a single bad base in the middle of a high-quality stretch. It ensures that trimming only happens when there is a consistent trend of poor data.</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>Call nucleotide variants from the primer-trimmed BAM using samtools mpileup piped into iVar.</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> mpileup <span class="dt">\</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">-aa</span> <span class="dt">\ </span>                           <span class="co"># output ALL positions, including zero-coverage sites</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-B</span> <span class="dt">\ </span>                            <span class="co"># disable BAQ (per-base alignment quality) computation</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-A</span> <span class="dt">\ </span>                            <span class="co"># include anomalous read pairs, which can be informative for variant calling in amplicon data</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-d</span> 20000 <span class="dt">\ </span>                      <span class="co"># max per-position read depth cap (20,000×), raised from default 8,000× to avoid truncating high-coverage amplicon data</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="ex">--reference</span> KT992094.1.fasta <span class="dt">\ </span>  <span class="co"># reference FASTA (required when using -aa)</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-Q</span> 0 <span class="dt">\ </span>                          <span class="co"># include bases of any quality (iVar does its own filtering), to maximize data retained for variant calling</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Align/sample.bam</span> <span class="dt">\</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">ivar</span> variants <span class="dt">\</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">-p</span> iVAR_Variant/sample <span class="dt">\ </span>        <span class="co"># output prefix (.tsv)</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-r</span> KT992094.1.fasta <span class="dt">\ </span>           <span class="co"># reference FASTA (for amino-acid annotation)</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-g</span> KT992094.1.gff3               <span class="co"># GFF3 annotation (for codon/amino-acid annotation)</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>samtools mpileup</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>samtools mpileup processes reads in the order they appear in your BAM file. Because mpileup requires a coordinate-sorted BAM file, it encounters reads based on their starting genomic position</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>As soon as it reaches the 20,000th read for that specific position, it stops accepting any further reads for that coordinate</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Passing zero for this option sets it to the highest possible value, effectively removing the depth limit. <span class="co">[</span><span class="ot">8000</span><span class="co">]</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Why disable BAQ with <span class="in">`-B`</span> for amplicon data?</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>BAQ (per-base alignment quality) is designed to adjust base quality scores near indels to account for potential misalignments. However, in amplicon sequencing data, which often has very high coverage and may contain many reads that partially overlap primer sites, BAQ can be overly aggressive in down-weighting bases near indels, leading to loss of true variant signals. Disabling BAQ with <span class="in">`-B`</span> allows iVar to apply its own variant calling filters without the influence of BAQ adjustments, which can improve sensitivity for detecting variants in amplicon data where indels may be common and coverage is high enough to support confident variant calls without BAQ's adjustments.</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Why setup the read depth cap to 20,000× with <span class="in">`-d`</span>?</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>Setting the read depth cap to 20,000× allows for the retention of high-coverage data that is common in amplicon sequencing, while still preventing excessive memory usage and computational time during variant calling. The default depth cap of 8,000× in samtools mpileup may truncate data in high-coverage amplicon datasets, leading to loss of variant information. By raising the cap to 20,000×, we can ensure that we capture the full depth of coverage available for variant calling, which can improve sensitivity for detecting low-frequency variants. However, setting the cap too high (e.g., 1,000,000×) could lead to excessive computational overhead without providing additional benefit for variant detection, as the accuracy of variant frequency estimation may not improve significantly beyond a certain coverage level due to diminishing returns and increased noise at very high coverage levels.</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Why not use higher read depth cap (e.g., 1,000,000×) for variant calling?</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>While a higher read depth cap (e.g., 1,000,000×) could be used to ensure that no data is truncated, it may lead to excessive memory usage and computational time during variant calling, especially for high-coverage amplicon data. Setting a cap of 20,000× strikes a balance between retaining sufficient data for accurate variant calling while avoiding the computational overhead associated with processing extremely high coverage, which may not provide additional benefit for variant detection beyond a certain point due to diminishing returns in variant frequency estimation and increased noise at very high coverage levels.</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>Generate a consensus FASTA sequence from the primer-trimmed BAM.</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>This step is optional but can be useful for downstream analyses that require a consensus sequence (e.g., lineage assignment, phylogenetics).</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The consensus is generated using samtools mpileup piped into iVar consensus, which applies a minimum allele frequency threshold to call bases and masks low-coverage positions.</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The parameters are set to retain as much data as possible while still producing a reliable consensus sequence. For example, the minimum allele frequency threshold is set to 60 % to call a base, which allows for some within-host diversity while still calling a clear consensus. The minimum depth threshold is set to 10×, and positions below this are masked with 'N' to indicate uncertainty. The quality 20 means that bases with a quality score below 20 will be ignored in the consensus calling, which helps to reduce the impact of sequencing errors on the consensus sequence. The -aa flag ensures that all positions are included in the output, even those with zero coverage, which is important for generating a full-length consensus sequence that can be used for downstream analyses.</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The resulting consensus FASTA can be used for lineage assignment (e.g., with Pangolin) and phylogenetic analysis, while the accompanying quality file provides information on coverage and allele frequencies at each position.</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> mpileup <span class="dt">\</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">-aa</span> <span class="dt">\ </span>          <span class="co"># output all positions (ensures full-length consensus)</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-A</span> <span class="dt">\ </span>           <span class="co"># include anomalous read pairs</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-d</span> 1000000 <span class="dt">\ </span>   <span class="co"># raise depth cap to 1,000,000× (default 8,000× would truncate high-coverage data)</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-Q</span> 0 <span class="dt">\ </span>         <span class="co"># include all bases regardless of quality</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Align/sample.bam</span> <span class="dt">\</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">ivar</span> consensus <span class="dt">\</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">-p</span> Consensus/sample <span class="dt">\ </span>  <span class="co"># output prefix (.fa and .qual.txt)</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-t</span> 0.6 <span class="dt">\ </span>               <span class="co"># minimum allele frequency to call a base (60 %)</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-m</span> 10 <span class="dt">\ </span>                <span class="co"># minimum depth; positions below this are masked with -n character</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-n</span> N                    <span class="co"># character used to mask low-coverage positions</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>high-depth viral sequencing is that the -d parameter (maximum depth) in samtools mpileup should generally be the same—and set very high—for both ivar variants and ivar consensus.</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="ss">*  </span>If you use a lower depth for consensus (e.g., -d 20000) than for variants (e.g., -d 0), you risk a "silent bug" where a variant is statistically significant in your variant file but is absent or replaced by an "N" in your consensus because the consensus caller was denied access to the reads supporting that variant</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

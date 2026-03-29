@@ -25,8 +25,20 @@
     <lastmod>2023-12-16T11:40:09.000Z</lastmod>
   </url>
   <url>
-    <loc>https://grgrzhong.github.io/stat/index.html</loc>
-    <lastmod>2025-07-18T02:42:45.000Z</lastmod>
+    <loc>https://grgrzhong.github.io/tools/star.html</loc>
+    <lastmod>2026-03-29T06:27:22.517Z</lastmod>
+  </url>
+  <url>
+    <loc>https://grgrzhong.github.io/tools/ivar.html</loc>
+    <lastmod>2026-03-29T06:27:22.517Z</lastmod>
+  </url>
+  <url>
+    <loc>https://grgrzhong.github.io/tools/cutadapt.html</loc>
+    <lastmod>2026-03-29T06:27:22.533Z</lastmod>
+  </url>
+  <url>
+    <loc>https://grgrzhong.github.io/tools/bowtie2.html</loc>
+    <lastmod>2026-03-29T06:27:22.517Z</lastmod>
   </url>
   <url>
     <loc>https://grgrzhong.github.io/r/index.html</loc>
@@ -35,6 +47,14 @@
   <url>
     <loc>https://grgrzhong.github.io/omics/nanoporetech/index.html</loc>
     <lastmod>2026-02-02T02:29:21.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://grgrzhong.github.io/omics/illumina/sequencing-basics.html</loc>
+    <lastmod>2026-03-29T07:04:15.706Z</lastmod>
+  </url>
+  <url>
+    <loc>https://grgrzhong.github.io/omics/illumina/index copy.html</loc>
+    <lastmod>2026-03-29T07:14:49.235Z</lastmod>
   </url>
   <url>
     <loc>https://grgrzhong.github.io/omics/fileformats/index.html</loc>
@@ -57,7 +77,7 @@
     <lastmod>2026-03-28T15:13:47.207Z</lastmod>
   </url>
   <url>
-    <loc>https://grgrzhong.github.io/keyboard/index.html</loc>
+    <loc>https://grgrzhong.github.io/keymap/index.html</loc>
     <lastmod>2025-12-04T07:23:17.000Z</lastmod>
   </url>
   <url>
@@ -266,7 +286,7 @@
   </url>
   <url>
     <loc>https://grgrzhong.github.io/index.html</loc>
-    <lastmod>2026-03-29T02:20:46.461Z</lastmod>
+    <lastmod>2026-03-29T06:14:51.029Z</lastmod>
   </url>
   <url>
     <loc>https://grgrzhong.github.io/linux/index.html</loc>
@@ -278,7 +298,7 @@
   </url>
   <url>
     <loc>https://grgrzhong.github.io/omics/10xgenomics/index.html</loc>
-    <lastmod>2026-03-29T02:09:02.642Z</lastmod>
+    <lastmod>2026-03-29T05:57:07.936Z</lastmod>
   </url>
   <url>
     <loc>https://grgrzhong.github.io/omics/10xgenomics/visium-hd-wt.html</loc>
@@ -289,16 +309,36 @@
     <lastmod>2026-03-28T15:16:33.960Z</lastmod>
   </url>
   <url>
+    <loc>https://grgrzhong.github.io/omics/illumina/illumina-5-base.html</loc>
+    <lastmod>2026-03-29T07:04:15.706Z</lastmod>
+  </url>
+  <url>
     <loc>https://grgrzhong.github.io/omics/illumina/index.html</loc>
-    <lastmod>2026-03-12T03:39:47.000Z</lastmod>
+    <lastmod>2026-03-29T07:16:55.153Z</lastmod>
+  </url>
+  <url>
+    <loc>https://grgrzhong.github.io/omics/illumina/sequencing-libraries.html</loc>
+    <lastmod>2026-03-29T07:17:27.193Z</lastmod>
   </url>
   <url>
     <loc>https://grgrzhong.github.io/python/index.html</loc>
     <lastmod>2026-03-28T15:46:40.222Z</lastmod>
   </url>
   <url>
-    <loc>https://grgrzhong.github.io/software/index.html</loc>
-    <lastmod>2026-03-24T03:11:54.000Z</lastmod>
+    <loc>https://grgrzhong.github.io/stat/index.html</loc>
+    <lastmod>2025-07-18T02:42:45.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://grgrzhong.github.io/tools/bwa-mem.html</loc>
+    <lastmod>2026-03-29T06:27:22.517Z</lastmod>
+  </url>
+  <url>
+    <loc>https://grgrzhong.github.io/tools/index.html</loc>
+    <lastmod>2026-03-29T06:35:28.425Z</lastmod>
+  </url>
+  <url>
+    <loc>https://grgrzhong.github.io/tools/mirdeep2.html</loc>
+    <lastmod>2026-03-29T06:27:22.528Z</lastmod>
   </url>
   <url>
     <loc>https://grgrzhong.github.io/wiki/index.html</loc>
