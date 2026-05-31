@@ -71,3 +71,46 @@ The `-I` and `-X` parameters set the minimum and maximum fragment length (insert
 bowtie2 -x ref -1 R1.fq -2 R2.fq -I 100 -X 500  # expect 100-500 bp fragments
 ```
 This prevents spurious alignments where reads map too close or too far apart.
+
+## Animation
+
+These animations were created with [Manim Community](https://www.manim.community/).
+Source scripts are in [`tools/animations/`](https://github.com/grgrzhong/quarto/tree/main/tools/animations).
+
+::: {.panel-tabset}
+
+## Conceptual Overview
+
+A side-by-side comparison of Bowtie2's two alignment modes:
+
+1. A read with an adapter tail is shown
+2. **End-to-end mode** — the full read must align; the adapter causes a failure
+3. **Local mode** — the adapter end is soft-clipped (CIGAR `S`), the genomic portion aligns successfully
+4. Summary of when to use each mode (ChIP-seq, ATAC-seq, DNA-seq)
+
+> **Coming soon:** Upload the rendered video to YouTube and replace this placeholder with `{{< video https://www.youtube.com/embed/YOUR_VIDEO_ID >}}`.
+
+To render locally:
+```bash
+cd tools/animations
+manim -pqh --media_dir ~/Desktop/manim_animations bowtie2_conceptual.py Bowtie2Conceptual
+```
+
+## Step-by-Step Algorithm
+
+A deeper dive into Bowtie2's scoring and preset system:
+
+1. **FM-index seed lookup** — how Bowtie2 differs from BWA-MEM (fixed seeds vs MEMs)
+2. **DP scoring matrix** — a 5×5 alignment grid with match/mismatch/gap penalties
+3. **Traceback** — following the best path to produce a CIGAR string
+4. **Preset comparison** — speed vs sensitivity trade-off from `--very-fast` to `--very-sensitive-local`
+
+> **Coming soon:** Upload the rendered video to YouTube and replace this placeholder with `{{< video https://www.youtube.com/embed/YOUR_VIDEO_ID >}}`.
+
+To render locally:
+```bash
+cd tools/animations
+manim -pqh --media_dir ~/Desktop/manim_animations bowtie2_stepbystep.py Bowtie2StepByStep
+```
+
+:::

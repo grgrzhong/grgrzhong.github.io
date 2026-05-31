@@ -219,7 +219,7 @@ pre.text, pre.sourceCode, .cell-output pre {
         font-size: 0.8em;
     }
 
-    // In the default Quarto template, .nav-footer-center has position: absolute 
+    // In the default Quarto template, .nav-footer-center has position: absolute
     // turned on, which makes the div not be a flex item
     // This changes that so that it *is* a flex item
     .nav-footer-center {
@@ -233,7 +233,7 @@ pre.text, pre.sourceCode, .cell-output pre {
         }
     }
 
-    // When the screen is medium or smaller, make each footer chunk be 100% width 
+    // When the screen is medium or smaller, make each footer chunk be 100% width
     // and centered; otherwise make them be 33% width and left/right/centerd
     .nav-footer-left,
     .nav-footer-right,
@@ -263,7 +263,7 @@ pre.text, pre.sourceCode, .cell-output pre {
 #title-block-header {
     .quarto-title-banner {
         font-family: $headings-font-family;
-        
+
         .description {
             font-size: 1.1em;
             margin-top: 1em !important;
@@ -336,18 +336,18 @@ pre.text, pre.sourceCode, .cell-output pre {
                 cursor: pointer;
             }
         }
-               
+
         .post-doi {
             font-weight: 300;
             font-size: 0.85em;
             margin: 0.5em 0;
             text-align: right;
-            
+
             .doi-icon {
                 width: 1.1em;
                 padding-bottom: 1px;
             }
-            
+
             a {
                 color: $gray-600;
             }
@@ -367,11 +367,11 @@ pre.text, pre.sourceCode, .cell-output pre {
             opacity: 1;
         }
     }
-    
+
     .quarto-title-author-orcid img {
         margin-bottom: -3px;
     }
-    
+
     .quarto-title-meta-contents .doi::before {
         content: "";
         background-image: url(/files/doi.svg);
@@ -433,7 +433,7 @@ pre.text, pre.sourceCode, .cell-output pre {
     .back-nav a {
         color: shift-color($red, -50%);
     }
-    
+
     .quarto-title .quarto-categories .quarto-category {
         background-color: shift-color($red, -75%);
         color: $red;
@@ -557,7 +557,7 @@ pre.text, pre.sourceCode, .cell-output pre {
             font-size: 1.25em;
             margin-bottom: 0.2em;
         }
-        
+
         .course-details {
             font-weight: 300;
             font-size: 0.9em;

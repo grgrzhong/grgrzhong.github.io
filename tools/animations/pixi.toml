@@ -1,0 +1,35 @@
+[workspace]
+authors = ["guoruizhong <grgrzhong@gmail.com>"]
+channels = ["conda-forge", "bioconda"]
+name = "animations"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+# Render all 6 animations at high quality (1080p)
+render-all = { depends-on = [
+    "render-star-conceptual",
+    "render-star-stepbystep",
+    "render-bwamem-conceptual",
+    "render-bwamem-stepbystep",
+    "render-bowtie2-conceptual",
+    "render-bowtie2-stepbystep",
+] }
+
+# Individual render tasks
+render-star-conceptual    = { cmd = "manim -pqh star_conceptual.py StarConceptual" }
+render-star-stepbystep    = { cmd = "manim -pqh star_stepbystep.py StarStepByStep" }
+render-bwamem-conceptual  = { cmd = "manim -pqh bwamem_conceptual.py BwamemConceptual" }
+render-bwamem-stepbystep  = { cmd = "manim -pqh bwamem_stepbystep.py BwamemStepByStep" }
+render-bowtie2-conceptual = { cmd = "manim -pqh bowtie2_conceptual.py Bowtie2Conceptual" }
+render-bowtie2-stepbystep = { cmd = "manim -pqh bowtie2_stepbystep.py Bowtie2StepByStep" }
+
+# Validate all scripts without rendering (fast check)
+dry-run-all = { cmd = "manim --dry_run star_conceptual.py StarConceptual && manim --dry_run star_stepbystep.py StarStepByStep && manim --dry_run bwamem_conceptual.py BwamemConceptual && manim --dry_run bwamem_stepbystep.py BwamemStepByStep && manim --dry_run bowtie2_conceptual.py Bowtie2Conceptual && manim --dry_run bowtie2_stepbystep.py Bowtie2StepByStep" }
+
+[dependencies]
+python = "3.12.*"
+ffmpeg = ">=8.1.1,<9"
+
+[pypi-dependencies]
+manim = ">=0.20.1, <0.21"

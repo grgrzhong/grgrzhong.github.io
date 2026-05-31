@@ -54,3 +54,46 @@ This metadata enables multi-sample variant calling and helps track data provenan
 
 **Alignment Quality and MAPQ Scores:**
 BWA-MEM assigns a mapping quality (MAPQ) score to each alignment, indicating the probability that the alignment is incorrect. MAPQ = 60 means the alignment has a 1/1,000,000 chance of being wrong (P = 10^(-60/10)). A MAPQ ≥ 30 is generally considered high-quality. Reads with multiple equally good alignments receive MAPQ = 0, indicating ambiguous mapping.
+
+## Animation
+
+These animations were created with [Manim Community](https://www.manim.community/).
+Source scripts are in [`tools/animations/`](https://github.com/grgrzhong/quarto/tree/main/tools/animations).
+
+::: {.panel-tabset}
+
+## Conceptual Overview
+
+A visual walkthrough of how BWA-MEM aligns a read to a reference:
+
+1. A read is shown with three Maximal Exact Matches (MEMs) highlighted on the reference
+2. MEMs are chained into a colinear alignment path
+3. Gaps between MEMs are filled using Smith-Waterman local extension
+4. The final alignment is emitted as a SAM record with CIGAR string
+
+> **Coming soon:** Upload the rendered video to YouTube and replace this placeholder with `{{< video https://www.youtube.com/embed/YOUR_VIDEO_ID >}}`.
+
+To render locally:
+```bash
+cd tools/animations
+manim -pqh --media_dir ~/Desktop/manim_animations bwamem_conceptual.py BwamemConceptual
+```
+
+## Step-by-Step Algorithm
+
+A deeper dive into the Burrows-Wheeler Transform and FM-index:
+
+1. **BWT construction** — step-by-step rotation and sorting of "BANANA$" to build the BWT string
+2. **FM-index backward search** — querying "ANA" right-to-left through the BWT to find matching rows
+3. **Suffix Array lookup** — converting FM-index row ranges to genome positions
+4. **MEM extension** — growing a seed match left and right until a mismatch is hit
+
+> **Coming soon:** Upload the rendered video to YouTube and replace this placeholder with `{{< video https://www.youtube.com/embed/YOUR_VIDEO_ID >}}`.
+
+To render locally:
+```bash
+cd tools/animations
+manim -pqh --media_dir ~/Desktop/manim_animations bwamem_stepbystep.py BwamemStepByStep
+```
+
+:::

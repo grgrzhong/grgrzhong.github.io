@@ -108,3 +108,47 @@ STAR \
     --runThreadN 8
 ```
 The `sample_Chimeric.out.junction` file contains candidate fusion events that can be further validated with tools like STAR-Fusion.
+
+## Animation
+
+These animations were created with [Manim Community](https://www.manim.community/).
+Source scripts are in [`tools/animations/`](https://github.com/grgrzhong/quarto/tree/main/tools/animations).
+
+::: {.panel-tabset}
+
+## Conceptual Overview
+
+A visual walkthrough of how STAR handles spliced reads:
+
+1. Pre-mRNA is shown with exons and introns
+2. Splicing produces mature mRNA
+3. An Illumina read is drawn spanning the Exon 1–Exon 2 junction
+4. STAR splits the read into two segments and maps each to the correct exon
+5. The detected splice junction is recorded in `SJ.out.tab`
+
+> **Coming soon:** Upload the rendered video to YouTube and replace this placeholder with `{{< video https://www.youtube.com/embed/YOUR_VIDEO_ID >}}`.
+
+To render locally:
+```bash
+cd tools/animations
+manim -pqh --media_dir ~/Desktop/manim_animations star_conceptual.py StarConceptual
+```
+
+## Step-by-Step Algorithm
+
+A deeper dive into STAR's internal algorithm across four steps:
+
+1. **Suffix Array index** — how STAR builds its genome index from all rotations of the reference sequence
+2. **MMP Seeding** — Maximal Mappable Prefix seeds are found for each read segment
+3. **Seed clustering** — colinear seeds are grouped into candidate alignment windows
+4. **Two-pass strategy** — Pass 1 discovers novel splice junctions; Pass 2 uses them for improved alignment
+
+> **Coming soon:** Upload the rendered video to YouTube and replace this placeholder with `{{< video https://www.youtube.com/embed/YOUR_VIDEO_ID >}}`.
+
+To render locally:
+```bash
+cd tools/animations
+manim -pqh --media_dir ~/Desktop/manim_animations star_stepbystep.py StarStepByStep
+```
+
+:::

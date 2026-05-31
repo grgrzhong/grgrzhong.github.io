@@ -2,7 +2,7 @@
 title: "Guorui Zhong"
 about:
   template: trestles
-  image: /files/profiles/bottts-1774764655644.png
+  image: /files/profiles/avatar.png
   image-width: 14em
   image-shape: round
   links:
@@ -30,7 +30,7 @@ Cell biologist with applied skills in bioinformatics and computational biology.
 - **Multi-omics**: WGS, WES, RNA-seq, scRNA-seq, methylation arrays, proteomics
 - **Spatial transcriptomics**: Visium, Visium HD, 10x Genomics platforms
 - **Imaging**: High-throughput phenotypic profiling with machine learning
-- **Programming**: R (tidyverse, Bioconductor, ggplot2), Python
+- **Programming**: R, Python
 
 ## Research Interests
 

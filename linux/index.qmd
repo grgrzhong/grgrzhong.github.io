@@ -37,7 +37,7 @@ format:
 find . -name "*.txt"
 
 ## Find files/folders by name
-find /path/to/search -name "pattern" 
+find /path/to/search -name "pattern"
 
 ## Find files larger than 100MB
 find /path/to/search -type f -size +100M
@@ -55,7 +55,7 @@ find ./Clean -name "*Clean.fastq.gz" -type f -exec ls -lh {} \;
 
 ```bash
 ## Extract first column from a tab-delimited file
-cut -f1 file.txt 
+cut -f1 file.txt
 
 ## Extract first and third columns from a comma-separated file
 cut -d',' -f1,3 file.csv
@@ -97,7 +97,7 @@ sed -n '2,5p' file.txt
 awk '{print $1}' file.txt
 
 ## Sum values in the first column
-awk '{sum += $1} END {print sum}' file.txt 
+awk '{sum += $1} END {print sum}' file.txt
 
 ## Print lines where the third column is greater than 100
 awk '$3 > 100' file.txt
@@ -283,7 +283,7 @@ rsync -av --update /source/folder/ /destination/folder/
 ```bash
 ## Remote server details
 remote_user="username"
-remote_host="hpcio2" # hpc2021-io1.hku.hk,hpc2021-io2.hku.hk  
+remote_host="hpcio2" # hpc2021-io1.hku.hk,hpc2021-io2.hku.hk
 
 ## Define folders to sync (absolute paths)
 ## Format: "local_absolute_path:remote_absolute_path"
@@ -299,17 +299,17 @@ for folder_pair in "${folders_to_sync[@]}"; do
     # Split the pair into local and remote paths
     local_path="${folder_pair%%:*}"
     remote_path="${folder_pair#*:}"
-    
+
     echo "Syncing ${remote_user}@${remote_host}:${remote_path} to ${local_path}"
-    
+
     # Create local directory structure
     mkdir -p "${local_path}"
-    
+
     # Sync the folder contents from remote to local (trailing slash on source copies contents)
     rsync -av --update --progress --inplace --no-perms --no-times \
         "${remote_user}@${remote_host}:${remote_path}/" \
         "${local_path}/"
-        
+
     echo "-----------------------------------"
 done
 ```
@@ -319,7 +319,7 @@ done
 ```bash
 ## Remote server details
 remote_user="username"
-remote_host="hpcio1" # hpc2021-io1.hku.hk 
+remote_host="hpcio1" # hpc2021-io1.hku.hk
 
 ## Define folders to sync (absolute paths)
 ## Format: "local_absolute_path:remote_absolute_path"
@@ -334,17 +334,17 @@ for folder_pair in "${folders_to_sync[@]}"; do
     # Split the pair into local and remote paths
     local_path="${folder_pair%%:*}"
     remote_path="${folder_pair#*:}"
-    
+
     echo "Syncing ${local_path} to ${remote_user}@${remote_host}:${remote_path}"
-    
+
     # Create remote directory structure
     ssh ${remote_user}@${remote_host} "mkdir -p ${remote_path}"
-    
+
     # Sync the folder contents (trailing slash on source copies contents)
     rsync -av --update --progress \
         "${local_path}/" \
         "${remote_user}@${remote_host}:${remote_path}/"
-        
+
     echo "-----------------------------------"
 done
 ```
@@ -353,7 +353,7 @@ done
 
 ### Modes
 
-* Vim text editor has three main modes: 
+* Vim text editor has three main modes:
   * `Esc`, back to normal mode
   * `i`, insert mode
   * `v`, select mode
@@ -428,7 +428,7 @@ done
 
 1. Open a file with: `nano filename.txt`
 2. Use the arrow keys to navigate.
-3. Save the changes with `ctrl + o`, 
+3. Save the changes with `ctrl + o`,
 4. Confirm the filename by pressing `Enter`.
 5. Exit nano with `ctrl + x`.
 
@@ -452,9 +452,7 @@ nano -miA file.txt
 * `-i`: Auto-indent new lines.
 * `-A`: Enable syntax highlighting.
 
-## Job Scheduler
-
-### OpenPBS
+## OpenPBS
 OpenPBS (Portable Batch System) is an open-source workload manager and job scheduler used in High-Performance Computing (HPC) environments to automate and optimize the execution of tasks across  and clouds.
 
 **PBS job script**
@@ -522,12 +520,27 @@ done
 ## Delete a job
 qdel job_id
 
+## check all queues
+qstat -Qf | less
+
+for q in cgs small medium large cgs_queue; do
+    echo "=== $q ==="
+    qstat -Qf $q | grep -E "resources_max.(mem|ncpus|walltime)"
+done
+
 ## Hold a job
 qhold job_id
 
 ## Release a held job
 qrls job_id
+
+# See your groups
+groups
+
+# Check queue ACLs
+qstat -Q -f | grep -E "^Queue:|acl_users|acl_groups"
 ```
+
 
 **Stat interactive job**
 ```bash
@@ -545,7 +558,7 @@ qstat -Q cgs -f
 #     queue_type = Execution
 #     total_jobs = 16
 #     state_count = Transit:0 Queued:10 Held:0 Waiting:0 Running:6 Exiting:0 Begu
-#         n:0 
+#         n:0
 #     acl_user_enable = True
 #     acl_users = bioinfo,emiklin,irisxu,itsupport,julia,junyanzhong,manzhai,nicklin,
 #         rubyzhou,totochu
@@ -568,9 +581,7 @@ qstat -Q cgs -f
 * `-cgs`: The specific queue name to query
 * `-f`: Full/detailed output showing all queue attributes
 
-
-## Shell session
-### Tmux
+## Tmux
 
 * Tmux Configuration
 Consider adding these aliases to your shell configuration for quick tmux access.
@@ -636,7 +647,7 @@ bind-key C-a send-prefix
 
 ---
 
-### Screen
+## Screen
 
 ::: {.callout-tip}
 ### 💡 Screen Aliases
@@ -704,10 +715,7 @@ alias sls="s -ls"      # list current running screen sessions
 - **Terminal**: [Bash Reference Manual](https://www.gnu.org/software/bash/manual/)
 :::
 
-
-## Software Manager
-
-### Conda
+## Conda
 
 * Installation
 ```bash
@@ -786,7 +794,7 @@ conda activate new_env_name
 conda remove --name old_env_name --all
 ```
 
-### Pixi
+## Pixi
 
 ```bash
 ## Auto-activate pixi when entering project directory
@@ -816,10 +824,10 @@ pixi config set default-channels '["conda-forge", "bioconda"]' --global
 
 ```
 
-## Git Version Control
+## Git
 
 ```bash
-## keep your original Git repository but provide a clean version to others, 
+## keep your original Git repository but provide a clean version to others,
 git archive --format=zip --output=my-project-clean.zip main
 
 git init
@@ -844,7 +852,7 @@ git push origin --delete branch-name
 git branch -a                # List all branches
 
 echo "" # create file ""
-git status # check 
+git status # check
 git add # add a file as it looks now to your next commit (stage)
 git commit # commit your staged content as a new commit snapshot
 ### if go to the viam editing mode, i to input, esc to quit, :wq to save and quit

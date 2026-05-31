@@ -5,7 +5,7 @@
 
 # git init
 # git remote remove origin
-# git checkout -b main 
+# git checkout -b main
 # git branch -M main
 # git remote add origin https://github.com/grgrzhong/grgrzhong.github.io.git
 
