@@ -57,7 +57,7 @@ colnames(installed.packages())   # list the installed packages
 - Keep track of `sessionInfo()` in project folder
 - Use version control
 
-## Variable Repacement
+## Variable Replacement
 
 Common method to do the variable replacement in ggplot2:
 

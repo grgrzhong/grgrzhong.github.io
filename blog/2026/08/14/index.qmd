@@ -1,0 +1,44 @@
+---
+title: "Trajectory analysis with Monocle 3"
+date: "2026-08-14"
+published-title: Created
+date-modified: last-modified
+categories: [RNA-seq, DESeq2, EdgeR, EBSeq]
+toc-title: "Contents"
+description: "It reconstructs the continuous paths that cells take as they change from one state to another."
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+execute:
+    eval: false
+---
+
+## What trajectory analysis does
+In a single-cell RNA-seq experiment, you capture a snapshot of many individual cells at different stages of a biological process (e.g., differentiation, development, immune activation, disease progression, or reprogramming). These cells are not ordered in time — they are mixed together.
+Trajectory analysis:
+
+    - Places the cells in a continuous order along the biological process they are undergoing.
+    - Builds a graph (or “tree”) that shows how cells progress, including:
+    - Linear paths
+    - Branches (where cells choose different fates)
+    - Convergence points (where different paths meet)
+    - Loops (in some cases)
+    - Multiple disconnected trajectories (when different groups of cells are doing different things)
+
+
+The key concept is pseudotime: a numerical value assigned to each cell that represents how far it has progressed along the process (from early/starting state → late/end state). It is not real clock time, but a relative measure of progress based on gene expression similarity.
+
+## What insights it can give you
+
+QuestionWhat trajectory analysis revealsHow do cells change over a process?The continuous path of gene expression changes (not just discrete clusters)When do cells decide their fate?Branch points where cells diverge into different lineagesWhich genes drive the process?Genes whose expression changes smoothly along the trajectory (or specifically at branches)What is the order of events?The sequence in which genes turn on/off as cells progressAre there multiple independent processes?Disjoint trajectories (e.g., different cell types responding differently)How far has each cell progressed?Pseudotime values for every cellWhat happens after a decision point?Downstream gene programs that define each fate
+
+Question	What trajectory analysis reveals
+How do cells change over a process?	The continuous path of gene expression changes (not just discrete clusters)
+When do cells decide their fate?	Branch points where cells diverge into different lineages
+Which genes drive the process?	Genes whose expression changes smoothly along the trajectory (or specifically at branches)
+What is the order of events?	The sequence in which genes turn on/off as cells progress
+Are there multiple independent processes?	Disjoint trajectories (e.g., different cell types responding differently)
+How far has each cell progressed?	Pseudotime values for every cell
+What happens after a decision point?	Downstream gene programs that define each fate

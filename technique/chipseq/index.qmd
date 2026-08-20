@@ -1,0 +1,21 @@
+---
+title: ChIP-sequencing
+date: 2026-06-09
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc-title: "Contents"
+---
+
+
+
+[](ChIP-Sequencing-ChIP-seq.jpeg)
+
+## Analysis Steps
+1. Trim adapters (Cutadapt) and low-quality reads
+2. Align filtered reads to the reference genome (BWA)
+3. Mark duplicates (Picard) and filter out low-quality alignments (SAMtools)
+4. Combine alignments within groups (e.g., replicates)
+5. Peak calling (MACS2) and visualize peaks (deepTools)
+6. Annotate peaks (ChIPseeker) and perform motif analysis (HOMER)
+7. Differential binding analysis (DiffBind) and pathway enrichment analysis (clusterProfiler)

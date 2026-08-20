@@ -1,0 +1,192 @@
+---
+title: "scRNA-seq Analysis"
+# subtitle: "A comprehensive guide to essential keyboard shortcuts"
+date: 2023-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+toc-title: "Contents"
+---
+
+scRNA-seq data sets contains systematic and random noise that obscure the biological signal.
+
+# Analysis workflow
+
+## Cell calling
+
+Cellranger:
+    * Trim adapters
+    * Alignment
+    * Barcode and UMI extraction
+    * Deduplication UMI
+    * Filter barcodes
+    * Filter reads
+    * Generate count matrix
+
+
+## Filtering Low-quality cells
+
+* Dying cells with broken membranes
+* Cells with a low number of detected genes
+* Cells with a low count depth
+* Cells with high mitochondrial content
+* Contamination from ambient RNA (cell-free RNA in the solution)
+   * Problems: Ambient RNA contamination can lead to cell-type-specific marker gene granscripts being detectable in different cell populations together.
+   * Solutions:
+     * SoupX
+     * CellBender
+
+::: {.callout-SoupX}
+* Uses the raw (unfiltered) and filtered matrices to identify empty droplets.
+* Estimates the ambient mRNA expression profile from those empty droplets.
+* Estimates (automatically or manually, often guided by known non-expressed genes or cluster markers) the contamination fraction ρ (fraction of UMIs in each cell coming from the ambient soup).
+* Subtracts the estimated ambient contribution proportionally from each cell’s counts, producing a corrected count matrix that can plug directly into Seurat/Scanpy pipelines.
+
+:::
+
+::: {.callout-CellBender}
+* Uses a deep generative model (variational autoencoder / Bayesian inference in Pyro) on the raw count matrix.
+* Jointly learns the background noise profile across all droplets, distinguishes cell-containing from empty droplets (often recovering more cells than Cell Ranger), and produces denoised quantifications by subtracting the estimated ambient contribution.
+* Explicitly models aspects of background noise and can handle both RNA and other modalities (e.g., CITE-seq).
+* Computationally heavier (benefits from GPU) and tends to perform strongly in benchmarks for ambient removal while preserving endogenous signal
+:::
+
+* Empty droplet and doublet/multiplet cells
+   * Problems: Doublets formed by different cell types are hard to annotate and can lead to wrong cell-type labels.
+   * Solutions:
+     * scDbFinder
+     * DoubletFinder
+     * Scrublet
+
+* Low-quality cells are identified and filtered by manually setting thresholds
+* Quality control is performed at the sample level as thresholds can vary substantially between samples
+
+## Normalization and Variance Stabilization
+
+* Count normalization makes cellular profiles comparable.
+* Subsequent variance stablization ensures that outlier profiles have limited effect on the overall data structure
+* Scaling and centering of the data is performed to ensure that all genes contribute equally to downstream analyses
+   * Scran
+
+* Normalization methods should be chosen carefully and based on the subsequent analysis tasks
+
+## Removing confounding sources of variation
+
+* Batch effects
+  * Harmony: projects cells into a shared embedding where cells group by cell type rather than dataset-specific conditions
+  * scANVI:
+  * scVI
+  * scGen
+  * Scanorama
+* Cell cycle effects
+  * built-in cell cycle labeling and correction functions in Scanpy or Seurat
+  * Tricycle
+
+## Reducing dimensionality
+
+* PCA
+* t-SNE
+* UMAP
+* PHATE
+
+## Cell Clustering
+
+* Louvain
+* Leiden
+* Both methods are applied to the KNN graph computed on a low-dimensional representation of the data and can be run at different resolutions to control the number of identified clusters.
+
+## Cell Type Annotation
+
+Annotation is the process of giving detected cell clusters a biological interpretation such as cell type.
+
+A three-step approach is recommended that leverages automated annotation, followed by expert manual annotation and a last step of verification to obtain the ideal annotation result
+
+1. Classifier-based:
+    * CellTypist
+    * Clustifyr
+    * SingleR
+    * scmap
+    * scANVI
+    * scNym
+
+2. Reference mapping
+    * Azimuth
+    * Symphony
+    * scArches
+
+3. Manual annotation
+    * Marker gene expression
+    * Differential expression analysis (t-test, wilcoxon rank-sum test)
+
+
+* Annotation results obtained with pre-trained classifiers are strongly affected by the classifier type and the quality of the training data used to create the classifier.
+* Furthermore, it can be difficult to assess the resulting annotation without additionally inspecting individual markers
+* The annotation should be verified by experts, especially for data sets with high complexity or studies that involve rare cell subpopulations for which references might not be available
+
+## Trajectory Inference
+
+Trajectory Inference or pseudotime analysis orders cells along a trajectory based on similarities in their gene expression patterns.
+
+* Slingshot
+* PAGA
+* RaceID/StemID
+* Monocle
+* CellRank
+* scVelo
+* Velocyto
+
+## Differential Expression Analysis
+
+Single-cell specific methods were found to systematically underestimate the variance of gene expression and to be prone to wrongly labling highly expressed genes as differentially expressed.
+
+Pueudo-bulk, sample-level view aggregates counts per sample-label
+* edgeR
+* DESeq2
+* limma
+
+* P values obtained with DGE tests over conditions must be corrected for multiple testing5,92 to obtain q values.
+
+## Gene Set Enrichment Analysis
+
+Gene set enrichment analysis allows the summarization of many molecular insights into interpretable terms such as pathways
+
+definied gene sets known to be involved through previous studies.
+
+* Common database:
+  * MSigDB
+  * Gene Ontology
+  * KEGG
+  * Reactome
+
+* Common methods for enrichement include:
+    * hypergeometric test
+    * GSEA
+    * GSVA
+
+## Cell Composition analysis
+
+Compositional analysis addresses conditional changes not in the gene expression profile of a cell but instead in the relative abundance of different cell types in the form of compositional data.
+
+* Poisson regression
+* Wilson rank-sum test
+* scDC
+* scCODA
+* tascCODA
+* DA-seq
+* MILO
+
+## Cell-cell communication analysis
+
+Cells are in constant interaction with each other for organismal development and homeostasis. If this interaction is impaired, disease ensues. Cell–cell communication inference methods commonly use repositories of ligands, receptors and their interactions to predict interactions between annotated clusters.
+
+* CellChat
+* CellPhoneDB
+* SingleCellSignalR
+* LIANA
+* Nichenet
+* Cytotalk
+
+# Userful resources
+
+- [A Guide to Analyzing Single-cell Datasets](https://ouyanglab.com/singlecell/)
+- [integrating single-cell datasets](https://swaruplab.bio.uci.edu/tutorial/integration/integration_tutorial.html#content)

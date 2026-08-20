@@ -89,3 +89,4 @@ samtools mpileup \
 * high-depth viral sequencing is that the -d parameter (maximum depth) in samtools mpileup should generally be the same—and set very high—for both ivar variants and ivar consensus.
 *  If you use a lower depth for consensus (e.g., -d 20000) than for variants (e.g., -d 0), you risk a "silent bug" where a variant is statistically significant in your variant file but is absent or replaced by an "N" in your consensus because the consensus caller was denied access to the reads supporting that variant
 *
+

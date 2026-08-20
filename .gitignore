@@ -6,3 +6,5 @@
 .pixi/*
 !.pixi/config.toml
 .quarto/*
+.venv
+.conda

@@ -11,6 +11,18 @@ toc-title: "Contents"
 
 These are the collections of things that I beleived useful in my daily researh work.
 
+
+## Terms
+* A genome is the complete set of genetic material (DNA or RNA) in an organism.
+* The transcriptome is the full set of RNA transcripts produced by the genome.
+* The methylome is the complete profile of DNA methylation modifications across the genome.
+* The epigenome comprises all chemical modifications to DNA and histone proteins that regulate gene expression without altering the underlying DNA sequence.
+* The mCpG epigenome specifically maps methylated cytosine-guanine (CpG) dinucleotide sites that typically repress gene activity.
+* The chromatin epigenome details how DNA is packaged and structurally wrapped around histones into accessible or closed states.
+* The proteome is the complete set of proteins expressed by an organism's genome.
+
+
+
 ## Databases
 [COSMIC](https://cancer.sanger.ac.uk/cosmic) - Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
 [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) - NCBI database of single nucleotide polymorphisms (SNPs) and multiple small-scale variations that include insertions/deletions, microsatellites, and non-polymorphic variants.
