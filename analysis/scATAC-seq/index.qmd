@@ -1,0 +1,25 @@
+---
+title: "scATAC-seq Analysis"
+date: 2023-01-01
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+subtitle: "Chromatin accessibility is how easily proteins inside a cell nucleus can physically touch and bind to DNA. Because DNA is tightly wrapped around histone proteins to form chromatin, regions packed closely together are hidden and closed off, while loosely packed regions stay open for gene reading and regulation."
+# toc-title: "Contents"
+---
+
+
+## Quality Control
+
+- cell-by-peak: peaks refer to variable regions of open chromatin with enrichment of Tn5 transposition events over background noise
+- cell-by-bin: Bins are uniformly sized windows across the genome that capture all Tn5 transposition events
+- Identifying peaks requires a sufficient number of cells and therefore may fail in rare cell types
+
+
+
+the total number of sequenced fragments per cell
+the log total number of fragments
+the transcription start site (TSS) enrichment score
+
+low counts and low TSS enrichment scores
+nucleosome signal is used to evaluate the fragment length distribution

@@ -41,8 +41,8 @@ website:
   navbar:
     pinned: true
     left:
-      # - text: "About"
-      #   file: "index.qmd"
+      - text: "About"
+        file: "index.qmd"
       - text: "Blog"
         file: "blog/index.qmd"
       - text: "Linux"

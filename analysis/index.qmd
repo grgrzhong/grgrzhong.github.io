@@ -8,7 +8,9 @@ title-block-banner: "#212529"
 toc-title: "Contents"
 ---
 
-## scRNAseq
+## [scRNAseq](./scRNAseq/index.qmd)
+## [scATAC-seq](./scATAC-seq/index.qmd)
+
 
 
 
