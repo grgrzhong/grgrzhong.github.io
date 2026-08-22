@@ -33,7 +33,7 @@ website:
   favicon: "/files/profiles/avatar.png"
   description: ""
   search:
-    location: sidebar
+    location: navbar
     type: overlay
 
   site-url: "https://grgrzhong.github.io/"
