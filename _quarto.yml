@@ -104,4 +104,4 @@ format:
     code-tools:
       source: true
       toggle: true
-    highlight-style: github dark
+    highlight-style: dracula
