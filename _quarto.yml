@@ -88,7 +88,7 @@ format:
     toc-depth: 3
     toc_float: true
     toc-location: left
-    number-sections: false
+    number-sections: true
     number-depth: 3
     code-link: true
     code-fold: false # true to enable code folding

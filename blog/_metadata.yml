@@ -15,9 +15,3 @@ execute:
   message: true
   warning: true
   freeze: auto
-
-# Default author
-# author:
-#   - name: Guorui Zhong
-#     url: https://grgrzhong.github.io/
-#     orcid: 0000-0002-1955-2847
