@@ -16,6 +16,7 @@ project:
     - "*.ipynb"
     - "!projects/"
     - "!tutorial/"
+    - "!temp/"
 
   resources:
     - "files/**"

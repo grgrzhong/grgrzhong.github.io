@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,9 +21,8 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -65,17 +64,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../">
 <link href="../../../..//files/profiles/avatar.png" rel="icon" type="image/png">
-<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-fc8d3d93f0a84b7619e1f8ff6eb63d42.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-cee8642dd6abb73bb51e0193ec9c0780.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-2f2396c06a81d93d55d53282a51878d1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-ab2ca5986a9d2351c5b0912f3d2f3c12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -126,7 +123,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -144,7 +141,7 @@ window.Quarto = {
 
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -516,13 +513,13 @@ Note
 <p>Notice: ACTB, GAPDH, EEF2 all have near-identical ratios within each sample (they track the sequencing depth). MYC and TP53 deviate because they are truly differentially expressed.</p>
 <p><strong>Step 3 — Size factor = median of ratios per sample</strong></p>
 <p>The <strong>median</strong> is taken column-wise across all 5 genes for each sample. Because the DE genes (MYC, TP53) go in <em>opposite</em> directions, their extreme ratios cancel out and the median reflects only sequencing depth.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Column-wise median of ratios</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Column-wise median of ratios</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>size_factor_A1 <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="fl">0.78</span>, <span class="fl">0.78</span>, <span class="fl">0.78</span>, <span class="fl">0.39</span>, <span class="fl">1.55</span>))  <span class="co"># = 0.78</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>size_factor_A2 <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="fl">0.82</span>, <span class="fl">0.82</span>, <span class="fl">0.82</span>, <span class="fl">0.41</span>, <span class="fl">1.63</span>))  <span class="co"># = 0.82</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>size_factor_A3 <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="fl">0.86</span>, <span class="fl">0.86</span>, <span class="fl">0.86</span>, <span class="fl">0.43</span>, <span class="fl">1.71</span>))  <span class="co"># = 0.86</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>size_factor_B1 <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="fl">1.15</span>, <span class="fl">1.15</span>, <span class="fl">1.14</span>, <span class="fl">2.30</span>, <span class="fl">0.57</span>))  <span class="co"># = 1.15</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>size_factor_B2 <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="fl">1.23</span>, <span class="fl">1.23</span>, <span class="fl">1.22</span>, <span class="fl">2.46</span>, <span class="fl">0.61</span>))  <span class="co"># = 1.23</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>size_factor_B3 <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="fl">1.31</span>, <span class="fl">1.31</span>, <span class="fl">1.31</span>, <span class="fl">2.62</span>, <span class="fl">0.65</span>))  <span class="co"># = 1.31</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>size_factor_B3 <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="fl">1.31</span>, <span class="fl">1.31</span>, <span class="fl">1.31</span>, <span class="fl">2.62</span>, <span class="fl">0.65</span>))  <span class="co"># = 1.31</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -1108,7 +1105,7 @@ Tip
 </section>
 <section id="command" class="level3">
 <h3 class="anchored" data-anchor-id="command">Command</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DESeq2)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DESeq2)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 1. Build DESeqDataSet ────────────────────────────────────────────────────</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># count_matrix : genes × samples matrix of raw integer counts</span></span>
@@ -1165,7 +1162,7 @@ Tip
 <span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 10. Save results ─────────────────────────────────────────────────────────</span></span>
 <span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="fu">as.data.frame</span>(res_shrunk), <span class="st">"DESeq2_results.csv"</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="fu">as.data.frame</span>(degs),       <span class="st">"DESeq2_DEGs.csv"</span>,     <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="fu">as.data.frame</span>(degs),       <span class="st">"DESeq2_DEGs.csv"</span>,     <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
@@ -1551,7 +1548,7 @@ Note
 </section>
 <section id="command-1" class="level3">
 <h3 class="anchored" data-anchor-id="command-1">Command</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(edgeR)</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(edgeR)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 1. Create DGEList object ─────────────────────────────────────────────────</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># counts   : raw count matrix (genes × samples)</span></span>
@@ -1593,7 +1590,7 @@ Note
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 10. Save results ─────────────────────────────────────────────────────────</span></span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(res,  <span class="st">"EdgeR_results.csv"</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(degs, <span class="st">"EdgeR_DEGs.csv"</span>,    <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(degs, <span class="st">"EdgeR_DEGs.csv"</span>,    <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
@@ -1827,7 +1824,7 @@ Note
 </section>
 <section id="command-2" class="level3">
 <h3 class="anchored" data-anchor-id="command-2">Command</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EBSeq)</span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EBSeq)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 1. Normalise counts ──────────────────────────────────────────────────────</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># count_matrix : genes × samples raw count matrix</span></span>
@@ -1884,7 +1881,7 @@ Note
 <span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>results_df <span class="ot">&lt;-</span> results_df[<span class="fu">order</span>(<span class="sc">-</span>results_df<span class="sc">$</span>PPDE), ]</span>
 <span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 9. Save results ──────────────────────────────────────────────────────────</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(results_df, <span class="st">"EBSeq_results.csv"</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(results_df, <span class="st">"EBSeq_results.csv"</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 <!-- -->
@@ -1894,294 +1891,287 @@ Note
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
         } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/grgrzhong\.github\.io\/");
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
+          window.location.href = sourceUrl;
         }
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
         }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/grgrzhong\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2189,162 +2179,186 @@ Note
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Methods for Differential Expression Analysis"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2025-07-28"</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">published-title:</span><span class="co"> Created</span></span>
@@ -2376,13 +2390,13 @@ Note
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**sampleA** (control): A1, A2, A3  </span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**sampleB** (treatment): B1, B2, B3</span>
 <span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> A1 <span class="pp">|</span> A2 <span class="pp">|</span> A3 <span class="pp">|</span> B1 <span class="pp">|</span> B2 <span class="pp">|</span> B3 <span class="pp">|</span> Expected <span class="pp">|</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|:--------:|</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> 95 <span class="pp">|</span> 100 <span class="pp">|</span> 105 <span class="pp">|</span> 140 <span class="pp">|</span> 150 <span class="pp">|</span> 160 <span class="pp">|</span> non-DE (housekeeping) <span class="pp">|</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> 190 <span class="pp">|</span> 200 <span class="pp">|</span> 210 <span class="pp">|</span> 280 <span class="pp">|</span> 300 <span class="pp">|</span> 320 <span class="pp">|</span> non-DE (housekeeping) <span class="pp">|</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> 76 <span class="pp">|</span> 80 <span class="pp">|</span> 84 <span class="pp">|</span> 112 <span class="pp">|</span> 120 <span class="pp">|</span> 128 <span class="pp">|</span> non-DE (housekeeping) <span class="pp">|</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> 48 <span class="pp">|</span> 50 <span class="pp">|</span> 52 <span class="pp">|</span> 280 <span class="pp">|</span> 300 <span class="pp">|</span> 320 <span class="pp">|</span> **4× upregulated** in B <span class="pp">|</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> 152 <span class="pp">|</span> 160 <span class="pp">|</span> 168 <span class="pp">|</span> 56 <span class="pp">|</span> 60 <span class="pp">|</span> 64 <span class="pp">|</span> **4× downregulated** in B <span class="pp">|</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>| Gene | A1 | A2 | A3 | B1 | B2 | B3 | Expected |</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>|:----:|:--:|:--:|:--:|:--:|:--:|:--:|:--------:|</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>| ACTB | 95 | 100 | 105 | 140 | 150 | 160 | non-DE (housekeeping) |</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>| GAPDH | 190 | 200 | 210 | 280 | 300 | 320 | non-DE (housekeeping) |</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>| EEF2 | 76 | 80 | 84 | 112 | 120 | 128 | non-DE (housekeeping) |</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>| MYC | 48 | 50 | 52 | 280 | 300 | 320 | **4× upregulated** in B |</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>| TP53 | 152 | 160 | 168 | 56 | 60 | 64 | **4× downregulated** in B |</span>
 <span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
 <span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>The B group has ~1.3–1.5× more total reads than the A group — a **sequencing depth difference**, not a biological difference. Normalization must correct for this before comparing expression levels.</span>
@@ -2401,13 +2415,13 @@ Note
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>where $i$ = gene index, $j$ = sample index ($j = 1,\ldots,6$), $y_{ij}$ = raw count of gene $i$ in sample $j$, $n = 6$ = total number of samples.</span>
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> Calculation <span class="pp">|</span> Geo Mean <span class="pp">|</span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|:----:|:----:|</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> $(95 \times 100 \times 105 \times 140 \times 150 \times 160)^{1/6}$ <span class="pp">|</span> **122** <span class="pp">|</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> $(190 \times 200 \times 210 \times 280 \times 300 \times 320)^{1/6}$ <span class="pp">|</span> **244** <span class="pp">|</span></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> $(76 \times 80 \times 84 \times 112 \times 120 \times 128)^{1/6}$ <span class="pp">|</span> **98** <span class="pp">|</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> $(48 \times 50 \times 52 \times 280 \times 300 \times 320)^{1/6}$ <span class="pp">|</span> **122** <span class="pp">|</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> $(152 \times 160 \times 168 \times 56 \times 60 \times 64)^{1/6}$ <span class="pp">|</span> **98** <span class="pp">|</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>| Gene | Calculation | Geo Mean |</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>|:----:|:----:|:----:|</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>| ACTB | $(95 \times 100 \times 105 \times 140 \times 150 \times 160)^{1/6}$ | **122** |</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>| GAPDH | $(190 \times 200 \times 210 \times 280 \times 300 \times 320)^{1/6}$ | **244** |</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>| EEF2 | $(76 \times 80 \times 84 \times 112 \times 120 \times 128)^{1/6}$ | **98** |</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>| MYC | $(48 \times 50 \times 52 \times 280 \times 300 \times 320)^{1/6}$ | **122** |</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>| TP53 | $(152 \times 160 \times 168 \times 56 \times 60 \times 64)^{1/6}$ | **98** |</span>
 <span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
 <span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>MYC and ACTB share the same geometric mean (~122) even though MYC is DE. This is because the geometric mean averages across both groups, reflecting the overall pool of counts — it is not an estimate of true expression.</span>
@@ -2419,13 +2433,13 @@ Note
 <span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>where $r_{ij}$ = ratio of the raw count to the pseudo-reference, $y_{ij}$ = raw count of gene $i$ in sample $j$, $\text{geo<span class="sc">\_</span>mean}_i$ = geometric mean of gene $i$ across all samples.</span>
 <span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> Geo Mean <span class="pp">|</span> A1 <span class="pp">|</span> A2 <span class="pp">|</span> A3 <span class="pp">|</span> B1 <span class="pp">|</span> B2 <span class="pp">|</span> B3 <span class="pp">|</span></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> 122 <span class="pp">|</span> 0.78 <span class="pp">|</span> 0.82 <span class="pp">|</span> 0.86 <span class="pp">|</span> 1.15 <span class="pp">|</span> 1.23 <span class="pp">|</span> 1.31 <span class="pp">|</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> 244 <span class="pp">|</span> 0.78 <span class="pp">|</span> 0.82 <span class="pp">|</span> 0.86 <span class="pp">|</span> 1.15 <span class="pp">|</span> 1.23 <span class="pp">|</span> 1.31 <span class="pp">|</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> 98 <span class="pp">|</span> 0.78 <span class="pp">|</span> 0.82 <span class="pp">|</span> 0.86 <span class="pp">|</span> 1.14 <span class="pp">|</span> 1.22 <span class="pp">|</span> 1.31 <span class="pp">|</span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> 122 <span class="pp">|</span> 0.39 <span class="pp">|</span> 0.41 <span class="pp">|</span> 0.43 <span class="pp">|</span> 2.30 <span class="pp">|</span> 2.46 <span class="pp">|</span> 2.62 <span class="pp">|</span></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> 98 <span class="pp">|</span> 1.55 <span class="pp">|</span> 1.63 <span class="pp">|</span> 1.71 <span class="pp">|</span> 0.57 <span class="pp">|</span> 0.61 <span class="pp">|</span> 0.65 <span class="pp">|</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>| Gene | Geo Mean | A1 | A2 | A3 | B1 | B2 | B3 |</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>| ACTB | 122 | 0.78 | 0.82 | 0.86 | 1.15 | 1.23 | 1.31 |</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>| GAPDH | 244 | 0.78 | 0.82 | 0.86 | 1.15 | 1.23 | 1.31 |</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>| EEF2 | 98 | 0.78 | 0.82 | 0.86 | 1.14 | 1.22 | 1.31 |</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>| MYC | 122 | 0.39 | 0.41 | 0.43 | 2.30 | 2.46 | 2.62 |</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>| TP53 | 98 | 1.55 | 1.63 | 1.71 | 0.57 | 0.61 | 0.65 |</span>
 <span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>Notice: ACTB, GAPDH, EEF2 all have near-identical ratios within each sample (they track the sequencing depth). MYC and TP53 deviate because they are truly differentially expressed.</span>
 <span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
@@ -2443,21 +2457,21 @@ Note
 <span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>size_factor_B3 <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="fl">1.31</span>, <span class="fl">1.31</span>, <span class="fl">1.31</span>, <span class="fl">2.62</span>, <span class="fl">0.65</span>))  <span class="co"># = 1.31</span></span>
 <span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sample <span class="pp">|</span> A1 <span class="pp">|</span> A2 <span class="pp">|</span> A3 <span class="pp">|</span> B1 <span class="pp">|</span> B2 <span class="pp">|</span> B3 <span class="pp">|</span></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|:------:|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Size factor** | **0.78** | **0.82** | **0.86** | **1.15** | **1.23** | **1.31** <span class="pp">|</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>| Sample | A1 | A2 | A3 | B1 | B2 | B3 |</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>|:------:|:--:|:--:|:--:|:--:|:--:|:--:|</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>| **Size factor** | **0.78** | **0.82** | **0.86** | **1.15** | **1.23** | **1.31** |</span>
 <span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>The A samples have size factors &lt; 1 (lower depth) and B samples &gt; 1 (higher depth), exactly reflecting the sequencing depth difference.</span>
 <span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>**Step 4 — Normalized counts = raw count ÷ size factor**</span>
 <span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> A1 <span class="pp">|</span> A2 <span class="pp">|</span> A3 <span class="pp">|</span> B1 <span class="pp">|</span> B2 <span class="pp">|</span> B3 <span class="pp">|</span> Group A mean <span class="pp">|</span> Group B mean <span class="pp">|</span></span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|:----:|:----:|</span></span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> 122 <span class="pp">|</span> 122 <span class="pp">|</span> 122 <span class="pp">|</span> 122 <span class="pp">|</span> 122 <span class="pp">|</span> 122 <span class="pp">|</span> **122** | **122** <span class="pp">|</span></span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> 244 <span class="pp">|</span> 244 <span class="pp">|</span> 244 <span class="pp">|</span> 243 <span class="pp">|</span> 244 <span class="pp">|</span> 244 <span class="pp">|</span> **244** | **244** <span class="pp">|</span></span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> 97 <span class="pp">|</span> 98 <span class="pp">|</span> 98 <span class="pp">|</span> 97 <span class="pp">|</span> 98 <span class="pp">|</span> 98 <span class="pp">|</span> **98** | **98** <span class="pp">|</span></span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> 62 <span class="pp">|</span> 61 <span class="pp">|</span> 60 <span class="pp">|</span> 243 <span class="pp">|</span> 244 <span class="pp">|</span> 244 <span class="pp">|</span> **61** | **244** <span class="pp">|</span></span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> 195 <span class="pp">|</span> 195 <span class="pp">|</span> 195 <span class="pp">|</span> 49 <span class="pp">|</span> 49 <span class="pp">|</span> 49 <span class="pp">|</span> **195** | **49** <span class="pp">|</span></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>| Gene | A1 | A2 | A3 | B1 | B2 | B3 | Group A mean | Group B mean |</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>|:----:|:--:|:--:|:--:|:--:|:--:|:--:|:----:|:----:|</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>| ACTB | 122 | 122 | 122 | 122 | 122 | 122 | **122** | **122** |</span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>| GAPDH | 244 | 244 | 244 | 243 | 244 | 244 | **244** | **244** |</span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>| EEF2 | 97 | 98 | 98 | 97 | 98 | 98 | **98** | **98** |</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>| MYC | 62 | 61 | 60 | 243 | 244 | 244 | **61** | **244** |</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>| TP53 | 195 | 195 | 195 | 49 | 49 | 49 | **195** | **49** |</span>
 <span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>After normalization: ACTB, GAPDH, and EEF2 have identical levels across both groups (as expected). MYC shows ~4× higher expression in B, and TP53 shows ~4× lower expression in B.</span>
 <span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a></span>
@@ -2490,13 +2504,13 @@ Note
 <span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>The final (shrunken) dispersion estimates for our example genes:</span>
 <span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> Mean expression <span class="pp">|</span> Estimated $\alpha$ <span class="pp">|</span> Interpretation <span class="pp">|</span></span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|:---------------:|:------------------:|:--------------|</span></span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> 122 <span class="pp">|</span> 0.00 <span class="pp">|</span> Perfectly uniform replicates (ideal) <span class="pp">|</span></span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> 244 <span class="pp">|</span> 0.00 <span class="pp">|</span> Perfectly uniform replicates (ideal) <span class="pp">|</span></span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> 98 <span class="pp">|</span> 0.00 <span class="pp">|</span> Perfectly uniform replicates (ideal) <span class="pp">|</span></span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> 61 (A) / 244 (B) <span class="pp">|</span> **0.04** <span class="pp">|</span> Low dispersion, high counts <span class="pp">|</span></span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> 195 (A) / 49 (B) <span class="pp">|</span> **0.05** <span class="pp">|</span> Slightly higher dispersion, lower counts in B <span class="pp">|</span></span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>| Gene | Mean expression | Estimated $\alpha$ | Interpretation |</span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>|:----:|:---------------:|:------------------:|:--------------|</span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>| ACTB | 122 | 0.00 | Perfectly uniform replicates (ideal) |</span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>| GAPDH | 244 | 0.00 | Perfectly uniform replicates (ideal) |</span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>| EEF2 | 98 | 0.00 | Perfectly uniform replicates (ideal) |</span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>| MYC | 61 (A) / 244 (B) | **0.04** | Low dispersion, high counts |</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>| TP53 | 195 (A) / 49 (B) | **0.05** | Slightly higher dispersion, lower counts in B |</span>
 <span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
 <span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>In real data, even housekeeping genes have some dispersion (e.g., α ≈ 0.01–0.05). The perfectly uniform values above are for illustration only.</span>
@@ -2512,13 +2526,13 @@ Note
 <span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>$$\log(\mu_j) = \beta_0 + \beta_1 x_j + \log(s_j)$$</span>
 <span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Term <span class="pp">|</span> Meaning <span class="pp">|</span></span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="pp">|:---|:---|</span></span>
-<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\mu_j$ <span class="pp">|</span> Expected raw count in sample $j$ <span class="pp">|</span></span>
-<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\beta_0$ <span class="pp">|</span> Log mean expression in Group A (intercept) <span class="pp">|</span></span>
-<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\beta_1$ <span class="pp">|</span> **Log fold change** (B vs A) — the key parameter <span class="pp">|</span></span>
-<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $x_j$ <span class="pp">|</span> Group indicator: 0 = sampleA, 1 = sampleB <span class="pp">|</span></span>
-<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $s_j$ <span class="pp">|</span> Size factor (offset — normalization built into the model) <span class="pp">|</span></span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>| Term | Meaning |</span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>|:---|:---|</span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>| $\mu_j$ | Expected raw count in sample $j$ |</span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>| $\beta_0$ | Log mean expression in Group A (intercept) |</span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a>| $\beta_1$ | **Log fold change** (B vs A) — the key parameter |</span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>| $x_j$ | Group indicator: 0 = sampleA, 1 = sampleB |</span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>| $s_j$ | Size factor (offset — normalization built into the model) |</span>
 <span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>The term $\log(s_j)$ is a fixed offset, so the model estimates the *biological* differences only.</span>
 <span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a></span>
@@ -2556,15 +2570,15 @@ Note
 <span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>For **MYC** ($\alpha = 0.04$), fitted counts $\mu_j = s_j \times e^{\hat\beta_0 + \hat\beta_1 x_j}$:</span>
 <span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sample <span class="pp">|</span> Group <span class="pp">|</span> $\mu_j$ <span class="pp">|</span> $w_j = \mu_j/(1+0.04\mu_j)$ <span class="pp">|</span></span>
-<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a><span class="pp">|:------:|:-----:|:-------:|:---------------------------:|</span></span>
-<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A1 <span class="pp">|</span> A <span class="pp">|</span> 0.78 × 61 = **48** | 48/(1+1.92) = **16.4** <span class="pp">|</span></span>
-<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A2 <span class="pp">|</span> A <span class="pp">|</span> 0.82 × 61 = **50** | 50/(1+2.00) = **16.6** <span class="pp">|</span></span>
-<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A3 <span class="pp">|</span> A <span class="pp">|</span> 0.86 × 61 = **52** | 52/(1+2.08) = **16.9** <span class="pp">|</span></span>
-<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B1 <span class="pp">|</span> B <span class="pp">|</span> 1.15 × 244 = **281** | 281/(1+11.24) = **22.9** <span class="pp">|</span></span>
-<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B2 <span class="pp">|</span> B <span class="pp">|</span> 1.23 × 244 = **300** | 300/(1+12.00) = **23.1** <span class="pp">|</span></span>
-<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B3 <span class="pp">|</span> B <span class="pp">|</span> 1.31 × 244 = **320** | 320/(1+12.80) = **23.2** <span class="pp">|</span></span>
-<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> $\Sigma w$ = **119.1** | $\Sigma_{B} w$ = **69.2** <span class="pp">|</span></span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a>| Sample | Group | $\mu_j$ | $w_j = \mu_j/(1+0.04\mu_j)$ |</span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a>|:------:|:-----:|:-------:|:---------------------------:|</span>
+<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>| A1 | A | 0.78 × 61 = **48** | 48/(1+1.92) = **16.4** |</span>
+<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a>| A2 | A | 0.82 × 61 = **50** | 50/(1+2.00) = **16.6** |</span>
+<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>| A3 | A | 0.86 × 61 = **52** | 52/(1+2.08) = **16.9** |</span>
+<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a>| B1 | B | 1.15 × 244 = **281** | 281/(1+11.24) = **22.9** |</span>
+<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a>| B2 | B | 1.23 × 244 = **300** | 300/(1+12.00) = **23.1** |</span>
+<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a>| B3 | B | 1.31 × 244 = **320** | 320/(1+12.80) = **23.2** |</span>
+<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a>| | | $\Sigma w$ = **119.1** | $\Sigma_{B} w$ = **69.2** |</span>
 <span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a>$$\text{Var}(\hat\beta_1) = \frac{\Sigma w}{\Sigma w \cdot \Sigma_B w - (\Sigma_B w)^2} = \frac{119.1}{119.1 \times 69.2 - 69.2^2} = \frac{119.1}{69.2 \times 50.0} = 0.034$$</span>
 <span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a></span>
@@ -2602,13 +2616,13 @@ Note
 <span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a>**Results (before multiple testing correction):**</span>
 <span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> $\hat\beta_1$ <span class="pp">|</span> log2FC <span class="pp">|</span> SE <span class="pp">|</span> Wald stat <span class="pp">|</span> p-value <span class="pp">|</span></span>
-<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|:-----:|:------:|:---:|:---------:|:-------:|</span></span>
-<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> 1.386 <span class="pp">|</span> **2.00** <span class="pp">|</span> 0.186 <span class="pp">|</span> 7.45 <span class="pp">|</span> $9.4 \times 10^{-14}$ <span class="pp">|</span></span>
-<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> −1.385 <span class="pp">|</span> **−2.00** <span class="pp">|</span> 0.202 <span class="pp">|</span> −6.85 <span class="pp">|</span> $7.5 \times 10^{-12}$ <span class="pp">|</span></span>
-<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> ≈0 <span class="pp">|</span> **0.00** <span class="pp">|</span> — <span class="pp">|</span> ≈0 <span class="pp">|</span> ≈0.90 <span class="pp">|</span></span>
-<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> ≈0 <span class="pp">|</span> **0.00** <span class="pp">|</span> — <span class="pp">|</span> ≈0 <span class="pp">|</span> ≈0.95 <span class="pp">|</span></span>
-<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> ≈0 <span class="pp">|</span> **0.00** <span class="pp">|</span> — <span class="pp">|</span> ≈0 <span class="pp">|</span> ≈0.99 <span class="pp">|</span></span>
+<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a>| Gene | $\hat\beta_1$ | log2FC | SE | Wald stat | p-value |</span>
+<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a>|:----:|:-----:|:------:|:---:|:---------:|:-------:|</span>
+<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a>| MYC | 1.386 | **2.00** | 0.186 | 7.45 | $9.4 \times 10^{-14}$ |</span>
+<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a>| TP53 | −1.385 | **−2.00** | 0.202 | −6.85 | $7.5 \times 10^{-12}$ |</span>
+<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a>| ACTB | ≈0 | **0.00** | — | ≈0 | ≈0.90 |</span>
+<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a>| GAPDH | ≈0 | **0.00** | — | ≈0 | ≈0.95 |</span>
+<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a>| EEF2 | ≈0 | **0.00** | — | ≈0 | ≈0.99 |</span>
 <span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
 <span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a>**When to use LRT instead?** The Wald test is used for pairwise comparisons (A vs B). The **Likelihood Ratio Test (LRT)** is better for complex designs, e.g., testing whether a factor explains variance across ≥3 groups, or for comparing nested models (full vs reduced design formula).</span>
@@ -2626,13 +2640,13 @@ Note
 <span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-281"><a href="#cb5-281" aria-hidden="true" tabindex="-1"></a>**Step 1 — Sort genes by p-value (ascending):**</span>
 <span id="cb5-282"><a href="#cb5-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rank $k$ <span class="pp">|</span> Gene <span class="pp">|</span> p-value <span class="pp">|</span> BH threshold $\frac{k}{m} \times \text{FDR}$ <span class="pp">|</span> Significant? <span class="pp">|</span></span>
-<span id="cb5-284"><a href="#cb5-284" aria-hidden="true" tabindex="-1"></a><span class="pp">|:--------:|:----:|:-------:|:-------------------------------------------:|:------------:|</span></span>
-<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> MYC <span class="pp">|</span> $9.4 \times 10^{-14}$ <span class="pp">|</span> $\frac{1}{5} \times 0.05 = 0.010$ <span class="pp">|</span> ✅ $p &lt; 0.010$ <span class="pp">|</span></span>
-<span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> TP53 <span class="pp">|</span> $7.5 \times 10^{-12}$ <span class="pp">|</span> $\frac{2}{5} \times 0.05 = 0.020$ <span class="pp">|</span> ✅ $p &lt; 0.020$ <span class="pp">|</span></span>
-<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> ACTB <span class="pp">|</span> 0.90 <span class="pp">|</span> $\frac{3}{5} \times 0.05 = 0.030$ <span class="pp">|</span> ❌ $p &gt; 0.030$ <span class="pp">|</span></span>
-<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4 <span class="pp">|</span> GAPDH <span class="pp">|</span> 0.95 <span class="pp">|</span> $\frac{4}{5} \times 0.05 = 0.040$ <span class="pp">|</span> ❌ $p &gt; 0.040$ <span class="pp">|</span></span>
-<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5 <span class="pp">|</span> EEF2 <span class="pp">|</span> 0.99 <span class="pp">|</span> $\frac{5}{5} \times 0.05 = 0.050$ <span class="pp">|</span> ❌ $p &gt; 0.050$ <span class="pp">|</span></span>
+<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a>| Rank $k$ | Gene | p-value | BH threshold $\frac{k}{m} \times \text{FDR}$ | Significant? |</span>
+<span id="cb5-284"><a href="#cb5-284" aria-hidden="true" tabindex="-1"></a>|:--------:|:----:|:-------:|:-------------------------------------------:|:------------:|</span>
+<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a>| 1 | MYC | $9.4 \times 10^{-14}$ | $\frac{1}{5} \times 0.05 = 0.010$ | ✅ $p &lt; 0.010$ |</span>
+<span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a>| 2 | TP53 | $7.5 \times 10^{-12}$ | $\frac{2}{5} \times 0.05 = 0.020$ | ✅ $p &lt; 0.020$ |</span>
+<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a>| 3 | ACTB | 0.90 | $\frac{3}{5} \times 0.05 = 0.030$ | ❌ $p &gt; 0.030$ |</span>
+<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a>| 4 | GAPDH | 0.95 | $\frac{4}{5} \times 0.05 = 0.040$ | ❌ $p &gt; 0.040$ |</span>
+<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a>| 5 | EEF2 | 0.99 | $\frac{5}{5} \times 0.05 = 0.050$ | ❌ $p &gt; 0.050$ |</span>
 <span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a>**Step 2 — Compute adjusted p-values (padj):**</span>
 <span id="cb5-292"><a href="#cb5-292" aria-hidden="true" tabindex="-1"></a></span>
@@ -2640,13 +2654,13 @@ Note
 <span id="cb5-294"><a href="#cb5-294" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a>where $k$ = rank of the gene when all genes are sorted by p-value ascending (1 = smallest p-value), $m$ = total number of genes tested, $p_k$ = raw p-value of the gene at rank $k$.</span>
 <span id="cb5-296"><a href="#cb5-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> p-value <span class="pp">|</span> padj <span class="pp">|</span> DEG? <span class="pp">|</span></span>
-<span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|:-------:|:----:|:----:|</span></span>
-<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> $9.4 \times 10^{-14}$ <span class="pp">|</span> $\mathbf{4.7 \times 10^{-13}}$ <span class="pp">|</span> ✅ <span class="pp">|</span></span>
-<span id="cb5-300"><a href="#cb5-300" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> $7.5 \times 10^{-12}$ <span class="pp">|</span> $\mathbf{1.9 \times 10^{-11}}$ <span class="pp">|</span> ✅ <span class="pp">|</span></span>
-<span id="cb5-301"><a href="#cb5-301" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> 0.90 <span class="pp">|</span> **1.00** <span class="pp">|</span> ❌ <span class="pp">|</span></span>
-<span id="cb5-302"><a href="#cb5-302" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> 0.95 <span class="pp">|</span> **1.00** <span class="pp">|</span> ❌ <span class="pp">|</span></span>
-<span id="cb5-303"><a href="#cb5-303" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> 0.99 <span class="pp">|</span> **1.00** <span class="pp">|</span> ❌ <span class="pp">|</span></span>
+<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a>| Gene | p-value | padj | DEG? |</span>
+<span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a>|:----:|:-------:|:----:|:----:|</span>
+<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a>| MYC | $9.4 \times 10^{-14}$ | $\mathbf{4.7 \times 10^{-13}}$ | ✅ |</span>
+<span id="cb5-300"><a href="#cb5-300" aria-hidden="true" tabindex="-1"></a>| TP53 | $7.5 \times 10^{-12}$ | $\mathbf{1.9 \times 10^{-11}}$ | ✅ |</span>
+<span id="cb5-301"><a href="#cb5-301" aria-hidden="true" tabindex="-1"></a>| ACTB | 0.90 | **1.00** | ❌ |</span>
+<span id="cb5-302"><a href="#cb5-302" aria-hidden="true" tabindex="-1"></a>| GAPDH | 0.95 | **1.00** | ❌ |</span>
+<span id="cb5-303"><a href="#cb5-303" aria-hidden="true" tabindex="-1"></a>| EEF2 | 0.99 | **1.00** | ❌ |</span>
 <span id="cb5-304"><a href="#cb5-304" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-305"><a href="#cb5-305" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
 <span id="cb5-306"><a href="#cb5-306" aria-hidden="true" tabindex="-1"></a>In practice with thousands of genes, many non-DE genes will have padj between 0 and 1. Genes are typically called DEGs when **padj &lt; 0.05** AND **|log2FC| ≥ 1** (2-fold change).</span>
@@ -2654,13 +2668,13 @@ Note
 <span id="cb5-308"><a href="#cb5-308" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-309"><a href="#cb5-309" aria-hidden="true" tabindex="-1"></a>**Final DESeq2 output table (`results()`):**</span>
 <span id="cb5-310"><a href="#cb5-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-311"><a href="#cb5-311" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> baseMean <span class="pp">|</span> log2FC <span class="pp">|</span> lfcSE <span class="pp">|</span> stat <span class="pp">|</span> pvalue <span class="pp">|</span> padj <span class="pp">|</span></span>
-<span id="cb5-312"><a href="#cb5-312" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|:--------:|:------:|:-----:|:----:|:------:|:----:|</span></span>
-<span id="cb5-313"><a href="#cb5-313" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> 191.7 <span class="pp">|</span> **2.00** <span class="pp">|</span> 0.186 <span class="pp">|</span> 7.45 <span class="pp">|</span> $9.4 \times 10^{-14}$ <span class="pp">|</span> $4.7 \times 10^{-13}$ <span class="pp">|</span></span>
-<span id="cb5-314"><a href="#cb5-314" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> 116.0 <span class="pp">|</span> **−2.00** <span class="pp">|</span> 0.202 <span class="pp">|</span> −6.85 <span class="pp">|</span> $7.5 \times 10^{-12}$ <span class="pp">|</span> $1.9 \times 10^{-11}$ <span class="pp">|</span></span>
-<span id="cb5-315"><a href="#cb5-315" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> 122.0 <span class="pp">|</span> 0.00 <span class="pp">|</span> — <span class="pp">|</span> ≈0 <span class="pp">|</span> 0.90 <span class="pp">|</span> 1.00 <span class="pp">|</span></span>
-<span id="cb5-316"><a href="#cb5-316" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> 244.0 <span class="pp">|</span> 0.00 <span class="pp">|</span> — <span class="pp">|</span> ≈0 <span class="pp">|</span> 0.95 <span class="pp">|</span> 1.00 <span class="pp">|</span></span>
-<span id="cb5-317"><a href="#cb5-317" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> 98.0 <span class="pp">|</span> 0.00 <span class="pp">|</span> — <span class="pp">|</span> ≈0 <span class="pp">|</span> 0.99 <span class="pp">|</span> 1.00 <span class="pp">|</span></span>
+<span id="cb5-311"><a href="#cb5-311" aria-hidden="true" tabindex="-1"></a>| Gene | baseMean | log2FC | lfcSE | stat | pvalue | padj |</span>
+<span id="cb5-312"><a href="#cb5-312" aria-hidden="true" tabindex="-1"></a>|:----:|:--------:|:------:|:-----:|:----:|:------:|:----:|</span>
+<span id="cb5-313"><a href="#cb5-313" aria-hidden="true" tabindex="-1"></a>| MYC | 191.7 | **2.00** | 0.186 | 7.45 | $9.4 \times 10^{-14}$ | $4.7 \times 10^{-13}$ |</span>
+<span id="cb5-314"><a href="#cb5-314" aria-hidden="true" tabindex="-1"></a>| TP53 | 116.0 | **−2.00** | 0.202 | −6.85 | $7.5 \times 10^{-12}$ | $1.9 \times 10^{-11}$ |</span>
+<span id="cb5-315"><a href="#cb5-315" aria-hidden="true" tabindex="-1"></a>| ACTB | 122.0 | 0.00 | — | ≈0 | 0.90 | 1.00 |</span>
+<span id="cb5-316"><a href="#cb5-316" aria-hidden="true" tabindex="-1"></a>| GAPDH | 244.0 | 0.00 | — | ≈0 | 0.95 | 1.00 |</span>
+<span id="cb5-317"><a href="#cb5-317" aria-hidden="true" tabindex="-1"></a>| EEF2 | 98.0 | 0.00 | — | ≈0 | 0.99 | 1.00 |</span>
 <span id="cb5-318"><a href="#cb5-318" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-319"><a href="#cb5-319" aria-hidden="true" tabindex="-1"></a><span class="fu">### Command</span></span>
 <span id="cb5-320"><a href="#cb5-320" aria-hidden="true" tabindex="-1"></a></span>
@@ -2741,13 +2755,13 @@ Note
 <span id="cb5-395"><a href="#cb5-395" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-396"><a href="#cb5-396" aria-hidden="true" tabindex="-1"></a>Same 5-gene × 6-sample dataset used for DESeq2 (see above).</span>
 <span id="cb5-397"><a href="#cb5-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-398"><a href="#cb5-398" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> A1 <span class="pp">|</span> A2 <span class="pp">|</span> A3 <span class="pp">|</span> B1 <span class="pp">|</span> B2 <span class="pp">|</span> B3 <span class="pp">|</span> Expected <span class="pp">|</span></span>
-<span id="cb5-399"><a href="#cb5-399" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|:--------:|</span></span>
-<span id="cb5-400"><a href="#cb5-400" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> 95 <span class="pp">|</span> 100 <span class="pp">|</span> 105 <span class="pp">|</span> 140 <span class="pp">|</span> 150 <span class="pp">|</span> 160 <span class="pp">|</span> non-DE <span class="pp">|</span></span>
-<span id="cb5-401"><a href="#cb5-401" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> 190 <span class="pp">|</span> 200 <span class="pp">|</span> 210 <span class="pp">|</span> 280 <span class="pp">|</span> 300 <span class="pp">|</span> 320 <span class="pp">|</span> non-DE <span class="pp">|</span></span>
-<span id="cb5-402"><a href="#cb5-402" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> 76 <span class="pp">|</span> 80 <span class="pp">|</span> 84 <span class="pp">|</span> 112 <span class="pp">|</span> 120 <span class="pp">|</span> 128 <span class="pp">|</span> non-DE <span class="pp">|</span></span>
-<span id="cb5-403"><a href="#cb5-403" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> 48 <span class="pp">|</span> 50 <span class="pp">|</span> 52 <span class="pp">|</span> 280 <span class="pp">|</span> 300 <span class="pp">|</span> 320 <span class="pp">|</span> **4× up** in B <span class="pp">|</span></span>
-<span id="cb5-404"><a href="#cb5-404" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> 152 <span class="pp">|</span> 160 <span class="pp">|</span> 168 <span class="pp">|</span> 56 <span class="pp">|</span> 60 <span class="pp">|</span> 64 <span class="pp">|</span> **4× down** in B <span class="pp">|</span></span>
+<span id="cb5-398"><a href="#cb5-398" aria-hidden="true" tabindex="-1"></a>| Gene | A1 | A2 | A3 | B1 | B2 | B3 | Expected |</span>
+<span id="cb5-399"><a href="#cb5-399" aria-hidden="true" tabindex="-1"></a>|:----:|:--:|:--:|:--:|:--:|:--:|:--:|:--------:|</span>
+<span id="cb5-400"><a href="#cb5-400" aria-hidden="true" tabindex="-1"></a>| ACTB | 95 | 100 | 105 | 140 | 150 | 160 | non-DE |</span>
+<span id="cb5-401"><a href="#cb5-401" aria-hidden="true" tabindex="-1"></a>| GAPDH | 190 | 200 | 210 | 280 | 300 | 320 | non-DE |</span>
+<span id="cb5-402"><a href="#cb5-402" aria-hidden="true" tabindex="-1"></a>| EEF2 | 76 | 80 | 84 | 112 | 120 | 128 | non-DE |</span>
+<span id="cb5-403"><a href="#cb5-403" aria-hidden="true" tabindex="-1"></a>| MYC | 48 | 50 | 52 | 280 | 300 | 320 | **4× up** in B |</span>
+<span id="cb5-404"><a href="#cb5-404" aria-hidden="true" tabindex="-1"></a>| TP53 | 152 | 160 | 168 | 56 | 60 | 64 | **4× down** in B |</span>
 <span id="cb5-405"><a href="#cb5-405" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-406"><a href="#cb5-406" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb5-407"><a href="#cb5-407" aria-hidden="true" tabindex="-1"></a></span>
@@ -2777,14 +2791,14 @@ Note
 <span id="cb5-431"><a href="#cb5-431" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-432"><a href="#cb5-432" aria-hidden="true" tabindex="-1"></a>**For our example:**</span>
 <span id="cb5-433"><a href="#cb5-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-434"><a href="#cb5-434" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sample <span class="pp">|</span> Raw library size $N_k$ <span class="pp">|</span> TMM factor <span class="pp">|</span> Effective size $\tilde{N}_k$ <span class="pp">|</span></span>
-<span id="cb5-435"><a href="#cb5-435" aria-hidden="true" tabindex="-1"></a><span class="pp">|:------:|:----------------------:|:----------:|:----------------------------:|</span></span>
-<span id="cb5-436"><a href="#cb5-436" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A1 <span class="pp">|</span> 561 <span class="pp">|</span> 0.79 <span class="pp">|</span> 443 <span class="pp">|</span></span>
-<span id="cb5-437"><a href="#cb5-437" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A2 <span class="pp">|</span> 590 <span class="pp">|</span> 0.82 <span class="pp">|</span> 484 <span class="pp">|</span></span>
-<span id="cb5-438"><a href="#cb5-438" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A3 <span class="pp">|</span> 619 <span class="pp">|</span> 0.86 <span class="pp">|</span> 532 <span class="pp">|</span></span>
-<span id="cb5-439"><a href="#cb5-439" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B1 <span class="pp">|</span> 868 <span class="pp">|</span> 1.16 <span class="pp">|</span> 1007 <span class="pp">|</span></span>
-<span id="cb5-440"><a href="#cb5-440" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B2 <span class="pp">|</span> 930 <span class="pp">|</span> 1.23 <span class="pp">|</span> 1144 <span class="pp">|</span></span>
-<span id="cb5-441"><a href="#cb5-441" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B3 <span class="pp">|</span> 992 <span class="pp">|</span> 1.30 <span class="pp">|</span> 1290 <span class="pp">|</span></span>
+<span id="cb5-434"><a href="#cb5-434" aria-hidden="true" tabindex="-1"></a>| Sample | Raw library size $N_k$ | TMM factor | Effective size $\tilde{N}_k$ |</span>
+<span id="cb5-435"><a href="#cb5-435" aria-hidden="true" tabindex="-1"></a>|:------:|:----------------------:|:----------:|:----------------------------:|</span>
+<span id="cb5-436"><a href="#cb5-436" aria-hidden="true" tabindex="-1"></a>| A1 | 561 | 0.79 | 443 |</span>
+<span id="cb5-437"><a href="#cb5-437" aria-hidden="true" tabindex="-1"></a>| A2 | 590 | 0.82 | 484 |</span>
+<span id="cb5-438"><a href="#cb5-438" aria-hidden="true" tabindex="-1"></a>| A3 | 619 | 0.86 | 532 |</span>
+<span id="cb5-439"><a href="#cb5-439" aria-hidden="true" tabindex="-1"></a>| B1 | 868 | 1.16 | 1007 |</span>
+<span id="cb5-440"><a href="#cb5-440" aria-hidden="true" tabindex="-1"></a>| B2 | 930 | 1.23 | 1144 |</span>
+<span id="cb5-441"><a href="#cb5-441" aria-hidden="true" tabindex="-1"></a>| B3 | 992 | 1.30 | 1290 |</span>
 <span id="cb5-442"><a href="#cb5-442" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-443"><a href="#cb5-443" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
 <span id="cb5-444"><a href="#cb5-444" aria-hidden="true" tabindex="-1"></a>**TMM vs median-of-ratios (DESeq2):** Both methods account for sequencing depth and RNA composition. TMM trims extreme fold-change genes before computing the normalization factor; DESeq2 uses the median across all genes. In practice they produce very similar results. TMM is slightly more aggressive at removing outlier genes.</span>
@@ -2816,13 +2830,13 @@ Note
 <span id="cb5-470"><a href="#cb5-470" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-471"><a href="#cb5-471" aria-hidden="true" tabindex="-1"></a>**For our example genes:**</span>
 <span id="cb5-472"><a href="#cb5-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-473"><a href="#cb5-473" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> Common $\phi_c$ <span class="pp">|</span> Trended $\hat\phi^{\text{trend}}$ <span class="pp">|</span> Tagwise $\hat\phi^{\text{tag}}$ <span class="pp">|</span></span>
-<span id="cb5-474"><a href="#cb5-474" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|:---------------:|:---------------------------------:|:-------------------------------:|</span></span>
-<span id="cb5-475"><a href="#cb5-475" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> 0.04 <span class="pp">|</span> 0.030 <span class="pp">|</span> 0.030 <span class="pp">|</span></span>
-<span id="cb5-476"><a href="#cb5-476" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> 0.04 <span class="pp">|</span> 0.025 <span class="pp">|</span> 0.025 <span class="pp">|</span></span>
-<span id="cb5-477"><a href="#cb5-477" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> 0.04 <span class="pp">|</span> 0.032 <span class="pp">|</span> 0.032 <span class="pp">|</span></span>
-<span id="cb5-478"><a href="#cb5-478" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> 0.04 <span class="pp">|</span> 0.030 <span class="pp">|</span> **0.040** <span class="pp">|</span></span>
-<span id="cb5-479"><a href="#cb5-479" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> 0.04 <span class="pp">|</span> 0.032 <span class="pp">|</span> **0.048** <span class="pp">|</span></span>
+<span id="cb5-473"><a href="#cb5-473" aria-hidden="true" tabindex="-1"></a>| Gene | Common $\phi_c$ | Trended $\hat\phi^{\text{trend}}$ | Tagwise $\hat\phi^{\text{tag}}$ |</span>
+<span id="cb5-474"><a href="#cb5-474" aria-hidden="true" tabindex="-1"></a>|:----:|:---------------:|:---------------------------------:|:-------------------------------:|</span>
+<span id="cb5-475"><a href="#cb5-475" aria-hidden="true" tabindex="-1"></a>| ACTB | 0.04 | 0.030 | 0.030 |</span>
+<span id="cb5-476"><a href="#cb5-476" aria-hidden="true" tabindex="-1"></a>| GAPDH | 0.04 | 0.025 | 0.025 |</span>
+<span id="cb5-477"><a href="#cb5-477" aria-hidden="true" tabindex="-1"></a>| EEF2 | 0.04 | 0.032 | 0.032 |</span>
+<span id="cb5-478"><a href="#cb5-478" aria-hidden="true" tabindex="-1"></a>| MYC | 0.04 | 0.030 | **0.040** |</span>
+<span id="cb5-479"><a href="#cb5-479" aria-hidden="true" tabindex="-1"></a>| TP53 | 0.04 | 0.032 | **0.048** |</span>
 <span id="cb5-480"><a href="#cb5-480" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-481"><a href="#cb5-481" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb5-482"><a href="#cb5-482" aria-hidden="true" tabindex="-1"></a></span>
@@ -2857,23 +2871,23 @@ Note
 <span id="cb5-511"><a href="#cb5-511" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-512"><a href="#cb5-512" aria-hidden="true" tabindex="-1"></a>**Results (before multiple testing correction):**</span>
 <span id="cb5-513"><a href="#cb5-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-514"><a href="#cb5-514" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> log2FC <span class="pp">|</span> logFC (natural) <span class="pp">|</span> F-stat <span class="pp">|</span> p-value <span class="pp">|</span> Expected <span class="pp">|</span></span>
-<span id="cb5-515"><a href="#cb5-515" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|:------:|:---------------:|:------:|:-------:|:--------:|</span></span>
-<span id="cb5-516"><a href="#cb5-516" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> **2.00** <span class="pp">|</span> 1.386 <span class="pp">|</span> 52.1 <span class="pp">|</span> $1.1 \times 10^{-12}$ <span class="pp">|</span> ✅ DE <span class="pp">|</span></span>
-<span id="cb5-517"><a href="#cb5-517" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> **−2.00** <span class="pp">|</span> −1.385 <span class="pp">|</span> 44.7 <span class="pp">|</span> $8.2 \times 10^{-11}$ <span class="pp">|</span> ✅ DE <span class="pp">|</span></span>
-<span id="cb5-518"><a href="#cb5-518" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> 0.00 <span class="pp">|</span> ≈0 <span class="pp">|</span> ≈0 <span class="pp">|</span> ≈0.92 <span class="pp">|</span> ❌ non-DE <span class="pp">|</span></span>
-<span id="cb5-519"><a href="#cb5-519" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> 0.00 <span class="pp">|</span> ≈0 <span class="pp">|</span> ≈0 <span class="pp">|</span> ≈0.96 <span class="pp">|</span> ❌ non-DE <span class="pp">|</span></span>
-<span id="cb5-520"><a href="#cb5-520" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> 0.00 <span class="pp">|</span> ≈0 <span class="pp">|</span> ≈0 <span class="pp">|</span> ≈0.98 <span class="pp">|</span> ❌ non-DE <span class="pp">|</span></span>
+<span id="cb5-514"><a href="#cb5-514" aria-hidden="true" tabindex="-1"></a>| Gene | log2FC | logFC (natural) | F-stat | p-value | Expected |</span>
+<span id="cb5-515"><a href="#cb5-515" aria-hidden="true" tabindex="-1"></a>|:----:|:------:|:---------------:|:------:|:-------:|:--------:|</span>
+<span id="cb5-516"><a href="#cb5-516" aria-hidden="true" tabindex="-1"></a>| MYC | **2.00** | 1.386 | 52.1 | $1.1 \times 10^{-12}$ | ✅ DE |</span>
+<span id="cb5-517"><a href="#cb5-517" aria-hidden="true" tabindex="-1"></a>| TP53 | **−2.00** | −1.385 | 44.7 | $8.2 \times 10^{-11}$ | ✅ DE |</span>
+<span id="cb5-518"><a href="#cb5-518" aria-hidden="true" tabindex="-1"></a>| ACTB | 0.00 | ≈0 | ≈0 | ≈0.92 | ❌ non-DE |</span>
+<span id="cb5-519"><a href="#cb5-519" aria-hidden="true" tabindex="-1"></a>| GAPDH | 0.00 | ≈0 | ≈0 | ≈0.96 | ❌ non-DE |</span>
+<span id="cb5-520"><a href="#cb5-520" aria-hidden="true" tabindex="-1"></a>| EEF2 | 0.00 | ≈0 | ≈0 | ≈0.98 | ❌ non-DE |</span>
 <span id="cb5-521"><a href="#cb5-521" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-522"><a href="#cb5-522" aria-hidden="true" tabindex="-1"></a>**Final EdgeR output table (`topTags()`):**</span>
 <span id="cb5-523"><a href="#cb5-523" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-524"><a href="#cb5-524" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> logFC <span class="pp">|</span> logCPM <span class="pp">|</span> F <span class="pp">|</span> PValue <span class="pp">|</span> FDR <span class="pp">|</span></span>
-<span id="cb5-525"><a href="#cb5-525" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|:-----:|:------:|</span>:-:<span class="pp">|:------:|:---:|</span></span>
-<span id="cb5-526"><a href="#cb5-526" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> **2.00** <span class="pp">|</span> 7.4 <span class="pp">|</span> 52.1 <span class="pp">|</span> $1.1 \times 10^{-12}$ <span class="pp">|</span> $5.5 \times 10^{-12}$ <span class="pp">|</span></span>
-<span id="cb5-527"><a href="#cb5-527" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> **−2.00** <span class="pp">|</span> 7.0 <span class="pp">|</span> 44.7 <span class="pp">|</span> $8.2 \times 10^{-11}$ <span class="pp">|</span> $2.1 \times 10^{-10}$ <span class="pp">|</span></span>
-<span id="cb5-528"><a href="#cb5-528" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> 0.00 <span class="pp">|</span> 6.9 <span class="pp">|</span> ≈0 <span class="pp">|</span> 0.92 <span class="pp">|</span> 1.00 <span class="pp">|</span></span>
-<span id="cb5-529"><a href="#cb5-529" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> 0.00 <span class="pp">|</span> 7.9 <span class="pp">|</span> ≈0 <span class="pp">|</span> 0.96 <span class="pp">|</span> 1.00 <span class="pp">|</span></span>
-<span id="cb5-530"><a href="#cb5-530" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> 0.00 <span class="pp">|</span> 6.6 <span class="pp">|</span> ≈0 <span class="pp">|</span> 0.98 <span class="pp">|</span> 1.00 <span class="pp">|</span></span>
+<span id="cb5-524"><a href="#cb5-524" aria-hidden="true" tabindex="-1"></a>| Gene | logFC | logCPM | F | PValue | FDR |</span>
+<span id="cb5-525"><a href="#cb5-525" aria-hidden="true" tabindex="-1"></a>|:----:|:-----:|:------:|:-:|:------:|:---:|</span>
+<span id="cb5-526"><a href="#cb5-526" aria-hidden="true" tabindex="-1"></a>| MYC | **2.00** | 7.4 | 52.1 | $1.1 \times 10^{-12}$ | $5.5 \times 10^{-12}$ |</span>
+<span id="cb5-527"><a href="#cb5-527" aria-hidden="true" tabindex="-1"></a>| TP53 | **−2.00** | 7.0 | 44.7 | $8.2 \times 10^{-11}$ | $2.1 \times 10^{-10}$ |</span>
+<span id="cb5-528"><a href="#cb5-528" aria-hidden="true" tabindex="-1"></a>| ACTB | 0.00 | 6.9 | ≈0 | 0.92 | 1.00 |</span>
+<span id="cb5-529"><a href="#cb5-529" aria-hidden="true" tabindex="-1"></a>| GAPDH | 0.00 | 7.9 | ≈0 | 0.96 | 1.00 |</span>
+<span id="cb5-530"><a href="#cb5-530" aria-hidden="true" tabindex="-1"></a>| EEF2 | 0.00 | 6.6 | ≈0 | 0.98 | 1.00 |</span>
 <span id="cb5-531"><a href="#cb5-531" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-532"><a href="#cb5-532" aria-hidden="true" tabindex="-1"></a>where <span class="in">`logFC`</span> = log2 fold change, <span class="in">`logCPM`</span> = average log2 counts per million (measure of expression level), <span class="in">`F`</span> = quasi-likelihood F-statistic, <span class="in">`PValue`</span> = raw p-value, <span class="in">`FDR`</span> = Benjamini-Hochberg adjusted p-value.</span>
 <span id="cb5-533"><a href="#cb5-533" aria-hidden="true" tabindex="-1"></a></span>
@@ -2958,9 +2972,9 @@ Note
 <span id="cb5-612"><a href="#cb5-612" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-613"><a href="#cb5-613" aria-hidden="true" tabindex="-1"></a>**For our example:**</span>
 <span id="cb5-614"><a href="#cb5-614" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-615"><a href="#cb5-615" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sample <span class="pp">|</span> A1 <span class="pp">|</span> A2 <span class="pp">|</span> A3 <span class="pp">|</span> B1 <span class="pp">|</span> B2 <span class="pp">|</span> B3 <span class="pp">|</span></span>
-<span id="cb5-616"><a href="#cb5-616" aria-hidden="true" tabindex="-1"></a><span class="pp">|:------:|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span>:--:<span class="pp">|</span></span>
-<span id="cb5-617"><a href="#cb5-617" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Size factor** | **0.77** | **0.81** | **0.85** | **1.14** | **1.22** | **1.30** <span class="pp">|</span></span>
+<span id="cb5-615"><a href="#cb5-615" aria-hidden="true" tabindex="-1"></a>| Sample | A1 | A2 | A3 | B1 | B2 | B3 |</span>
+<span id="cb5-616"><a href="#cb5-616" aria-hidden="true" tabindex="-1"></a>|:------:|:--:|:--:|:--:|:--:|:--:|:--:|</span>
+<span id="cb5-617"><a href="#cb5-617" aria-hidden="true" tabindex="-1"></a>| **Size factor** | **0.77** | **0.81** | **0.85** | **1.14** | **1.22** | **1.30** |</span>
 <span id="cb5-618"><a href="#cb5-618" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-619"><a href="#cb5-619" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb5-620"><a href="#cb5-620" aria-hidden="true" tabindex="-1"></a></span>
@@ -2976,11 +2990,11 @@ Note
 <span id="cb5-630"><a href="#cb5-630" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-631"><a href="#cb5-631" aria-hidden="true" tabindex="-1"></a>**Parameters are estimated by the EM algorithm:**</span>
 <span id="cb5-632"><a href="#cb5-632" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-633"><a href="#cb5-633" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Step <span class="pp">|</span> What it does <span class="pp">|</span></span>
-<span id="cb5-634"><a href="#cb5-634" aria-hidden="true" tabindex="-1"></a><span class="pp">|:-----|:-------------|</span></span>
-<span id="cb5-635"><a href="#cb5-635" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **E-step** <span class="pp">|</span> Compute posterior probability of DE for each gene given current parameters <span class="pp">|</span></span>
-<span id="cb5-636"><a href="#cb5-636" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **M-step** <span class="pp">|</span> Update mixture weights $\pi_1, \pi_0$ and NB parameters to maximize expected log-likelihood <span class="pp">|</span></span>
-<span id="cb5-637"><a href="#cb5-637" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Repeat** <span class="pp">|</span> Until convergence (change in parameters &lt; tolerance) <span class="pp">|</span></span>
+<span id="cb5-633"><a href="#cb5-633" aria-hidden="true" tabindex="-1"></a>| Step | What it does |</span>
+<span id="cb5-634"><a href="#cb5-634" aria-hidden="true" tabindex="-1"></a>|:-----|:-------------|</span>
+<span id="cb5-635"><a href="#cb5-635" aria-hidden="true" tabindex="-1"></a>| **E-step** | Compute posterior probability of DE for each gene given current parameters |</span>
+<span id="cb5-636"><a href="#cb5-636" aria-hidden="true" tabindex="-1"></a>| **M-step** | Update mixture weights $\pi_1, \pi_0$ and NB parameters to maximize expected log-likelihood |</span>
+<span id="cb5-637"><a href="#cb5-637" aria-hidden="true" tabindex="-1"></a>| **Repeat** | Until convergence (change in parameters &lt; tolerance) |</span>
 <span id="cb5-638"><a href="#cb5-638" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-639"><a href="#cb5-639" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb5-640"><a href="#cb5-640" aria-hidden="true" tabindex="-1"></a></span>
@@ -3002,13 +3016,13 @@ Note
 <span id="cb5-656"><a href="#cb5-656" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-657"><a href="#cb5-657" aria-hidden="true" tabindex="-1"></a>**For our example:**</span>
 <span id="cb5-658"><a href="#cb5-658" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-659"><a href="#cb5-659" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> $L_g^{(1)}$ (DE) <span class="pp">|</span> $L_g^{(0)}$ (non-DE) <span class="pp">|</span> PPDE <span class="pp">|</span> Called DE? <span class="pp">|</span></span>
-<span id="cb5-660"><a href="#cb5-660" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|:----------------:|:--------------------:|:----:|:----------:|</span></span>
-<span id="cb5-661"><a href="#cb5-661" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> very high <span class="pp">|</span> very low <span class="pp">|</span> **0.9999** <span class="pp">|</span> ✅ <span class="pp">|</span></span>
-<span id="cb5-662"><a href="#cb5-662" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> very high <span class="pp">|</span> very low <span class="pp">|</span> **0.9997** <span class="pp">|</span> ✅ <span class="pp">|</span></span>
-<span id="cb5-663"><a href="#cb5-663" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> low <span class="pp">|</span> high <span class="pp">|</span> **0.0022** <span class="pp">|</span> ❌ <span class="pp">|</span></span>
-<span id="cb5-664"><a href="#cb5-664" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> low <span class="pp">|</span> high <span class="pp">|</span> **0.0018** <span class="pp">|</span> ❌ <span class="pp">|</span></span>
-<span id="cb5-665"><a href="#cb5-665" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> low <span class="pp">|</span> high <span class="pp">|</span> **0.0031** <span class="pp">|</span> ❌ <span class="pp">|</span></span>
+<span id="cb5-659"><a href="#cb5-659" aria-hidden="true" tabindex="-1"></a>| Gene | $L_g^{(1)}$ (DE) | $L_g^{(0)}$ (non-DE) | PPDE | Called DE? |</span>
+<span id="cb5-660"><a href="#cb5-660" aria-hidden="true" tabindex="-1"></a>|:----:|:----------------:|:--------------------:|:----:|:----------:|</span>
+<span id="cb5-661"><a href="#cb5-661" aria-hidden="true" tabindex="-1"></a>| MYC | very high | very low | **0.9999** | ✅ |</span>
+<span id="cb5-662"><a href="#cb5-662" aria-hidden="true" tabindex="-1"></a>| TP53 | very high | very low | **0.9997** | ✅ |</span>
+<span id="cb5-663"><a href="#cb5-663" aria-hidden="true" tabindex="-1"></a>| ACTB | low | high | **0.0022** | ❌ |</span>
+<span id="cb5-664"><a href="#cb5-664" aria-hidden="true" tabindex="-1"></a>| GAPDH | low | high | **0.0018** | ❌ |</span>
+<span id="cb5-665"><a href="#cb5-665" aria-hidden="true" tabindex="-1"></a>| EEF2 | low | high | **0.0031** | ❌ |</span>
 <span id="cb5-666"><a href="#cb5-666" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-667"><a href="#cb5-667" aria-hidden="true" tabindex="-1"></a>$\widehat{\text{FDR}} = \frac{(1-0.9999)+(1-0.9997)}{2} = \frac{0.0004}{2} = 0.0002$ — well below 5%.</span>
 <span id="cb5-668"><a href="#cb5-668" aria-hidden="true" tabindex="-1"></a></span>
@@ -3018,13 +3032,13 @@ Note
 <span id="cb5-672"><a href="#cb5-672" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-673"><a href="#cb5-673" aria-hidden="true" tabindex="-1"></a>**Final EBSeq output:**</span>
 <span id="cb5-674"><a href="#cb5-674" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-675"><a href="#cb5-675" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gene <span class="pp">|</span> PPDE <span class="pp">|</span> PostFC (B/A) <span class="pp">|</span> log2FC <span class="pp">|</span> Status <span class="pp">|</span></span>
-<span id="cb5-676"><a href="#cb5-676" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|:----:|:------------:|:------:|:------:|</span></span>
-<span id="cb5-677"><a href="#cb5-677" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MYC <span class="pp">|</span> 0.9999 <span class="pp">|</span> **4.00** | **2.00** <span class="pp">|</span> DE <span class="pp">|</span></span>
-<span id="cb5-678"><a href="#cb5-678" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TP53 <span class="pp">|</span> 0.9997 <span class="pp">|</span> **0.25** | **−2.00** <span class="pp">|</span> DE <span class="pp">|</span></span>
-<span id="cb5-679"><a href="#cb5-679" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ACTB <span class="pp">|</span> 0.0022 <span class="pp">|</span> 1.00 <span class="pp">|</span> 0.00 <span class="pp">|</span> non-DE <span class="pp">|</span></span>
-<span id="cb5-680"><a href="#cb5-680" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAPDH <span class="pp">|</span> 0.0018 <span class="pp">|</span> 1.00 <span class="pp">|</span> 0.00 <span class="pp">|</span> non-DE <span class="pp">|</span></span>
-<span id="cb5-681"><a href="#cb5-681" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EEF2 <span class="pp">|</span> 0.0031 <span class="pp">|</span> 1.00 <span class="pp">|</span> 0.00 <span class="pp">|</span> non-DE <span class="pp">|</span></span>
+<span id="cb5-675"><a href="#cb5-675" aria-hidden="true" tabindex="-1"></a>| Gene | PPDE | PostFC (B/A) | log2FC | Status |</span>
+<span id="cb5-676"><a href="#cb5-676" aria-hidden="true" tabindex="-1"></a>|:----:|:----:|:------------:|:------:|:------:|</span>
+<span id="cb5-677"><a href="#cb5-677" aria-hidden="true" tabindex="-1"></a>| MYC | 0.9999 | **4.00** | **2.00** | DE |</span>
+<span id="cb5-678"><a href="#cb5-678" aria-hidden="true" tabindex="-1"></a>| TP53 | 0.9997 | **0.25** | **−2.00** | DE |</span>
+<span id="cb5-679"><a href="#cb5-679" aria-hidden="true" tabindex="-1"></a>| ACTB | 0.0022 | 1.00 | 0.00 | non-DE |</span>
+<span id="cb5-680"><a href="#cb5-680" aria-hidden="true" tabindex="-1"></a>| GAPDH | 0.0018 | 1.00 | 0.00 | non-DE |</span>
+<span id="cb5-681"><a href="#cb5-681" aria-hidden="true" tabindex="-1"></a>| EEF2 | 0.0031 | 1.00 | 0.00 | non-DE |</span>
 <span id="cb5-682"><a href="#cb5-682" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-683"><a href="#cb5-683" aria-hidden="true" tabindex="-1"></a>where <span class="in">`PostFC`</span> = posterior fold change (B/A), computed as the ratio of posterior mean expression under the DE component; <span class="in">`log2FC`</span> = $\log_2(\text{PostFC})$.</span>
 <span id="cb5-684"><a href="#cb5-684" aria-hidden="true" tabindex="-1"></a></span>
@@ -3091,7 +3105,7 @@ Note
 <span id="cb5-745"><a href="#cb5-745" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-746"><a href="#cb5-746" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 9. Save results ──────────────────────────────────────────────────────────</span></span>
 <span id="cb5-747"><a href="#cb5-747" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(results_df, <span class="st">"EBSeq_results.csv"</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-748"><a href="#cb5-748" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb5-748"><a href="#cb5-748" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

@@ -1,15 +1,16 @@
 ---
 title: "Analysis"
-# subtitle: "A comprehensive guide to essential keyboard shortcuts"
+subtitle: "A list of analysis and tutorials for omics data"
 date: 2023-01-01
 published-title: Created
 date-modified: last-modified
 title-block-banner: "#212529"
-toc-title: "Contents"
+# toc-title: "Contents"
 ---
 
-## [scRNAseq](./scRNAseq/index.qmd)
-## [scATAC-seq](./scATAC-seq/index.qmd)
+- [scRNAseq](./scRNA-seq/index.qmd)
+
+- [scATAC-seq](./scATAC-seq/index.qmd)
 
 
 

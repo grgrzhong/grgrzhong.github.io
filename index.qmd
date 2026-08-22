@@ -24,13 +24,6 @@ format:
 
 Cell biologist with applied skills in bioinformatics and computational biology.
 
-## Skills
-
-- **Wet lab**: Genome editing with CRISPR/Cas9, cell model development
-- **Multi-omics**: WGS, WES, RNA-seq, scRNA-seq, methylation arrays, proteomics
-- **Spatial transcriptomics**: Visium, Visium HD, 10x Genomics platforms
-- **Imaging**: High-throughput phenotypic profiling with machine learning
-- **Programming**: R, Python
 
 ## Research Interests
 
