@@ -20,7 +20,7 @@
 #     r-downlit \
 #     r-xml2
 
-# source $(conda info --base)/etc/profile.d/conda.sh
+source $(conda info --base)/etc/profile.d/conda.sh
 
 conda activate renv
 

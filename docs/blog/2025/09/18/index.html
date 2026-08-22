@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Practical guide to reproducible bioinformatics environments using Docker and Singularity/Apptainer: concepts, pitfalls, examples, HPC integration, and workflow tooling.">
+
+<title>Containers | Environment management in bioinformatics data analysis</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../..//files/profiles/avatar.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ccafe2c99a4564d55934ca8539ca9f46.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-607d976b13a72f3f9925e553e6dfcff2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #212529;
+      }
+</style>
+
+
+</head>
+
+<body class="floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../linux/index.html"> 
+<span class="menu-text">Linux</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../python/index.html"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../r/index.html"> 
+<span class="menu-text">R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../analysis/index.html"> 
+<span class="menu-text">Analysis</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-technique" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Technique</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-technique">    
+        <li>
+    <a class="dropdown-item" href="../../../../technique/10xgenomics/index.html">
+ <span class="dropdown-text">10X Genomics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../technique/illumina/index.html">
+ <span class="dropdown-text">Illumina</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">Containers | Environment management in bioinformatics data analysis</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+                  <div>
+        <div class="description">
+          Practical guide to reproducible bioinformatics environments using Docker and Singularity/Apptainer: concepts, pitfalls, examples, HPC integration, and workflow tooling.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Containers</div>
+                <div class="quarto-category">Docker</div>
+                <div class="quarto-category">Singularity</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">Thursday, September 18, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#why-environments-are-still-painful" id="toc-why-environments-are-still-painful" class="nav-link active" data-scroll-target="#why-environments-are-still-painful"><span class="header-section-number">1</span> Why environments are still painful</a></li>
+  <li><a href="#quick-landscape-environment-strategies" id="toc-quick-landscape-environment-strategies" class="nav-link" data-scroll-target="#quick-landscape-environment-strategies"><span class="header-section-number">2</span> Quick landscape: environment strategies</a></li>
+  <li><a href="#core-concepts-mental-model" id="toc-core-concepts-mental-model" class="nav-link" data-scroll-target="#core-concepts-mental-model"><span class="header-section-number">3</span> Core concepts (mental model)</a>
+  <ul class="collapse">
+  <li><a href="#how-layering-works" id="toc-how-layering-works" class="nav-link" data-scroll-target="#how-layering-works"><span class="header-section-number">3.1</span> How layering works</a></li>
+  </ul></li>
+  <li><a href="#choosing-docker-vs-singularityapptainer" id="toc-choosing-docker-vs-singularityapptainer" class="nav-link" data-scroll-target="#choosing-docker-vs-singularityapptainer"><span class="header-section-number">4</span> Choosing Docker vs Singularity/Apptainer</a></li>
+  <li><a href="#minimal-examples" id="toc-minimal-examples" class="nav-link" data-scroll-target="#minimal-examples"><span class="header-section-number">5</span> Minimal examples</a>
+  <ul class="collapse">
+  <li><a href="#simple-dockerfile-micromamba-based-rna-seq-tooling" id="toc-simple-dockerfile-micromamba-based-rna-seq-tooling" class="nav-link" data-scroll-target="#simple-dockerfile-micromamba-based-rna-seq-tooling"><span class="header-section-number">5.1</span> Simple Dockerfile (micromamba-based RNA-seq tooling)</a></li>
+  <li><a href="#equivalent-singularityapptainer-definition" id="toc-equivalent-singularityapptainer-definition" class="nav-link" data-scroll-target="#equivalent-singularityapptainer-definition"><span class="header-section-number">5.2</span> Equivalent Singularity/Apptainer definition</a></li>
+  </ul></li>
+  <li><a href="#common-pitfalls-fixes" id="toc-common-pitfalls-fixes" class="nav-link" data-scroll-target="#common-pitfalls-fixes"><span class="header-section-number">6</span> Common pitfalls &amp; fixes</a></li>
+  <li><a href="#layer-ordering-strategy-example" id="toc-layer-ordering-strategy-example" class="nav-link" data-scroll-target="#layer-ordering-strategy-example"><span class="header-section-number">7</span> Layer ordering strategy (example)</a></li>
+  <li><a href="#reproducible-build-practices" id="toc-reproducible-build-practices" class="nav-link" data-scroll-target="#reproducible-build-practices"><span class="header-section-number">8</span> Reproducible build practices</a></li>
+  <li><a href="#example-multi-stage-to-shrink-bioconductor-image" id="toc-example-multi-stage-to-shrink-bioconductor-image" class="nav-link" data-scroll-target="#example-multi-stage-to-shrink-bioconductor-image"><span class="header-section-number">9</span> Example: multi-stage to shrink Bioconductor image</a></li>
+  <li><a href="#integrating-with-workflow-engines" id="toc-integrating-with-workflow-engines" class="nav-link" data-scroll-target="#integrating-with-workflow-engines"><span class="header-section-number">10</span> Integrating with workflow engines</a>
+  <ul class="collapse">
+  <li><a href="#snakemake" id="toc-snakemake" class="nav-link" data-scroll-target="#snakemake"><span class="header-section-number">10.1</span> Snakemake</a></li>
+  <li><a href="#nextflow" id="toc-nextflow" class="nav-link" data-scroll-target="#nextflow"><span class="header-section-number">10.2</span> Nextflow</a></li>
+  <li><a href="#rmarkdown-quarto" id="toc-rmarkdown-quarto" class="nav-link" data-scroll-target="#rmarkdown-quarto"><span class="header-section-number">10.3</span> Rmarkdown / Quarto</a></li>
+  </ul></li>
+  <li><a href="#hpc-binding-patterns-apptainer" id="toc-hpc-binding-patterns-apptainer" class="nav-link" data-scroll-target="#hpc-binding-patterns-apptainer"><span class="header-section-number">11</span> HPC binding patterns (Apptainer)</a></li>
+  <li><a href="#security-provenance-quick-wins" id="toc-security-provenance-quick-wins" class="nav-link" data-scroll-target="#security-provenance-quick-wins"><span class="header-section-number">12</span> Security &amp; provenance quick wins</a></li>
+  <li><a href="#when-not-to-containerize" id="toc-when-not-to-containerize" class="nav-link" data-scroll-target="#when-not-to-containerize"><span class="header-section-number">13</span> When NOT to containerize</a></li>
+  <li><a href="#quick-cheatsheet" id="toc-quick-cheatsheet" class="nav-link" data-scroll-target="#quick-cheatsheet"><span class="header-section-number">14</span> Quick cheatsheet</a></li>
+  <li><a href="#minimal-version-manifest-pattern" id="toc-minimal-version-manifest-pattern" class="nav-link" data-scroll-target="#minimal-version-manifest-pattern"><span class="header-section-number">15</span> Minimal version manifest pattern</a></li>
+  <li><a href="#future-directions" id="toc-future-directions" class="nav-link" data-scroll-target="#future-directions"><span class="header-section-number">16</span> Future directions</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">17</span> Summary</a></li>
+  <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><span class="header-section-number">18</span> References &amp; further reading</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="why-environments-are-still-painful" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="why-environments-are-still-painful"><span class="header-section-number">1</span> Why environments are still painful</h2>
+<p>Re-running an analysis six months later can feel like archaeology: missing system libraries, different BLAST versions, broken Bioconductor installs, Python 3.X drift, orphaned <code>conda</code> envs, or an HPC node with older glibc. Traditional solutions (system modules, ad‑hoc conda envs, manual <code>pip install</code>) reduce friction short-term but leak entropy over time.</p>
+<p>Containers give you: - Immutability (image digest = frozen state) - Portable stacks across laptop → cloud → HPC (with Singularity/Apptainer) - Clear provenance (Dockerfile / definition recipe) - Smaller cognitive diff when you onboard collaborators</p>
+<p>They do NOT automatically guarantee: - Determinism (if you use <code>apt-get install foo</code> without pinning) - Security (you still pull unverified images?) - Performance (I/O heavy workloads can still bottleneck) - Zero maintenance (base images deprecate; CVEs accumulate)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Containers encapsulate user space, not the kernel. Reproducibility ≠ identical hardware, kernel, or scheduler context.</p>
+</div>
+</div>
+</section>
+<section id="quick-landscape-environment-strategies" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="quick-landscape-environment-strategies"><span class="header-section-number">2</span> Quick landscape: environment strategies</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Strategy</th>
+<th>Pros</th>
+<th>Cons</th>
+<th>Typical Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>System modules</td>
+<td>Native performance, curated by HPC admins</td>
+<td>Diverges across clusters; hidden dependency webs</td>
+<td>Classical HPC pipelines</td>
+</tr>
+<tr class="even">
+<td>Conda / Mamba</td>
+<td>Flexible, multi-language, no root</td>
+<td>Dependency solver complexity, less immutable</td>
+<td>Exploratory dev, local prototyping</td>
+</tr>
+<tr class="odd">
+<td>Docker</td>
+<td>Rich ecosystem, caching, OCI standard</td>
+<td>Root daemon (on many systems), sometimes banned on HPC</td>
+<td>Cloud + local builds</td>
+</tr>
+<tr class="even">
+<td>Singularity / Apptainer</td>
+<td>Unprivileged run, HPC friendly</td>
+<td>Single-file image (no layer reuse at runtime)</td>
+<td>Production on clusters</td>
+</tr>
+<tr class="odd">
+<td>Nix/Guix</td>
+<td>Strong reproducibility, pure builds</td>
+<td>Steeper learning curve</td>
+<td>Long-term archival</td>
+</tr>
+<tr class="even">
+<td>Native packaging (deb/rpm)</td>
+<td>Stable, audited</td>
+<td>System-wide only (needs root)</td>
+<td>Base layers in container builds</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="core-concepts-mental-model" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="core-concepts-mental-model"><span class="header-section-number">3</span> Core concepts (mental model)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning</th>
+<th>Analogy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Image</td>
+<td>Read-only layered filesystem snapshot + config</td>
+<td>Recipe output / frozen cake</td>
+</tr>
+<tr class="even">
+<td>Container</td>
+<td>Running process + isolated view of the image + overlay</td>
+<td>A plated slice being served</td>
+</tr>
+<tr class="odd">
+<td>Layer</td>
+<td>One diff in the filesystem graph</td>
+<td>Git commit</td>
+</tr>
+<tr class="even">
+<td>Registry</td>
+<td>Distribution endpoint for images</td>
+<td>Package repository</td>
+</tr>
+<tr class="odd">
+<td>Digest (sha256)</td>
+<td>Content address (immutable)</td>
+<td>Commit hash</td>
+</tr>
+<tr class="even">
+<td>Tag</td>
+<td>Mutable reference pointer</td>
+<td>Branch name</td>
+</tr>
+</tbody>
+</table>
+<section id="how-layering-works" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="how-layering-works"><span class="header-section-number">3.1</span> How layering works</h3>
+<p>Each <code>RUN</code>, <code>COPY</code>, or <code>ADD</code> typically adds a new layer. Efficient Dockerfiles: - Order stable (rarely changing) layers first (base OS, core tools) - Group commands that change together to reduce rebuild churn - Avoid installing &amp; removing large sets in the same layer without cleanup</p>
+</section>
+</section>
+<section id="choosing-docker-vs-singularityapptainer" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="choosing-docker-vs-singularityapptainer"><span class="header-section-number">4</span> Choosing Docker vs Singularity/Apptainer</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 29%">
+<col style="width: 35%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Docker Good?</th>
+<th>Apptainer Good?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Need to build locally with caching?</td>
+<td>✅</td>
+<td>➖ (build via recipe, no layered runtime cache)</td>
+<td>Use Docker for iterative builds</td>
+</tr>
+<tr class="even">
+<td>Running on multi-user HPC without root?</td>
+<td>❌ (often blocked)</td>
+<td>✅</td>
+<td>Apptainer safest choice</td>
+</tr>
+<tr class="odd">
+<td>Need GPU (CUDA) support?</td>
+<td>✅ (with nvidia-container toolkit)</td>
+<td>✅ (passes through host drivers)</td>
+<td>Versions must match host</td>
+</tr>
+<tr class="even">
+<td>Want smallest compressed artifact?</td>
+<td>✅ (with multi-stage)</td>
+<td>✅ (squashed SIF)</td>
+<td>Different mechanisms</td>
+</tr>
+<tr class="odd">
+<td>Need fine-grained image signing/policy?</td>
+<td>✅ (cosign, Notation)</td>
+<td>✅ (SIF signatures)</td>
+<td>Supply chain matters</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="minimal-examples" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="minimal-examples"><span class="header-section-number">5</span> Minimal examples</h2>
+<section id="simple-dockerfile-micromamba-based-rna-seq-tooling" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="simple-dockerfile-micromamba-based-rna-seq-tooling"><span class="header-section-number">5.1</span> Simple Dockerfile (micromamba-based RNA-seq tooling)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> mambaorg/micromamba:1.5.9</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create env with pinned versions</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">USER</span> root</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">micromamba</span> install <span class="at">-y</span> <span class="at">-n</span> base <span class="at">-c</span> bioconda <span class="at">-c</span> conda-forge <span class="dt">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    fastqc=0.12.1 multiqc=1.15 hisat2=2.2.1 samtools=1.20 subread=2.0.6 <span class="dt">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    python=3.11 <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">micromamba</span> clean <span class="at">-a</span> <span class="at">-y</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a non-root user (safer default)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">useradd</span> <span class="at">-m</span> analyst</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">USER</span> analyst</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /workspace</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">ENTRYPOINT</span> [<span class="st">"bash"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Build &amp; run (locally):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> rnaseq:1.0 .</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/workspace rnaseq:1.0 fastqc <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="equivalent-singularityapptainer-definition" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="equivalent-singularityapptainer-definition"><span class="header-section-number">5.2</span> Equivalent Singularity/Apptainer definition</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Bootstrap:</span> docker</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">From:</span> mambaorg/micromamba:1.5.9</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">%post</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">micromamba</span> install <span class="at">-y</span> <span class="at">-n</span> base <span class="at">-c</span> bioconda <span class="at">-c</span> conda-forge <span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        fastqc=0.12.1 multiqc=1.15 hisat2=2.2.1 samtools=1.20 subread=2.0.6 python=3.11</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">micromamba</span> clean <span class="at">-a</span> <span class="at">-y</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">useradd</span> <span class="at">-m</span> analyst <span class="kw">||</span> <span class="fu">true</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">%environment</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/opt/conda/bin:<span class="va">$PATH</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">%runscript</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exec</span> <span class="st">"</span><span class="va">$@</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Build on HPC login node (no root required if fuse/suid setup):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> build rnaseq.sif rnaseq.def</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> run rnaseq.sif fastqc <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If your cluster forbids remote pulls, pre-build the image elsewhere and transfer the <code>.sif</code> file (checksummed).</p>
+</div>
+</div>
+</section>
+</section>
+<section id="common-pitfalls-fixes" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="common-pitfalls-fixes"><span class="header-section-number">6</span> Common pitfalls &amp; fixes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 33%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pitfall</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bloated image (8–10 GB)</td>
+<td>Large conda env; unused build caches</td>
+<td>Use micromamba, pin only required tools, remove caches</td>
+</tr>
+<tr class="even">
+<td>Inconsistent results</td>
+<td>Unpinned OS packages (<code>apt-get update</code>)</td>
+<td>Freeze apt sources or install exact versions; record manifest</td>
+</tr>
+<tr class="odd">
+<td>Time-consuming rebuilds</td>
+<td>Layers invalidated early</td>
+<td>Put volatile steps (copy source) later</td>
+</tr>
+<tr class="even">
+<td>Fails on HPC</td>
+<td>Docker daemon blocked</td>
+<td>Convert via Apptainer or build Apptainer def directly</td>
+</tr>
+<tr class="odd">
+<td>Hidden network dependency</td>
+<td>Conda solving at runtime</td>
+<td>Pre-solve at build time, avoid env creation inside workflow step</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="layer-ordering-strategy-example" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="layer-ordering-strategy-example"><span class="header-section-number">7</span> Layer ordering strategy (example)</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Base image (rarely changes)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ubuntu:24.04 <span class="kw">AS</span> base</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> <span class="at">--no-install-recommends</span> curl ca-certificates <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> <span class="at">-rf</span> /var/lib/apt/lists/<span class="pp">*</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Toolchain layer</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> <span class="at">--no-install-recommends</span> build-essential wget bzip2 <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> <span class="at">-rf</span> /var/lib/apt/lists/<span class="pp">*</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Micromamba + bio tools</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># (Changes if you alter version pins)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Pipeline scripts (volatile)</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> workflow/ /opt/workflow/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Goal: Stable early layers cache across small workflow edits.</p>
+</section>
+<section id="reproducible-build-practices" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="reproducible-build-practices"><span class="header-section-number">8</span> Reproducible build practices</h2>
+<ol type="1">
+<li>Pin everything (base image digest, package versions, channels ordering)</li>
+<li>Capture a manifest: write <code>conda list --explicit &gt; env.lock</code> during build</li>
+<li>Prefer micromamba (faster solver, smaller footprint)</li>
+<li>No <code>apt-get upgrade</code> — install specific packages only</li>
+<li>Use multi-stage builds to compile large tools then copy binaries into a slim runtime</li>
+<li>Generate Software Bill of Materials (SBOM) (<code>syft packages dir:</code> or <code>tern</code>)</li>
+<li>Sign images (<code>cosign sign --key cosign.key image@sha256:...</code>)</li>
+</ol>
+</section>
+<section id="example-multi-stage-to-shrink-bioconductor-image" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="example-multi-stage-to-shrink-bioconductor-image"><span class="header-section-number">9</span> Example: multi-stage to shrink Bioconductor image</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> bioconductor/bioconductor_docker:RELEASE_3_19 <span class="kw">AS</span> build</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">R</span> <span class="at">-q</span> <span class="at">-e</span> <span class="st">'install.packages(c("BiocManager")); BiocManager::install(c("DESeq2"), ask=FALSE)'</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/r2u:jammy</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy only needed libs from previous stage</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=build</span> /usr/local/lib/R /usr/local/lib/R</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=build</span> /usr/local/bin/R /usr/local/bin/R</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ENTRYPOINT</span> [<span class="st">"R"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="integrating-with-workflow-engines" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="integrating-with-workflow-engines"><span class="header-section-number">10</span> Integrating with workflow engines</h2>
+<section id="snakemake" class="level3" data-number="10.1">
+<h3 data-number="10.1" class="anchored" data-anchor-id="snakemake"><span class="header-section-number">10.1</span> Snakemake</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rule fastqc:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span>: <span class="st">"data/</span><span class="sc">{sample}</span><span class="st">.fq.gz"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    output: <span class="st">"qc/</span><span class="sc">{sample}</span><span class="st">_fastqc.html"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    container: <span class="st">"docker://rnaseq:1.0"</span>  <span class="co"># or "apptainer://rnaseq.sif"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    threads: <span class="dv">2</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    shell: <span class="st">"fastqc </span><span class="sc">{input}</span><span class="st"> -o qc"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="nextflow" class="level3" data-number="10.2">
+<h3 data-number="10.2" class="anchored" data-anchor-id="nextflow"><span class="header-section-number">10.2</span> Nextflow</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>process FASTQC <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  container <span class="st">'rnaseq:1.0'</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  input<span class="op">:</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    path reads</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  output<span class="op">:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    path <span class="st">"qc"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  script<span class="op">:</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"""</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">  fastqc </span><span class="ss">$reads</span><span class="st"> -o qc</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="st">  """</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="rmarkdown-quarto" class="level3" data-number="10.3">
+<h3 data-number="10.3" class="anchored" data-anchor-id="rmarkdown-quarto"><span class="header-section-number">10.3</span> Rmarkdown / Quarto</h3>
+<p>Use a named project execution environment or call external container via <code>processx</code> + <code>docker run</code> if necessary for isolation.</p>
+</section>
+</section>
+<section id="hpc-binding-patterns-apptainer" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="hpc-binding-patterns-apptainer"><span class="header-section-number">11</span> HPC binding patterns (Apptainer)</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec <span class="dt">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--bind</span> /scratch:/scratch,/project/genomes:/ref <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  rnaseq.sif <span class="dt">\</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  hisat2 <span class="at">-x</span> /ref/hg38 <span class="at">-U</span> sample.fq.gz <span class="at">-S</span> sample.sam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Common mounts: <code>/scratch</code>, large shared reference directories, license servers, GPU drivers (<code>/usr/lib64/nvidia</code> auto-detected).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Never embed large static reference genomes inside the image unless they are versioned and universally reused—prefer mounted read-only references to reduce duplication.</p>
+</div>
+</div>
+</section>
+<section id="security-provenance-quick-wins" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="security-provenance-quick-wins"><span class="header-section-number">12</span> Security &amp; provenance quick wins</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Scan for CVEs</td>
+<td><code>trivy image rnaseq:1.0</code></td>
+</tr>
+<tr class="even">
+<td>Generate SBOM</td>
+<td><code>syft rnaseq:1.0 -o json &gt; sbom.json</code></td>
+</tr>
+<tr class="odd">
+<td>Sign image</td>
+<td><code>cosign sign</code></td>
+</tr>
+<tr class="even">
+<td>Verify digest in workflow</td>
+<td>Use <code>image@sha256:...</code></td>
+</tr>
+<tr class="odd">
+<td>Least privilege</td>
+<td>Non-root user; minimal packages</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="when-not-to-containerize" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="when-not-to-containerize"><span class="header-section-number">13</span> When NOT to containerize</h2>
+<ul>
+<li>Ultra-fast iteration on a one-off exploratory script (use conda + micro env)</li>
+<li>Tight coupling to HPC vendor-tuned MPI stack (use system modules)</li>
+<li>Extremely large monolithic datasets (prefer external mounts)</li>
+</ul>
+</section>
+<section id="quick-cheatsheet" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="quick-cheatsheet"><span class="header-section-number">14</span> Quick cheatsheet</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build docker image</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> toolset:0.1 .</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Export to singularity (method 1)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> build toolset.sif docker-daemon://toolset:0.1</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Or pull directly (method 2)</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> pull docker://yourrepo/toolset:0.1</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run command</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec toolset.sif samtools <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minimal-version-manifest-pattern" class="level2" data-number="15">
+<h2 data-number="15" class="anchored" data-anchor-id="minimal-version-manifest-pattern"><span class="header-section-number">15</span> Minimal version manifest pattern</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;&lt;EOF</span> <span class="op">&gt;</span> VERSIONS.txt</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="st">fastqc </span><span class="va">$(</span><span class="ex">fastqc</span> <span class="at">--version</span> <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $2}'</span><span class="va">)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="va">$(</span><span class="ex">samtools</span> <span class="at">--version</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span><span class="va">)</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="va">$(</span><span class="ex">hisat2</span> <span class="at">--version</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span><span class="va">)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Commit that with pipeline outputs for provenance.</p>
+</section>
+<section id="future-directions" class="level2" data-number="16">
+<h2 data-number="16" class="anchored" data-anchor-id="future-directions"><span class="header-section-number">16</span> Future directions</h2>
+<ul>
+<li>Reproducible builds with <code>--provenance</code> attestations (increasing adoption)</li>
+<li>Hybrid: Nix builds exported to OCI images</li>
+<li>Content trust pipelines (Rekor transparency logs + SBOM diffing)</li>
+<li>WASM-based bioinformatics modules for partially sandboxed execution</li>
+</ul>
+</section>
+<section id="summary" class="level2" data-number="17">
+<h2 data-number="17" class="anchored" data-anchor-id="summary"><span class="header-section-number">17</span> Summary</h2>
+<p>Containers provide a portable, inspectable, and (mostly) reproducible substrate for bioinformatics workflows—especially across heterogeneous compute environments. Effective practice centers on pinning, layering discipline, security hygiene, and clean integration with workflow managers.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Start small: containerize one stable tool chain (QC + alignment) before wrapping your entire multi-omics pipeline.</p>
+</div>
+</div>
+</section>
+<section id="references-further-reading" class="level2" data-number="18">
+<h2 data-number="18" class="anchored" data-anchor-id="references-further-reading"><span class="header-section-number">18</span> References &amp; further reading</h2>
+<ul>
+<li>Apptainer docs: https://apptainer.org/docs/</li>
+<li>OCI Image Spec: https://github.com/opencontainers/image-spec</li>
+<li>Bioconda: https://bioconda.github.io/</li>
+<li>Snakemake containers: https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html</li>
+<li>Nextflow containers: https://www.nextflow.io/docs/latest/container.html</li>
+<li>Micromamba: https://mamba.readthedocs.io/</li>
+<li>Trivy (scanning): https://aquasecurity.github.io/trivy/</li>
+<li>Syft (SBOM): https://github.com/anchore/syft</li>
+</ul>
+
+
+<!-- -->
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/grgrzhong\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Containers | Environment management in bioinformatics data analysis"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2025-09-18"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Practical guide to reproducible bioinformatics environments using Docker and Singularity/Apptainer: concepts, pitfalls, examples, HPC integration, and workflow tooling."</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Containers, Docker, Singularity]</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> workflow.jpg</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># draft: true</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: false</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why environments are still painful</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>Re-running an analysis six months later can feel like archaeology: missing system libraries, different BLAST versions, broken Bioconductor installs, Python 3.X drift, orphaned <span class="in">`conda`</span> envs, or an HPC node with older glibc. Traditional solutions (system modules, ad‑hoc conda envs, manual <span class="in">`pip install`</span>) reduce friction short-term but leak entropy over time.</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>Containers give you:</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Immutability (image digest = frozen state)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Portable stacks across laptop → cloud → HPC (with Singularity/Apptainer)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clear provenance (Dockerfile / definition recipe)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Smaller cognitive diff when you onboard collaborators</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>They do NOT automatically guarantee:</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Determinism (if you use <span class="in">`apt-get install foo`</span> without pinning)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Security (you still pull unverified images?)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Performance (I/O heavy workloads can still bottleneck)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Zero maintenance (base images deprecate; CVEs accumulate)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>Containers encapsulate user space, not the kernel. Reproducibility ≠ identical hardware, kernel, or scheduler context.</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quick landscape: environment strategies</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Strategy <span class="pp">|</span> Pros <span class="pp">|</span> Cons <span class="pp">|</span> Typical Use <span class="pp">|</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|------|------|-------------|</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> System modules <span class="pp">|</span> Native performance, curated by HPC admins <span class="pp">|</span> Diverges across clusters; hidden dependency webs <span class="pp">|</span> Classical HPC pipelines <span class="pp">|</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Conda / Mamba <span class="pp">|</span> Flexible, multi-language, no root <span class="pp">|</span> Dependency solver complexity, less immutable <span class="pp">|</span> Exploratory dev, local prototyping <span class="pp">|</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Docker <span class="pp">|</span> Rich ecosystem, caching, OCI standard <span class="pp">|</span> Root daemon (on many systems), sometimes banned on HPC <span class="pp">|</span> Cloud + local builds <span class="pp">|</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Singularity / Apptainer <span class="pp">|</span> Unprivileged run, HPC friendly <span class="pp">|</span> Single-file image (no layer reuse at runtime) <span class="pp">|</span> Production on clusters <span class="pp">|</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Nix/Guix <span class="pp">|</span> Strong reproducibility, pure builds <span class="pp">|</span> Steeper learning curve <span class="pp">|</span> Long-term archival <span class="pp">|</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Native packaging (deb/rpm) <span class="pp">|</span> Stable, audited <span class="pp">|</span> System-wide only (needs root) <span class="pp">|</span> Base layers in container builds <span class="pp">|</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Core concepts (mental model)</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Term <span class="pp">|</span> Meaning <span class="pp">|</span> Analogy <span class="pp">|</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------|---------|</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Read-only layered filesystem snapshot + config <span class="pp">|</span> Recipe output / frozen cake <span class="pp">|</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Container <span class="pp">|</span> Running process + isolated view of the image + overlay <span class="pp">|</span> A plated slice being served <span class="pp">|</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Layer <span class="pp">|</span> One diff in the filesystem graph <span class="pp">|</span> Git commit <span class="pp">|</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Registry <span class="pp">|</span> Distribution endpoint for images <span class="pp">|</span> Package repository <span class="pp">|</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Digest (sha256) <span class="pp">|</span> Content address (immutable) <span class="pp">|</span> Commit hash <span class="pp">|</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tag <span class="pp">|</span> Mutable reference pointer <span class="pp">|</span> Branch name <span class="pp">|</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### How layering works</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>Each <span class="in">`RUN`</span>, <span class="in">`COPY`</span>, or <span class="in">`ADD`</span> typically adds a new layer. Efficient Dockerfiles:</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Order stable (rarely changing) layers first (base OS, core tools)</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Group commands that change together to reduce rebuild churn</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Avoid installing &amp; removing large sets in the same layer without cleanup</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Choosing Docker vs Singularity/Apptainer</span></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Question <span class="pp">|</span> Docker Good? <span class="pp">|</span> Apptainer Good? <span class="pp">|</span> Notes <span class="pp">|</span></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|--------------|-----------------|-------|</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Need to build locally with caching? <span class="pp">|</span> ✅ <span class="pp">|</span> ➖ (build via recipe, no layered runtime cache) <span class="pp">|</span> Use Docker for iterative builds <span class="pp">|</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Running on multi-user HPC without root? <span class="pp">|</span> ❌ (often blocked) <span class="pp">|</span> ✅ <span class="pp">|</span> Apptainer safest choice <span class="pp">|</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Need GPU (CUDA) support? <span class="pp">|</span> ✅ (with nvidia-container toolkit) <span class="pp">|</span> ✅ (passes through host drivers) <span class="pp">|</span> Versions must match host <span class="pp">|</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Want smallest compressed artifact? <span class="pp">|</span> ✅ (with multi-stage) <span class="pp">|</span> ✅ (squashed SIF) <span class="pp">|</span> Different mechanisms <span class="pp">|</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Need fine-grained image signing/policy? <span class="pp">|</span> ✅ (cosign, Notation) <span class="pp">|</span> ✅ (SIF signatures) <span class="pp">|</span> Supply chain matters <span class="pp">|</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## Minimal examples</span></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a><span class="fu">### Simple Dockerfile (micromamba-based RNA-seq tooling)</span></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a><span class="in">```Dockerfile</span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a><span class="in">FROM mambaorg/micromamba:1.5.9</span></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a><span class="in"># Create env with pinned versions</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a><span class="in">USER root</span></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a><span class="in">RUN micromamba install -y -n base -c bioconda -c conda-forge \</span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a><span class="in">    fastqc=0.12.1 multiqc=1.15 hisat2=2.2.1 samtools=1.20 subread=2.0.6 \</span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a><span class="in">    python=3.11 &amp;&amp; \</span></span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a><span class="in">    micromamba clean -a -y</span></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a><span class="in"># Add a non-root user (safer default)</span></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a><span class="in">RUN useradd -m analyst</span></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a><span class="in">USER analyst</span></span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a><span class="in">WORKDIR /workspace</span></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a><span class="in">ENTRYPOINT ["bash"]</span></span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>Build &amp; run (locally):</span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> rnaseq:1.0 .</span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/workspace rnaseq:1.0 fastqc <span class="at">--help</span></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a><span class="fu">### Equivalent Singularity/Apptainer definition</span></span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a><span class="ex">Bootstrap:</span> docker</span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a><span class="ex">From:</span> mambaorg/micromamba:1.5.9</span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a><span class="ex">%post</span></span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>    <span class="ex">micromamba</span> install <span class="at">-y</span> <span class="at">-n</span> base <span class="at">-c</span> bioconda <span class="at">-c</span> conda-forge <span class="dt">\</span></span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>        fastqc=0.12.1 multiqc=1.15 hisat2=2.2.1 samtools=1.20 subread=2.0.6 python=3.11</span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>    <span class="ex">micromamba</span> clean <span class="at">-a</span> <span class="at">-y</span></span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>    <span class="ex">useradd</span> <span class="at">-m</span> analyst <span class="kw">||</span> <span class="fu">true</span></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a><span class="ex">%environment</span></span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>    <span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/opt/conda/bin:<span class="va">$PATH</span></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a><span class="ex">%runscript</span></span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exec</span> <span class="st">"</span><span class="va">$@</span><span class="st">"</span></span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a>Build on HPC login node (no root required if fuse/suid setup):</span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> build rnaseq.sif rnaseq.def</span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> run rnaseq.sif fastqc <span class="at">--version</span></span>
+<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>If your cluster forbids remote pulls, pre-build the image elsewhere and transfer the <span class="in">`.sif`</span> file (checksummed).</span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a><span class="fu">## Common pitfalls &amp; fixes</span></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pitfall <span class="pp">|</span> Cause <span class="pp">|</span> Fix <span class="pp">|</span></span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|-------|-----|</span></span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bloated image (8–10 GB) <span class="pp">|</span> Large conda env; unused build caches <span class="pp">|</span> Use micromamba, pin only required tools, remove caches <span class="pp">|</span></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Inconsistent results <span class="pp">|</span> Unpinned OS packages (<span class="in">`apt-get update`</span>) <span class="pp">|</span> Freeze apt sources or install exact versions; record manifest <span class="pp">|</span></span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Time-consuming rebuilds <span class="pp">|</span> Layers invalidated early <span class="pp">|</span> Put volatile steps (copy source) later <span class="pp">|</span></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Fails on HPC <span class="pp">|</span> Docker daemon blocked <span class="pp">|</span> Convert via Apptainer or build Apptainer def directly <span class="pp">|</span></span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Hidden network dependency <span class="pp">|</span> Conda solving at runtime <span class="pp">|</span> Pre-solve at build time, avoid env creation inside workflow step <span class="pp">|</span></span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a><span class="fu">## Layer ordering strategy (example)</span></span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a><span class="in">```Dockerfile</span></span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a><span class="in"># 1. Base image (rarely changes)</span></span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a><span class="in">FROM ubuntu:24.04 AS base</span></span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a><span class="in">RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends curl ca-certificates &amp;&amp; rm -rf /var/lib/apt/lists/*</span></span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a><span class="in"># 2. Toolchain layer</span></span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a><span class="in">RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends build-essential wget bzip2 &amp;&amp; rm -rf /var/lib/apt/lists/*</span></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a><span class="in"># 3. Micromamba + bio tools</span></span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a><span class="in"># (Changes if you alter version pins)</span></span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a><span class="in"># ...</span></span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a><span class="in"># 4. Pipeline scripts (volatile)</span></span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a><span class="in">COPY workflow/ /opt/workflow/</span></span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>Goal: Stable early layers cache across small workflow edits.</span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducible build practices</span></span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Pin everything (base image digest, package versions, channels ordering)</span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Capture a manifest: write <span class="in">`conda list --explicit &gt; env.lock`</span> during build</span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Prefer micromamba (faster solver, smaller footprint)</span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>No <span class="in">`apt-get upgrade`</span> — install specific packages only</span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Use multi-stage builds to compile large tools then copy binaries into a slim runtime</span>
+<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Generate Software Bill of Materials (SBOM) (<span class="in">`syft packages dir:`</span> or <span class="in">`tern`</span>)</span>
+<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Sign images (<span class="in">`cosign sign --key cosign.key image@sha256:...`</span>)</span>
+<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example: multi-stage to shrink Bioconductor image</span></span>
+<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a><span class="in">```Dockerfile</span></span>
+<span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a><span class="in">FROM bioconductor/bioconductor_docker:RELEASE_3_19 AS build</span></span>
+<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a><span class="in">RUN R -q -e 'install.packages(c("BiocManager")); BiocManager::install(c("DESeq2"), ask=FALSE)'</span></span>
+<span id="cb12-159"><a href="#cb12-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-160"><a href="#cb12-160" aria-hidden="true" tabindex="-1"></a><span class="in">FROM rocker/r2u:jammy</span></span>
+<span id="cb12-161"><a href="#cb12-161" aria-hidden="true" tabindex="-1"></a><span class="in"># Copy only needed libs from previous stage</span></span>
+<span id="cb12-162"><a href="#cb12-162" aria-hidden="true" tabindex="-1"></a><span class="in">COPY --from=build /usr/local/lib/R /usr/local/lib/R</span></span>
+<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a><span class="in">COPY --from=build /usr/local/bin/R /usr/local/bin/R</span></span>
+<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a><span class="in">ENTRYPOINT ["R"]</span></span>
+<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-166"><a href="#cb12-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-167"><a href="#cb12-167" aria-hidden="true" tabindex="-1"></a><span class="fu">## Integrating with workflow engines</span></span>
+<span id="cb12-168"><a href="#cb12-168" aria-hidden="true" tabindex="-1"></a><span class="fu">### Snakemake</span></span>
+<span id="cb12-169"><a href="#cb12-169" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb12-170"><a href="#cb12-170" aria-hidden="true" tabindex="-1"></a>rule fastqc:</span>
+<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span>: <span class="st">"data/</span><span class="sc">{sample}</span><span class="st">.fq.gz"</span></span>
+<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a>    output: <span class="st">"qc/</span><span class="sc">{sample}</span><span class="st">_fastqc.html"</span></span>
+<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a>    container: <span class="st">"docker://rnaseq:1.0"</span>  <span class="co"># or "apptainer://rnaseq.sif"</span></span>
+<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a>    threads: <span class="dv">2</span></span>
+<span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a>    shell: <span class="st">"fastqc </span><span class="sc">{input}</span><span class="st"> -o qc"</span></span>
+<span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-178"><a href="#cb12-178" aria-hidden="true" tabindex="-1"></a><span class="fu">### Nextflow</span></span>
+<span id="cb12-179"><a href="#cb12-179" aria-hidden="true" tabindex="-1"></a><span class="in">```groovy</span></span>
+<span id="cb12-180"><a href="#cb12-180" aria-hidden="true" tabindex="-1"></a><span class="in">process FASTQC {</span></span>
+<span id="cb12-181"><a href="#cb12-181" aria-hidden="true" tabindex="-1"></a><span class="in">  container 'rnaseq:1.0'</span></span>
+<span id="cb12-182"><a href="#cb12-182" aria-hidden="true" tabindex="-1"></a><span class="in">  input:</span></span>
+<span id="cb12-183"><a href="#cb12-183" aria-hidden="true" tabindex="-1"></a><span class="in">    path reads</span></span>
+<span id="cb12-184"><a href="#cb12-184" aria-hidden="true" tabindex="-1"></a><span class="in">  output:</span></span>
+<span id="cb12-185"><a href="#cb12-185" aria-hidden="true" tabindex="-1"></a><span class="in">    path "qc"</span></span>
+<span id="cb12-186"><a href="#cb12-186" aria-hidden="true" tabindex="-1"></a><span class="in">  script:</span></span>
+<span id="cb12-187"><a href="#cb12-187" aria-hidden="true" tabindex="-1"></a><span class="in">  """</span></span>
+<span id="cb12-188"><a href="#cb12-188" aria-hidden="true" tabindex="-1"></a><span class="in">  fastqc $reads -o qc</span></span>
+<span id="cb12-189"><a href="#cb12-189" aria-hidden="true" tabindex="-1"></a><span class="in">  """</span></span>
+<span id="cb12-190"><a href="#cb12-190" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb12-191"><a href="#cb12-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-192"><a href="#cb12-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a><span class="fu">### Rmarkdown / Quarto</span></span>
+<span id="cb12-194"><a href="#cb12-194" aria-hidden="true" tabindex="-1"></a>Use a named project execution environment or call external container via <span class="in">`processx`</span> + <span class="in">`docker run`</span> if necessary for isolation.</span>
+<span id="cb12-195"><a href="#cb12-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a><span class="fu">## HPC binding patterns (Apptainer)</span></span>
+<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec <span class="dt">\</span></span>
+<span id="cb12-199"><a href="#cb12-199" aria-hidden="true" tabindex="-1"></a>  <span class="at">--bind</span> /scratch:/scratch,/project/genomes:/ref <span class="dt">\</span></span>
+<span id="cb12-200"><a href="#cb12-200" aria-hidden="true" tabindex="-1"></a>  rnaseq.sif <span class="dt">\</span></span>
+<span id="cb12-201"><a href="#cb12-201" aria-hidden="true" tabindex="-1"></a>  hisat2 <span class="at">-x</span> /ref/hg38 <span class="at">-U</span> sample.fq.gz <span class="at">-S</span> sample.sam</span>
+<span id="cb12-202"><a href="#cb12-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-203"><a href="#cb12-203" aria-hidden="true" tabindex="-1"></a>Common mounts: <span class="in">`/scratch`</span>, large shared reference directories, license servers, GPU drivers (<span class="in">`/usr/lib64/nvidia`</span> auto-detected).</span>
+<span id="cb12-204"><a href="#cb12-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-205"><a href="#cb12-205" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb12-206"><a href="#cb12-206" aria-hidden="true" tabindex="-1"></a>Never embed large static reference genomes inside the image unless they are versioned and universally reused—prefer mounted read-only references to reduce duplication.</span>
+<span id="cb12-207"><a href="#cb12-207" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb12-208"><a href="#cb12-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-209"><a href="#cb12-209" aria-hidden="true" tabindex="-1"></a><span class="fu">## Security &amp; provenance quick wins</span></span>
+<span id="cb12-210"><a href="#cb12-210" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Practice <span class="pp">|</span> Tool <span class="pp">|</span></span>
+<span id="cb12-211"><a href="#cb12-211" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|------|</span></span>
+<span id="cb12-212"><a href="#cb12-212" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Scan for CVEs <span class="pp">|</span> <span class="in">`trivy image rnaseq:1.0`</span> <span class="pp">|</span></span>
+<span id="cb12-213"><a href="#cb12-213" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Generate SBOM <span class="pp">|</span> <span class="in">`syft rnaseq:1.0 -o json &gt; sbom.json`</span> <span class="pp">|</span></span>
+<span id="cb12-214"><a href="#cb12-214" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sign image <span class="pp">|</span> <span class="in">`cosign sign`</span> <span class="pp">|</span></span>
+<span id="cb12-215"><a href="#cb12-215" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Verify digest in workflow <span class="pp">|</span> Use <span class="in">`image@sha256:...`</span> <span class="pp">|</span></span>
+<span id="cb12-216"><a href="#cb12-216" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Least privilege <span class="pp">|</span> Non-root user; minimal packages <span class="pp">|</span></span>
+<span id="cb12-217"><a href="#cb12-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-218"><a href="#cb12-218" aria-hidden="true" tabindex="-1"></a><span class="fu">## When NOT to containerize</span></span>
+<span id="cb12-219"><a href="#cb12-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ultra-fast iteration on a one-off exploratory script (use conda + micro env)</span>
+<span id="cb12-220"><a href="#cb12-220" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tight coupling to HPC vendor-tuned MPI stack (use system modules)</span>
+<span id="cb12-221"><a href="#cb12-221" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Extremely large monolithic datasets (prefer external mounts)</span>
+<span id="cb12-222"><a href="#cb12-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-223"><a href="#cb12-223" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quick cheatsheet</span></span>
+<span id="cb12-224"><a href="#cb12-224" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb12-225"><a href="#cb12-225" aria-hidden="true" tabindex="-1"></a><span class="co"># Build docker image</span></span>
+<span id="cb12-226"><a href="#cb12-226" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> toolset:0.1 .</span>
+<span id="cb12-227"><a href="#cb12-227" aria-hidden="true" tabindex="-1"></a><span class="co"># Export to singularity (method 1)</span></span>
+<span id="cb12-228"><a href="#cb12-228" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> build toolset.sif docker-daemon://toolset:0.1</span>
+<span id="cb12-229"><a href="#cb12-229" aria-hidden="true" tabindex="-1"></a><span class="co"># Or pull directly (method 2)</span></span>
+<span id="cb12-230"><a href="#cb12-230" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> pull docker://yourrepo/toolset:0.1</span>
+<span id="cb12-231"><a href="#cb12-231" aria-hidden="true" tabindex="-1"></a><span class="co"># Run command</span></span>
+<span id="cb12-232"><a href="#cb12-232" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec toolset.sif samtools <span class="at">--version</span></span>
+<span id="cb12-233"><a href="#cb12-233" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-234"><a href="#cb12-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-235"><a href="#cb12-235" aria-hidden="true" tabindex="-1"></a><span class="fu">## Minimal version manifest pattern</span></span>
+<span id="cb12-236"><a href="#cb12-236" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb12-237"><a href="#cb12-237" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;&lt;EOF</span> <span class="op">&gt;</span> VERSIONS.txt</span>
+<span id="cb12-238"><a href="#cb12-238" aria-hidden="true" tabindex="-1"></a><span class="st">fastqc </span><span class="va">$(</span><span class="ex">fastqc</span> <span class="at">--version</span> <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $2}'</span><span class="va">)</span></span>
+<span id="cb12-239"><a href="#cb12-239" aria-hidden="true" tabindex="-1"></a><span class="va">$(</span><span class="ex">samtools</span> <span class="at">--version</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span><span class="va">)</span></span>
+<span id="cb12-240"><a href="#cb12-240" aria-hidden="true" tabindex="-1"></a><span class="va">$(</span><span class="ex">hisat2</span> <span class="at">--version</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span><span class="va">)</span></span>
+<span id="cb12-241"><a href="#cb12-241" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span>
+<span id="cb12-242"><a href="#cb12-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-243"><a href="#cb12-243" aria-hidden="true" tabindex="-1"></a>Commit that with pipeline outputs for provenance.</span>
+<span id="cb12-244"><a href="#cb12-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-245"><a href="#cb12-245" aria-hidden="true" tabindex="-1"></a><span class="fu">## Future directions</span></span>
+<span id="cb12-246"><a href="#cb12-246" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reproducible builds with <span class="in">`--provenance`</span> attestations (increasing adoption)</span>
+<span id="cb12-247"><a href="#cb12-247" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hybrid: Nix builds exported to OCI images</span>
+<span id="cb12-248"><a href="#cb12-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Content trust pipelines (Rekor transparency logs + SBOM diffing)</span>
+<span id="cb12-249"><a href="#cb12-249" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>WASM-based bioinformatics modules for partially sandboxed execution</span>
+<span id="cb12-250"><a href="#cb12-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-251"><a href="#cb12-251" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary</span></span>
+<span id="cb12-252"><a href="#cb12-252" aria-hidden="true" tabindex="-1"></a>Containers provide a portable, inspectable, and (mostly) reproducible substrate for bioinformatics workflows—especially across heterogeneous compute environments. Effective practice centers on pinning, layering discipline, security hygiene, and clean integration with workflow managers.</span>
+<span id="cb12-253"><a href="#cb12-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-254"><a href="#cb12-254" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb12-255"><a href="#cb12-255" aria-hidden="true" tabindex="-1"></a>Start small: containerize one stable tool chain (QC + alignment) before wrapping your entire multi-omics pipeline.</span>
+<span id="cb12-256"><a href="#cb12-256" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb12-257"><a href="#cb12-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-258"><a href="#cb12-258" aria-hidden="true" tabindex="-1"></a><span class="fu">## References &amp; further reading</span></span>
+<span id="cb12-259"><a href="#cb12-259" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Apptainer docs: https://apptainer.org/docs/</span>
+<span id="cb12-260"><a href="#cb12-260" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>OCI Image Spec: https://github.com/opencontainers/image-spec</span>
+<span id="cb12-261"><a href="#cb12-261" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bioconda: https://bioconda.github.io/</span>
+<span id="cb12-262"><a href="#cb12-262" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Snakemake containers: https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html</span>
+<span id="cb12-263"><a href="#cb12-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Nextflow containers: https://www.nextflow.io/docs/latest/container.html</span>
+<span id="cb12-264"><a href="#cb12-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Micromamba: https://mamba.readthedocs.io/</span>
+<span id="cb12-265"><a href="#cb12-265" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Trivy (scanning): https://aquasecurity.github.io/trivy/</span>
+<span id="cb12-266"><a href="#cb12-266" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Syft (SBOM): https://github.com/anchore/syft</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2021-2026 Guorui Zhong ~ Made with <a href="https://www.r-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a>, <a href="https://www.python.org/"><i class="fa-brands fa-python" aria-label="python"></i></a> and <a href="https://quarto.org/">Quarto</a></span></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
