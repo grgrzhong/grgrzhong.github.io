@@ -1,15 +1,17 @@
+## Quarto stuff
 /.quarto/
-data/
-/tutorial/
-**/*.quarto_ipynb
-# pixi environments
-.pixi/*
-!.pixi/config.toml
-.quarto/*
-.venv
-.conda
-temp
-
-_extensions/
 _site/
+**/*_cache/*
+
+# R stuff
+.Rproj-user
+.Rhistory
+.RData
+.Ruserdata
+
+## Miscellaneous
+/data/
+/tutorial/
+/temp/
 .DS_Store
+**/*.quarto_ipynb

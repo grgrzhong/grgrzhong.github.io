@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
-  "type": "overlay",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item">
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">About</span></a>
@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-technique" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Technique</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-technique">
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-technique">
 <li>
     <a class="dropdown-item" href="../technique/10xgenomics/index.html">
  <span class="dropdown-text">10X Genomics</span></a>
@@ -194,22 +194,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-<li><a href="#data-structure" id="toc-data-structure" class="nav-link active" data-scroll-target="#data-structure"><span class="header-section-number">1</span> Data Structure</a></li>
-  <li><a href="#general-functions" id="toc-general-functions" class="nav-link" data-scroll-target="#general-functions"><span class="header-section-number">2</span> General Functions</a></li>
-  <li><a href="#coding-practice" id="toc-coding-practice" class="nav-link" data-scroll-target="#coding-practice"><span class="header-section-number">3</span> Coding Practice</a></li>
-  <li><a href="#variable-replacement" id="toc-variable-replacement" class="nav-link" data-scroll-target="#variable-replacement"><span class="header-section-number">4</span> Variable Replacement</a></li>
-  <li><a href="#vscode-setup" id="toc-vscode-setup" class="nav-link" data-scroll-target="#vscode-setup"><span class="header-section-number">5</span> VSCode Setup</a></li>
+<li><a href="#data-structure" id="toc-data-structure" class="nav-link active" data-scroll-target="#data-structure">Data Structure</a></li>
+  <li><a href="#general-functions" id="toc-general-functions" class="nav-link" data-scroll-target="#general-functions">General Functions</a></li>
+  <li><a href="#coding-practice" id="toc-coding-practice" class="nav-link" data-scroll-target="#coding-practice">Coding Practice</a></li>
+  <li><a href="#variable-replacement" id="toc-variable-replacement" class="nav-link" data-scroll-target="#variable-replacement">Variable Replacement</a></li>
+  <li><a href="#vscode-setup" id="toc-vscode-setup" class="nav-link" data-scroll-target="#vscode-setup">VSCode Setup</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="data-structure" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="data-structure">
-<span class="header-section-number">1</span> Data Structure</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="data-structure" class="level2"><h2 class="anchored" data-anchor-id="data-structure">Data Structure</h2>
 <p><img src="R_data_structure.png" class="img-fluid" width="600"></p>
-</section><section id="general-functions" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="general-functions">
-<span class="header-section-number">2</span> General Functions</h2>
+</section><section id="general-functions" class="level2"><h2 class="anchored" data-anchor-id="general-functions">General Functions</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>()                      <span class="co"># Show library paths</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>()                            <span class="co"># Show the directory</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()                          <span class="co"># Check working directory</span></span>
@@ -231,8 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package=</span><span class="st">""</span>)                 <span class="co"># Check the functions of R library</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">system.file</span>(<span class="at">package=</span>“dagdata”)   <span class="co"># Extract the location of package</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">installed.packages</span>())   <span class="co"># list the installed packages</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section><section id="coding-practice" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="coding-practice">
-<span class="header-section-number">3</span> Coding Practice</h2>
+</section><section id="coding-practice" class="level2"><h2 class="anchored" data-anchor-id="coding-practice">Coding Practice</h2>
 <ul>
 <li>Variables = my_variable or myVariable</li>
 <li>Functions = RunThisStuffs() or run_this_stuffs()</li>
@@ -252,8 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Don’t save a session history</li>
 <li>Keep track of <code><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo()</a></code> in project folder</li>
 <li>Use version control</li>
-</ul></section><section id="variable-replacement" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="variable-replacement">
-<span class="header-section-number">4</span> Variable Replacement</h2>
+</ul></section><section id="variable-replacement" class="level2"><h2 class="anchored" data-anchor-id="variable-replacement">Variable Replacement</h2>
 <p>Common method to do the variable replacement in ggplot2:</p>
 <ul>
 <li><code>!!as.name()</code></li>
@@ -283,8 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, color <span class="op">=</span> <span class="va">.data</span><span class="op">[[</span><span class="va">color_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="vscode-setup" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="vscode-setup">
-<span class="header-section-number">5</span> VSCode Setup</h2>
+</section><section id="vscode-setup" class="level2"><h2 class="anchored" data-anchor-id="vscode-setup">VSCode Setup</h2>
 <p><strong>Remote Server Settings:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"r.alwaysUseActiveTerminal"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
@@ -796,7 +791,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">            toggle: true</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">        code-fold: false</span></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">        toc: true</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">        number-sections: true</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">        number-sections: false</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Structure</span></span>

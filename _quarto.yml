@@ -34,14 +34,15 @@ website:
   description: ""
   search:
     location: navbar
-    type: overlay
+    type: textbox
+
   site-url: "https://grgrzhong.github.io/"
   repo-url: "https://github.com/grgrzhong/quarto"
   back-to-top-navigation: true
   page-navigation: true
   navbar:
     pinned: true
-    left:
+    right:
       - text: "About"
         file: "index.qmd"
       - text: "Blog"

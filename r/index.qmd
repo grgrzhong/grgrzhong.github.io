@@ -14,7 +14,7 @@ format:
             toggle: true
         code-fold: false
         toc: true
-        number-sections: true
+        number-sections: false
 ---
 
 ## Data Structure
