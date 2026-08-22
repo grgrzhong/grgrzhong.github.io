@@ -33,8 +33,8 @@ website:
   favicon: "/files/profiles/avatar.png"
   description: ""
   search:
-    location: navbar
-    type: textbox
+    location: sidebar
+    type: overlay
 
   site-url: "https://grgrzhong.github.io/"
   repo-url: "https://github.com/grgrzhong/quarto"

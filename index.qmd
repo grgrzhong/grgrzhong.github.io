@@ -27,7 +27,8 @@ Cell biologist with applied skills in bioinformatics and computational biology.
 
 
 ## Research Interests
----
+
+-------
 
 - Genome engineering to dissect gene function in cancer and immune cells
 - Single-cell and spatial omics to study cellular heterogeneity
