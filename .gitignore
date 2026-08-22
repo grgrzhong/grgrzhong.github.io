@@ -1,5 +1,5 @@
 /.quarto/
-/data/
+data/
 /tutorial/
 **/*.quarto_ipynb
 # pixi environments
@@ -9,3 +9,7 @@
 .venv
 .conda
 temp
+
+_extensions/
+_site/
+.DS_Store

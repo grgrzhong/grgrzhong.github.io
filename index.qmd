@@ -18,6 +18,7 @@ about:
 format:
   html:
     toc: false
+    number-sections: false
     code-tools:
       source: false
 ---

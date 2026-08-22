@@ -241,23 +241,23 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-basecalling" id="toc-what-is-basecalling" class="nav-link active" data-scroll-target="#what-is-basecalling"><span class="header-section-number">1</span> What is Basecalling?</a></li>
-  <li><a href="#dorado" id="toc-dorado" class="nav-link" data-scroll-target="#dorado"><span class="header-section-number">2</span> Dorado</a>
+  <li><a href="#what-is-basecalling" id="toc-what-is-basecalling" class="nav-link active" data-scroll-target="#what-is-basecalling">What is Basecalling?</a></li>
+  <li><a href="#dorado" id="toc-dorado" class="nav-link" data-scroll-target="#dorado">Dorado</a>
   <ul class="collapse">
-  <li><a href="#key-dorado-subcommands" id="toc-key-dorado-subcommands" class="nav-link" data-scroll-target="#key-dorado-subcommands"><span class="header-section-number">2.1</span> Key Dorado subcommands</a></li>
+  <li><a href="#key-dorado-subcommands" id="toc-key-dorado-subcommands" class="nav-link" data-scroll-target="#key-dorado-subcommands">Key Dorado subcommands</a></li>
   </ul></li>
-  <li><a href="#accuracy-models" id="toc-accuracy-models" class="nav-link" data-scroll-target="#accuracy-models"><span class="header-section-number">3</span> Accuracy Models</a></li>
-  <li><a href="#quality-scores" id="toc-quality-scores" class="nav-link" data-scroll-target="#quality-scores"><span class="header-section-number">4</span> Quality Scores</a>
+  <li><a href="#accuracy-models" id="toc-accuracy-models" class="nav-link" data-scroll-target="#accuracy-models">Accuracy Models</a></li>
+  <li><a href="#quality-scores" id="toc-quality-scores" class="nav-link" data-scroll-target="#quality-scores">Quality Scores</a>
   <ul class="collapse">
-  <li><a href="#read-filtering-by-quality" id="toc-read-filtering-by-quality" class="nav-link" data-scroll-target="#read-filtering-by-quality"><span class="header-section-number">4.1</span> Read filtering by quality</a></li>
+  <li><a href="#read-filtering-by-quality" id="toc-read-filtering-by-quality" class="nav-link" data-scroll-target="#read-filtering-by-quality">Read filtering by quality</a></li>
   </ul></li>
-  <li><a href="#modified-base-detection" id="toc-modified-base-detection" class="nav-link" data-scroll-target="#modified-base-detection"><span class="header-section-number">5</span> Modified Base Detection</a>
+  <li><a href="#modified-base-detection" id="toc-modified-base-detection" class="nav-link" data-scroll-target="#modified-base-detection">Modified Base Detection</a>
   <ul class="collapse">
-  <li><a href="#supported-modifications" id="toc-supported-modifications" class="nav-link" data-scroll-target="#supported-modifications"><span class="header-section-number">5.1</span> Supported modifications</a></li>
-  <li><a href="#downstream-methylation-analysis-tools" id="toc-downstream-methylation-analysis-tools" class="nav-link" data-scroll-target="#downstream-methylation-analysis-tools"><span class="header-section-number">5.2</span> Downstream methylation analysis tools</a></li>
+  <li><a href="#supported-modifications" id="toc-supported-modifications" class="nav-link" data-scroll-target="#supported-modifications">Supported modifications</a></li>
+  <li><a href="#downstream-methylation-analysis-tools" id="toc-downstream-methylation-analysis-tools" class="nav-link" data-scroll-target="#downstream-methylation-analysis-tools">Downstream methylation analysis tools</a></li>
   </ul></li>
-  <li><a href="#alignment" id="toc-alignment" class="nav-link" data-scroll-target="#alignment"><span class="header-section-number">6</span> Alignment</a></li>
-  <li><a href="#guppy-legacy" id="toc-guppy-legacy" class="nav-link" data-scroll-target="#guppy-legacy"><span class="header-section-number">7</span> Guppy (Legacy)</a></li>
+  <li><a href="#alignment" id="toc-alignment" class="nav-link" data-scroll-target="#alignment">Alignment</a></li>
+  <li><a href="#guppy-legacy" id="toc-guppy-legacy" class="nav-link" data-scroll-target="#guppy-legacy">Guppy (Legacy)</a></li>
   </ul>
 </nav>
 </nav>
@@ -272,8 +272,8 @@ window.Quarto = {
 
 
 
-<section id="what-is-basecalling" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="what-is-basecalling"><span class="header-section-number">1</span> What is Basecalling?</h2>
+<section id="what-is-basecalling" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-basecalling">What is Basecalling?</h2>
 <p>The raw output of a nanopore sequencer is not a sequence of A, T, C, G — it is a time-series of <strong>ionic current measurements</strong> (picoamperes), recorded as the DNA or RNA strand translocates through the pore. This signal trace is called a <strong>squiggle</strong>.</p>
 <p><strong>Basecalling</strong> is the computational process of converting each squiggle into a nucleotide sequence. It is carried out by a neural network (typically a transformer or recurrent model) trained to recognise the current patterns created by each k-mer of bases occupying the pore at any given moment.</p>
 <p>Because basecalling is computationally intensive and accuracy-critical, it is performed either:</p>
@@ -282,8 +282,8 @@ window.Quarto = {
 <li><strong>Offline</strong> (post-run) — by running Dorado on stored POD5/FAST5 files on a GPU workstation or cluster.</li>
 </ul>
 </section>
-<section id="dorado" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="dorado"><span class="header-section-number">2</span> Dorado</h2>
+<section id="dorado" class="level2">
+<h2 class="anchored" data-anchor-id="dorado">Dorado</h2>
 <p><strong>Dorado</strong> is ONT’s current production basecaller (replacing the older Guppy). It is open-source and GPU-accelerated.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic simplex basecalling</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dorado</span> basecaller sup /path/to/pod5s/ <span class="op">&gt;</span> calls.bam</span>
@@ -294,8 +294,8 @@ window.Quarto = {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to FASTQ</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> fastq calls.bam <span class="op">&gt;</span> calls.fastq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Dorado outputs <strong>unaligned BAM</strong> by default, which preserves all read metadata tags including move tables and modification probabilities.</p>
-<section id="key-dorado-subcommands" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="key-dorado-subcommands"><span class="header-section-number">2.1</span> Key Dorado subcommands</h3>
+<section id="key-dorado-subcommands" class="level3">
+<h3 class="anchored" data-anchor-id="key-dorado-subcommands">Key Dorado subcommands</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -336,8 +336,8 @@ window.Quarto = {
 </table>
 </section>
 </section>
-<section id="accuracy-models" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="accuracy-models"><span class="header-section-number">3</span> Accuracy Models</h2>
+<section id="accuracy-models" class="level2">
+<h2 class="anchored" data-anchor-id="accuracy-models">Accuracy Models</h2>
 <p>Dorado ships with multiple models per flowcell chemistry, representing a speed/accuracy trade-off. The chemistry version is encoded in the model name (e.g., <code>dna_r10.4.1_e8.2_400bps</code>).</p>
 <table class="caption-top table">
 <colgroup>
@@ -386,8 +386,8 @@ window.Quarto = {
 <li>Model selection strongly impacts SNV calling sensitivity; <strong>always use <code>sup</code></strong> for clinical or variant-calling workflows.</li>
 </ul>
 </section>
-<section id="quality-scores" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="quality-scores"><span class="header-section-number">4</span> Quality Scores</h2>
+<section id="quality-scores" class="level2">
+<h2 class="anchored" data-anchor-id="quality-scores">Quality Scores</h2>
 <p>After basecalling, each base in the FASTQ/BAM output is assigned a <strong>Phred quality score</strong> (Q score):</p>
 <p><span class="math display">\[Q = -10 \log_{10} P\]</span></p>
 <p>where <span class="math inline">\(P\)</span> is the per-base error probability estimated by the basecaller neural network.</p>
@@ -428,8 +428,8 @@ window.Quarto = {
 <li>Reads below <strong>Q8</strong> are filtered by default in MinKNOW (stored in a fail output folder).</li>
 <li>Consensus polishing with Medaka can yield draft assemblies exceeding <strong>Q50</strong>.</li>
 </ul>
-<section id="read-filtering-by-quality" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="read-filtering-by-quality"><span class="header-section-number">4.1</span> Read filtering by quality</h3>
+<section id="read-filtering-by-quality" class="level3">
+<h3 class="anchored" data-anchor-id="read-filtering-by-quality">Read filtering by quality</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only reads with average Q ≥ 10</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> seq <span class="at">-Q</span> 10 calls.fastq <span class="op">&gt;</span> calls_filtered.fastq</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -437,11 +437,11 @@ window.Quarto = {
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoFilt</span> <span class="at">-q</span> 10 <span class="at">-l</span> 500 calls.fastq <span class="op">&gt;</span> calls_filtered.fastq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="modified-base-detection" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="modified-base-detection"><span class="header-section-number">5</span> Modified Base Detection</h2>
+<section id="modified-base-detection" class="level2">
+<h2 class="anchored" data-anchor-id="modified-base-detection">Modified Base Detection</h2>
 <p>One of ONT’s major advantages is simultaneous detection of <strong>base modifications</strong> without chemical treatment. The basecaller neural network estimates, for each cytosine or adenine, the probability that it carries a modification tag stored in the BAM <code>MM</code>/<code>ML</code> tags.</p>
-<section id="supported-modifications" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="supported-modifications"><span class="header-section-number">5.1</span> Supported modifications</h3>
+<section id="supported-modifications" class="level3">
+<h3 class="anchored" data-anchor-id="supported-modifications">Supported modifications</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -493,8 +493,8 @@ window.Quarto = {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract per-site methylation with modkit</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">modkit</span> pileup aligned.bam methylation.bed <span class="at">--ref</span> hg38.fasta <span class="at">--preset</span> traditional</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="downstream-methylation-analysis-tools" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="downstream-methylation-analysis-tools"><span class="header-section-number">5.2</span> Downstream methylation analysis tools</h3>
+<section id="downstream-methylation-analysis-tools" class="level3">
+<h3 class="anchored" data-anchor-id="downstream-methylation-analysis-tools">Downstream methylation analysis tools</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -527,8 +527,8 @@ window.Quarto = {
 </table>
 </section>
 </section>
-<section id="alignment" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="alignment"><span class="header-section-number">6</span> Alignment</h2>
+<section id="alignment" class="level2">
+<h2 class="anchored" data-anchor-id="alignment">Alignment</h2>
 <p>After basecalling, reads are aligned to a reference genome using <strong>minimap2</strong> with the <code>map-ont</code> preset:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Align with minimap2 directly</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">minimap2</span> <span class="at">-ax</span> map-ont <span class="at">-t</span> 16 reference.fasta calls.fastq <span class="kw">|</span> <span class="dt">\</span></span>
@@ -539,8 +539,8 @@ window.Quarto = {
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index aligned.bam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>map-ont</code> preset key settings: <code>-k 15 -w 10</code>; tolerates the higher per-read error rate of ONT reads.</p>
 </section>
-<section id="guppy-legacy" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="guppy-legacy"><span class="header-section-number">7</span> Guppy (Legacy)</h2>
+<section id="guppy-legacy" class="level2">
+<h2 class="anchored" data-anchor-id="guppy-legacy">Guppy (Legacy)</h2>
 <p>Guppy was ONT’s previous basecaller and is now <strong>deprecated</strong> in favour of Dorado. It is still encountered in older pipelines.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Legacy Guppy command (for reference)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">guppy_basecaller</span> <span class="at">-i</span> /fast5s/ <span class="at">-s</span> /output/ <span class="dt">\</span></span>

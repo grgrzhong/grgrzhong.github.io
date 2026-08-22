@@ -7,6 +7,14 @@ title-block-banner: "#212529"
 toc-title: "Contents"
 execute:
     eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+        code-fold: false
+        toc: true
+        number-sections: true
 ---
 
 ## Data Structure
@@ -89,6 +97,7 @@ ggplot(data, aes(x = x, y = y, color = !!sym(color_var))) +
 ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
     geom_point()
 ```
+
 ## VSCode Setup
 
 **Remote Server Settings:**

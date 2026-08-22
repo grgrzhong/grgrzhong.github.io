@@ -223,8 +223,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#what-trajectory-analysis-does" id="toc-what-trajectory-analysis-does" class="nav-link active" data-scroll-target="#what-trajectory-analysis-does"><span class="header-section-number">1</span> What trajectory analysis does</a></li>
-  <li><a href="#what-insights-it-can-give-you" id="toc-what-insights-it-can-give-you" class="nav-link" data-scroll-target="#what-insights-it-can-give-you"><span class="header-section-number">2</span> What insights it can give you</a></li>
+  <li><a href="#what-trajectory-analysis-does" id="toc-what-trajectory-analysis-does" class="nav-link active" data-scroll-target="#what-trajectory-analysis-does">What trajectory analysis does</a></li>
+  <li><a href="#what-insights-it-can-give-you" id="toc-what-insights-it-can-give-you" class="nav-link" data-scroll-target="#what-insights-it-can-give-you">What insights it can give you</a></li>
   </ul>
 </nav>
 </nav>
@@ -239,8 +239,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="what-trajectory-analysis-does" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="what-trajectory-analysis-does"><span class="header-section-number">1</span> What trajectory analysis does</h2>
+<section id="what-trajectory-analysis-does" class="level2">
+<h2 class="anchored" data-anchor-id="what-trajectory-analysis-does">What trajectory analysis does</h2>
 <p>In a single-cell RNA-seq experiment, you capture a snapshot of many individual cells at different stages of a biological process (e.g., differentiation, development, immune activation, disease progression, or reprogramming). These cells are not ordered in time — they are mixed together. Trajectory analysis:</p>
 <pre><code>- Places the cells in a continuous order along the biological process they are undergoing.
 - Builds a graph (or “tree”) that shows how cells progress, including:
@@ -251,8 +251,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 - Multiple disconnected trajectories (when different groups of cells are doing different things)</code></pre>
 <p>The key concept is pseudotime: a numerical value assigned to each cell that represents how far it has progressed along the process (from early/starting state → late/end state). It is not real clock time, but a relative measure of progress based on gene expression similarity.</p>
 </section>
-<section id="what-insights-it-can-give-you" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="what-insights-it-can-give-you"><span class="header-section-number">2</span> What insights it can give you</h2>
+<section id="what-insights-it-can-give-you" class="level2">
+<h2 class="anchored" data-anchor-id="what-insights-it-can-give-you">What insights it can give you</h2>
 <p>QuestionWhat trajectory analysis revealsHow do cells change over a process?The continuous path of gene expression changes (not just discrete clusters)When do cells decide their fate?Branch points where cells diverge into different lineagesWhich genes drive the process?Genes whose expression changes smoothly along the trajectory (or specifically at branches)What is the order of events?The sequence in which genes turn on/off as cells progressAre there multiple independent processes?Disjoint trajectories (e.g., different cell types responding differently)How far has each cell progressed?Pseudotime values for every cellWhat happens after a decision point?Downstream gene programs that define each fate</p>
 <p>Question What trajectory analysis reveals How do cells change over a process? The continuous path of gene expression changes (not just discrete clusters) When do cells decide their fate? Branch points where cells diverge into different lineages Which genes drive the process? Genes whose expression changes smoothly along the trajectory (or specifically at branches) What is the order of events? The sequence in which genes turn on/off as cells progress Are there multiple independent processes? Disjoint trajectories (e.g., different cell types responding differently) How far has each cell progressed? Pseudotime values for every cell What happens after a decision point? Downstream gene programs that define each fate</p>
 

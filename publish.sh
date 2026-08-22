@@ -13,6 +13,7 @@
 #     r=4.5 \
 #     python \
 #     jupyter \
+#     quarto \
 #     r-languageserver \
 #     r-tidyverse \
 #     r-irkernel \

@@ -213,12 +213,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#illumina-sequencing-libraries" id="toc-illumina-sequencing-libraries" class="nav-link active" data-scroll-target="#illumina-sequencing-libraries"><span class="header-section-number">1</span> Illumina Sequencing Libraries</a>
+  <li><a href="#illumina-sequencing-libraries" id="toc-illumina-sequencing-libraries" class="nav-link active" data-scroll-target="#illumina-sequencing-libraries">Illumina Sequencing Libraries</a>
   <ul class="collapse">
-  <li><a href="#truseq-single-index-library" id="toc-truseq-single-index-library" class="nav-link" data-scroll-target="#truseq-single-index-library"><span class="header-section-number">1.1</span> Truseq Single Index Library</a></li>
-  <li><a href="#truseq-dual-index-library" id="toc-truseq-dual-index-library" class="nav-link" data-scroll-target="#truseq-dual-index-library"><span class="header-section-number">1.2</span> Truseq Dual Index Library</a></li>
-  <li><a href="#nextera-dual-index-library" id="toc-nextera-dual-index-library" class="nav-link" data-scroll-target="#nextera-dual-index-library"><span class="header-section-number">1.3</span> Nextera Dual Index Library</a></li>
-  <li><a href="#library-sequencing" id="toc-library-sequencing" class="nav-link" data-scroll-target="#library-sequencing"><span class="header-section-number">1.4</span> Library sequencing</a></li>
+  <li><a href="#truseq-single-index-library" id="toc-truseq-single-index-library" class="nav-link" data-scroll-target="#truseq-single-index-library">Truseq Single Index Library</a></li>
+  <li><a href="#truseq-dual-index-library" id="toc-truseq-dual-index-library" class="nav-link" data-scroll-target="#truseq-dual-index-library">Truseq Dual Index Library</a></li>
+  <li><a href="#nextera-dual-index-library" id="toc-nextera-dual-index-library" class="nav-link" data-scroll-target="#nextera-dual-index-library">Nextera Dual Index Library</a></li>
+  <li><a href="#library-sequencing" id="toc-library-sequencing" class="nav-link" data-scroll-target="#library-sequencing">Library sequencing</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -235,25 +235,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>The nature of Illumina sequencing is still sequencing by synthesis (SBS). Any SBS method requires the presence of adaptors, which are short double-stranded DNA oligos whose sequences are known to us. The adaptors are designed by scientists, and there are a few popular adaptor sequences that are used in the NGS field. The following three (actually two main types to be honest) are the most popular ones:</p>
-<section id="illumina-sequencing-libraries" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="illumina-sequencing-libraries"><span class="header-section-number">1</span> Illumina Sequencing Libraries</h2>
+<section id="illumina-sequencing-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="illumina-sequencing-libraries">Illumina Sequencing Libraries</h2>
 <p>The nature of Illumina sequencing is still sequencing by synthesis (SBS). Any SBS method requires the presence of adaptors, which are short double-stranded DNA oligos whose sequences are known to us. The adaptors are designed by scientists, and there are a few popular adaptor sequences that are used in the NGS field. The following three (actually two main types to be honest) are the most popular ones:</p>
-<section id="truseq-single-index-library" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="truseq-single-index-library"><span class="header-section-number">1.1</span> Truseq Single Index Library</h3>
+<section id="truseq-single-index-library" class="level3">
+<h3 class="anchored" data-anchor-id="truseq-single-index-library">Truseq Single Index Library</h3>
 <pre class="seq">5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><s5>TCTTTCCCTACACGACGCTCTTCCGATCT</s5>-insert-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
 3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><s5>AGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5>-insert-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
           <p5>Illumina P5</p5>                   <s5>Truseq Read 1</s5>                        <s7>Truseq Read 2</s7>                 <t7>i7</t7>        <p7>Illumina P7</p7>
 </pre>
 </section>
-<section id="truseq-dual-index-library" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="truseq-dual-index-library"><span class="header-section-number">1.2</span> Truseq Dual Index Library</h3>
+<section id="truseq-dual-index-library" class="level3">
+<h3 class="anchored" data-anchor-id="truseq-dual-index-library">Truseq Dual Index Library</h3>
 <pre class="seq">5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><t7>NNNNNNNN</t7><s5>ACACTCTTTCCCTACACGACGCTCTTCCGATCT</s5>-insert-<s7>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</s7><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
 3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><t7>NNNNNNNN</t7><s5>TGTGAGAAAGGGATGTGCTGCGAGAAGGCTAGA</s5>-insert-<s7>TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG</s7><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
           <p5>Illumina P5</p5>               <t7>i5</t7>            <s5>Truseq Read 1</s5>                          <s7>Truseq Read 2</s7>                 <t7>i7</t7>        <p7>Illumina P7</p7>
 </pre>
 </section>
-<section id="nextera-dual-index-library" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="nextera-dual-index-library"><span class="header-section-number">1.3</span> Nextera Dual Index Library</h3>
+<section id="nextera-dual-index-library" class="level3">
+<h3 class="anchored" data-anchor-id="nextera-dual-index-library">Nextera Dual Index Library</h3>
 <pre class="seq">5'- <p5>AATGATACGGCGACCACCGAGATCTACAC</p5><t7>NNNNNNNN</t7><r1>TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG</r1>-insert-<r2>CTGTCTCTTATACACATCTCCGAGCCCACGAGAC</r2><t7>NNNNNNNN</t7><p7>ATCTCGTATGCCGTCTTCTGCTTG</p7> -3'
 3'- <p5>TTACTATGCCGCTGGTGGCTCTAGATGTG</p5><t7>NNNNNNNN</t7><r1>AGCAGCCGTCGCAGTCTACACATATTCTCTGTC</r1>-insert-<r2>GACAGAGAATATGTGTAGAGGCTCGGGTGCTCTG</r2><t7>NNNNNNNN</t7><p7>TAGAGCATACGGCAGAAGACGAAC</p7> -5'
            <p5>Illumina P5</p5>              <t7>i5</t7>             <r1>Nextera Read 1</r1>                                <r2>Nextera Read 2</r2>        <t7>i7</t7>         <p7>Illumina P7</p7>
@@ -267,8 +267,8 @@ Illumina P7 adaptor: 5'- <p7>CAAGCAGAAGACGGCATACGAGAT</p7> -3'
 </pre>
 <p>If you use Illumina sequencing, you have to use and make sure they are at the sides of your DNA fragments, like shown in the three examples above. The adaptor sequences in the middle like Truseq Read 1, Truseq Read 2, Nextera Read 1 and Nextera Read 2 can be changed. If you change them, you have to add your own sequencing primers to the machine during sequencing. A few single cell genomic methods used their own adaptors.</p>
 </section>
-<section id="library-sequencing" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="library-sequencing"><span class="header-section-number">1.4</span> Library sequencing</h3>
+<section id="library-sequencing" class="level3">
+<h3 class="anchored" data-anchor-id="library-sequencing">Library sequencing</h3>
 <p>Once those adaptors are added properly, we are ready to sequence them using Illumina machines. In the sequencing reagents provided by Illumina, the sequencing primers are actually a mixture of different primers, including Truseq, Nextera and even those primers from kits that are obsolete. Therefore, you actually can sequence different types of libraries together. For example, Truseq libraries and Nextera libraries can be mixed together and sequenced together without any problem. There are some slight differences among different Illumina machines, in terms of how they sequence Read 1, Read 2, Index 1 and Index 2.</p>
 <ul>
 <li>Step 1: Add Read 1 sequencing primer mixture to sequence the first read (bottom strand as template)</li>

@@ -241,16 +241,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#how-nanopore-sequencing-works" id="toc-how-nanopore-sequencing-works" class="nav-link active" data-scroll-target="#how-nanopore-sequencing-works"><span class="header-section-number">1</span> How Nanopore Sequencing Works</a></li>
-  <li><a href="#devices" id="toc-devices" class="nav-link" data-scroll-target="#devices"><span class="header-section-number">2</span> Devices</a></li>
-  <li><a href="#flowcell-chemistry" id="toc-flowcell-chemistry" class="nav-link" data-scroll-target="#flowcell-chemistry"><span class="header-section-number">3</span> Flowcell Chemistry</a></li>
-  <li><a href="#output-file-formats" id="toc-output-file-formats" class="nav-link" data-scroll-target="#output-file-formats"><span class="header-section-number">4</span> Output File Formats</a></li>
-  <li><a href="#advantages-and-limitations" id="toc-advantages-and-limitations" class="nav-link" data-scroll-target="#advantages-and-limitations"><span class="header-section-number">5</span> Advantages and Limitations</a>
+  <li><a href="#how-nanopore-sequencing-works" id="toc-how-nanopore-sequencing-works" class="nav-link active" data-scroll-target="#how-nanopore-sequencing-works">How Nanopore Sequencing Works</a></li>
+  <li><a href="#devices" id="toc-devices" class="nav-link" data-scroll-target="#devices">Devices</a></li>
+  <li><a href="#flowcell-chemistry" id="toc-flowcell-chemistry" class="nav-link" data-scroll-target="#flowcell-chemistry">Flowcell Chemistry</a></li>
+  <li><a href="#output-file-formats" id="toc-output-file-formats" class="nav-link" data-scroll-target="#output-file-formats">Output File Formats</a></li>
+  <li><a href="#advantages-and-limitations" id="toc-advantages-and-limitations" class="nav-link" data-scroll-target="#advantages-and-limitations">Advantages and Limitations</a>
   <ul class="collapse">
-  <li><a href="#advantages" id="toc-advantages" class="nav-link" data-scroll-target="#advantages"><span class="header-section-number">5.1</span> Advantages</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">5.2</span> Limitations</a></li>
+  <li><a href="#advantages" id="toc-advantages" class="nav-link" data-scroll-target="#advantages">Advantages</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
   </ul></li>
-  <li><a href="#quality-scores" id="toc-quality-scores" class="nav-link" data-scroll-target="#quality-scores"><span class="header-section-number">6</span> Quality Scores</a></li>
+  <li><a href="#quality-scores" id="toc-quality-scores" class="nav-link" data-scroll-target="#quality-scores">Quality Scores</a></li>
   </ul>
 </nav>
 </nav>
@@ -265,8 +265,8 @@ window.Quarto = {
 
 
 
-<section id="how-nanopore-sequencing-works" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="how-nanopore-sequencing-works"><span class="header-section-number">1</span> How Nanopore Sequencing Works</h2>
+<section id="how-nanopore-sequencing-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-nanopore-sequencing-works">How Nanopore Sequencing Works</h2>
 <p>Oxford Nanopore Technology (ONT) is fundamentally different from Illumina sequencing. Rather than sequencing by synthesis with fluorescent signals, nanopore sequencing detects changes in ionic current as a DNA or RNA strand passes through a protein pore embedded in a synthetic membrane.</p>
 <ul>
 <li>A <strong>protein nanopore</strong> (typically CsgG or R10.4.1) is inserted into an electrically resistant polymer membrane.</li>
@@ -281,8 +281,8 @@ window.Quarto = {
 <li>Sequence <strong>RNA directly</strong>, without reverse transcription.</li>
 </ul>
 </section>
-<section id="devices" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="devices"><span class="header-section-number">2</span> Devices</h2>
+<section id="devices" class="level2">
+<h2 class="anchored" data-anchor-id="devices">Devices</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -333,16 +333,16 @@ window.Quarto = {
 </table>
 <p>All devices are compatible with the same library preparations; output scales with the number and type of flowcells used.</p>
 </section>
-<section id="flowcell-chemistry" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="flowcell-chemistry"><span class="header-section-number">3</span> Flowcell Chemistry</h2>
+<section id="flowcell-chemistry" class="level2">
+<h2 class="anchored" data-anchor-id="flowcell-chemistry">Flowcell Chemistry</h2>
 <p>ONT continuously improves pore chemistry. The most current production chemistry is <strong>R10.4.1</strong>, which features a dual-reader head that improves per-read accuracy and homopolymer resolution compared to the previous R9.4.1 chemistry.</p>
 <ul>
 <li><strong>R9.4.1</strong> — widely used, mature bioinformatics tooling, ~98% modal accuracy.</li>
 <li><strong>R10.4.1</strong> — improved accuracy (&gt;99% modal, Q20+), better for SNV and methylation calling.</li>
 </ul>
 </section>
-<section id="output-file-formats" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="output-file-formats"><span class="header-section-number">4</span> Output File Formats</h2>
+<section id="output-file-formats" class="level2">
+<h2 class="anchored" data-anchor-id="output-file-formats">Output File Formats</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -378,10 +378,10 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="advantages-and-limitations" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="advantages-and-limitations"><span class="header-section-number">5</span> Advantages and Limitations</h2>
-<section id="advantages" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="advantages"><span class="header-section-number">5.1</span> Advantages</h3>
+<section id="advantages-and-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="advantages-and-limitations">Advantages and Limitations</h2>
+<section id="advantages" class="level3">
+<h3 class="anchored" data-anchor-id="advantages">Advantages</h3>
 <ul>
 <li><strong>Ultra-long reads</strong>: Resolve structural variants, repetitive regions, phasing across entire haplotypes, and full-length transcript isoforms.</li>
 <li><strong>Real-time sequencing</strong>: Data streams during the run; adaptive sampling can reject off-target reads on-the-fly.</li>
@@ -390,8 +390,8 @@ window.Quarto = {
 <li><strong>Direct RNA</strong>: Sequence RNA without converting to cDNA, preserving poly-A tail length and base modifications.</li>
 </ul>
 </section>
-<section id="limitations" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="limitations"><span class="header-section-number">5.2</span> Limitations</h3>
+<section id="limitations" class="level3">
+<h3 class="anchored" data-anchor-id="limitations">Limitations</h3>
 <ul>
 <li><strong>Per-read error rate</strong>: Although Q20+ is now achievable with R10.4.1 + SUP basecalling, raw error rates are higher than Illumina for equivalent cost.</li>
 <li><strong>Homopolymers</strong>: Long runs of the same base remain challenging, though R10.4.1 improves this significantly.</li>
@@ -400,8 +400,8 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="quality-scores" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="quality-scores"><span class="header-section-number">6</span> Quality Scores</h2>
+<section id="quality-scores" class="level2">
+<h2 class="anchored" data-anchor-id="quality-scores">Quality Scores</h2>
 <p>ONT uses the same Phred/Q score convention as Illumina:</p>
 <p><span class="math display">\[Q = -10 \log_{10} P\]</span></p>
 <p>where <span class="math inline">\(P\)</span> is the probability of an incorrect base call.</p>

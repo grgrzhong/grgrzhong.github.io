@@ -177,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#animation" id="toc-animation" class="nav-link active" data-scroll-target="#animation"><span class="header-section-number">1</span> Animation</a></li>
+  <li><a href="#animation" id="toc-animation" class="nav-link active" data-scroll-target="#animation">Animation</a></li>
   </ul>
 </nav>
 </nav>
@@ -232,8 +232,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Why use BWA-MEM over BWA-ALN?</strong> BWA-MEM is faster and more accurate than the older BWA-ALN algorithm, especially for reads ≥70 bp. It uses a different seeding strategy based on maximal exact matches (MEMs) that allows it to handle longer reads and tolerate more sequencing errors. BWA-MEM also natively supports split alignments (chimeric reads), making it suitable for detecting structural variants and mapping RNA-seq reads that span exon junctions (though dedicated spliced aligners like STAR are preferred for RNA-seq).</p>
 <p><strong>Read Group (<span class="citation" data-cites="RG">@RG</span>) Tags:</strong> The <code>-R</code> parameter adds read group information to the BAM file, which is essential for downstream analysis with tools like GATK. The read group tags include: - <code>ID</code>: Unique identifier for the read group (often flowcell.lane) - <code>SM</code>: Sample name (biological sample identifier) - <code>PL</code>: Platform (e.g., ILLUMINA, PACBIO) - <code>LB</code>: Library identifier (useful when multiple libraries from the same sample) This metadata enables multi-sample variant calling and helps track data provenance.</p>
 <p><strong>Alignment Quality and MAPQ Scores:</strong> BWA-MEM assigns a mapping quality (MAPQ) score to each alignment, indicating the probability that the alignment is incorrect. MAPQ = 60 means the alignment has a 1/1,000,000 chance of being wrong (P = 10^(-60/10)). A MAPQ ≥ 30 is generally considered high-quality. Reads with multiple equally good alignments receive MAPQ = 0, indicating ambiguous mapping.</p>
-<section id="animation" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="animation"><span class="header-section-number">1</span> Animation</h2>
+<section id="animation" class="level2">
+<h2 class="anchored" data-anchor-id="animation">Animation</h2>
 <p>These animations were created with <a href="https://www.manim.community/">Manim Community</a>. Source scripts are in <a href="https://github.com/grgrzhong/quarto/tree/main/tools/animations"><code>tools/animations/</code></a>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Conceptual Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Step-by-Step Algorithm</a></li></ul>
