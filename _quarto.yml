@@ -90,7 +90,7 @@ format:
     toc_float: true
     toc-location: left
     number-sections: false
-    number-depth: 3
+    number-depth: 4
     code-link: true
     code-fold: false # true to enable code folding
     code-overflow: wrap # scroll/wrap

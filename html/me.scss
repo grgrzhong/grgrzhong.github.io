@@ -154,6 +154,12 @@ pre.text, pre.sourceCode, .cell-output pre {
         font-weight: 600;
     }
 }
+/* Capitalize all headers */
+h1, h2, h3, h4, h5, h6,
+/* Capitalize the TOC title and links */
+#TOC, .toc-title {
+  text-transform: capitalize;
+}
 
 /* Match the document header section numbers to the TOC style */
 .header-section-number {
@@ -166,9 +172,16 @@ pre.text, pre.sourceCode, .cell-output pre {
     font-weight: 400;
 }
 
+// Make all headings capitalize the first letter of each word
+h1, h2, h3, h4, h5, h6 {
+  text-transform: capitalize;
+}
+
 // Make all headings and section numbers inherit the font family from their parent
 h1, h2, h3, h4, h5, h6, .header-section-number {
   font-family: inherit;
+  color: inherit;
+  font-weight: inherit;
 }
 
 .sidebar nav[role="doc-toc"]>ul li a {

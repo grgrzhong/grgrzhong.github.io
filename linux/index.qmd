@@ -4,6 +4,7 @@ date: 2022-10-09
 published-title: Created
 date-modified: last-modified
 title-block-banner: "#212529"
+subtitle: "Commonly used Linux commands"
 # toc: true
 # toc-location: left
 toc-title: "Contents"
@@ -21,7 +22,14 @@ format:
 
 ## Linux Basics
 
-### Files & directories
+- Linux is a family of open-source Unix-like operating systems based on the Linux kernel. It is widely used for servers, desktops, and embedded systems. Linux provides a powerful command-line interface (CLI) that allows users to interact with the system and perform various tasks.
+
+- Linux commands are executed in a terminal or shell, and they can be combined to create powerful scripts and automate tasks. The Linux file system is organized in a hierarchical structure, with directories and files that can be manipulated using various commands.
+
+- In bioinformatics, Linux is commonly used for data analysis, bioinformatics pipelines, and high-performance computing (HPC) tasks. Many bioinformatics tools and software are designed to run on Linux systems, making it a preferred choice for researchers in the field.
+
+
+### File & directory
 
 ``` bash
 ### Working with files
@@ -61,7 +69,124 @@ less file.txt         # View file.txt with scrolling and searching capabilities
 # -S: Don't wrap long lines
 # -U: Don't show control characters
 ```
-### File permissions
+
+### File transfer
+
+-   Transfering data efficiently between local and remote systems:
+    -   `wget`: Download files directly from the internet to your local machine or server.
+    -   `scp`: Securely copy files between local and remote systems over SSH.
+    -   `rsync`: Synchronize files and directories efficiently, with options for selective copying and deletion.
+
+``` bash
+## Basic command
+rsync -av /source/folder/ /destination/folder/
+
+## Sync source to destination
+rsync -av --delete /source/folder/ /destination/folder/
+
+## If you need two-way sync, run both directions
+rsync -av --delete /folder1/ /folder2/
+rsync -av --delete /folder2/ /folder1/
+
+## sync multiple folders at once
+rsync -avP /source/{folder1,folder2,folder3} /destination/
+rsync -avP --include='v*/' --include='Scripts/' --exclude='*' /groups/fcoi/guorui/analysis/ /path/to/destination/
+
+## Network sync
+rsync -av --delete /local/folder/ user@remote:/remote/folder/
+
+## Copy only new files (files that don't exist in the destination)
+rsync -av --ignore-existing /source/folder/ /destination/folder/
+
+## Copy only if source is newer
+rsync -av --update /source/folder/ /destination/folder/
+```
+
+::: callout-note
+-   `--archive`: Preserves permissions, timestamps, symbolic links, etc.
+-   `--verbose`: Shows progress
+-   `--delete`: Removes files in destination that don't exist in source
+-   `--dry-run`: Preview changes without actually syncing
+-   `--update`: Only copy newer file
+-   `--ignore-existing`: Skips files that already exist in destination (regardless of age)
+-   `--update`: Only copies if source file is newer than destination
+-   `--no-perms`: Don't preserve Unix permissions
+-   `--no-times`: Don't preserve modification times
+-   `--inplace`: Write directly without temp files
+:::
+
+-   Sync remote server folders to local using rsync
+
+``` bash
+## Remote server details
+remote_user="username"
+remote_host="hpcio2" # hpc2021-io1.hku.hk,hpc2021-io2.hku.hk
+
+## Define folders to sync (absolute paths)
+## Format: "local_absolute_path:remote_absolute_path"
+folders_to_sync=(
+    # "/mnt/m/Reference:/lustre1/g/path_my/Reference"
+    # "/mnt/m/WES/DFSP/Annovar:/lustre1/g/path_my/pipeline/somatic_variants_calling/data/DFSP/Annovar"
+    "/mnt/m/WES/SARC/BAM:/lustre1/g/path_my/pipeline/somatic_variants_calling/data/SARC/BAM"
+    # Add more folders as needed in the same format
+)
+
+## Sync each folder
+for folder_pair in "${folders_to_sync[@]}"; do
+    # Split the pair into local and remote paths
+    local_path="${folder_pair%%:*}"
+    remote_path="${folder_pair#*:}"
+
+    echo "Syncing ${remote_user}@${remote_host}:${remote_path} to ${local_path}"
+
+    # Create local directory structure
+    mkdir -p "${local_path}"
+
+    # Sync the folder contents from remote to local (trailing slash on source copies contents)
+    rsync -av --update --progress --inplace --no-perms --no-times \
+        "${remote_user}@${remote_host}:${remote_path}/" \
+        "${local_path}/"
+
+    echo "-----------------------------------"
+done
+```
+
+-   Sync local folders to remote server
+
+``` bash
+## Remote server details
+remote_user="username"
+remote_host="hpcio1" # hpc2021-io1.hku.hk
+
+## Define folders to sync (absolute paths)
+## Format: "local_absolute_path:remote_absolute_path"
+folders_to_sync=(
+    "/mnt/f/Reference:/lustre1/g/path_my/Reference"
+    # Add more folders as needed in the same format
+)
+
+## Sync each folder
+for folder_pair in "${folders_to_sync[@]}"; do
+
+    # Split the pair into local and remote paths
+    local_path="${folder_pair%%:*}"
+    remote_path="${folder_pair#*:}"
+
+    echo "Syncing ${local_path} to ${remote_user}@${remote_host}:${remote_path}"
+
+    # Create remote directory structure
+    ssh ${remote_user}@${remote_host} "mkdir -p ${remote_path}"
+
+    # Sync the folder contents (trailing slash on source copies contents)
+    rsync -av --update --progress \
+        "${local_path}/" \
+        "${remote_user}@${remote_host}:${remote_path}/"
+
+    echo "-----------------------------------"
+done
+```
+
+### File permission
 
 Only the user can copy, execute, and change
 
@@ -108,7 +233,7 @@ Change owner
 ``` bash
 sudo chown username:groupname /path/to/folder
 ```
-### Compression & backup
+### File compression
 
 ``` bash
 ## Backup a directory to a tar.gz file
@@ -206,7 +331,7 @@ tar -czvf mybackup.tar.gz myfolder
 tar -xzvf mybackup.tar.gz
 ```
 
-### Regular expressions
+### Regular expression
 
 Regular expressions (regex) are patterns used to match character combinations in strings. In Linux, they are commonly used with commands like `grep`, `sed`, and `awk` for searching and manipulating text.
 
@@ -329,7 +454,7 @@ awk '/error/' file.txt
 awk 'END {print NR}' file.txt
 ```
 
-### Search
+### Search anything
 
 `find` is a powerful command to search for files and directories based on various criteria: \* Search by name, type, size, modification time, permissions, etc. \* Execute actions on found items (delete, move, etc.) \* Supports complex expressions with logical operators
 
@@ -362,121 +487,6 @@ command >> output.txt
 Standard streams in Linux: \* `stdin` (standard input): The default input stream for a command, 0 \* `stdout` (standard output): The default output stream for a command, 1 \* `stderr` (standard error): The default error output stream for a command, 2
 
 
-### File transfer
-
--   Transfering data efficiently between local and remote systems:
-    -   `wget`: Download files directly from the internet to your local machine or server.
-    -   `scp`: Securely copy files between local and remote systems over SSH.
-    -   `rsync`: Synchronize files and directories efficiently, with options for selective copying and deletion.
-
-``` bash
-## Basic command
-rsync -av /source/folder/ /destination/folder/
-
-## Sync source to destination
-rsync -av --delete /source/folder/ /destination/folder/
-
-## If you need two-way sync, run both directions
-rsync -av --delete /folder1/ /folder2/
-rsync -av --delete /folder2/ /folder1/
-
-## sync multiple folders at once
-rsync -avP /source/{folder1,folder2,folder3} /destination/
-rsync -avP --include='v*/' --include='Scripts/' --exclude='*' /groups/fcoi/guorui/analysis/ /path/to/destination/
-
-## Network sync
-rsync -av --delete /local/folder/ user@remote:/remote/folder/
-
-## Copy only new files (files that don't exist in the destination)
-rsync -av --ignore-existing /source/folder/ /destination/folder/
-
-## Copy only if source is newer
-rsync -av --update /source/folder/ /destination/folder/
-```
-
-::: callout-note
--   `--archive`: Preserves permissions, timestamps, symbolic links, etc.
--   `--verbose`: Shows progress
--   `--delete`: Removes files in destination that don't exist in source
--   `--dry-run`: Preview changes without actually syncing
--   `--update`: Only copy newer file
--   `--ignore-existing`: Skips files that already exist in destination (regardless of age)
--   `--update`: Only copies if source file is newer than destination
--   `--no-perms`: Don't preserve Unix permissions
--   `--no-times`: Don't preserve modification times
--   `--inplace`: Write directly without temp files
-:::
-
--   Sync remote server folders to local using rsync
-
-``` bash
-## Remote server details
-remote_user="username"
-remote_host="hpcio2" # hpc2021-io1.hku.hk,hpc2021-io2.hku.hk
-
-## Define folders to sync (absolute paths)
-## Format: "local_absolute_path:remote_absolute_path"
-folders_to_sync=(
-    # "/mnt/m/Reference:/lustre1/g/path_my/Reference"
-    # "/mnt/m/WES/DFSP/Annovar:/lustre1/g/path_my/pipeline/somatic_variants_calling/data/DFSP/Annovar"
-    "/mnt/m/WES/SARC/BAM:/lustre1/g/path_my/pipeline/somatic_variants_calling/data/SARC/BAM"
-    # Add more folders as needed in the same format
-)
-
-## Sync each folder
-for folder_pair in "${folders_to_sync[@]}"; do
-    # Split the pair into local and remote paths
-    local_path="${folder_pair%%:*}"
-    remote_path="${folder_pair#*:}"
-
-    echo "Syncing ${remote_user}@${remote_host}:${remote_path} to ${local_path}"
-
-    # Create local directory structure
-    mkdir -p "${local_path}"
-
-    # Sync the folder contents from remote to local (trailing slash on source copies contents)
-    rsync -av --update --progress --inplace --no-perms --no-times \
-        "${remote_user}@${remote_host}:${remote_path}/" \
-        "${local_path}/"
-
-    echo "-----------------------------------"
-done
-```
-
--   Sync local folders to remote server
-
-``` bash
-## Remote server details
-remote_user="username"
-remote_host="hpcio1" # hpc2021-io1.hku.hk
-
-## Define folders to sync (absolute paths)
-## Format: "local_absolute_path:remote_absolute_path"
-folders_to_sync=(
-    "/mnt/f/Reference:/lustre1/g/path_my/Reference"
-    # Add more folders as needed in the same format
-)
-
-## Sync each folder
-for folder_pair in "${folders_to_sync[@]}"; do
-
-    # Split the pair into local and remote paths
-    local_path="${folder_pair%%:*}"
-    remote_path="${folder_pair#*:}"
-
-    echo "Syncing ${local_path} to ${remote_user}@${remote_host}:${remote_path}"
-
-    # Create remote directory structure
-    ssh ${remote_user}@${remote_host} "mkdir -p ${remote_path}"
-
-    # Sync the folder contents (trailing slash on source copies contents)
-    rsync -av --update --progress \
-        "${local_path}/" \
-        "${remote_user}@${remote_host}:${remote_path}/"
-
-    echo "-----------------------------------"
-done
-```
 
 ## Vim Text Editor
 
