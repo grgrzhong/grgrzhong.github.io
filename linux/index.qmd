@@ -44,7 +44,24 @@ ls -lh                    # List files with human-readable sizes
 rm -r my_directory        # Remove the directory my_directory and its contents
 ```
 
-### Permissions
+``` bash
+### View file contents
+cat file.txt          # Display the entire contents of file.txt
+head file.txt         # Display the first 10 lines of file.txt
+tail file.txt         # Display the last 10 lines of file.txt
+wc -l file.txt        # Count the number of lines in file.txt
+```
+
+``` bash
+less file.txt         # View file.txt with scrolling and searching capabilities
+
+## Options for less:
+# -n: Show line numbers
+# +F: Follow the file (like tail -f)
+# -S: Don't wrap long lines
+# -U: Don't show control characters
+```
+### File permissions
 
 Only the user can copy, execute, and change
 
@@ -189,39 +206,6 @@ tar -czvf mybackup.tar.gz myfolder
 tar -xzvf mybackup.tar.gz
 ```
 
-### Redirection
-
-Redirection is a way to direct the input and output of a command to a file or another command. It allows you to save the output of a command to a file, or to use the output of one command as the input for another command.
-
-``` bash
-## Redirect output to a file
-command > output.txt
-
-## Append output to a file
-command >> output.txt
-```
-
-Standard streams in Linux: \* `stdin` (standard input): The default input stream for a command, 0 \* `stdout` (standard output): The default output stream for a command, 1 \* `stderr` (standard error): The default error output stream for a command, 2
-
-### View file contents
-
-``` bash
-cat file.txt          # Display the entire contents of file.txt
-head file.txt         # Display the first 10 lines of file.txt
-tail file.txt         # Display the last 10 lines of file.txt
-wc -l file.txt        # Count the number of lines in file.txt
-```
-
-``` bash
-less file.txt         # View file.txt with scrolling and searching capabilities
-
-## Options for less:
-# -n: Show line numbers
-# +F: Follow the file (like tail -f)
-# -S: Don't wrap long lines
-# -U: Don't show control characters
-```
-
 ### Regular expressions
 
 Regular expressions (regex) are patterns used to match character combinations in strings. In Linux, they are commonly used with commands like `grep`, `sed`, and `awk` for searching and manipulating text.
@@ -248,7 +232,9 @@ Regular expressions (regex) are patterns used to match character combinations in
 | {N,} | preceding character is matched [**at least  N times or more**]{.underline} | AT{3,}CG | A[**TTT**]{.underline}CG, A[**TTTT**]{.underline}CG |
 | {N,M} | preceding character is matched [**at least  N times but not more than M times**]{.underline} | AT{2,3}CG | A[**TT**]{.underline}CG, A[**TTT**]{.underline}CG |
 
-### Filtering text file
+### Text file manipulation
+
+#### Filtering
 
 `grep` Globally  search  a Regular Expression and Print: is a command-line utility for searching plain-text data sets for lines that match a specified pattern: \* Search files or input for specific patterns \* Supports regular expressions for complex pattern matching \* Options for case sensitivity, whole word matching, line numbers, etc. \* Line filtering and extraction based on patterns
 
@@ -272,7 +258,7 @@ cut -c1-5 file.txt           # Extract characters from position 1 to 5
 grep "pattern" file.txt | cut -f1,3 | sort | uniq
 ```
 
-### Sort text file
+#### Sort
 
 ```bash
 sort file.txt                 # Sort lines in file.txt alphabetically
@@ -282,14 +268,17 @@ sort -u file.txt              # Sort and remove duplicate lines
 sort -k2 file.txt             # Sort by the second column
 ```
 
-### Remove duplicates
+#### Duplicates
 ```bash
 uniq file.txt                 # Remove duplicate lines (requires sorted input)
 uniq -c file.txt              # Count occurrences of each line
 sort file.txt | uniq -c | sort -nr  # Count and sort by frequency
 ```
-
-### Find & replace
+#### Merge
+```bash
+paste file1.txt file2.txt > combined.txt  # Join files side by side
+```
+#### Find & replace
 
 `sed` is a stream editor used to perform basic text transformations: \* substituction, deletion, insertion, and more \* works line by line, applying patterns and edits
 
@@ -309,10 +298,6 @@ sed -n '/pattern/p' file.txt
 
 ## Print lines 2 to 5 of a file
 sed -n '2,5p' file.txt
-```
-### Merge files
-```bash
-paste file1.txt file2.txt > combined.txt  # Join files side by side
 ```
 
 ### Data processing
@@ -344,7 +329,7 @@ awk '/error/' file.txt
 awk 'END {print NR}' file.txt
 ```
 
-### Find files and directories
+### Search
 
 `find` is a powerful command to search for files and directories based on various criteria: \* Search by name, type, size, modification time, permissions, etc. \* Execute actions on found items (delete, move, etc.) \* Supports complex expressions with logical operators
 
@@ -361,6 +346,21 @@ find /path/to/search -type f -size +100M
 ## Find files in pattern and list details
 find ./Clean -name "*Clean.fastq.gz" -type f -exec ls -lh {} \;
 ```
+
+### Redirection
+
+Redirection is a way to direct the input and output of a command to a file or another command. It allows you to save the output of a command to a file, or to use the output of one command as the input for another command.
+
+``` bash
+## Redirect output to a file
+command > output.txt
+
+## Append output to a file
+command >> output.txt
+```
+
+Standard streams in Linux: \* `stdin` (standard input): The default input stream for a command, 0 \* `stdout` (standard output): The default output stream for a command, 1 \* `stderr` (standard error): The default error output stream for a command, 2
+
 
 ### File transfer
 

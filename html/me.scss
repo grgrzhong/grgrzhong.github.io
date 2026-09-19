@@ -166,6 +166,11 @@ pre.text, pre.sourceCode, .cell-output pre {
     font-weight: 400;
 }
 
+// Make all headings and section numbers inherit the font family from their parent
+h1, h2, h3, h4, h5, h6, .header-section-number {
+  font-family: inherit;
+}
+
 .sidebar nav[role="doc-toc"]>ul li a {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;

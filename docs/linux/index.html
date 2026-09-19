@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-ccafe2c99a4564d55934ca8539ca9f46.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7bc3085dc2f83b678383b418f2ad9bbe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-debb373c9fcaedc4661762fe82da91a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -215,19 +215,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#linux-basics" id="toc-linux-basics" class="nav-link active" data-scroll-target="#linux-basics"><span class="header-section-number">1</span> Linux Basics</a>
   <ul>
   <li><a href="#files-directories" id="toc-files-directories" class="nav-link" data-scroll-target="#files-directories"><span class="header-section-number">1.1</span> Files &amp; directories</a></li>
-  <li><a href="#permissions" id="toc-permissions" class="nav-link" data-scroll-target="#permissions"><span class="header-section-number">1.2</span> Permissions</a></li>
+  <li><a href="#file-permissions" id="toc-file-permissions" class="nav-link" data-scroll-target="#file-permissions"><span class="header-section-number">1.2</span> File permissions</a></li>
   <li><a href="#compression-backup" id="toc-compression-backup" class="nav-link" data-scroll-target="#compression-backup"><span class="header-section-number">1.3</span> Compression &amp; backup</a></li>
-  <li><a href="#redirection" id="toc-redirection" class="nav-link" data-scroll-target="#redirection"><span class="header-section-number">1.4</span> Redirection</a></li>
-  <li><a href="#view-file-contents" id="toc-view-file-contents" class="nav-link" data-scroll-target="#view-file-contents"><span class="header-section-number">1.5</span> View file contents</a></li>
-  <li><a href="#regular-expressions" id="toc-regular-expressions" class="nav-link" data-scroll-target="#regular-expressions"><span class="header-section-number">1.6</span> Regular expressions</a></li>
-  <li><a href="#filtering-text-file" id="toc-filtering-text-file" class="nav-link" data-scroll-target="#filtering-text-file"><span class="header-section-number">1.7</span> Filtering text file</a></li>
-  <li><a href="#sort-text-file" id="toc-sort-text-file" class="nav-link" data-scroll-target="#sort-text-file"><span class="header-section-number">1.8</span> Sort text file</a></li>
-  <li><a href="#remove-duplicates" id="toc-remove-duplicates" class="nav-link" data-scroll-target="#remove-duplicates"><span class="header-section-number">1.9</span> Remove duplicates</a></li>
-  <li><a href="#find-replace" id="toc-find-replace" class="nav-link" data-scroll-target="#find-replace"><span class="header-section-number">1.10</span> Find &amp; replace</a></li>
-  <li><a href="#merge-files" id="toc-merge-files" class="nav-link" data-scroll-target="#merge-files"><span class="header-section-number">1.11</span> Merge files</a></li>
-  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing"><span class="header-section-number">1.12</span> Data processing</a></li>
-  <li><a href="#find-files-and-directories" id="toc-find-files-and-directories" class="nav-link" data-scroll-target="#find-files-and-directories"><span class="header-section-number">1.13</span> Find files and directories</a></li>
-  <li><a href="#file-transfer" id="toc-file-transfer" class="nav-link" data-scroll-target="#file-transfer"><span class="header-section-number">1.14</span> File transfer</a></li>
+  <li><a href="#regular-expressions" id="toc-regular-expressions" class="nav-link" data-scroll-target="#regular-expressions"><span class="header-section-number">1.4</span> Regular expressions</a></li>
+  <li><a href="#text-file-manipulation" id="toc-text-file-manipulation" class="nav-link" data-scroll-target="#text-file-manipulation"><span class="header-section-number">1.5</span> Text file manipulation</a>
+  <ul class="collapse">
+  <li><a href="#filtering" id="toc-filtering" class="nav-link" data-scroll-target="#filtering">Filtering</a></li>
+  <li><a href="#sort" id="toc-sort" class="nav-link" data-scroll-target="#sort">Sort</a></li>
+  <li><a href="#duplicates" id="toc-duplicates" class="nav-link" data-scroll-target="#duplicates">Duplicates</a></li>
+  <li><a href="#merge" id="toc-merge" class="nav-link" data-scroll-target="#merge">Merge</a></li>
+  <li><a href="#find-replace" id="toc-find-replace" class="nav-link" data-scroll-target="#find-replace">Find &amp; replace</a></li>
+  </ul></li>
+  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing"><span class="header-section-number">1.6</span> Data processing</a></li>
+  <li><a href="#search" id="toc-search" class="nav-link" data-scroll-target="#search"><span class="header-section-number">1.7</span> Search</a></li>
+  <li><a href="#redirection" id="toc-redirection" class="nav-link" data-scroll-target="#redirection"><span class="header-section-number">1.8</span> Redirection</a></li>
+  <li><a href="#file-transfer" id="toc-file-transfer" class="nav-link" data-scroll-target="#file-transfer"><span class="header-section-number">1.9</span> File transfer</a></li>
   </ul></li>
   <li><a href="#vim-text-editor" id="toc-vim-text-editor" class="nav-link" data-scroll-target="#vim-text-editor"><span class="header-section-number">2</span> Vim Text Editor</a>
   <ul>
@@ -251,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#tmux" id="toc-tmux" class="nav-link" data-scroll-target="#tmux"><span class="header-section-number">5.1</span> Tmux</a></li>
   <li><a href="#screen" id="toc-screen" class="nav-link" data-scroll-target="#screen"><span class="header-section-number">5.2</span> Screen</a></li>
   </ul></li>
-  <li><a href="#environment-management" id="toc-environment-management" class="nav-link" data-scroll-target="#environment-management"><span class="header-section-number">6</span> Environment Management</a>
+  <li><a href="#manage-environment" id="toc-manage-environment" class="nav-link" data-scroll-target="#manage-environment"><span class="header-section-number">6</span> Manage Environment</a>
   <ul>
   <li><a href="#conda" id="toc-conda" class="nav-link" data-scroll-target="#conda"><span class="header-section-number">6.1</span> Conda</a></li>
   <li><a href="#pixi" id="toc-pixi" class="nav-link" data-scroll-target="#pixi"><span class="header-section-number">6.2</span> Pixi</a></li>
@@ -290,11 +292,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span>                     <span class="co"># List all files, including hidden files</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span>                    <span class="co"># List files with human-readable sizes</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> my_directory        <span class="co"># Remove the directory my_directory and its contents</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">### View file contents</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> file.txt          <span class="co"># Display the entire contents of file.txt</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> file.txt         <span class="co"># Display the first 10 lines of file.txt</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> file.txt         <span class="co"># Display the last 10 lines of file.txt</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> file.txt        <span class="co"># Count the number of lines in file.txt</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> file.txt         <span class="co"># View file.txt with scrolling and searching capabilities</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Options for less:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># -n: Show line numbers</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># +F: Follow the file (like tail -f)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># -S: Don't wrap long lines</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># -U: Don't show control characters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="permissions" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="permissions"><span class="header-section-number">1.2</span> Permissions</h3>
+<section id="file-permissions" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="file-permissions"><span class="header-section-number">1.2</span> File permissions</h3>
 <p>Only the user can copy, execute, and change</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 700 /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 700 /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>700</code> means:</p>
 <ul>
 <li>Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)</li>
@@ -302,33 +316,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Others: 0 (no permissions)</li>
 </ul>
 <p>All can read and execute, only the owner can change</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 755 /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 755 /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)</li>
 <li>Group: 5 (read = 4, execute = 1; 4+1 = 5)</li>
 <li>Others: 5 (read = 4, execute = 1; 4+1 = 5)</li>
 </ul>
 <p>Give a user named someuser read, write, and execute permissions on the /path/to/folder directory</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">setfacl</span> <span class="at">-m</span> u:someuser:rwx /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">setfacl</span> <span class="at">-m</span> u:someuser:rwx /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Verify the Permissions</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">getfacl</span> /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">getfacl</span> /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Remove all ACL entries for a user</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">setfacl</span> <span class="at">-x</span> u:someuser /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">setfacl</span> <span class="at">-x</span> u:someuser /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Change owner</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown username:groupname /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown username:groupname /path/to/folder</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="compression-backup" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="compression-backup"><span class="header-section-number">1.3</span> Compression &amp; backup</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Backup a directory to a tar.gz file</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czvf</span> backup.tar.gz /path/to/directory</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Restore a directory from a tar.gz file</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> backup.tar.gz <span class="at">-C</span> /path/to/restore</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Common tar flags:</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># -c: create a new archive</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># -x: extract files from an archive</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># -z: filter the archive through gzip</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># -v: verbose output (list files being processed)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Backup a directory to a tar.gz file</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czvf</span> backup.tar.gz /path/to/directory</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Restore a directory from a tar.gz file</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> backup.tar.gz <span class="at">-C</span> /path/to/restore</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Common tar flags:</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># -c: create a new archive</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># -x: extract files from an archive</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># -z: filter the archive through gzip</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># -v: verbose output (list files being processed)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Commone tar flags:
 <ul>
@@ -343,45 +357,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>-p</code> = preserve permissions</li>
 </ul></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.gz file</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xf</span> fuke.tar</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> file.tar.gz</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> file.tgz</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.bz2 file</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xjf</span> file.tar.bz2</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.xz file</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xJf</span> file.tar.xz</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract to specific directory</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> file.tar.gz <span class="at">-C</span> /path/to/directory</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">## List contents without extracting</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-tzf</span> file.tar.gz</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-tf</span> file.tar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract zip files</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> file.zip</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> file.zip <span class="at">-d</span> /path/to/directory</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">## List contents without extracting</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> <span class="at">-l</span> file.zip</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .gz file</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> file.gz</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> <span class="at">-dk</span> file.gz  <span class="co"># keep original file</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .bz2 file</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">bunzip2</span> file.bz2</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .xz file</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">unxz</span> file.xz</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .7z file</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="ex">7z</span> x file.7z</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .rar file</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="ex">unrar</span> x file.rar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.gz file</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xf</span> fuke.tar</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> file.tar.gz</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> file.tgz</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.bz2 file</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xjf</span> file.tar.bz2</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.xz file</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xJf</span> file.tar.xz</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract to specific directory</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> file.tar.gz <span class="at">-C</span> /path/to/directory</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">## List contents without extracting</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-tzf</span> file.tar.gz</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-tf</span> file.tar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract zip files</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> file.zip</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> file.zip <span class="at">-d</span> /path/to/directory</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">## List contents without extracting</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> <span class="at">-l</span> file.zip</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .gz file</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> file.gz</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> <span class="at">-dk</span> file.gz  <span class="co"># keep original file</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .bz2 file</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="fu">bunzip2</span> file.bz2</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .xz file</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="fu">unxz</span> file.xz</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .7z file</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="ex">7z</span> x file.7z</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .rar file</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="ex">unrar</span> x file.rar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Common tar flags for compression
 <ul>
@@ -393,46 +407,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>-v</code> = verbose output</li>
 </ul></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cf</span> archive.tar file1 file2 directory/</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">## gzip compressed</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czf</span> archive.tar.gz file1 file2 directory/</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">## bzip2 compressed</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cjf</span> archive.tar.bz2 file1 file2 directory/</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">## .tar.xz compressed</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cJf</span> archive.tar.xz file1 file2 directory/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Backup and Restore a Folder</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czvf</span> mybackup.tar.gz myfolder</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> mybackup.tar.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cf</span> archive.tar file1 file2 directory/</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">## gzip compressed</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czf</span> archive.tar.gz file1 file2 directory/</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">## bzip2 compressed</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cjf</span> archive.tar.bz2 file1 file2 directory/</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">## .tar.xz compressed</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cJf</span> archive.tar.xz file1 file2 directory/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Backup and Restore a Folder</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czvf</span> mybackup.tar.gz myfolder</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> mybackup.tar.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="redirection" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="redirection"><span class="header-section-number">1.4</span> Redirection</h3>
-<p>Redirection is a way to direct the input and output of a command to a file or another command. It allows you to save the output of a command to a file, or to use the output of one command as the input for another command.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Redirect output to a file</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="op">&gt;</span> output.txt</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Append output to a file</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="op">&gt;&gt;</span> output.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Standard streams in Linux: * <code>stdin</code> (standard input): The default input stream for a command, 0 * <code>stdout</code> (standard output): The default output stream for a command, 1 * <code>stderr</code> (standard error): The default error output stream for a command, 2</p>
-</section>
-<section id="view-file-contents" class="level3" data-number="1.5">
-<h3 data-number="1.5" class="anchored" data-anchor-id="view-file-contents"><span class="header-section-number">1.5</span> View file contents</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> file.txt          <span class="co"># Display the entire contents of file.txt</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> file.txt         <span class="co"># Display the first 10 lines of file.txt</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> file.txt         <span class="co"># Display the last 10 lines of file.txt</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> file.txt        <span class="co"># Count the number of lines in file.txt</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> file.txt         <span class="co"># View file.txt with scrolling and searching capabilities</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Options for less:</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># -n: Show line numbers</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># +F: Follow the file (like tail -f)</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># -S: Don't wrap long lines</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># -U: Don't show control characters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="regular-expressions" class="level3" data-number="1.6">
-<h3 data-number="1.6" class="anchored" data-anchor-id="regular-expressions"><span class="header-section-number">1.6</span> Regular expressions</h3>
+<section id="regular-expressions" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="regular-expressions"><span class="header-section-number">1.4</span> Regular expressions</h3>
 <p>Regular expressions (regex) are patterns used to match character combinations in strings. In Linux, they are commonly used with commands like <code>grep</code>, <code>sed</code>, and <code>awk</code> for searching and manipulating text.</p>
 <table class="caption-top table">
 <colgroup>
@@ -567,36 +557,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="filtering-text-file" class="level3" data-number="1.7">
-<h3 data-number="1.7" class="anchored" data-anchor-id="filtering-text-file"><span class="header-section-number">1.7</span> Filtering text file</h3>
+<section id="text-file-manipulation" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="text-file-manipulation"><span class="header-section-number">1.5</span> Text file manipulation</h3>
+<section id="filtering" class="level4">
+<h4 class="anchored" data-anchor-id="filtering">Filtering</h4>
 <p><code>grep</code> Globally &nbsp;search &nbsp;a Regular Expression and Print: is a command-line utility for searching plain-text data sets for lines that match a specified pattern: * Search files or input for specific patterns * Supports regular expressions for complex pattern matching * Options for case sensitivity, whole word matching, line numbers, etc. * Line filtering and extraction based on patterns</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"pattern"</span> file.txt          <span class="co"># Search for "pattern" in file.txt</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-i</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Case-insensitive search</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-n</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Show line numbers</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Invert the sense of matching, to select non-matching lines</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"pattern"</span> file.txt          <span class="co"># Search for "pattern" in file.txt</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-i</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Case-insensitive search</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-n</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Show line numbers</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Invert the sense of matching, to select non-matching lines</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>cut</code> is used to extract sections from each line of input: * Extract columns or fields from text files * Specify delimiter for fields * Useful for processing structured data like CSV or TSV files * Works line by line * Column extraction based on delimiter or character position</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1</span> file.txt             <span class="co"># Extract first column from a tab-delimited file</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span><span class="st">','</span> <span class="at">-f1,3</span> file.csv     <span class="co"># Extract first and third columns from a comma-separated file</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-c1-5</span> file.txt           <span class="co"># Extract characters from position 1 to 5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Piping and combining commands</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"pattern"</span> file.txt <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f1,3</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1</span> file.txt             <span class="co"># Extract first column from a tab-delimited file</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span><span class="st">','</span> <span class="at">-f1,3</span> file.csv     <span class="co"># Extract first and third columns from a comma-separated file</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-c1-5</span> file.txt           <span class="co"># Extract characters from position 1 to 5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Piping and combining commands</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"pattern"</span> file.txt <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f1,3</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="sort-text-file" class="level3" data-number="1.8">
-<h3 data-number="1.8" class="anchored" data-anchor-id="sort-text-file"><span class="header-section-number">1.8</span> Sort text file</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> file.txt                 <span class="co"># Sort lines in file.txt alphabetically</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-n</span> file.txt              <span class="co"># Sort lines numerically</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-r</span> file.txt              <span class="co"># Sort lines in reverse order</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-u</span> file.txt              <span class="co"># Sort and remove duplicate lines</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-k2</span> file.txt             <span class="co"># Sort by the second column</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="sort" class="level4">
+<h4 class="anchored" data-anchor-id="sort">Sort</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> file.txt                 <span class="co"># Sort lines in file.txt alphabetically</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-n</span> file.txt              <span class="co"># Sort lines numerically</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-r</span> file.txt              <span class="co"># Sort lines in reverse order</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-u</span> file.txt              <span class="co"># Sort and remove duplicate lines</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-k2</span> file.txt             <span class="co"># Sort by the second column</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="remove-duplicates" class="level3" data-number="1.9">
-<h3 data-number="1.9" class="anchored" data-anchor-id="remove-duplicates"><span class="header-section-number">1.9</span> Remove duplicates</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uniq</span> file.txt                 <span class="co"># Remove duplicate lines (requires sorted input)</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">uniq</span> <span class="at">-c</span> file.txt              <span class="co"># Count occurrences of each line</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> file.txt <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-nr</span>  <span class="co"># Count and sort by frequency</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="duplicates" class="level4">
+<h4 class="anchored" data-anchor-id="duplicates">Duplicates</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uniq</span> file.txt                 <span class="co"># Remove duplicate lines (requires sorted input)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">uniq</span> <span class="at">-c</span> file.txt              <span class="co"># Count occurrences of each line</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> file.txt <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-nr</span>  <span class="co"># Count and sort by frequency</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="find-replace" class="level3" data-number="1.10">
-<h3 data-number="1.10" class="anchored" data-anchor-id="find-replace"><span class="header-section-number">1.10</span> Find &amp; replace</h3>
+<section id="merge" class="level4">
+<h4 class="anchored" data-anchor-id="merge">Merge</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span> file1.txt file2.txt <span class="op">&gt;</span> combined.txt  <span class="co"># Join files side by side</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="find-replace" class="level4">
+<h4 class="anchored" data-anchor-id="find-replace">Find &amp; replace</h4>
 <p><code>sed</code> is a stream editor used to perform basic text transformations: * substituction, deletion, insertion, and more * works line by line, applying patterns and edits</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Remove all spaces from a string</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"a b c"</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/ //g'</span></span>
@@ -614,12 +610,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">## Print lines 2 to 5 of a file</span></span>
 <span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">'2,5p'</span> file.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="merge-files" class="level3" data-number="1.11">
-<h3 data-number="1.11" class="anchored" data-anchor-id="merge-files"><span class="header-section-number">1.11</span> Merge files</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span> file1.txt file2.txt <span class="op">&gt;</span> combined.txt  <span class="co"># Join files side by side</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="data-processing" class="level3" data-number="1.12">
-<h3 data-number="1.12" class="anchored" data-anchor-id="data-processing"><span class="header-section-number">1.12</span> Data processing</h3>
+<section id="data-processing" class="level3" data-number="1.6">
+<h3 data-number="1.6" class="anchored" data-anchor-id="data-processing"><span class="header-section-number">1.6</span> Data processing</h3>
 <ul>
 <li><p><code>awk</code> used for pattern scanning and processing. * More powerful than <code>cut</code> for data extraction and reporting * Process text as fileds and records, support arithmetic and logic</p></li>
 <li><p><code>awk</code> is a powerful text-processing tool and programming language used for manipulating and analyzing data</p></li>
@@ -627,38 +620,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>By default, awk prints every line of data from the specified file</p></li>
 <li><p>Basic syntax: <code>awk '&lt;pattern&gt; {&lt;action&gt;}' &lt;file&gt;</code></p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the first column of a file</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'{print $1}'</span> file.txt</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Sum values in the first column</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'{sum += $1} END {print sum}'</span> file.txt</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Print lines where the third column is greater than 100</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'$3 &gt; 100'</span> file.txt</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the lines that match a pattern "error"</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'/error/'</span> file.txt</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the number of lines in a file</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'END {print NR}'</span> file.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the first column of a file</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'{print $1}'</span> file.txt</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Sum values in the first column</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'{sum += $1} END {print sum}'</span> file.txt</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Print lines where the third column is greater than 100</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'$3 &gt; 100'</span> file.txt</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the lines that match a pattern "error"</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'/error/'</span> file.txt</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the number of lines in a file</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'END {print NR}'</span> file.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="find-files-and-directories" class="level3" data-number="1.13">
-<h3 data-number="1.13" class="anchored" data-anchor-id="find-files-and-directories"><span class="header-section-number">1.13</span> Find files and directories</h3>
+<section id="search" class="level3" data-number="1.7">
+<h3 data-number="1.7" class="anchored" data-anchor-id="search"><span class="header-section-number">1.7</span> Search</h3>
 <p><code>find</code> is a powerful command to search for files and directories based on various criteria: * Search by name, type, size, modification time, permissions, etc. * Execute actions on found items (delete, move, etc.) * Supports complex expressions with logical operators</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Find all .txt files in current directory and subdirectories</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="st">"*.txt"</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files/folders by name</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /path/to/search <span class="at">-name</span> <span class="st">"pattern"</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files larger than 100MB</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /path/to/search <span class="at">-type</span> f <span class="at">-size</span> +100M</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files in pattern and list details</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> ./Clean <span class="at">-name</span> <span class="st">"*Clean.fastq.gz"</span> <span class="at">-type</span> f <span class="at">-exec</span> ls <span class="at">-lh</span> {} <span class="dt">\;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Find all .txt files in current directory and subdirectories</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="st">"*.txt"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files/folders by name</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /path/to/search <span class="at">-name</span> <span class="st">"pattern"</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files larger than 100MB</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /path/to/search <span class="at">-type</span> f <span class="at">-size</span> +100M</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files in pattern and list details</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> ./Clean <span class="at">-name</span> <span class="st">"*Clean.fastq.gz"</span> <span class="at">-type</span> f <span class="at">-exec</span> ls <span class="at">-lh</span> {} <span class="dt">\;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="file-transfer" class="level3" data-number="1.14">
-<h3 data-number="1.14" class="anchored" data-anchor-id="file-transfer"><span class="header-section-number">1.14</span> File transfer</h3>
+<section id="redirection" class="level3" data-number="1.8">
+<h3 data-number="1.8" class="anchored" data-anchor-id="redirection"><span class="header-section-number">1.8</span> Redirection</h3>
+<p>Redirection is a way to direct the input and output of a command to a file or another command. It allows you to save the output of a command to a file, or to use the output of one command as the input for another command.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Redirect output to a file</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="op">&gt;</span> output.txt</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Append output to a file</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="op">&gt;&gt;</span> output.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Standard streams in Linux: * <code>stdin</code> (standard input): The default input stream for a command, 0 * <code>stdout</code> (standard output): The default output stream for a command, 1 * <code>stderr</code> (standard error): The default error output stream for a command, 2</p>
+</section>
+<section id="file-transfer" class="level3" data-number="1.9">
+<h3 data-number="1.9" class="anchored" data-anchor-id="file-transfer"><span class="header-section-number">1.9</span> File transfer</h3>
 <ul>
 <li>Transfering data efficiently between local and remote systems:
 <ul>
@@ -1550,8 +1553,8 @@ Note
 </div>
 </section>
 </section>
-<section id="environment-management" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="environment-management"><span class="header-section-number">6</span> Environment Management</h2>
+<section id="manage-environment" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="manage-environment"><span class="header-section-number">6</span> Manage Environment</h2>
 <section id="conda" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="conda"><span class="header-section-number">6.1</span> Conda</h3>
 <ul>
@@ -2249,323 +2252,323 @@ Note
 <span id="cb47-44"><a href="#cb47-44" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> my_directory        <span class="co"># Remove the directory my_directory and its contents</span></span>
 <span id="cb47-45"><a href="#cb47-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb47-46"><a href="#cb47-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-47"><a href="#cb47-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Permissions</span></span>
-<span id="cb47-48"><a href="#cb47-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-49"><a href="#cb47-49" aria-hidden="true" tabindex="-1"></a>Only the user can copy, execute, and change</span>
-<span id="cb47-50"><a href="#cb47-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-51"><a href="#cb47-51" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-52"><a href="#cb47-52" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 700 /path/to/folder</span>
+<span id="cb47-47"><a href="#cb47-47" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-48"><a href="#cb47-48" aria-hidden="true" tabindex="-1"></a><span class="co">### View file contents</span></span>
+<span id="cb47-49"><a href="#cb47-49" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> file.txt          <span class="co"># Display the entire contents of file.txt</span></span>
+<span id="cb47-50"><a href="#cb47-50" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> file.txt         <span class="co"># Display the first 10 lines of file.txt</span></span>
+<span id="cb47-51"><a href="#cb47-51" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> file.txt         <span class="co"># Display the last 10 lines of file.txt</span></span>
+<span id="cb47-52"><a href="#cb47-52" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> file.txt        <span class="co"># Count the number of lines in file.txt</span></span>
 <span id="cb47-53"><a href="#cb47-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb47-54"><a href="#cb47-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-55"><a href="#cb47-55" aria-hidden="true" tabindex="-1"></a><span class="in">`700`</span> means:</span>
-<span id="cb47-56"><a href="#cb47-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-57"><a href="#cb47-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)</span>
-<span id="cb47-58"><a href="#cb47-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Group: 0 (no permissions)</span>
-<span id="cb47-59"><a href="#cb47-59" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Others: 0 (no permissions)</span>
-<span id="cb47-60"><a href="#cb47-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-61"><a href="#cb47-61" aria-hidden="true" tabindex="-1"></a>All can read and execute, only the owner can change</span>
-<span id="cb47-62"><a href="#cb47-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-63"><a href="#cb47-63" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-64"><a href="#cb47-64" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 755 /path/to/folder</span>
-<span id="cb47-65"><a href="#cb47-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-66"><a href="#cb47-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-67"><a href="#cb47-67" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)</span>
-<span id="cb47-68"><a href="#cb47-68" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Group: 5 (read = 4, execute = 1; 4+1 = 5)</span>
-<span id="cb47-69"><a href="#cb47-69" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Others: 5 (read = 4, execute = 1; 4+1 = 5)</span>
-<span id="cb47-70"><a href="#cb47-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-71"><a href="#cb47-71" aria-hidden="true" tabindex="-1"></a>Give a user named someuser read, write, and execute permissions on the /path/to/folder directory</span>
-<span id="cb47-72"><a href="#cb47-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-73"><a href="#cb47-73" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-74"><a href="#cb47-74" aria-hidden="true" tabindex="-1"></a><span class="ex">setfacl</span> <span class="at">-m</span> u:someuser:rwx /path/to/folder</span>
-<span id="cb47-75"><a href="#cb47-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-76"><a href="#cb47-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-77"><a href="#cb47-77" aria-hidden="true" tabindex="-1"></a>Verify the Permissions</span>
-<span id="cb47-78"><a href="#cb47-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-79"><a href="#cb47-79" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-80"><a href="#cb47-80" aria-hidden="true" tabindex="-1"></a><span class="ex">getfacl</span> /path/to/folder</span>
-<span id="cb47-81"><a href="#cb47-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-82"><a href="#cb47-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-83"><a href="#cb47-83" aria-hidden="true" tabindex="-1"></a>Remove all ACL entries for a user</span>
-<span id="cb47-84"><a href="#cb47-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-85"><a href="#cb47-85" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-86"><a href="#cb47-86" aria-hidden="true" tabindex="-1"></a><span class="ex">setfacl</span> <span class="at">-x</span> u:someuser /path/to/folder</span>
-<span id="cb47-87"><a href="#cb47-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-88"><a href="#cb47-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-89"><a href="#cb47-89" aria-hidden="true" tabindex="-1"></a>Change owner</span>
-<span id="cb47-90"><a href="#cb47-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-91"><a href="#cb47-91" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-92"><a href="#cb47-92" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown username:groupname /path/to/folder</span>
-<span id="cb47-93"><a href="#cb47-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-94"><a href="#cb47-94" aria-hidden="true" tabindex="-1"></a><span class="fu">### Compression &amp; backup</span></span>
+<span id="cb47-55"><a href="#cb47-55" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-56"><a href="#cb47-56" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> file.txt         <span class="co"># View file.txt with scrolling and searching capabilities</span></span>
+<span id="cb47-57"><a href="#cb47-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-58"><a href="#cb47-58" aria-hidden="true" tabindex="-1"></a><span class="co">## Options for less:</span></span>
+<span id="cb47-59"><a href="#cb47-59" aria-hidden="true" tabindex="-1"></a><span class="co"># -n: Show line numbers</span></span>
+<span id="cb47-60"><a href="#cb47-60" aria-hidden="true" tabindex="-1"></a><span class="co"># +F: Follow the file (like tail -f)</span></span>
+<span id="cb47-61"><a href="#cb47-61" aria-hidden="true" tabindex="-1"></a><span class="co"># -S: Don't wrap long lines</span></span>
+<span id="cb47-62"><a href="#cb47-62" aria-hidden="true" tabindex="-1"></a><span class="co"># -U: Don't show control characters</span></span>
+<span id="cb47-63"><a href="#cb47-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-64"><a href="#cb47-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### File permissions</span></span>
+<span id="cb47-65"><a href="#cb47-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-66"><a href="#cb47-66" aria-hidden="true" tabindex="-1"></a>Only the user can copy, execute, and change</span>
+<span id="cb47-67"><a href="#cb47-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-68"><a href="#cb47-68" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-69"><a href="#cb47-69" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 700 /path/to/folder</span>
+<span id="cb47-70"><a href="#cb47-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-71"><a href="#cb47-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-72"><a href="#cb47-72" aria-hidden="true" tabindex="-1"></a><span class="in">`700`</span> means:</span>
+<span id="cb47-73"><a href="#cb47-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-74"><a href="#cb47-74" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)</span>
+<span id="cb47-75"><a href="#cb47-75" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Group: 0 (no permissions)</span>
+<span id="cb47-76"><a href="#cb47-76" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Others: 0 (no permissions)</span>
+<span id="cb47-77"><a href="#cb47-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-78"><a href="#cb47-78" aria-hidden="true" tabindex="-1"></a>All can read and execute, only the owner can change</span>
+<span id="cb47-79"><a href="#cb47-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-80"><a href="#cb47-80" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-81"><a href="#cb47-81" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 755 /path/to/folder</span>
+<span id="cb47-82"><a href="#cb47-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-83"><a href="#cb47-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-84"><a href="#cb47-84" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)</span>
+<span id="cb47-85"><a href="#cb47-85" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Group: 5 (read = 4, execute = 1; 4+1 = 5)</span>
+<span id="cb47-86"><a href="#cb47-86" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Others: 5 (read = 4, execute = 1; 4+1 = 5)</span>
+<span id="cb47-87"><a href="#cb47-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-88"><a href="#cb47-88" aria-hidden="true" tabindex="-1"></a>Give a user named someuser read, write, and execute permissions on the /path/to/folder directory</span>
+<span id="cb47-89"><a href="#cb47-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-90"><a href="#cb47-90" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-91"><a href="#cb47-91" aria-hidden="true" tabindex="-1"></a><span class="ex">setfacl</span> <span class="at">-m</span> u:someuser:rwx /path/to/folder</span>
+<span id="cb47-92"><a href="#cb47-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-93"><a href="#cb47-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-94"><a href="#cb47-94" aria-hidden="true" tabindex="-1"></a>Verify the Permissions</span>
 <span id="cb47-95"><a href="#cb47-95" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-96"><a href="#cb47-96" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-97"><a href="#cb47-97" aria-hidden="true" tabindex="-1"></a><span class="co">## Backup a directory to a tar.gz file</span></span>
-<span id="cb47-98"><a href="#cb47-98" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czvf</span> backup.tar.gz /path/to/directory</span>
-<span id="cb47-99"><a href="#cb47-99" aria-hidden="true" tabindex="-1"></a><span class="co">## Restore a directory from a tar.gz file</span></span>
-<span id="cb47-100"><a href="#cb47-100" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> backup.tar.gz <span class="at">-C</span> /path/to/restore</span>
+<span id="cb47-97"><a href="#cb47-97" aria-hidden="true" tabindex="-1"></a><span class="ex">getfacl</span> /path/to/folder</span>
+<span id="cb47-98"><a href="#cb47-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-99"><a href="#cb47-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-100"><a href="#cb47-100" aria-hidden="true" tabindex="-1"></a>Remove all ACL entries for a user</span>
 <span id="cb47-101"><a href="#cb47-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-102"><a href="#cb47-102" aria-hidden="true" tabindex="-1"></a><span class="co">## Common tar flags:</span></span>
-<span id="cb47-103"><a href="#cb47-103" aria-hidden="true" tabindex="-1"></a><span class="co"># -c: create a new archive</span></span>
-<span id="cb47-104"><a href="#cb47-104" aria-hidden="true" tabindex="-1"></a><span class="co"># -x: extract files from an archive</span></span>
-<span id="cb47-105"><a href="#cb47-105" aria-hidden="true" tabindex="-1"></a><span class="co"># -z: filter the archive through gzip</span></span>
-<span id="cb47-106"><a href="#cb47-106" aria-hidden="true" tabindex="-1"></a><span class="co"># -v: verbose output (list files being processed)</span></span>
-<span id="cb47-107"><a href="#cb47-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-108"><a href="#cb47-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-109"><a href="#cb47-109" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Commone tar flags:</span>
-<span id="cb47-110"><a href="#cb47-110" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-x`</span> = extract</span>
-<span id="cb47-111"><a href="#cb47-111" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-f`</span> = file</span>
-<span id="cb47-112"><a href="#cb47-112" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-v`</span> = verbose</span>
-<span id="cb47-113"><a href="#cb47-113" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-z`</span> = gzip compression</span>
-<span id="cb47-114"><a href="#cb47-114" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-j`</span> = bzip2 compression</span>
-<span id="cb47-115"><a href="#cb47-115" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-J`</span> = xz compression</span>
-<span id="cb47-116"><a href="#cb47-116" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-c`</span> = change to directory</span>
-<span id="cb47-117"><a href="#cb47-117" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-C`</span> = specify directory</span>
-<span id="cb47-118"><a href="#cb47-118" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-p`</span> = preserve permissions</span>
-<span id="cb47-119"><a href="#cb47-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-120"><a href="#cb47-120" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-121"><a href="#cb47-121" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.gz file</span></span>
-<span id="cb47-122"><a href="#cb47-122" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xf</span> fuke.tar</span>
-<span id="cb47-123"><a href="#cb47-123" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> file.tar.gz</span>
-<span id="cb47-124"><a href="#cb47-124" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> file.tgz</span>
+<span id="cb47-102"><a href="#cb47-102" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-103"><a href="#cb47-103" aria-hidden="true" tabindex="-1"></a><span class="ex">setfacl</span> <span class="at">-x</span> u:someuser /path/to/folder</span>
+<span id="cb47-104"><a href="#cb47-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-105"><a href="#cb47-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-106"><a href="#cb47-106" aria-hidden="true" tabindex="-1"></a>Change owner</span>
+<span id="cb47-107"><a href="#cb47-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-108"><a href="#cb47-108" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-109"><a href="#cb47-109" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown username:groupname /path/to/folder</span>
+<span id="cb47-110"><a href="#cb47-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-111"><a href="#cb47-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### Compression &amp; backup</span></span>
+<span id="cb47-112"><a href="#cb47-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-113"><a href="#cb47-113" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-114"><a href="#cb47-114" aria-hidden="true" tabindex="-1"></a><span class="co">## Backup a directory to a tar.gz file</span></span>
+<span id="cb47-115"><a href="#cb47-115" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czvf</span> backup.tar.gz /path/to/directory</span>
+<span id="cb47-116"><a href="#cb47-116" aria-hidden="true" tabindex="-1"></a><span class="co">## Restore a directory from a tar.gz file</span></span>
+<span id="cb47-117"><a href="#cb47-117" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> backup.tar.gz <span class="at">-C</span> /path/to/restore</span>
+<span id="cb47-118"><a href="#cb47-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-119"><a href="#cb47-119" aria-hidden="true" tabindex="-1"></a><span class="co">## Common tar flags:</span></span>
+<span id="cb47-120"><a href="#cb47-120" aria-hidden="true" tabindex="-1"></a><span class="co"># -c: create a new archive</span></span>
+<span id="cb47-121"><a href="#cb47-121" aria-hidden="true" tabindex="-1"></a><span class="co"># -x: extract files from an archive</span></span>
+<span id="cb47-122"><a href="#cb47-122" aria-hidden="true" tabindex="-1"></a><span class="co"># -z: filter the archive through gzip</span></span>
+<span id="cb47-123"><a href="#cb47-123" aria-hidden="true" tabindex="-1"></a><span class="co"># -v: verbose output (list files being processed)</span></span>
+<span id="cb47-124"><a href="#cb47-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb47-125"><a href="#cb47-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-126"><a href="#cb47-126" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.bz2 file</span></span>
-<span id="cb47-127"><a href="#cb47-127" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xjf</span> file.tar.bz2</span>
-<span id="cb47-128"><a href="#cb47-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-129"><a href="#cb47-129" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.xz file</span></span>
-<span id="cb47-130"><a href="#cb47-130" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xJf</span> file.tar.xz</span>
-<span id="cb47-131"><a href="#cb47-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-132"><a href="#cb47-132" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract to specific directory</span></span>
-<span id="cb47-133"><a href="#cb47-133" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> file.tar.gz <span class="at">-C</span> /path/to/directory</span>
-<span id="cb47-134"><a href="#cb47-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-135"><a href="#cb47-135" aria-hidden="true" tabindex="-1"></a><span class="co">## List contents without extracting</span></span>
-<span id="cb47-136"><a href="#cb47-136" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-tzf</span> file.tar.gz</span>
-<span id="cb47-137"><a href="#cb47-137" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-tf</span> file.tar</span>
-<span id="cb47-138"><a href="#cb47-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-139"><a href="#cb47-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-140"><a href="#cb47-140" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-141"><a href="#cb47-141" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract zip files</span></span>
-<span id="cb47-142"><a href="#cb47-142" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> file.zip</span>
-<span id="cb47-143"><a href="#cb47-143" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> file.zip <span class="at">-d</span> /path/to/directory</span>
-<span id="cb47-144"><a href="#cb47-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-145"><a href="#cb47-145" aria-hidden="true" tabindex="-1"></a><span class="co">## List contents without extracting</span></span>
-<span id="cb47-146"><a href="#cb47-146" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> <span class="at">-l</span> file.zip</span>
-<span id="cb47-147"><a href="#cb47-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-148"><a href="#cb47-148" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .gz file</span></span>
-<span id="cb47-149"><a href="#cb47-149" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> file.gz</span>
-<span id="cb47-150"><a href="#cb47-150" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> <span class="at">-dk</span> file.gz  <span class="co"># keep original file</span></span>
+<span id="cb47-126"><a href="#cb47-126" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Commone tar flags:</span>
+<span id="cb47-127"><a href="#cb47-127" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-x`</span> = extract</span>
+<span id="cb47-128"><a href="#cb47-128" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-f`</span> = file</span>
+<span id="cb47-129"><a href="#cb47-129" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-v`</span> = verbose</span>
+<span id="cb47-130"><a href="#cb47-130" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-z`</span> = gzip compression</span>
+<span id="cb47-131"><a href="#cb47-131" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-j`</span> = bzip2 compression</span>
+<span id="cb47-132"><a href="#cb47-132" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-J`</span> = xz compression</span>
+<span id="cb47-133"><a href="#cb47-133" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-c`</span> = change to directory</span>
+<span id="cb47-134"><a href="#cb47-134" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-C`</span> = specify directory</span>
+<span id="cb47-135"><a href="#cb47-135" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-p`</span> = preserve permissions</span>
+<span id="cb47-136"><a href="#cb47-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-137"><a href="#cb47-137" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-138"><a href="#cb47-138" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.gz file</span></span>
+<span id="cb47-139"><a href="#cb47-139" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xf</span> fuke.tar</span>
+<span id="cb47-140"><a href="#cb47-140" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> file.tar.gz</span>
+<span id="cb47-141"><a href="#cb47-141" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> file.tgz</span>
+<span id="cb47-142"><a href="#cb47-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-143"><a href="#cb47-143" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.bz2 file</span></span>
+<span id="cb47-144"><a href="#cb47-144" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xjf</span> file.tar.bz2</span>
+<span id="cb47-145"><a href="#cb47-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-146"><a href="#cb47-146" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .tar.xz file</span></span>
+<span id="cb47-147"><a href="#cb47-147" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xJf</span> file.tar.xz</span>
+<span id="cb47-148"><a href="#cb47-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-149"><a href="#cb47-149" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract to specific directory</span></span>
+<span id="cb47-150"><a href="#cb47-150" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> file.tar.gz <span class="at">-C</span> /path/to/directory</span>
 <span id="cb47-151"><a href="#cb47-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-152"><a href="#cb47-152" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .bz2 file</span></span>
-<span id="cb47-153"><a href="#cb47-153" aria-hidden="true" tabindex="-1"></a><span class="fu">bunzip2</span> file.bz2</span>
-<span id="cb47-154"><a href="#cb47-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-155"><a href="#cb47-155" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .xz file</span></span>
-<span id="cb47-156"><a href="#cb47-156" aria-hidden="true" tabindex="-1"></a><span class="fu">unxz</span> file.xz</span>
-<span id="cb47-157"><a href="#cb47-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-158"><a href="#cb47-158" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .7z file</span></span>
-<span id="cb47-159"><a href="#cb47-159" aria-hidden="true" tabindex="-1"></a><span class="ex">7z</span> x file.7z</span>
-<span id="cb47-160"><a href="#cb47-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-161"><a href="#cb47-161" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .rar file</span></span>
-<span id="cb47-162"><a href="#cb47-162" aria-hidden="true" tabindex="-1"></a><span class="ex">unrar</span> x file.rar</span>
-<span id="cb47-163"><a href="#cb47-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-152"><a href="#cb47-152" aria-hidden="true" tabindex="-1"></a><span class="co">## List contents without extracting</span></span>
+<span id="cb47-153"><a href="#cb47-153" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-tzf</span> file.tar.gz</span>
+<span id="cb47-154"><a href="#cb47-154" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-tf</span> file.tar</span>
+<span id="cb47-155"><a href="#cb47-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-156"><a href="#cb47-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-157"><a href="#cb47-157" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-158"><a href="#cb47-158" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract zip files</span></span>
+<span id="cb47-159"><a href="#cb47-159" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> file.zip</span>
+<span id="cb47-160"><a href="#cb47-160" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> file.zip <span class="at">-d</span> /path/to/directory</span>
+<span id="cb47-161"><a href="#cb47-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-162"><a href="#cb47-162" aria-hidden="true" tabindex="-1"></a><span class="co">## List contents without extracting</span></span>
+<span id="cb47-163"><a href="#cb47-163" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> <span class="at">-l</span> file.zip</span>
 <span id="cb47-164"><a href="#cb47-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-165"><a href="#cb47-165" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Common tar flags for compression</span>
-<span id="cb47-166"><a href="#cb47-166" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-c`</span> = create archive</span>
-<span id="cb47-167"><a href="#cb47-167" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-f`</span> = file name</span>
-<span id="cb47-168"><a href="#cb47-168" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-z`</span> = gzip compression (.tar.gz)</span>
-<span id="cb47-169"><a href="#cb47-169" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-j`</span> = bzip2 compression (.tar.bz2)</span>
-<span id="cb47-170"><a href="#cb47-170" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-J`</span> = xz compression (.tar.xz)</span>
-<span id="cb47-171"><a href="#cb47-171" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-v`</span> = verbose output</span>
-<span id="cb47-172"><a href="#cb47-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-173"><a href="#cb47-173" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-174"><a href="#cb47-174" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cf</span> archive.tar file1 file2 directory/</span>
-<span id="cb47-175"><a href="#cb47-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-176"><a href="#cb47-176" aria-hidden="true" tabindex="-1"></a><span class="co">## gzip compressed</span></span>
-<span id="cb47-177"><a href="#cb47-177" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czf</span> archive.tar.gz file1 file2 directory/</span>
-<span id="cb47-178"><a href="#cb47-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-179"><a href="#cb47-179" aria-hidden="true" tabindex="-1"></a><span class="co">## bzip2 compressed</span></span>
-<span id="cb47-180"><a href="#cb47-180" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cjf</span> archive.tar.bz2 file1 file2 directory/</span>
+<span id="cb47-165"><a href="#cb47-165" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .gz file</span></span>
+<span id="cb47-166"><a href="#cb47-166" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> file.gz</span>
+<span id="cb47-167"><a href="#cb47-167" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> <span class="at">-dk</span> file.gz  <span class="co"># keep original file</span></span>
+<span id="cb47-168"><a href="#cb47-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-169"><a href="#cb47-169" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .bz2 file</span></span>
+<span id="cb47-170"><a href="#cb47-170" aria-hidden="true" tabindex="-1"></a><span class="fu">bunzip2</span> file.bz2</span>
+<span id="cb47-171"><a href="#cb47-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-172"><a href="#cb47-172" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .xz file</span></span>
+<span id="cb47-173"><a href="#cb47-173" aria-hidden="true" tabindex="-1"></a><span class="fu">unxz</span> file.xz</span>
+<span id="cb47-174"><a href="#cb47-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-175"><a href="#cb47-175" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .7z file</span></span>
+<span id="cb47-176"><a href="#cb47-176" aria-hidden="true" tabindex="-1"></a><span class="ex">7z</span> x file.7z</span>
+<span id="cb47-177"><a href="#cb47-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-178"><a href="#cb47-178" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract .rar file</span></span>
+<span id="cb47-179"><a href="#cb47-179" aria-hidden="true" tabindex="-1"></a><span class="ex">unrar</span> x file.rar</span>
+<span id="cb47-180"><a href="#cb47-180" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb47-181"><a href="#cb47-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-182"><a href="#cb47-182" aria-hidden="true" tabindex="-1"></a><span class="co">## .tar.xz compressed</span></span>
-<span id="cb47-183"><a href="#cb47-183" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cJf</span> archive.tar.xz file1 file2 directory/</span>
-<span id="cb47-184"><a href="#cb47-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-185"><a href="#cb47-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-186"><a href="#cb47-186" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-187"><a href="#cb47-187" aria-hidden="true" tabindex="-1"></a><span class="co">## Backup and Restore a Folder</span></span>
-<span id="cb47-188"><a href="#cb47-188" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czvf</span> mybackup.tar.gz myfolder</span>
-<span id="cb47-189"><a href="#cb47-189" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> mybackup.tar.gz</span>
-<span id="cb47-190"><a href="#cb47-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-191"><a href="#cb47-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-192"><a href="#cb47-192" aria-hidden="true" tabindex="-1"></a><span class="fu">### Redirection</span></span>
-<span id="cb47-193"><a href="#cb47-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-194"><a href="#cb47-194" aria-hidden="true" tabindex="-1"></a>Redirection is a way to direct the input and output of a command to a file or another command. It allows you to save the output of a command to a file, or to use the output of one command as the input for another command.</span>
+<span id="cb47-182"><a href="#cb47-182" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Common tar flags for compression</span>
+<span id="cb47-183"><a href="#cb47-183" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-c`</span> = create archive</span>
+<span id="cb47-184"><a href="#cb47-184" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-f`</span> = file name</span>
+<span id="cb47-185"><a href="#cb47-185" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-z`</span> = gzip compression (.tar.gz)</span>
+<span id="cb47-186"><a href="#cb47-186" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-j`</span> = bzip2 compression (.tar.bz2)</span>
+<span id="cb47-187"><a href="#cb47-187" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-J`</span> = xz compression (.tar.xz)</span>
+<span id="cb47-188"><a href="#cb47-188" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`-v`</span> = verbose output</span>
+<span id="cb47-189"><a href="#cb47-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-190"><a href="#cb47-190" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-191"><a href="#cb47-191" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cf</span> archive.tar file1 file2 directory/</span>
+<span id="cb47-192"><a href="#cb47-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-193"><a href="#cb47-193" aria-hidden="true" tabindex="-1"></a><span class="co">## gzip compressed</span></span>
+<span id="cb47-194"><a href="#cb47-194" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czf</span> archive.tar.gz file1 file2 directory/</span>
 <span id="cb47-195"><a href="#cb47-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-196"><a href="#cb47-196" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-197"><a href="#cb47-197" aria-hidden="true" tabindex="-1"></a><span class="co">## Redirect output to a file</span></span>
-<span id="cb47-198"><a href="#cb47-198" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="op">&gt;</span> output.txt</span>
-<span id="cb47-199"><a href="#cb47-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-200"><a href="#cb47-200" aria-hidden="true" tabindex="-1"></a><span class="co">## Append output to a file</span></span>
-<span id="cb47-201"><a href="#cb47-201" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="op">&gt;&gt;</span> output.txt</span>
-<span id="cb47-202"><a href="#cb47-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-203"><a href="#cb47-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-204"><a href="#cb47-204" aria-hidden="true" tabindex="-1"></a>Standard streams in Linux: <span class="sc">\*</span> <span class="in">`stdin`</span> (standard input): The default input stream for a command, 0 <span class="sc">\*</span> <span class="in">`stdout`</span> (standard output): The default output stream for a command, 1 <span class="sc">\*</span> <span class="in">`stderr`</span> (standard error): The default error output stream for a command, 2</span>
-<span id="cb47-205"><a href="#cb47-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-206"><a href="#cb47-206" aria-hidden="true" tabindex="-1"></a><span class="fu">### View file contents</span></span>
-<span id="cb47-207"><a href="#cb47-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-208"><a href="#cb47-208" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-209"><a href="#cb47-209" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> file.txt          <span class="co"># Display the entire contents of file.txt</span></span>
-<span id="cb47-210"><a href="#cb47-210" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> file.txt         <span class="co"># Display the first 10 lines of file.txt</span></span>
-<span id="cb47-211"><a href="#cb47-211" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> file.txt         <span class="co"># Display the last 10 lines of file.txt</span></span>
-<span id="cb47-212"><a href="#cb47-212" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> file.txt        <span class="co"># Count the number of lines in file.txt</span></span>
-<span id="cb47-213"><a href="#cb47-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-214"><a href="#cb47-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-215"><a href="#cb47-215" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-216"><a href="#cb47-216" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> file.txt         <span class="co"># View file.txt with scrolling and searching capabilities</span></span>
-<span id="cb47-217"><a href="#cb47-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-218"><a href="#cb47-218" aria-hidden="true" tabindex="-1"></a><span class="co">## Options for less:</span></span>
-<span id="cb47-219"><a href="#cb47-219" aria-hidden="true" tabindex="-1"></a><span class="co"># -n: Show line numbers</span></span>
-<span id="cb47-220"><a href="#cb47-220" aria-hidden="true" tabindex="-1"></a><span class="co"># +F: Follow the file (like tail -f)</span></span>
-<span id="cb47-221"><a href="#cb47-221" aria-hidden="true" tabindex="-1"></a><span class="co"># -S: Don't wrap long lines</span></span>
-<span id="cb47-222"><a href="#cb47-222" aria-hidden="true" tabindex="-1"></a><span class="co"># -U: Don't show control characters</span></span>
-<span id="cb47-223"><a href="#cb47-223" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-224"><a href="#cb47-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-225"><a href="#cb47-225" aria-hidden="true" tabindex="-1"></a><span class="fu">### Regular expressions</span></span>
-<span id="cb47-226"><a href="#cb47-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-227"><a href="#cb47-227" aria-hidden="true" tabindex="-1"></a>Regular expressions (regex) are patterns used to match character combinations in strings. In Linux, they are commonly used with commands like <span class="in">`grep`</span>, <span class="in">`sed`</span>, and <span class="in">`awk`</span> for searching and manipulating text.</span>
-<span id="cb47-228"><a href="#cb47-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-229"><a href="#cb47-229" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Symbol <span class="pp">|</span> Descriptions <span class="pp">|</span> Examples <span class="pp">|</span> Matched pattern <span class="pp">|</span></span>
-<span id="cb47-230"><a href="#cb47-230" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|-----------------------|----------------|------------------------|</span></span>
-<span id="cb47-231"><a href="#cb47-231" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> . <span class="pp">|</span> match any characters <span class="pp">|</span> A..T <span class="pp">|</span> A<span class="co">[</span><span class="ot">**TG**</span><span class="co">]</span>{.underline}T, A<span class="co">[</span><span class="ot">**GC**</span><span class="co">]</span>{.underline}T <span class="pp">|</span></span>
-<span id="cb47-232"><a href="#cb47-232" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> \^ <span class="pp">|</span> match start of string <span class="pp">|</span> \^A <span class="pp">|</span> <span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}TG, <span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}CC, <span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}GTC <span class="pp">|</span></span>
-<span id="cb47-233"><a href="#cb47-233" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> \$ <span class="pp">|</span> match end of string <span class="pp">|</span> T\$ <span class="pp">|</span> TC<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}, GA<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}, ACG<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline} <span class="pp">|</span></span>
-<span id="cb47-234"><a href="#cb47-234" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\*</span> <span class="pp">|</span> match up zero or more times the preceding character <span class="pp">|</span> AT<span class="sc">\*</span> <span class="pp">|</span> <span class="co">[</span><span class="ot">**AT**</span><span class="co">]</span>{.underline}C, C<span class="co">[</span><span class="ot">**ATT**</span><span class="co">]</span>{.underline}, TG<span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}C <span class="pp">|</span></span>
-<span id="cb47-235"><a href="#cb47-235" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> \ <span class="pp">|</span> escape a special (or meta) character <span class="pp">|</span> <span class="sc">\\</span>\^A <span class="pp">|</span> <span class="co">[</span><span class="ot">**\^A**</span><span class="co">]</span>{.underline}, <span class="co">[</span><span class="ot">**\^A**</span><span class="co">]</span>{.underline}TG <span class="pp">|</span></span>
-<span id="cb47-236"><a href="#cb47-236" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> () <span class="pp">|</span> group regular expressions <span class="pp">|</span> (ATC){3} <span class="pp">|</span> <span class="co">[</span><span class="ot">**ATCATCATC**</span><span class="co">]</span>{.underline} <span class="pp">|</span></span>
-<span id="cb47-237"><a href="#cb47-237" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span></span>
-<span id="cb47-238"><a href="#cb47-238" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\[\]</span> <span class="pp">|</span> match any one of a set characters <span class="pp">|</span> <span class="sc">\[</span>AT<span class="sc">\]</span> <span class="pp">|</span> <span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}CG, C<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}G, <span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}C<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
-<span id="cb47-239"><a href="#cb47-239" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\[</span>A-Z<span class="sc">\]</span> <span class="pp">|</span> match <span class="co">[</span><span class="ot">**upper**</span><span class="co">]</span>{.underline} case letter from A to Z <span class="pp">|</span> <span class="sc">\[</span>A-Z<span class="sc">\]</span> <span class="pp">|</span> <span class="sc">\&gt;</span>GL000226.1 <span class="pp">|</span></span>
-<span id="cb47-240"><a href="#cb47-240" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\[</span>a-z<span class="sc">\]</span> <span class="pp">|</span> math <span class="co">[</span><span class="ot">**lower**</span><span class="co">]</span>{.underline} case letter form a to z <span class="pp">|</span> <span class="sc">\[</span>a-z<span class="sc">\]</span> <span class="pp">|</span> /<span class="co">[</span><span class="ot">**home**</span><span class="co">]</span>{.underline}/<span class="co">[</span><span class="ot">**user**</span><span class="co">]</span>{.underline}100 <span class="pp">|</span></span>
-<span id="cb47-241"><a href="#cb47-241" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\[</span>0-9<span class="sc">\]</span> <span class="pp">|</span> match digit from 0-9 <span class="pp">|</span> <span class="sc">\[</span>0-9<span class="sc">\]</span> <span class="pp">|</span> <span class="sc">\&gt;</span>GL<span class="co">[</span><span class="ot">**000226**</span><span class="co">]</span>{.underline}.<span class="co">[</span><span class="ot">**1**</span><span class="co">]</span>{.underline} <span class="pp">|</span></span>
-<span id="cb47-242"><a href="#cb47-242" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\[</span>\^<span class="sc">\]</span> <span class="pp">|</span> match any character except those in the square bracket after carat \^ <span class="pp">|</span> <span class="sc">\[</span>\^T<span class="sc">\]</span> <span class="pp">|</span> <span class="co">[</span><span class="ot">**GCCGAG**</span><span class="co">]</span>{.underline}, <span class="co">[</span><span class="ot">**\&gt;GL000226.1**</span><span class="co">]</span>{.underline} <span class="pp">|</span></span>
-<span id="cb47-243"><a href="#cb47-243" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span></span>
-<span id="cb47-244"><a href="#cb47-244" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\*</span> <span class="pp">|</span> match up <span class="co">[</span><span class="ot">**zero or more times**</span><span class="co">]</span>{.underline} the preceding character <span class="pp">|</span> AT<span class="sc">\*</span>CG <span class="pp">|</span> ACG, A<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}CG, A<span class="co">[</span><span class="ot">**TT**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
-<span id="cb47-245"><a href="#cb47-245" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\+</span> <span class="pp">|</span> match up <span class="co">[</span><span class="ot">**one or more times**</span><span class="co">]</span>{.underline} the preceding character <span class="pp">|</span> AT+CG <span class="pp">|</span> A<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}CG, A<span class="co">[</span><span class="ot">**TT**</span><span class="co">]</span>{.underline}CG, A<span class="co">[</span><span class="ot">**TTT**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
-<span id="cb47-246"><a href="#cb47-246" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ? <span class="pp">|</span> match up <span class="co">[</span><span class="ot">**zero or one times**</span><span class="co">]</span>{.underline} the preceding character <span class="pp">|</span> AT?CG <span class="pp">|</span> A<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}CG,ACG <span class="pp">|</span></span>
-<span id="cb47-247"><a href="#cb47-247" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> {N} <span class="pp">|</span> preceding character is matched <span class="co">[</span><span class="ot">**exactly N times**</span><span class="co">]</span>{.underline} <span class="pp">|</span> AT{3}CG <span class="pp">|</span> A<span class="co">[</span><span class="ot">**TTT**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
-<span id="cb47-248"><a href="#cb47-248" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> {N,} <span class="pp">|</span> preceding character is matched <span class="co">[</span><span class="ot">**at least  N times or more**</span><span class="co">]</span>{.underline} <span class="pp">|</span> AT{3,}CG <span class="pp">|</span> A<span class="co">[</span><span class="ot">**TTT**</span><span class="co">]</span>{.underline}CG, A<span class="co">[</span><span class="ot">**TTTT**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
-<span id="cb47-249"><a href="#cb47-249" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> {N,M} <span class="pp">|</span> preceding character is matched <span class="co">[</span><span class="ot">**at least  N times but not more than M times**</span><span class="co">]</span>{.underline} <span class="pp">|</span> AT{2,3}CG <span class="pp">|</span> A<span class="co">[</span><span class="ot">**TT**</span><span class="co">]</span>{.underline}CG, A<span class="co">[</span><span class="ot">**TTT**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
-<span id="cb47-250"><a href="#cb47-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-251"><a href="#cb47-251" aria-hidden="true" tabindex="-1"></a><span class="fu">### Filtering text file</span></span>
-<span id="cb47-252"><a href="#cb47-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-253"><a href="#cb47-253" aria-hidden="true" tabindex="-1"></a><span class="in">`grep`</span> Globally &nbsp;search &nbsp;a Regular Expression and Print: is a command-line utility for searching plain-text data sets for lines that match a specified pattern: <span class="sc">\*</span> Search files or input for specific patterns <span class="sc">\*</span> Supports regular expressions for complex pattern matching <span class="sc">\*</span> Options for case sensitivity, whole word matching, line numbers, etc. <span class="sc">\*</span> Line filtering and extraction based on patterns</span>
-<span id="cb47-254"><a href="#cb47-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-255"><a href="#cb47-255" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-256"><a href="#cb47-256" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"pattern"</span> file.txt          <span class="co"># Search for "pattern" in file.txt</span></span>
-<span id="cb47-257"><a href="#cb47-257" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-i</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Case-insensitive search</span></span>
-<span id="cb47-258"><a href="#cb47-258" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-n</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Show line numbers</span></span>
-<span id="cb47-259"><a href="#cb47-259" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Invert the sense of matching, to select non-matching lines</span></span>
-<span id="cb47-260"><a href="#cb47-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-261"><a href="#cb47-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-262"><a href="#cb47-262" aria-hidden="true" tabindex="-1"></a><span class="in">`cut`</span> is used to extract sections from each line of input: <span class="sc">\*</span> Extract columns or fields from text files <span class="sc">\*</span> Specify delimiter for fields <span class="sc">\*</span> Useful for processing structured data like CSV or TSV files <span class="sc">\*</span> Works line by line <span class="sc">\*</span> Column extraction based on delimiter or character position</span>
-<span id="cb47-263"><a href="#cb47-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-264"><a href="#cb47-264" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-265"><a href="#cb47-265" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1</span> file.txt             <span class="co"># Extract first column from a tab-delimited file</span></span>
-<span id="cb47-266"><a href="#cb47-266" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span><span class="st">','</span> <span class="at">-f1,3</span> file.csv     <span class="co"># Extract first and third columns from a comma-separated file</span></span>
-<span id="cb47-267"><a href="#cb47-267" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-c1-5</span> file.txt           <span class="co"># Extract characters from position 1 to 5</span></span>
-<span id="cb47-268"><a href="#cb47-268" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-269"><a href="#cb47-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-270"><a href="#cb47-270" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-271"><a href="#cb47-271" aria-hidden="true" tabindex="-1"></a><span class="co"># Piping and combining commands</span></span>
-<span id="cb47-272"><a href="#cb47-272" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"pattern"</span> file.txt <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f1,3</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span></span>
-<span id="cb47-273"><a href="#cb47-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-274"><a href="#cb47-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-275"><a href="#cb47-275" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sort text file</span></span>
-<span id="cb47-276"><a href="#cb47-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-277"><a href="#cb47-277" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb47-278"><a href="#cb47-278" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> file.txt                 <span class="co"># Sort lines in file.txt alphabetically</span></span>
-<span id="cb47-279"><a href="#cb47-279" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-n</span> file.txt              <span class="co"># Sort lines numerically</span></span>
-<span id="cb47-280"><a href="#cb47-280" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-r</span> file.txt              <span class="co"># Sort lines in reverse order</span></span>
-<span id="cb47-281"><a href="#cb47-281" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-u</span> file.txt              <span class="co"># Sort and remove duplicate lines</span></span>
-<span id="cb47-282"><a href="#cb47-282" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-k2</span> file.txt             <span class="co"># Sort by the second column</span></span>
-<span id="cb47-283"><a href="#cb47-283" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-196"><a href="#cb47-196" aria-hidden="true" tabindex="-1"></a><span class="co">## bzip2 compressed</span></span>
+<span id="cb47-197"><a href="#cb47-197" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cjf</span> archive.tar.bz2 file1 file2 directory/</span>
+<span id="cb47-198"><a href="#cb47-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-199"><a href="#cb47-199" aria-hidden="true" tabindex="-1"></a><span class="co">## .tar.xz compressed</span></span>
+<span id="cb47-200"><a href="#cb47-200" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-cJf</span> archive.tar.xz file1 file2 directory/</span>
+<span id="cb47-201"><a href="#cb47-201" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-202"><a href="#cb47-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-203"><a href="#cb47-203" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-204"><a href="#cb47-204" aria-hidden="true" tabindex="-1"></a><span class="co">## Backup and Restore a Folder</span></span>
+<span id="cb47-205"><a href="#cb47-205" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czvf</span> mybackup.tar.gz myfolder</span>
+<span id="cb47-206"><a href="#cb47-206" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> mybackup.tar.gz</span>
+<span id="cb47-207"><a href="#cb47-207" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-208"><a href="#cb47-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-209"><a href="#cb47-209" aria-hidden="true" tabindex="-1"></a><span class="fu">### Regular expressions</span></span>
+<span id="cb47-210"><a href="#cb47-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-211"><a href="#cb47-211" aria-hidden="true" tabindex="-1"></a>Regular expressions (regex) are patterns used to match character combinations in strings. In Linux, they are commonly used with commands like <span class="in">`grep`</span>, <span class="in">`sed`</span>, and <span class="in">`awk`</span> for searching and manipulating text.</span>
+<span id="cb47-212"><a href="#cb47-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-213"><a href="#cb47-213" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Symbol <span class="pp">|</span> Descriptions <span class="pp">|</span> Examples <span class="pp">|</span> Matched pattern <span class="pp">|</span></span>
+<span id="cb47-214"><a href="#cb47-214" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|-----------------------|----------------|------------------------|</span></span>
+<span id="cb47-215"><a href="#cb47-215" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> . <span class="pp">|</span> match any characters <span class="pp">|</span> A..T <span class="pp">|</span> A<span class="co">[</span><span class="ot">**TG**</span><span class="co">]</span>{.underline}T, A<span class="co">[</span><span class="ot">**GC**</span><span class="co">]</span>{.underline}T <span class="pp">|</span></span>
+<span id="cb47-216"><a href="#cb47-216" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> \^ <span class="pp">|</span> match start of string <span class="pp">|</span> \^A <span class="pp">|</span> <span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}TG, <span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}CC, <span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}GTC <span class="pp">|</span></span>
+<span id="cb47-217"><a href="#cb47-217" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> \$ <span class="pp">|</span> match end of string <span class="pp">|</span> T\$ <span class="pp">|</span> TC<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}, GA<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}, ACG<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline} <span class="pp">|</span></span>
+<span id="cb47-218"><a href="#cb47-218" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\*</span> <span class="pp">|</span> match up zero or more times the preceding character <span class="pp">|</span> AT<span class="sc">\*</span> <span class="pp">|</span> <span class="co">[</span><span class="ot">**AT**</span><span class="co">]</span>{.underline}C, C<span class="co">[</span><span class="ot">**ATT**</span><span class="co">]</span>{.underline}, TG<span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}C <span class="pp">|</span></span>
+<span id="cb47-219"><a href="#cb47-219" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> \ <span class="pp">|</span> escape a special (or meta) character <span class="pp">|</span> <span class="sc">\\</span>\^A <span class="pp">|</span> <span class="co">[</span><span class="ot">**\^A**</span><span class="co">]</span>{.underline}, <span class="co">[</span><span class="ot">**\^A**</span><span class="co">]</span>{.underline}TG <span class="pp">|</span></span>
+<span id="cb47-220"><a href="#cb47-220" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> () <span class="pp">|</span> group regular expressions <span class="pp">|</span> (ATC){3} <span class="pp">|</span> <span class="co">[</span><span class="ot">**ATCATCATC**</span><span class="co">]</span>{.underline} <span class="pp">|</span></span>
+<span id="cb47-221"><a href="#cb47-221" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span></span>
+<span id="cb47-222"><a href="#cb47-222" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\[\]</span> <span class="pp">|</span> match any one of a set characters <span class="pp">|</span> <span class="sc">\[</span>AT<span class="sc">\]</span> <span class="pp">|</span> <span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}CG, C<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}G, <span class="co">[</span><span class="ot">**A**</span><span class="co">]</span>{.underline}C<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
+<span id="cb47-223"><a href="#cb47-223" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\[</span>A-Z<span class="sc">\]</span> <span class="pp">|</span> match <span class="co">[</span><span class="ot">**upper**</span><span class="co">]</span>{.underline} case letter from A to Z <span class="pp">|</span> <span class="sc">\[</span>A-Z<span class="sc">\]</span> <span class="pp">|</span> <span class="sc">\&gt;</span>GL000226.1 <span class="pp">|</span></span>
+<span id="cb47-224"><a href="#cb47-224" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\[</span>a-z<span class="sc">\]</span> <span class="pp">|</span> math <span class="co">[</span><span class="ot">**lower**</span><span class="co">]</span>{.underline} case letter form a to z <span class="pp">|</span> <span class="sc">\[</span>a-z<span class="sc">\]</span> <span class="pp">|</span> /<span class="co">[</span><span class="ot">**home**</span><span class="co">]</span>{.underline}/<span class="co">[</span><span class="ot">**user**</span><span class="co">]</span>{.underline}100 <span class="pp">|</span></span>
+<span id="cb47-225"><a href="#cb47-225" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\[</span>0-9<span class="sc">\]</span> <span class="pp">|</span> match digit from 0-9 <span class="pp">|</span> <span class="sc">\[</span>0-9<span class="sc">\]</span> <span class="pp">|</span> <span class="sc">\&gt;</span>GL<span class="co">[</span><span class="ot">**000226**</span><span class="co">]</span>{.underline}.<span class="co">[</span><span class="ot">**1**</span><span class="co">]</span>{.underline} <span class="pp">|</span></span>
+<span id="cb47-226"><a href="#cb47-226" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\[</span>\^<span class="sc">\]</span> <span class="pp">|</span> match any character except those in the square bracket after carat \^ <span class="pp">|</span> <span class="sc">\[</span>\^T<span class="sc">\]</span> <span class="pp">|</span> <span class="co">[</span><span class="ot">**GCCGAG**</span><span class="co">]</span>{.underline}, <span class="co">[</span><span class="ot">**\&gt;GL000226.1**</span><span class="co">]</span>{.underline} <span class="pp">|</span></span>
+<span id="cb47-227"><a href="#cb47-227" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span></span>
+<span id="cb47-228"><a href="#cb47-228" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\*</span> <span class="pp">|</span> match up <span class="co">[</span><span class="ot">**zero or more times**</span><span class="co">]</span>{.underline} the preceding character <span class="pp">|</span> AT<span class="sc">\*</span>CG <span class="pp">|</span> ACG, A<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}CG, A<span class="co">[</span><span class="ot">**TT**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
+<span id="cb47-229"><a href="#cb47-229" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="sc">\+</span> <span class="pp">|</span> match up <span class="co">[</span><span class="ot">**one or more times**</span><span class="co">]</span>{.underline} the preceding character <span class="pp">|</span> AT+CG <span class="pp">|</span> A<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}CG, A<span class="co">[</span><span class="ot">**TT**</span><span class="co">]</span>{.underline}CG, A<span class="co">[</span><span class="ot">**TTT**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
+<span id="cb47-230"><a href="#cb47-230" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ? <span class="pp">|</span> match up <span class="co">[</span><span class="ot">**zero or one times**</span><span class="co">]</span>{.underline} the preceding character <span class="pp">|</span> AT?CG <span class="pp">|</span> A<span class="co">[</span><span class="ot">**T**</span><span class="co">]</span>{.underline}CG,ACG <span class="pp">|</span></span>
+<span id="cb47-231"><a href="#cb47-231" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> {N} <span class="pp">|</span> preceding character is matched <span class="co">[</span><span class="ot">**exactly N times**</span><span class="co">]</span>{.underline} <span class="pp">|</span> AT{3}CG <span class="pp">|</span> A<span class="co">[</span><span class="ot">**TTT**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
+<span id="cb47-232"><a href="#cb47-232" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> {N,} <span class="pp">|</span> preceding character is matched <span class="co">[</span><span class="ot">**at least  N times or more**</span><span class="co">]</span>{.underline} <span class="pp">|</span> AT{3,}CG <span class="pp">|</span> A<span class="co">[</span><span class="ot">**TTT**</span><span class="co">]</span>{.underline}CG, A<span class="co">[</span><span class="ot">**TTTT**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
+<span id="cb47-233"><a href="#cb47-233" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> {N,M} <span class="pp">|</span> preceding character is matched <span class="co">[</span><span class="ot">**at least  N times but not more than M times**</span><span class="co">]</span>{.underline} <span class="pp">|</span> AT{2,3}CG <span class="pp">|</span> A<span class="co">[</span><span class="ot">**TT**</span><span class="co">]</span>{.underline}CG, A<span class="co">[</span><span class="ot">**TTT**</span><span class="co">]</span>{.underline}CG <span class="pp">|</span></span>
+<span id="cb47-234"><a href="#cb47-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-235"><a href="#cb47-235" aria-hidden="true" tabindex="-1"></a><span class="fu">### Text file manipulation</span></span>
+<span id="cb47-236"><a href="#cb47-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-237"><a href="#cb47-237" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Filtering</span></span>
+<span id="cb47-238"><a href="#cb47-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-239"><a href="#cb47-239" aria-hidden="true" tabindex="-1"></a><span class="in">`grep`</span> Globally &nbsp;search &nbsp;a Regular Expression and Print: is a command-line utility for searching plain-text data sets for lines that match a specified pattern: <span class="sc">\*</span> Search files or input for specific patterns <span class="sc">\*</span> Supports regular expressions for complex pattern matching <span class="sc">\*</span> Options for case sensitivity, whole word matching, line numbers, etc. <span class="sc">\*</span> Line filtering and extraction based on patterns</span>
+<span id="cb47-240"><a href="#cb47-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-241"><a href="#cb47-241" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-242"><a href="#cb47-242" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"pattern"</span> file.txt          <span class="co"># Search for "pattern" in file.txt</span></span>
+<span id="cb47-243"><a href="#cb47-243" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-i</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Case-insensitive search</span></span>
+<span id="cb47-244"><a href="#cb47-244" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-n</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Show line numbers</span></span>
+<span id="cb47-245"><a href="#cb47-245" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"pattern"</span> file.txt       <span class="co"># Invert the sense of matching, to select non-matching lines</span></span>
+<span id="cb47-246"><a href="#cb47-246" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-247"><a href="#cb47-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-248"><a href="#cb47-248" aria-hidden="true" tabindex="-1"></a><span class="in">`cut`</span> is used to extract sections from each line of input: <span class="sc">\*</span> Extract columns or fields from text files <span class="sc">\*</span> Specify delimiter for fields <span class="sc">\*</span> Useful for processing structured data like CSV or TSV files <span class="sc">\*</span> Works line by line <span class="sc">\*</span> Column extraction based on delimiter or character position</span>
+<span id="cb47-249"><a href="#cb47-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-250"><a href="#cb47-250" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-251"><a href="#cb47-251" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1</span> file.txt             <span class="co"># Extract first column from a tab-delimited file</span></span>
+<span id="cb47-252"><a href="#cb47-252" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span><span class="st">','</span> <span class="at">-f1,3</span> file.csv     <span class="co"># Extract first and third columns from a comma-separated file</span></span>
+<span id="cb47-253"><a href="#cb47-253" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-c1-5</span> file.txt           <span class="co"># Extract characters from position 1 to 5</span></span>
+<span id="cb47-254"><a href="#cb47-254" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-255"><a href="#cb47-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-256"><a href="#cb47-256" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-257"><a href="#cb47-257" aria-hidden="true" tabindex="-1"></a><span class="co"># Piping and combining commands</span></span>
+<span id="cb47-258"><a href="#cb47-258" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"pattern"</span> file.txt <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f1,3</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span></span>
+<span id="cb47-259"><a href="#cb47-259" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-260"><a href="#cb47-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-261"><a href="#cb47-261" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sort</span></span>
+<span id="cb47-262"><a href="#cb47-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-263"><a href="#cb47-263" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb47-264"><a href="#cb47-264" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> file.txt                 <span class="co"># Sort lines in file.txt alphabetically</span></span>
+<span id="cb47-265"><a href="#cb47-265" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-n</span> file.txt              <span class="co"># Sort lines numerically</span></span>
+<span id="cb47-266"><a href="#cb47-266" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-r</span> file.txt              <span class="co"># Sort lines in reverse order</span></span>
+<span id="cb47-267"><a href="#cb47-267" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-u</span> file.txt              <span class="co"># Sort and remove duplicate lines</span></span>
+<span id="cb47-268"><a href="#cb47-268" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-k2</span> file.txt             <span class="co"># Sort by the second column</span></span>
+<span id="cb47-269"><a href="#cb47-269" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-270"><a href="#cb47-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-271"><a href="#cb47-271" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Duplicates</span></span>
+<span id="cb47-272"><a href="#cb47-272" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb47-273"><a href="#cb47-273" aria-hidden="true" tabindex="-1"></a><span class="fu">uniq</span> file.txt                 <span class="co"># Remove duplicate lines (requires sorted input)</span></span>
+<span id="cb47-274"><a href="#cb47-274" aria-hidden="true" tabindex="-1"></a><span class="fu">uniq</span> <span class="at">-c</span> file.txt              <span class="co"># Count occurrences of each line</span></span>
+<span id="cb47-275"><a href="#cb47-275" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> file.txt <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-nr</span>  <span class="co"># Count and sort by frequency</span></span>
+<span id="cb47-276"><a href="#cb47-276" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-277"><a href="#cb47-277" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Merge</span></span>
+<span id="cb47-278"><a href="#cb47-278" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb47-279"><a href="#cb47-279" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span> file1.txt file2.txt <span class="op">&gt;</span> combined.txt  <span class="co"># Join files side by side</span></span>
+<span id="cb47-280"><a href="#cb47-280" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-281"><a href="#cb47-281" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Find &amp; replace</span></span>
+<span id="cb47-282"><a href="#cb47-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-283"><a href="#cb47-283" aria-hidden="true" tabindex="-1"></a><span class="in">`sed`</span> is a stream editor used to perform basic text transformations: <span class="sc">\*</span> substituction, deletion, insertion, and more <span class="sc">\*</span> works line by line, applying patterns and edits</span>
 <span id="cb47-284"><a href="#cb47-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-285"><a href="#cb47-285" aria-hidden="true" tabindex="-1"></a><span class="fu">### Remove duplicates</span></span>
-<span id="cb47-286"><a href="#cb47-286" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb47-287"><a href="#cb47-287" aria-hidden="true" tabindex="-1"></a><span class="fu">uniq</span> file.txt                 <span class="co"># Remove duplicate lines (requires sorted input)</span></span>
-<span id="cb47-288"><a href="#cb47-288" aria-hidden="true" tabindex="-1"></a><span class="fu">uniq</span> <span class="at">-c</span> file.txt              <span class="co"># Count occurrences of each line</span></span>
-<span id="cb47-289"><a href="#cb47-289" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> file.txt <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-nr</span>  <span class="co"># Count and sort by frequency</span></span>
-<span id="cb47-290"><a href="#cb47-290" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-291"><a href="#cb47-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-292"><a href="#cb47-292" aria-hidden="true" tabindex="-1"></a><span class="fu">### Find &amp; replace</span></span>
-<span id="cb47-293"><a href="#cb47-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-294"><a href="#cb47-294" aria-hidden="true" tabindex="-1"></a><span class="in">`sed`</span> is a stream editor used to perform basic text transformations: <span class="sc">\*</span> substituction, deletion, insertion, and more <span class="sc">\*</span> works line by line, applying patterns and edits</span>
+<span id="cb47-285"><a href="#cb47-285" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-286"><a href="#cb47-286" aria-hidden="true" tabindex="-1"></a><span class="co">## Remove all spaces from a string</span></span>
+<span id="cb47-287"><a href="#cb47-287" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"a b c"</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/ //g'</span></span>
+<span id="cb47-288"><a href="#cb47-288" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; "abc"</span></span>
+<span id="cb47-289"><a href="#cb47-289" aria-hidden="true" tabindex="-1"></a><span class="co">## Remove all occurences of "foo" with "bar"</span></span>
+<span id="cb47-290"><a href="#cb47-290" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"foo baz foo"</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/foo/bar/g'</span></span>
+<span id="cb47-291"><a href="#cb47-291" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; "bar baz bar"</span></span>
+<span id="cb47-292"><a href="#cb47-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-293"><a href="#cb47-293" aria-hidden="true" tabindex="-1"></a><span class="co">## Delete lines containing a "pattern" pattern from file.txt</span></span>
+<span id="cb47-294"><a href="#cb47-294" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'/pattern/d'</span> file.txt</span>
 <span id="cb47-295"><a href="#cb47-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-296"><a href="#cb47-296" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-297"><a href="#cb47-297" aria-hidden="true" tabindex="-1"></a><span class="co">## Remove all spaces from a string</span></span>
-<span id="cb47-298"><a href="#cb47-298" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"a b c"</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/ //g'</span></span>
-<span id="cb47-299"><a href="#cb47-299" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; "abc"</span></span>
-<span id="cb47-300"><a href="#cb47-300" aria-hidden="true" tabindex="-1"></a><span class="co">## Remove all occurences of "foo" with "bar"</span></span>
-<span id="cb47-301"><a href="#cb47-301" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"foo baz foo"</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/foo/bar/g'</span></span>
-<span id="cb47-302"><a href="#cb47-302" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; "bar baz bar"</span></span>
-<span id="cb47-303"><a href="#cb47-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-304"><a href="#cb47-304" aria-hidden="true" tabindex="-1"></a><span class="co">## Delete lines containing a "pattern" pattern from file.txt</span></span>
-<span id="cb47-305"><a href="#cb47-305" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'/pattern/d'</span> file.txt</span>
+<span id="cb47-296"><a href="#cb47-296" aria-hidden="true" tabindex="-1"></a><span class="co">## Print only lines matching a "pattern" pattern from file.txt</span></span>
+<span id="cb47-297"><a href="#cb47-297" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/pattern/p'</span> file.txt</span>
+<span id="cb47-298"><a href="#cb47-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-299"><a href="#cb47-299" aria-hidden="true" tabindex="-1"></a><span class="co">## Print lines 2 to 5 of a file</span></span>
+<span id="cb47-300"><a href="#cb47-300" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">'2,5p'</span> file.txt</span>
+<span id="cb47-301"><a href="#cb47-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-302"><a href="#cb47-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-303"><a href="#cb47-303" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data processing</span></span>
+<span id="cb47-304"><a href="#cb47-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-305"><a href="#cb47-305" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`awk`</span> used for pattern scanning and processing. <span class="sc">\*</span> More powerful than <span class="in">`cut`</span> for data extraction and reporting <span class="sc">\*</span> Process text as fileds and records, support arithmetic and logic</span>
 <span id="cb47-306"><a href="#cb47-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-307"><a href="#cb47-307" aria-hidden="true" tabindex="-1"></a><span class="co">## Print only lines matching a "pattern" pattern from file.txt</span></span>
-<span id="cb47-308"><a href="#cb47-308" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/pattern/p'</span> file.txt</span>
-<span id="cb47-309"><a href="#cb47-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-310"><a href="#cb47-310" aria-hidden="true" tabindex="-1"></a><span class="co">## Print lines 2 to 5 of a file</span></span>
-<span id="cb47-311"><a href="#cb47-311" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">'2,5p'</span> file.txt</span>
-<span id="cb47-312"><a href="#cb47-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-313"><a href="#cb47-313" aria-hidden="true" tabindex="-1"></a><span class="fu">### Merge files</span></span>
-<span id="cb47-314"><a href="#cb47-314" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb47-315"><a href="#cb47-315" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span> file1.txt file2.txt <span class="op">&gt;</span> combined.txt  <span class="co"># Join files side by side</span></span>
-<span id="cb47-316"><a href="#cb47-316" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-317"><a href="#cb47-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-318"><a href="#cb47-318" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data processing</span></span>
-<span id="cb47-319"><a href="#cb47-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-320"><a href="#cb47-320" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`awk`</span> used for pattern scanning and processing. <span class="sc">\*</span> More powerful than <span class="in">`cut`</span> for data extraction and reporting <span class="sc">\*</span> Process text as fileds and records, support arithmetic and logic</span>
+<span id="cb47-307"><a href="#cb47-307" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`awk`</span> is a powerful text-processing tool and programming language used for manipulating and analyzing data</span>
+<span id="cb47-308"><a href="#cb47-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-309"><a href="#cb47-309" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Search files for lines (or other units of text) that contain certain patterns and perform specified actions on those lines</span>
+<span id="cb47-310"><a href="#cb47-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-311"><a href="#cb47-311" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>By default, awk prints every line of data from the specified file</span>
+<span id="cb47-312"><a href="#cb47-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-313"><a href="#cb47-313" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Basic syntax: <span class="in">`awk '&lt;pattern&gt; {&lt;action&gt;}' &lt;file&gt;`</span></span>
+<span id="cb47-314"><a href="#cb47-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-315"><a href="#cb47-315" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-316"><a href="#cb47-316" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the first column of a file</span></span>
+<span id="cb47-317"><a href="#cb47-317" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'{print $1}'</span> file.txt</span>
+<span id="cb47-318"><a href="#cb47-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-319"><a href="#cb47-319" aria-hidden="true" tabindex="-1"></a><span class="co">## Sum values in the first column</span></span>
+<span id="cb47-320"><a href="#cb47-320" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'{sum += $1} END {print sum}'</span> file.txt</span>
 <span id="cb47-321"><a href="#cb47-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-322"><a href="#cb47-322" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`awk`</span> is a powerful text-processing tool and programming language used for manipulating and analyzing data</span>
-<span id="cb47-323"><a href="#cb47-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-324"><a href="#cb47-324" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Search files for lines (or other units of text) that contain certain patterns and perform specified actions on those lines</span>
-<span id="cb47-325"><a href="#cb47-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-326"><a href="#cb47-326" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>By default, awk prints every line of data from the specified file</span>
+<span id="cb47-322"><a href="#cb47-322" aria-hidden="true" tabindex="-1"></a><span class="co">## Print lines where the third column is greater than 100</span></span>
+<span id="cb47-323"><a href="#cb47-323" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'$3 &gt; 100'</span> file.txt</span>
+<span id="cb47-324"><a href="#cb47-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-325"><a href="#cb47-325" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the lines that match a pattern "error"</span></span>
+<span id="cb47-326"><a href="#cb47-326" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'/error/'</span> file.txt</span>
 <span id="cb47-327"><a href="#cb47-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-328"><a href="#cb47-328" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Basic syntax: <span class="in">`awk '&lt;pattern&gt; {&lt;action&gt;}' &lt;file&gt;`</span></span>
-<span id="cb47-329"><a href="#cb47-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-330"><a href="#cb47-330" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-331"><a href="#cb47-331" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the first column of a file</span></span>
-<span id="cb47-332"><a href="#cb47-332" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'{print $1}'</span> file.txt</span>
+<span id="cb47-328"><a href="#cb47-328" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the number of lines in a file</span></span>
+<span id="cb47-329"><a href="#cb47-329" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'END {print NR}'</span> file.txt</span>
+<span id="cb47-330"><a href="#cb47-330" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-331"><a href="#cb47-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-332"><a href="#cb47-332" aria-hidden="true" tabindex="-1"></a><span class="fu">### Search</span></span>
 <span id="cb47-333"><a href="#cb47-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-334"><a href="#cb47-334" aria-hidden="true" tabindex="-1"></a><span class="co">## Sum values in the first column</span></span>
-<span id="cb47-335"><a href="#cb47-335" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'{sum += $1} END {print sum}'</span> file.txt</span>
-<span id="cb47-336"><a href="#cb47-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-337"><a href="#cb47-337" aria-hidden="true" tabindex="-1"></a><span class="co">## Print lines where the third column is greater than 100</span></span>
-<span id="cb47-338"><a href="#cb47-338" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'$3 &gt; 100'</span> file.txt</span>
+<span id="cb47-334"><a href="#cb47-334" aria-hidden="true" tabindex="-1"></a><span class="in">`find`</span> is a powerful command to search for files and directories based on various criteria: <span class="sc">\*</span> Search by name, type, size, modification time, permissions, etc. <span class="sc">\*</span> Execute actions on found items (delete, move, etc.) <span class="sc">\*</span> Supports complex expressions with logical operators</span>
+<span id="cb47-335"><a href="#cb47-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-336"><a href="#cb47-336" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-337"><a href="#cb47-337" aria-hidden="true" tabindex="-1"></a><span class="co">## Find all .txt files in current directory and subdirectories</span></span>
+<span id="cb47-338"><a href="#cb47-338" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="st">"*.txt"</span></span>
 <span id="cb47-339"><a href="#cb47-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-340"><a href="#cb47-340" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the lines that match a pattern "error"</span></span>
-<span id="cb47-341"><a href="#cb47-341" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'/error/'</span> file.txt</span>
+<span id="cb47-340"><a href="#cb47-340" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files/folders by name</span></span>
+<span id="cb47-341"><a href="#cb47-341" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /path/to/search <span class="at">-name</span> <span class="st">"pattern"</span></span>
 <span id="cb47-342"><a href="#cb47-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-343"><a href="#cb47-343" aria-hidden="true" tabindex="-1"></a><span class="co">## Print the number of lines in a file</span></span>
-<span id="cb47-344"><a href="#cb47-344" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'END {print NR}'</span> file.txt</span>
-<span id="cb47-345"><a href="#cb47-345" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb47-346"><a href="#cb47-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-347"><a href="#cb47-347" aria-hidden="true" tabindex="-1"></a><span class="fu">### Find files and directories</span></span>
-<span id="cb47-348"><a href="#cb47-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-349"><a href="#cb47-349" aria-hidden="true" tabindex="-1"></a><span class="in">`find`</span> is a powerful command to search for files and directories based on various criteria: <span class="sc">\*</span> Search by name, type, size, modification time, permissions, etc. <span class="sc">\*</span> Execute actions on found items (delete, move, etc.) <span class="sc">\*</span> Supports complex expressions with logical operators</span>
-<span id="cb47-350"><a href="#cb47-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-351"><a href="#cb47-351" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb47-352"><a href="#cb47-352" aria-hidden="true" tabindex="-1"></a><span class="co">## Find all .txt files in current directory and subdirectories</span></span>
-<span id="cb47-353"><a href="#cb47-353" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="st">"*.txt"</span></span>
-<span id="cb47-354"><a href="#cb47-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-355"><a href="#cb47-355" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files/folders by name</span></span>
-<span id="cb47-356"><a href="#cb47-356" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /path/to/search <span class="at">-name</span> <span class="st">"pattern"</span></span>
+<span id="cb47-343"><a href="#cb47-343" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files larger than 100MB</span></span>
+<span id="cb47-344"><a href="#cb47-344" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /path/to/search <span class="at">-type</span> f <span class="at">-size</span> +100M</span>
+<span id="cb47-345"><a href="#cb47-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-346"><a href="#cb47-346" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files in pattern and list details</span></span>
+<span id="cb47-347"><a href="#cb47-347" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> ./Clean <span class="at">-name</span> <span class="st">"*Clean.fastq.gz"</span> <span class="at">-type</span> f <span class="at">-exec</span> ls <span class="at">-lh</span> {} <span class="dt">\;</span></span>
+<span id="cb47-348"><a href="#cb47-348" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-349"><a href="#cb47-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-350"><a href="#cb47-350" aria-hidden="true" tabindex="-1"></a><span class="fu">### Redirection</span></span>
+<span id="cb47-351"><a href="#cb47-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-352"><a href="#cb47-352" aria-hidden="true" tabindex="-1"></a>Redirection is a way to direct the input and output of a command to a file or another command. It allows you to save the output of a command to a file, or to use the output of one command as the input for another command.</span>
+<span id="cb47-353"><a href="#cb47-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-354"><a href="#cb47-354" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb47-355"><a href="#cb47-355" aria-hidden="true" tabindex="-1"></a><span class="co">## Redirect output to a file</span></span>
+<span id="cb47-356"><a href="#cb47-356" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="op">&gt;</span> output.txt</span>
 <span id="cb47-357"><a href="#cb47-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-358"><a href="#cb47-358" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files larger than 100MB</span></span>
-<span id="cb47-359"><a href="#cb47-359" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /path/to/search <span class="at">-type</span> f <span class="at">-size</span> +100M</span>
-<span id="cb47-360"><a href="#cb47-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-361"><a href="#cb47-361" aria-hidden="true" tabindex="-1"></a><span class="co">## Find files in pattern and list details</span></span>
-<span id="cb47-362"><a href="#cb47-362" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> ./Clean <span class="at">-name</span> <span class="st">"*Clean.fastq.gz"</span> <span class="at">-type</span> f <span class="at">-exec</span> ls <span class="at">-lh</span> {} <span class="dt">\;</span></span>
-<span id="cb47-363"><a href="#cb47-363" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-358"><a href="#cb47-358" aria-hidden="true" tabindex="-1"></a><span class="co">## Append output to a file</span></span>
+<span id="cb47-359"><a href="#cb47-359" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="op">&gt;&gt;</span> output.txt</span>
+<span id="cb47-360"><a href="#cb47-360" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-361"><a href="#cb47-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-362"><a href="#cb47-362" aria-hidden="true" tabindex="-1"></a>Standard streams in Linux: <span class="sc">\*</span> <span class="in">`stdin`</span> (standard input): The default input stream for a command, 0 <span class="sc">\*</span> <span class="in">`stdout`</span> (standard output): The default output stream for a command, 1 <span class="sc">\*</span> <span class="in">`stderr`</span> (standard error): The default error output stream for a command, 2</span>
+<span id="cb47-363"><a href="#cb47-363" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-364"><a href="#cb47-364" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-365"><a href="#cb47-365" aria-hidden="true" tabindex="-1"></a><span class="fu">### File transfer</span></span>
 <span id="cb47-366"><a href="#cb47-366" aria-hidden="true" tabindex="-1"></a></span>
