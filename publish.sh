@@ -28,5 +28,5 @@ conda activate renv
 quarto render
 
 git add .
-git commit -m "Update notes"
+git commit -m "update notes"
 git push -u origin main --force

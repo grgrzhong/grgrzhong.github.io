@@ -17,62 +17,152 @@ format:
         code-fold: false
         toc: true
         number-sections: false
-
 ---
 
-## Shell Basics
+## Linux Basics
 
-### grep
-`grep` Globally  search  a Regular Expression and Print: is a command-line utility for searching plain-text data sets for lines that match a specified pattern:
-* Search files or input for specific patterns
-* Supports regular expressions for complex pattern matching
-* Options for case sensitivity, whole word matching, line numbers, etc.
+### Working with files
 
-
-### find
-`find` is a powerful command to search for files and directories based on various criteria:
-* Search by name, type, size, modification time, permissions, etc.
-* Execute actions on found items (delete, move, etc.)
-* Supports complex expressions with logical operators
-
-```bash
-## Find all .txt files in current directory and subdirectories
-find . -name "*.txt"
-
-## Find files/folders by name
-find /path/to/search -name "pattern"
-
-## Find files larger than 100MB
-find /path/to/search -type f -size +100M
-
-## Find files in pattern and list details
-find ./Clean -name "*Clean.fastq.gz" -type f -exec ls -lh {} \;
+``` bash
+cp file1.txt file2.txt  # Copy file1.txt to file2.txt
+mv file1.txt file2.txt  # Move or rename file1.txt to file2.txt
+rm file1.txt            # Remove file1.txt
+gzip file1.txt          # Compress file1.txt to file1.txt.gz
+gunzip file1.txt.gz     # Decompress file1.txt.gz to file1.txt
 ```
 
-### cut
-`cut` is used to extract sections from each line of input:
-* Extract columns or fields from text files
-* Specify delimiter for fields
-* Useful for processing structured data like CSV or TSV files
-* Works line by line
+### Working with directories
 
-```bash
-## Extract first column from a tab-delimited file
-cut -f1 file.txt
-
-## Extract first and third columns from a comma-separated file
-cut -d',' -f1,3 file.csv
-
-## Extract characters from position 1 to 5
-cut -c1-5 file.txt
+``` bash
+mkdir my_directory        # Create a new directory named my_directory
+cd my_directory           # Change into the directory my_directory
+ls                        # List files and directories in the current directory
+ls -l                     # List files and directories with detailed information
+ls -a                     # List all files, including hidden files
+ls -lh                    # List files with human-readable sizes
+rm -r my_directory        # Remove the directory my_directory and its contents
 ```
 
-### sed
-`sed` is a stream editor used to perform basic text transformations:
-* substituction, deletion, insertion, and more
-* works line by line, applying patterns and edits
+### Backup and restore
+
+``` bash
+## Backup a directory to a tar.gz file
+tar -czvf backup.tar.gz /path/to/directory
+## Restore a directory from a tar.gz file
+tar -xzvf backup.tar.gz -C /path/to/restore
+
+## Common tar flags:
+# -c: create a new archive
+# -x: extract files from an archive
+# -z: filter the archive through gzip
+# -v: verbose output (list files being processed)
+```
+
+### Redirection
+
+Redirection is a way to direct the input and output of a command to a file or another command. It allows you to save the output of a command to a file, or to use the output of one command as the input for another command.
+
+``` bash
+## Redirect output to a file
+command > output.txt
+
+## Append output to a file
+command >> output.txt
+```
+
+Standard streams in Linux: \* `stdin` (standard input): The default input stream for a command, 0 \* `stdout` (standard output): The default output stream for a command, 1 \* `stderr` (standard error): The default error output stream for a command, 2
+
+### View file contents
+
+``` bash
+cat file.txt          # Display the entire contents of file.txt
+head file.txt         # Display the first 10 lines of file.txt
+tail file.txt         # Display the last 10 lines of file.txt
+wc -l file.txt        # Count the number of lines in file.txt
+```
+
+``` bash
+less file.txt         # View file.txt with scrolling and searching capabilities
+
+## Options for less:
+# -n: Show line numbers
+# +F: Follow the file (like tail -f)
+# -S: Don't wrap long lines
+# -U: Don't show control characters
+```
+
+### Regular expressions
+
+Regular expressions (regex) are patterns used to match character combinations in strings. In Linux, they are commonly used with commands like `grep`, `sed`, and `awk` for searching and manipulating text.
+
+| Symbol | Descriptions | Examples | Matched pattern |
+|----------|-----------------------|----------------|------------------------|
+| . | match any characters | A..T | A[**TG**]{.underline}T, A[**GC**]{.underline}T |
+| \^ | match start of string | \^A | [**A**]{.underline}TG, [**A**]{.underline}CC, [**A**]{.underline}GTC |
+| \$ | match end of string | T\$ | TC[**T**]{.underline}, GA[**T**]{.underline}, ACG[**T**]{.underline} |
+| \* | match up zero or more times the preceding character | AT\* | [**AT**]{.underline}C, C[**ATT**]{.underline}, TG[**A**]{.underline}C |
+| \ | escape a special (or meta) character | \\\^A | [**\^A**]{.underline}, [**\^A**]{.underline}TG |
+| () | group regular expressions | (ATC){3} | [**ATCATCATC**]{.underline} |
+|  |  |  |  |
+| \[\] | match any one of a set characters | \[AT\] | [**A**]{.underline}CG, C[**T**]{.underline}G, [**A**]{.underline}C[**T**]{.underline}CG |
+| \[A-Z\] | match [**upper**]{.underline} case letter from A to Z | \[A-Z\] | \>GL000226.1 |
+| \[a-z\] | math [**lower**]{.underline} case letter form a to z | \[a-z\] | /[**home**]{.underline}/[**user**]{.underline}100 |
+| \[0-9\] | match digit from 0-9 | \[0-9\] | \>GL[**000226**]{.underline}.[**1**]{.underline} |
+| \[\^\] | match any character except those in the square bracket after carat \^ | \[\^T\] | [**GCCGAG**]{.underline}, [**\>GL000226.1**]{.underline} |
+|  |  |  |  |
+| \* | match up [**zero or more times**]{.underline} the preceding character | AT\*CG | ACG, A[**T**]{.underline}CG, A[**TT**]{.underline}CG |
+| \+ | match up [**one or more times**]{.underline} the preceding character | AT+CG | A[**T**]{.underline}CG, A[**TT**]{.underline}CG, A[**TTT**]{.underline}CG |
+| ? | match up [**zero or one times**]{.underline} the preceding character | AT?CG | A[**T**]{.underline}CG,ACG |
+| {N} | preceding character is matched [**exactly N times**]{.underline} | AT{3}CG | A[**TTT**]{.underline}CG |
+| {N,} | preceding character is matched [**at least  N times or more**]{.underline} | AT{3,}CG | A[**TTT**]{.underline}CG, A[**TTTT**]{.underline}CG |
+| {N,M} | preceding character is matched [**at least  N times but not more than M times**]{.underline} | AT{2,3}CG | A[**TT**]{.underline}CG, A[**TTT**]{.underline}CG |
+
+### Filtering text file
+
+`grep` Globally  search  a Regular Expression and Print: is a command-line utility for searching plain-text data sets for lines that match a specified pattern: \* Search files or input for specific patterns \* Supports regular expressions for complex pattern matching \* Options for case sensitivity, whole word matching, line numbers, etc. \* Line filtering and extraction based on patterns
+
+``` bash
+grep "pattern" file.txt          # Search for "pattern" in file.txt
+grep -i "pattern" file.txt       # Case-insensitive search
+grep -n "pattern" file.txt       # Show line numbers
+grep -v "pattern" file.txt       # Invert the sense of matching, to select non-matching lines
+```
+
+`cut` is used to extract sections from each line of input: \* Extract columns or fields from text files \* Specify delimiter for fields \* Useful for processing structured data like CSV or TSV files \* Works line by line \* Column extraction based on delimiter or character position
+
+``` bash
+cut -f1 file.txt             # Extract first column from a tab-delimited file
+cut -d',' -f1,3 file.csv     # Extract first and third columns from a comma-separated file
+cut -c1-5 file.txt           # Extract characters from position 1 to 5
+```
+
+``` bash
+# Piping and combining commands
+grep "pattern" file.txt | cut -f1,3 | sort | uniq
+```
+
+### Sort text file
 
 ```bash
+sort file.txt                 # Sort lines in file.txt alphabetically
+sort -n file.txt              # Sort lines numerically
+sort -r file.txt              # Sort lines in reverse order
+sort -u file.txt              # Sort and remove duplicate lines
+sort -k2 file.txt             # Sort by the second column
+```
+
+### Remove duplicate lines
+```bash
+uniq file.txt                 # Remove duplicate lines (requires sorted input)
+uniq -c file.txt              # Count occurrences of each line
+sort file.txt | uniq -c | sort -nr  # Count and sort by frequency
+```
+
+### Find and replace
+
+`sed` is a stream editor used to perform basic text transformations: \* substituction, deletion, insertion, and more \* works line by line, applying patterns and edits
+
+``` bash
 ## Remove all spaces from a string
 echo "a b c" | sed 's/ //g'
 #> "abc"
@@ -89,13 +179,24 @@ sed -n '/pattern/p' file.txt
 ## Print lines 2 to 5 of a file
 sed -n '2,5p' file.txt
 ```
-
-### awk
-`awk` used for pattern scanning and processing.
-* More powerful than `cut` for data extraction and reporting
-* Process text as fileds and records, support arithmetic and logic
-
+### Joining text files
 ```bash
+paste file1.txt file2.txt > combined.txt  # Join files side by side
+```
+
+### Data processing
+
+- `awk` used for pattern scanning and processing. \* More powerful than `cut` for data extraction and reporting \* Process text as fileds and records, support arithmetic and logic
+
+- `awk` is a powerful text-processing tool and programming language used for manipulating and analyzing data
+
+- Search files for lines (or other units of text) that contain certain patterns and perform specified actions on those lines
+
+- By default, awk prints every line of data from the specified file
+
+- Basic syntax: `awk '<pattern> {<action>}' <file>`
+
+``` bash
 ## Print the first column of a file
 awk '{print $1}' file.txt
 
@@ -112,20 +213,39 @@ awk '/error/' file.txt
 awk 'END {print NR}' file.txt
 ```
 
+
+### Search files and directories
+
+`find` is a powerful command to search for files and directories based on various criteria: \* Search by name, type, size, modification time, permissions, etc. \* Execute actions on found items (delete, move, etc.) \* Supports complex expressions with logical operators
+
+``` bash
+## Find all .txt files in current directory and subdirectories
+find . -name "*.txt"
+
+## Find files/folders by name
+find /path/to/search -name "pattern"
+
+## Find files larger than 100MB
+find /path/to/search -type f -size +100M
+
+## Find files in pattern and list details
+find ./Clean -name "*Clean.fastq.gz" -type f -exec ls -lh {} \;
+```
+
 ## File Compression
 
-* Commone tar flags:
-    +  `-x` = extract
-    +  `-f` = file
-    +  `-v` = verbose
-    +  `-z` = gzip compression
-    +  `-j` = bzip2 compression
-    +  `-J` = xz compression
-    +  `-c` = change to directory
-    +  `-C` = specify directory
-    +  `-p` = preserve permissions
+-   Commone tar flags:
+    -   `-x` = extract
+    -   `-f` = file
+    -   `-v` = verbose
+    -   `-z` = gzip compression
+    -   `-j` = bzip2 compression
+    -   `-J` = xz compression
+    -   `-c` = change to directory
+    -   `-C` = specify directory
+    -   `-p` = preserve permissions
 
-```bash
+``` bash
 ## Extract .tar.gz file
 tar -xf fuke.tar
 tar -xzvf file.tar.gz
@@ -145,7 +265,7 @@ tar -tzf file.tar.gz
 tar -tf file.tar
 ```
 
-```bash
+``` bash
 ## Extract zip files
 unzip file.zip
 unzip file.zip -d /path/to/directory
@@ -169,15 +289,16 @@ unxz file.xz
 ## Extract .rar file
 unrar x file.rar
 ```
-* Common tar flags for compression
-  * `-c` = create archive
-  * `-f` = file name
-  * `-z` = gzip compression (.tar.gz)
-  * `-j` = bzip2 compression (.tar.bz2)
-  * `-J` = xz compression (.tar.xz)
-  * `-v` = verbose output
 
-```bash
+-   Common tar flags for compression
+    -   `-c` = create archive
+    -   `-f` = file name
+    -   `-z` = gzip compression (.tar.gz)
+    -   `-j` = bzip2 compression (.tar.bz2)
+    -   `-J` = xz compression (.tar.xz)
+    -   `-v` = verbose output
+
+``` bash
 tar -cf archive.tar file1 file2 directory/
 
 ## gzip compressed
@@ -190,7 +311,7 @@ tar -cjf archive.tar.bz2 file1 file2 directory/
 tar -cJf archive.tar.xz file1 file2 directory/
 ```
 
-```bash
+``` bash
 ## Backup and Restore a Folder
 tar -czvf mybackup.tar.gz myfolder
 tar -xzvf mybackup.tar.gz
@@ -199,51 +320,59 @@ tar -xzvf mybackup.tar.gz
 ## File Permissions
 
 Only the user can copy, execute, and change
-```bash
+
+``` bash
 chmod 700 /path/to/folder
 ```
+
 `700` means:
 
-* Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)
-* Group: 0 (no permissions)
-* Others: 0 (no permissions)
+-   Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)
+-   Group: 0 (no permissions)
+-   Others: 0 (no permissions)
 
 All can read and execute, only the owner can change
-```bash
+
+``` bash
 chmod 755 /path/to/folder
 ```
-* Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)
-* Group: 5 (read = 4, execute = 1; 4+1 = 5)
-* Others: 5 (read = 4, execute = 1; 4+1 = 5)
+
+-   Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)
+-   Group: 5 (read = 4, execute = 1; 4+1 = 5)
+-   Others: 5 (read = 4, execute = 1; 4+1 = 5)
 
 Give a user named someuser read, write, and execute permissions on the /path/to/folder directory
-```bash
+
+``` bash
 setfacl -m u:someuser:rwx /path/to/folder
 ```
 
 Verify the Permissions
-```bash
+
+``` bash
 getfacl /path/to/folder
 ```
 
 Remove all ACL entries for a user
-```bash
+
+``` bash
 setfacl -x u:someuser /path/to/folder
 ```
 
 Change owner
-```bash
+
+``` bash
 sudo chown username:groupname /path/to/folder
 ```
 
 ## File transfer
 
-* Transfering data efficiently between local and remote systems:
-  * `wget`: Download files directly from the internet to your local machine or server.
-  * `scp`: Securely copy files between local and remote systems over SSH.
-  * `rsync`: Synchronize files and directories efficiently, with options for selective copying and deletion.
+-   Transfering data efficiently between local and remote systems:
+    -   `wget`: Download files directly from the internet to your local machine or server.
+    -   `scp`: Securely copy files between local and remote systems over SSH.
+    -   `rsync`: Synchronize files and directories efficiently, with options for selective copying and deletion.
 
-```bash
+``` bash
 ## Basic command
 rsync -av /source/folder/ /destination/folder/
 
@@ -268,22 +397,22 @@ rsync -av --ignore-existing /source/folder/ /destination/folder/
 rsync -av --update /source/folder/ /destination/folder/
 ```
 
-:::{.callout-note}
-- `--archive`: Preserves permissions, timestamps, symbolic links, etc.
-- `--verbose`: Shows progress
-- `--delete`: Removes files in destination that don't exist in source
-- `--dry-run`: Preview changes without actually syncing
-- `--update`: Only copy newer file
-- `--ignore-existing`: Skips files that already exist in destination (regardless of age)
-- `--update`: Only copies if source file is newer than destination
-- `--no-perms`: Don't preserve Unix permissions
-- `--no-times`: Don't preserve modification times
-- `--inplace`: Write directly without temp files
+::: callout-note
+-   `--archive`: Preserves permissions, timestamps, symbolic links, etc.
+-   `--verbose`: Shows progress
+-   `--delete`: Removes files in destination that don't exist in source
+-   `--dry-run`: Preview changes without actually syncing
+-   `--update`: Only copy newer file
+-   `--ignore-existing`: Skips files that already exist in destination (regardless of age)
+-   `--update`: Only copies if source file is newer than destination
+-   `--no-perms`: Don't preserve Unix permissions
+-   `--no-times`: Don't preserve modification times
+-   `--inplace`: Write directly without temp files
 :::
 
-- Sync remote server folders to local using rsync
+-   Sync remote server folders to local using rsync
 
-```bash
+``` bash
 ## Remote server details
 remote_user="username"
 remote_host="hpcio2" # hpc2021-io1.hku.hk,hpc2021-io2.hku.hk
@@ -317,9 +446,9 @@ for folder_pair in "${folders_to_sync[@]}"; do
 done
 ```
 
-- Sync local folders to remote server
+-   Sync local folders to remote server
 
-```bash
+``` bash
 ## Remote server details
 remote_user="username"
 remote_host="hpcio1" # hpc2021-io1.hku.hk
@@ -356,111 +485,111 @@ done
 
 ### Modes
 
-* Vim text editor has three main modes:
-  * `Esc`, back to normal mode
-  * `i`, insert mode
-  * `v`, select mode
+-   Vim text editor has three main modes:
+    -   `Esc`, back to normal mode
+    -   `i`, insert mode
+    -   `v`, select mode
 
-| Command   | What it does                | Most common follow-up |
-|-----------|----------------------------|----------------------|
-| i         | Insert before cursor        | typing text          |
-| a         | Append after cursor         | typing text          |
-| I         | Insert at beginning of line | —                    |
-| A         | Append at end of line       | —                    |
-| o         | Open new line below         | typing               |
-| O         | Open new line above         | typing               |
-| Esc       | Back to Normal mode         | —                    |
-| v         | Visual mode                 | move + operator      |
-| V         | Visual Line mode            | —                    |
-| Ctrl-v    | Visual Block mode           | —                    |
-
+| Command | What it does                | Most common follow-up |
+|---------|-----------------------------|-----------------------|
+| i       | Insert before cursor        | typing text           |
+| a       | Append after cursor         | typing text           |
+| I       | Insert at beginning of line | —                     |
+| A       | Append at end of line       | —                     |
+| o       | Open new line below         | typing                |
+| O       | Open new line above         | typing                |
+| Esc     | Back to Normal mode         | —                     |
+| v       | Visual mode                 | move + operator       |
+| V       | Visual Line mode            | —                     |
+| Ctrl-v  | Visual Block mode           | —                     |
 
 ### Navigation
 
-| Command            | Movement                        | Common combos          |
-|--------------------|---------------------------------|------------------------|
-| h j k l            | ← ↓ ↑ →                         | —                      |
-| w / b              | forward/backward by word start  | ciw, daw               |
-| e / ge             | forward/backward to word end    | —                      |
-| W / B              | forward/backward by big word    | (ignores punctuation)  |
-| 0                  | Start of line                   | —                      |
-| ^                  | First non-blank character       | —                      |
-| $                  | End of line                     | —                      |
-| gg                 | Top of file                     | —                      |
-| G                  | Bottom of file                  | 50G → line 50          |
-| Ctrl-u / Ctrl-d    | Half page up/down               | —                      |
-| Ctrl-f / Ctrl-b    | Full page down/up               | —                      |
+| Command         | Movement                       | Common combos         |
+|-----------------|--------------------------------|-----------------------|
+| h j k l         | ← ↓ ↑ →                        | —                     |
+| w / b           | forward/backward by word start | ciw, daw              |
+| e / ge          | forward/backward to word end   | —                     |
+| W / B           | forward/backward by big word   | (ignores punctuation) |
+| 0               | Start of line                  | —                     |
+| \^              | First non-blank character      | —                     |
+| \$              | End of line                    | —                     |
+| gg              | Top of file                    | —                     |
+| G               | Bottom of file                 | 50G → line 50         |
+| Ctrl-u / Ctrl-d | Half page up/down              | —                     |
+| Ctrl-f / Ctrl-b | Full page down/up              | —                     |
 
 ### Editing
 
-| Command            | Meaning                                     | examples                         |
-|--------------------|---------------------------------------------|----------------------------------|
-| x                  | Delete character under cursor               | —                                |
-| dd                 | Delete current line                         | 5dd = delete 5 lines             |
-| yy                 | Yank (copy) current line                    | p to paste                       |
-| p / P              | Paste after/before cursor                   | —                                |
-| u                  | Undo                                        | (most used command after Esc)    |
-| Ctrl-r             | Redo                                        | —                                |
-| .                  | Repeat last change/command                  | (extremely powerful)             |
-| dw / d$            | Delete to end of word / end of line         | diw, daw                         |
-| ciw / caw          | Change (delete + insert) inside/around word | most common text object usage    |
-| "ci"" / ci( / ci{" | Change inside quotes/parentheses/braces     | extremely common in code         |
+| Command | Meaning | examples |
+|-----------------|-------------------------------|------------------------|
+| x | Delete character under cursor | — |
+| dd | Delete current line | 5dd = delete 5 lines |
+| yy | Yank (copy) current line | p to paste |
+| p / P | Paste after/before cursor | — |
+| u | Undo | (most used command after Esc) |
+| Ctrl-r | Redo | — |
+| . | Repeat last change/command | (extremely powerful) |
+| dw / d\$ | Delete to end of word / end of line | diw, daw |
+| ciw / caw | Change (delete + insert) inside/around word | most common text object usage |
+| "ci"" / ci( / ci{" | Change inside quotes/parentheses/braces | extremely common in code |
 
 ### Search & Replace
 
-| Command             | Meaning                                      |
-|---------------------|----------------------------------------------|
-| /pattern            | Search forward                               |
-| ?pattern            | Search backward                              |
-| n / N               | Next / previous match                        |
-| * / #               | Search forward/backward for word under cursor|
-| :%s/old/new/g       | Replace all occurrences (whole file)         |
-| :%s/old/new/gc      | Replace with confirmation                    |
+| Command        | Meaning                                       |
+|----------------|-----------------------------------------------|
+| /pattern       | Search forward                                |
+| ?pattern       | Search backward                               |
+| n / N          | Next / previous match                         |
+| \* / \#        | Search forward/backward for word under cursor |
+| :%s/old/new/g  | Replace all occurrences (whole file)          |
+| :%s/old/new/gc | Replace with confirmation                     |
 
 ### Saving & Exiting
 
-| Command            | Meaning                                             |
-|--------------------|----------------------------------------------------|
-| :w                 | Save (write)                                       |
-| :q                 | Quit (only if no changes)                          |
-| :q!                | Quit without saving                                |
-| :wq or :x or ZZ    | Save and quit                                      |
-| :w !sudo tee %     | Save file needing root (very common workaround)    |
+| Command         | Meaning                                         |
+|-----------------|-------------------------------------------------|
+| :w              | Save (write)                                    |
+| :q              | Quit (only if no changes)                       |
+| :q!             | Quit without saving                             |
+| :wq or :x or ZZ | Save and quit                                   |
+| :w !sudo tee %  | Save file needing root (very common workaround) |
 
 ## Nano Text Editor
 
-1. Open a file with: `nano filename.txt`
-2. Use the arrow keys to navigate.
-3. Save the changes with `ctrl + o`,
-4. Confirm the filename by pressing `Enter`.
-5. Exit nano with `ctrl + x`.
+1.  Open a file with: `nano filename.txt`
+2.  Use the arrow keys to navigate.
+3.  Save the changes with `ctrl + o`,
+4.  Confirm the filename by pressing `Enter`.
+5.  Exit nano with `ctrl + x`.
 
 ### Searching Text
 
-* To find words or phrases within a file:
+-   To find words or phrases within a file:
 
-1. Initiate search with `ctrl + w`.
-2. Type the search term and press `Enter`.
-3. Exit search mode with `ctrl + c`.
+1.  Initiate search with `ctrl + w`.
+2.  Type the search term and press `Enter`.
+3.  Exit search mode with `ctrl + c`.
 
 ### Customizing Nano
 
 Enhance Nano's functionality:
 
-```bash
+``` bash
 nano -miA file.txt
 ```
 
-* `-m`: Enable mouse support.
-* `-i`: Auto-indent new lines.
-* `-A`: Enable syntax highlighting.
+-   `-m`: Enable mouse support.
+-   `-i`: Auto-indent new lines.
+-   `-A`: Enable syntax highlighting.
 
 ## OpenPBS
-OpenPBS (Portable Batch System) is an open-source workload manager and job scheduler used in High-Performance Computing (HPC) environments to automate and optimize the execution of tasks across  and clouds.
+
+OpenPBS (Portable Batch System) is an open-source workload manager and job scheduler used in High-Performance Computing (HPC) environments to automate and optimize the execution of tasks across and clouds.
 
 **PBS job script**
 
-```bash
+``` bash
 #!/bin/bash
 #PBS -N job_name                  # Job name
 #PBS -l nodes=1:ppn=4             # Number of nodes and processors per node
@@ -480,7 +609,7 @@ python my_script.py               # Command to run your program
 
 **PBS environment variables**
 
-```bash
+``` bash
 $PBS_O_WORKDIR     # The directory from which the job was submitted
 $PBS_O_HOME        # The home directory of the user who submitted the job
 $PBS_JOBDIR        # The working directory for the job on the compute node
@@ -494,7 +623,8 @@ $PBS_JOBNAME       # The name of the job as specified in the job script
 ```
 
 **Submit job scripts**
-```bash
+
+``` bash
 ## Submit a job
 qsub job_script.pbs
 
@@ -503,7 +633,8 @@ qsub -v sample="$sample" -M "$EMAIL" pbs_1_cutadapt.pbs
 ```
 
 **Check job status**
-```bash
+
+``` bash
 ## List finished job details in summary
 qstat -x job_id
 
@@ -544,9 +675,9 @@ groups
 qstat -Q -f | grep -E "^Queue:|acl_users|acl_groups"
 ```
 
-
 **Stat interactive job**
-```bash
+
+``` bash
 ## Start and interactive job with 16 processors, 64GB memory, 24 hours walltime in cgs_queue
 qsub -I -q cgs_queue -l nodes=hpcf3-c01:ppn=16,walltime=12:00:00,mem=64gb
 qsub -I -q cgs_queue -l nodes=hpcf3-c02:ppn=16,walltime=12:00:00,mem=64gb
@@ -554,7 +685,8 @@ qsub -I -q cgs_queue -l nodes=hpcf3-c03:ppn=16,walltime=12:00:00,mem=64gb
 ```
 
 **Check the permission of queue**
-```bash
+
+``` bash
 qstat -Q cgs -f
 
 # Queue: cgs
@@ -580,17 +712,16 @@ qstat -Q cgs -f
 #     started = True
 ```
 
-* `-Q`: Show queue information (not job information)
-* `-cgs`: The specific queue name to query
-* `-f`: Full/detailed output showing all queue attributes
+-   `-Q`: Show queue information (not job information)
+-   `-cgs`: The specific queue name to query
+-   `-f`: Full/detailed output showing all queue attributes
 
 ## Tmux
 
-* Tmux Configuration
-Consider adding these aliases to your shell configuration for quick tmux access.
+-   Tmux Configuration Consider adding these aliases to your shell configuration for quick tmux access.
 
-::: {.code-block}
-```bash
+::: code-block
+``` bash
 # Terminal aliases for tmux
 alias t="tmux"
 alias ta="t a -t"
@@ -601,64 +732,67 @@ alias tks="t kill-server"
 ```
 :::
 
-::: {.callout-note}
+::: callout-note
 ### 🔧 Custom Prefix Key
+
 Change the default prefix in `.tmux.conf`:
-```bash
+
+``` bash
 set-option -g prefix C-a
 bind-key C-a send-prefix
 ```
 :::
 
-* Session Management
+-   Session Management
 
-| **Action**                     | **Command/Shortcut**       |
-|--------------------------------|----------------------------|
-| List sessions                  | `tmux list-sessions`       |
-| Attach to session              | `tmux attach-session -t target-session` |
-| Switch between sessions       | `Ctrl + A + s`             |
-| Switch to latest session      | `Ctrl + A + l`             |
-| Detach from session           | `Ctrl + A + d`             |
+| **Action**               | **Command/Shortcut**                    |
+|--------------------------|-----------------------------------------|
+| List sessions            | `tmux list-sessions`                    |
+| Attach to session        | `tmux attach-session -t target-session` |
+| Switch between sessions  | `Ctrl + A + s`                          |
+| Switch to latest session | `Ctrl + A + l`                          |
+| Detach from session      | `Ctrl + A + d`                          |
 
-* Window Management
+-   Window Management
 
-| **Action**                     | **Shortcut**               |
-|--------------------------------|----------------------------|
-| List all windows              | `Ctrl + A + w`             |
-| Rename current window          | `Ctrl + A + ,`             |
-| Switch to next window          | `Ctrl + A + →`             |
-| Switch to previous window      | `Ctrl + A + ←`             |
-| Create new window              | `Ctrl + A + c`             |
-| Kill current window            | `Ctrl + A + q`             |
+| **Action**                | **Shortcut**   |
+|---------------------------|----------------|
+| List all windows          | `Ctrl + A + w` |
+| Rename current window     | `Ctrl + A + ,` |
+| Switch to next window     | `Ctrl + A + →` |
+| Switch to previous window | `Ctrl + A + ←` |
+| Create new window         | `Ctrl + A + c` |
+| Kill current window       | `Ctrl + A + q` |
 
-* Pane Management
+-   Pane Management
 
-| **Action**                     | **Shortcut**               |
-|--------------------------------|----------------------------|
-| Switch to pane above           | `Shift + ↑`                |
-| Switch to pane below           | `Shift + ↓`                |
-| Switch to pane left            | `Shift + ←`                |
-| Switch to pane right           | `Shift + →`                |
-| Kill current pane             | `Ctrl + A + x`             |
+| **Action**           | **Shortcut**   |
+|----------------------|----------------|
+| Switch to pane above | `Shift + ↑`    |
+| Switch to pane below | `Shift + ↓`    |
+| Switch to pane left  | `Shift + ←`    |
+| Switch to pane right | `Shift + →`    |
+| Kill current pane    | `Ctrl + A + x` |
 
-* Copy Mode
+-   Copy Mode
 
-| **Action**                     | **Shortcut**               |
-|--------------------------------|----------------------------|
-| Enter copy mode               | Drag mouse to select text   |
-| Paste copied text             | `Ctrl + A + ]`             |
+| **Action**        | **Shortcut**              |
+|-------------------|---------------------------|
+| Enter copy mode   | Drag mouse to select text |
+| Paste copied text | `Ctrl + A + ]`            |
 
----
+------------------------------------------------------------------------
 
 ## Screen
 
-::: {.callout-tip}
+::: callout-tip
 ### 💡 Screen Aliases
+
 Add these aliases to your shell configuration for easier screen management.
 :::
 
-::: {.code-block}
-```bash
+::: code-block
+``` bash
 # Terminal aliases for screen
 alias s="screen"       # start a screen session
 alias ss="s -S"        # start a named screen session
@@ -667,61 +801,63 @@ alias sls="s -ls"      # list current running screen sessions
 ```
 :::
 
-* Basic Commands
+-   Basic Commands
 
-| **Action**                     | **Command**                    |
-|--------------------------------|--------------------------------|
-| Start screen session          | `screen`                       |
-| Start named session           | `screen -S session_name`       |
-| Reattach to session           | `screen -r`                    |
-| List running sessions         | `screen -ls`                   |
+| **Action**            | **Command**              |
+|-----------------------|--------------------------|
+| Start screen session  | `screen`                 |
+| Start named session   | `screen -S session_name` |
+| Reattach to session   | `screen -r`              |
+| List running sessions | `screen -ls`             |
 
-* Window Management
+-   Window Management
 
-| **Action**                     | **Shortcut**               |
-|--------------------------------|----------------------------|
-| Create new window              | `Ctrl + A + C`             |
-| Kill current window            | `Ctrl + A + K`             |
-| List all windows              | `Ctrl + A + W`             |
-| Go to window 0-9               | `Ctrl + A + 0-9`           |
-| Go to next window              | `Ctrl + A + N`             |
-| Toggle between windows         | `Ctrl + A + Ctrl + A`      |
-| Rename current window          | `Ctrl + A + A`             |
+| **Action**             | **Shortcut**          |
+|------------------------|-----------------------|
+| Create new window      | `Ctrl + A + C`        |
+| Kill current window    | `Ctrl + A + K`        |
+| List all windows       | `Ctrl + A + W`        |
+| Go to window 0-9       | `Ctrl + A + 0-9`      |
+| Go to next window      | `Ctrl + A + N`        |
+| Toggle between windows | `Ctrl + A + Ctrl + A` |
+| Rename current window  | `Ctrl + A + A`        |
 
-* Region Management
+-   Region Management
 
-| **Action**                     | **Shortcut**               |
-|--------------------------------|----------------------------|
-| Split horizontally             | `Ctrl + A + S`             |
-| Split vertically               | `Ctrl + A + \|`            |
-| Switch between regions         | `Ctrl + A + Tab`           |
-| Close all regions but current  | `Ctrl + A + Q`             |
-| Close current region           | `Ctrl + A + X`             |
+| **Action**                    | **Shortcut**     |
+|-------------------------------|------------------|
+| Split horizontally            | `Ctrl + A + S`   |
+| Split vertically              | `Ctrl + A + \|`  |
+| Switch between regions        | `Ctrl + A + Tab` |
+| Close all regions but current | `Ctrl + A + Q`   |
+| Close current region          | `Ctrl + A + X`   |
 
-* Session & Copy Mode
+-   Session & Copy Mode
 
-| **Action**                     | **Shortcut**               |
-|--------------------------------|----------------------------|
-| Detach from session           | `Ctrl + A + D`             |
-| Start copy mode               | `Ctrl + A + [`             |
-| Paste copied text             | `Ctrl + A + ]`             |
-| Show help                     | `Ctrl + A + ?`             |
-| Quit screen                   | `Ctrl + A + Ctrl + \`      |
+| **Action**          | **Shortcut**          |
+|---------------------|-----------------------|
+| Detach from session | `Ctrl + A + D`        |
+| Start copy mode     | `Ctrl + A + [`        |
+| Paste copied text   | `Ctrl + A + ]`        |
+| Show help           | `Ctrl + A + ?`        |
+| Quit screen         | `Ctrl + A + Ctrl + \` |
 
----
+------------------------------------------------------------------------
 
-::: {.callout-note}
+::: callout-note
 ### Additional Resources
-- **VSCode**: [Official Keyboard Shortcuts Reference](https://code.visualstudio.com/docs/getstarted/keybindings)
-- **Vim**: [Vim Cheat Sheet](https://vim.rtorr.com/)
-- **Tmux**: [Tmux Cheat Sheet](https://tmuxcheatsheet.com/)
-- **Terminal**: [Bash Reference Manual](https://www.gnu.org/software/bash/manual/)
+
+-   **VSCode**: [Official Keyboard Shortcuts Reference](https://code.visualstudio.com/docs/getstarted/keybindings)
+-   **Vim**: [Vim Cheat Sheet](https://vim.rtorr.com/)
+-   **Tmux**: [Tmux Cheat Sheet](https://tmuxcheatsheet.com/)
+-   **Terminal**: [Bash Reference Manual](https://www.gnu.org/software/bash/manual/)
 :::
 
 ## Conda
 
-* Installation
-```bash
+-   Installation
+
+``` bash
 
 # Miniforge linux
 wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
@@ -736,12 +872,11 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
-
 ```
 
-* Configuration
+-   Configuration
 
-```bash
+``` bash
 
 # Init
 conda init --all
@@ -763,8 +898,10 @@ conda config --add channels conda-forge
 # Install software from a specific channel
 conda install -c conda-forge numpy
 ```
-* Create Environment
-```bash
+
+-   Create Environment
+
+``` bash
 # Create R environment with specific R version and packages
 conda create -n renv r=4.5 r-languageserver r-tidyverse r-irkernel r-httpgd r-downlit r-xml2 r-markdown r-devtools radian
 
@@ -799,12 +936,12 @@ conda remove --name old_env_name --all
 
 ## Pixi
 
-```bash
+``` bash
 ## Auto-activate pixi when entering project directory
 eval "$(pixi completion --shell bash)"  # or zsh
 ```
 
-```bash
+``` bash
 ## Create a global pixi environment with specific R version and packages
 pixi global install -e renv \
     r-base=4.5 \
@@ -824,12 +961,11 @@ pixi global list
 ## Add Bioconda Permanently
 pixi config append default-channels bioconda --global
 pixi config set default-channels '["conda-forge", "bioconda"]' --global
-
 ```
 
 ## Git
 
-```bash
+``` bash
 ## keep your original Git repository but provide a clean version to others,
 git archive --format=zip --output=my-project-clean.zip main
 
@@ -896,8 +1032,9 @@ git reset --hard origin/main
 
 ## WSL
 
-* System info
-```bash
+-   System info
+
+``` bash
 
 ## Install the neofetch package
 sudo apt install neofetch -y
@@ -906,10 +1043,11 @@ sudo apt install neofetch -y
 neofetch --memory_unit gib
 ```
 
-* Change sudo password
+-   Change sudo password
 
 In the windows terminal, run the following command to change the sudo password:
-```bash
+
+``` bash
 
 wsl -u root
 
@@ -917,6 +1055,6 @@ wsl -u root
 passwd <username>
 ```
 
-* WSL configuration
-  - WSL global config: `C:\Users\<UserName>\.wslconfig`
-  - WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`
+-   WSL configuration
+    -   WSL global config: `C:\Users\<UserName>\.wslconfig`
+    -   WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`

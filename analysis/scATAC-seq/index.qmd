@@ -6,6 +6,14 @@ date-modified: last-modified
 title-block-banner: "#212529"
 subtitle: "Chromatin accessibility is how easily proteins inside a cell nucleus can physically touch and bind to DNA. Because DNA is tightly wrapped around histone proteins to form chromatin, regions packed closely together are hidden and closed off, while loosely packed regions stay open for gene reading and regulation."
 # toc-title: "Contents"
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+        code-fold: false
+        toc: true
+        number-sections: true
 ---
 
 

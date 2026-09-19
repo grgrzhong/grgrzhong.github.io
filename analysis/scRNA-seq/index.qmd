@@ -6,15 +6,18 @@ published-title: Created
 date-modified: last-modified
 title-block-banner: "#212529"
 toc-title: "Contents"
+format:
+    html:
+        number-sections: true
 ---
 
 scRNA-seq data sets contains systematic and random noise that obscure the biological signal.
 
-# Analysis workflow
+# Analysis Workflow
 
-## Cell calling
+## Generate count matrix
 
-Cellranger:
+Cellranger analysis:
     * Trim adapters
     * Alignment
     * Barcode and UMI extraction
@@ -23,8 +26,80 @@ Cellranger:
     * Filter reads
     * Generate count matrix
 
+### Gene expression matrix
+  - Filtered Matrix: Contains only estimated cell-barcodes after removing empty droplets and background noise
+  - Unfiltered (Raw) Matrix: Contains every barcode from the known-good list that has at least one read, including background and empty droplets.
 
-## Filtering Low-quality cells
+```bash
+├── sample_filtered_feature_bc_matrix
+│   ├── barcodes.tsv.gz
+│   ├── features.tsv.gz
+│   └── matrix.mtx.gz
+├── sample_filtered_feature_bc_matrix.h5
+```
+
+MEX Format (.mtx.gz, barcodes.tsv.gz, features.tsv.gz): Stored in folders like filtered_feature_bc_matrix/ or raw_feature_bc_matrix/. It includes a sparse matrix file (matrix.mtx or .mtx.gz), a barcode file (barcodes.tsv.gz), and a feature/gene annotation file (features.tsv.gz).
+  - the rows are features (genes)
+  - and the columns are barcodes (cells)
+
+HDF5 Format (.h5): A single binary file (e.g., filtered_feature_bc_matrix.h5) containing the same matrix data and feature annotations, ideal for fast loading and smaller file management.
+
+The H5 format is a single, compressed binary file based on the Hierarchical Data Format version 5 (HDF5). In single-cell genomics, Cell Ranger uses it to package the entire feature-barcode matrix into one self-contained file
+
+## Quality control
+
+In single-cell analysis, quality control are essential for assessing the integrity and reliability of the data. These metrics help identify low-quality cells, potential artifacts, and technical variations that may affect downstream analyses.
+
+Low quality cells can arise from various sources, including:
+ - Doublets or multiplets
+ - Dying cells
+ - Empty droplets
+ - Ambient RNA contamination
+
+### Doublets or multiplets
+
+Two or more cells encapsulated within the exact same gel bead or droplet, receiving the same barcode.
+
+- Extreme Library Size: A massive spike in total UMI counts, often doubling the average cell's profile.
+- High Gene Diversity: A significantly higher number of uniquely detected genes.
+- Biological Inconsistency: Outliers when plotting UMI counts vs. gene counts. They frequently express mutually exclusive marker genes (e.g., a single barcode showing high expression for both T-cell markers and Epithelial cell markers).
+
+### Dying or stressed cells
+Cells that began to lyse, break apart, or undergo apoptosis prior to or during encapsulation.
+
+- Mitochondrial Dominance: High percentage of mitochondrial gene reads (typically >5% in mice, >10-20% in humans, depending on tissue).
+- Low Nuclear RNA: Low total UMI and gene counts because the cytoplasmic mRNA has leaked through the compromised cell membrane and washed away.
+- Metabolic Shifts: Enrichment for apoptotic pathways or heat-shock protein genes
+
+### Empty droplets
+Droplets that contain no actual cell but capture background ambient RNA shed from broken cells in the cell suspension.
+
+- Floor-Level UMIs: Total UMI counts are very low (e.g., fewer than 100 to 500 UMIs), failing to reach the "knee" or "inflection point" on a barcode rank plot.
+- Homogeneous Profile: The expression profile across different empty droplets looks nearly identical because they all sample the same ambient liquid background
+
+- Low and Uniform Expression: Ambient RNA is present in virtually every droplet, including empty droplets and those containing healthy cells. It shows up as a low-level, pervasive background count across the entire dataset, usually contributing a few dozen to a few hundred UMIs per barcode.
+- Ambient RNA causes distinct cell types to falsely appear as though they express markers of an entirely different cell lineage.
+  - Example: If red blood cells lyse during processing, Hemoglobin RNA (Hbb-bs) spills into the ambient pool. As a result, every T-cell, B-cell, and macrophage droplet will show low-level expressions of Hemoglobin, even though these cells do not biologically produce it.
+
+### Ambient RNA contamination
+cell-free background RNA that contaminates single-cell droplets. It originates from damaged or lysed cells that rupture during tissue dissociation, spilling their contents into the cell suspension before encapsulation.
+
+Following are the commonly used quality metrics in single-cell RNA sequencing (scRNA-seq) analysis:
+  - Detected features per cell
+  - Total counts per cell
+  - Mitochondrial gene expression percentage
+  - Ribosomal gene expression percentage
+
+### Quality metrics
+
+#### Total counts
+
+#### Detected features
+#### % Mitochondrial genes
+#### % Ribosomal genes
+
+
+### Filtering Low-quality cells
 
 * Dying cells with broken membranes
 * Cells with a low number of detected genes
@@ -61,7 +136,7 @@ Cellranger:
 * Low-quality cells are identified and filtered by manually setting thresholds
 * Quality control is performed at the sample level as thresholds can vary substantially between samples
 
-## Normalization and Variance Stabilization
+### Normalization and Variance Stabilization
 
 * Count normalization makes cellular profiles comparable.
 * Subsequent variance stablization ensures that outlier profiles have limited effect on the overall data structure
@@ -70,7 +145,7 @@ Cellranger:
 
 * Normalization methods should be chosen carefully and based on the subsequent analysis tasks
 
-## Removing confounding sources of variation
+### Removing confounding sources of variation
 
 * Batch effects
   * Harmony: projects cells into a shared embedding where cells group by cell type rather than dataset-specific conditions
@@ -82,20 +157,20 @@ Cellranger:
   * built-in cell cycle labeling and correction functions in Scanpy or Seurat
   * Tricycle
 
-## Reducing dimensionality
+### Reducing dimensionality
 
 * PCA
 * t-SNE
 * UMAP
 * PHATE
 
-## Cell Clustering
+### Cell Clustering
 
 * Louvain
 * Leiden
 * Both methods are applied to the KNN graph computed on a low-dimensional representation of the data and can be run at different resolutions to control the number of identified clusters.
 
-## Cell Type Annotation
+### Cell Type Annotation
 
 Annotation is the process of giving detected cell clusters a biological interpretation such as cell type.
 
@@ -123,7 +198,7 @@ A three-step approach is recommended that leverages automated annotation, follow
 * Furthermore, it can be difficult to assess the resulting annotation without additionally inspecting individual markers
 * The annotation should be verified by experts, especially for data sets with high complexity or studies that involve rare cell subpopulations for which references might not be available
 
-## Trajectory Inference
+### Trajectory Inference
 
 Trajectory Inference or pseudotime analysis orders cells along a trajectory based on similarities in their gene expression patterns.
 
@@ -135,7 +210,7 @@ Trajectory Inference or pseudotime analysis orders cells along a trajectory base
 * scVelo
 * Velocyto
 
-## Differential Expression Analysis
+### Differential Expression Analysis
 
 Single-cell specific methods were found to systematically underestimate the variance of gene expression and to be prone to wrongly labling highly expressed genes as differentially expressed.
 
@@ -146,7 +221,7 @@ Pueudo-bulk, sample-level view aggregates counts per sample-label
 
 * P values obtained with DGE tests over conditions must be corrected for multiple testing5,92 to obtain q values.
 
-## Gene Set Enrichment Analysis
+### Gene Set Enrichment Analysis
 
 Gene set enrichment analysis allows the summarization of many molecular insights into interpretable terms such as pathways
 
@@ -163,7 +238,7 @@ definied gene sets known to be involved through previous studies.
     * GSEA
     * GSVA
 
-## Cell Composition analysis
+### Cell Composition analysis
 
 Compositional analysis addresses conditional changes not in the gene expression profile of a cell but instead in the relative abundance of different cell types in the form of compositional data.
 
@@ -175,7 +250,7 @@ Compositional analysis addresses conditional changes not in the gene expression 
 * DA-seq
 * MILO
 
-## Cell-cell communication analysis
+### Cell-cell communication analysis
 
 Cells are in constant interaction with each other for organismal development and homeostasis. If this interaction is impaired, disease ensues. Cell–cell communication inference methods commonly use repositories of ligands, receptors and their interactions to predict interactions between annotated clusters.
 
@@ -186,7 +261,9 @@ Cells are in constant interaction with each other for organismal development and
 * Nichenet
 * Cytotalk
 
-# Userful resources
+# Analysis Tutorials
+
+# Useful Resources
 
 - [A Guide to Analyzing Single-cell Datasets](https://ouyanglab.com/singlecell/)
 - [integrating single-cell datasets](https://swaruplab.bio.uci.edu/tutorial/integration/integration_tutorial.html#content)

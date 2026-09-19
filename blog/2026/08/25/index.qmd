@@ -1,0 +1,65 @@
+---
+title: "Visualizing RNA-seq alignments with fusions with IGV"
+date: "2026-08-14"
+published-title: Created
+date-modified: last-modified
+categories: [RNA-seq, DESeq2, EdgeR, EBSeq]
+toc-title: "Contents"
+description: "It reconstructs the continuous paths that cells take as they change from one state to another."
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+execute:
+    eval: false
+---
+
+
+## Step 1: Set Up Split-Screen View in IGV
+Fusions involve two distinct genomic loci (e.g., TMPRSS2 on Chr 21 and ERG on Chr 21, or two different chromosomes).
+1. Go to the IGV search bar at the top.
+2. Enter both gene locations separated by a space (e.g., TMPRSS2 ERG or chr21:41465000 chr21:38400000).
+3. Press Enter. IGV will create a split panel view showing Gene 1 on the left and Gene 2 on the right.
+
+## Step 2: Configure IGV Display Settings
+Right-click on the BAM track coverage/alignment panel and make sure the following settings are enabled:
+- Color alignments by → SA tag (already done) or pair orientation / insert size (crucial for pair-end discordant reads).
+- View as pairs: Enable this so paired-end reads are visually connected by a thin line.
+- Show soft-clipped bases: Enable this (Right-click track → Preferences → Alignments → check Show soft-clipped bases).
+
+## Step 3: Identify & Count the Evidence
+### A. Split Reads (Direct Junction Overlap)
+These are single sequencing reads that span across the fusion breakpoint. STAR aligns one part to Gene 1 and soft-clips the remaining sequence, which maps to Gene 2 as a supplementary alignment.
+- Visual Signature:
+  - The read will display colored soft-clipped bases at the exact junction coordinate reported by Arriba.Right-click a split read and choose "View mate in split screen" or "Go to mate / supplementary alignment". The other portion of the read will highlight at the exact junction coordinate of Gene 2.
+- How to Count: Count every unique read ID that has a soft-clipped tail precisely terminating at the breakpoint position.
+-
+
+### B. Discordant Mates (Spanning Pairs)
+These are paired-end reads where Read 1 maps entirely within Gene 1, and Read 2 maps entirely within Gene 2.
+- Visual Signature:
+  - When set to Color alignments by insert size/pair orientation, these pairs will turn colored (usually teal, blue, or red instead of standard gray) because their insert size or chromosome mapping is abnormal.
+  - Dragging across the split screen will show thin lines connecting Read 1 in Gene 1 to Read 2 in Gene 2 across the panel break.
+
+- How to Count: Count the number of uniquely colored pair connections bridging Gene 1 and Gene 2.
+
+## Step 4: Validate Against Arriba/STAR-fusion Outputs
+Compare your visual count to the metrics in Arriba or STAR-Fusion’s output file (fusions.tsv):
+- Check Breakpoints: Verify that the soft-clip boundaries match the breakpoint1 and breakpoint2 genomic coordinates in fusions.tsv.
+- Compare Read Counts:split_reads1 / split_reads2: Should equal the number of split reads you count anchoring at Gene 1 and Gene 2 respectively.
+- discordant_mates: Should equal the count of uniquely mapped paired-end fragments bridging the two genes.
+
+## Step 5: Rule Out Artifacts (False Positive Filters)
+To ensure the fusion is real and not an alignment artifact:Mapping Quality (MAPQ):
+
+- Hover over the supporting reads. Make sure the MAPQ is high (>20–30).
+- Soft-clipped reads with MAPQ 0 are usually caused by repetitive elements or homologous sequences.
+- Anchor Length: Ensure the split-read segments mapped to both sides of the junction have a reasonable anchor length (>15–20 bp), rather than just a few soft-clipped nucleotides.
+- Strand Orientation: Check if the reads align continuously with respect to the strand logic (e.g., sense-to-sense for exon-exon fusions).
+- Unmapped Mates: Beware if the region contains a high density of multi-mapping reads or unaligned sequences (colored purple/white mismatch bars), which points toward library preparation or mapping artifacts.
+
+## References
+- https://okko73313.blogspot.com/2014/10/visualizing-rna-seq-alignments-with.html
+- https://help.connected.illumina.com/dragen/dragen-v4.4/product-guide/dragen-v4.4/dragen-dna-pipeline/sv-calling/sv-igv-tutorial#translocations
+- https://github.com/igvteam/igv/issues/1081

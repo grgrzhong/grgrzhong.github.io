@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-01-01">
+<meta name="description" content="It reconstructs the continuous paths that cells take as they change from one state to another.">
 
-<title>Nanopore Technology</title>
+<title>Visualizing RNA-seq alignments with fusions with IGV</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +62,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../..//files/profiles/avatar.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ccafe2c99a4564d55934ca8539ca9f46.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-607d976b13a72f3f9925e553e6dfcff2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../..//files/profiles/avatar.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ccafe2c99a4564d55934ca8539ca9f46.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-607d976b13a72f3f9925e553e6dfcff2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,35 +115,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
 </style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -160,27 +131,27 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog/index.html"> 
+    <a class="nav-link" href="../../../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../linux/index.html"> 
+    <a class="nav-link" href="../../../../linux/index.html"> 
 <span class="menu-text">Linux</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../python/index.html"> 
+    <a class="nav-link" href="../../../../python/index.html"> 
 <span class="menu-text">Python</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../r/index.html"> 
+    <a class="nav-link" href="../../../../r/index.html"> 
 <span class="menu-text">R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../analysis/index.html"> 
+    <a class="nav-link" href="../../../../analysis/index.html"> 
 <span class="menu-text">Analysis</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -189,11 +160,11 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-technique">    
         <li>
-    <a class="dropdown-item" href="../../technique/10xgenomics/index.html">
+    <a class="dropdown-item" href="../../../../technique/10xgenomics/index.html">
  <span class="dropdown-text">10X Genomics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../technique/illumina/index.html">
+    <a class="dropdown-item" href="../../../../technique/illumina/index.html">
  <span class="dropdown-text">Illumina</span></a>
   </li>  
     </ul>
@@ -209,8 +180,19 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">Nanopore Technology</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-                      </div>
+      <div class="quarto-title-block"><div><h1 class="title">Visualizing RNA-seq alignments with fusions with IGV</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+                  <div>
+        <div class="description">
+          It reconstructs the continuous paths that cells take as they change from one state to another.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">RNA-seq</div>
+                <div class="quarto-category">DESeq2</div>
+                <div class="quarto-category">EdgeR</div>
+                <div class="quarto-category">EBSeq</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -220,14 +202,14 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Created</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 1, 2026</p>
+        <p class="date">Friday, August 14, 2026</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">March 29, 2026</p>
+        <p class="date-modified">Friday, August 28, 2026</p>
       </div>
     </div>
       
@@ -238,19 +220,19 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#how-nanopore-sequencing-works" id="toc-how-nanopore-sequencing-works" class="nav-link active" data-scroll-target="#how-nanopore-sequencing-works">How Nanopore Sequencing Works</a></li>
-  <li><a href="#devices" id="toc-devices" class="nav-link" data-scroll-target="#devices">Devices</a></li>
-  <li><a href="#flowcell-chemistry" id="toc-flowcell-chemistry" class="nav-link" data-scroll-target="#flowcell-chemistry">Flowcell Chemistry</a></li>
-  <li><a href="#output-file-formats" id="toc-output-file-formats" class="nav-link" data-scroll-target="#output-file-formats">Output File Formats</a></li>
-  <li><a href="#advantages-and-limitations" id="toc-advantages-and-limitations" class="nav-link" data-scroll-target="#advantages-and-limitations">Advantages and Limitations</a>
+  <li><a href="#step-1-set-up-split-screen-view-in-igv" id="toc-step-1-set-up-split-screen-view-in-igv" class="nav-link active" data-scroll-target="#step-1-set-up-split-screen-view-in-igv">Step 1: Set Up Split-Screen View in IGV</a></li>
+  <li><a href="#step-2-configure-igv-display-settings" id="toc-step-2-configure-igv-display-settings" class="nav-link" data-scroll-target="#step-2-configure-igv-display-settings">Step 2: Configure IGV Display Settings</a></li>
+  <li><a href="#step-3-identify-count-the-evidence" id="toc-step-3-identify-count-the-evidence" class="nav-link" data-scroll-target="#step-3-identify-count-the-evidence">Step 3: Identify &amp; Count the Evidence</a>
   <ul>
-  <li><a href="#advantages" id="toc-advantages" class="nav-link" data-scroll-target="#advantages">Advantages</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#a.-split-reads-direct-junction-overlap" id="toc-a.-split-reads-direct-junction-overlap" class="nav-link" data-scroll-target="#a.-split-reads-direct-junction-overlap">A. Split Reads (Direct Junction Overlap)</a></li>
+  <li><a href="#b.-discordant-mates-spanning-pairs" id="toc-b.-discordant-mates-spanning-pairs" class="nav-link" data-scroll-target="#b.-discordant-mates-spanning-pairs">B. Discordant Mates (Spanning Pairs)</a></li>
   </ul></li>
-  <li><a href="#quality-scores" id="toc-quality-scores" class="nav-link" data-scroll-target="#quality-scores">Quality Scores</a></li>
+  <li><a href="#step-4-validate-against-arribastar-fusion-outputs" id="toc-step-4-validate-against-arribastar-fusion-outputs" class="nav-link" data-scroll-target="#step-4-validate-against-arribastar-fusion-outputs">Step 4: Validate Against Arriba/STAR-fusion Outputs</a></li>
+  <li><a href="#step-5-rule-out-artifacts-false-positive-filters" id="toc-step-5-rule-out-artifacts-false-positive-filters" class="nav-link" data-scroll-target="#step-5-rule-out-artifacts-false-positive-filters">Step 5: Rule Out Artifacts (False Positive Filters)</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
 </nav>
@@ -265,178 +247,50 @@ window.Quarto = {
 
 
 
-<section id="how-nanopore-sequencing-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-nanopore-sequencing-works">How Nanopore Sequencing Works</h2>
-<p>Oxford Nanopore Technology (ONT) is fundamentally different from Illumina sequencing. Rather than sequencing by synthesis with fluorescent signals, nanopore sequencing detects changes in ionic current as a DNA or RNA strand passes through a protein pore embedded in a synthetic membrane.</p>
-<ul>
-<li>A <strong>protein nanopore</strong> (typically CsgG or R10.4.1) is inserted into an electrically resistant polymer membrane.</li>
-<li>An ionic buffer is applied across the membrane and a constant voltage drives ions through the pore, generating a measurable <strong>baseline current</strong>.</li>
-<li>When a DNA or RNA strand is threaded through the pore by a <strong>motor protein</strong> (helicase), the nucleotides occlude the pore and alter the ionic current.</li>
-<li>The pattern of current disruptions — called a <strong>squiggle</strong> — is recorded over time and subsequently decoded into a nucleotide sequence by a basecaller.</li>
-</ul>
-<p>Because the raw molecule itself is read, nanopore sequencing can:</p>
-<ul>
-<li>Produce reads of any length — from hundreds of bases to <strong>millions of bases</strong> (ultra-long reads).</li>
-<li>Detect <strong>native base modifications</strong> (e.g., 5mC, 5hmC, 6mA) directly from the current signal, without bisulfite conversion.</li>
-<li>Sequence <strong>RNA directly</strong>, without reverse transcription.</li>
-</ul>
+<section id="step-1-set-up-split-screen-view-in-igv" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-set-up-split-screen-view-in-igv">Step 1: Set Up Split-Screen View in IGV</h2>
+<p>Fusions involve two distinct genomic loci (e.g., TMPRSS2 on Chr 21 and ERG on Chr 21, or two different chromosomes). 1. Go to the IGV search bar at the top. 2. Enter both gene locations separated by a space (e.g., TMPRSS2 ERG or chr21:41465000 chr21:38400000). 3. Press Enter. IGV will create a split panel view showing Gene 1 on the left and Gene 2 on the right.</p>
 </section>
-<section id="devices" class="level2">
-<h2 class="anchored" data-anchor-id="devices">Devices</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Device</th>
-<th>Flowcells</th>
-<th>Max output</th>
-<th>Use case</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Flongle</strong></td>
-<td>1 (126 channels)</td>
-<td>~2 Gb</td>
-<td>Rapid, low-volume runs</td>
-</tr>
-<tr class="even">
-<td><strong>MinION / MinION Mk1C</strong></td>
-<td>1 (512 channels)</td>
-<td>~50 Gb</td>
-<td>Portable field sequencing</td>
-</tr>
-<tr class="odd">
-<td><strong>GridION</strong></td>
-<td>Up to 5 simultaneously</td>
-<td>~250 Gb</td>
-<td>Lab-scale flexible runs</td>
-</tr>
-<tr class="even">
-<td><strong>P2 Solo / P2i</strong></td>
-<td>2 (2,048 channels each)</td>
-<td>~200 Gb</td>
-<td>High-throughput desktop</td>
-</tr>
-<tr class="odd">
-<td><strong>PromethION 24 / 48</strong></td>
-<td>Up to 24 or 48</td>
-<td>~14.5 Tb</td>
-<td>Population-scale projects</td>
-</tr>
-</tbody>
-</table>
-<p>All devices are compatible with the same library preparations; output scales with the number and type of flowcells used.</p>
+<section id="step-2-configure-igv-display-settings" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-configure-igv-display-settings">Step 2: Configure IGV Display Settings</h2>
+<p>Right-click on the BAM track coverage/alignment panel and make sure the following settings are enabled: - Color alignments by → SA tag (already done) or pair orientation / insert size (crucial for pair-end discordant reads). - View as pairs: Enable this so paired-end reads are visually connected by a thin line. - Show soft-clipped bases: Enable this (Right-click track → Preferences → Alignments → check Show soft-clipped bases).</p>
 </section>
-<section id="flowcell-chemistry" class="level2">
-<h2 class="anchored" data-anchor-id="flowcell-chemistry">Flowcell Chemistry</h2>
-<p>ONT continuously improves pore chemistry. The most current production chemistry is <strong>R10.4.1</strong>, which features a dual-reader head that improves per-read accuracy and homopolymer resolution compared to the previous R9.4.1 chemistry.</p>
+<section id="step-3-identify-count-the-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-identify-count-the-evidence">Step 3: Identify &amp; Count the Evidence</h2>
+<section id="a.-split-reads-direct-junction-overlap" class="level3">
+<h3 class="anchored" data-anchor-id="a.-split-reads-direct-junction-overlap">A. Split Reads (Direct Junction Overlap)</h3>
+<p>These are single sequencing reads that span across the fusion breakpoint. STAR aligns one part to Gene 1 and soft-clips the remaining sequence, which maps to Gene 2 as a supplementary alignment. - Visual Signature: - The read will display colored soft-clipped bases at the exact junction coordinate reported by Arriba.Right-click a split read and choose “View mate in split screen” or “Go to mate / supplementary alignment”. The other portion of the read will highlight at the exact junction coordinate of Gene 2. - How to Count: Count every unique read ID that has a soft-clipped tail precisely terminating at the breakpoint position. -</p>
+</section>
+<section id="b.-discordant-mates-spanning-pairs" class="level3">
+<h3 class="anchored" data-anchor-id="b.-discordant-mates-spanning-pairs">B. Discordant Mates (Spanning Pairs)</h3>
+<p>These are paired-end reads where Read 1 maps entirely within Gene 1, and Read 2 maps entirely within Gene 2. - Visual Signature: - When set to Color alignments by insert size/pair orientation, these pairs will turn colored (usually teal, blue, or red instead of standard gray) because their insert size or chromosome mapping is abnormal. - Dragging across the split screen will show thin lines connecting Read 1 in Gene 1 to Read 2 in Gene 2 across the panel break.</p>
 <ul>
-<li><strong>R9.4.1</strong> — widely used, mature bioinformatics tooling, ~98% modal accuracy.</li>
-<li><strong>R10.4.1</strong> — improved accuracy (&gt;99% modal, Q20+), better for SNV and methylation calling.</li>
-</ul>
-</section>
-<section id="output-file-formats" class="level2">
-<h2 class="anchored" data-anchor-id="output-file-formats">Output File Formats</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Format</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>FAST5</strong></td>
-<td>Legacy HDF5-based format storing raw signal (will be deprecated).</td>
-</tr>
-<tr class="even">
-<td><strong>POD5</strong></td>
-<td>Current signal format; smaller, faster I/O than FAST5.</td>
-</tr>
-<tr class="odd">
-<td><strong>FASTQ</strong></td>
-<td>Standard nucleotide sequences with Phred quality scores, produced after basecalling.</td>
-</tr>
-<tr class="even">
-<td><strong>BAM/UBAM</strong></td>
-<td>Alignment or unaligned BAM; Dorado outputs unaligned BAM natively, carrying move tables and modification tags.</td>
-</tr>
-<tr class="odd">
-<td><strong>Summary TSV</strong></td>
-<td>Per-read sequencing summary produced by Dorado/MinKNOW with metadata (read ID, length, quality, channel, etc.).</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="advantages-and-limitations" class="level2">
-<h2 class="anchored" data-anchor-id="advantages-and-limitations">Advantages and Limitations</h2>
-<section id="advantages" class="level3">
-<h3 class="anchored" data-anchor-id="advantages">Advantages</h3>
-<ul>
-<li><strong>Ultra-long reads</strong>: Resolve structural variants, repetitive regions, phasing across entire haplotypes, and full-length transcript isoforms.</li>
-<li><strong>Real-time sequencing</strong>: Data streams during the run; adaptive sampling can reject off-target reads on-the-fly.</li>
-<li><strong>Portability</strong>: MinION connects via USB — enables field sequencing, clinical point-of-care, and space missions.</li>
-<li><strong>Native methylation detection</strong>: No chemical conversion required; 5mC, 5hmC, and 6mA called simultaneously with sequence.</li>
-<li><strong>Direct RNA</strong>: Sequence RNA without converting to cDNA, preserving poly-A tail length and base modifications.</li>
-</ul>
-</section>
-<section id="limitations" class="level3">
-<h3 class="anchored" data-anchor-id="limitations">Limitations</h3>
-<ul>
-<li><strong>Per-read error rate</strong>: Although Q20+ is now achievable with R10.4.1 + SUP basecalling, raw error rates are higher than Illumina for equivalent cost.</li>
-<li><strong>Homopolymers</strong>: Long runs of the same base remain challenging, though R10.4.1 improves this significantly.</li>
-<li><strong>Cost per base</strong>: At low throughput, cost per base is higher than short-read sequencing.</li>
-<li><strong>Computational requirements</strong>: SUP basecalling is GPU-intensive.</li>
+<li>How to Count: Count the number of uniquely colored pair connections bridging Gene 1 and Gene 2.</li>
 </ul>
 </section>
 </section>
-<section id="quality-scores" class="level2">
-<h2 class="anchored" data-anchor-id="quality-scores">Quality Scores</h2>
-<p>ONT uses the same Phred/Q score convention as Illumina:</p>
-<p><span class="math display">\[Q = -10 \log_{10} P\]</span></p>
-<p>where <span class="math inline">\(P\)</span> is the probability of an incorrect base call.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Q score</th>
-<th>Accuracy</th>
-<th>Error rate</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Q10</td>
-<td>90%</td>
-<td>1 in 10</td>
-</tr>
-<tr class="even">
-<td>Q20</td>
-<td>99%</td>
-<td>1 in 100</td>
-</tr>
-<tr class="odd">
-<td>Q30</td>
-<td>99.9%</td>
-<td>1 in 1,000</td>
-</tr>
-<tr class="even">
-<td>Q40</td>
-<td>99.99%</td>
-<td>1 in 10,000</td>
-</tr>
-</tbody>
-</table>
-<p>With R10.4.1 flowcells and Dorado SUP model, modal read accuracy is typically <strong>Q20–Q25</strong>. Consensus accuracy (e.g., Medaka polishing) can exceed <strong>Q50</strong>.</p>
+<section id="step-4-validate-against-arribastar-fusion-outputs" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-validate-against-arribastar-fusion-outputs">Step 4: Validate Against Arriba/STAR-fusion Outputs</h2>
+<p>Compare your visual count to the metrics in Arriba or STAR-Fusion’s output file (fusions.tsv): - Check Breakpoints: Verify that the soft-clip boundaries match the breakpoint1 and breakpoint2 genomic coordinates in fusions.tsv. - Compare Read Counts:split_reads1 / split_reads2: Should equal the number of split reads you count anchoring at Gene 1 and Gene 2 respectively. - discordant_mates: Should equal the count of uniquely mapped paired-end fragments bridging the two genes.</p>
+</section>
+<section id="step-5-rule-out-artifacts-false-positive-filters" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-rule-out-artifacts-false-positive-filters">Step 5: Rule Out Artifacts (False Positive Filters)</h2>
+<p>To ensure the fusion is real and not an alignment artifact:Mapping Quality (MAPQ):</p>
+<ul>
+<li>Hover over the supporting reads. Make sure the MAPQ is high (&gt;20–30).</li>
+<li>Soft-clipped reads with MAPQ 0 are usually caused by repetitive elements or homologous sequences.</li>
+<li>Anchor Length: Ensure the split-read segments mapped to both sides of the junction have a reasonable anchor length (&gt;15–20 bp), rather than just a few soft-clipped nucleotides.</li>
+<li>Strand Orientation: Check if the reads align continuously with respect to the strand logic (e.g., sense-to-sense for exon-exon fusions).</li>
+<li>Unmapped Mates: Beware if the region contains a high density of multi-mapping reads or unaligned sequences (colored purple/white mismatch bars), which points toward library preparation or mapping artifacts.</li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>https://okko73313.blogspot.com/2014/10/visualizing-rna-seq-alignments-with.html</li>
+<li>https://help.connected.illumina.com/dragen/dragen-v4.4/product-guide/dragen-v4.4/dragen-dna-pipeline/sv-calling/sv-igv-tutorial#translocations</li>
+<li>https://github.com/igvteam/igv/issues/1081</li>
+</ul>
 
 
 <!-- -->
@@ -896,92 +750,70 @@ window.Quarto = {
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Nanopore Technology"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2026-01-01</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visualizing RNA-seq alignments with fusions with IGV"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2026-08-14"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">published-title:</span><span class="co"> Created</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> last-modified</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> "#212529"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">toc-location:</span><span class="co"> left</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## How Nanopore Sequencing Works</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Oxford Nanopore Technology (ONT) is fundamentally different from Illumina sequencing. Rather than sequencing by synthesis with fluorescent signals, nanopore sequencing detects changes in ionic current as a DNA or RNA strand passes through a protein pore embedded in a synthetic membrane.</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A **protein nanopore** (typically CsgG or R10.4.1) is inserted into an electrically resistant polymer membrane.</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>An ionic buffer is applied across the membrane and a constant voltage drives ions through the pore, generating a measurable **baseline current**.</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>When a DNA or RNA strand is threaded through the pore by a **motor protein** (helicase), the nucleotides occlude the pore and alter the ionic current.</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The pattern of current disruptions — called a **squiggle** — is recorded over time and subsequently decoded into a nucleotide sequence by a basecaller.</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Because the raw molecule itself is read, nanopore sequencing can:</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Produce reads of any length — from hundreds of bases to **millions of bases** (ultra-long reads).</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Detect **native base modifications** (e.g., 5mC, 5hmC, 6mA) directly from the current signal, without bisulfite conversion.</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sequence **RNA directly**, without reverse transcription.</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Devices</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Device <span class="pp">|</span> Flowcells <span class="pp">|</span> Max output <span class="pp">|</span> Use case <span class="pp">|</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Flongle** <span class="pp">|</span> 1 (126 channels) <span class="pp">|</span> ~2 Gb <span class="pp">|</span> Rapid, low-volume runs <span class="pp">|</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **MinION / MinION Mk1C** <span class="pp">|</span> 1 (512 channels) <span class="pp">|</span> ~50 Gb <span class="pp">|</span> Portable field sequencing <span class="pp">|</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **GridION** <span class="pp">|</span> Up to 5 simultaneously <span class="pp">|</span> ~250 Gb <span class="pp">|</span> Lab-scale flexible runs <span class="pp">|</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **P2 Solo / P2i** <span class="pp">|</span> 2 (2,048 channels each) <span class="pp">|</span> ~200 Gb <span class="pp">|</span> High-throughput desktop <span class="pp">|</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **PromethION 24 / 48** <span class="pp">|</span> Up to 24 or 48 <span class="pp">|</span> ~14.5 Tb <span class="pp">|</span> Population-scale projects <span class="pp">|</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>All devices are compatible with the same library preparations; output scales with the number and type of flowcells used.</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Flowcell Chemistry</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>ONT continuously improves pore chemistry. The most current production chemistry is **R10.4.1**, which features a dual-reader head that improves per-read accuracy and homopolymer resolution compared to the previous R9.4.1 chemistry.</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**R9.4.1** — widely used, mature bioinformatics tooling, ~98% modal accuracy.</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**R10.4.1** — improved accuracy (&gt;99% modal, Q20+), better for SNV and methylation calling.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [RNA-seq, DESeq2, EdgeR, EBSeq]</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc-title:</span><span class="co"> "Contents"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "It reconstructs the continuous paths that cells take as they change from one state to another."</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    html:</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">        code-tools:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">            source: true</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">            toggle: true</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    eval: false</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 1: Set Up Split-Screen View in IGV</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Fusions involve two distinct genomic loci (e.g., TMPRSS2 on Chr 21 and ERG on Chr 21, or two different chromosomes).</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Go to the IGV search bar at the top.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Enter both gene locations separated by a space (e.g., TMPRSS2 ERG or chr21:41465000 chr21:38400000).</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Press Enter. IGV will create a split panel view showing Gene 1 on the left and Gene 2 on the right.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 2: Configure IGV Display Settings</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Right-click on the BAM track coverage/alignment panel and make sure the following settings are enabled:</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Color alignments by → SA tag (already done) or pair orientation / insert size (crucial for pair-end discordant reads).</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>View as pairs: Enable this so paired-end reads are visually connected by a thin line.</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Show soft-clipped bases: Enable this (Right-click track → Preferences → Alignments → check Show soft-clipped bases).</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 3: Identify &amp; Count the Evidence</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">### A. Split Reads (Direct Junction Overlap)</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>These are single sequencing reads that span across the fusion breakpoint. STAR aligns one part to Gene 1 and soft-clips the remaining sequence, which maps to Gene 2 as a supplementary alignment.</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Visual Signature:</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>The read will display colored soft-clipped bases at the exact junction coordinate reported by Arriba.Right-click a split read and choose "View mate in split screen" or "Go to mate / supplementary alignment". The other portion of the read will highlight at the exact junction coordinate of Gene 2.</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How to Count: Count every unique read ID that has a soft-clipped tail precisely terminating at the breakpoint position.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>-</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### B. Discordant Mates (Spanning Pairs)</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>These are paired-end reads where Read 1 maps entirely within Gene 1, and Read 2 maps entirely within Gene 2.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Visual Signature:</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>When set to Color alignments by insert size/pair orientation, these pairs will turn colored (usually teal, blue, or red instead of standard gray) because their insert size or chromosome mapping is abnormal.</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Dragging across the split screen will show thin lines connecting Read 1 in Gene 1 to Read 2 in Gene 2 across the panel break.</span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Output File Formats</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How to Count: Count the number of uniquely colored pair connections bridging Gene 1 and Gene 2.</span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Format <span class="pp">|</span> Description <span class="pp">|</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **FAST5** <span class="pp">|</span> Legacy HDF5-based format storing raw signal (will be deprecated). <span class="pp">|</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **POD5** <span class="pp">|</span> Current signal format; smaller, faster I/O than FAST5. <span class="pp">|</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **FASTQ** <span class="pp">|</span> Standard nucleotide sequences with Phred quality scores, produced after basecalling. <span class="pp">|</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **BAM/UBAM** <span class="pp">|</span> Alignment or unaligned BAM; Dorado outputs unaligned BAM natively, carrying move tables and modification tags. <span class="pp">|</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Summary TSV** <span class="pp">|</span> Per-read sequencing summary produced by Dorado/MinKNOW with metadata (read ID, length, quality, channel, etc.). <span class="pp">|</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Advantages and Limitations</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Advantages</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Ultra-long reads**: Resolve structural variants, repetitive regions, phasing across entire haplotypes, and full-length transcript isoforms.</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Real-time sequencing**: Data streams during the run; adaptive sampling can reject off-target reads on-the-fly.</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Portability**: MinION connects via USB — enables field sequencing, clinical point-of-care, and space missions.</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Native methylation detection**: No chemical conversion required; 5mC, 5hmC, and 6mA called simultaneously with sequence.</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Direct RNA**: Sequence RNA without converting to cDNA, preserving poly-A tail length and base modifications.</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### Limitations</span></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Per-read error rate**: Although Q20+ is now achievable with R10.4.1 + SUP basecalling, raw error rates are higher than Illumina for equivalent cost.</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Homopolymers**: Long runs of the same base remain challenging, though R10.4.1 improves this significantly.</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Cost per base**: At low throughput, cost per base is higher than short-read sequencing.</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Computational requirements**: SUP basecalling is GPU-intensive.</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quality Scores</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>ONT uses the same Phred/Q score convention as Illumina:</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>$$Q = -10 \log_{10} P$$</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>where $P$ is the probability of an incorrect base call.</span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Q score <span class="pp">|</span> Accuracy <span class="pp">|</span> Error rate <span class="pp">|</span></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Q10 <span class="pp">|</span> 90% <span class="pp">|</span> 1 in 10 <span class="pp">|</span></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Q20 <span class="pp">|</span> 99% <span class="pp">|</span> 1 in 100 <span class="pp">|</span></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Q30 <span class="pp">|</span> 99.9% <span class="pp">|</span> 1 in 1,000 <span class="pp">|</span></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Q40 <span class="pp">|</span> 99.99% <span class="pp">|</span> 1 in 10,000 <span class="pp">|</span></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>With R10.4.1 flowcells and Dorado SUP model, modal read accuracy is typically **Q20–Q25**. Consensus accuracy (e.g., Medaka polishing) can exceed **Q50**.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 4: Validate Against Arriba/STAR-fusion Outputs</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>Compare your visual count to the metrics in Arriba or STAR-Fusion’s output file (fusions.tsv):</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check Breakpoints: Verify that the soft-clip boundaries match the breakpoint1 and breakpoint2 genomic coordinates in fusions.tsv.</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare Read Counts:split_reads1 / split_reads2: Should equal the number of split reads you count anchoring at Gene 1 and Gene 2 respectively.</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>discordant_mates: Should equal the count of uniquely mapped paired-end fragments bridging the two genes.</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 5: Rule Out Artifacts (False Positive Filters)</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>To ensure the fusion is real and not an alignment artifact:Mapping Quality (MAPQ):</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hover over the supporting reads. Make sure the MAPQ is high (&gt;20–30).</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Soft-clipped reads with MAPQ 0 are usually caused by repetitive elements or homologous sequences.</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Anchor Length: Ensure the split-read segments mapped to both sides of the junction have a reasonable anchor length (&gt;15–20 bp), rather than just a few soft-clipped nucleotides.</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Strand Orientation: Check if the reads align continuously with respect to the strand logic (e.g., sense-to-sense for exon-exon fusions).</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Unmapped Mates: Beware if the region contains a high density of multi-mapping reads or unaligned sequences (colored purple/white mismatch bars), which points toward library preparation or mapping artifacts.</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>https://okko73313.blogspot.com/2014/10/visualizing-rna-seq-alignments-with.html</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>https://help.connected.illumina.com/dragen/dragen-v4.4/product-guide/dragen-v4.4/dragen-dna-pipeline/sv-calling/sv-igv-tutorial#translocations</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>https://github.com/igvteam/igv/issues/1081</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
@@ -1001,5 +833,5 @@ window.Quarto = {
 
 
 
-<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
