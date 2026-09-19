@@ -852,7 +852,7 @@ alias sls="s -ls"      # list current running screen sessions
 -   **Terminal**: [Bash Reference Manual](https://www.gnu.org/software/bash/manual/)
 :::
 
-## Environment Management
+## Manage Environment
 
 ### Conda
 

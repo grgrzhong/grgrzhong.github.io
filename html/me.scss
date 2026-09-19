@@ -155,9 +155,14 @@ pre.text, pre.sourceCode, .cell-output pre {
     }
 }
 
+/* Match the document header section numbers to the TOC style */
 .header-section-number {
-    color: $black;
-    font-family: $headings-font-family;
+    font-family: $toc-font-family;
+    font-weight: 300; /* Matches the baseline TOC weight */
+}
+
+/* Optional: If you want the number to bold up when its heading is active/focused */
+.active .header-section-number {
     font-weight: 400;
 }
 
