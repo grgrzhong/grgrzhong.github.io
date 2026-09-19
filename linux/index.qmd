@@ -16,14 +16,15 @@ format:
             toggle: true
         code-fold: false
         toc: true
-        number-sections: false
+        number-sections: true
 ---
 
 ## Linux Basics
 
-### Working with files
+### Files & directories
 
 ``` bash
+### Working with files
 cp file1.txt file2.txt  # Copy file1.txt to file2.txt
 mv file1.txt file2.txt  # Move or rename file1.txt to file2.txt
 rm file1.txt            # Remove file1.txt
@@ -31,9 +32,9 @@ gzip file1.txt          # Compress file1.txt to file1.txt.gz
 gunzip file1.txt.gz     # Decompress file1.txt.gz to file1.txt
 ```
 
-### Working with directories
 
 ``` bash
+### Working with directories
 mkdir my_directory        # Create a new directory named my_directory
 cd my_directory           # Change into the directory my_directory
 ls                        # List files and directories in the current directory
@@ -43,7 +44,54 @@ ls -lh                    # List files with human-readable sizes
 rm -r my_directory        # Remove the directory my_directory and its contents
 ```
 
-### Backup and restore
+### Permissions
+
+Only the user can copy, execute, and change
+
+``` bash
+chmod 700 /path/to/folder
+```
+
+`700` means:
+
+-   Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)
+-   Group: 0 (no permissions)
+-   Others: 0 (no permissions)
+
+All can read and execute, only the owner can change
+
+``` bash
+chmod 755 /path/to/folder
+```
+
+-   Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)
+-   Group: 5 (read = 4, execute = 1; 4+1 = 5)
+-   Others: 5 (read = 4, execute = 1; 4+1 = 5)
+
+Give a user named someuser read, write, and execute permissions on the /path/to/folder directory
+
+``` bash
+setfacl -m u:someuser:rwx /path/to/folder
+```
+
+Verify the Permissions
+
+``` bash
+getfacl /path/to/folder
+```
+
+Remove all ACL entries for a user
+
+``` bash
+setfacl -x u:someuser /path/to/folder
+```
+
+Change owner
+
+``` bash
+sudo chown username:groupname /path/to/folder
+```
+### Compression & backup
 
 ``` bash
 ## Backup a directory to a tar.gz file
@@ -56,6 +104,89 @@ tar -xzvf backup.tar.gz -C /path/to/restore
 # -x: extract files from an archive
 # -z: filter the archive through gzip
 # -v: verbose output (list files being processed)
+```
+
+-   Commone tar flags:
+    -   `-x` = extract
+    -   `-f` = file
+    -   `-v` = verbose
+    -   `-z` = gzip compression
+    -   `-j` = bzip2 compression
+    -   `-J` = xz compression
+    -   `-c` = change to directory
+    -   `-C` = specify directory
+    -   `-p` = preserve permissions
+
+``` bash
+## Extract .tar.gz file
+tar -xf fuke.tar
+tar -xzvf file.tar.gz
+tar -xzf file.tgz
+
+## Extract .tar.bz2 file
+tar -xjf file.tar.bz2
+
+## Extract .tar.xz file
+tar -xJf file.tar.xz
+
+## Extract to specific directory
+tar -xzf file.tar.gz -C /path/to/directory
+
+## List contents without extracting
+tar -tzf file.tar.gz
+tar -tf file.tar
+```
+
+``` bash
+## Extract zip files
+unzip file.zip
+unzip file.zip -d /path/to/directory
+
+## List contents without extracting
+unzip -l file.zip
+
+## Extract .gz file
+gunzip file.gz
+gunzip -dk file.gz  # keep original file
+
+## Extract .bz2 file
+bunzip2 file.bz2
+
+## Extract .xz file
+unxz file.xz
+
+## Extract .7z file
+7z x file.7z
+
+## Extract .rar file
+unrar x file.rar
+```
+
+-   Common tar flags for compression
+    -   `-c` = create archive
+    -   `-f` = file name
+    -   `-z` = gzip compression (.tar.gz)
+    -   `-j` = bzip2 compression (.tar.bz2)
+    -   `-J` = xz compression (.tar.xz)
+    -   `-v` = verbose output
+
+``` bash
+tar -cf archive.tar file1 file2 directory/
+
+## gzip compressed
+tar -czf archive.tar.gz file1 file2 directory/
+
+## bzip2 compressed
+tar -cjf archive.tar.bz2 file1 file2 directory/
+
+## .tar.xz compressed
+tar -cJf archive.tar.xz file1 file2 directory/
+```
+
+``` bash
+## Backup and Restore a Folder
+tar -czvf mybackup.tar.gz myfolder
+tar -xzvf mybackup.tar.gz
 ```
 
 ### Redirection
@@ -151,14 +282,14 @@ sort -u file.txt              # Sort and remove duplicate lines
 sort -k2 file.txt             # Sort by the second column
 ```
 
-### Remove duplicate lines
+### Remove duplicates
 ```bash
 uniq file.txt                 # Remove duplicate lines (requires sorted input)
 uniq -c file.txt              # Count occurrences of each line
 sort file.txt | uniq -c | sort -nr  # Count and sort by frequency
 ```
 
-### Find and replace
+### Find & replace
 
 `sed` is a stream editor used to perform basic text transformations: \* substituction, deletion, insertion, and more \* works line by line, applying patterns and edits
 
@@ -179,7 +310,7 @@ sed -n '/pattern/p' file.txt
 ## Print lines 2 to 5 of a file
 sed -n '2,5p' file.txt
 ```
-### Joining text files
+### Merge files
 ```bash
 paste file1.txt file2.txt > combined.txt  # Join files side by side
 ```
@@ -213,8 +344,7 @@ awk '/error/' file.txt
 awk 'END {print NR}' file.txt
 ```
 
-
-### Search files and directories
+### Find files and directories
 
 `find` is a powerful command to search for files and directories based on various criteria: \* Search by name, type, size, modification time, permissions, etc. \* Execute actions on found items (delete, move, etc.) \* Supports complex expressions with logical operators
 
@@ -232,140 +362,7 @@ find /path/to/search -type f -size +100M
 find ./Clean -name "*Clean.fastq.gz" -type f -exec ls -lh {} \;
 ```
 
-## File Compression
-
--   Commone tar flags:
-    -   `-x` = extract
-    -   `-f` = file
-    -   `-v` = verbose
-    -   `-z` = gzip compression
-    -   `-j` = bzip2 compression
-    -   `-J` = xz compression
-    -   `-c` = change to directory
-    -   `-C` = specify directory
-    -   `-p` = preserve permissions
-
-``` bash
-## Extract .tar.gz file
-tar -xf fuke.tar
-tar -xzvf file.tar.gz
-tar -xzf file.tgz
-
-## Extract .tar.bz2 file
-tar -xjf file.tar.bz2
-
-## Extract .tar.xz file
-tar -xJf file.tar.xz
-
-## Extract to specific directory
-tar -xzf file.tar.gz -C /path/to/directory
-
-## List contents without extracting
-tar -tzf file.tar.gz
-tar -tf file.tar
-```
-
-``` bash
-## Extract zip files
-unzip file.zip
-unzip file.zip -d /path/to/directory
-
-## List contents without extracting
-unzip -l file.zip
-
-## Extract .gz file
-gunzip file.gz
-gunzip -dk file.gz  # keep original file
-
-## Extract .bz2 file
-bunzip2 file.bz2
-
-## Extract .xz file
-unxz file.xz
-
-## Extract .7z file
-7z x file.7z
-
-## Extract .rar file
-unrar x file.rar
-```
-
--   Common tar flags for compression
-    -   `-c` = create archive
-    -   `-f` = file name
-    -   `-z` = gzip compression (.tar.gz)
-    -   `-j` = bzip2 compression (.tar.bz2)
-    -   `-J` = xz compression (.tar.xz)
-    -   `-v` = verbose output
-
-``` bash
-tar -cf archive.tar file1 file2 directory/
-
-## gzip compressed
-tar -czf archive.tar.gz file1 file2 directory/
-
-## bzip2 compressed
-tar -cjf archive.tar.bz2 file1 file2 directory/
-
-## .tar.xz compressed
-tar -cJf archive.tar.xz file1 file2 directory/
-```
-
-``` bash
-## Backup and Restore a Folder
-tar -czvf mybackup.tar.gz myfolder
-tar -xzvf mybackup.tar.gz
-```
-
-## File Permissions
-
-Only the user can copy, execute, and change
-
-``` bash
-chmod 700 /path/to/folder
-```
-
-`700` means:
-
--   Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)
--   Group: 0 (no permissions)
--   Others: 0 (no permissions)
-
-All can read and execute, only the owner can change
-
-``` bash
-chmod 755 /path/to/folder
-```
-
--   Owner: 7 (read = 4, write = 2, execute = 1; 4+2+1 = 7)
--   Group: 5 (read = 4, execute = 1; 4+1 = 5)
--   Others: 5 (read = 4, execute = 1; 4+1 = 5)
-
-Give a user named someuser read, write, and execute permissions on the /path/to/folder directory
-
-``` bash
-setfacl -m u:someuser:rwx /path/to/folder
-```
-
-Verify the Permissions
-
-``` bash
-getfacl /path/to/folder
-```
-
-Remove all ACL entries for a user
-
-``` bash
-setfacl -x u:someuser /path/to/folder
-```
-
-Change owner
-
-``` bash
-sudo chown username:groupname /path/to/folder
-```
-
-## File transfer
+### File transfer
 
 -   Transfering data efficiently between local and remote systems:
     -   `wget`: Download files directly from the internet to your local machine or server.
@@ -583,7 +580,8 @@ nano -miA file.txt
 -   `-i`: Auto-indent new lines.
 -   `-A`: Enable syntax highlighting.
 
-## OpenPBS
+## Job Scheduling
+### OpenPBS
 
 OpenPBS (Portable Batch System) is an open-source workload manager and job scheduler used in High-Performance Computing (HPC) environments to automate and optimize the execution of tasks across and clouds.
 
@@ -716,7 +714,8 @@ qstat -Q cgs -f
 -   `-cgs`: The specific queue name to query
 -   `-f`: Full/detailed output showing all queue attributes
 
-## Tmux
+## Terminal Multiplexer
+### Tmux
 
 -   Tmux Configuration Consider adding these aliases to your shell configuration for quick tmux access.
 
@@ -783,7 +782,7 @@ bind-key C-a send-prefix
 
 ------------------------------------------------------------------------
 
-## Screen
+### Screen
 
 ::: callout-tip
 ### 💡 Screen Aliases
@@ -853,7 +852,9 @@ alias sls="s -ls"      # list current running screen sessions
 -   **Terminal**: [Bash Reference Manual](https://www.gnu.org/software/bash/manual/)
 :::
 
-## Conda
+## Environment Management
+
+### Conda
 
 -   Installation
 
@@ -934,7 +935,7 @@ conda activate new_env_name
 conda remove --name old_env_name --all
 ```
 
-## Pixi
+### Pixi
 
 ``` bash
 ## Auto-activate pixi when entering project directory
@@ -963,7 +964,7 @@ pixi config append default-channels bioconda --global
 pixi config set default-channels '["conda-forge", "bioconda"]' --global
 ```
 
-## Git
+## Git Version Control
 
 ``` bash
 ## keep your original Git repository but provide a clean version to others,
@@ -1030,7 +1031,7 @@ git fetch origin
 git reset --hard origin/main
 ```
 
-## WSL
+## Windows WSL
 
 -   System info
 
