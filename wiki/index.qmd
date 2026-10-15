@@ -11,17 +11,59 @@ toc-title: "Contents"
 
 These are the collections of things that I beleived useful in my daily researh work.
 
+## Training
 
-## Terms
-* A genome is the complete set of genetic material (DNA or RNA) in an organism.
-* The transcriptome is the full set of RNA transcripts produced by the genome.
-* The methylome is the complete profile of DNA methylation modifications across the genome.
-* The epigenome comprises all chemical modifications to DNA and histone proteins that regulate gene expression without altering the underlying DNA sequence.
-* The mCpG epigenome specifically maps methylated cytosine-guanine (CpG) dinucleotide sites that typically repress gene activity.
-* The chromatin epigenome details how DNA is packaged and structurally wrapped around histones into accessible or closed states.
-* The proteome is the complete set of proteins expressed by an organism's genome.
+- [NYUNY/NYUAD Bioinformatics training resource] (https://learn.gencore.bio.nyu.edu/)
+  - Single-cell RNA-seq analysis with Scanpy (https://learn.gencore.bio.nyu.edu/transcriptomics/single_cell_rna_seq.html)
+- [Babraham Bioinformatics](https://www.bioinformatics.babraham.ac.uk/training.html)
+* [Bioinformatics Training at the Harvard Chan Bioinformatics Core](https://hbctraining.github.io/main/)
+* [HarvardX Biomedical Data Science Open Online Training - rafalab](https://rafalab.dfci.harvard.edu/pages/harvardx.html)
+* [Research Informatics Training - University of Cambbridge](https://cambiotraining.github.io/)
+* [National cancer institute GDC documentation](https://docs.gdc.cancer.gov/Data/Introduction/)
+* [Bioinformatics for Biologists](https://biocorecrg.github.io/CRG_Bioinformatics_for_Biologists/)
+* [National Cancer Institute: Bioinformatics Training & Education Program](https://bioinformatics.ccr.cancer.gov/btep/)
 
 
+## Userful Reource
+
+- [TEICHMANN LAB](https://www.teichlab.org/)
+* <http://rafalab.dfci.harvard.edu/> - Development of statistical tools
+* <https://liulab-dfci.github.io/> - Computational methods for the design (SSC), analysis (MAGeCK), hit prioritization (NEST), and visualization (VISPR) of genome-wide CRISPR screens
+* <https://www.jax.org> - Leading the research for tomorrow's cures
+* <https://www.snijderlab.org/> - Use systems biology to discover things about cells.
+* <https://zlab.bio/> - Zhang Feng Biological Discovery & Engineering
+* <https://www.ciccialab.com/> - Genome Integrity and Genome Editing
+* <https://sizunjianglab.com> - Investigate host-disease interaction
+* <https://hostmicrobe.org/> - Study the biological basis of diseases caused by microbes
+* <https://cheesemanlab.wi.mit.edu/> - World of cell division
+* <https://blainey.mit.edu/> - Pooled optical genetic screening in human cells
+* <https://marsonlab.org/> - Decoding and rewriting human immune cells with CRISPR
+* [Statistical Bioinformatics Lab](https://odin.mdacc.tmc.edu/~wwang7/index.html)
+
+- [chatomics](https://divingintogeneticsandgenomics.com/)
+* <https://www.andrewheiss.com/blog/>
+* <https://www.andreashandel.com/>
+* <https://renkun.me/>
+* <https://morphoscape.wordpress.com/category/tech/>
+* <https://albert-rapp.de/>
+* <https://jokergoo.github.io/>
+
+## Biology
+
+* [Bioinformatics Notebook](https://rnnh.github.io/bioinfo-notebook)
+* [Another Book on Data Science- Learn R and Python in Parallel](https://www.anotherbookondatascience.com/)
+* [Bioinformatics at COMAV](https://bioinf.comav.upv.es/courses/sequence_analysis/index.html)
+* [Next-Generation Sequencing Analysis Resources](https://learn.gencore.bio.nyu.edu/) -NGS analysis, concepts
+* [High dimensional statistics with R Introduction to high-dimensional data](https://carpentries-incubator.github.io/high-dimensional-stats-r/aio/index.html)
+* [STATQUEST!!!](https://statquest.org/video-index/)
+* [Protocols - Beiting Lab](https://protocols.hostmicrobe.org/)
+* [Bioturing](https://blog.bioturing.com/)
+* [iBiology - Bringing the world's best biology to you, for free!](https://www.ibiology.org/)
+* [Sequence Variant Nomenclature](http://varnomen.hgvs.org/)
+* [Encyclopedia Britannica](https://www.britannica.com/)
+* [Labpedia.net](https://labpedia.net/)
+* [The bumbling chemist](https://thebumblingbiochemist.com/)
+* [ToxTutor](https://www.toxmsdt.com/0-toxtutor-home.html)
 
 ## Databases
 [COSMIC](https://cancer.sanger.ac.uk/cosmic) - Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
@@ -36,57 +78,6 @@ These are the collections of things that I beleived useful in my daily researh w
 [NCBI](https://www.ncbi.nlm.nih.gov/) - National Center for Biotechnology Information
 [UCSC Genome Browser](https://genome.ucsc.edu/) - an online, interactive tool for the display and analysis of genomic data.
 
-## Computational Biology
-
-* [Bioinformatics Notebook](https://rnnh.github.io/bioinfo-notebook)
-* [Another Book on Data Science- Learn R and Python in Parallel](https://www.anotherbookondatascience.com/)
-* [Bioinformatics at COMAV](https://bioinf.comav.upv.es/courses/sequence_analysis/index.html)
-* [HarvardX Biomedical Data Science Open Online Training - rafalab](https://rafalab.dfci.harvard.edu/pages/harvardx.html)
-* [Next-Generation Sequencing Analysis Resources](https://learn.gencore.bio.nyu.edu/) -NGS analysis, concepts
-* [Research Informatics Training - University of Cambbridge](https://cambiotraining.github.io/)
-* [Introduction to Bioinformatics workflows with Nextflow and nf-core](https://carpentries-incubator.github.io/workflows-nextflow/)
-* [National cancer institute GDC documentation](https://docs.gdc.cancer.gov/Data/Introduction/)
-* [Bioinformatics for Biologists](https://biocorecrg.github.io/CRG_Bioinformatics_for_Biologists/)
-* [National Cancer Institute: Bioinformatics Training & Education Program](https://bioinformatics.ccr.cancer.gov/btep/)
-* [High dimensional statistics with R Introduction to high-dimensional data](https://carpentries-incubator.github.io/high-dimensional-stats-r/aio/index.html)
-* [Bioinformatics Training at the Harvard Chan Bioinformatics Core](https://hbctraining.github.io/main/)
-* [STATQUEST!!!](https://statquest.org/video-index/)
-* [Protocols - Beiting Lab](https://protocols.hostmicrobe.org/)
-
-## Biologist
-
-* [Bioturing](https://blog.bioturing.com/)
-* [iBiology - Bringing the world's best biology to you, for free!](https://www.ibiology.org/)
-* [Sequence Variant Nomenclature](http://varnomen.hgvs.org/)
-* [Encyclopedia Britannica](https://www.britannica.com/)
-* [Labpedia.net](https://labpedia.net/)
-* [The bumbling chemist](https://thebumblingbiochemist.com/)
-* [ToxTutor](https://www.toxmsdt.com/0-toxtutor-home.html)
-
-## Research Labs
-
-* <http://rafalab.dfci.harvard.edu/> - Development of statistical tools
-* <https://liulab-dfci.github.io/> - Computational methods for the design (SSC), analysis (MAGeCK), hit prioritization (NEST), and visualization (VISPR) of genome-wide CRISPR screens
-* <https://www.jax.org> - Leading the research for tomorrow's cures
-* <https://www.snijderlab.org/> - Use systems biology to discover things about cells.
-* <https://zlab.bio/> - Zhang Feng Biological Discovery & Engineering
-* <https://www.ciccialab.com/> - Genome Integrity and Genome Editing
-* <https://sizunjianglab.com> - Investigate host-disease interaction
-* <https://hostmicrobe.org/> - Study the biological basis of diseases caused by microbes
-* <https://cheesemanlab.wi.mit.edu/> - World of cell division
-* <https://blainey.mit.edu/> - Pooled optical genetic screening in human cells
-* <https://marsonlab.org/> - Decoding and rewriting human immune cells with CRISPR
-* [Statistical Bioinformatics Lab](https://odin.mdacc.tmc.edu/~wwang7/index.html)
-
-
-## Research writing
-
-* [NMRC | Open Fund - Young Individual Research Grant](https://www.nmrc.gov.sg/grants/competitive-research-grants/of-yirg)
-* [Funding Opportunities - Abramson Cancer Center | Penn Medicine](https://www.pennmedicine.org/cancer/cancer-research/for-researchers/investigators-only/funding-opportunities)
-* [Write Your Research Plan](https://www.niaid.nih.gov/grants-contracts/write-research-plan)
-* [The underappreciated art of creating publication-quality figures](https://www.embopress.org/doi/abs/10.15252/embr.202255114)
-
-
 ## Useful Tools
 
 * [DIY.transcriptomics](https://diytranscriptomics.com/lab/)
@@ -97,11 +88,9 @@ These are the collections of things that I beleived useful in my daily researh w
 * [Blood PBMCs](https://www.miltenyibiotec.com/US-en/resources/macs-handbook/human-cells-and-organs/human-cell-sources/blood-human.html)
 * [distill](https://distill.pub/)
 
-## Nice Blogs
+## Research writing
 
-* <https://www.andrewheiss.com/blog/>
-* <https://www.andreashandel.com/>
-* <https://renkun.me/>
-* <https://morphoscape.wordpress.com/category/tech/>
-* <https://albert-rapp.de/>
-* <https://jokergoo.github.io/>
+* [NMRC | Open Fund - Young Individual Research Grant](https://www.nmrc.gov.sg/grants/competitive-research-grants/of-yirg)
+* [Funding Opportunities - Abramson Cancer Center | Penn Medicine](https://www.pennmedicine.org/cancer/cancer-research/for-researchers/investigators-only/funding-opportunities)
+* [Write Your Research Plan](https://www.niaid.nih.gov/grants-contracts/write-research-plan)
+* [The underappreciated art of creating publication-quality figures](https://www.embopress.org/doi/abs/10.15252/embr.202255114)

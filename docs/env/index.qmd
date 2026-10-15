@@ -1,0 +1,135 @@
+---
+title: Environment
+date: 2022-10-09
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+subtitle: "Environment Setup and Management for Data Science and Bioinformatics"
+# toc: true
+# toc-location: left
+toc-title: "Contents"
+execute:
+    eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+        code-fold: false
+        toc: true
+        number-sections: true
+---
+
+
+## Conda
+
+-   Installation
+
+``` bash
+
+# Miniforge linux
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
+
+# Miniforge Mac
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh"
+
+# Install it
+bash Miniforge3-$(uname)-$(uname -m).sh
+
+# Add conda to PATH if found
+if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+    . $HOME/miniconda3/etc/profile.d/conda.sh
+fi
+```
+
+-   Configuration
+
+``` bash
+
+# Init
+conda init --all
+
+# Use mamba for faster solving
+conda update -n base conda
+conda install -n base conda-libmamba-solver
+
+# Config
+conda config --set solver libmamba
+conda config --set always_yes true
+conda config --set auto_activate_base false
+
+# Setup channels
+conda config --add channels bioconda
+conda config --add channels conda-forge
+#conda config --set channel_priority strict
+
+# Install software from a specific channel
+conda install -c conda-forge numpy
+```
+
+-   Create Environment
+
+``` bash
+# Create R environment with specific R version and packages
+conda create -n renv r=4.5 r-languageserver r-tidyverse r-irkernel r-httpgd r-downlit r-xml2 r-markdown r-devtools radian
+
+# Install bioconductor packages, all package names are lower case
+conda install -n renv bioconductor-deseq2 bioconductor-edger
+
+# Install repository packages
+conda install -n renv r-qs r-fs r-tidyverse
+
+# Remove a specific environment
+conda remove --name renv --all
+
+# Remove a software in a environment
+conda remove --name renv package_name
+
+# Export and save the conda env file with all software information
+conda env export -n renv > renv.yml
+
+# Export and save the conda env file with all software information
+# without the prefix and bundle information
+conda env export -n renv --no-builds > renv.yml
+conda env export -n renv --no-builds --file renv.yml
+
+# Create a new environment with a environment file
+conda env create --file renv.yml
+
+# Rename an environment
+conda create --name new_env_name --clone old_env_name
+conda activate new_env_name
+conda remove --name old_env_name --all
+```
+
+## Pixi
+
+``` bash
+## Auto-activate pixi when entering project directory
+eval "$(pixi completion --shell bash)"  # or zsh
+```
+
+``` bash
+## Create a global pixi environment with specific R version and packages
+pixi global install -e renv \
+    r-base=4.5 \
+    r-languageserver \
+    r-tidyverse \
+    r-irkernel \
+    r-httpgd \
+    r-downlit \
+    r-xml2 \
+    r-markdown \
+    r-devtools \
+    radian
+
+## Print out  global pixi environments
+pixi global list
+
+## Add Bioconda Permanently
+pixi config append default-channels bioconda --global
+pixi config set default-channels '["conda-forge", "bioconda"]' --global
+
+## Remove a environment and all its packages
+pixi global uninstall <env_name>
+```

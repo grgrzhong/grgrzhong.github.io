@@ -42,29 +42,34 @@ website:
   page-navigation: true
   navbar:
     pinned: true
-    right:
+    left:
       - text: "About"
         file: "index.qmd"
       - text: "Blog"
         file: "blog/index.qmd"
+      - text: "Analysis"
+        file: "analysis/index.qmd"
       - text: "Linux"
         file: "linux/index.qmd"
       - text: "Python"
         file: "python/index.qmd"
       - text: "R"
         file: "r/index.qmd"
-      - text: "Analysis"
-        file: "analysis/index.qmd"
+      - text: "Git"
+        file: "git/index.qmd"
+      - text: "Environment"
+        file: "env/index.qmd"
+      - text: "Wiki"
+        file: "wiki/index.qmd"
+      - text: "Tool"
+        file: "tool/index.qmd"
       - text: "Technique"
         menu:
           - text: "10X Genomics"
             file: "technique/10xgenomics/index.qmd"
           - text: "Illumina"
             file: "technique/illumina/index.qmd"
-      # - text: "Keymap"
-      #   file: "keymap/index.qmd"
-      # - text: "Tools"
-      #   file: "tools/index.qmd"
+
   # sidebar:
   page-footer:
     center: |
@@ -78,6 +83,7 @@ execute:
   message: false # Suppress messages in output
   echo: true # Show code in output
   include: true # Include code output in output
+  collapse: true # If true, collapse code and output into same code block
 
 format:
   html:

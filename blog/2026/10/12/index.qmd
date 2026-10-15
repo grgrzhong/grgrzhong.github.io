@@ -1,0 +1,21 @@
+---
+title: "Graph-based based clustering in single-cell RNA-seq"
+date: "2026-08-14"
+published-title: Created
+date-modified: last-modified
+categories: [Louvain, Leiden, scRNA-seq]
+toc-title: "Contents"
+description: "Graph-based clustering is a popular method for clustering single-cell RNA-seq data. It is based on the idea of constructing a graph from the data, where each cell is represented as a node and edges are drawn between nodes that are similar to each other. The graph is then partitioned into clusters using algorithms such as Louvain or Leiden."
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+execute:
+    eval: false
+---
+
+Eucliden distances
+Adjacency matrix
+
+![](louvain_single_cell_process.gif)

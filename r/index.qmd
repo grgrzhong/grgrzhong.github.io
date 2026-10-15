@@ -24,6 +24,12 @@ format:
 ## General Functions
 
 ```r
+find.package("ggplot2")
+find.package("Seurat")
+
+```
+
+```r
 .libPaths()                      # Show library paths
 dir()                            # Show the directory
 getwd()                          # Check working directory

@@ -20,7 +20,7 @@ format:
         number-sections: true
 ---
 
-## Linux Basics
+## Linux basics
 
 - Linux is a family of open-source Unix-like operating systems based on the Linux kernel. It is widely used for servers, desktops, and embedded systems. Linux provides a powerful command-line interface (CLI) that allows users to interact with the system and perform various tasks.
 
@@ -29,7 +29,7 @@ format:
 - In bioinformatics, Linux is commonly used for data analysis, bioinformatics pipelines, and high-performance computing (HPC) tasks. Many bioinformatics tools and software are designed to run on Linux systems, making it a preferred choice for researchers in the field.
 
 
-### File & directory
+### File & director
 
 ``` bash
 ### Working with files
@@ -551,7 +551,7 @@ Standard streams in Linux: \* `stdin` (standard input): The default input stream
 
 
 
-## Vim Text Editor
+## Vim text editor
 
 ### Modes
 
@@ -625,7 +625,7 @@ Standard streams in Linux: \* `stdin` (standard input): The default input stream
 | :wq or :x or ZZ | Save and quit                                   |
 | :w !sudo tee %  | Save file needing root (very common workaround) |
 
-## Nano Text Editor
+## Nano text editor
 
 1.  Open a file with: `nano filename.txt`
 2.  Use the arrow keys to navigate.
@@ -653,7 +653,7 @@ nano -miA file.txt
 -   `-i`: Auto-indent new lines.
 -   `-A`: Enable syntax highlighting.
 
-## Job Scheduling
+## Job scheduling
 ### OpenPBS
 
 OpenPBS (Portable Batch System) is an open-source workload manager and job scheduler used in High-Performance Computing (HPC) environments to automate and optimize the execution of tasks across and clouds.
@@ -725,6 +725,9 @@ done
 ## Delete a job
 qdel job_id
 
+## Delete all jobs for user guorui
+qselect -u guorui | xargs qdel
+
 ## check all queues
 qstat -Qf | less
 
@@ -787,8 +790,36 @@ qstat -Q cgs -f
 -   `-cgs`: The specific queue name to query
 -   `-f`: Full/detailed output showing all queue attributes
 
-## Terminal Multiplexer
-### Tmux
+## Windows WSL
+
+-   System info
+
+``` bash
+
+## Install the neofetch package
+sudo apt install neofetch -y
+
+## Show system info
+neofetch --memory_unit gib
+```
+
+-   Change sudo password
+
+In the windows terminal, run the following command to change the sudo password:
+
+``` bash
+
+wsl -u root
+
+## Input the new password
+passwd <username>
+```
+
+-   WSL configuration
+    -   WSL global config: `C:\Users\<UserName>\.wslconfig`
+    -   WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`
+
+## Tmux
 
 -   Tmux Configuration Consider adding these aliases to your shell configuration for quick tmux access.
 
@@ -855,7 +886,7 @@ bind-key C-a send-prefix
 
 ------------------------------------------------------------------------
 
-### Screen
+## Screen
 
 ::: callout-tip
 ### 💡 Screen Aliases
@@ -925,210 +956,5 @@ alias sls="s -ls"      # list current running screen sessions
 -   **Terminal**: [Bash Reference Manual](https://www.gnu.org/software/bash/manual/)
 :::
 
-## Manage Environment
-
-### Conda
-
--   Installation
-
-``` bash
-
-# Miniforge linux
-wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
-
-# Miniforge Mac
-wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh"
-
-# Install it
-bash Miniforge3-$(uname)-$(uname -m).sh
-
-# Add conda to PATH if found
-if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-    . $HOME/miniconda3/etc/profile.d/conda.sh
-fi
-```
-
--   Configuration
-
-``` bash
-
-# Init
-conda init --all
-
-# Use mamba for faster solving
-conda update -n base conda
-conda install -n base conda-libmamba-solver
-
-# Config
-conda config --set solver libmamba
-conda config --set always_yes true
-conda config --set auto_activate_base false
-
-# Setup channels
-conda config --add channels bioconda
-conda config --add channels conda-forge
-#conda config --set channel_priority strict
-
-# Install software from a specific channel
-conda install -c conda-forge numpy
-```
-
--   Create Environment
-
-``` bash
-# Create R environment with specific R version and packages
-conda create -n renv r=4.5 r-languageserver r-tidyverse r-irkernel r-httpgd r-downlit r-xml2 r-markdown r-devtools radian
-
-# Install bioconductor packages, all package names are lower case
-conda install -n renv bioconductor-deseq2 bioconductor-edger
-
-# Install repository packages
-conda install -n renv r-qs r-fs r-tidyverse
-
-# Remove a specific environment
-conda remove --name renv --all
-
-# Remove a software in a environment
-conda remove --name renv package_name
-
-# Export and save the conda env file with all software information
-conda env export -n renv > renv.yml
-
-# Export and save the conda env file with all software information
-# without the prefix and bundle information
-conda env export -n renv --no-builds > renv.yml
-conda env export -n renv --no-builds --file renv.yml
-
-# Create a new environment with a environment file
-conda env create --file renv.yml
-
-# Rename an environment
-conda create --name new_env_name --clone old_env_name
-conda activate new_env_name
-conda remove --name old_env_name --all
-```
-
-### Pixi
-
-``` bash
-## Auto-activate pixi when entering project directory
-eval "$(pixi completion --shell bash)"  # or zsh
-```
-
-``` bash
-## Create a global pixi environment with specific R version and packages
-pixi global install -e renv \
-    r-base=4.5 \
-    r-languageserver \
-    r-tidyverse \
-    r-irkernel \
-    r-httpgd \
-    r-downlit \
-    r-xml2 \
-    r-markdown \
-    r-devtools \
-    radian
-
-## Print out  global pixi environments
-pixi global list
-
-## Add Bioconda Permanently
-pixi config append default-channels bioconda --global
-pixi config set default-channels '["conda-forge", "bioconda"]' --global
-```
-
-## Git Version Control
-
-``` bash
-## keep your original Git repository but provide a clean version to others,
-git archive --format=zip --output=my-project-clean.zip main
-
-git init
-git add .
-git commit -m "first commit"
-git remote add origin
-git push -u origin main
-
-git config --global user.name "" # set an user name that will be associated with each history marker
-git config --global user.email "" # set an email address that will be associated with each history marker
-git config --global color.ui auto # set automatic command line coloring for Git for easy reviewing
-git init #
 
 
-# 1. Delete the local branch
-git branch -d branch-name     # Use -D to force delete
-
-# 2. Delete the remote branch
-git push origin --delete branch-name
-
-# 3. Verify branches are gone
-git branch -a                # List all branches
-
-echo "" # create file ""
-git status # check
-git add # add a file as it looks now to your next commit (stage)
-git commit # commit your staged content as a new commit snapshot
-### if go to the viam editing mode, i to input, esc to quit, :wq to save and quit
-git log # show all commits in the current branch’s history, check versions, q to quit
-touch .gitignore
-git branch "" # create branch ""
-git branch # check branches
-git checkout "" # switch to another branch and check it out into your working directory ""
-git branch -D "" # delete branch ##
-git checkout -b temp # create temporary branch ##
-git merage # merge the specified branch’s history into the current one
-git clone # retrieve an entire repository from a hosted location via URL
-git remote -V # check remove repos information
-git push # Transmit local branch commits to the remote repository branch
-git fetch # fetch down all the branches from that Git remote
-git diff # diff of what is changed but not staged
-git pull # fetch and merge any commits from the tracking remote branch
-git reset # unstage a file while retaining the changes in working directory
-git rm -r --cached . # ignore already added files run
-
-## Go back to a specifi commit
-git reset --hard e4098a7
-
-## Pull remote updates and ignore local changes
-git fetch origin
-git reset --hard origin/your-branch-name
-
-## Change remote URL
-git remote -v # check current remote configuration
-git remote set-url origin <new-repository-url>
-git remote remove origin
-git remote add origin <new-repository-url>
-
-## Reset to match remote
-git fetch origin
-git reset --hard origin/main
-```
-
-## Windows WSL
-
--   System info
-
-``` bash
-
-## Install the neofetch package
-sudo apt install neofetch -y
-
-## Show system info
-neofetch --memory_unit gib
-```
-
--   Change sudo password
-
-In the windows terminal, run the following command to change the sudo password:
-
-``` bash
-
-wsl -u root
-
-## Input the new password
-passwd <username>
-```
-
--   WSL configuration
-    -   WSL global config: `C:\Users\<UserName>\.wslconfig`
-    -   WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`

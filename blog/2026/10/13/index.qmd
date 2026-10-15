@@ -1,0 +1,35 @@
+---
+title: "Illumina PIPseq scRNA-seq"
+date: "2026-10-13"
+published-title: Created
+date-modified: last-modified
+categories: [scRNA-seq]
+toc-title: "Contents"
+description: "The PIP-seq method was published in Nature Biotechnology on 2023 March 06: Clark et al. Nat Biotechnol. 2023 [Clark2023]. It can be used to perform high-throughput droplet single cell RNA-seq without microfluidic device"
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+execute:
+    eval: false
+---
+
+- [PIP-seq, Nice explanation on the library structure](https://teichlab.github.io/scg_lib_structs/methods_html/PIP-seq.html)
+- [Illumina PIPseq scRNA](https://help.connected.illumina.com/dragen/dragen-v4.5/product-guides/dragen-v4.5/dragen-single-cell-pipeline/dragen-scrna-illumina#outputs)
+
+
+##
+
+![](./dragen_analysis.jpg)
+![](./pipseq_data_analysis_workflow.png)
+
+##
+
+
+## Single-Cell RNA Report
+
+### Single-Cell RNA
+### Trimer
+### DRAGEN-FastQC
+### Mapping

@@ -1,0 +1,116 @@
+
+
+install `gh` and log in once with gh auth login. Then, from inside any project folder:
+```bash
+pixi global install gh
+gh --version
+gh auth login
+# Creating the repo on GitHub’s website every time is the slow path. Here are the workflows that remove that friction
+```
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+gh repo create my-project --private --source=. --remote=origin --push
+```
+
+```bash
+git config --global init.defaultBranch main
+git config --global init.defaultBranch
+it config --global --list
+```
+
+## Pipeline version changelog
+Use a root CHANGELOG.md as the canonical history, use Git tags + GitHub Releases for versioned release notes, and keep README.md for the current usage/overview. For breaking pipeline changes, add detailed migration docs under docs/migrations/
+
+```bash
+pipeline-repo/
+├── README.md
+├── CHANGELOG.md
+├── VERSION                 # optional, current version
+├── docs/
+│   ├── pipeline.md
+│   ├── configuration.md
+│   ├── versioning.md
+│   └── migrations/
+│       ├── v1-to-v2.md
+│       └── v2-to-v3.md
+├── .github/
+│   ├── workflows/
+│   │   └── release.yml
+│   └── release-drafter.yml
+├── src/
+├── config/
+├── tests/
+└── examples/
+```
+
+CHANGELOG.md structure
+
+## Git Version Control
+
+``` bash
+## keep your original Git repository but provide a clean version to others,
+git archive --format=zip --output=my-project-clean.zip main
+
+git init
+git add .
+git commit -m "first commit"
+git remote add origin
+git push -u origin main
+
+git config --global user.name "" # set an user name that will be associated with each history marker
+git config --global user.email "" # set an email address that will be associated with each history marker
+git config --global color.ui auto # set automatic command line coloring for Git for easy reviewing
+git init #
+
+
+# 1. Delete the local branch
+git branch -d branch-name     # Use -D to force delete
+
+# 2. Delete the remote branch
+git push origin --delete branch-name
+
+# 3. Verify branches are gone
+git branch -a                # List all branches
+
+echo "" # create file ""
+git status # check
+git add # add a file as it looks now to your next commit (stage)
+git commit # commit your staged content as a new commit snapshot
+### if go to the viam editing mode, i to input, esc to quit, :wq to save and quit
+git log # show all commits in the current branch’s history, check versions, q to quit
+touch .gitignore
+git branch "" # create branch ""
+git branch # check branches
+git checkout "" # switch to another branch and check it out into your working directory ""
+git branch -D "" # delete branch ##
+git checkout -b temp # create temporary branch ##
+git merage # merge the specified branch’s history into the current one
+git clone # retrieve an entire repository from a hosted location via URL
+git remote -V # check remove repos information
+git push # Transmit local branch commits to the remote repository branch
+git fetch # fetch down all the branches from that Git remote
+git diff # diff of what is changed but not staged
+git pull # fetch and merge any commits from the tracking remote branch
+git reset # unstage a file while retaining the changes in working directory
+git rm -r --cached . # ignore already added files run
+
+## Go back to a specifi commit
+git reset --hard e4098a7
+
+## Pull remote updates and ignore local changes
+git fetch origin
+git reset --hard origin/your-branch-name
+
+## Change remote URL
+git remote -v # check current remote configuration
+git remote set-url origin <new-repository-url>
+git remote remove origin
+git remote add origin <new-repository-url>
+
+## Reset to match remote
+git fetch origin
+git reset --hard origin/main
+```
