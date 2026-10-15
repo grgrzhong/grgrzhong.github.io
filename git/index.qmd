@@ -1,7 +1,34 @@
+---
+title: Git Version Control
+date: 2022-10-09
+published-title: Created
+date-modified: last-modified
+title-block-banner: "#212529"
+subtitle: "Commonly used Git commands"
+# toc: true
+# toc-location: left
+toc-title: "Contents"
+execute:
+    eval: false
+format:
+    html:
+        code-tools:
+            source: true
+            toggle: true
+        code-fold: false
+        toc: true
+        number-sections: true
+---
 
-
-install `gh` and log in once with gh auth login. Then, from inside any project folder:
+## Initial configuration
 ```bash
+git config --global init.defaultBranch main
+git config --global init.defaultBranch
+it config --global --list
+```
+
+```bash
+# install `gh` and log in once with gh auth login. Then, from inside any project folder:
 pixi global install gh
 gh --version
 gh auth login
@@ -9,16 +36,19 @@ gh auth login
 ```
 
 ```bash
+# Create a new Git repository and push it to GitHub
 git init
 git add .
 git commit -m "Initial commit"
 gh repo create my-project --private --source=. --remote=origin --push
 ```
 
+## Change remote URL
 ```bash
-git config --global init.defaultBranch main
-git config --global init.defaultBranch
-it config --global --list
+git remote -v # check current remote configuration
+git remote set-url origin <new-repository-url> # change remote URL
+git remote remove origin # remove remote URL
+git remote add origin <new-repository-url> # add new remote URL
 ```
 
 ## Pipeline version changelog
@@ -48,7 +78,6 @@ pipeline-repo/
 
 CHANGELOG.md structure
 
-## Git Version Control
 
 ``` bash
 ## keep your original Git repository but provide a clean version to others,
