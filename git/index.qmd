@@ -39,6 +39,7 @@ git config --global color.ui auto
 # install `gh` and log in once with gh auth login. Then, from inside any project folder:
 pixi global install gh
 gh --version
+gh auth status
 gh auth login
 # Creating the repo on GitHub’s website every time is the slow path. Here are the workflows that remove that friction
 ```
