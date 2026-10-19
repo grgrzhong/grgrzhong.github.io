@@ -17,10 +17,442 @@ format:
             toggle: true
         code-fold: false
         toc: true
-        number-sections: true
+        number-sections: false
 ---
 
-## Linux basics
+## Prompt
+
+```bash
+# mac
+PROMPT='%F{cyan}%n%F{white} @%F{green} %m:%F{yellow} %~%f
+%F{magenta}❯%f '
+
+# Linux
+PS1='\[\e[36m\]\u\[\e[37m\] @\[\e[32m\]\h:\[\e[33m\]\w\[\e[0m\]\n\[\e[35m\]❯\[\e[0m\] '
+```
+
+
+## Vim
+
+### Modes
+
+-   Vim text editor has three main modes:
+    -   `Esc`, back to normal mode
+    -   `i`, insert mode
+    -   `v`, select mode
+
+| Command | What it does                | Most common follow-up |
+|---------|-----------------------------|-----------------------|
+| i       | Insert before cursor        | typing text           |
+| a       | Append after cursor         | typing text           |
+| I       | Insert at beginning of line | —                     |
+| A       | Append at end of line       | —                     |
+| o       | Open new line below         | typing                |
+| O       | Open new line above         | typing                |
+| Esc     | Back to Normal mode         | —                     |
+| v       | Visual mode                 | move + operator       |
+| V       | Visual Line mode            | —                     |
+| Ctrl-v  | Visual Block mode           | —                     |
+
+### Navigation
+
+| Command         | Movement                       | Common combos         |
+|-----------------|--------------------------------|-----------------------|
+| h j k l         | ← ↓ ↑ →                        | —                     |
+| w / b           | forward/backward by word start | ciw, daw              |
+| e / ge          | forward/backward to word end   | —                     |
+| W / B           | forward/backward by big word   | (ignores punctuation) |
+| 0               | Start of line                  | —                     |
+| \^              | First non-blank character      | —                     |
+| \$              | End of line                    | —                     |
+| gg              | Top of file                    | —                     |
+| G               | Bottom of file                 | 50G → line 50         |
+| Ctrl-u / Ctrl-d | Half page up/down              | —                     |
+| Ctrl-f / Ctrl-b | Full page down/up              | —                     |
+
+### Editing
+
+| Command | Meaning | examples |
+|-----------------|-------------------------------|------------------------|
+| x | Delete character under cursor | — |
+| dd | Delete current line | 5dd = delete 5 lines |
+| yy | Yank (copy) current line | p to paste |
+| p / P | Paste after/before cursor | — |
+| u | Undo | (most used command after Esc) |
+| Ctrl-r | Redo | — |
+| . | Repeat last change/command | (extremely powerful) |
+| dw / d\$ | Delete to end of word / end of line | diw, daw |
+| ciw / caw | Change (delete + insert) inside/around word | most common text object usage |
+| "ci"" / ci( / ci{" | Change inside quotes/parentheses/braces | extremely common in code |
+
+### Search & Replace
+
+| Command        | Meaning                                       |
+|----------------|-----------------------------------------------|
+| /pattern       | Search forward                                |
+| ?pattern       | Search backward                               |
+| n / N          | Next / previous match                         |
+| \* / \#        | Search forward/backward for word under cursor |
+| :%s/old/new/g  | Replace all occurrences (whole file)          |
+| :%s/old/new/gc | Replace with confirmation                     |
+
+### Saving & Exiting
+
+| Command         | Meaning                                         |
+|-----------------|-------------------------------------------------|
+| :w              | Save (write)                                    |
+| :q              | Quit (only if no changes)                       |
+| :q!             | Quit without saving                             |
+| :wq or :x or ZZ | Save and quit                                   |
+| :w !sudo tee %  | Save file needing root (very common workaround) |
+
+## Nano
+
+1.  Open a file with: `nano filename.txt`
+2.  Use the arrow keys to navigate.
+3.  Save the changes with `ctrl + o`,
+4.  Confirm the filename by pressing `Enter`.
+5.  Exit nano with `ctrl + x`.
+
+### Searching Text
+
+-   To find words or phrases within a file:
+
+1.  Initiate search with `ctrl + w`.
+2.  Type the search term and press `Enter`.
+3.  Exit search mode with `ctrl + c`.
+
+### Customizing Nano
+
+Enhance Nano's functionality:
+
+``` bash
+nano -miA file.txt
+```
+
+-   `-m`: Enable mouse support.
+-   `-i`: Auto-indent new lines.
+-   `-A`: Enable syntax highlighting.
+
+## Jobs
+### OpenPBS
+
+OpenPBS (Portable Batch System) is an open-source workload manager and job scheduler used in High-Performance Computing (HPC) environments to automate and optimize the execution of tasks across and clouds.
+
+**PBS job script**
+
+``` bash
+#!/bin/bash
+#PBS -N job_name                  # Job name
+#PBS -l nodes=1:ppn=4             # Number of nodes and processors per node
+#PBS -l walltime=01:00:00         # Walltime (hh:mm:ss)
+#PBS -l mem=8gb                   # Memory per node
+#PBS -j oe                        # Combine stdout and stderr
+#PBS -M user@example.com          # Email address for notifications
+#PBS -m abe                       # Send email on (a) abort, (b) begin, (e) end
+#PBS -q batch                     # Queue named
+#PBS -V                           # Export all environment variables to the job
+
+## example
+cd $PBS_O_WORKDIR                 # Change to the directory where the job was submitted
+module load python/3.8.5          # Load necessary modules
+python my_script.py               # Command to run your program
+```
+
+**PBS environment variables**
+
+``` bash
+$PBS_O_WORKDIR     # The directory from which the job was submitted
+$PBS_O_HOME        # The home directory of the user who submitted the job
+$PBS_JOBDIR        # The working directory for the job on the compute node
+$TMPDIR            # The temporary directory for the job on the compute node
+$PBS_JOBID         # The unique identifier assigned to the job
+$PBS_NODEFILE      # The file containing the list of nodes allocated to the job
+$PBS_NUM_NODES     # The number of nodes allocated to the job
+$PBS_NUM_PPN       # The number of processors per node allocated to the job
+$PBS_QUEUE         # The name of the queue to which the job was submitted
+$PBS_JOBNAME       # The name of the job as specified in the job script
+```
+
+**Submit job scripts**
+
+``` bash
+## Submit a job
+qsub job_script.pbs
+
+## Submit a job with environment variables.
+qsub -v sample="$sample" -M "$EMAIL" pbs_1_cutadapt.pbs
+```
+
+**Check job status**
+
+``` bash
+## List finished job details in summary
+qstat -x job_id
+
+## List finished job details in full details
+qstat -H job_id
+qstat -x -f job_id
+qstat -x -f job_id | grepl "exec_host"
+
+## List all jobs for user guorui
+qstat -u guorui -a
+
+## Find out all compute nodes allocated to a job
+for job_id in $(find . -name "log.*.e*" -printf "%f\n" | sed 's/.*\.e\([0-9]*\)$/\1/' | sort -n | uniq); do
+    echo -n "Job ID: $job_id: "; qstat -x -f $job_id | grep exec_host
+done
+
+## Delete a job
+qdel job_id
+
+## Delete all jobs for user guorui
+qselect -u guorui | xargs qdel
+
+## check all queues
+qstat -Qf | less
+
+for q in cgs small medium large cgs_queue; do
+    echo "=== $q ==="
+    qstat -Qf $q | grep -E "resources_max.(mem|ncpus|walltime)"
+done
+
+## Hold a job
+qhold job_id
+
+## Release a held job
+qrls job_id
+
+# See your groups
+groups
+
+# Check queue ACLs
+qstat -Q -f | grep -E "^Queue:|acl_users|acl_groups"
+```
+
+**Stat interactive job**
+
+``` bash
+## Start and interactive job with 16 processors, 64GB memory, 24 hours walltime in cgs_queue
+qsub -I -q cgs_queue -l nodes=hpcf3-c01:ppn=16,walltime=12:00:00,mem=64gb
+qsub -I -q cgs_queue -l nodes=hpcf3-c02:ppn=16,walltime=12:00:00,mem=64gb
+qsub -I -q cgs_queue -l nodes=hpcf3-c03:ppn=16,walltime=12:00:00,mem=64gb
+```
+
+**Check the permission of queue**
+
+``` bash
+qstat -Q cgs -f
+
+# Queue: cgs
+#     queue_type = Execution
+#     total_jobs = 16
+#     state_count = Transit:0 Queued:10 Held:0 Waiting:0 Running:6 Exiting:0 Begu
+#         n:0
+#     acl_user_enable = True
+#     acl_users = bioinfo,emiklin,irisxu,itsupport,julia,junyanzhong,manzhai,nicklin,
+#         rubyzhou,totochu
+#     resources_max.mem = 1024gb
+#     resources_max.ncpus = 64
+#     resources_max.nodect = 1
+#     resources_max.walltime = 1440:00:00
+#     resources_default.mem = 1gb
+#     resources_default.walltime = 24:00:00
+#     default_chunk.Qlist = cgs
+#     resources_assigned.mem = 3019898880kb
+#     resources_assigned.mpiprocs = 168
+#     resources_assigned.ncpus = 253
+#     resources_assigned.nodect = 6
+#     enabled = True
+#     started = True
+```
+
+-   `-Q`: Show queue information (not job information)
+-   `-cgs`: The specific queue name to query
+-   `-f`: Full/detailed output showing all queue attributes
+
+## WSL
+
+-   System info
+
+``` bash
+
+## Install the neofetch package
+sudo apt install neofetch -y
+
+## Show system info
+neofetch --memory_unit gib
+```
+
+-   Change sudo password
+
+In the windows terminal, run the following command to change the sudo password:
+
+``` bash
+
+wsl -u root
+
+## Input the new password
+passwd <username>
+```
+
+-   WSL configuration
+    -   WSL global config: `C:\Users\<UserName>\.wslconfig`
+    -   WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`
+
+## Tmux
+
+-   Tmux Configuration Consider adding these aliases to your shell configuration for quick tmux access.
+
+::: code-block
+``` bash
+# Terminal aliases for tmux
+alias t="tmux"
+alias ta="t a -t"
+alias tls="t ls"
+alias tn="t new -s"
+alias tk="t kill-session -t"
+alias tks="t kill-server"
+```
+:::
+
+::: callout-note
+### 🔧 Custom Prefix Key
+
+Change the default prefix in `.tmux.conf`:
+
+``` bash
+set-option -g prefix C-a
+bind-key C-a send-prefix
+```
+:::
+
+-   Session Management
+
+| **Action**               | **Command/Shortcut**                    |
+|--------------------------|-----------------------------------------|
+| List sessions            | `tmux list-sessions`                    |
+| Attach to session        | `tmux attach-session -t target-session` |
+| Switch between sessions  | `Ctrl + A + s`                          |
+| Switch to latest session | `Ctrl + A + l`                          |
+| Detach from session      | `Ctrl + A + d`                          |
+
+-   Window Management
+
+| **Action**                | **Shortcut**   |
+|---------------------------|----------------|
+| List all windows          | `Ctrl + A + w` |
+| Rename current window     | `Ctrl + A + ,` |
+| Switch to next window     | `Ctrl + A + →` |
+| Switch to previous window | `Ctrl + A + ←` |
+| Create new window         | `Ctrl + A + c` |
+| Kill current window       | `Ctrl + A + q` |
+
+-   Pane Management
+
+| **Action**           | **Shortcut**   |
+|----------------------|----------------|
+| Switch to pane above | `Shift + ↑`    |
+| Switch to pane below | `Shift + ↓`    |
+| Switch to pane left  | `Shift + ←`    |
+| Switch to pane right | `Shift + →`    |
+| Kill current pane    | `Ctrl + A + x` |
+
+-   Copy Mode
+
+| **Action**        | **Shortcut**              |
+|-------------------|---------------------------|
+| Enter copy mode   | Drag mouse to select text |
+| Paste copied text | `Ctrl + A + ]`            |
+
+------------------------------------------------------------------------
+
+## Screen
+
+### Config
+
+```bash
+## ~/.screenrc
+
+# tells GNU Screen how to handle terminal initialization (ti) and termination (te) sequences for xterm and its variants (like xterm-color, gnome-terminal, etc.).
+termcapinfo xterm* ti@:te@
+
+# binds a specific keyboard key to send a command or string
+bindkey -k kI stuff
+bindkey -k kD stuff
+
+```
+
+
+::: callout-tip
+### 💡 Screen Aliases
+
+Add these aliases to your shell configuration for easier screen management.
+:::
+
+::: code-block
+``` bash
+# Terminal aliases for screen
+alias s="screen"       # start a screen session
+alias ss="s -S"        # start a named screen session
+alias sr="s -r"        # reattach to a screen session
+alias sls="s -ls"      # list current running screen sessions
+```
+:::
+
+-   Basic Commands
+
+| **Action**            | **Command**              |
+|-----------------------|--------------------------|
+| Start screen session  | `screen`                 |
+| Start named session   | `screen -S session_name` |
+| Reattach to session   | `screen -r`              |
+| List running sessions | `screen -ls`             |
+
+-   Window Management
+
+| **Action**             | **Shortcut**          |
+|------------------------|-----------------------|
+| Create new window      | `Ctrl + A + C`        |
+| Kill current window    | `Ctrl + A + K`        |
+| List all windows       | `Ctrl + A + W`        |
+| Go to window 0-9       | `Ctrl + A + 0-9`      |
+| Go to next window      | `Ctrl + A + N`        |
+| Toggle between windows | `Ctrl + A + Ctrl + A` |
+| Rename current window  | `Ctrl + A + A`        |
+
+-   Region Management
+
+| **Action**                    | **Shortcut**     |
+|-------------------------------|------------------|
+| Split horizontally            | `Ctrl + A + S`   |
+| Split vertically              | `Ctrl + A + \|`  |
+| Switch between regions        | `Ctrl + A + Tab` |
+| Close all regions but current | `Ctrl + A + Q`   |
+| Close current region          | `Ctrl + A + X`   |
+
+-   Session & Copy Mode
+
+| **Action**          | **Shortcut**          |
+|---------------------|-----------------------|
+| Detach from session | `Ctrl + A + D`        |
+| Start copy mode     | `Ctrl + A + [`        |
+| Paste copied text   | `Ctrl + A + ]`        |
+| Show help           | `Ctrl + A + ?`        |
+| Quit screen         | `Ctrl + A + Ctrl + \` |
+
+------------------------------------------------------------------------
+
+::: callout-note
+### Additional Resources
+
+-   **VSCode**: [Official Keyboard Shortcuts Reference](https://code.visualstudio.com/docs/getstarted/keybindings)
+-   **Vim**: [Vim Cheat Sheet](https://vim.rtorr.com/)
+-   **Tmux**: [Tmux Cheat Sheet](https://tmuxcheatsheet.com/)
+-   **Terminal**: [Bash Reference Manual](https://www.gnu.org/software/bash/manual/)
+:::
+
+## Linux
 
 - Linux is a family of open-source Unix-like operating systems based on the Linux kernel. It is widely used for servers, desktops, and embedded systems. Linux provides a powerful command-line interface (CLI) that allows users to interact with the system and perform various tasks.
 
@@ -548,413 +980,5 @@ command >> output.txt
 ```
 
 Standard streams in Linux: \* `stdin` (standard input): The default input stream for a command, 0 \* `stdout` (standard output): The default output stream for a command, 1 \* `stderr` (standard error): The default error output stream for a command, 2
-
-
-
-## Vim text editor
-
-### Modes
-
--   Vim text editor has three main modes:
-    -   `Esc`, back to normal mode
-    -   `i`, insert mode
-    -   `v`, select mode
-
-| Command | What it does                | Most common follow-up |
-|---------|-----------------------------|-----------------------|
-| i       | Insert before cursor        | typing text           |
-| a       | Append after cursor         | typing text           |
-| I       | Insert at beginning of line | —                     |
-| A       | Append at end of line       | —                     |
-| o       | Open new line below         | typing                |
-| O       | Open new line above         | typing                |
-| Esc     | Back to Normal mode         | —                     |
-| v       | Visual mode                 | move + operator       |
-| V       | Visual Line mode            | —                     |
-| Ctrl-v  | Visual Block mode           | —                     |
-
-### Navigation
-
-| Command         | Movement                       | Common combos         |
-|-----------------|--------------------------------|-----------------------|
-| h j k l         | ← ↓ ↑ →                        | —                     |
-| w / b           | forward/backward by word start | ciw, daw              |
-| e / ge          | forward/backward to word end   | —                     |
-| W / B           | forward/backward by big word   | (ignores punctuation) |
-| 0               | Start of line                  | —                     |
-| \^              | First non-blank character      | —                     |
-| \$              | End of line                    | —                     |
-| gg              | Top of file                    | —                     |
-| G               | Bottom of file                 | 50G → line 50         |
-| Ctrl-u / Ctrl-d | Half page up/down              | —                     |
-| Ctrl-f / Ctrl-b | Full page down/up              | —                     |
-
-### Editing
-
-| Command | Meaning | examples |
-|-----------------|-------------------------------|------------------------|
-| x | Delete character under cursor | — |
-| dd | Delete current line | 5dd = delete 5 lines |
-| yy | Yank (copy) current line | p to paste |
-| p / P | Paste after/before cursor | — |
-| u | Undo | (most used command after Esc) |
-| Ctrl-r | Redo | — |
-| . | Repeat last change/command | (extremely powerful) |
-| dw / d\$ | Delete to end of word / end of line | diw, daw |
-| ciw / caw | Change (delete + insert) inside/around word | most common text object usage |
-| "ci"" / ci( / ci{" | Change inside quotes/parentheses/braces | extremely common in code |
-
-### Search & Replace
-
-| Command        | Meaning                                       |
-|----------------|-----------------------------------------------|
-| /pattern       | Search forward                                |
-| ?pattern       | Search backward                               |
-| n / N          | Next / previous match                         |
-| \* / \#        | Search forward/backward for word under cursor |
-| :%s/old/new/g  | Replace all occurrences (whole file)          |
-| :%s/old/new/gc | Replace with confirmation                     |
-
-### Saving & Exiting
-
-| Command         | Meaning                                         |
-|-----------------|-------------------------------------------------|
-| :w              | Save (write)                                    |
-| :q              | Quit (only if no changes)                       |
-| :q!             | Quit without saving                             |
-| :wq or :x or ZZ | Save and quit                                   |
-| :w !sudo tee %  | Save file needing root (very common workaround) |
-
-## Nano text editor
-
-1.  Open a file with: `nano filename.txt`
-2.  Use the arrow keys to navigate.
-3.  Save the changes with `ctrl + o`,
-4.  Confirm the filename by pressing `Enter`.
-5.  Exit nano with `ctrl + x`.
-
-### Searching Text
-
--   To find words or phrases within a file:
-
-1.  Initiate search with `ctrl + w`.
-2.  Type the search term and press `Enter`.
-3.  Exit search mode with `ctrl + c`.
-
-### Customizing Nano
-
-Enhance Nano's functionality:
-
-``` bash
-nano -miA file.txt
-```
-
--   `-m`: Enable mouse support.
--   `-i`: Auto-indent new lines.
--   `-A`: Enable syntax highlighting.
-
-## Job scheduling
-### OpenPBS
-
-OpenPBS (Portable Batch System) is an open-source workload manager and job scheduler used in High-Performance Computing (HPC) environments to automate and optimize the execution of tasks across and clouds.
-
-**PBS job script**
-
-``` bash
-#!/bin/bash
-#PBS -N job_name                  # Job name
-#PBS -l nodes=1:ppn=4             # Number of nodes and processors per node
-#PBS -l walltime=01:00:00         # Walltime (hh:mm:ss)
-#PBS -l mem=8gb                   # Memory per node
-#PBS -j oe                        # Combine stdout and stderr
-#PBS -M user@example.com          # Email address for notifications
-#PBS -m abe                       # Send email on (a) abort, (b) begin, (e) end
-#PBS -q batch                     # Queue named
-#PBS -V                           # Export all environment variables to the job
-
-## example
-cd $PBS_O_WORKDIR                 # Change to the directory where the job was submitted
-module load python/3.8.5          # Load necessary modules
-python my_script.py               # Command to run your program
-```
-
-**PBS environment variables**
-
-``` bash
-$PBS_O_WORKDIR     # The directory from which the job was submitted
-$PBS_O_HOME        # The home directory of the user who submitted the job
-$PBS_JOBDIR        # The working directory for the job on the compute node
-$TMPDIR            # The temporary directory for the job on the compute node
-$PBS_JOBID         # The unique identifier assigned to the job
-$PBS_NODEFILE      # The file containing the list of nodes allocated to the job
-$PBS_NUM_NODES     # The number of nodes allocated to the job
-$PBS_NUM_PPN       # The number of processors per node allocated to the job
-$PBS_QUEUE         # The name of the queue to which the job was submitted
-$PBS_JOBNAME       # The name of the job as specified in the job script
-```
-
-**Submit job scripts**
-
-``` bash
-## Submit a job
-qsub job_script.pbs
-
-## Submit a job with environment variables.
-qsub -v sample="$sample" -M "$EMAIL" pbs_1_cutadapt.pbs
-```
-
-**Check job status**
-
-``` bash
-## List finished job details in summary
-qstat -x job_id
-
-## List finished job details in full details
-qstat -H job_id
-qstat -x -f job_id
-qstat -x -f job_id | grepl "exec_host"
-
-## List all jobs for user guorui
-qstat -u guorui -a
-
-## Find out all compute nodes allocated to a job
-for job_id in $(find . -name "log.*.e*" -printf "%f\n" | sed 's/.*\.e\([0-9]*\)$/\1/' | sort -n | uniq); do
-    echo -n "Job ID: $job_id: "; qstat -x -f $job_id | grep exec_host
-done
-
-## Delete a job
-qdel job_id
-
-## Delete all jobs for user guorui
-qselect -u guorui | xargs qdel
-
-## check all queues
-qstat -Qf | less
-
-for q in cgs small medium large cgs_queue; do
-    echo "=== $q ==="
-    qstat -Qf $q | grep -E "resources_max.(mem|ncpus|walltime)"
-done
-
-## Hold a job
-qhold job_id
-
-## Release a held job
-qrls job_id
-
-# See your groups
-groups
-
-# Check queue ACLs
-qstat -Q -f | grep -E "^Queue:|acl_users|acl_groups"
-```
-
-**Stat interactive job**
-
-``` bash
-## Start and interactive job with 16 processors, 64GB memory, 24 hours walltime in cgs_queue
-qsub -I -q cgs_queue -l nodes=hpcf3-c01:ppn=16,walltime=12:00:00,mem=64gb
-qsub -I -q cgs_queue -l nodes=hpcf3-c02:ppn=16,walltime=12:00:00,mem=64gb
-qsub -I -q cgs_queue -l nodes=hpcf3-c03:ppn=16,walltime=12:00:00,mem=64gb
-```
-
-**Check the permission of queue**
-
-``` bash
-qstat -Q cgs -f
-
-# Queue: cgs
-#     queue_type = Execution
-#     total_jobs = 16
-#     state_count = Transit:0 Queued:10 Held:0 Waiting:0 Running:6 Exiting:0 Begu
-#         n:0
-#     acl_user_enable = True
-#     acl_users = bioinfo,emiklin,irisxu,itsupport,julia,junyanzhong,manzhai,nicklin,
-#         rubyzhou,totochu
-#     resources_max.mem = 1024gb
-#     resources_max.ncpus = 64
-#     resources_max.nodect = 1
-#     resources_max.walltime = 1440:00:00
-#     resources_default.mem = 1gb
-#     resources_default.walltime = 24:00:00
-#     default_chunk.Qlist = cgs
-#     resources_assigned.mem = 3019898880kb
-#     resources_assigned.mpiprocs = 168
-#     resources_assigned.ncpus = 253
-#     resources_assigned.nodect = 6
-#     enabled = True
-#     started = True
-```
-
--   `-Q`: Show queue information (not job information)
--   `-cgs`: The specific queue name to query
--   `-f`: Full/detailed output showing all queue attributes
-
-## Windows WSL
-
--   System info
-
-``` bash
-
-## Install the neofetch package
-sudo apt install neofetch -y
-
-## Show system info
-neofetch --memory_unit gib
-```
-
--   Change sudo password
-
-In the windows terminal, run the following command to change the sudo password:
-
-``` bash
-
-wsl -u root
-
-## Input the new password
-passwd <username>
-```
-
--   WSL configuration
-    -   WSL global config: `C:\Users\<UserName>\.wslconfig`
-    -   WSL distro config: `\\wsl.localhost\Ubuntu-24.04\etc\wsl.conf`
-
-## Tmux
-
--   Tmux Configuration Consider adding these aliases to your shell configuration for quick tmux access.
-
-::: code-block
-``` bash
-# Terminal aliases for tmux
-alias t="tmux"
-alias ta="t a -t"
-alias tls="t ls"
-alias tn="t new -s"
-alias tk="t kill-session -t"
-alias tks="t kill-server"
-```
-:::
-
-::: callout-note
-### 🔧 Custom Prefix Key
-
-Change the default prefix in `.tmux.conf`:
-
-``` bash
-set-option -g prefix C-a
-bind-key C-a send-prefix
-```
-:::
-
--   Session Management
-
-| **Action**               | **Command/Shortcut**                    |
-|--------------------------|-----------------------------------------|
-| List sessions            | `tmux list-sessions`                    |
-| Attach to session        | `tmux attach-session -t target-session` |
-| Switch between sessions  | `Ctrl + A + s`                          |
-| Switch to latest session | `Ctrl + A + l`                          |
-| Detach from session      | `Ctrl + A + d`                          |
-
--   Window Management
-
-| **Action**                | **Shortcut**   |
-|---------------------------|----------------|
-| List all windows          | `Ctrl + A + w` |
-| Rename current window     | `Ctrl + A + ,` |
-| Switch to next window     | `Ctrl + A + →` |
-| Switch to previous window | `Ctrl + A + ←` |
-| Create new window         | `Ctrl + A + c` |
-| Kill current window       | `Ctrl + A + q` |
-
--   Pane Management
-
-| **Action**           | **Shortcut**   |
-|----------------------|----------------|
-| Switch to pane above | `Shift + ↑`    |
-| Switch to pane below | `Shift + ↓`    |
-| Switch to pane left  | `Shift + ←`    |
-| Switch to pane right | `Shift + →`    |
-| Kill current pane    | `Ctrl + A + x` |
-
--   Copy Mode
-
-| **Action**        | **Shortcut**              |
-|-------------------|---------------------------|
-| Enter copy mode   | Drag mouse to select text |
-| Paste copied text | `Ctrl + A + ]`            |
-
-------------------------------------------------------------------------
-
-## Screen
-
-::: callout-tip
-### 💡 Screen Aliases
-
-Add these aliases to your shell configuration for easier screen management.
-:::
-
-::: code-block
-``` bash
-# Terminal aliases for screen
-alias s="screen"       # start a screen session
-alias ss="s -S"        # start a named screen session
-alias sr="s -r"        # reattach to a screen session
-alias sls="s -ls"      # list current running screen sessions
-```
-:::
-
--   Basic Commands
-
-| **Action**            | **Command**              |
-|-----------------------|--------------------------|
-| Start screen session  | `screen`                 |
-| Start named session   | `screen -S session_name` |
-| Reattach to session   | `screen -r`              |
-| List running sessions | `screen -ls`             |
-
--   Window Management
-
-| **Action**             | **Shortcut**          |
-|------------------------|-----------------------|
-| Create new window      | `Ctrl + A + C`        |
-| Kill current window    | `Ctrl + A + K`        |
-| List all windows       | `Ctrl + A + W`        |
-| Go to window 0-9       | `Ctrl + A + 0-9`      |
-| Go to next window      | `Ctrl + A + N`        |
-| Toggle between windows | `Ctrl + A + Ctrl + A` |
-| Rename current window  | `Ctrl + A + A`        |
-
--   Region Management
-
-| **Action**                    | **Shortcut**     |
-|-------------------------------|------------------|
-| Split horizontally            | `Ctrl + A + S`   |
-| Split vertically              | `Ctrl + A + \|`  |
-| Switch between regions        | `Ctrl + A + Tab` |
-| Close all regions but current | `Ctrl + A + Q`   |
-| Close current region          | `Ctrl + A + X`   |
-
--   Session & Copy Mode
-
-| **Action**          | **Shortcut**          |
-|---------------------|-----------------------|
-| Detach from session | `Ctrl + A + D`        |
-| Start copy mode     | `Ctrl + A + [`        |
-| Paste copied text   | `Ctrl + A + ]`        |
-| Show help           | `Ctrl + A + ?`        |
-| Quit screen         | `Ctrl + A + Ctrl + \` |
-
-------------------------------------------------------------------------
-
-::: callout-note
-### Additional Resources
-
--   **VSCode**: [Official Keyboard Shortcuts Reference](https://code.visualstudio.com/docs/getstarted/keybindings)
--   **Vim**: [Vim Cheat Sheet](https://vim.rtorr.com/)
--   **Tmux**: [Tmux Cheat Sheet](https://tmuxcheatsheet.com/)
--   **Terminal**: [Bash Reference Manual](https://www.gnu.org/software/bash/manual/)
-:::
-
 
 

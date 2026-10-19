@@ -17,8 +17,51 @@ format:
             toggle: true
         code-fold: false
         toc: true
-        number-sections: true
+        number-sections: false
 ---
+
+## Pixi
+
+- Website:[https://pixi.prefix.dev/latest/](https://pixi.prefix.dev/latest/)
+
+- Install pixi on new machine
+  - copy the yaml file: ```~/.config/pixi/manifest.toml```
+  - Run the sync command to automatically download and isolate all your global tools
+  - ```pixi global sync```
+
+
+``` bash
+## Auto-activate pixi when entering project directory
+eval "$(pixi completion --shell bash)"  # or zsh
+```
+
+``` bash
+## Create a global pixi environment with specific R version and packages
+pixi global install -e renv \
+    r-base=4.5 \
+    r-languageserver \
+    r-tidyverse \
+    r-irkernel \
+    r-httpgd \
+    r-downlit \
+    r-xml2 \
+    r-markdown \
+    r-devtools \
+    radian
+
+## Print out  global pixi environments
+pixi global list
+
+## Add Bioconda Permanently
+pixi config append default-channels bioconda --global
+pixi config set default-channels '["conda-forge", "bioconda"]' --global
+
+## Remove a environment and all its packages
+pixi global uninstall <env_name>
+
+## Restore the exposed R and Rscript binaries in the global environment
+pixi global install --environment renv --expose R --expose Rscript r-base
+```
 
 
 ## Conda
@@ -100,36 +143,4 @@ conda env create --file renv.yml
 conda create --name new_env_name --clone old_env_name
 conda activate new_env_name
 conda remove --name old_env_name --all
-```
-
-## Pixi
-
-``` bash
-## Auto-activate pixi when entering project directory
-eval "$(pixi completion --shell bash)"  # or zsh
-```
-
-``` bash
-## Create a global pixi environment with specific R version and packages
-pixi global install -e renv \
-    r-base=4.5 \
-    r-languageserver \
-    r-tidyverse \
-    r-irkernel \
-    r-httpgd \
-    r-downlit \
-    r-xml2 \
-    r-markdown \
-    r-devtools \
-    radian
-
-## Print out  global pixi environments
-pixi global list
-
-## Add Bioconda Permanently
-pixi config append default-channels bioconda --global
-pixi config set default-channels '["conda-forge", "bioconda"]' --global
-
-## Remove a environment and all its packages
-pixi global uninstall <env_name>
 ```

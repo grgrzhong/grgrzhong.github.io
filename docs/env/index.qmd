@@ -17,7 +17,7 @@ format:
             toggle: true
         code-fold: false
         toc: true
-        number-sections: true
+        number-sections: false
 ---
 
 
@@ -104,6 +104,12 @@ conda remove --name old_env_name --all
 
 ## Pixi
 
+- Install pixi on new machine
+  - copy the yaml file: ```~/.config/pixi/manifest.toml```
+  - Run the sync command to automatically download and isolate all your global tools
+  - ```pixi global sync```
+
+
 ``` bash
 ## Auto-activate pixi when entering project directory
 eval "$(pixi completion --shell bash)"  # or zsh
@@ -132,4 +138,7 @@ pixi config set default-channels '["conda-forge", "bioconda"]' --global
 
 ## Remove a environment and all its packages
 pixi global uninstall <env_name>
+
+## Restore the exposed R and Rscript binaries in the global environment
+pixi global install --environment renv --expose R --expose Rscript r-base
 ```

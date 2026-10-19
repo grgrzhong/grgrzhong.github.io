@@ -152,3 +152,17 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
 }
 ```
 
+## Server settings
+```json
+{
+    "r.alwaysUseActiveTerminal": true,
+    "r.bracketedPaste": true,
+    // "r.consolePath": "arf",
+    "r.consolePath": "/home/guorui/.pixi/envs/radian/bin/radian",
+    "r.rpath.linux": "/home/guorui/.pixi/envs/bin/R",
+    "r.plot.backend": "httpgd",
+    "r.executablePath": "/home/guorui/.pixi/envs/renv/bin/R",
+    "shfmt.executablePath": "${userHome}/.pixi/bin/shfmt"
+    // 3. Inform Radian where to find R so it hooks into the same background session
+}
+```
