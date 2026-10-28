@@ -1,0 +1,424 @@
+---
+title: "Understanding Non-negative Matrix Factorization (NMF)"
+subtitle: "A hands-on R tutorial: cancer cells → pseudo-bulk → patient archetypes"
+date: "2026-10-28"
+categories: ["NMF", "pseudo-bulk"]
+toc-title: "Contents"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: true
+    number-sections: true
+    theme: cosmo
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Learning goals
+
+This tutorial explains how non-negative matrix factorization (NMF) can identify recurrent gene-expression programs in **patient-level cancer-cell pseudo-bulk profiles** and assign patient archetypes. You will:
+
+1. Build a genes × patients expression matrix.
+2. Interpret its two NMF outputs: gene-to-program matrix **W** and program-to-patient matrix **H**.
+3. Reconstruct observed expression using matrix multiplication.
+4. Implement NMF from scratch in base R.
+5. Aggregate single-cell counts into patient-level pseudo-bulk profiles.
+6. Assign each patient to its dominant archetype and inspect biological signatures.
+7. Understand which steps reflect the actual *Yan et al.* (2026) methodology.
+
+> **Important distinction:** Yan and colleagues identified **four patient-level archetypes** using cancer-cell pseudo-bulk NMF, but **eight multicellular ecotypes** through a separate analysis of co-occurring cancer and tumour-microenvironment states. These are not eight NMF-derived patient archetypes.
+
+**Paper:** Yan, Y. et al. *Ecotypes of triple-negative breast cancer in response to chemotherapy.* **Nature** (2026). <https://doi.org/10.1038/s41586-026-10469-9> (particularly Fig. 2 and Methods sections “Creating pseudo-bulk RNA-seq data,” “Performing NMF,” and “Identifying archetypes”).
+
+## 1. What is NMF?
+
+NMF assumes that the observed expression matrix can be approximately written as the product of two non-negative matrices:
+
+$$
+\underbrace{V}_{\text{genes} \times \text{patients}}
+\approx
+\underbrace{W}_{\text{genes} \times \text{programs}}
+\underbrace{H}_{\text{programs} \times \text{patients}}.
+$$
+
+- **V:** Input expression values for each gene in each patient.
+- **W:** How much each gene contributes to each latent expression program.
+- **H:** How strongly each patient uses each latent program.
+- **K:** Number of latent programs. Here we start with $K=2$ for learning; the study selected $K=4$.
+
+All values in $V$, $W$, and $H$ are non-negative. Unlike a hard cluster assignment, each patient may have non-zero loadings on several programs. A *dominant-program label* is obtained by selecting the program with the largest loading for a patient.
+
+## 2. An expression matrix you can understand by inspection
+
+Imagine measuring four genes in four TNBC patients. Two genes represent proliferation and two represent interferon response. The following values are **synthetic, not data from the paper**.
+
+```{r}
+V <- matrix(
+    c(6, 3, 0, 0, 4, 2, 2, 1, 0, 0, 6, 3, 2, 1, 4, 2),
+    nrow = 4,
+    dimnames = list(
+        c("MKI67", "TOP2A", "ISG15", "IFIT1"),
+        c("P1", "P2", "P3", "P4")
+    )
+)
+V
+```
+
+Patient 1 has high proliferation-gene expression, Patient 3 has high interferon-gene expression, and Patients 2 and 4 express both programs.
+
+```{r}
+heatmap(
+    V,
+    Rowv = NA,
+    Colv = NA,
+    scale = "none",
+    col = colorRampPalette(c("white", "skyblue", "steelblue4"))(40),
+    margins = c(6, 7),
+    main = "Observed expression matrix V"
+)
+```
+
+## 3. Understand W and H before fitting anything
+
+In this specially constructed example, an **exact** decomposition exists:
+
+$$
+W = \begin{bmatrix}
+2 & 0 \\
+1 & 0 \\
+0 & 2 \\
+0 & 1
+\end{bmatrix},\qquad
+H = \begin{bmatrix}
+3 & 2 & 0 & 1 \\
+0 & 1 & 3 & 2
+\end{bmatrix}.
+$$
+
+Here columns of W are the shared expression patterns:
+
+- Program 1: MKI67 and TOP2A (proliferation).
+- Program 2: ISG15 and IFIT1 (interferon).
+
+Rows of H give program contributions across patients.
+
+```{r}
+W_known <- matrix(
+    c(2, 1, 0, 0, 0, 0, 2, 1),
+    nrow = 4,
+    dimnames = list(rownames(V), c("Proliferation", "Interferon"))
+)
+H_known <- matrix(
+    c(3, 0, 2, 1, 0, 3, 1, 2),
+    nrow = 2,
+    dimnames = list(colnames(W_known), colnames(V))
+)
+W_known
+H_known
+```
+
+### Example calculation: reconstruct Patient 2
+
+Patient 2 has loadings (2, 1), so the expression vector is
+
+$$
+2\begin{bmatrix}2\\1\\0\\0\end{bmatrix}
++1\begin{bmatrix}0\\0\\2\\1\end{bmatrix}
+=\begin{bmatrix}4\\2\\2\\1\end{bmatrix}.
+$$
+
+This exactly matches the second column of V.
+
+```{r}
+p2_reconstructed <- W_known %*% H_known[, "P2", drop = FALSE]
+p2_reconstructed
+
+V_reconstructed <- W_known %*% H_known
+V_reconstructed
+all.equal(unname(V), unname(V_reconstructed))
+```
+
+**Takeaway:** NMF represents each patient as an *additive mixture* of shared programs. Non-negativity makes negative cancellations impossible.
+
+### Experiment with patient loadings
+
+Change the two values below and rerun the code to see how the resulting gene expression changes. If you use RStudio/Quarto, you can edit these parameters directly.
+
+```{r}
+proliferation_loading <- 2
+interferon_loading <- 1
+
+new_H <- matrix(c(proliferation_loading, interferon_loading), ncol = 1)
+rownames(new_H) <- colnames(W_known)
+colnames(new_H) <- "NewPatient"
+new_expression <- W_known %*% new_H
+
+barplot(
+    new_expression[, 1],
+    names.arg = rownames(V),
+    col = c("#447bb8", "#447bb8", "#ea9757", "#ea9757"),
+    ylab = "Reconstructed expression",
+    main = "Change program contributions, then rerun"
+)
+new_expression
+```
+
+## 4. How does the algorithm learn W and H?
+
+In reality, we only observe V. The algorithm begins with non-negative guesses for W and H, then adjusts them to minimize the discrepancy between V and WH. One common objective is
+
+$$
+\min_{W,H\geq 0}\,\lVert V-WH\rVert_F^2
+=\min_{W,H\geq 0}\sum_{g,p}(V_{gp}-(WH)_{gp})^2.
+$$
+
+The following **multiplicative updates** are a simple educational way to solve the problem (they are **not** the exact solver used in the paper):
+
+$$
+H \leftarrow H\odot\frac{W^\mathsf{T}V}{W^\mathsf{T}WH+\epsilon},
+\qquad
+W \leftarrow W\odot\frac{VH^\mathsf{T}}{WHH^\mathsf{T}+\epsilon}.
+$$
+
+The products, fractions, and updates indicated by $\odot$ and the division bars are applied element-wise where appropriate. $\epsilon$ prevents division by zero.
+
+### Fit NMF from scratch with base R
+
+```{r}
+set.seed(123)
+K <- 2
+n_iter <- 3000
+eps <- 1e-10
+
+W <- matrix(runif(nrow(V) * K, 0.1, 1), nrow = nrow(V))
+H <- matrix(runif(K * ncol(V), 0.1, 1), nrow = K)
+loss <- numeric(n_iter)
+
+for (iter in seq_len(n_iter)) {
+    # Update the patient loading matrix H
+    H <- H * ((t(W) %*% V) / (t(W) %*% W %*% H + eps))
+
+    # Update gene-program matrix W
+    W <- W * ((V %*% t(H)) / (W %*% H %*% t(H) + eps))
+
+    # Measure reconstruction error
+    V_hat <- W %*% H
+    loss[iter] <- sum((V - V_hat)^2)
+}
+
+# Optional rescaling removes an arbitrary factor scale.
+# The product WH is unchanged by this operation.
+factor_scale <- colSums(W)
+W <- sweep(W, 2, factor_scale, "/")
+H <- sweep(H, 1, factor_scale, "*")
+
+rownames(W) <- rownames(V)
+colnames(W) <- paste0("Program", seq_len(K))
+rownames(H) <- colnames(W)
+colnames(H) <- colnames(V)
+
+round(W, 3)
+round(H, 3)
+round(W %*% H, 3)
+tail(loss, 1)
+```
+
+### Inspect convergence
+
+```{r}
+plot(
+    loss,
+    type = "l",
+    lwd = 2,
+    col = "#3b82bd",
+    xlab = "Iteration",
+    ylab = "Sum of squared reconstruction errors",
+    main = "NMF convergence"
+)
+```
+
+**Interpretation:** As iterations proceed, the reconstruction error should generally fall toward a low value. Factor indices can swap between runs (e.g., Program 1 and Program 2 exchanging order), and the W/H scaling is not unique. The learned matrices need not exactly match the numbers in the hand-worked example.
+
+```{r}
+# Label each patient by its dominant learned factor
+learned_labels <- apply(H, 2, which.max)
+names(learned_labels) <- colnames(H)
+learned_labels
+```
+
+**Caution:** NMF can reach different local solutions from different starting points. In practice, use multiple initializations and check stability, not just reconstruction error.
+
+## 5. Go from single cancer cells to patient pseudo-bulk
+
+The study used **cancer cells only**, summed UMI counts gene by gene across the cancer cells of each patient, and derived a patient-level expression matrix. This avoids confounding from immune and stromal cells in conventional whole-tissue bulk expression.
+
+For gene $g$ and patient $p$:
+
+$$
+X_{g,p} = \sum_{c\in\text{cancer cells from patient }p} X_{g,c}.
+$$
+
+Here is an intentionally tiny two-patient example:
+
+```{r}
+counts <- matrix(
+    c(3, 1, 0, 0, 3, 2, 0, 0, 2, 1, 1, 0, 2, 1, 1, 1),
+    nrow = 4,
+    dimnames = list(
+        c("MKI67", "TOP2A", "ISG15", "IFIT1"),
+        c("P1_C1", "P1_C2", "P2_C1", "P2_C2")
+    )
+)
+patient <- c("P1", "P1", "P2", "P2")
+
+pseudobulk <- sapply(
+    unique(patient),
+    function(p) rowSums(counts[, patient == p, drop = FALSE])
+)
+counts
+pseudobulk
+```
+
+**What happens in a real project?** Use raw UMI counts when aggregating. Normalize the resulting patient-level pseudo-bulk expression before NMF. The authors describe using a variance-stabilizing transformation (DESeq2 `vst`) when constructing pseudo-bulk RNA-seq data.
+
+### Paper-specific expression processing
+
+The Methods describe the following steps for patient archetypes:
+
+1. Construct cancer-cell-only patient pseudo-bulk profiles.
+2. Retain the top 75% of genes based on mean- and variance-based expression criteria.
+3. Prepare the normalized, log2-scaled expression matrix.
+4. Center each gene across patients; replace values below zero with zero to make the input non-negative.
+5. Fit NMF using **RcppML v0.3.7** with tolerance `1e-5`, L1 sparsity parameter `0.05`, and candidate ranks K = 2 through 10.
+6. Evaluate ranks using silhouette scores calculated from the patient-to-patient Spearman expression-correlation matrix and archetype assignments; select K = 4.
+7. Use each patient's highest H loading to assign ARC1–ARC4.
+
+The exact gene filter and normalized values require the underlying data and complete computational setup. The next snippet demonstrates **only the centering/truncation principle** using our toy data; it is not a full reproduction of the paper.
+
+```{r}
+# Educational preprocessing demonstration only:
+# assume V has already been appropriately normalized/log-scaled
+logV <- log2(V + 1)
+centered <- sweep(logV, 1, rowMeans(logV), FUN = "-")
+nonnegative_V <- pmax(centered, 0)
+
+round(logV, 2)
+round(centered, 2)
+round(nonnegative_V, 2)
+stopifnot(all(nonnegative_V >= 0))
+```
+
+Centering reveals expression **above each gene's across-patient average**. Truncating negatives prevents below-average expression from becoming negative NMF inputs. Note that this transformation changes the interpretation relative to raw counts.
+
+## 6. Assign four archetypes from H
+
+In the study, each NMF factor was interpreted as an archetype. For this hypothetical example, consider the following **illustrative normalized** H matrix with four factors:
+
+```{r}
+H4 <- rbind(
+    ARC1 = c(0.80, 0.10, 0.05, 0.10),
+    ARC2 = c(0.10, 0.70, 0.10, 0.10),
+    ARC3 = c(0.05, 0.15, 0.75, 0.20),
+    ARC4 = c(0.05, 0.05, 0.10, 0.60)
+)
+colnames(H4) <- paste0("P", 1:4)
+H4
+
+patient_labels <- apply(H4, 2, function(h) rownames(H4)[which.max(h)])
+patient_labels
+```
+
+Patient P3 has the largest loading on ARC3 (0.75), so P3 receives the ARC3 label. This is not a claim that the patient contains *only* that program.
+
+```{r}
+barplot(
+    H4,
+    col = c("#dc6974", "#5689cb", "#55a786", "#e5a14e"),
+    legend.text = rownames(H4),
+    args.legend = list(x = "topright", bty = "n"),
+    ylab = "Relative archetype loading",
+    main = "Illustrative patient loading matrix H"
+)
+```
+
+> **Why are these called archetypes?** NMF only discovers unnamed factors. Researchers use the genes in W, differential-expression results, and pathway enrichment to interpret the biology and name the factors. The illustrative four-patient matrix above is not fitted from real data or the earlier two-factor toy V.
+
+## 7. From NMF to differential expression and pathways
+
+The complete conceptual chain is:
+
+**Cancer cells → sum raw counts within each patient → normalize/filter → NMF → dominant archetype from H → determine factor-marker genes (W) and DEGs → interpret gene signatures using pathway enrichment.**
+
+NMF itself **does not perform DEG analysis or gene set enrichment**. Those are downstream analyses.
+
+### Identify factor-associated genes
+
+For factor $k$, rank genes by $W_{gk}$. A larger value means that gene contributes more strongly to the factor, though gene scaling and preprocessing affect interpretation.
+
+```{r}
+# Inspect strongest genes in each program in the teaching example
+for (k in colnames(W)) {
+    cat("\n", k, "\n", sep = "")
+    print(sort(W[, k], decreasing = TRUE))
+}
+```
+
+### Differential-expression analysis: the idea
+
+Compare patients assigned to one archetype against patients assigned to other archetypes to identify genes whose expression differs across the groups. With real pseudo-bulk counts and sufficient replicates, a count-aware method such as DESeq2 is often appropriate; modeling choices should reflect cohort design and sample sizes.
+
+The study's archetype signatures were based on **shared genes between NMF factor marker genes and archetype DEGs**. The published Methods describe their marker-gene selection and statistical criteria. A toy dataset with four patients is too small to provide a meaningful statistical DEG analysis, so no fabricated significance values are reported here.
+
+### Gene set enrichment analysis (GSEA): interpret the signatures
+
+Once you have ranked genes or an archetype signature, compare them with curated pathway gene sets to see which biological processes are over-represented. Yan et al. examined MSigDB hallmark gene sets (Fig. 2e).
+
+| Archetype | Interpretation | Reported enriched processes |
+|:--|:--|:--|
+| **ARC1** | Luminal secretory-like | Apoptosis, TNFα/NFκB signaling, TP53 signaling, EMT |
+| **ARC2** | Basal-like | EMT, myogenesis |
+| **ARC3** | Interferon-responsive | Interferon-α and interferon-γ responses, inflammatory response |
+| **ARC4** | Androgen receptor-enriched | Androgen response, early oestrogen response |
+
+**Important:** Differential expression and enrichment do not establish that a pathway is causally driving a phenotype; they characterize expression associations.
+
+## 8. Three different levels of structure in this paper
+
+Do not confuse these three concepts:
+
+| Analysis | Input | Output | Biological level |
+|:--|:--|:--|:--|
+| **Patient-level NMF** | Cancer-cell pseudo-bulk profiles across patients | **4 archetypes** (ARC1–ARC4) | Inter-patient differences |
+| **Single-cell program analysis** | Cancer-cell expression within individual patients; recurrent signatures compared across patients | **13 metaprograms** | Intratumoural heterogeneity |
+| **Co-occurrence network analysis** | Frequencies of cancer-cell metaprograms and immune/stromal cell states | **8 ecotypes** | Multicellular communities in the tumour microenvironment |
+
+The eight ecotypes were identified from co-occurrences of cancer metaprograms and TME cell states, **not by setting patient-level NMF to K = 8**.
+
+## 9. Test yourself
+
+1. If a patient's H column is `[0.1, 0.6, 0.2, 0.1]`, which archetype would it receive? **ARC2.**
+2. Can the same patient express programs ARC1 and ARC3 even if assigned to ARC2? **Yes.** Its H vector can contain several non-zero contributions.
+3. If MKI67 has a high weight in column 1 of W, what does that imply? **It strongly contributes to Program 1**, not necessarily that every patient has high MKI67 expression.
+4. Why sum single-cell counts to patient pseudo-bulk? **To obtain a patient-level profile**, rather than having patients with many sequenced cells dominate a cell-level analysis.
+5. Why center and truncate before NMF in this paper? **To represent above-average normalized gene-expression signals with non-negative entries**, as required by its NMF formulation.
+
+## 10. Summary
+
+The central formula is:
+
+$$
+V_{\text{genes} \times \text{patients}}
+\approx W_{\text{genes} \times \text{programs}}
+H_{\text{programs} \times \text{patients}}.
+$$
+
+**V** tells us what each patient expresses, **W** tells us which genes define latent programs, and **H** tells us how much each patient is represented by each program. The label of each patient comes from its largest factor loading in H. The biological name of each factor comes from the associated genes and subsequent analysis.
+
+### Reference
+
+Yan Y, Lin Y, Kumar T, et al. (2026). *Ecotypes of triple-negative breast cancer in response to chemotherapy*. Nature. <https://doi.org/10.1038/s41586-026-10469-9>.

@@ -10,7 +10,7 @@ format:
     toc-depth: 3
     code-fold: false
     code-tools: true
-    number-sections: true
+    number-sections: false
     theme: cosmo
     embed-resources: true
 execute:
@@ -21,7 +21,7 @@ execute:
 
 ## Learning goals
 
-This tutorial explains how non-negative matrix factorization (NMF) can identify recurrent gene-expression programs in **patient-level cancer-cell pseudo-bulk profiles** and assign patient archetypes. You will:
+This tutorial explains **two distinct applications of NMF** in Yan et al. (2026): one to patient-level cancer-cell pseudo-bulk profiles and a second to **individual cancer cells within each patient**. You will:
 
 1. Build a genes × patients expression matrix.
 2. Interpret its two NMF outputs: gene-to-program matrix **W** and program-to-patient matrix **H**.
@@ -29,11 +29,15 @@ This tutorial explains how non-negative matrix factorization (NMF) can identify 
 4. Implement NMF from scratch in base R.
 5. Aggregate single-cell counts into patient-level pseudo-bulk profiles.
 6. Assign each patient to its dominant archetype and inspect biological signatures.
-7. Understand which steps reflect the actual *Yan et al.* (2026) methodology.
+7. Perform per-patient NMF on individual cancer cells and compare discovered programs across patients.
+8. Interpret how recurrent programs are combined into the 13 metaprograms in the paper.
+9. Understand which steps reflect the actual *Yan et al.* (2026) methodology.
 
-> **Important distinction:** Yan and colleagues identified **four patient-level archetypes** using cancer-cell pseudo-bulk NMF, but **eight multicellular ecotypes** through a separate analysis of co-occurring cancer and tumour-microenvironment states. These are not eight NMF-derived patient archetypes.
+> **Important distinction:** The paper performs **NMF twice at different observational levels**: (1) pseudo-bulk cancer cells across patients gives **4 archetypes**; (2) single cancer cells within each patient gives numerous transcriptional programs that are consolidated into **13 metaprograms**. **8 ecotypes** come later from a different co-occurrence network analysis, not either NMF rank.
 
 **Paper:** Yan, Y. et al. *Ecotypes of triple-negative breast cancer in response to chemotherapy.* **Nature** (2026). <https://doi.org/10.1038/s41586-026-10469-9> (particularly Fig. 2 and Methods sections “Creating pseudo-bulk RNA-seq data,” “Performing NMF,” and “Identifying archetypes”).
+
+# Part I — NMF fundamentals
 
 ## 1. What is NMF?
 
@@ -253,6 +257,8 @@ learned_labels
 
 **Caution:** NMF can reach different local solutions from different starting points. In practice, use multiple initializations and check stability, not just reconstruction error.
 
+# Part II — Patient-level NMF: discover differences between patients
+
 ## 5. Go from single cancer cells to patient pseudo-bulk
 
 The study used **cancer cells only**, summed UMI counts gene by gene across the cancer cells of each patient, and derived a patient-level expression matrix. This avoids confounding from immune and stromal cells in conventional whole-tissue bulk expression.
@@ -387,29 +393,295 @@ Once you have ranked genes or an archetype signature, compare them with curated 
 
 **Important:** Differential expression and enrichment do not establish that a pathway is causally driving a phenotype; they characterize expression associations.
 
-## 8. Three different levels of structure in this paper
+# Part III — Single-cell NMF: discover heterogeneity *within* each patient
 
-Do not confuse these three concepts:
+## 8. Why run NMF a second time?
 
-| Analysis | Input | Output | Biological level |
-|:--|:--|:--|:--|
-| **Patient-level NMF** | Cancer-cell pseudo-bulk profiles across patients | **4 archetypes** (ARC1–ARC4) | Inter-patient differences |
-| **Single-cell program analysis** | Cancer-cell expression within individual patients; recurrent signatures compared across patients | **13 metaprograms** | Intratumoural heterogeneity |
-| **Co-occurrence network analysis** | Frequencies of cancer-cell metaprograms and immune/stromal cell states | **8 ecotypes** | Multicellular communities in the tumour microenvironment |
+Patient-level pseudo-bulk NMF **collapses all cancer cells from one patient into one observation**. That is useful for comparing patients, but it hides differences between cancer cells *inside* a tumour.
 
-The eight ecotypes were identified from co-occurrences of cancer metaprograms and TME cell states, **not by setting patient-level NMF to K = 8**.
+The second application retains individual cancer cells. Crucially, the authors **performed NMF separately for each patient/sample**, not one global cell-level NMF across all patients. Each per-sample NMF creates gene programs describing heterogeneity within that sample. They then compared **program marker-gene sets across samples** to identify recurrent programs and merged related programs into **13 metaprograms** (Fig. 3 and Methods, "Identifying metaprograms of cancer cells").
 
-## 9. Test yourself
+| Question | Patient-level NMF (Part II) | Single-cell NMF (Part III) |
+|:--|:--|:--|
+| What is one observation (one column of V)? | One patient's aggregated cancer-cell profile | One individual cancer cell *within one sample* |
+| Matrix dimensions | Genes × patients | Genes × cancer cells (separate matrix for each sample) |
+| What do W columns mean? | Patient-level archetype-associated gene programs | Within-sample cancer-cell transcriptional programs |
+| What do H columns mean? | Program loadings for each patient | Program loadings for each individual cancer cell |
+| How are factors combined? | Choose a dominant archetype per patient | Compare gene marker sets across per-sample runs; merge recurrent programs |
+| Paper's result | 4 archetypes, ARC1–ARC4 | 13 recurrent metaprograms, M1–M13 |
+| Main biological question | Why do patients differ? | How do cancer cells within a tumour differ, and which programs recur across tumours? |
+
+**Visual intuition**: patient pseudo-bulk converts 100 cancer cells from Patient A into **one column**; cell-level NMF keeps **100 columns** for Patient A and decomposes their heterogeneity.
+
+## 9. A single-cell example with three tumours
+
+We simulate 3 patients, each having 24 cancer cells. Cells can show mixtures of three programs: **cell cycle** (MKI67/TOP2A), **interferon** (ISG15/IFIT1), and **hypoxia** (VEGFA/NDRG1). These are teaching data, not sequencing data from the paper. For simplicity, we create a small positive expression matrix directly; real scRNA-seq preprocessing is more complex.
+
+```{r}
+set.seed(2026)
+genes_sc <- c("MKI67", "TOP2A", "ISG15", "IFIT1", "VEGFA", "NDRG1")
+# W_true has one highly specific 2-gene signature per program
+W_true <- matrix(
+    c(
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1
+    ),
+    nrow = 6,
+    dimnames = list(genes_sc, c("Cycle", "IFN", "Hypoxia"))
+)
+
+make_sample <- function(patient, dominant) {
+    n <- 24
+    H_true <- matrix(rexp(3 * n, rate = 2), nrow = 3)
+    H_true[dominant, ] <- H_true[dominant, ] +
+        rep(c(2, 0.2, 0.2), length.out = n)
+    X <- W_true %*% H_true + matrix(runif(6 * n, 0, 0.12), nrow = 6)
+    rownames(X) <- genes_sc
+    colnames(X) <- paste0(patient, "_cell", seq_len(n))
+    X
+}
+
+sc_samples <- list(
+    P1 = make_sample("P1", 1),
+    P2 = make_sample("P2", 2),
+    P3 = make_sample("P3", 3)
+)
+
+# Observe the difference in granularity
+sapply(sc_samples, dim) # each: 6 genes x 24 cells
+
+par(mfrow = c(1, 3), mar = c(5, 5, 3, 1))
+for (p in names(sc_samples)) {
+    image(
+        t(sc_samples[[p]][nrow(sc_samples[[p]]):1, ]),
+        axes = FALSE,
+        main = p,
+        xlab = "Cells",
+        ylab = "Genes",
+        col = hcl.colors(30, "YlOrRd", rev = TRUE)
+    )
+    axis(
+        2,
+        at = seq(0, 1, length.out = length(genes_sc)),
+        labels = rev(genes_sc),
+        las = 2,
+        cex.axis = 0.7
+    )
+}
+par(mfrow = c(1, 1))
+```
+
+Each column in the three heatmaps is a **cell**. A patient can contain cells strongly expressing different programs; patient-level averaging loses this distributional information.
+
+## 10. Run NMF separately on each patient's cells
+
+We will reuse the multiplicative-update principle from Part I. This simplified implementation fixes rank $K=3$ in every sample to make results easy to inspect. **The paper actually tested K = 2, 4, ..., 30 within each sample**, so the toy analysis is *not* an exact reproduction.
+
+```{r}
+nmf_toy <- function(V, K = 3, n_iter = 1500, seed = 42) {
+    set.seed(seed)
+    stopifnot(all(V >= 0), K <= min(dim(V)))
+    eps <- 1e-10
+    W <- matrix(runif(nrow(V) * K, 0.2, 1), nrow(V), K)
+    H <- matrix(runif(K * ncol(V), 0.2, 1), K, ncol(V))
+    for (it in seq_len(n_iter)) {
+        H <- H * ((t(W) %*% V) / (t(W) %*% W %*% H + eps))
+        W <- W * ((V %*% t(H)) / (W %*% H %*% t(H) + eps))
+    }
+    # Resolve arbitrary factor scaling (without changing W %*% H)
+    scales <- colSums(W)
+    W <- sweep(W, 2, scales, "/")
+    H <- sweep(H, 1, scales, "*")
+    rownames(W) <- rownames(V)
+    colnames(W) <- paste0("Factor", seq_len(K))
+    rownames(H) <- colnames(W)
+    colnames(H) <- colnames(V)
+    list(W = W, H = H, error = sum((V - W %*% H)^2))
+}
+
+fits_sc <- lapply(sc_samples, nmf_toy, K = 3)
+sapply(fits_sc, function(fit) fit$error)
+round(fits_sc$P1$W, 2) # genes x within-P1 programs
+round(fits_sc$P1$H[, 1:6], 2) # programs x first six P1 cells
+```
+
+**Interpretation:** In cell-level analysis, `H[, "P1_cell1"]` gives the three program loadings *for one cell*, not for the entire patient. The factor columns in `W` are unlabeled, and their order can change between samples; `Factor1` in P1 is not necessarily `Factor1` in P2.
+
+### Label the cells by their highest loading (for visualization only)
+
+```{r}
+P1_fit <- fits_sc$P1
+cell_factor <- apply(P1_fit$H, 2, which.max)
+table(cell_factor)
+barplot(
+    P1_fit$H[, 1:12, drop = FALSE],
+    col = c("#4D88CC", "#E59655", "#53AA87"),
+    border = NA,
+    las = 2,
+    cex.names = 0.6,
+    ylab = "NMF loading",
+    main = "P1: mixed programs in individual cells"
+)
+```
+
+**Important:** Choosing a dominant factor here is a didactic visualization. The paper derived **recurrent metaprograms from factor marker-gene overlap across samples**; it did not obtain 13 metaprograms simply by pooling these per-cell dominant labels.
+
+## 11. How do per-sample NMF factors become recurrent metaprograms?
+
+Imagine P1's `Factor2` and P2's `Factor1` are both driven by ISG15 and IFIT1. Even though factor *numbers* differ, their **marker genes overlap**. The authors use **Jaccard similarity** to compare marker-gene sets:
+
+$$
+J(A,B)=\frac{|A\cap B|}{|A\cup B|}.
+$$
+
+A Jaccard value of 1 means identical gene sets; 0 means no overlap.
+
+### Small hands-on example: detect recurrence across tumours
+
+For this teaching demo, define marker genes as the **two highest-weight genes per factor**. The paper instead used a special W-based marker selection rule with an allowance for limited overlap; top-two is only a simplified substitute.
+
+```{r}
+markers <- list()
+for (p in names(fits_sc)) {
+    for (k in seq_len(ncol(fits_sc[[p]]$W))) {
+        nm <- paste0(p, "_F", k)
+        markers[[nm]] <- names(sort(fits_sc[[p]]$W[, k], decreasing = TRUE))[
+            1:2
+        ]
+    }
+}
+markers
+
+jaccard <- function(a, b) {
+    length(intersect(a, b)) / length(union(a, b))
+}
+
+jaccard_mat <- outer(
+    names(markers),
+    names(markers),
+    Vectorize(function(a, b) jaccard(markers[[a]], markers[[b]]))
+)
+dimnames(jaccard_mat) <- list(names(markers), names(markers))
+round(jaccard_mat, 2)
+
+# Hierarchical clustering based on marker-gene overlap
+hc <- hclust(as.dist(1 - jaccard_mat), method = "ward.D2")
+plot(
+    hc,
+    main = "Recurrent expression programs across samples",
+    xlab = "Per-sample NMF factors",
+    sub = "Teaching example"
+)
+
+# Simple illustrative grouping: 3 clusters
+program_group <- cutree(hc, k = 3)
+print(program_group)
+split(names(program_group), program_group)
+```
+
+The clusters of **per-sample factors** represent programs that recur in different tumours. This is the conceptual bridge from NMF to *metaprograms*.
+
+### The paper's actual program-consolidation procedure
+
+The published Methods specify the following process (this is more sophisticated than the small example):
+
+1. Exclude samples with **fewer than 20 cancer cells**; exclude genes whose average normalized log2 expression is **no greater than 0.05**.
+2. For each eligible sample, run NMF separately for **K = 2, 4, ..., 30** (and do not use K greater than the available number of cells).
+3. For each factor, extract marker genes from its **W** contribution column using the paper's factor-specific marker selection procedure.
+4. Compute pairwise **Jaccard similarity** between factors based on marker sets. Exclude a factor as noisy if its maximum similarity to any *other* factor is **less than 0.25**.
+5. Hierarchically cluster program similarities using `hclust(..., method="ward.D2")`; investigate cut counts **C = 10, 12, ..., 30**.
+6. Iteratively filter low-coherence groups (within-group Jaccard < 0.1) and merge compatible groups (mutual between-group Jaccard > 0.2 when also grouped together at a smaller cut), repeating until stable.
+7. Average the gene-to-factor W contributions of programs assigned to each metaprogram, extract final marker genes, and remove technical-noise metaprograms.
+
+The paper obtained **13 recurrent metaprograms** (Fig. 3):
+
+| Metaprogram | Biological annotation | Example genes |
+|:--|:--|:--|
+| M1 | G2/M | TOP2A, MKI67, CENPF |
+| M2 | Mitochondrial | MT-ATP6, MT-CO3, MT-ND3 |
+| M3 | Ribosomal | RPL26, RPS3A, RPS3 |
+| M4 | Stress | FOS, JUN, FOSB |
+| M5 | Interferon | ISG15, IFI6, IFIT1 |
+| M6 | HLA | HLA-A, HLA-B, CD74 |
+| M7 | S phase | PCNA, ATAD2, MCM7 |
+| M8 | Hypoxia | NDRG1, VEGFA, EGLN3 |
+| M9 | Basal | KRT17, TAGLN, ACTA2 |
+| M10 | EMT | KRT7, ANXA1, LGALS3 |
+| M11 | Luminal secretory | SLPI, LTF, MMP7 |
+| M12 | Cholesterol | SCD, DHCR7, HMGCR |
+| M13 | ER stress | HSPA5, DNAJB11, SDF2L1 |
+
+These metaprograms are **recurring cancer-cell expression states**, not 13 mutually exclusive patient classes.
+
+## 12. Why both analyses are needed
+
+Consider two hypothetical tumours with identical **mean** expression of proliferative and interferon programs:
+
+- Tumour A: half of its cells are predominantly cycling and half are predominantly interferon-responsive.
+- Tumour B: every cell moderately expresses both programs.
+
+Their patient pseudo-bulk profiles can be similar, so patient-level NMF may assign the same archetype. But the **cell-level distribution is different**. Single-cell NMF can expose these contrasting states, which may relate differently to treatment response or spatial niches.
+
+```{r}
+# Same gene-wise average, different cell-to-cell heterogeneity
+A <- cbind(c(4, 0), c(4, 0), c(0, 4), c(0, 4))
+B <- matrix(rep(c(2, 2), 4), nrow = 2)
+rownames(A) <- rownames(B) <- c("Cycle", "IFN")
+colnames(A) <- colnames(B) <- paste0("cell", 1:4)
+rowMeans(A) # 2, 2
+rowMeans(B) # 2, 2
+
+par(mfrow = c(1, 2), mar = c(5, 4, 3, 1))
+barplot(
+    A,
+    col = c("#5689cb", "#e5a14e"),
+    main = "Tumour A: distinct cells",
+    ylab = "Program signal"
+)
+barplot(
+    B,
+    col = c("#5689cb", "#e5a14e"),
+    main = "Tumour B: mixed cells",
+    ylab = "Program signal"
+)
+par(mfrow = c(1, 1))
+```
+
+### Relationship to the eight ecotypes
+
+The final **eight ecotypes** were obtained in a third, distinct analysis: the authors measured the co-occurrence of **cancer-cell metaprograms with immune and stromal cell states** across patients, constructed a network, and partitioned it into eight multicellular communities (Fig. 5). Therefore:
+
+**4 archetypes** = inter-patient cancer-cell profiles (patient-level NMF); **13 metaprograms** = recurrent within-tumour programs (sample-wise cell-level NMF + cross-sample consolidation); **8 ecotypes** = co-occurring cancer/TME cellular communities (network analysis).
+
+## 13. Test yourself
 
 1. If a patient's H column is `[0.1, 0.6, 0.2, 0.1]`, which archetype would it receive? **ARC2.**
 2. Can the same patient express programs ARC1 and ARC3 even if assigned to ARC2? **Yes.** Its H vector can contain several non-zero contributions.
 3. If MKI67 has a high weight in column 1 of W, what does that imply? **It strongly contributes to Program 1**, not necessarily that every patient has high MKI67 expression.
 4. Why sum single-cell counts to patient pseudo-bulk? **To obtain a patient-level profile**, rather than having patients with many sequenced cells dominate a cell-level analysis.
 5. Why center and truncate before NMF in this paper? **To represent above-average normalized gene-expression signals with non-negative entries**, as required by its NMF formulation.
+6. Does the cell-level NMF use one giant genes × all cells matrix? **No.** The paper runs NMF per sample, then matches recurrent programs by marker-gene similarity.
+7. Are M1–M13 the same as ARC1–ARC4? **No.** They represent a different biological and computational level.
 
-## 10. Summary
+## 14. Summary
 
-The central formula is:
+The **same matrix equation** applies at both levels; the meaning of an observation changes:
 
 $$
 V_{\text{genes} \times \text{patients}}
@@ -417,7 +689,7 @@ V_{\text{genes} \times \text{patients}}
 H_{\text{programs} \times \text{patients}}.
 $$
 
-**V** tells us what each patient expresses, **W** tells us which genes define latent programs, and **H** tells us how much each patient is represented by each program. The label of each patient comes from its largest factor loading in H. The biological name of each factor comes from the associated genes and subsequent analysis.
+At **patient level**, each V column is one patient; H assigns patient archetypes. At **single-cell level**, each V column is one cancer cell *inside one sample*; H describes per-cell program mixtures. Cross-patient comparisons of the W-derived marker genes are then used to consolidate recurrent factors into metaprograms. Biological names are assigned from the genes and subsequent annotation.
 
 ### Reference
 
