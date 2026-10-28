@@ -13,10 +13,6 @@ format:
     number-sections: false
     theme: cosmo
     embed-resources: true
-execute:
-  echo: true
-  warning: false
-  message: false
 ---
 
 ## Learning goals
