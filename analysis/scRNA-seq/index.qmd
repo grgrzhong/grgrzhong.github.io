@@ -145,6 +145,32 @@ Following are the commonly used quality metrics in single-cell RNA sequencing (s
 
 * Normalization methods should be chosen carefully and based on the subsequent analysis tasks
 
+**Why do we need ScaleData after NormalizeData?**
+Consider two genes:
+- Gene A: high expression across cells (normalized values 8, 10, 12)
+- Gene B: low expression across cells (normalized values 1, 2, 3)
+Both genes vary in a similar relative pattern, but Gene A has a larger absolute range.
+
+When performing PCA on unscaled data, genes with larger variance can dominate the principal components.
+
+After ScaleData(), each nonconstant gene has unit variance, preventing genes from dominating PCA solely because of their original variance magnitude.
+
+However, this does not mean every gene becomes equally biologically informative. It is still important to select informative highly variable genes using FindVariableFeatures().
+
+Differences in Seurat
+
+| Property | `NormalizeData()` | `ScaleData()` |
+| --- | --- | --- |
+| Main purpose | Correct library size | Standardize genes |
+| Direction | Within each cell | Across cells, per gene |
+| Default method | LogNormalize | Centering and Z-score |
+| Output range | Nonnegative | Negative and positive |
+| Default data layer | `data` | `scale.data` |
+| Typical genes processed | All genes | Variable features |
+| Used for | Expression visualization, downstream analysis | PCA, heatmaps |
+
+NormalizeData() makes cells more comparable in terms of sequencing depth, while ScaleData() makes genes more comparable in terms of their contribution to PCA.
+
 ### Removing confounding sources of variation
 
 * Batch effects

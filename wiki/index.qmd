@@ -25,7 +25,7 @@ These are the collections of things that I beleived useful in my daily researh w
 
 
 ## Userful Reource
-
+- [A Guide to Analyzing Single-cell Datasets - John F. Ouyang](https://ouyanglab.com/singlecell/)
 - [TEICHMANN LAB](https://www.teichlab.org/)
 * <http://rafalab.dfci.harvard.edu/> - Development of statistical tools
 * <https://liulab-dfci.github.io/> - Computational methods for the design (SSC), analysis (MAGeCK), hit prioritization (NEST), and visualization (VISPR) of genome-wide CRISPR screens
