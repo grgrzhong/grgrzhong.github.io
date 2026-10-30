@@ -283,6 +283,148 @@ qselect -u $USER | awk -F. '$1+0 > 158899'
 qselect -u $USER | awk -F. '$1+0 > 158899' | xargs -r qdel
 ```
 
+### SLURM
+
+SLURM (Simple Linux Utility for Resource Management) is an open-source workload manager and job scheduler widely used in HPC clusters to allocate resources and run jobs across compute nodes.
+
+**SLURM job script**
+
+``` bash
+#!/bin/bash
+#SBATCH --job-name=job_name          # Job name
+#SBATCH --nodes=1                    # Number of nodes
+#SBATCH --ntasks=1                   # Number of tasks
+#SBATCH --cpus-per-task=4            # Processors per task
+#SBATCH --time=01:00:00              # Walltime (hh:mm:ss)
+#SBATCH --mem=8G                     # Memory per node
+#SBATCH --output=log.%x.%j.out       # Stdout (%x = job name, %j = job ID)
+#SBATCH --error=log.%x.%j.err        # Stderr
+#SBATCH --mail-user=user@example.com # Email address for notifications
+#SBATCH --mail-type=BEGIN,END,FAIL   # Send email on begin, end, fail
+#SBATCH --partition=batch            # Partition (queue) name
+#SBATCH --export=ALL                 # Export all environment variables to the job
+
+## example
+cd $SLURM_SUBMIT_DIR                 # Change to the directory where the job was submitted
+module load python/3.8.5             # Load necessary modules
+python my_script.py                  # Command to run your program
+```
+
+**SLURM environment variables**
+
+``` bash
+$SLURM_SUBMIT_DIR       # The directory from which the job was submitted
+$SLURM_JOB_ID           # The unique identifier assigned to the job
+$SLURM_JOB_NAME         # The name of the job
+$SLURM_JOB_NODELIST     # The list of nodes allocated to the job
+$SLURM_JOB_NUM_NODES    # The number of nodes allocated to the job
+$SLURM_NTASKS           # The number of tasks
+$SLURM_CPUS_PER_TASK    # The number of processors per task
+$SLURM_JOB_PARTITION    # The partition to which the job was submitted
+$SLURM_ARRAY_TASK_ID    # The index of the task in a job array
+$TMPDIR                 # The temporary directory for the job on the compute node
+```
+
+**Submit job scripts**
+
+``` bash
+## Submit a job
+sbatch job_script.sh
+
+## Submit a job with environment variables
+sbatch --export=ALL,sample="$sample" --mail-user="$EMAIL" slurm_1_cutadapt.sh
+
+## Submit a job array (tasks 1-10, at most 4 running at once)
+sbatch --array=1-10%4 job_script.sh
+```
+
+**Check job status**
+
+``` bash
+## List all jobs for user guorui
+squeue -u guorui
+
+## Show details of a pending/running job
+scontrol show job job_id
+
+## List finished job details in summary
+sacct -j job_id --format=JobID,JobName,Partition,State,Elapsed,MaxRSS,ExitCode
+
+## List all jobs of user guorui since a date
+sacct -u guorui -S 2026-01-01 --format=JobID,JobName,State,Elapsed,NodeList
+
+## Delete a job
+scancel job_id
+
+## Delete all jobs for user guorui
+scancel -u guorui
+
+## Delete all pending / running jobs for the current user
+scancel -u $USER --state=PENDING
+scancel -u $USER --state=RUNNING
+
+## Hold a job
+scontrol hold job_id
+
+## Release a held job
+scontrol release job_id
+
+## Check all partitions and nodes
+sinfo
+sinfo -N -l
+
+## Show partition limits (memory, CPUs, walltime)
+scontrol show partition
+
+## See your account and associations (allowed partitions/QOS)
+sacctmgr show assoc user=$USER format=User,Account,Partition,QOS
+```
+
+**Start interactive job**
+
+``` bash
+## Start an interactive job with 16 processors, 64GB memory, 12 hours walltime
+srun --partition=batch --nodes=1 --cpus-per-task=16 --mem=64G --time=12:00:00 --pty bash
+
+## Request a specific node
+srun --partition=batch --nodelist=hpcf3-c01 --cpus-per-task=16 --mem=64G --time=12:00:00 --pty bash
+
+## Allocate resources first, then attach
+salloc --partition=batch --cpus-per-task=16 --mem=64G --time=12:00:00
+```
+
+**Check the permission of partition**
+
+``` bash
+scontrol show partition batch
+
+# PartitionName=batch
+#    AllowGroups=ALL AllowAccounts=ALL AllowQos=ALL
+#    Default=YES MaxTime=60-00:00:00 State=UP
+#    TotalCPUs=64 TotalNodes=1
+#    DefMemPerNode=1024 MaxMemPerNode=1048576
+```
+
+-   `scontrol show partition`: Show partition (queue) attributes
+-   `batch`: The specific partition name to query
+-   `AllowGroups/AllowAccounts`: Who is permitted to submit to the partition
+
+**PBS to SLURM cheat sheet**
+
+| Task               | OpenPBS                  | SLURM                          |
+|--------------------|--------------------------|--------------------------------|
+| Submit job         | `qsub script.pbs`        | `sbatch script.sh`             |
+| Job status         | `qstat -u $USER`         | `squeue -u $USER`              |
+| Finished job info  | `qstat -x -f job_id`     | `sacct -j job_id`              |
+| Delete job         | `qdel job_id`            | `scancel job_id`               |
+| Hold / release     | `qhold` / `qrls`         | `scontrol hold` / `release`    |
+| Interactive job    | `qsub -I`                | `srun --pty bash` / `salloc`   |
+| Queue info         | `qstat -Q`               | `sinfo`                        |
+| Working directory  | `$PBS_O_WORKDIR`         | `$SLURM_SUBMIT_DIR`            |
+| Job ID             | `$PBS_JOBID`             | `$SLURM_JOB_ID`                |
+| Node list          | `$PBS_NODEFILE`          | `$SLURM_JOB_NODELIST`          |
+
+
 ## WSL
 
 -   System info

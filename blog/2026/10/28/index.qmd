@@ -11,13 +11,12 @@ format:
     code-fold: false
     code-tools: true
     number-sections: false
-    theme: cosmo
+    # theme: cosmo
     embed-resources: true
 ---
 
-## Learning goals
-
-This tutorial explains **two distinct applications of NMF** in Yan et al. (2026): one to patient-level cancer-cell pseudo-bulk profiles and a second to **individual cancer cells within each patient**. You will:
+::: { .callout-tip title="Learning goals" }
+This tutorial explains **two distinct applications of NMF** in Yan et al. (2026): one to patient-level cancer-cell pseudo-bulk profiles and a second to **individual cancer cells within each patient**. We will:
 
 1. Build a genes × patients expression matrix.
 2. Interpret its two NMF outputs: gene-to-program matrix **W** and program-to-patient matrix **H**.
@@ -28,6 +27,8 @@ This tutorial explains **two distinct applications of NMF** in Yan et al. (2026)
 7. Perform per-patient NMF on individual cancer cells and compare discovered programs across patients.
 8. Interpret how recurrent programs are combined into the 13 metaprograms in the paper.
 9. Understand which steps reflect the actual *Yan et al.* (2026) methodology.
+
+:::
 
 > **Important distinction:** The paper performs **NMF twice at different observational levels**: (1) pseudo-bulk cancer cells across patients gives **4 archetypes**; (2) single cancer cells within each patient gives numerous transcriptional programs that are consolidated into **13 metaprograms**. **8 ecotypes** come later from a different co-occurrence network analysis, not either NMF rank.
 
