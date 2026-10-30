@@ -271,6 +271,18 @@ qstat -Q cgs -f
 -   `-cgs`: The specific queue name to query
 -   `-f`: Full/detailed output showing all queue attributes
 
+```bash
+# Delete all held jobs for the current user
+qstat -u $USER | awk '$10=="H" {print $1}' | xargs -r qdel
+
+# Delete all running jobs for the current user
+qstat -u $USER | awk '$10=="R" {print $1}' | xargs -r qdel
+
+# Delete every job whose numeric ID is greater than a threshold. Preview first, then delete:
+qselect -u $USER | awk -F. '$1+0 > 158899'
+qselect -u $USER | awk -F. '$1+0 > 158899' | xargs -r qdel
+```
+
 ## WSL
 
 -   System info

@@ -83,7 +83,10 @@ execute:
   message: false # Suppress messages in output
   echo: true # Show code in output
   include: true # Include code output in output
-  collapse: true # If true, collapse code and output into same code block
+
+knitr:
+  opts_chunk:
+    collapse: true # Merge code and output into the same code block
 
 format:
   html:
@@ -110,4 +113,4 @@ format:
     code-tools:
       source: true
       toggle: true
-    highlight-style: dracula
+    syntax-highlighting: ayu-dark
