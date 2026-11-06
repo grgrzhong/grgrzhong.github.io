@@ -204,8 +204,8 @@ A three-step approach is recommended that leverages automated annotation, follow
 
 1. Classifier-based:
     * CellTypist
-    * Clustifyr
     * SingleR
+    * Clustifyr
     * scmap
     * scANVI
     * scNym
@@ -223,6 +223,11 @@ A three-step approach is recommended that leverages automated annotation, follow
 * Annotation results obtained with pre-trained classifiers are strongly affected by the classifier type and the quality of the training data used to create the classifier.
 * Furthermore, it can be difficult to assess the resulting annotation without additionally inspecting individual markers
 * The annotation should be verified by experts, especially for data sets with high complexity or studies that involve rare cell subpopulations for which references might not be available
+
+CellTypist: Use a trained machine-learning classifier (logistic regression) to predict a cell type from gene expression.
+
+SingleR: Use correlations between the query cell and reference expression profiles to find the most similar cell type
+
 
 ### Trajectory Inference
 

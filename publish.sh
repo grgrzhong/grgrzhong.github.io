@@ -21,9 +21,9 @@
 #     r-downlit \
 #     r-xml2
 
-source $(conda info --base)/etc/profile.d/conda.sh
 
-conda activate renv
+# source $(conda info --base)/etc/profile.d/conda.sh
+# conda activate renv
 
 quarto render
 

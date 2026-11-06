@@ -1,0 +1,288 @@
+---
+title: "Kaplan–Meier Survival Analysis"
+subtitle: "Generate Kaplan–Meier curve plots for Overall survival (OS) and progression-free survival (PFS)"
+format:
+  html:
+    toc: true
+    code-fold: false
+    embed-resources: true
+
+knitr:
+  opts_chunk:
+    echo: true
+    warning: false
+    message: false
+    collapse: true
+---
+
+## Demo Data
+
+The workflow follows the same logic as `Figure_1.r` in the reference repository
+([brucezhou9527/hello-world, branch `Cell_Reports_Medicine_2025`](https://github.com/brucezhou9527/hello-world/tree/Cell_Reports_Medicine_2025)):
+
+1. A per-patient senescence score (in the original: ssGSEA of `GOBP_CELLULAR_SENESCENCE`) is dichotomised into **High / Low**.
+2. `survfit(Surv(time, event) ~ status)` fits the KM curves.
+3. `survminer::ggsurvplot()` draws them (palette `#E93E3F` for High, `#A6CEE3` for Low, x-axis 0–24 months in steps of 6, y-axis in percent).
+
+Because the real clinical and expression data are not public here, We simulate demo data whose group sizes, curve shapes and log-rank p-values reproduce the figure.
+
+```{r}
+#| label: setup
+library(survival) # Surv(), survfit(), survdiff()
+library(survminer) # ggsurvplot(), surv_pvalue()
+library(ggplot2)
+library(patchwork) # combine the two panels
+library(tidyverse) # dplyr, tibble, readr
+
+col_high <- "#E93E3F" # red
+col_low <- "#A6CEE3" # light blue
+
+# target survival curves read from the figure
+target <- list(
+    OS = list(
+        High = list(
+            t = c(0, 2, 4, 6, 8, 10, 12, 14, 18, 24),
+            S = c(1, .97, .83, .69, .53, .44, .36, .30, .27, .25)
+        ),
+        Low = list(
+            t = c(0, 2, 4, 6, 9, 12, 14, 18, 21, 24),
+            S = c(1, .98, .88, .80, .66, .58, .53, .46, .37, .36)
+        )
+    ),
+    PFS = list(
+        # steep early drop around 2-3 months (first imaging)
+        High = list(
+            t = c(0, 1.5, 1.9, 2.2, 2.5, 3, 5, 9, 15, 24),
+            S = c(1, .97, .90, .66, .46, .33, .23, .17, .12, .11)
+        ),
+        Low = list(
+            t = c(0, 1.5, 2, 2.3, 2.6, 3.2, 4.5, 7, 12, 18, 24),
+            S = c(1, .97, .90, .70, .54, .50, .36, .30, .23, .19, .18)
+        )
+    )
+)
+
+# inverse of a piece-wise linear survival curve
+inv_surv <- function(u, tg, tail_rate = 1 / 12) {
+    f <- approxfun(rev(tg$S), rev(tg$t), ties = "ordered") # S -> t
+    smin <- min(tg$S)
+    tmax <- max(tg$t)
+    # u below the plateau: event would happen after 24 months (will be censored)
+    ifelse(u > smin, f(pmin(u, 1)), tmax + rexp(length(u), tail_rate))
+}
+
+simulate_cohort <- function(seed, n_high = 120, n_low = 88) {
+    set.seed(seed)
+    n <- n_high + n_low
+    score <- rnorm(n, mean = 0.35, sd = 0.08) # ssGSEA-like score
+    ord <- order(score)
+    grp <- rep("High", n)
+    grp[ord[seq_len(n_low)]] <- "Low"
+
+    u <- runif(n) # shared by OS & PFS
+    cens <- pmin(6 + rexp(n, 1 / 22), 24) # random censoring, max 24 mo
+
+    os_lat <- pfs_lat <- numeric(n)
+    for (g in c("High", "Low")) {
+        i <- grp == g
+        os_lat[i] <- inv_surv(u[i], target$OS[[g]])
+        pfs_lat[i] <- inv_surv(u[i], target$PFS[[g]])
+    }
+
+    data.frame(
+        patient_id = sprintf("P%03d", seq_len(n)),
+        CANCER_TYPE = "mUC",
+        GOBP_CELLULAR_SENESCENCE = round(score, 6),
+        OS_MONTHS = round(pmin(os_lat, cens), 2),
+        OS_CNSR_REV = as.integer(os_lat <= cens), # 1 = death observed
+        PFS_MONTHS = round(pmin(pfs_lat, cens), 2),
+        PFS_CNSR_REV = as.integer(pfs_lat <= cens) # 1 = progression/death
+    )
+}
+
+demo <- simulate_cohort(seed = 1967) |> as_tibble()
+
+# write.csv(demo, "demo_survival_data.csv", row.names = FALSE)
+head(demo)
+```
+
+## Dichotomise the score
+
+Same logic as `Figure_1.r` (`status <- ifelse(score > cutoff, "High", "Low")`), but with a fixed cut-point that gives 120 / 88 patients.
+To use a data-driven optimal cut-point instead, replace `cutoff` with the result of `survminer::surv_cutpoint()` (see the commented lines).
+
+```{r}
+#| label: dichotomise
+km_data <- subset(demo, CANCER_TYPE == "mUC")
+
+sorted <- sort(km_data$GOBP_CELLULAR_SENESCENCE)
+
+# 88 lowest scores -> "Low"
+cutoff <- mean(sorted[88:89])
+
+# as in Figure_1.r
+# cutoff <- median(km_data$GOBP_CELLULAR_SENESCENCE)
+# cp <- surv_cutpoint(km_data, "OS_MONTHS", "OS_CNSR_REV", "GOBP_CELLULAR_SENESCENCE")
+# cutoff <- cp$cutpoint$cutpoint                                # optimal cut-point
+
+km_data$status <- factor(
+    ifelse(km_data$GOBP_CELLULAR_SENESCENCE > cutoff, "High", "Low"),
+    levels = c("High", "Low")
+)
+table(km_data$status)
+```
+
+## Kaplan–Meier Fits
+
+```{r}
+#| label: fit
+fit_os <- survfit(Surv(OS_MONTHS, OS_CNSR_REV) ~ status, data = km_data)
+fit_pfs <- survfit(Surv(PFS_MONTHS, PFS_CNSR_REV) ~ status, data = km_data)
+
+# log-rank tests
+p_os <- surv_pvalue(fit_os, data = km_data)$pval
+p_pfs <- surv_pvalue(fit_pfs, data = km_data)$pval
+c(OS = p_os, PFS = p_pfs)
+```
+
+## Survival Plots
+
+`ggsurvplot()` supplies the curves, the censor ticks and the percent axis.
+Everything else that makes the figure look like the original is added with `ggplot2`:
+
+* a plain `theme_classic()` (only left and bottom axis lines),
+* the p-value as a text annotation (not the default `pval = TRUE` position),
+* a **hand-drawn legend** (hollow coloured squares + text, with the title *Cellular Senescence Score*), placed in data coordinates; `clip = "off"` lets it sit on the axis edge.
+
+```{r}
+#| label: plot-fun
+#| fig-width: 11
+#| fig-height: 4.2
+#| fig-cap: "Kaplan–Meier curves of overall survival (left) and progression-free survival (right) by Cellular Senescence Score (demo data)."
+km_panel <- function(fit, data, ylab, pval, p_xy, leg) {
+    # leg: list(tx, ty, ey, hx, lx)  title x/y, entry y, High x, Low x
+    g <- ggsurvplot(
+        fit,
+        data = data,
+        surv.scale = "percent",
+        break.time.by = 6,
+        xlim = c(0, 24),
+        linewidth = 0.9,
+        censor.shape = "+",
+        censor.size = 2.6,
+        linetype = c(1, 1),
+        palette = c(col_high, col_low),
+        xlab = "Months after ICB",
+        ylab = ylab,
+        pval = FALSE,
+        conf.int = FALSE,
+        legend = "none",
+        ggtheme = theme_classic(base_size = 12)
+    )$plot
+
+    n_h <- sum(data$status == "High")
+    n_l <- sum(data$status == "Low")
+    bw <- 1.1
+    bh <- 0.065 # legend box width / height
+
+    g +
+        coord_cartesian(xlim = c(0, 24), ylim = c(0, 1), clip = "off") +
+        scale_x_continuous(
+            breaks = seq(0, 24, 6),
+            expand = expansion(mult = c(0.02, 0.02))
+        ) +
+        annotate(
+            "text",
+            x = p_xy[1],
+            y = p_xy[2],
+            hjust = 0,
+            size = 4.6,
+            label = sprintf("p = %s", pval)
+        ) +
+        # legend title
+        annotate(
+            "text",
+            x = leg$tx,
+            y = leg$ty,
+            hjust = 0,
+            size = 4,
+            label = "Cellular Senescence Score"
+        ) +
+        # High
+        annotate(
+            "rect",
+            xmin = leg$hx,
+            xmax = leg$hx + bw,
+            ymin = leg$ey - bh / 2,
+            ymax = leg$ey + bh / 2,
+            fill = NA,
+            colour = col_high,
+            linewidth = 0.8
+        ) +
+        annotate(
+            "text",
+            x = leg$hx + bw + 0.3,
+            y = leg$ey,
+            hjust = 0,
+            size = 3.6,
+            label = sprintf("High (n=%d)", n_h)
+        ) +
+        # Low
+        annotate(
+            "rect",
+            xmin = leg$lx,
+            xmax = leg$lx + bw,
+            ymin = leg$ey - bh / 2,
+            ymax = leg$ey + bh / 2,
+            fill = NA,
+            colour = col_low,
+            linewidth = 0.8
+        ) +
+        annotate(
+            "text",
+            x = leg$lx + bw + 0.3,
+            y = leg$ey,
+            hjust = 0,
+            size = 3.6,
+            label = sprintf("Low (n=%d)", n_l)
+        ) +
+        theme(
+            axis.text = element_text(colour = "black"),
+            axis.title = element_text(colour = "black"),
+            axis.line = element_line(colour = "black")
+        )
+}
+
+fmt_p <- function(p) formatC(p, digits = if (p < 0.01) 3 else 3, format = "g")
+
+g_os <- km_panel(
+    fit_os,
+    km_data,
+    "Overall survival probability",
+    fmt_p(round(p_os, 3)),
+    p_xy = c(9.7, 0.79),
+    leg = list(tx = 1.4, ty = 0.19, ey = 0.05, hx = -0.3, lx = 10.5)
+)
+
+g_pfs <- km_panel(
+    fit_pfs,
+    km_data,
+    "Progression-free survival",
+    fmt_p(round(p_pfs, 3)),
+    p_xy = c(4.8, 0.85),
+    leg = list(tx = 6.4, ty = 0.57, ey = 0.44, hx = 4.9, lx = 15.6)
+)
+
+g_os | g_pfs
+
+# fig <- (g_os | g_pfs)
+# ggsave("KM_OS_PFS.png", fig, width = 11, height = 4.2, dpi = 300)
+# ggsave("KM_OS_PFS.pdf", fig, width = 11, height = 4.2)
+# tiff("KM_OS_PFS.tiff", units = "in", width = 11, height = 4.2, res = 300, compression = "lzw"); print(fig); dev.off()
+```
+
+## Session Info
+
+```{r}
+sessionInfo()
+```

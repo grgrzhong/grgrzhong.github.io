@@ -63,6 +63,85 @@ pixi global uninstall <env_name>
 pixi global install --environment renv --expose R --expose Rscript r-base
 ```
 
+### manifest
+
+```bash
+# Linux/mac
+code ~/.pixi/manifests/pixi-global.toml
+
+# Windows
+code "C:\Users\guorui\.pixi\manifests\pixi-global.toml"
+```
+
+- Example of a manifest file
+```toml
+version = 1
+[envs.renv]
+channels = ["conda-forge", "bioconda"]
+platform = "win-64"
+
+[envs.renv.dependencies]
+r-base = "4.5.*"
+r-languageserver = "*"
+r-tidyverse = "*"
+r-irkernel = "*"
+r-httpgd = "*"
+r-downlit = "*"
+r-xml2 = "*"
+r-markdown = "*"
+r-devtools = "*"
+r-here = "*"
+r-writexl = "*"
+bioconductor-biostrings = "*"
+r-argparse = "*"
+r-ape = "*"
+r-ggplot2 = "*"
+ipykernel = "*"
+matplotlib = "*"
+r-seurat = "*"
+r-clustree = "*"
+r-anndata = "*"
+bioconductor-rhdf5 = "*"
+bioconductor-anndatar = "*"
+bioconductor-deseq2 = "*"
+bioconductor-ComplexHeatmap = "*"
+bioconductor-zellkonverter = "*"
+bioconductor-hdf5array = "*"
+bioconductor-singlecellexperiment = "*"
+r-pheatmap = "*"
+r-qs2 = "*"
+r-BPCells = "*"
+zlib = "*"
+quarto = "*"
+r-renv = "*"
+r-knitr = "*"
+r-rmarkdown = "*"
+pandoc = "*"
+jupyter = "*"
+python = "*"
+ipython = "*"
+
+[envs.renv.exposed]
+quarto = "quarto"
+R = "R"
+Rscript = "Rscript"
+pandoc = "pandoc"
+RSetReg = "RSetReg"
+Rcmd = "Rcmd"
+Rfe = "Rfe"
+Rgui = "Rgui"
+Rterm = "Rterm"
+open = "open"
+jupyter = "jupyter"
+python = "python"
+pythonw = "pythonw"
+idle = "idle"
+pydoc = "pydoc"
+ipython = "ipython"
+ipython3 = "ipython3"
+
+```
+
 
 ## Conda
 
