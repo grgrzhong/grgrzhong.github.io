@@ -51,8 +51,8 @@ website:
       #       file: "technique/10xgenomics/index.qmd"
       #     - text: "Illumina"
       #       file: "technique/illumina/index.qmd"
-      - text: "Analysis"
-        file: "analysis/index.qmd"
+      # - text: "Analysis"
+      #   file: "analysis/index.qmd"
       - text: "Wiki"
         file: "wiki/index.qmd"
       - text: "Tool"
@@ -111,4 +111,7 @@ format:
     code-tools:
       source: true
       toggle: true
-    syntax-highlighting: ayu-dark
+    syntax-highlighting: github-dark
+    # syntax-highlighting: vim-dark
+    # syntax-highlighting: monokai
+    # syntax-highlighting: ayu-dark
