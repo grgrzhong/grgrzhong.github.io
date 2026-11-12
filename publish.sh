@@ -28,5 +28,5 @@
 quarto render
 
 git add .
-git commit -m "update notes"
+git commit -m "update blog"
 git push -u origin main --force

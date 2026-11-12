@@ -710,36 +710,50 @@
     "objectID": "r/index.html#general-functions",
     "href": "r/index.html#general-functions",
     "title": "R Programming",
-    "section": "\n2 General Functions",
-    "text": "2 General Functions\nfind.package(\"ggplot2\")\nfind.package(\"Seurat\")\n.libPaths()                      # Show library paths\ndir()                            # Show the directory\ngetwd()                          # Check working directory\nsetwd()                          # Change working directory\ndata()                           # Load built-in dataset\nview()                           # View the entire dataset\ntail()                           # Just show the last 6 rows\nclass()                          # Check the class of an R object\nstr()                            # Display internal structure of an R object\nlength()                         # Give length of a vector\ndim()                            # View the number of rows and columns of a matrix or a data frame\nnames()                          # List names of variables in a data frame\nset.seed()                       # Generate random number seed to make sure the results do not change.\nls()                             # list the variables in the workspace\nrm()                             # remove the variable from workspace\nrm(list = ls())                  # remove all the variables from the workspace\nlist.files()                     # List the filename under specific directory\n.libPaths()                      # R installation site\nhelp(package=\"\")                 # Check the functions of R library\nsystem.file(package=“dagdata”)   # Extract the location of package\ncolnames(installed.packages())   # list the installed packages"
+    "section": "General Functions",
+    "text": "General Functions\nIn R, “” is a newline, “ is a tab, and ”\\“ means a single backslash.\nif (!requireNamespace(\"BiocManager\", quietly = TRUE))\n    install.packages(\"BiocManager\")\n\nBiocManager::install(c(\"xml2\", \"stringi\", \"stringr\", \"lintr\", \"roxygen2\", \"languageserver\"))\n\nBiocManager::install(c(\"LiblineaR\", \"caret\", \"drc\", \"e1071\", \"ROCR\", \"pROC\", \"rhdf5\", \"randomForest\", \"VSURF\"))\n\n\nBiocManager::install(c(\n    \"languageserver\", \"httpgd\", \"rmarkdown\", \"IRkernel\", \"jsonlite\", \"rlang\",\n      \"ComplexHeatmap\", \"caret\", \"clusterProfiler\", \"DESeq2\", \"dendsort\",\n      \"doParallel\", \"e1071\", \"enrichplot\", \"fs\", \"ggbeeswarm\", \"ggpmisc\",\n      \"ggpubr\", \"ggrastr\", \"ggrepel\", \"ggupset\", \"glmnet\", \"here\", \"ijtiff\",\n       \"MetaboCoreUtils\", \"MsCoreUtils\", \"org.Hs.eg.db\", \"parallel\",\n    \"png\", \"pROC\", \"RColorBrewer\", \"RImageJROI\", \"readxl\", \"ropls\", \"rstatix\",\"Seurat\", \"tidyverse\"\n   ), update = FALSE, ask = FALSE, force = TRUE)\n\nremotes::install_github(\"ManuelHentschel/vscDebugger\")\nfind.package(\"ggplot2\")\nfind.package(\"Seurat\")\n.libPaths()                      # Show library paths\ndir()                            # Show the directory\ngetwd()                          # Check working directory\nsetwd()                          # Change working directory\ndata()                           # Load built-in dataset\nview()                           # View the entire dataset\ntail()                           # Just show the last 6 rows\nclass()                          # Check the class of an R object\nstr()                            # Display internal structure of an R object\nlength()                         # Give length of a vector\ndim()                            # View the number of rows and columns of a matrix or a data frame\nnames()                          # List names of variables in a data frame\nset.seed()                       # Generate random number seed to make sure the results do not change.\nls()                             # list the variables in the workspace\nrm()                             # remove the variable from workspace\nrm(list = ls())                  # remove all the variables from the workspace\nlist.files()                     # List the filename under specific directory\n.libPaths()                      # R installation site\nhelp(package=\"\")                 # Check the functions of R library\nsystem.file(package=“dagdata”)   # Extract the location of package\ncolnames(installed.packages())   # list the installed packages"
   },
   {
     "objectID": "r/index.html#coding-practice",
     "href": "r/index.html#coding-practice",
     "title": "R Programming",
-    "section": "\n3 Coding Practice",
-    "text": "3 Coding Practice\n\nVariables = my_variable or myVariable\nFunctions = RunThisStuffs() or run_this_stuffs()\nA function should not be longer than one screen\nConstants = CONSTANTS\nUse 4 spaces (and not tab) for indentations\nAlways writing documentation above function definition\nAvoid using for loop, learn lapply and vector operations\nNever ever use hard-coded variables in functions\n\n### ====== to divide function blocks\n\n### ------ to divide parts in a function\nName and style code consistently\n\nrm(list =ls()) and gc() to tidy up its memory\nDon’t save a session history\nKeep track of sessionInfo() in project folder\nUse version control"
+    "section": "Coding Practice",
+    "text": "Coding Practice\n\nVariables = my_variable or myVariable\nFunctions = RunThisStuffs() or run_this_stuffs()\nA function should not be longer than one screen\nConstants = CONSTANTS\nUse 4 spaces (and not tab) for indentations\nAlways writing documentation above function definition\nAvoid using for loop, learn lapply and vector operations\nNever ever use hard-coded variables in functions\n\n### ====== to divide function blocks\n\n### ------ to divide parts in a function\nName and style code consistently\n\nrm(list =ls()) and gc() to tidy up its memory\nDon’t save a session history\nKeep track of sessionInfo() in project folder\nUse version control"
   },
   {
     "objectID": "r/index.html#variable-replacement",
     "href": "r/index.html#variable-replacement",
     "title": "R Programming",
-    "section": "\n4 Variable Replacement",
-    "text": "4 Variable Replacement\nCommon method to do the variable replacement in ggplot2:\n\n!!as.name()\nget()\n!!sym()\n.data[[]]\n\n\nlibrary(ggplot2)\ndata &lt;- data.frame(\n    x = c(1, 2, 3, 4),\n    y = c(10, 20, 30, 40),\n    group = c(\"A\", \"A\", \"B\", \"B\")\n)\n\ncolor_var &lt;- \"group\"\nggplot(data, aes(x = x, y = y, color = !!as.name(color_var))) +\n    geom_point()\n\nggplot(data, aes(x = x, y = y, color = get(color_var))) +\n    geom_point()\n\n\nggplot(data, aes(x = x, y = y, color = !!sym(color_var))) +\n    geom_point()\n\nggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +\n    geom_point()"
+    "section": "Variable Replacement",
+    "text": "Variable Replacement\nCommon method to do the variable replacement in ggplot2:\n\n!!as.name()\nget()\n!!sym()\n.data[[]]\n\n\nlibrary(ggplot2)\ndata &lt;- data.frame(\n    x = c(1, 2, 3, 4),\n    y = c(10, 20, 30, 40),\n    group = c(\"A\", \"A\", \"B\", \"B\")\n)\n\ncolor_var &lt;- \"group\"\nggplot(data, aes(x = x, y = y, color = !!as.name(color_var))) +\n    geom_point()\n\nggplot(data, aes(x = x, y = y, color = get(color_var))) +\n    geom_point()\n\n\nggplot(data, aes(x = x, y = y, color = !!sym(color_var))) +\n    geom_point()\n\nggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +\n    geom_point()"
+  },
+  {
+    "objectID": "r/index.html#text-size",
+    "href": "r/index.html#text-size",
+    "title": "R Programming",
+    "section": "Text size",
+    "text": "Text size\n\n\nBase R (cex)\nggplot2 (size)\nDescription\n\n\n\n0.5\n6\nVery small\n\n\n0.6\n7.2\nSmall (your current)\n\n\n0.7\n8.4\nSmall-medium\n\n\n0.8\n9.6\nMedium\n\n\n0.9\n10.8\nMedium-large\n\n\n1.0\n12\nDefault/normal\n\n\n1.2\n14.4\nLarge\n\n\n1.5\n18\nVery large"
   },
   {
     "objectID": "r/index.html#vscode-setup",
     "href": "r/index.html#vscode-setup",
     "title": "R Programming",
-    "section": "\n5 VSCode Setup",
-    "text": "5 VSCode Setup\nRemote Server Settings:\n{\n    \"r.alwaysUseActiveTerminal\": true,\n    \"r.bracketedPaste\": true,\n    \"r.helpPanel.cacheIndexFiles\": \"Global\",\n    \"r.plot.useHttpgd\": true,\n    \"r.rmarkdown.chunkBackgroundColor\": \"\",\n    \"r.rterm.option\": [\n        // \"--r-binary=/home/zhonggr/miniforge3/envs/renv/bin/R\",\n        \"--no-save\",\n        \"--no-restore\"\n    ],\n    \"r.rpath.linux\": \"/home/zhonggr/miniforge3/envs/renv/bin/R\",\n    \"r.rterm.linux\": \"/home/zhonggr/miniforge3/envs/renv/bin/radian\"\n}\n{\n    \"r.bracketedPaste\": true,\n    \"r.alwaysUseActiveTerminal\": true,\n    \"r.plot.useHttpgd\": true,\n    \"r.rterm.linux\": \"${userHome}/miniforge3/envs/renv/bin/radian\",\n    \"r.rpath.linux\": \"${userHome}/miniforge3/envs/renv/bin/R\",\n    \"r.rterm.mac\": \"${userHome}/miniforge3/envs/renv/bin/radian\",\n    \"r.rpath.mac\": \"${userHome}/miniforge3/envs/renv/bin/R\",\n    \"r.rterm.option\": [\n        \"--no-save\", // Optional: Prevent saving workspace\n        \"--no-restore\", // Optional: Prevent restore workspace\n        \"--no-site-file\", // Optional: Avoid loading site-wide R profile\n        \"--r-binary=${userHome}/miniforge3/envs/renv/bin/R\"\n    ],\n    \"r.libPaths\": [\n        \"${userHome}/miniforge3/envs/renv/lib/R/library\"\n    ],\n    \"r.plot.useHttpgd\": true,\n    \"[r]\": {\n        \"editor.defaultFormatter\": \"REditorSupport.r\"\n    },\n    \"files.associations\": {\n        \"*.rmd\": \"rmd\"\n    },\n}"
+    "section": "VSCode Setup",
+    "text": "VSCode Setup\nRemote Server Settings:\n{\n    \"r.alwaysUseActiveTerminal\": true,\n    \"r.bracketedPaste\": true,\n    \"r.helpPanel.cacheIndexFiles\": \"Global\",\n    \"r.plot.useHttpgd\": true,\n    \"r.rmarkdown.chunkBackgroundColor\": \"\",\n    \"r.rterm.option\": [\n        // \"--r-binary=/home/zhonggr/miniforge3/envs/renv/bin/R\",\n        \"--no-save\",\n        \"--no-restore\"\n    ],\n    \"r.rpath.linux\": \"/home/zhonggr/miniforge3/envs/renv/bin/R\",\n    \"r.rterm.linux\": \"/home/zhonggr/miniforge3/envs/renv/bin/radian\"\n}\n{\n    \"r.bracketedPaste\": true,\n    \"r.alwaysUseActiveTerminal\": true,\n    \"r.plot.useHttpgd\": true,\n    \"r.rterm.linux\": \"${userHome}/miniforge3/envs/renv/bin/radian\",\n    \"r.rpath.linux\": \"${userHome}/miniforge3/envs/renv/bin/R\",\n    \"r.rterm.mac\": \"${userHome}/miniforge3/envs/renv/bin/radian\",\n    \"r.rpath.mac\": \"${userHome}/miniforge3/envs/renv/bin/R\",\n    \"r.rterm.option\": [\n        \"--no-save\", // Optional: Prevent saving workspace\n        \"--no-restore\", // Optional: Prevent restore workspace\n        \"--no-site-file\", // Optional: Avoid loading site-wide R profile\n        \"--r-binary=${userHome}/miniforge3/envs/renv/bin/R\"\n    ],\n    \"r.libPaths\": [\n        \"${userHome}/miniforge3/envs/renv/lib/R/library\"\n    ],\n    \"r.plot.useHttpgd\": true,\n    \"[r]\": {\n        \"editor.defaultFormatter\": \"REditorSupport.r\"\n    },\n    \"files.associations\": {\n        \"*.rmd\": \"rmd\"\n    },\n}"
   },
   {
     "objectID": "r/index.html#server-settings",
     "href": "r/index.html#server-settings",
     "title": "R Programming",
-    "section": "\n6 Server settings",
-    "text": "6 Server settings\n{\n    \"r.alwaysUseActiveTerminal\": true,\n    \"r.bracketedPaste\": true,\n    // \"r.consolePath\": \"arf\",\n    \"r.consolePath\": \"/home/guorui/.pixi/envs/radian/bin/radian\",\n    \"r.rpath.linux\": \"/home/guorui/.pixi/envs/bin/R\",\n    \"r.plot.backend\": \"httpgd\",\n    \"r.executablePath\": \"/home/guorui/.pixi/envs/renv/bin/R\",\n    \"shfmt.executablePath\": \"${userHome}/.pixi/bin/shfmt\"\n    // 3. Inform Radian where to find R so it hooks into the same background session\n}"
+    "section": "Server settings",
+    "text": "Server settings\n{\n    \"r.alwaysUseActiveTerminal\": true,\n    \"r.bracketedPaste\": true,\n    // \"r.consolePath\": \"arf\",\n    \"r.consolePath\": \"/home/guorui/.pixi/envs/radian/bin/radian\",\n    \"r.rpath.linux\": \"/home/guorui/.pixi/envs/bin/R\",\n    \"r.plot.backend\": \"httpgd\",\n    \"r.executablePath\": \"/home/guorui/.pixi/envs/renv/bin/R\",\n    \"shfmt.executablePath\": \"${userHome}/.pixi/bin/shfmt\"\n    // 3. Inform Radian where to find R so it hooks into the same background session\n}"
+  },
+  {
+    "objectID": "r/index.html#reference",
+    "href": "r/index.html#reference",
+    "title": "R Programming",
+    "section": "Reference",
+    "text": "Reference\n\nhttps://r4bds.github.io\nProgramming with R\nBest Practice for R - Cheat Sheet\nAn Introduction to Statistical Learning\nR for Data Science (2e)\nR Graphics Cookbook, 2nd edition\nAdvanced R\nggplot2: Elegant Graphics for Data Analysis\nFunctional Programming\nThe Epidemiologist R Handbook\nModern Statistics for Modern Biology\nData Analysis and Prediction Algorithms with R\nBioinformatics Training & Education Program\nSaving R Graphics across OSs\nTutorial on Advanced Stats and Machine Learning with R\nPublication ready plots using ggpubr\ndatanovia\nData Analysis in Genome Biology\nData Viz with Python and R\nPH525x series - Biomedical Data Science\nAn Introduction to Statistical Learning\nThe Epidemiologist R Handbook\nData Analysis in Genome Biology\nPH525x series - Biomedical Data Science"
   },
   {
     "objectID": "linux/index.html",
@@ -3204,6 +3218,13 @@
     "title": "Python Programming",
     "section": "6 Dataframe",
     "text": "6 Dataframe\n#| eval: true\n\n## Python's dataframe comes form the pandas library\nimport pandas as pd\n\n## It's actually  a type of dictionary of lists\npy_df = pd.DataFrame(\n    {\n        'Name': ['Alice', 'Bob', 'Charlie'],\n        'Age': [25, 30, 35],\n        'City': ['New York', 'Los Angeles', 'Chicago']\n    }\n)\n\nprint(py_df)"
+  },
+  {
+    "objectID": "python/index.html#reference",
+    "href": "python/index.html#reference",
+    "title": "Python Programming",
+    "section": "7 Reference",
+    "text": "7 Reference\n\nhttps://multiomeacademy.com/blog/python-for-biologists-tutorial\nUsing jupyter notebooks with a virtual environment\nPlotting and Programming in Python\nhttps://www.py4e.com/\nhttps://omgenomics.com/\nhttps://www.coursera.org/learn/bioinformatics\nhttp://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.pdf\nhttps://www.py4e.com/html3\nhttp://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.epub\nPrimer on Python for R Users\nAn introduction to Python for R Users\nhttps://realpython.com/\nhttps://andrewhalterman.com/post/python_for_r_users/\nhttps://rebeccabarter.com/blog/2023-09-11-from_r_to_python"
   },
   {
     "objectID": "statistic/index.html#wilcoxon-test",

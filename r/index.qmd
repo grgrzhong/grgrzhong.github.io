@@ -14,7 +14,6 @@ format:
             toggle: true
         code-fold: false
         toc: true
-        number-sections: true
 ---
 
 ## Data Structure
@@ -23,10 +22,33 @@ format:
 
 ## General Functions
 
+In R, "\n" is a newline, "\t" is a tab, and "\\" means a single backslash.
+
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install(c("xml2", "stringi", "stringr", "lintr", "roxygen2", "languageserver"))
+
+BiocManager::install(c("LiblineaR", "caret", "drc", "e1071", "ROCR", "pROC", "rhdf5", "randomForest", "VSURF"))
+
+
+BiocManager::install(c(
+    "languageserver", "httpgd", "rmarkdown", "IRkernel", "jsonlite", "rlang",
+      "ComplexHeatmap", "caret", "clusterProfiler", "DESeq2", "dendsort",
+      "doParallel", "e1071", "enrichplot", "fs", "ggbeeswarm", "ggpmisc",
+      "ggpubr", "ggrastr", "ggrepel", "ggupset", "glmnet", "here", "ijtiff",
+       "MetaboCoreUtils", "MsCoreUtils", "org.Hs.eg.db", "parallel",
+    "png", "pROC", "RColorBrewer", "RImageJROI", "readxl", "ropls", "rstatix","Seurat", "tidyverse"
+   ), update = FALSE, ask = FALSE, force = TRUE)
+
+remotes::install_github("ManuelHentschel/vscDebugger")
+```
+
+
 ```r
 find.package("ggplot2")
 find.package("Seurat")
-
 ```
 
 ```r
@@ -104,6 +126,19 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
     geom_point()
 ```
 
+## Text size
+
+| Base R (`cex`) | ggplot2 (`size`) | Description |
+| --- | --- | --- |
+| 0.5 | 6 | Very small |
+| 0.6 | 7.2 | Small (your current) |
+| 0.7 | 8.4 | Small-medium |
+| 0.8 | 9.6 | Medium |
+| 0.9 | 10.8 | Medium-large |
+| 1.0 | 12 | Default/normal |
+| 1.2 | 14.4 | Large |
+| 1.5 | 18 | Very large |
+
 ## VSCode Setup
 
 **Remote Server Settings:**
@@ -166,3 +201,30 @@ ggplot(data, aes(x = x, y = y, color = .data[[color_var]])) +
     // 3. Inform Radian where to find R so it hooks into the same background session
 }
 ```
+
+## Reference
+
+- https://r4bds.github.io
+- Programming with R
+- Best Practice for R - Cheat Sheet
+- An Introduction to Statistical Learning
+- R for Data Science (2e)
+- R Graphics Cookbook, 2nd edition
+- Advanced R
+- ggplot2: Elegant Graphics for Data Analysis
+- Functional Programming
+- The Epidemiologist R Handbook
+- Modern Statistics for Modern Biology
+- Data Analysis and Prediction Algorithms with R
+- Bioinformatics Training & Education Program
+- Saving R Graphics across OSs
+- Tutorial on Advanced Stats and Machine Learning with R
+- Publication ready plots using ggpubr
+- datanovia
+- Data Analysis in Genome Biology
+- Data Viz with Python and R
+- PH525x series - Biomedical Data Science
+- An Introduction to Statistical Learning
+- The Epidemiologist R Handbook
+- Data Analysis in Genome Biology
+- PH525x series - Biomedical Data Science

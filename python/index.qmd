@@ -30,6 +30,7 @@ in Python, understanding data types and structures is essential for writting eff
 - Sets: Unordered collections of unique items, useful for membership testing and eliminating duplicates.
 - Dictionaries: Unordered, Key-value pairs that allow for efficient data retrieval based on unique keys.
 
+
 ```{python}
 ## List: mutable, ordered collection
 fruits = ["apple", "banana", "cherry"]
@@ -204,3 +205,19 @@ py_df = pd.DataFrame(
 
 print(py_df)
 ```
+
+## Reference
+- https://multiomeacademy.com/blog/python-for-biologists-tutorial
+- Using jupyter notebooks with a virtual environment
+- Plotting and Programming in Python
+- https://www.py4e.com/
+- https://omgenomics.com/
+- https://www.coursera.org/learn/bioinformatics
+- http://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.pdf
+- https://www.py4e.com/html3
+- http://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.epub
+- Primer on Python for R Users
+- An introduction to Python for R Users
+- https://realpython.com/
+- https://andrewhalterman.com/post/python_for_r_users/
+- https://rebeccabarter.com/blog/2023-09-11-from_r_to_python

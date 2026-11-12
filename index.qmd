@@ -1,36 +1,85 @@
 ---
-title: "Guorui Zhong"
-about:
-  template: trestles
-  image: /files/profiles/avatar.png
-  image-width: 14em
-  image-shape: round
-  links:
-    - icon: journal-check
-      aria-label: Google Scholar
-      href: https://scholar.google.com/citations?user=g0MfTPMAAAAJ&hl=en
-    - icon: github
-      aria-label: GitHub
-      href: https://github.com/grgrzhong
-    - icon: linkedin
-      aria-label: LinkedIn
-      href: https://www.linkedin.com/in/guorui-zhong-754761185/
-format:
-  html:
-    toc: false
-    number-sections: false
-    code-tools:
-      source: false
+title: ""
+author: ""
+listing:
+  - id: posts_2026
+    contents:
+      - "blog/2026/**/index.qmd"
+      - "blog/2026/**/index.md"
+    sort: "date desc"
+    template: html/blog/listing.ejs
+    categories: true
+  - id: posts_2025
+    contents:
+      - "blog/2025/**/index.qmd"
+      - "blog/2025/**/index.md"
+    sort: "date desc"
+    template: html/blog/listing.ejs
+    categories: true
+  - id: posts_2024
+    contents:
+      - "blog/2024/**/index.qmd"
+      - "blog/2024/**/index.md"
+    sort: "date desc"
+    template: html/blog/listing.ejs
+    categories: true
+  - id: posts_2023
+    contents:
+      - "blog/2023/**/index.qmd"
+      - "blog/2023/**/index.md"
+    sort: "date desc"
+    template: html/blog/listing.ejs
+    categories: true
+  - id: posts_2022
+    contents:
+      - "blog/2022/**/index.qmd"
+      - "blog/2022/**/index.md"
+    sort: "date desc"
+    template: html/blog/listing.ejs
+    categories: true
+  - id: posts_2021
+    contents:
+      - "blog/2021/**/index.qmd"
+      - "blog/2021/**/index.md"
+    sort: "date desc"
+    template: html/blog/listing.ejs
+    categories: true
+
+page-layout: full
+title-block-banner: true
+toc-title: Year
+toc-location: right
+date-format: "MMMM D, YYYY"
+code-tools: false
+comments: false
 ---
 
-Cell biologist with applied skills in bioinformatics and computational biology.
+## 2026
 
+:::{#posts_2026}
+:::
 
-## Research Interests
+## 2025
 
--------
+:::{#posts_2025}
+:::
 
-- Genome engineering to dissect gene function in cancer and immune cells
-- Single-cell and spatial omics to study cellular heterogeneity
-- High-throughput imaging and computational analysis of cell behaviour
-- Multi-omics integration to uncover disease mechanisms
+## 2024
+
+:::{#posts_2024}
+:::
+
+## 2023
+
+:::{#posts_2023}
+:::
+
+## 2022
+
+:::{#posts_2022}
+:::
+
+## 2021
+
+:::{#posts_2021}
+:::
