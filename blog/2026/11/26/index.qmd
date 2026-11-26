@@ -1,11 +1,12 @@
 ---
-title: "Illumina BioInsight and StrataMap"
+title: "Illumina BioInsight Products and StrataMap"
 date: "2026-11-26"
 published-title: Created
 date-modified: last-modified
 categories: [Illumina, STx]
 toc-title: "Contents"
 description: "Product portfolio, spatial transcriptomics and core-facility applications"
+image: icm.png
 format:
     html:
         toc: true
