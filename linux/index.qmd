@@ -36,10 +36,12 @@ PS1='\[\e[36m\]\u\[\e[37m\] @\[\e[32m\]\h:\[\e[33m\]\w\[\e[0m\]\n\[\e[35m\]❯\[
 
 ### Modes
 
--   Vim text editor has three main modes:
-    -   `Esc`, back to normal mode
-    -   `i`, insert mode
-    -   `v`, select mode
+- Vim text editor has three main modes:
+  - `Esc`, back to normal mode
+  - `i`, insert mode
+  - `v`, visual/select mode
+
+- At the normal mode
 
 | Command | What it does                | Most common follow-up |
 |---------|-----------------------------|-----------------------|
@@ -84,6 +86,15 @@ PS1='\[\e[36m\]\u\[\e[37m\] @\[\e[32m\]\h:\[\e[33m\]\w\[\e[0m\]\n\[\e[35m\]❯\[
 | dw / d\$ | Delete to end of word / end of line | diw, daw |
 | ciw / caw | Change (delete + insert) inside/around word | most common text object usage |
 | "ci"" / ci( / ci{" | Change inside quotes/parentheses/braces | extremely common in code |
+
+### Delete
+`dw`: Deletes from the cursor position to the end of the current word.
+`daw`: Deletes the entire word under the cursor, including any surrounding whitespace.
+`diw`: Deletes the entire word under the cursor, but leaves any surrounding whitespace intact.
+
+### Undo and Redo
+`u`: Undo the last change.
+`Ctrl-r`: Redo the last undone change.
 
 ### Search & Replace
 
