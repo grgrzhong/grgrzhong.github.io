@@ -3,7 +3,7 @@ title: "Kaplan–Meier Survival Analysis"
 date: 2026-11-03
 published-title: Created
 date-modified: last-modified
-category: [Survival Analysis]
+category: [Survival]
 toc-title: "Contents"
 description: "Generate Kaplan–Meier curve plots for Overall survival (OS) and progression-free survival (PFS)"
 image: survival.png
