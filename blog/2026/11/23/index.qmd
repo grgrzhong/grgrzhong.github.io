@@ -1,0 +1,779 @@
+---
+title: "Spatial domains and spatially variable genes in spatial transcriptomics"
+date: "2026-11-26"
+published-title: Created
+date-modified: last-modified
+categories: [STx]
+toc-title: "Contents"
+description: "Illustrated principles, R workflows and multi-sample analysis strategies for spatial domains and spatially variable genes in Visium HD."
+format:
+    html:
+        toc: true
+        toc-depth: 3
+        embed-resources: true
+        code-fold: false
+        theme: cosmo
+        fig-align: center
+execute:
+    eval: false
+    echo: true
+---
+
+In spatial transcriptomics, particularly **10x Visium HD**, there are two complementary approaches to analysing gene expression:
+
+- **Expression-based analysis:** What cell types and transcriptional states are present in the tissue?
+- **Spatial-specific analysis:** How are these cells, transcriptional states and genes organized within the tissue?
+
+Spatial domain identification and spatially variable gene (SVG) detection are two fundamental spatial-specific analyses. Both incorporate physical coordinates, but they address different biological questions.
+
+## 1. Overview of the analysis principles
+
+<div class="sp-fig" data-kind="overview"></div>
+
+| Characteristics | Spatial domain | Spatially variable genes |
+|---|---|---|
+| Main question | How is the tissue organized? | Which genes exhibit spatial patterns? |
+| Analysis target | Bins, spots or cells | Individual genes |
+| Input | Expression features and coordinates | Gene expression and coordinates |
+| Principle | Spatial-aware clustering | Spatial autocorrelation or spatial statistical modelling |
+| Output | Domain label for each bin/cell | Gene ranking, spatial statistic and method-dependent significance |
+| Common R tools | BANKSY, BayesSpace | Seurat, SPARK-X, nnSVG |
+| Biological interpretation | Tissue architecture and microenvironment | Spatially organized molecular programs |
+
+## 2. Spatial domain identification
+
+### 2.1 What is a spatial domain?
+
+A spatial domain is a tissue region characterized by a particular combination of gene expression profiles and spatial organization.
+
+For example, in a tumour tissue, spatial domains might represent:
+
+- Tumour core
+- Invasive tumour boundary
+- Immune-enriched microenvironment
+- Fibroblast-enriched stroma
+- Normal epithelial region
+
+A spatial domain is **not necessarily a cell type**. It may contain multiple cell types that collectively constitute a functional tissue compartment.
+
+<div class="sp-fig" data-kind="domains"></div>
+
+*Illustrative spatial domain annotation of a tumour tissue. Biological identities must be validated using markers and histology.*
+
+### 2.2 Why is standard single-cell clustering insufficient?
+
+Although every Visium HD bin has spatial coordinates, standard clustering algorithms such as Louvain and Leiden do not automatically use these coordinates.
+
+In a standard Seurat workflow, the KNN graph is constructed using transcriptional similarity in PCA space, rather than physical distance within the tissue.
+
+<div class="sp-fig" data-kind="compare"></div>
+
+Both results are useful. Expression-based clusters are generally more suitable for identifying cell types or states, whereas spatial domains are more suitable for characterizing tissue architecture.
+
+### 2.3 How does BANKSY work?
+
+BANKSY incorporates the transcriptional profile of each bin or cell together with information derived from its spatial neighbours. It constructs an augmented feature matrix for dimensionality reduction and clustering.
+
+<div class="sp-fig" data-kind="banksy"></div>
+
+The parameter `lambda` controls the contribution of spatial neighbourhood information.
+
+The following interactive example illustrates this principle.
+
+<div class="sp-fig" data-kind="lambda"></div>
+
+Typical starting parameters:
+
+| Parameter | Cell typing | Spatial domain detection |
+|---|---:|---:|
+| `lambda` | 0.2 | 0.8 |
+| `k_geom` | 15 | 15 |
+| Number of PCs | 30 | 30 |
+| Clustering resolution | 0.5–1.0 | 0.3–0.8 |
+
+These are starting values rather than universal optimal settings. Neighbourhood size should also reflect bin resolution, tissue morphology and the desired spatial scale.
+
+### 2.4 R example: spatial domain detection per sample
+
+**Input:** QC-filtered, normalized gene expression and spatial coordinates from Space Ranger.
+
+The following example uses Seurat v5 and BANKSY with Visium HD 8 µm bins.
+
+```r
+# Install packages if needed
+BiocManager::install("Banksy")
+remotes::install_github("satijalab/seurat-wrappers")
+
+library(Seurat)
+library(SeuratWrappers)
+library(Banksy)
+library(ggplot2)
+
+set.seed(123)
+
+# 1. Load Space Ranger output
+obj <- Load10X_Spatial(
+    data.dir = "Sample1/outs",
+    bin.size = 8,
+    slice = "Sample1"
+)
+
+assay_name <- "Spatial.008um"
+DefaultAssay(obj) <- assay_name
+
+# 2. QC filtering
+# Illustrative thresholds; adjust based on QC distributions
+obj <- subset(
+    obj,
+    subset = nCount_Spatial.008um >= 100 &
+             nFeature_Spatial.008um >= 50
+)
+
+# 3. Normalize gene expression
+obj <- NormalizeData(obj)
+
+# 4. Select highly variable genes
+obj <- FindVariableFeatures(obj, nfeatures = 2000)
+
+# 5. Construct BANKSY feature matrix
+obj <- RunBanksy(
+    obj, assay = assay_name, slot = "data",
+    features = "variable", lambda = 0.8,
+    k_geom = 15, verbose = TRUE
+)
+
+# 6. PCA using BANKSY features
+DefaultAssay(obj) <- "BANKSY"
+obj <- RunPCA(
+    obj, assay = "BANKSY",
+    features = rownames(obj[["BANKSY"]]),
+    reduction.name = "pca.banksy", npcs = 30
+)
+
+# 7. Construct KNN graph
+obj <- FindNeighbors(obj, reduction = "pca.banksy", dims = 1:30)
+
+# 8. Spatial domain clustering
+obj <- FindClusters(obj, resolution = 0.5,
+                    cluster.name = "spatial_domain")
+
+# 9. Visualize spatial domains
+DefaultAssay(obj) <- assay_name
+SpatialDimPlot(obj, group.by = "spatial_domain", label = TRUE)
+
+# 10. Save results
+saveRDS(obj, "Sample1_BANKSY.rds")
+```
+
+This follows the approach described in the official [Seurat Visium HD analysis tutorial](https://satijalab.org/seurat/articles/visiumhd_analysis_vignette.html).
+
+Notice that we do not use the previously generated standard PCA or UMAP embeddings as BANKSY input. BANKSY generates its own feature representation and PCA.
+
+### 2.5 What are the outputs?
+
+<div class="sp-fig" data-kind="domainoutputs"></div>
+
+The primary output is a domain annotation table.
+
+*Example output — simulated values*
+
+| Barcode | Sample | X | Y | Spatial domain |
+|---|---|---:|---:|---|
+| Bin_001 | S1 | 8 | 8 | D1 |
+| Bin_002 | S1 | 8 | 16 | D1 |
+| Bin_003 | S1 | 16 | 8 | D2 |
+| Bin_004 | S1 | 16 | 16 | D2 |
+| Bin_005 | S1 | 24 | 8 | D3 |
+
+Additional analysis can then be performed to characterize these domains.
+
+```r
+# Use original normalized gene expression,
+# NOT the BANKSY augmented feature matrix
+DefaultAssay(obj) <- "Spatial.008um"
+Idents(obj) <- "spatial_domain"
+
+# Identify domain-associated marker genes
+domain_markers <- FindAllMarkers(
+    obj, only.pos = TRUE, min.pct = 0.1,
+    logfc.threshold = 0.25
+)
+
+# Number of bins in each domain
+table(obj$spatial_domain)
+
+# Relative abundance of each domain
+prop.table(table(obj$spatial_domain))
+```
+
+These marker genes are useful for exploratory domain characterization. Their bin-level statistical significance should not be interpreted as independent biological replication.
+
+**Example domain characterization**
+
+| Domain | Representative markers | Possible identity |
+|---|---|---|
+| D1 | EPCAM, KRT19 | Tumour epithelium |
+| D2 | VIM, MMP2 | Invasive boundary |
+| D3 | COL1A1, DCN | Stroma |
+| D4 | CD3D, CD8A | Immune-enriched |
+| D5 | Tissue-specific genes | Normal tissue |
+
+*Hypothetical annotations. Histology, cell-type composition and additional markers are needed to confirm domain identities.*
+
+## 3. Spatially variable genes (SVGs)
+
+### 3.1 What is a spatially variable gene?
+
+A spatially variable gene is a gene whose expression distribution is associated with physical location within a tissue.
+
+Importantly, a gene can have highly variable expression without being spatially variable.
+
+<div class="sp-fig" data-kind="patterns"></div>
+
+For example, in tumour tissue, different genes may display different spatial patterns.
+
+<div class="sp-fig" data-kind="genes"></div>
+
+### 3.2 Highly variable genes vs spatially variable genes vs differentially expressed genes
+
+| | HVGs | SVGs | DEGs |
+|---|---|---|---|
+| Full name | Highly variable genes | Spatially variable genes | Differentially expressed genes |
+| Detects | High expression variability | Spatially structured expression | Expression differences between groups |
+| Uses spatial coordinates | No | Yes | Not usually |
+| Requires predefined groups | No | No | Yes |
+| Common method | Seurat VST | Moran's I, SPARK-X | Wilcoxon, DESeq2, edgeR |
+| Main purpose | Feature selection for clustering | Discover spatial patterns | Characterize differences |
+
+SVG detection can identify spatial expression patterns **without first defining cell types or spatial domains**.
+
+Therefore, spatial domain detection and SVG detection can be performed independently in parallel.
+
+### 3.3 How does Moran's I work?
+
+Moran's I measures spatial autocorrelation: whether neighbouring locations tend to have similar expression values.
+
+$$
+I=\frac{N}{W}\frac{\sum_i\sum_j w_{ij}(x_i-\bar{x})(x_j-\bar{x})}{\sum_i(x_i-\bar{x})^2}
+$$
+
+Where:
+
+| Parameter | Meaning |
+|---|---|
+| $N$ | Number of bins or cells |
+| $x_i$ | Expression of the gene in bin $i$ |
+| $\bar{x}$ | Mean expression of the gene |
+| $w_{ij}$ | Spatial weight between bins $i$ and $j$ |
+| $W$ | Sum of all spatial weights |
+
+The key idea is to compare the expression of spatial neighbours.
+
+<div class="sp-fig" data-kind="moran"></div>
+
+A high positive Moran's I indicates that bins with similar expression levels tend to be located close to one another. It does not, by itself, establish statistical significance.
+
+### 3.4 R example: SVG detection using Moran's I
+
+**Input:** Normalized or scaled gene expression and physical coordinates from one tissue section.
+
+Seurat's spatial workflow supports Moran's I using `FindSpatiallyVariableFeatures()`.
+
+```r
+library(Seurat)
+DefaultAssay(obj) <- "Spatial.008um"
+
+# 1. Identify candidate genes
+obj <- FindVariableFeatures(obj, nfeatures = 2000)
+genes <- VariableFeatures(obj)
+
+# 2. Scale candidate gene expression
+obj <- ScaleData(obj, features = genes)
+
+# 3. Identify spatially variable genes
+obj <- FindSpatiallyVariableFeatures(
+    obj, assay = "Spatial.008um", layer = "scale.data",
+    features = genes, selection.method = "moransi"
+)
+
+# 4. Extract ranked SVGs
+svg_genes <- SpatiallyVariableFeatures(
+    obj, assay = "Spatial.008um", selection.method = "moransi"
+)
+head(svg_genes, 10)
+
+# 5. Visualize top SVGs
+SpatialFeaturePlot(obj, features = head(svg_genes, 6), ncol = 3)
+
+# 6. Export feature-level results
+svg_results <- obj[["Spatial.008um"]][[]]
+write.csv(svg_results, "Sample1_MoransI_results.csv")
+```
+
+Restricting the analysis to HVGs reduces computational cost but can miss spatially patterned genes with low overall variability. For comprehensive discovery, use an expression-prevalence filter and test a broader gene set where computationally feasible.
+
+**Visium HD consideration:** Seurat's Moran's I implementation can encounter substantial memory and matrix-size limitations for large numbers of bins. For full-resolution Visium HD sections, SPARK-X or a suitable sparse spatial-graph implementation is generally a better starting point than constructing dense pairwise distance matrices.
+
+### 3.5 Alternative: SPARK-X for large Visium HD datasets
+
+SPARK-X uses statistical tests based on spatial kernels to detect different types of spatial expression patterns. It is designed for large and sparse spatial transcriptomics datasets.
+
+Unlike the preceding Seurat example, SPARK-X can directly use raw counts.
+
+```r
+# Install SPARK
+remotes::install_github("xzhoulab/SPARK")
+library(SPARK)
+library(Matrix)
+library(Seurat)
+
+run_sparkx <- function(obj,
+                       assay = "Spatial.008um",
+                       ncores = 8) {
+    # 1. Raw UMI counts: genes x bins
+    counts <- LayerData(obj, assay = assay, layer = "counts")
+
+    # 2. Physical spatial coordinates
+    coords <- GetTissueCoordinates(obj, image = Images(obj)[1])
+
+    # 3. Match coordinates to count matrix
+    common <- intersect(colnames(counts), rownames(coords))
+    stopifnot(length(common) > 0)
+    counts <- counts[, common, drop = FALSE]
+    coords <- as.matrix(coords[common, c("x", "y")])
+
+    # 4. Remove poorly detected genes
+    keep <- Matrix::rowSums(counts > 0) >= 50
+    counts <- counts[keep, , drop = FALSE]
+
+    # 5. Run SPARK-X
+    fit <- sparkx(count_in = counts, locus_in = coords,
+                  numCores = ncores, option = "mixture")
+
+    # 6. Extract statistical results
+    res <- as.data.frame(fit$res_mtest)
+    res$gene <- rownames(res)
+    res
+}
+
+svg_results <- run_sparkx(obj)
+write.csv(svg_results, "Sample1_SPARKX_results.csv", row.names = FALSE)
+```
+
+The function returns gene-level combined P-values and multiple-testing-adjusted P-values.
+
+Check the coordinate column names in your Seurat image object before running the function, as they can differ between object types.
+
+### 3.6 What are the outputs?
+
+<div class="sp-fig" data-kind="ranking"></div>
+<div class="sp-fig" data-kind="svgoutputs"></div>
+
+Typical downstream applications include pathway enrichment of SVGs, identification of spatial expression gradients, discovery of region-specific biomarkers and analysis of spatially organized immune responses.
+
+## 4. Per-sample vs joint-sample analysis
+
+This is particularly important when analysing multiple Visium HD samples. Unlike standard scRNA-seq analysis, each tissue section has its own independent physical coordinate system.
+
+### 4.1 Why can't we simply merge all spatial coordinates?
+
+<div class="sp-fig" data-kind="merge"></div>
+
+For example, coordinates (100, 200) in Sample 1 and Sample 2 do not represent the same physical tissue location.
+
+The correct strategy is to preserve each tissue section's spatial neighbourhood structure.
+
+### 4.2 Recommended strategy for each analysis
+
+| Analysis | Per-sample | Joint-sample |
+|---|---|---|
+| QC filtering | Required | No |
+| Normalization | Recommended | Possible with appropriate handling |
+| Standard expression clustering | Optional | Recommended for shared annotations |
+| Spatial neighbour detection | Required | Only with sample-aware graphs |
+| Spatial domain detection | Supported | Recommended for comparing shared domains |
+| SVG detection | Recommended | Requires a multi-sample-aware method |
+| Domain abundance comparison | Calculate abundance | Compare across biological replicates |
+| Domain-specific DEG | Generate pseudobulk | Statistical testing |
+| SVG reproducibility | Calculate statistics | Compare gene rankings and significance |
+
+## 5. Joint-sample spatial domain detection
+
+Suppose there are six Visium HD samples: three controls and three disease samples.
+
+If BANKSY is run separately, domain 1 in one sample may represent a different biological structure from domain 1 in another sample.
+
+Joint clustering helps establish a consistent set of spatial domain labels.
+
+<div class="sp-fig" data-kind="joint"></div>
+
+### 5.1 Correct joint-sample BANKSY workflow
+
+<div class="sp-fig" data-kind="jointflow"></div>
+
+The important distinction is that **spatial neighbourhood features are calculated within each sample, while PCA and clustering are performed jointly across samples.** This strategy is supported by BANKSY's multi-sample workflow.
+
+### 5.2 R example: joint-sample BANKSY
+
+```r
+library(Seurat)
+library(SeuratWrappers)
+library(Banksy)
+
+sample_ids <- c("Ctrl1", "Ctrl2", "Ctrl3", "Dis1", "Dis2", "Dis3")
+assay_name <- "Spatial.008um"
+
+# 1. Per-sample preprocessing
+obj_list <- lapply(sample_ids, function(id) {
+    obj <- Load10X_Spatial(
+        data.dir = file.path(id, "outs"), bin.size = 8, slice = id
+    )
+    DefaultAssay(obj) <- assay_name
+    obj$sample_id <- id
+    obj$condition <- ifelse(grepl("^Ctrl", id), "Control", "Disease")
+    obj <- subset(obj, subset = nCount_Spatial.008um >= 100 &
+                                nFeature_Spatial.008um >= 50)
+    obj <- NormalizeData(obj)
+    obj <- FindVariableFeatures(obj, nfeatures = 2000)
+    obj
+})
+names(obj_list) <- sample_ids
+
+# 2. Select common analysis features
+features <- SelectIntegrationFeatures(object.list = obj_list, nfeatures = 2000)
+
+# 3. Merge all samples
+joint <- merge(x = obj_list[[1]], y = obj_list[-1],
+               add.cell.ids = sample_ids, merge.data = TRUE)
+joint <- JoinLayers(joint, assay = assay_name)
+
+# 4. Sample-aware BANKSY feature construction
+joint <- RunBanksy(
+    joint, assay = assay_name, slot = "data", features = features,
+    lambda = 0.8, k_geom = 15, group = "sample_id",
+    split.scale = TRUE, verbose = TRUE
+)
+# group = "sample_id" ensures that spatial
+# neighbourhood calculations respect sample boundaries
+
+# 5. Joint PCA
+DefaultAssay(joint) <- "BANKSY"
+joint <- RunPCA(joint, assay = "BANKSY",
+                features = rownames(joint[["BANKSY"]]),
+                reduction.name = "pca.banksy", npcs = 30)
+
+# 6. Joint clustering
+joint <- FindNeighbors(joint, reduction = "pca.banksy", dims = 1:30)
+joint <- FindClusters(joint, resolution = 0.5, cluster.name = "spatial_domain")
+
+# 7. Joint UMAP
+joint <- RunUMAP(joint, reduction = "pca.banksy", dims = 1:30,
+                 reduction.name = "umap.banksy")
+
+# 8. Visualize shared domains
+DimPlot(joint, reduction = "umap.banksy", group.by = "spatial_domain",
+        split.by = "condition")
+
+# 9. Visualize domains in individual tissues
+DefaultAssay(joint) <- assay_name
+SpatialDimPlot(joint, group.by = "spatial_domain", ncol = 3)
+```
+
+The `group` and `split.scale` parameters allow sample-aware neighbourhood calculations and group-specific feature scaling, respectively.
+
+Batch correction, such as Harmony, can optionally be applied to the BANKSY PCA embeddings before joint clustering. However, avoid removing genuine disease-associated differences through excessive integration.
+
+### 5.3 Downstream analysis: differential spatial domain abundance
+
+After obtaining shared spatial domains, we can investigate whether the tissue architecture differs between control and disease samples.
+
+<div class="sp-fig" data-kind="composition"></div>
+
+```r
+library(dplyr)
+library(ggplot2)
+
+domain_prop <- joint[[]] |>
+    count(sample_id, condition, spatial_domain) |>
+    group_by(sample_id) |>
+    mutate(proportion = n / sum(n)) |>
+    ungroup()
+
+ggplot(domain_prop, aes(x = sample_id, y = proportion, fill = spatial_domain)) +
+    geom_col() +
+    facet_grid(~condition, scales = "free_x", space = "free_x") +
+    theme_classic()
+```
+
+For equal-sized Visium HD bins, these proportions approximate the relative coverage of retained tissue bins, rather than the proportion of cells.
+
+For formal statistical comparisons, the biological sample or patient—not each individual bin—should be treated as the independent replicate. Multiple sections from the same patient also need to be accounted for.
+
+## 6. Multi-sample SVG analysis
+
+### 6.1 Recommended approach: per-sample detection followed by cross-sample comparison
+
+SVG detection should generally be performed separately for each tissue section because each section has different spatial geometry, tissue composition and local expression patterns.
+
+<div class="sp-fig" data-kind="svgflow"></div>
+
+Afterwards, we can investigate:
+
+- Reproducible SVGs across multiple samples.
+- Shared SVGs between control and disease.
+- Candidate condition-specific spatial expression patterns.
+- Spatial patterns associated with particular cell types or spatial domains.
+
+### 6.2 Example of cross-sample SVG results
+
+<div class="sp-fig" data-kind="heatmap"></div>
+
+| Gene | Potential interpretation |
+|---|---|
+| EPCAM | Conserved spatial organization across conditions |
+| COL1A1 | Conserved stromal organization |
+| CXCL13 | Increased spatial organization of immune-associated expression in disease |
+| CA9 | Disease-associated localized expression |
+| CD8A | Reduced spatial autocorrelation in disease |
+| ACTB | Weak spatial autocorrelation in both conditions |
+
+Notice that increased Moran's I does not necessarily mean increased average expression.
+
+For example, CXCL13 might have the same average expression in both conditions but become concentrated in specific immune hotspots in disease tissue.
+
+### 6.3 R example: identify reproducible SVGs across samples
+
+Using the `run_sparkx()` function defined earlier:
+
+```r
+library(dplyr)
+library(tidyr)
+
+# 1. Run SVG detection separately
+svg_list <- lapply(names(obj_list), function(id) {
+    result <- run_sparkx(obj_list[[id]])
+    result$sample_id <- id
+    result$condition <- ifelse(grepl("^Ctrl", id), "Control", "Disease")
+    result
+})
+
+# 2. Combine gene-level results
+svg_all <- bind_rows(svg_list)
+
+# 3. Define significant SVGs
+svg_all <- svg_all |> mutate(significant = adjustedPval < 0.05)
+
+# 4. Summarize reproducibility
+svg_summary <- svg_all |>
+    group_by(gene, condition) |>
+    summarise(n_tested = n_distinct(sample_id),
+              n_significant = sum(significant),
+              reproducibility = n_significant / n_tested,
+              .groups = "drop")
+
+# 5. Identify reproducible SVGs
+reproducible_svg <- svg_summary |>
+    filter(n_tested == 3, n_significant >= 2)
+
+# 6. Compare conditions
+svg_comparison <- svg_summary |>
+    select(gene, condition, n_significant) |>
+    pivot_wider(names_from = condition, values_from = n_significant)
+
+# 7. Candidate disease-associated SVGs
+disease_svg <- svg_comparison |>
+    filter(Disease >= 2, Control == 0)
+```
+
+This identifies candidate genes with reproducible spatial patterns. It does **not** constitute a formal test of differential spatial variability.
+
+A gene being significant in disease but not significant in control does not automatically mean that its spatial variability is significantly different between conditions.
+
+For formal comparisons, calculate comparable sample-level spatial effect sizes and test differences across biological replicates, or use an appropriate multi-sample spatial statistical model.
+
+## 7. What biological level should be used?
+
+Spatial variability can arise from different biological processes. Therefore, the level of analysis should depend on the research question.
+
+<div class="sp-fig" data-kind="levels"></div>
+
+| Scenario | Input data | Purpose |
+|---|---|---|
+| Whole tissue SVG | All QC-passed bins/cells | Overall tissue organization |
+| Tumour-specific SVG | Tumour domain or malignant cells | Intratumour spatial heterogeneity |
+| Immune-specific SVG | Annotated immune cells or carefully selected immune-enriched bins | Local immune activation and exhaustion |
+| Domain marker identification | Expression + domain labels | Molecular characterization |
+| Cell-type distribution | Cell-type abundance or deconvolution scores + coordinates | Spatial localization of cell populations |
+
+### Example: tumour-specific SVG analysis
+
+```r
+# Assume spatial domains have been biologically annotated
+tumour <- subset(obj, subset = domain_annotation == "Tumour")
+DefaultAssay(tumour) <- "Spatial.008um"
+
+# Re-select features within the tumour region
+tumour <- FindVariableFeatures(tumour, nfeatures = 2000)
+tumour <- ScaleData(tumour, features = VariableFeatures(tumour))
+tumour <- FindSpatiallyVariableFeatures(
+    tumour, assay = "Spatial.008um", layer = "scale.data",
+    features = VariableFeatures(tumour), selection.method = "moransi"
+)
+tumour_svg <- SpatiallyVariableFeatures(tumour, selection.method = "moransi")
+```
+
+The spatial neighbourhood structure should be recalculated after subsetting, while avoiding artificial connections across large tissue gaps.
+
+For Visium HD, a bin annotated as CD8-enriched is not necessarily a pure CD8+ T cell. Cell segmentation, reference-based annotation or deconvolution should be considered when interpreting cell-type-specific SVGs.
+
+## 8. Which data representation should be used?
+
+This table summarizes the required data at each stage.
+
+| Analysis step | Raw counts | Normalized expression | Scaled expression | Embeddings | Coordinates |
+|---|:---:|:---:|:---:|:---:|:---:|
+| QC filtering | ✓ | | | | Optional |
+| Normalization | ✓ | | | | |
+| HVG selection (VST) | ✓ | | | | |
+| Standard PCA | | | ✓ | | |
+| Standard clustering | | | | ✓ | |
+| Cell-type annotation | Method-dependent | ✓ | Method-dependent | Optional | |
+| BANKSY feature construction | | ✓ | | | ✓ |
+| BANKSY PCA | | | Augmented features | | |
+| Spatial domain clustering | | | | BANKSY PCA | |
+| SVG: Moran's I | | ✓ | ✓ | | ✓ |
+| SVG: SPARK-X | ✓ | | | | ✓ |
+| Domain marker detection | Method-dependent | ✓ | | | |
+| Pseudobulk DEG | ✓ | | | | |
+| Spatial feature visualization | | ✓ | Optional | | ✓ |
+
+**Important:** Do not use integrated expression values, UMAP coordinates or standard PCA embeddings as the default input for gene-level SVG detection. SVG detection needs gene-level measurements and actual tissue coordinates.
+
+### 8.1 Which Visium HD bin resolution should be used?
+
+| Resolution | Characteristics | Recommended application |
+|---|---|---|
+| 2 µm | Very high resolution, extremely sparse | Cell segmentation, specialized subcellular analysis |
+| 8 µm | Higher spatial detail, increased computational requirements | Spatial domains, localized SVGs, cell-type-enriched regions |
+| 16 µm | More aggregated expression, lower spatial resolution | Initial exploration, broad domains and scalable SVG analysis |
+| Segmented cells | Cell-associated transcript counts | Cell-type-specific spatial analyses |
+
+I would use 8 µm bins as the primary starting resolution and 16 µm bins for initial exploration or computationally intensive analyses. Compare results across resolutions when possible.
+
+The chosen resolution also changes the physical scale of the neighbourhood used by BANKSY.
+
+<div class="sp-fig" data-kind="scale"></div>
+
+## 9. Recommended complete spatial transcriptomics workflow
+
+For a multi-sample Visium HD project, I would organize the analysis into three parallel branches after the initial preprocessing.
+
+<div class="sp-fig" data-kind="complete"></div>
+
+The three branches are complementary rather than strictly sequential. Cell-type annotation does not have to be completed before running BANKSY or whole-tissue SVG detection.
+
+Cell-type annotation becomes necessary when performing cell-type-specific spatial analysis.
+
+## 10. How to integrate the results biologically
+
+Consider a cancer study comparing control and disease tissue.
+
+<div class="sp-fig" data-kind="biology"></div>
+
+| Analysis | Hypothetical finding | Biological implication |
+|---|---|---|
+| Standard clustering | Similar immune cell types in both conditions | Broadly conserved cell populations |
+| Spatial domain detection | Expanded tumour domain | Tissue architecture remodeling |
+| Cell-type spatial distribution | CD8+ T cells concentrated at the tumour boundary | Potential immune exclusion |
+| Whole-tissue SVG | CXCL13 exhibits stronger spatial autocorrelation | Localized immune-associated expression |
+| Cell-type-specific SVG | Spatially patterned exhaustion-associated genes in CD8+ cells | Potential location-dependent immune state |
+| Domain-specific DEG | Increased hypoxia-associated genes in tumour core | Microenvironment-associated transcriptional changes |
+
+Together, these analyses provide a much more complete biological interpretation than standard expression-based clustering alone.
+
+## 11. Summary
+
+| | Spatial domain | Spatially variable genes |
+|---|---|---|
+| Recommended tool | BANKSY | Moran's I / SPARK-X |
+| Analysis unit | Bin, spot or cell | Gene |
+| Input | Normalized expression + coordinates | Raw or normalized expression + coordinates |
+| Per-sample step | Spatial neighbourhood calculation | Spatial statistical testing |
+| Joint-sample step | Shared PCA and clustering | Reproducibility and condition comparison |
+| Primary output | Domain labels | Spatial statistics and/or significance |
+| Main visualization | Spatial domain map | Spatial gene expression map |
+| Biological purpose | Understand tissue architecture | Understand spatial molecular organization |
+
+**The key distinction:**
+
+- Standard clustering tells you **what cells or transcriptional states are present**.
+- Spatial domain analysis tells you **how the tissue is organized**.
+- SVG analysis tells you **which genes contribute to spatial molecular patterns**.
+- Cross-sample analysis tells you **how these spatial characteristics differ between biological conditions**.
+
+## 12. Recommended tutorials and documentation
+
+| Resource | Content |
+|---|---|
+| [Harvard Chan – Spatially Derived Clusters](https://hbctraining.github.io/Intro-to-spatial-transcriptomics/lessons/11_banksy_clustering.html) | BANKSY principles and R workflow |
+| [Harvard Chan – Spatially Variable Genes](https://hbctraining.github.io/Intro-to-spatial-transcriptomics/lessons/14_svgs.html) | Moran's I and cell-type-specific SVG analysis |
+| [Seurat Visium HD vignette](https://satijalab.org/seurat/articles/visiumhd_analysis_vignette.html) | High-resolution spatial analysis |
+| [BANKSY multi-sample tutorial](https://prabhakarlab.github.io/Banksy/articles/multi-sample.html) | Joint-sample spatial clustering |
+| [SPARK-X research paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC8218388/) | Scalable SVG detection principles |
+| [SPARK GitHub](https://github.com/xzhoulab/SPARK) | Installation and R examples |
+
+**Implementation note:** The R scripts are adapted from documented workflows but have not been executed against your actual Visium HD datasets. The QC thresholds, bin resolution, neighbourhood size and clustering resolution are illustrative starting parameters. All simulated figures and numerical results are intended to explain the analytical principles, not to represent experimental findings.
+
+```{=html}
+<style>
+.sp-fig{border:1px solid #d5dce4;border-radius:10px;padding:18px;margin:20px 0;font-family:system-ui,sans-serif;break-inside:avoid;color:inherit}.sp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:15px;align-items:start}.sp-panel{text-align:center}.sp-panel svg{width:100%;max-width:260px;height:auto;display:block;margin:8px auto}.sp-caption{font-size:.85em;opacity:.8;text-align:center;margin:10px 0 0}.sp-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;font-size:.85em;margin:10px}.sp-swatch{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px}.sp-flow{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}.sp-node{padding:8px 12px;border:1px solid #90a9c2;border-radius:6px;background:rgba(116,157,199,.12);min-width:110px}.sp-arrow{opacity:.7}.sp-branches{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}.sp-branches .sp-node{min-width:0;font-size:.85em}.sp-fig input[type=range]{width:100%}.sp-fig button{padding:5px 10px;border:1px solid #9baabb;background:transparent;color:inherit;border-radius:5px;margin:3px;cursor:pointer}.sp-fig button.active{background:#749dc7;color:#fff}.sp-bars{display:grid;gap:7px}.sp-bar{display:flex;align-items:center;gap:8px}.sp-bar>span:first-child{min-width:65px}.sp-track{flex:1;background:#e5e9ef;border-radius:4px;overflow:hidden;display:flex;height:23px}.sp-track i{display:block;font-style:normal;text-align:center;color:#15232c;font-size:12px;line-height:23px}.sp-heat{border-collapse:separate;border-spacing:3px;width:100%;font-size:.85em}.sp-heat td,.sp-heat th{text-align:center;padding:5px}.sp-heat td:first-child{text-align:left}.sp-fig .sp-result{font-size:1.4em;font-weight:600;margin:7px 0}
+</style>
+<script>
+(function(){
+const C=['#d67b85','#dfb769','#78b49b','#7aabd2','#b0a0d1'];
+const red='#c52d45';
+const clamp=x=>Math.max(.04,Math.min(1,x));
+const noise=(i,j)=>((i*47+j*73+i*j*3)%101)/101;
+const gauss=(i,j,x,y,s)=>Math.exp(-((i-x)**2+(j-y)**2)/s);
+function grid(n,m,fn,ellipse=false,circle=false){let s='';for(let j=0;j<m;j++)for(let i=0;i<n;i++){if(ellipse&&((i-(n-1)/2)/(n/2))**2+((j-(m-1)/2)/(m/2))**2>1)continue;let v=fn(i,j);if(typeof v==='string')v=[v,1];s+=circle?`<circle cx="${i*10+5}" cy="${j*10+5}" r="4.4" fill="${v[0]}" opacity="${v[1]}"/>`:`<rect x="${i*10+.5}" y="${j*10+.5}" width="9" height="9" rx="1" fill="${v[0]}" opacity="${v[1]}"/>`;}return `<svg viewBox="0 0 ${n*10} ${m*10}" xmlns="http://www.w3.org/2000/svg" role="img">${s}</svg>`;}
+const panel=(title,content,sub='')=>`<div class="sp-panel"><strong>${title}</strong>${content}${sub?`<div class="sp-caption">${sub}</div>`:''}</div>`;
+const panels=(...p)=>`<div class="sp-grid">${p.join('')}</div>`;
+const caption=t=>`<div class="sp-caption">${t}</div>`;
+const legend=(names,colors=C)=>`<div class="sp-legend">${names.map((n,i)=>`<span><i class="sp-swatch" style="background:${colors[i]}"></i>${n}</span>`).join('')}</div>`;
+const domain=(i,j)=>C[(i-9)**2+(j-6)**2<18?0:(i-9)**2+(j-6)**2<33?1:i>14?3:j>7?2:4];
+const gene=(t,i,j)=>[red,clamp(t===0?.4:t===1?.07+.93*noise(i,j):t===2?.05+.95*gauss(i,j,8,5,11):.06+.94*i/13)];
+const genes=['EPCAM','COL1A1','CXCL13','CA9'];
+const geneMap=(t,i,j)=>[red,clamp(t===0?.07+.9*gauss(i,j,7,5,18):t===1?.08+.85*(1-gauss(i,j,7,5,20)):t===2?.07+.9*Math.max(gauss(i,j,12,3,3),gauss(i,j,4,7,3)):.07+.9*gauss(i,j,7,5,7))];
+const node=t=>`<div class="sp-node">${t}</div>`;
+const flow=(...steps)=>`<div class="sp-flow">${steps.map(node).join('<div class="sp-arrow">↓</div>')}</div>`;
+const heat=(rows,cols)=>`<table class="sp-heat"><thead><tr><th>Gene</th>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td>${r.slice(1).map(v=>`<td style="background:rgb(${Math.round(248-v*68)},${Math.round(244-v*192)},${Math.round(245-v*171)});color:${v>.55?'white':'#303030'}">${v.toFixed(2)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+const sample=(s,joint)=>grid(7,10,(i,j)=>C[((i<2+(s>=3?2:0)?0:j>6?3:i>4?2:1)+(joint?0:s))%4],true);
+const sampleNames=['Ctrl1','Ctrl2','Ctrl3','Dis1','Dis2','Dis3'];
+function render(e){const k=e.dataset.kind;let h='';switch(k){
+case 'overview': h=flow('Spatial transcriptomics data<br>Gene expression + tissue coordinates')+panels(panel('Spatial domains',grid(12,7,(i,j)=>C[i<4+Math.sin(j)*1.5?0:i+j>13?1:2]),'Region-level analysis: identify tissue regions with distinct molecular and spatial characteristics.'),panel('Spatially variable genes',grid(12,7,(i,j)=>[red,.1+.9*gauss(i,j,7,3,12)]),'Gene-level analysis: identify genes whose expression exhibits non-random spatial patterns.'))+caption('Conceptual illustration using simulated tissue patterns.');break;
+case 'domains':h=panel('Spatial domain annotation',grid(20,13,domain,true,true))+legend(['Tumour core','Tumour boundary','Stroma','Immune region','Normal tissue'])+caption('Each bin or cell is assigned a spatial domain label.');break;
+case 'compare':h=panels(panel('Expression-based clustering',grid(16,14,(i,j)=>C[noise(i,j)<.27?(i+j)%3:i<6?0:i+j>17?1:2]),'Clusters may be spatially scattered because only transcriptional similarity is considered.'),panel('Spatial-aware clustering',grid(16,14,(i,j)=>C[i<6+Math.sin(j*.4)?0:i+j>17?1:2]),'Clustering incorporates the surrounding tissue environment to identify molecular regions.'))+legend(['Cluster 1','Cluster 2','Cluster 3']);break;
+case 'banksy':h=panels(panel('Spatial neighbourhood',grid(7,7,(i,j)=>i===3&&j===3?['#db846d',1]:Math.abs(i-3)<=1&&Math.abs(j-3)<=1?['#7da9d2',1]:['#b9c1c9',.35])),flow('Intrinsic expression of target bin + neighbourhood features (local expression and gradients)','BANKSY feature matrix','PCA → KNN graph → Clustering'));break;
+case 'lambda':e.innerHTML='<strong>Spatial contribution (lambda)</strong><input type="range" min="0" max="1" step=".05" value=".8" aria-label="Lambda"><div class="dynamic"></div>'+caption('Conceptual simulation, not actual BANKSY calculations. Percentages illustrate relative emphasis rather than exact mathematical feature weights.');{let r=e.querySelector('input'),d=e.querySelector('.dynamic');function update(){let l=+r.value;d.innerHTML=`<div class="sp-result">${l.toFixed(2)}</div>`+grid(30,15,(i,j)=>C[noise(i,j)<(1-l)*.55?(i*7+j*13)%3:i<10+Math.sin(j*.4)*2?0:i+j>32?1:2])+`<p>Intrinsic expression emphasis: ${Math.round((1-l)*100)}% · Neighbourhood emphasis: ${Math.round(l*100)}%</p><strong>${l===0?'Expression-only clustering':l<=.3?'Spatially informed cell typing':l<.7?'Intermediate clustering':'Spatial domain identification'}</strong>`;}r.addEventListener('input',update);update();}return;
+case 'domainoutputs':h=panels(panel('Spatial domain map',grid(20,13,domain,true),'Distribution of molecular domains within the tissue.'),panel('Domain marker heatmap',heat([['EPCAM',.9,.3,.1,.1],['KRT19',.8,.4,.1,.1],['COL1A1',.1,.4,.9,.2],['CD3D',.1,.2,.1,.9]],['D1','D2','D3','D4']),'Molecular characteristics of individual domains.'))+caption('Recreated illustrative outputs, not external paper figures.');break;
+case 'patterns':h=panels(...['Uniform expression','Randomly variable expression','Spatially clustered expression','Spatial expression gradient'].map((n,t)=>panel(n,grid(14,11,(i,j)=>gene(t,i,j)),t<2?'No clear spatial pattern':'Spatial pattern')))+caption('Low expression (pale) → High expression (dark red)');break;
+case 'genes':h=panels(...genes.map((n,t)=>panel(n,grid(18,11,(i,j)=>geneMap(t,i,j),true),['Tumour-localized expression','Stromal-enriched expression','Localized immune hotspots','Potential hypoxic gradient'][t])))+caption('Illustrative gene expression patterns, not experimental observations.');break;
+case 'moran':e.innerHTML='<strong>Interactive Moran’s I example</strong><div class="buttons"></div><div class="dynamic"></div>'+caption('Calculated from 100 simulated bins using four-directional adjacency and binary spatial weights. The exact bounds depend on the spatial weight matrix.');{let b=e.querySelector('.buttons'),d=e.querySelector('.dynamic');['Clustered','Random-like','Alternating'].forEach((p,t)=>{let bt=document.createElement('button');bt.textContent=p;bt.onclick=()=>update(t);b.appendChild(bt);});function update(t){[...b.children].forEach((x,i)=>x.classList.toggle('active',i===t));let v=Array.from({length:100},(_,i)=>t===0?+(i%10<5):t===1?+(((i*47+Math.floor(i/10)*19)%101)<50):+((i%10+Math.floor(i/10))%2===0));let a=v.reduce((x,y)=>x+y,0)/100,edges=[];v.forEach((x,i)=>{if(i%10<9)edges.push([i,i+1]);if(i<90)edges.push([i,i+10]);});let I=100/edges.length*edges.reduce((s,[i,j])=>s+(v[i]-a)*(v[j]-a),0)/v.reduce((s,x)=>s+(x-a)**2,0);d.innerHTML=panels(panel('Simulated expression',grid(10,10,(i,j)=>v[j*10+i]?'#c84353':'#e0e6ee')),panel('Calculated Moran’s I',`<div class="sp-result">${I.toFixed(3)}</div>`,I>.2?'Positive autocorrelation. Similar expression levels occur together.':I<-.2?'Negative autocorrelation. Neighbours tend to have opposite expression levels.':'Weak spatial autocorrelation in this example.'));}update(0);}return;
+case 'ranking':h='<strong>Example SVG ranking — illustrative Moran’s I results</strong><div class="sp-bars">'+[['EPCAM',.82],['COL1A1',.76],['KRT19',.71],['CXCL13',.64],['CA9',.58],['CD8A',.49],['ACTB',.06]].map(([n,v])=>`<div class="sp-bar"><span>${n}</span><div class="sp-track"><i style="width:${v*100}%;background:#478fbc"></i></div><span>${v.toFixed(2)}</span></div>`).join('')+'</div>';break;
+case 'svgoutputs':h=panels(panel('Spatial gene expression maps',grid(18,11,(i,j)=>geneMap(2,i,j),true),'Visualize where the identified genes are expressed.'),panel('Spatial gene modules',heat([['EPCAM',.9,.8,.2],['KRT19',.8,.9,.1],['CXCL13',.1,.2,.9],['CD8A',.2,.1,.8]],['Region A','Region B','Region C']),'Group genes with similar spatial expression patterns.'))+caption('Recreated illustrative outputs, not external paper figures.');break;
+case 'merge':h=panels(...[0,1,2].map(s=>panel('Sample '+(s+1),grid(9,8,(i,j)=>[C[s],.45+.5*noise(i,j)]))))+flow('Incorrect: merge independent X/Y coordinates','Artificial neighbours across samples')+caption('Bins from different tissue sections may have identical X/Y coordinates but are not physically adjacent.');break;
+case 'joint':h='<strong>Independent per-sample BANKSY</strong>'+panels(...sampleNames.map((n,s)=>panel(n,sample(s,false))))+caption('Identical cluster numbers or colours do not guarantee equivalent biological identities.')+'<hr><strong>Joint-sample BANKSY</strong>'+panels(...sampleNames.map((n,s)=>panel(n,sample(s,true))))+caption('The same colours represent shared computational domain labels across samples.');break;
+case 'jointflow':h='<div class="sp-branches">'+[1,2,3].map(s=>flow('Sample '+s,'QC + normalize','Spatial neighbour feature calculation')).join('')+'</div>'+flow('↓ Combined BANKSY feature matrix','Joint PCA / optional batch correction','Joint clustering','Shared spatial domain labels');break;
+case 'composition':h='<strong>Spatial domain composition</strong>'+caption('Simulated results for six biological samples')+'<div class="sp-bars">'+[[25,15,40,20],[23,17,35,25],[28,12,38,22],[52,23,15,10],[48,30,12,10],[55,20,15,10]].map((r,s)=>`<div class="sp-bar"><span>${sampleNames[s]}</span><div class="sp-track">${r.map((p,i)=>`<i style="width:${p}%;background:${C[i]}">${p}%</i>`).join('')}</div></div>`).join('')+'</div>'+legend(['Tumour/epithelial','Boundary','Stroma','Immune']);break;
+case 'svgflow':h=panels(...[0,1,2].map(s=>panel('Sample '+(s+1),grid(10,8,(i,j)=>[red,.08+.9*gauss(i,j,3+s,4-s,8)]), 'Per-sample SVG detection')))+flow('↓ Cross-sample SVG comparison');break;
+case 'heatmap':h='<strong>Moran’s I across samples</strong>'+heat([['EPCAM',.81,.75,.78,.83,.85,.79],['COL1A1',.75,.78,.71,.73,.76,.81],['CXCL13',.11,.18,.09,.73,.81,.69],['CA9',.12,.17,.21,.66,.72,.64],['CD8A',.68,.73,.62,.24,.19,.27],['ACTB',.06,.11,.08,.07,.09,.11]],sampleNames)+caption('Simulated data for illustration. Pale to dark red: weak to strong spatial pattern.');break;
+case 'levels':h=panels(...['Whole-tissue level','Spatial domain level','Cell-type-specific level'].map((n,t)=>panel(n,grid(15,11,(i,j)=>t===0?C[i<5?0:i+j>16?2:3]:t===1?i+j>13?C[0]:['#bfc5cc',.3]:(i*7+j*13)%5===0?C[0]:['#bfc5cc',.3],true,true),['Which genes have spatial patterns across the entire tissue?','Which genes show spatial patterns within a particular tissue compartment?','Does the same cell type exhibit different transcriptional states depending on location?'][t])));break;
+case 'scale':e.innerHTML='<strong>Interactive spatial neighbourhood scale</strong><div class="buttons"></div><label>Neighbourhood rings <input type="range" min="1" max="4" value="2"></label><div class="dynamic"></div>'+caption('Conceptual square neighbourhood. BANKSY uses geometric nearest neighbours and distance-dependent weights rather than this exact square selection.');{let size=8,b=e.querySelector('.buttons'),r=e.querySelector('input'),d=e.querySelector('.dynamic');[2,8,16].forEach(s=>{let bt=document.createElement('button');bt.textContent=s+' µm';bt.onclick=()=>{size=s;update();};b.appendChild(bt);});function update(){let n=+r.value,w=(2*n+1)*size;[...b.children].forEach((x,i)=>x.classList.toggle('active',[2,8,16][i]===size));d.innerHTML=panels(panel('Neighbourhood rings: '+n,grid(11,11,(i,j)=>i===5&&j===5?C[0]:Math.max(Math.abs(i-5),Math.abs(j-5))<=n?C[3]:['#c5cbd2',.3])),panel('Neighbourhood metrics',`<p>Neighbouring bins: <strong>${(2*n+1)**2-1}</strong></p><p>Width: <strong>${w} µm</strong></p><p>Physical footprint: <strong>${w*w} µm²</strong></p>`));}r.oninput=update;update();}return;
+case 'complete':h=flow('Space Ranger outputs','Per-sample QC and normalization<br>Raw counts → normalized expression')+'<div class="sp-branches">'+flow('Expression-based','HVG selection<br>Normalized/count data','Scaling and PCA<br>Scaled expression','Integration (optional)<br>Joint embeddings','Clustering<br>Joint PCA space','Cell-type annotation<br>Shared labels')+flow('Spatial domains','BANKSY features<br>Expression + X/Y','Joint BANKSY PCA<br>Augmented features','Joint clustering<br>BANKSY embeddings','Domain annotation<br>Markers + histology','Domain composition<br>Per-sample labels')+flow('SVG detection','Gene filtering<br>Raw/normalized data','Moran’s I / SPARK-X<br>Per-sample X/Y','SVG ranking<br>Per-sample results','SVG reproducibility<br>Cross-sample','Spatial gene modules<br>Pathway enrichment')+'</div>'+flow('↓ Biological interpretation and comparison<br>Cell-type composition within domains<br>Domain abundance and domain-specific DEG<br>Condition-associated spatial expression patterns');break;
+case 'biology':h=panels(...[0,1].map(s=>panel(s?'Disease':'Control',grid(17,12,(i,j)=>{let dist=(i-7)**2+(j-6)**2;let immune=s?((i-13)**2+(j-5)**2<10||(i-7)**2+(j-1)**2<6)&&(i+j)%3!==0:(i*17+j*7)%9===0;return immune?'#4c79c2':dist<(s?28:12)?C[0]:dist<(s?45:25)?C[1]:C[2];},true,true))))+legend(['Tumour','Boundary','Stroma','Immune cells'],[...C.slice(0,3),'#4c79c2'])+panels(panel('Control CXCL13 expression',grid(15,9,(i,j)=>[red,.05+.35*noise(i,j)])),panel('Disease CXCL13 expression',grid(15,9,(i,j)=>[red,.05+.95*Math.max(gauss(i,j,12,4,4),gauss(i,j,6,1,3))])))+caption('Hypothetical example of tissue remodeling and localized immune gene expression.');break;
+}e.innerHTML=h;}
+function init(){document.querySelectorAll('.sp-fig').forEach(render);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+```
