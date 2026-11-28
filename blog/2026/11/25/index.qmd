@@ -1,5 +1,7 @@
 ---
 title: "Spatial domains and spatially variable genes in spatial transcriptomics"
+image: spatial_domains.png
+image-alt: "Illustration of a tissue section with square bins colored by spatial domain."
 date: "2026-11-26"
 published-title: Created
 date-modified: last-modified
@@ -10,7 +12,6 @@ format:
   html:
     toc: true
     toc-depth: 3
-    embed-resources: true
     code-fold: false
     theme: cosmo
     fig-align: center
